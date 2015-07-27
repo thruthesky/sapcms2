@@ -7,7 +7,6 @@ class Response {
      */
     public static function redirect($url) {
         echo Javascript::location($url);
-        exit;
     }
 
     public static function html($content)
@@ -16,6 +15,13 @@ class Response {
         $html->meta('charset', 'utf8');
         $html->body($content);
         echo $html->get();
-        exit;
     }
+
+    public static function renderLayout($filename=null) {
+        ob_start();
+        include theme_layout();
+        $content = ob_get_clean();
+        echo $content;
+    }
+
 }

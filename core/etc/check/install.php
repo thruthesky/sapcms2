@@ -1,8 +1,8 @@
 <?php
+
 if ( Request::install() ) {
-    include $system->module(true)->script();
-    exit;
+    System::runModule();
 }
 else {
-    if ( ! $system->install() ) Response::redirect('?act=install.form');
+    if ( ! $system->install() ) Response::redirect(Route::create('Install', 'Form'));
 }

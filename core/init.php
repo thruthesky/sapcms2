@@ -1,26 +1,24 @@
 <?php
 include 'config.php';
-include 'include/HTML.php';
-include 'include/Markup.php';
-include 'include/Javascript.php';
-include 'include/error_reporting.php';
-include 'include/System.php';
-include 'include/Request.php';
-include 'include/Response.php';
+include 'src/sapcms-library.php';
+include 'src/Route.php';
+include 'src/HTML.php';
+include 'src/Markup.php';
+include 'src/Javascript.php';
+include 'src/error_reporting.php';
+include 'src/System.php';
+include 'src/Request.php';
+include 'src/Response.php';
+
 
 $system = System::load();
 
-include 'etc/check/install.php';
-
-if ( $result = $system->check() ) Response::html($result);
-
-
 
 if ( $system->runOnCommandLineInterface() ) {
-
 }
 else {
-
+    include 'etc/check/install.php';
+    if ( $result = $system->check() ) Response::html($result);
 }
 
 

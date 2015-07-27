@@ -1,3 +1,4 @@
+<h1>This is THEME Install.Form.Input.html.php. It overrides module template.</h1>
 <form>
     <input type="hidden" name="install.submit">
 
