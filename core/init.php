@@ -1,18 +1,26 @@
 <?php
 include 'config.php';
+include 'include/HTML.php';
+include 'include/Markup.php';
 include 'include/Javascript.php';
 include 'include/error_reporting.php';
 include 'include/System.php';
+include 'include/Request.php';
 include 'include/Response.php';
-$system = system::load();
 
-if ( ! $system->install() )  Response::redirect('core/install.php');
+$system = System::load();
+
+include 'etc/check/install.php';
+
+if ( $result = $system->check() ) Response::html($result);
+
+
 
 if ( $system->runOnCommandLineInterface() ) {
-    echo "It runs on CLI";
+
 }
 else {
-    echo "It runs on Web";
+
 }
 
 
