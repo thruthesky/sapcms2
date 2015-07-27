@@ -1,0 +1,1 @@
+\apps\apm\php7\php index.php %*
