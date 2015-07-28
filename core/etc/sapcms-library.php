@@ -1,11 +1,6 @@
 <?php
-function module_script()
-{
-    return System::get()
-        ->module()
-        ->script();
-}
-
+use sap\core\System;
+use sap\core\Request;
 function theme_script($filename=null)
 {
     global $theme;
@@ -19,9 +14,21 @@ function theme_script($filename=null)
     return $path;
 }
 
+function module_script()
+{
+    return System::get()
+        ->module()
+        ->script();
+}
+
+
 function theme_layout()
 {
     global $theme;
     return "theme/$theme/layout.html.php";
 }
 
+function is_core_module($module=null) {
+    if ( empty($module) ) $module = sap\core\Request::get('module');
+    return in_array($module, ['File-upload', 'Install', 'Post', 'User']);
+}

@@ -1,5 +1,5 @@
 <?php
-
+namespace sap\core;
 class HTML {
 
     protected $meta = [];

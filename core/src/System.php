@@ -1,4 +1,6 @@
 <?php
+namespace sap\core;
+
 class System {
     static $system = null;
     static $version = '2.0.1';
@@ -6,10 +8,25 @@ class System {
     private $filename =null;
     public $script = null;
 
+    /**
+     *
+     * It creates and returns the System object.
+     * @note there is only one System object in the entire script.
+     *
+     * @return null|System
+     */
     public static function load() {
         if ( empty(self::$system) ) self::$system = new System();
         return self::$system;
     }
+
+    /**
+     *
+     * Returns the instance of the System object.
+     *
+     * @return null|System
+     *
+     */
     public static function get() {
         return self::load();
     }
@@ -25,8 +42,12 @@ class System {
         $module = Request::get('module');
         $class = Request::get('class');
         $method = Request::get('method');
-        include self::loadModuleClass($module, $class);
-        $class::$method();
+        //include self::loadModuleClass($module, $class);
+        $core = is_core_module() ? "core\\" : null;
+        //echo "<h1>$module</h1>";
+        $name = "sap\\{$core}module\\$module\\$class";
+        //echo "<h1>name:$name</h1>";
+        $name::$method();
     }
     public static function loadModuleClass($module, $class) {
         return System::get()
@@ -36,8 +57,38 @@ class System {
 
     public static function isCoreModule($module=null)
     {
-        if ( empty($module) ) $module = Request::get('module');
-        return in_array($module, ['File-upload', 'Install', 'Post', 'User']);
+        return is_core_module($module);
+    }
+
+    public static function install($options)
+    {
+        Config::create()
+            ->file(PATH_DATABASE_CONFIG)
+            ->data($options)
+            ->save();
+        self::createDatabase($options);
+        /*
+        User::create()
+            ->set('username', 'admin')
+            ->set('password', '1234')
+            ->save();
+        */
+    }
+
+    private static function createDatabase($options)
+    {
+        $db = Database::sqlite(PATH_SQLITE_DATABASE);
+        $db->dropTable('user');
+        $db->createTable('user');
+        $db->addColumn('user', 'id', 'varchar(64)');
+        $db->addColumn('user', 'password', 'varchar(64)');
+        $db->addColumn('user', 'username', 'varchar(64)');
+        $db->addColumn('user', 'nickname', 'varchar(64)');
+        $db->addColumn('user', 'email', 'varchar(64)');
+        $db->addColumn('user', 'birth_year', 'int');
+        $db->addColumn('user', 'birth_month', 'int');
+        $db->addColumn('user', 'day', 'int');
+
     }
 
     private static function getDatabaseConfigPath()
@@ -45,12 +96,17 @@ class System {
         return PATH_DATA . '/config.database.php';
     }
 
-    public function install()
+    /**
+     * @return bool
+     *  - return true if the system is installed.
+     *  - otherwise, returns false.
+     */
+    public function isInstalled()
     {
         return file_exists(self::getDatabaseConfigPath());
     }
 
-    public function runOnCommandLineInterface()
+    public static function isCommandLineInterface()
     {
         if ( isset($GLOBALS['argv']) ) {
             if ( $GLOBALS['argv']['0'] == 'index.php' ) return true;
@@ -63,17 +119,22 @@ class System {
     }
 
     /**
+     *
+     * @deprecated What is the use of this method?
      * @return int
      *  - zero(0) if there is no error.
+     *
      */
     public function check()
     {
+        return 0;
+        /*
         $markup = Markup::create();
         if ( ! self::install() ) {
             // return $markup->set('type','box.error')->set('code', ERROR_INSTALL)->set('message', 'System is not installed')->display();
         }
-
         return 0;
+        */
     }
 
     public function theme()

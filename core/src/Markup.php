@@ -1,4 +1,5 @@
 <?php
+namespace sap\core;
 class Markup {
     protected $type = null;
     protected $storage = [];

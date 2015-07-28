@@ -1,4 +1,5 @@
 <?php
+namespace sap\core;
 class Request {
     static $storage = [];
     public static function get($k) {
@@ -16,9 +17,6 @@ class Request {
         self::$storage = array_merge($_GET, $_POST);
         self::$storage = self::adjustInput(self::$storage);
         return self::$storage;
-    }
-    public static function install() {
-        return self::get('module') == 'Install';
     }
 
     private static function adjustInput(array & $input)
@@ -58,6 +56,12 @@ class Request {
     {
         self::$storage[$k] = $v;
         self::$storage = self::adjustInput(self::$storage);
+    }
+
+
+    public static function isPageInstall()
+    {
+        return self::get('module') == 'Install';
     }
 
 }

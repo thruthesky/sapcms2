@@ -1,4 +1,5 @@
 <?php
+namespace sap\core;
 class Response {
     /**
      * @param $url
@@ -6,6 +7,8 @@ class Response {
      * Attention It ends the script.
      */
     public static function redirect($url) {
+
+        self::setHeaders();
         echo Javascript::location($url);
     }
 
@@ -14,6 +17,8 @@ class Response {
         $html = HTML::create();
         $html->meta('charset', 'utf8');
         $html->body($content);
+
+        self::setHeaders();
         echo $html->get();
     }
 
@@ -21,7 +26,18 @@ class Response {
         ob_start();
         include theme_layout();
         $content = ob_get_clean();
+        self::setHeaders();
         echo $content;
+    }
+
+    private static function setHeaders()
+    {
+        if ( System::isCommandLineInterface() ) {
+
+        }
+        else {
+            header('Content-Type: text/html; charset=UTF-8');
+        }
     }
 
 }

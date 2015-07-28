@@ -1,28 +1,35 @@
 <?php
+namespace sap;
+use sap\core\Request;
+use sap\core\Response;
+use sap\core\Route;
+use sap\core\System;
+
 include 'config.php';
-include 'src/sapcms-library.php';
-include 'src/Route.php';
-include 'src/HTML.php';
-include 'src/Markup.php';
-include 'src/Javascript.php';
-include 'src/error_reporting.php';
-include 'src/System.php';
-include 'src/Request.php';
-include 'src/Response.php';
+include 'etc/defines.php';
+include 'etc/sapcms-library.php';
+
+spl_autoload_register( function( $class ) {
+    $class = str_replace('sap', '', $class);
+    if ( strpos($class, 'module') ) {
+        $pi = pathinfo($class);
+        $class = $pi['dirname'] . '/src/' . $pi['filename'];
+    }
+    else if ( strpos($class, 'core') !== false ) $class = str_replace("core", "core/src", $class);
+    $path = PATH_INSTALL . "$class.php";
+    include $path;
+} );
 
 
-$system = System::load();
+$system = core\System::load();
 
 
-if ( $system->runOnCommandLineInterface() ) {
+if ( System::isCommandLineInterface() ) {
+    core\CommandLineInterface::Run();
 }
 else {
-    include 'etc/check/install.php';
-    if ( $result = $system->check() ) Response::html($result);
+    if ( ! $system->isInstalled() ) {
+        if ( Request::isPageInstall() ) System::runModule();
+        else Response::redirect(Route::create("Install.Form.Input"));
+    }
 }
-
-
-
-
-
-
