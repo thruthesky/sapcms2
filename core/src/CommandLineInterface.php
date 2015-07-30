@@ -37,7 +37,7 @@ class CommandLineInterface {
                 'database-name' => self::getArgument('--database-name'),
                 'database-username' => self::getArgument('--database-username'),
                 'database-password' => self::getArgument('--database-password'),
-                'admin-user-id' => self::getArgument('--admin-user-id'),
+                'admin-id' => self::getArgument('--admin-id'),
                 'admin-password' => self::getArgument('--admin-password'),
             ]);
         }
@@ -47,6 +47,7 @@ class CommandLineInterface {
                 include self::$cmd;
             }
         }
+        dog("END");
         return OK;
     }
     public static function displayHelp() {

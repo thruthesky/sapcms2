@@ -23,9 +23,14 @@ class Request {
     {
         if ( isset($input[ HTTP_VAR_ROUTE ]) ) {
             $arr = explode('.', $input[ HTTP_VAR_ROUTE ], 3);
-            $input['module'] = isset($arr[0]) ? $arr[0] : null;
-            $input['class'] = isset($arr[1]) ? $arr[1] : null;
-            $input['method'] = isset($arr[2]) ? $arr[2] : CLASS_DEFAULT_CONTROLLER;
+            $input['module'] = isset($arr[0]) ? $arr[0] : DEFAULT_MODULE;
+            $input['class'] = isset($arr[1]) ? $arr[1] : DEFAULT_CLASS;
+            $input['method'] = isset($arr[2]) ? $arr[2] : DEFAULT_CONTROLLER;
+        }
+        else {
+            $input['module'] = DEFAULT_MODULE;
+            $input['class'] = DEFAULT_CLASS;
+            $input['method'] = DEFAULT_CONTROLLER;
         }
         return $input;
     }

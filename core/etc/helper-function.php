@@ -1,4 +1,5 @@
 <?php
+use sap\core\Database;
 use sap\core\SQL;
 
 function db_and() {
@@ -7,4 +8,24 @@ function db_and() {
 
 function db_or() {
     return SQL::where('OR');
+}
+
+
+function db_insert($table, $fields) {
+    $db = Database::load();
+    return $db->insert($table, $fields);
+}
+
+function db_update($table, $fields, $cond) {
+    $db = Database::load();
+    return $db->update($table, $fields, $cond);
+}
+
+
+function db_row($table, $cond, $field='*') {
+    return Database::load()->row($table, $cond, $field);
+}
+
+function db_delete($table, $cond) {
+    return Database::load()->delete($table, $cond);
 }

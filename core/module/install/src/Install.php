@@ -27,6 +27,7 @@ class Install {
      */
     public static function createDirs()
     {
+        dog(__METHOD__);
         if ( $error_code = File::createDir(PATH_CONFIG) ) return $error_code;
         if ( $error_code = File::createDir(PATH_UPLOAD) ) return $error_code;
         if ( $error_code = File::createDir(PATH_THUMBNAIL) ) return $error_code;
@@ -37,10 +38,11 @@ class Install {
 
 
 
-    public static function createTables()
+    public static function createStorage()
     {
-        Config::createTable();
-        User::createTable();
+        dog(__METHOD__);
+        Config::initStorage();
+        User::initStorage();
     }
 
 }

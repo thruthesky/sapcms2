@@ -17,19 +17,27 @@ class Config
      */
     public static function load($path)
     {
-        dog(__METHOD__);
+        dog(__METHOD__ . " : $path");
         include $path;
         return get_defined_vars();
     }
 
-    public static function createTable()
+    public static function initStorage()
     {
+        dog(__METHOD__);
+        Entity::init('config')
+            ->add('code', 'varchar', 64)
+            ->add('value', 'TEXT')
+            ->unique('code');
+
+        /*
         $db = Database::load();
         $db->dropTable('config');
         $db->createTable('config');
         $db->addColumn('config', 'code', 'varchar', 65);
         $db->addColumn('config', 'value', 'TEXT');
         $db->addUniqueKey('config', 'code');
+        */
     }
 
     public function file($file) {
