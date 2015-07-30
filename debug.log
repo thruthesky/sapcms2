@@ -556,3 +556,2536 @@
 0 : init begins
 1 : System object loaded.
 2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`) VALUES ('','1438229296','1438229296')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`) VALUES ('','1438230235','1438230235')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`) VALUES ('','1438230283','1438230283')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`) VALUES ('','1438230457','1438230457','0','','')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`) VALUES ('','1438230676','1438230676','0','','')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : CREATE INDEX temp_idx_user ON temp (idx_user);
+4 : CREATE INDEX temp_created ON temp (created);
+5 : CREATE INDEX temp_changed ON temp (changed);
+6 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+7 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+8 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE INDEX config_idx_user ON config (idx_user);
+6 : CREATE INDEX config_created ON config (created);
+7 : CREATE INDEX config_changed ON config (changed);
+8 : CREATE INDEX user_idx_user ON user (idx_user);
+9 : CREATE INDEX user_created ON user (created);
+10 : CREATE INDEX user_changed ON user (changed);
+11 : CREATE INDEX user_name ON user (name);
+12 : CREATE INDEX user_nickname ON user (nickname);
+13 : CREATE INDEX user_email ON user (email);
+14 : CREATE INDEX user_birth_year ON user (birth_year);
+15 : CREATE INDEX user_meta_idx_user ON user_meta (idx_user);
+16 : CREATE INDEX user_meta_created ON user_meta (created);
+17 : CREATE INDEX user_meta_changed ON user_meta (changed);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : INSERT INTO `user` (`id`,`name`) VALUES ('admin','abc')
+6 : INSERT INTO `user` (`id`,`name`) VALUES ('thruthesky','JaeHo, Song')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE INDEX config_idx_user ON config (idx_user);
+6 : CREATE INDEX config_created ON config (created);
+7 : CREATE INDEX config_changed ON config (changed);
+8 : CREATE INDEX user_idx_user ON user (idx_user);
+9 : CREATE INDEX user_created ON user (created);
+10 : CREATE INDEX user_changed ON user (changed);
+11 : CREATE INDEX user_name ON user (name);
+12 : CREATE INDEX user_nickname ON user (nickname);
+13 : CREATE INDEX user_email ON user (email);
+14 : CREATE INDEX user_birth_year ON user (birth_year);
+15 : CREATE INDEX user_meta_idx_user ON user_meta (idx_user);
+16 : CREATE INDEX user_meta_created ON user_meta (created);
+17 : CREATE INDEX user_meta_changed ON user_meta (changed);
+18 : INSERT INTO `user` (`id`,`name`) VALUES ('admin','abc')
+19 : INSERT INTO `user` (`id`,`name`) VALUES ('thruthesky','JaeHo, Song')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : INSERT INTO `user` (`id`,`name`) VALUES ('admin','abc')
+6 : INSERT INTO `user` (`id`,`name`) VALUES ('thruthesky','JaeHo, Song')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`) VALUES ('','1438230810','1438230810','0','','')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`) VALUES ('','1438231151','1438231151','0','','')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`) VALUES ('','1438231680','1438231680','0','','')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`) VALUES ('','1438231748','1438231748','0','','')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`) VALUES ('','1438231796','1438231796','0','','')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`) VALUES ('','1438231828','1438231828','0','','','JaeHo Song')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438231911','1438231911','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438232717','1438232717','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438232735','1438232735','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438232738','1438232738','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438232764','1438232764','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438232767','1438232767','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438232777','1438232777','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438232782','1438232782','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438232806','1438232806','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438232891','1438232891','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438232907','1438232907','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438232957','1438232957','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438232957','1438232957','0','','','Jae','thruthesky@naver.com','1993','10','16')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438232988','1438232988','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438232988','1438232988','0','','','Jae','thruthesky@naver.com','1993','10','16')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438233371','1438233371','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438233371','1438233371','0','','','Jae','thruthesky@naver.com','1993','10','16')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438233389','1438233389','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438233389','1438233389','0','','','Jae','thruthesky@naver.com','1993','10','16')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438233396','1438233396','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438233396','1438233396','0','','','Jae','thruthesky@naver.com','1993','10','16')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438233418','1438233418','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438233418','1438233418','0','','','Jae','thruthesky@naver.com','1993','10','16')
+6 : SELECT * FROM temp WHERE name = Jae
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438233446','1438233446','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438233446','1438233446','0','','','Jae','thruthesky@naver.com','1993','10','16')
+6 : SELECT * FROM temp WHERE name = 'Jae''
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438233458','1438233458','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438233458','1438233458','0','','','Jae','thruthesky@naver.com','1993','10','16')
+6 : SELECT * FROM temp WHERE name = 'Jae'
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438233482','1438233482','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : SELECT * FROM temp WHERE idx = '1'
+6 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438233482','1438233482','0','','','Jae','thruthesky@naver.com','1993','10','16')
+7 : SELECT * FROM temp WHERE name = 'Jae'
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438233559','1438233559','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : SELECT * FROM temp WHERE idx = '1'
+6 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438233559','1438233559','0','','','Jae','thruthesky@naver.com','1993','10','16')
+7 : SELECT * FROM temp WHERE name = 'Jae'
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438233591','1438233591','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : SELECT * FROM temp WHERE idx = '1'
+6 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438233592','1438233592','0','','','Jae','thruthesky@naver.com','1993','10','16')
+7 : SELECT * FROM temp WHERE name = 'Jae'
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438233624','1438233624','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : SELECT * FROM temp WHERE idx = '1'
+6 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438233624','1438233624','0','','','Jae','thruthesky@naver.com','1993','10','16')
+7 : SELECT * FROM temp WHERE name = 'Jae'
+8 : UPDATE  SET `idx`='2', `created`='1438233624', `changed`='1438233624', `idx_user`='0', `ip`='', `user_agent`='', `name`='My Name: Jae', `mail`='thruthesky@naver.com', `birth_year`='1993', `birth_month`='10', `birth_day`='16' WHERE idx=2
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438233801','1438233801','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : SELECT * FROM temp WHERE idx = '1'
+6 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438233801','1438233801','0','','','Jae','thruthesky@naver.com','1993','10','16')
+7 : SELECT * FROM temp WHERE name = 'Jae'
+8 : UPDATE temp SET `idx`='2', `created`='1438233801', `changed`='1438233801', `idx_user`='0', `ip`='', `user_agent`='', `name`='My Name: Jae', `mail`='thruthesky@naver.com', `birth_year`='1993', `birth_month`='10', `birth_day`='16' WHERE idx=2
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438235795','1438235795','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : SELECT * FROM temp WHERE idx = '1'
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438235815','1438235815','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : SELECT * FROM temp WHERE idx = '1'
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438236010','1438236010','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : SELECT * FROM temp WHERE idx = '1'
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438236129','1438236129','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : SELECT * FROM temp WHERE idx = '1'
+6 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438236129','1438236129','0','','','Jae','thruthesky@naver.com','1993','10','16')
+7 : SELECT * FROM temp WHERE name = 'Jae'
+8 : UPDATE temp SET `idx`='2', `created`='1438236129', `changed`='1438236129', `idx_user`='0', `ip`='', `user_agent`='', `name`='My Name: Jae', `mail`='thruthesky@naver.com', `birth_year`='1993', `birth_month`='10', `birth_day`='16' WHERE idx=2
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438236147','1438236147','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : SELECT * FROM temp WHERE idx = '1'
+6 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438236147','1438236147','0','','','Jae','thruthesky@naver.com','1993','10','16')
+7 : SELECT * FROM temp WHERE name = 'Jae'
+8 : UPDATE temp SET `idx`='2', `created`='1438236147', `changed`='1438236147', `idx_user`='0', `ip`='', `user_agent`='', `name`='My Name: Jae', `mail`='thruthesky@naver.com', `birth_year`='1993', `birth_month`='10', `birth_day`='16' WHERE idx=2
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438236215','1438236215','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : SELECT * FROM temp WHERE idx = '1'
+6 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438236215','1438236215','0','','','Jae','thruthesky@naver.com','1993','10','16')
+7 : SELECT * FROM temp WHERE name = 'Jae'
+8 : UPDATE temp SET `idx`='2', `created`='1438236215', `changed`='1438236215', `idx_user`='0', `ip`='', `user_agent`='', `name`='My Name: Jae', `mail`='thruthesky@naver.com', `birth_year`='1993', `birth_month`='10', `birth_day`='16' WHERE idx=2
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438236349','1438236349','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : SELECT * FROM temp WHERE idx = '1'
+6 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438236349','1438236349','0','','','Jae','thruthesky@naver.com','1993','10','16')
+7 : SELECT * FROM temp WHERE name = 'Jae'
+8 : UPDATE temp SET `idx`='2', `created`='1438236349', `changed`='1438236349', `idx_user`='0', `ip`='', `user_agent`='', `name`='My Name: Jae', `mail`='thruthesky@naver.com', `birth_year`='1993', `birth_month`='10', `birth_day`='16' WHERE idx=2
+9 : DELETE FROM temp WHERE idx=
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438236370','1438236370','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : SELECT * FROM temp WHERE idx = '1'
+6 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438236370','1438236370','0','','','Jae','thruthesky@naver.com','1993','10','16')
+7 : SELECT * FROM temp WHERE name = 'Jae'
+8 : UPDATE temp SET `idx`='2', `created`='1438236370', `changed`='1438236370', `idx_user`='0', `ip`='', `user_agent`='', `name`='My Name: Jae', `mail`='thruthesky@naver.com', `birth_year`='1993', `birth_month`='10', `birth_day`='16' WHERE idx=2
+9 : DELETE FROM temp WHERE idx=2
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438236411','1438236411','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : SELECT * FROM temp WHERE idx = '1'
+6 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438236411','1438236411','0','','','Jae','thruthesky@naver.com','1993','10','16')
+7 : SELECT * FROM temp WHERE name = 'Jae'
+8 : UPDATE temp SET `idx`='2', `created`='1438236411', `changed`='1438236411', `idx_user`='0', `ip`='', `user_agent`='', `name`='My Name: Jae', `mail`='thruthesky@naver.com', `birth_year`='1993', `birth_month`='10', `birth_day`='16' WHERE idx=2
+9 : DELETE FROM temp WHERE idx=2
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438236621','1438236621','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : SELECT * FROM temp WHERE idx = '1'
+6 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438236621','1438236621','0','','','Jae','thruthesky@naver.com','1993','10','16')
+7 : SELECT * FROM temp WHERE name = 'Jae'
+8 : UPDATE temp SET `idx`='2', `created`='1438236621', `changed`='1438236621', `idx_user`='0', `ip`='', `user_agent`='', `name`='My Name: Jae', `mail`='thruthesky@naver.com', `birth_year`='1993', `birth_month`='10', `birth_day`='16' WHERE idx=2
+9 : DELETE FROM temp WHERE idx=2
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438237137','1438237137','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438241175','1438241175','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438241222','1438241222','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : SELECT * FROM temp WHERE idx = '1'
+6 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438241222','1438241222','0','','','Jae','thruthesky@naver.com','1993','10','16')
+7 : SELECT * FROM temp WHERE name = 'Jae'
+8 : UPDATE temp SET `idx`='2', `created`='1438241222', `changed`='1438241222', `idx_user`='0', `ip`='', `user_agent`='', `name`='My Name: Jae', `mail`='thruthesky@naver.com', `birth_year`='1993', `birth_month`='10', `birth_day`='16' WHERE idx=2
+9 : DELETE FROM temp WHERE idx=2
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438242058','1438242058','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : SELECT * FROM temp WHERE idx = '1'
+6 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438242058','1438242058','0','','','Jae','thruthesky@naver.com','1993','10','16')
+7 : SELECT * FROM temp WHERE name = 'Jae'
+8 : UPDATE temp SET `idx`='2', `created`='1438242058', `changed`='1438242058', `idx_user`='0', `ip`='', `user_agent`='', `name`='My Name: Jae', `mail`='thruthesky@naver.com', `birth_year`='1993', `birth_month`='10', `birth_day`='16', `gender`='' WHERE idx=2
+9 : DELETE FROM temp WHERE idx=2
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438242583','1438242583','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : SELECT * FROM temp WHERE idx = '1'
+6 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438242583','1438242583','0','','','Jae','thruthesky@naver.com','1993','10','16')
+7 : SELECT * FROM temp WHERE name = 'Jae'
+8 : UPDATE temp SET `idx`='2', `created`='1438242583', `changed`='1438242583', `idx_user`='0', `ip`='', `user_agent`='', `name`='My Name: Jae', `mail`='thruthesky@naver.com', `birth_year`='1993', `birth_month`='10', `birth_day`='16', `gender`='', `address`='' WHERE idx=2
+9 : DELETE FROM temp WHERE idx=2
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438242964','1438242964','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : SELECT * FROM temp WHERE idx = '1'
+6 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438242964','1438242964','0','','','Jae','thruthesky@naver.com','1993','10','16')
+7 : SELECT * FROM temp WHERE name = 'Jae'
+8 : UPDATE temp SET `idx`='2', `created`='1438242964', `changed`='1438242964', `idx_user`='0', `ip`='', `user_agent`='', `name`='My Name: Jae', `mail`='thruthesky@naver.com', `birth_year`='1993', `birth_month`='10', `birth_day`='16', `gender`='', `address`='' WHERE idx=2
+9 : DELETE FROM temp WHERE idx=2
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438243008','1438243008','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : SELECT * FROM temp WHERE idx = '1'
+6 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438243008','1438243008','0','','','Jae','thruthesky@naver.com','1993','10','16')
+7 : SELECT * FROM temp WHERE name = 'Jae'
+8 : UPDATE temp SET `idx`='2', `created`='1438243008', `changed`='1438243008', `idx_user`='0', `ip`='', `user_agent`='', `name`='My Name: Jae', `mail`='thruthesky@naver.com', `birth_year`='1993', `birth_month`='10', `birth_day`='16', `gender`='', `address`='' WHERE idx=2
+9 : DELETE FROM temp WHERE idx=2
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438243049','1438243049','0','','','JaeHo Song','thruthesky@gmail.com','1973','10','16')
+5 : SELECT * FROM temp WHERE idx = '1'
+6 : INSERT INTO `temp` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`name`,`mail`,`birth_year`,`birth_month`,`birth_day`) VALUES ('','1438243049','1438243049','0','','','Jae','thruthesky@naver.com','1993','10','16')
+7 : SELECT * FROM temp WHERE name = 'Jae'
+8 : UPDATE temp SET `idx`='2', `created`='1438243049', `changed`='1438243049', `idx_user`='0', `ip`='', `user_agent`='', `name`='My Name: Jae', `mail`='thruthesky@naver.com', `birth_year`='1993', `birth_month`='10', `birth_day`='16', `gender`='', `address`='' WHERE idx=2
+9 : DELETE FROM temp WHERE idx=2
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : INSERT INTO `user` (`id`,`name`) VALUES ('admin','abc')
+6 : INSERT INTO `user` (`id`,`name`) VALUES ('thruthesky','JaeHo, Song')
+7 : SELECT thruthesky FROM user WHERE id
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : CREATE INDEX temp_created ON temp (created);
+4 : CREATE INDEX temp_changed ON temp (changed);
+5 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+6 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+7 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438244027','1438244027','0','','','thruthesk')
+5 : CREATE INDEX temp_created ON temp (created);
+6 : CREATE INDEX temp_changed ON temp (changed);
+7 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+8 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+9 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438244042','1438244042','0','','','thruthesky')
+5 : CREATE INDEX temp_created ON temp (created);
+6 : CREATE INDEX temp_changed ON temp (changed);
+7 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+8 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+9 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438244043','1438244043','0','','','thruthesky')
+5 : CREATE INDEX temp_created ON temp (created);
+6 : CREATE INDEX temp_changed ON temp (changed);
+7 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+8 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+9 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'thruthesky'
+5 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438244238','1438244238','0','','','thruthesky')
+6 : CREATE INDEX temp_created ON temp (created);
+7 : CREATE INDEX temp_changed ON temp (changed);
+8 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+9 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+10 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'thruthesky'
+5 : DELETE FROM user WHERE idx=2
+6 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438244387','1438244387','0','','','thruthesky')
+7 : CREATE INDEX temp_created ON temp (created);
+8 : CREATE INDEX temp_changed ON temp (changed);
+9 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+10 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+11 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'thruthesky'
+5 : DELETE FROM user WHERE idx=5
+6 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438244415','1438244415','0','','','thruthesky')
+7 : CREATE INDEX temp_created ON temp (created);
+8 : CREATE INDEX temp_changed ON temp (changed);
+9 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+10 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+11 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'thruthesky'
+5 : DELETE FROM user WHERE idx=6
+6 : SELECT * FROM user WHERE id = 'thruthesky'
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438244454','1438244454','0','','','thruthesky')
+8 : CREATE INDEX temp_created ON temp (created);
+9 : CREATE INDEX temp_changed ON temp (changed);
+10 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+11 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'thruthesky'
+5 : DELETE FROM user WHERE idx=7
+6 : SELECT * FROM user WHERE id = 'thruthesky'
+7 : CREATE INDEX temp_created ON temp (created);
+8 : CREATE INDEX temp_changed ON temp (changed);
+9 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+10 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+11 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'thruthesky'
+5 : SELECT * FROM user WHERE id = 'thruthesky'
+6 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438244479','1438244479','0','','','thruthesky')
+7 : CREATE INDEX temp_created ON temp (created);
+8 : CREATE INDEX temp_changed ON temp (changed);
+9 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+10 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+11 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'thruthesky'
+5 : DELETE FROM user WHERE idx=8
+6 : SELECT * FROM user WHERE id = 'thruthesky'
+7 : CREATE INDEX temp_created ON temp (created);
+8 : CREATE INDEX temp_changed ON temp (changed);
+9 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+10 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+11 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'thruthesky'
+5 : SELECT * FROM user WHERE id = 'thruthesky'
+6 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438244636','1438244636','0','','','thruthesky')
+7 : CREATE INDEX temp_created ON temp (created);
+8 : CREATE INDEX temp_changed ON temp (changed);
+9 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+10 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+11 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'thruthesky'
+5 : DELETE FROM user WHERE idx=9
+6 : SELECT * FROM user WHERE id = 'thruthesky'
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438244657','1438244657','0','','','test-id-1438244657','JaeHo Song')
+8 : CREATE INDEX temp_created ON temp (created);
+9 : CREATE INDEX temp_changed ON temp (changed);
+10 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+11 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id'
+5 : SELECT * FROM user WHERE id = 'sapcms2-test-id'
+6 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438244729','1438244729','0','','','sapcms2-test-id','JaeHo Song')
+7 : CREATE INDEX temp_created ON temp (created);
+8 : CREATE INDEX temp_changed ON temp (changed);
+9 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+10 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+11 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id'
+5 : DELETE FROM user WHERE idx=11
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id'
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438244854','1438244854','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438244854','1438244854','0','','','sapcms2-test-id.2')
+9 : DELETE FROM user WHERE idx=13
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id'
+5 : DELETE FROM user WHERE idx=12
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id'
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438244872','1438244872','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438244872','1438244872','0','','','sapcms2-test-id.2')
+9 : DELETE FROM user WHERE idx=15
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id'
+5 : DELETE FROM user WHERE idx=14
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id'
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438244882','1438244882','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438244882','1438244882','0','','','sapcms2-test-id.2')
+9 : DELETE FROM user WHERE idx=17
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id'
+5 : DELETE FROM user WHERE idx=16
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id'
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438244922','1438244922','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438244922','1438244922','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=19
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id'
+5 : DELETE FROM user WHERE idx=18
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id'
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438244927','1438244927','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438244927','1438244927','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=21
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : DELETE FROM user WHERE idx=20
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438248565','1438248565','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438248565','1438248565','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=23
+10 : SELECT * FROM user WHERE abc=1 LIMIT 1
+11 : CREATE INDEX temp_created ON temp (created);
+12 : CREATE INDEX temp_changed ON temp (changed);
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+15 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+16 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+17 : DELETE FROM user WHERE idx=22
+18 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+19 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438248565','1438248565','0','','','sapcms2-test-id','JaeHo Song')
+20 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438248565','1438248565','0','','','test-id-2')
+21 : DELETE FROM user WHERE idx=25
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : DELETE FROM user WHERE idx=24
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438248604','1438248604','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438248604','1438248604','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=27
+10 : SELECT * FROM user WHERE abc=1 LIMIT 1
+11 : CREATE INDEX temp_created ON temp (created);
+12 : CREATE INDEX temp_changed ON temp (changed);
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+15 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+16 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+17 : DELETE FROM user WHERE idx=26
+18 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+19 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438248604','1438248604','0','','','sapcms2-test-id','JaeHo Song')
+20 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438248604','1438248604','0','','','test-id-2')
+21 : DELETE FROM user WHERE idx=29
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : DELETE FROM user WHERE idx=28
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438248621','1438248621','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438248621','1438248621','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=31
+10 : SELECT * FROM user WHERE abc=1 LIMIT 1
+11 : CREATE INDEX temp_created ON temp (created);
+12 : CREATE INDEX temp_changed ON temp (changed);
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+15 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+16 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+17 : DELETE FROM user WHERE idx=30
+18 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+19 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438248622','1438248622','0','','','sapcms2-test-id','JaeHo Song')
+20 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438248622','1438248622','0','','','test-id-2')
+21 : DELETE FROM user WHERE idx=33
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : DELETE FROM user WHERE idx=32
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438248637','1438248637','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438248637','1438248637','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=35
+10 : SELECT * FROM user WHERE abc=1 LIMIT 1
+11 : CREATE INDEX temp_created ON temp (created);
+12 : CREATE INDEX temp_changed ON temp (changed);
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+15 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+16 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+17 : DELETE FROM user WHERE idx=34
+18 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+19 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438248637','1438248637','0','','','sapcms2-test-id','JaeHo Song')
+20 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438248637','1438248637','0','','','test-id-2')
+21 : DELETE FROM user WHERE idx=37
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : DELETE FROM user WHERE idx=36
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438248657','1438248657','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438248657','1438248657','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=39
+10 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+11 : CREATE INDEX temp_created ON temp (created);
+12 : CREATE INDEX temp_changed ON temp (changed);
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+15 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+16 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+17 : DELETE FROM user WHERE idx=38
+18 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+19 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438248657','1438248657','0','','','sapcms2-test-id','JaeHo Song')
+20 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438248658','1438248658','0','','','test-id-2')
+21 : DELETE FROM user WHERE idx=41
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : DELETE FROM user WHERE idx=40
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438248777','1438248777','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438248777','1438248777','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=43
+10 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+11 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+12 : CREATE INDEX temp_created ON temp (created);
+13 : CREATE INDEX temp_changed ON temp (changed);
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+15 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+16 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+17 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+18 : DELETE FROM user WHERE idx=42
+19 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+20 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438248777','1438248777','0','','','sapcms2-test-id','JaeHo Song')
+21 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438248777','1438248777','0','','','test-id-2')
+22 : DELETE FROM user WHERE idx=45
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : DELETE FROM user WHERE idx=44
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438248802','1438248802','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438248802','1438248802','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=47
+10 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+11 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+12 : CREATE INDEX temp_created ON temp (created);
+13 : CREATE INDEX temp_changed ON temp (changed);
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+15 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+16 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+17 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+18 : DELETE FROM user WHERE idx=46
+19 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+20 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438248802','1438248802','0','','','sapcms2-test-id','JaeHo Song')
+21 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438248802','1438248802','0','','','test-id-2')
+22 : DELETE FROM user WHERE idx=49
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : DELETE FROM user WHERE idx=48
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438248826','1438248826','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438248826','1438248826','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=51
+10 : SELECT * FROM user WHERE idx=1 LIMIT 1
+11 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+12 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+13 : CREATE INDEX temp_created ON temp (created);
+14 : CREATE INDEX temp_changed ON temp (changed);
+15 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+16 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+17 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+18 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+19 : DELETE FROM user WHERE idx=50
+20 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+21 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438248826','1438248826','0','','','sapcms2-test-id','JaeHo Song')
+22 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438248826','1438248826','0','','','test-id-2')
+23 : DELETE FROM user WHERE idx=53
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : DELETE FROM user WHERE idx=52
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438248845','1438248845','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438248845','1438248845','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=55
+10 : SELECT * FROM user WHERE idx=1 LIMIT 1
+11 : SELECT * FROM user WHERE field_not_exists=1 LIMIT 1
+12 : CREATE INDEX temp_created ON temp (created);
+13 : CREATE INDEX temp_changed ON temp (changed);
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+15 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+16 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+17 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+18 : DELETE FROM user WHERE idx=54
+19 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+20 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438248845','1438248845','0','','','sapcms2-test-id','JaeHo Song')
+21 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438248845','1438248845','0','','','test-id-2')
+22 : DELETE FROM user WHERE idx=57
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : DELETE FROM user WHERE idx=56
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438248852','1438248852','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438248852','1438248852','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=59
+10 : SELECT * FROM user WHERE idx=1 LIMIT 1
+11 : SELECT * FROM user WHERE field_not_exists=1 LIMIT 1
+12 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+13 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+14 : CREATE INDEX temp_created ON temp (created);
+15 : CREATE INDEX temp_changed ON temp (changed);
+16 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+17 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+18 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+19 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+20 : DELETE FROM user WHERE idx=58
+21 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+22 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438248852','1438248852','0','','','sapcms2-test-id','JaeHo Song')
+23 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438248852','1438248852','0','','','test-id-2')
+24 : DELETE FROM user WHERE idx=61
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : DELETE FROM user WHERE idx=60
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438249556','1438249556','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438249556','1438249556','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=63
+10 : SELECT * FROM user WHERE idx=1 LIMIT 1
+11 : SELECT * FROM user WHERE field_not_exists=1 LIMIT 1
+12 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+13 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+14 : CREATE INDEX temp_created ON temp (created);
+15 : CREATE INDEX temp_changed ON temp (changed);
+16 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+17 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+18 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+19 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+20 : DELETE FROM user WHERE idx=62
+21 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+22 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438249556','1438249556','0','','','sapcms2-test-id','JaeHo Song')
+23 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438249556','1438249556','0','','','test-id-2')
+24 : DELETE FROM user WHERE idx=65
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : DELETE FROM user WHERE idx=64
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438249575','1438249575','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438249575','1438249575','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=67
+10 : SELECT * FROM user WHERE idx=1 LIMIT 1
+11 : SELECT * FROM user WHERE field_not_exists=1 LIMIT 1
+12 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+13 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+14 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+15 : CREATE INDEX temp_created ON temp (created);
+16 : CREATE INDEX temp_changed ON temp (changed);
+17 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+18 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+19 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+20 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+21 : DELETE FROM user WHERE idx=66
+22 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+23 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438249576','1438249576','0','','','sapcms2-test-id','JaeHo Song')
+24 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438249576','1438249576','0','','','test-id-2')
+25 : DELETE FROM user WHERE idx=69
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : DELETE FROM user WHERE idx=68
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438249605','1438249605','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438249605','1438249605','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=71
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+15 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+16 : DELETE FROM user WHERE idx=70
+17 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+18 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438249606','1438249606','0','','','sapcms2-test-id','JaeHo Song')
+19 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438249606','1438249606','0','','','test-id-2')
+20 : DELETE FROM user WHERE idx=73
+21 : SELECT * FROM user WHERE idx=1 LIMIT 1
+22 : SELECT * FROM user WHERE field_not_exists=1 LIMIT 1
+23 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+24 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+25 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : DELETE FROM user WHERE idx=72
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438249676','1438249676','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438249676','1438249676','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=75
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+15 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+16 : DELETE FROM user WHERE idx=74
+17 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+18 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438249676','1438249676','0','','','sapcms2-test-id','JaeHo Song')
+19 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438249676','1438249676','0','','','test-id-2')
+20 : DELETE FROM user WHERE idx=77
+21 : SELECT * FROM  WHERE user=1 LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : DELETE FROM user WHERE idx=76
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438249771','1438249771','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438249771','1438249771','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=79
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+15 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+16 : DELETE FROM user WHERE idx=78
+17 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+18 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438249771','1438249771','0','','','sapcms2-test-id','JaeHo Song')
+19 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438249771','1438249771','0','','','test-id-2')
+20 : DELETE FROM user WHERE idx=81
+21 : sap\core\Database::columnExists
+22 : :, field:user
+23 : SELECT * FROM  WHERE user=1 LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : DELETE FROM user WHERE idx=80
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438249858','1438249858','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438249858','1438249858','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=83
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+15 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+16 : DELETE FROM user WHERE idx=82
+17 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+18 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438249859','1438249859','0','','','sapcms2-test-id','JaeHo Song')
+19 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438249859','1438249859','0','','','test-id-2')
+20 : DELETE FROM user WHERE idx=85
+21 : sap\core\Database::columnExists
+22 : :, field:user
+23 : SELECT * FROM  WHERE user=1 LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : DELETE FROM user WHERE idx=84
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438249877','1438249877','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438249877','1438249877','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=87
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+15 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+16 : DELETE FROM user WHERE idx=86
+17 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+18 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438249877','1438249877','0','','','sapcms2-test-id','JaeHo Song')
+19 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438249877','1438249877','0','','','test-id-2')
+20 : DELETE FROM user WHERE idx=89
+21 : sap\core\Database::columnExists
+22 : :, field:user
+23 : SELECT * FROM  WHERE user=1 LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : DELETE FROM user WHERE idx=88
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438249910','1438249910','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438249910','1438249910','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=91
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+15 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+16 : DELETE FROM user WHERE idx=90
+17 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+18 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438249910','1438249910','0','','','sapcms2-test-id','JaeHo Song')
+19 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438249910','1438249910','0','','','test-id-2')
+20 : DELETE FROM user WHERE idx=93
+21 : sap\core\Database::columnExists
+22 : :, field:user
+23 : SELECT * FROM  WHERE user=1 LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : DELETE FROM user WHERE idx=92
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438249934','1438249934','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438249934','1438249934','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=95
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+15 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+16 : DELETE FROM user WHERE idx=94
+17 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+18 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438249934','1438249934','0','','','sapcms2-test-id','JaeHo Song')
+19 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438249934','1438249934','0','','','test-id-2')
+20 : DELETE FROM user WHERE idx=97
+21 : sap\core\Database::columnExists
+22 : :, field:user
+23 : SELECT * FROM  WHERE user=1 LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : DELETE FROM user WHERE idx=96
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438249961','1438249961','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438249961','1438249961','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=99
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+15 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+16 : DELETE FROM user WHERE idx=98
+17 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+18 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438249961','1438249961','0','','','sapcms2-test-id','JaeHo Song')
+19 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438249961','1438249961','0','','','test-id-2')
+20 : DELETE FROM user WHERE idx=101
+21 : sap\core\Database::columnExists
+22 : :, field:user
+23 : SELECT * FROM  WHERE user=1 LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : DELETE FROM user WHERE idx=100
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438250006','1438250006','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438250006','1438250006','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=103
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+15 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+16 : DELETE FROM user WHERE idx=102
+17 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+18 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438250006','1438250006','0','','','sapcms2-test-id','JaeHo Song')
+19 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438250006','1438250006','0','','','test-id-2')
+20 : DELETE FROM user WHERE idx=105
+21 : sap\core\Database::columnExists
+22 : user:user, field:idx
+23 : SELECT * FROM user WHERE idx=1 LIMIT 1
+24 : sap\core\Database::columnExists
+25 : user:user, field:field_not_exists
+26 : SELECT * FROM user WHERE field_not_exists=1 LIMIT 1
+27 : sap\core\Database::columnExists
+28 : user:user, field:field_name
+29 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+30 : sap\core\Database::columnExists
+31 : user:user, field:field_name
+32 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+33 : sap\core\Database::columnExists
+34 : user:user, field:field_name
+35 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+36 : sap\core\Entity::storage
+37 : ---------------- storage: table:user
+38 : sap\core\Database::columnExists
+39 : user:user, field:field_name
+40 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : DELETE FROM user WHERE idx=104
+6 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438250022','1438250022','0','','','sapcms2-test-id','JaeHo Song')
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438250022','1438250022','0','','','test-id-2')
+9 : DELETE FROM user WHERE idx=107
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+15 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+16 : DELETE FROM user WHERE idx=106
+17 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+18 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438250023','1438250023','0','','','sapcms2-test-id','JaeHo Song')
+19 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438250023','1438250023','0','','','test-id-2')
+20 : DELETE FROM user WHERE idx=109
+21 : sap\core\Database::columnExists
+22 : user:user, field:idx
+23 : SELECT * FROM user WHERE idx=1 LIMIT 1
+24 : sap\core\Database::columnExists
+25 : user:user, field:field_not_exists
+26 : SELECT * FROM user WHERE field_not_exists=1 LIMIT 1
+27 : sap\core\Database::columnExists
+28 : user:user, field:field_name
+29 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+30 : sap\core\Database::columnExists
+31 : user:user, field:field_name
+32 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+33 : sap\core\Database::columnExists
+34 : user:user, field:field_name
+35 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+36 : sap\core\Database::columnExists
+37 : user:user, field:field_name
+38 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE INDEX config_created ON config (created);
+6 : CREATE INDEX config_changed ON config (changed);
+7 : CREATE INDEX config_idx_user ON config (idx_user);
+8 : CREATE INDEX user_created ON user (created);
+9 : CREATE INDEX user_changed ON user (changed);
+10 : CREATE INDEX user_idx_user ON user (idx_user);
+11 : CREATE INDEX user_name ON user (name);
+12 : CREATE INDEX user_nickname ON user (nickname);
+13 : CREATE INDEX user_mail ON user (mail);
+14 : CREATE INDEX user_birth_year_birth_month_birth_day ON user (birth_year,birth_month,birth_day);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+6 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438250128','1438250128','0','','','sapcms2-test-id','JaeHo Song')
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438250128','1438250128','0','','','test-id-2')
+8 : CREATE INDEX temp_created ON temp (created);
+9 : CREATE INDEX temp_changed ON temp (changed);
+10 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+11 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+13 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+14 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438250128','1438250128','0','','','test-id-2')
+15 : sap\core\Database::columnExists
+16 : user:user, field:idx
+17 : SELECT * FROM user WHERE idx=1 LIMIT 1
+18 : sap\core\Database::columnExists
+19 : user:user, field:field_not_exists
+20 : SELECT * FROM user WHERE field_not_exists=1 LIMIT 1
+21 : sap\core\Database::columnExists
+22 : user:user, field:field_name
+23 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+24 : sap\core\Database::columnExists
+25 : user:user, field:field_name
+26 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+27 : sap\core\Database::columnExists
+28 : user:user, field:field_name
+29 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+30 : sap\core\Database::columnExists
+31 : user:user, field:field_name
+32 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+6 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES (NULL,'1438250774','1438250774','0',NULL,NULL,'sapcms2-test-id','JaeHo Song')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+6 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES (NULL,'1438250940','1438250940','0',NULL,NULL,'sapcms2-test-id','JaeHo Song')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+6 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES (NULL,'1438250982','1438250982','0','','','sapcms2-test-id','JaeHo Song')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+6 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES (NULL,'1438251081','1438251081','0','','','test-id-2')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+4 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+5 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+6 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438251198','1438251198','0','','','sapcms2-test-id','JaeHo Song')
+7 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438251198','1438251198','0','','','test-id-2')
+8 : DELETE FROM user WHERE idx=2
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : END
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : END
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : END
+4 : sap\core\Config::load
+5 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+6 : DELETE FROM user WHERE idx=1
+7 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+8 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438251386','1438251386','0','','','sapcms2-test-id','JaeHo Song')
+9 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438251386','1438251386','0','','','test-id-2')
+10 : DELETE FROM user WHERE idx=4
+11 : sap\core\Database::columnExists
+12 : user:user, field:idx
+13 : SELECT * FROM user WHERE idx=1 LIMIT 1
+14 : sap\core\Database::columnExists
+15 : user:user, field:field_not_exists
+16 : SELECT * FROM user WHERE field_not_exists=1 LIMIT 1
+17 : sap\core\Database::columnExists
+18 : user:user, field:field_name
+19 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+20 : sap\core\Database::columnExists
+21 : user:user, field:field_name
+22 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+23 : sap\core\Database::columnExists
+24 : user:user, field:field_name
+25 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+26 : sap\core\Database::columnExists
+27 : user:user, field:field_name
+28 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : END
+4 : sap\core\Config::load
+5 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+6 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+7 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+8 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+9 : DELETE FROM user WHERE idx=3
+10 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+11 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438251401','1438251401','0','','','sapcms2-test-id','JaeHo Song')
+12 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438251401','1438251401','0','','','test-id-2')
+13 : DELETE FROM user WHERE idx=6
+14 : sap\core\Database::columnExists
+15 : user:user, field:idx
+16 : SELECT * FROM user WHERE idx=1 LIMIT 1
+17 : sap\core\Database::columnExists
+18 : user:user, field:field_not_exists
+19 : SELECT * FROM user WHERE field_not_exists=1 LIMIT 1
+20 : sap\core\Database::columnExists
+21 : user:user, field:field_name
+22 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+23 : sap\core\Database::columnExists
+24 : user:user, field:field_name
+25 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+26 : sap\core\Database::columnExists
+27 : user:user, field:field_name
+28 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+29 : sap\core\Database::columnExists
+30 : user:user, field:field_name
+31 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : END
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : END
+4 : sap\core\Config::load
+5 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+6 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+7 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+8 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+9 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+10 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438251440','1438251440','0','','','sapcms2-test-id','JaeHo Song')
+11 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438251440','1438251440','0','','','test-id-2')
+12 : DELETE FROM user WHERE idx=2
+13 : sap\core\Database::columnExists
+14 : user:user, field:idx
+15 : SELECT * FROM user WHERE idx=1 LIMIT 1
+16 : sap\core\Database::columnExists
+17 : user:user, field:field_not_exists
+18 : SELECT * FROM user WHERE field_not_exists=1 LIMIT 1
+19 : sap\core\Database::columnExists
+20 : user:user, field:field_name
+21 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+22 : sap\core\Database::columnExists
+23 : user:user, field:field_name
+24 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+25 : sap\core\Database::columnExists
+26 : user:user, field:field_name
+27 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+28 : sap\core\Database::columnExists
+29 : user:user, field:field_name
+30 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\module\Install\Install::createDirs
+5 : sap\core\module\Install\Install::createStorage
+6 : sap\core\Config::initStorage
+7 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\module\Install\Install::createDirs
+5 : sap\core\module\Install\Install::createStorage
+6 : sap\core\Config::initStorage
+7 : sap\core\Database::load
+8 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+9 : config:
+10 : Array
+(
+    [path] => C:\work\www\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_user_id] => abc
+    [admin_password] => 1234
+)
+
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\module\Install\Install::createDirs
+5 : sap\core\module\Install\Install::createStorage
+6 : sap\core\Config::initStorage
+7 : sap\core\Database::load
+8 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+9 : config:
+10 : Array
+(
+    [path] => C:\work\www\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_user_id] => abc
+    [admin_password] => 1234
+)
+
+11 : CREATE INDEX config_created ON config (created);
+12 : CREATE INDEX config_changed ON config (changed);
+13 : CREATE INDEX config_idx_user ON config (idx_user);
+14 : sap\core\Database::load
+15 : CREATE INDEX user_created ON user (created);
+16 : CREATE INDEX user_changed ON user (changed);
+17 : CREATE INDEX user_idx_user ON user (idx_user);
+18 : CREATE INDEX user_name ON user (name);
+19 : CREATE INDEX user_nickname ON user (nickname);
+20 : CREATE INDEX user_mail ON user (mail);
+21 : CREATE INDEX user_birth_year_birth_month_birth_day ON user (birth_year,birth_month,birth_day);
+22 : END
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\module\Install\Install::createDirs
+5 : sap\core\module\Install\Install::createStorage
+6 : sap\core\Config::initStorage
+7 : sap\core\Database::load
+8 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+9 : config:
+10 : Array
+(
+    [path] => C:\work\www\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_user_id] => abc
+    [admin_password] => 1234
+)
+
+11 : CREATE INDEX config_created ON config (created);
+12 : CREATE INDEX config_changed ON config (changed);
+13 : CREATE INDEX config_idx_user ON config (idx_user);
+14 : sap\core\Database::load
+15 : CREATE INDEX user_created ON user (created);
+16 : CREATE INDEX user_changed ON user (changed);
+17 : CREATE INDEX user_idx_user ON user (idx_user);
+18 : CREATE INDEX user_name ON user (name);
+19 : CREATE INDEX user_nickname ON user (nickname);
+20 : CREATE INDEX user_mail ON user (mail);
+21 : CREATE INDEX user_birth_year_birth_month_birth_day ON user (birth_year,birth_month,birth_day);
+22 : END
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : END
+4 : sap\core\module\Install\Install::check
+5 : sap\core\module\Install\Install::check
+6 : sap\core\Database::load
+7 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+8 : config:
+9 : Array
+(
+    [path] => C:\work\www\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_user_id] => abc
+    [admin_password] => 1234
+)
+
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+15 : sap\core\Database::load
+16 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+17 : sap\core\Database::load
+18 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+19 : sap\core\Database::load
+20 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES ('','1438251826','1438251826','0','','','sapcms2-test-id','JaeHo Song')
+21 : sap\core\Database::load
+22 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES ('','1438251826','1438251826','0','','','test-id-2')
+23 : sap\core\Database::load
+24 : sap\core\Database::columnExists
+25 : user:user, field:idx
+26 : SELECT * FROM user WHERE idx=1 LIMIT 1
+27 : sap\core\Database::load
+28 : sap\core\Database::columnExists
+29 : user:user, field:field_not_exists
+30 : SELECT * FROM user WHERE field_not_exists=1 LIMIT 1
+31 : sap\core\Database::load
+32 : sap\core\Database::columnExists
+33 : user:user, field:field_name
+34 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+35 : sap\core\Database::load
+36 : sap\core\Database::columnExists
+37 : user:user, field:field_name
+38 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+39 : sap\core\Database::load
+40 : sap\core\Database::load
+41 : sap\core\Database::columnExists
+42 : user:user, field:field_name
+43 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+44 : sap\core\Database::load
+45 : sap\core\Database::columnExists
+46 : user:user, field:field_name
+47 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : END
+4 : sap\core\module\Install\Install::check
+5 : sap\core\module\Install\Install::check
+6 : sap\core\Database::load
+7 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+8 : config:
+9 : Array
+(
+    [path] => C:\work\www\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_user_id] => abc
+    [admin_password] => 1234
+)
+
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+15 : sap\core\Database::load
+16 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+17 : sap\core\Database::load
+18 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+19 : sap\core\Database::load
+20 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES (NULL,'1438251893','1438251893','0','','','sapcms2-test-id','JaeHo Song')
+21 : sap\core\Database::load
+22 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES (NULL,'1438251893','1438251893','0','','','test-id-2')
+23 : sap\core\Database::load
+24 : DELETE FROM user WHERE idx=2
+25 : sap\core\Database::load
+26 : sap\core\Database::columnExists
+27 : user:user, field:idx
+28 : SELECT * FROM user WHERE idx=1 LIMIT 1
+29 : sap\core\Database::load
+30 : sap\core\Database::columnExists
+31 : user:user, field:field_not_exists
+32 : SELECT * FROM user WHERE field_not_exists=1 LIMIT 1
+33 : sap\core\Database::load
+34 : sap\core\Database::columnExists
+35 : user:user, field:field_name
+36 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+37 : sap\core\Database::load
+38 : sap\core\Database::load
+39 : sap\core\Database::columnExists
+40 : user:user, field:field_name
+41 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : END
+4 : sap\core\module\Install\Install::check
+5 : sap\core\module\Install\Install::check
+6 : sap\core\Database::load
+7 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+8 : config:
+9 : Array
+(
+    [path] => C:\work\www\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_user_id] => abc
+    [admin_password] => 1234
+)
+
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+15 : sap\core\Database::load
+16 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+17 : sap\core\Database::load
+18 : DELETE FROM user WHERE idx=1
+19 : sap\core\Database::load
+20 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+21 : sap\core\Database::load
+22 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES (NULL,'1438251914','1438251914','0','','','sapcms2-test-id','JaeHo Song')
+23 : sap\core\Database::load
+24 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES (NULL,'1438251914','1438251914','0','','','test-id-2')
+25 : sap\core\Database::load
+26 : DELETE FROM user WHERE idx=2
+27 : sap\core\Database::load
+28 : sap\core\Database::columnExists
+29 : user:user, field:idx
+30 : SELECT * FROM user WHERE idx=1 LIMIT 1
+31 : sap\core\Database::load
+32 : sap\core\Database::columnExists
+33 : user:user, field:field_not_exists
+34 : SELECT * FROM user WHERE field_not_exists=1 LIMIT 1
+35 : sap\core\Database::load
+36 : sap\core\Database::columnExists
+37 : user:user, field:field_name
+38 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+39 : sap\core\Database::load
+40 : sap\core\Database::load
+41 : sap\core\Database::columnExists
+42 : user:user, field:field_name
+43 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : END
+4 : sap\core\module\Install\Install::check
+5 : sap\core\module\Install\Install::check
+6 : sap\core\Database::load
+7 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+8 : config:
+9 : Array
+(
+    [path] => C:\work\www\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_user_id] => abc
+    [admin_password] => 1234
+)
+
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+15 : sap\core\Database::load
+16 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+17 : sap\core\Database::load
+18 : DELETE FROM user WHERE idx=1
+19 : sap\core\Database::load
+20 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+21 : sap\core\Database::load
+22 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES (NULL,'1438251979','1438251979','0','','','sapcms2-test-id','JaeHo Song')
+23 : sap\core\Database::load
+24 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES (NULL,'1438251979','1438251979','0','','','test-id-2')
+25 : sap\core\Database::load
+26 : DELETE FROM user WHERE idx=2
+27 : sap\core\Database::load
+28 : sap\core\Database::columnExists
+29 : user:user, field:idx
+30 : SELECT * FROM user WHERE idx=1 LIMIT 1
+31 : sap\core\Database::load
+32 : sap\core\Database::columnExists
+33 : user:user, field:field_not_exists
+34 : SELECT * FROM user WHERE field_not_exists=1 LIMIT 1
+35 : sap\core\Database::load
+36 : sap\core\Database::columnExists
+37 : user:user, field:field_name
+38 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+39 : sap\core\Database::load
+40 : sap\core\Database::load
+41 : sap\core\Database::columnExists
+42 : user:user, field:field_name
+43 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+44 : sap\core\Database::load
+45 : sap\core\Database::columnExists
+46 : user:user, field:field_name
+47 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : END
+4 : sap\core\module\Install\Install::check
+5 : sap\core\module\Install\Install::check
+6 : sap\core\Database::load
+7 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+8 : config:
+9 : Array
+(
+    [path] => C:\work\www\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_user_id] => abc
+    [admin_password] => 1234
+)
+
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+15 : sap\core\Database::load
+16 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+17 : sap\core\Database::load
+18 : DELETE FROM user WHERE idx=1
+19 : sap\core\Database::load
+20 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+21 : sap\core\Database::load
+22 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES (NULL,'1438252004','1438252004','0','','','sapcms2-test-id','JaeHo Song')
+23 : sap\core\Database::load
+24 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES (NULL,'1438252004','1438252004','0','','','test-id-2')
+25 : sap\core\Database::load
+26 : DELETE FROM user WHERE idx=2
+27 : sap\core\Database::load
+28 : sap\core\Database::columnExists
+29 : user:user, field:idx
+30 : SELECT * FROM user WHERE idx=1 LIMIT 1
+31 : sap\core\Database::load
+32 : sap\core\Database::columnExists
+33 : user:user, field:field_not_exists
+34 : SELECT * FROM user WHERE field_not_exists=1 LIMIT 1
+35 : sap\core\Database::load
+36 : sap\core\Database::columnExists
+37 : user:user, field:field_name
+38 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+39 : sap\core\Database::load
+40 : sap\core\Database::load
+41 : sap\core\Database::columnExists
+42 : user:user, field:field_name
+43 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+44 : 1
+45 : sap\core\Database::load
+46 : sap\core\Database::columnExists
+47 : user:user, field:field_name
+48 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : END
+4 : sap\core\module\Install\Install::check
+5 : sap\core\module\Install\Install::check
+6 : sap\core\Database::load
+7 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+8 : config:
+9 : Array
+(
+    [path] => C:\work\www\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_user_id] => abc
+    [admin_password] => 1234
+)
+
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+15 : sap\core\Database::load
+16 : sap\core\Database::columnExists
+17 : temp:temp, field:idx
+18 : SELECT * FROM temp WHERE idx=1 LIMIT 1
+19 : sap\core\Database::load
+20 : sap\core\Database::columnExists
+21 : temp:temp, field:no
+22 : SELECT * FROM temp WHERE no=1 LIMIT 1
+23 : sap\core\Database::load
+24 : sap\core\Database::columnExists
+25 : temp:temp, field:name
+26 : SELECT * FROM temp WHERE name=1 LIMIT 1
+27 : sap\core\Database::load
+28 : sap\core\Database::columnExists
+29 : temp:temp, field:no
+30 : SELECT * FROM temp WHERE no=1 LIMIT 1
+31 : sap\core\Database::load
+32 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+33 : sap\core\Database::load
+34 : DELETE FROM user WHERE idx=1
+35 : sap\core\Database::load
+36 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+37 : sap\core\Database::load
+38 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES (NULL,'1438252656','1438252656','0','','','sapcms2-test-id','JaeHo Song')
+39 : sap\core\Database::load
+40 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES (NULL,'1438252656','1438252656','0','','','test-id-2')
+41 : sap\core\Database::load
+42 : DELETE FROM user WHERE idx=2
+43 : sap\core\Database::load
+44 : sap\core\Database::columnExists
+45 : user:user, field:idx
+46 : SELECT * FROM user WHERE idx=1 LIMIT 1
+47 : sap\core\Database::load
+48 : sap\core\Database::columnExists
+49 : user:user, field:field_not_exists
+50 : SELECT * FROM user WHERE field_not_exists=1 LIMIT 1
+51 : sap\core\Database::load
+52 : sap\core\Database::columnExists
+53 : user:user, field:field_name
+54 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+55 : sap\core\Database::load
+56 : sap\core\Database::load
+57 : sap\core\Database::columnExists
+58 : user:user, field:field_name
+59 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+60 : 1
+61 : sap\core\Database::load
+62 : sap\core\Database::columnExists
+63 : user:user, field:field_name
+64 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : END
+4 : sap\core\module\Install\Install::check
+5 : sap\core\module\Install\Install::check
+6 : sap\core\Database::load
+7 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+8 : config:
+9 : Array
+(
+    [path] => C:\work\www\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_user_id] => abc
+    [admin_password] => 1234
+)
+
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+15 : sap\core\Database::load
+16 : sap\core\Database::columnExists
+17 : temp:temp, field:idx
+18 : SELECT * FROM temp WHERE idx=1 LIMIT 1
+19 : sap\core\Database::load
+20 : sap\core\Database::columnExists
+21 : temp:temp, field:no
+22 : SELECT * FROM temp WHERE no=1 LIMIT 1
+23 : sap\core\Database::load
+24 : sap\core\Database::columnExists
+25 : temp:temp, field:name
+26 : SELECT * FROM temp WHERE name=1 LIMIT 1
+27 : sap\core\Database::load
+28 : sap\core\Database::columnExists
+29 : temp:temp, field:no
+30 : SELECT * FROM temp WHERE no=1 LIMIT 1
+31 : sap\core\Database::load
+32 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+33 : sap\core\Database::load
+34 : DELETE FROM user WHERE idx=1
+35 : sap\core\Database::load
+36 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+37 : sap\core\Database::load
+38 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES (NULL,'1438252666','1438252666','0','','','sapcms2-test-id','JaeHo Song')
+39 : sap\core\Database::load
+40 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES (NULL,'1438252666','1438252666','0','','','test-id-2')
+41 : sap\core\Database::load
+42 : DELETE FROM user WHERE idx=2
+43 : sap\core\Database::load
+44 : sap\core\Database::columnExists
+45 : user:user, field:idx
+46 : SELECT * FROM user WHERE idx=1 LIMIT 1
+47 : sap\core\Database::load
+48 : sap\core\Database::columnExists
+49 : user:user, field:field_not_exists
+50 : SELECT * FROM user WHERE field_not_exists=1 LIMIT 1
+51 : sap\core\Database::load
+52 : sap\core\Database::columnExists
+53 : user:user, field:field_name
+54 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+55 : sap\core\Database::load
+56 : sap\core\Database::load
+57 : sap\core\Database::columnExists
+58 : user:user, field:field_name
+59 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+60 : 1
+61 : sap\core\Database::load
+62 : sap\core\Database::columnExists
+63 : user:user, field:field_name
+64 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : END
+4 : sap\core\module\Install\Install::check
+5 : sap\core\module\Install\Install::check
+6 : sap\core\Database::load
+7 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+8 : config:
+9 : Array
+(
+    [path] => C:\work\www\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_user_id] => abc
+    [admin_password] => 1234
+)
+
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+15 : sap\core\Database::load
+16 : sap\core\Database::columnExists
+17 : temp:temp, field:idx
+18 : SELECT * FROM temp WHERE idx=1 LIMIT 1
+19 : sap\core\Database::load
+20 : sap\core\Database::columnExists
+21 : temp:temp, field:no
+22 : SELECT * FROM temp WHERE no=1 LIMIT 1
+23 : sap\core\Database::load
+24 : sap\core\Database::columnExists
+25 : temp:temp, field:name
+26 : SELECT * FROM temp WHERE name=1 LIMIT 1
+27 : sap\core\Database::load
+28 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+29 : sap\core\Database::load
+30 : DELETE FROM user WHERE idx=1
+31 : sap\core\Database::load
+32 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+33 : sap\core\Database::load
+34 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES (NULL,'1438252675','1438252675','0','','','sapcms2-test-id','JaeHo Song')
+35 : sap\core\Database::load
+36 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES (NULL,'1438252675','1438252675','0','','','test-id-2')
+37 : sap\core\Database::load
+38 : DELETE FROM user WHERE idx=2
+39 : sap\core\Database::load
+40 : sap\core\Database::columnExists
+41 : user:user, field:idx
+42 : SELECT * FROM user WHERE idx=1 LIMIT 1
+43 : sap\core\Database::load
+44 : sap\core\Database::columnExists
+45 : user:user, field:field_not_exists
+46 : SELECT * FROM user WHERE field_not_exists=1 LIMIT 1
+47 : sap\core\Database::load
+48 : sap\core\Database::columnExists
+49 : user:user, field:field_name
+50 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+51 : sap\core\Database::load
+52 : sap\core\Database::load
+53 : sap\core\Database::columnExists
+54 : user:user, field:field_name
+55 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+56 : 1
+57 : sap\core\Database::load
+58 : sap\core\Database::columnExists
+59 : user:user, field:field_name
+60 : SELECT * FROM user WHERE field_name=1 LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : END
+4 : sap\core\module\Install\Install::check
+5 : sap\core\module\Install\Install::check
+6 : sap\core\Database::load
+7 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+8 : config:
+9 : Array
+(
+    [path] => C:\work\www\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_user_id] => abc
+    [admin_password] => 1234
+)
+
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+15 : sap\core\Database::load
+16 : sap\core\Database::columnExists
+17 : temp:temp, field:idx
+18 : SELECT * FROM temp WHERE idx=1 LIMIT 1
+19 : sap\core\Database::load
+20 : sap\core\Database::columnExists
+21 : temp:temp, field:no
+22 : SELECT * FROM temp WHERE no=1 LIMIT 1
+23 : sap\core\Database::load
+24 : sap\core\Database::columnExists
+25 : temp:temp, field:name
+26 : SELECT * FROM temp WHERE name=1 LIMIT 1
+27 : sap\core\Database::load
+28 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+29 : sap\core\Database::load
+30 : DELETE FROM user WHERE idx=1
+31 : sap\core\Database::load
+32 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+33 : sap\core\Database::load
+34 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES (NULL,'1438252695','1438252695','0','','','sapcms2-test-id','JaeHo Song')
+35 : sap\core\Database::load
+36 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES (NULL,'1438252695','1438252695','0','','','test-id-2')
+37 : sap\core\Database::load
+38 : DELETE FROM user WHERE idx=2
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\module\Install\Install::createDirs
+5 : sap\core\module\Install\Install::createStorage
+6 : sap\core\Config::initStorage
+7 : sap\core\Database::load
+8 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+9 : config:
+10 : Array
+(
+    [path] => C:\work\www\sapcms2/data/config/database.php
+    [database] => mysql
+    [database_host] => localhost
+    [database_name] => test
+    [database_username] => root
+    [database_password] => 7777
+    [admin_user_id] => admin
+    [admin_password] => 1234
+)
+
+11 : sap\core\Database::load
+12 : END
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : END
+4 : sap\core\module\Install\Install::check
+5 : sap\core\module\Install\Install::check
+6 : sap\core\Database::load
+7 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+8 : config:
+9 : Array
+(
+    [path] => C:\work\www\sapcms2/data/config/database.php
+    [database] => mysql
+    [database_host] => localhost
+    [database_name] => test
+    [database_username] => root
+    [database_password] => 7777
+    [admin_user_id] => admin
+    [admin_password] => 1234
+)
+
+10 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+11 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+13 : sap\core\Database::load
+14 : sap\core\Database::columnExists
+15 : temp:temp, field:idx
+16 : SELECT * FROM temp WHERE idx=1 LIMIT 1
+17 : sap\core\Database::load
+18 : sap\core\Database::columnExists
+19 : temp:temp, field:no
+20 : SELECT * FROM temp WHERE no=1 LIMIT 1
+21 : sap\core\Database::load
+22 : sap\core\Database::columnExists
+23 : temp:temp, field:name
+24 : SELECT * FROM temp WHERE name=1 LIMIT 1
+25 : sap\core\Database::load
+26 : sap\core\Database::load
+27 : sap\core\Database::columnExists
+28 : temp:temp, field:no
+29 : SELECT * FROM temp WHERE no=1 LIMIT 1
+30 : sap\core\Database::load
+31 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+32 : sap\core\Database::load
+33 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+34 : sap\core\Database::load
+35 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES (NULL,'1438252705','1438252705','0','','','sapcms2-test-id','JaeHo Song')
+36 : sap\core\Database::load
+37 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES (NULL,'1438252705','1438252705','0','','','test-id-2')
+38 : sap\core\Database::load
+39 : DELETE FROM user WHERE idx=2
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\module\Install\Install::createDirs
+5 : sap\core\module\Install\Install::createStorage
+6 : sap\core\Config::initStorage
+7 : sap\core\Database::load
+8 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+9 : config:
+10 : Array
+(
+    [path] => C:\work\www\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_user_id] => abc
+    [admin_password] => 1234
+)
+
+11 : CREATE INDEX config_created ON config (created);
+12 : CREATE INDEX config_changed ON config (changed);
+13 : CREATE INDEX config_idx_user ON config (idx_user);
+14 : sap\core\Database::load
+15 : CREATE INDEX user_created ON user (created);
+16 : CREATE INDEX user_changed ON user (changed);
+17 : CREATE INDEX user_idx_user ON user (idx_user);
+18 : CREATE INDEX user_name ON user (name);
+19 : CREATE INDEX user_nickname ON user (nickname);
+20 : CREATE INDEX user_mail ON user (mail);
+21 : CREATE INDEX user_birth_year_birth_month_birth_day ON user (birth_year,birth_month,birth_day);
+22 : END
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : END
+4 : sap\core\module\Install\Install::check
+5 : sap\core\module\Install\Install::check
+6 : sap\core\Database::load
+7 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+8 : config:
+9 : Array
+(
+    [path] => C:\work\www\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_user_id] => abc
+    [admin_password] => 1234
+)
+
+10 : CREATE INDEX temp_created ON temp (created);
+11 : CREATE INDEX temp_changed ON temp (changed);
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+13 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+14 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+15 : sap\core\Database::load
+16 : sap\core\Database::columnExists
+17 : temp:temp, field:idx
+18 : SELECT * FROM temp WHERE idx=1 LIMIT 1
+19 : sap\core\Database::load
+20 : sap\core\Database::columnExists
+21 : temp:temp, field:no
+22 : SELECT * FROM temp WHERE no=1 LIMIT 1
+23 : sap\core\Database::load
+24 : sap\core\Database::columnExists
+25 : temp:temp, field:name
+26 : SELECT * FROM temp WHERE name=1 LIMIT 1
+27 : sap\core\Database::load
+28 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+29 : sap\core\Database::load
+30 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+31 : sap\core\Database::load
+32 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES (NULL,'1438252716','1438252716','0','','','sapcms2-test-id','JaeHo Song')
+33 : sap\core\Database::load
+34 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES (NULL,'1438252716','1438252716','0','','','test-id-2')
+35 : sap\core\Database::load
+36 : DELETE FROM user WHERE idx=2
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : END
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : END
+4 : sap\core\Database::load
+5 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+6 : config:
+7 : Array
+(
+    [path] => C:\work\www\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_user_id] => abc
+    [admin_password] => 1234
+)
+
+8 : CREATE INDEX temp_created ON temp (created);
+9 : CREATE INDEX temp_changed ON temp (changed);
+10 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+11 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+12 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+13 : sap\core\Database::load
+14 : sap\core\Database::columnExists
+15 : temp:temp, field:idx
+16 : SELECT * FROM temp WHERE idx=1 LIMIT 1
+17 : sap\core\Database::load
+18 : sap\core\Database::columnExists
+19 : temp:temp, field:no
+20 : SELECT * FROM temp WHERE no=1 LIMIT 1
+21 : sap\core\Database::load
+22 : sap\core\Database::columnExists
+23 : temp:temp, field:name
+24 : SELECT * FROM temp WHERE name=1 LIMIT 1
+25 : sap\core\Database::load
+26 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+27 : sap\core\Database::load
+28 : DELETE FROM user WHERE idx=1
+29 : sap\core\Database::load
+30 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+31 : sap\core\Database::load
+32 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES (NULL,'1438252917','1438252917','0','','','sapcms2-test-id','JaeHo Song')
+33 : sap\core\Database::load
+34 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES (NULL,'1438252917','1438252917','0','','','test-id-2')
+35 : sap\core\Database::load
+36 : DELETE FROM user WHERE idx=2
+0 : init begins
+1 : System object loaded.
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\module\Install\Install::createDirs
+5 : sap\core\module\Install\Install::createStorage
+6 : sap\core\Config::initStorage
+7 : sap\core\Database::load
+8 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+9 : config:
+10 : Array
+(
+    [path] => C:\work\www\sapcms2/data/config/database.php
+    [database] => mysql
+    [database_host] => localhost
+    [database_name] => test
+    [database_username] => root
+    [database_password] => 7777
+    [admin_user_id] => 
+    [admin_password] => 1234
+)
+
+11 : sap\core\Database::load
+12 : sap\core\Database::load
+13 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`username`,`password`) VALUES (NULL,'1438253648','1438253648','0','','',NULL,'1234')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\module\Install\Install::createDirs
+5 : sap\core\module\Install\Install::createStorage
+6 : sap\core\Config::initStorage
+7 : sap\core\Database::load
+8 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+9 : config:
+10 : Array
+(
+    [path] => C:\work\www\sapcms2/data/config/database.php
+    [database] => mysql
+    [database_host] => localhost
+    [database_name] => test
+    [database_username] => root
+    [database_password] => 7777
+    [admin_id] => admin
+    [admin_password] => 1234
+)
+
+11 : sap\core\Database::load
+12 : sap\core\Database::load
+13 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`username`,`password`) VALUES (NULL,'1438253674','1438253674','0','','','admin','1234')
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\module\Install\Install::createDirs
+5 : sap\core\module\Install\Install::createStorage
+6 : sap\core\Config::initStorage
+7 : sap\core\Database::load
+8 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+9 : config:
+10 : Array
+(
+    [path] => C:\work\www\sapcms2/data/config/database.php
+    [database] => mysql
+    [database_host] => localhost
+    [database_name] => test
+    [database_username] => root
+    [database_password] => 7777
+    [admin_id] => admin
+    [admin_password] => 1234
+)
+
+11 : sap\core\Database::load
+12 : sap\core\Database::load
+13 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`password`) VALUES (NULL,'1438253690','1438253690','0','','','admin','1234')
+14 : END
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\module\Install\Install::createDirs
+5 : sap\core\module\Install\Install::createStorage
+6 : sap\core\Config::initStorage
+7 : sap\core\Database::load
+8 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+9 : config:
+10 : Array
+(
+    [path] => C:\work\www\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_id] => admin
+    [admin_password] => 1234
+)
+
+11 : CREATE INDEX config_created ON config (created);
+12 : CREATE INDEX config_changed ON config (changed);
+13 : CREATE INDEX config_idx_user ON config (idx_user);
+14 : sap\core\Database::load
+15 : CREATE INDEX user_created ON user (created);
+16 : CREATE INDEX user_changed ON user (changed);
+17 : CREATE INDEX user_idx_user ON user (idx_user);
+18 : CREATE INDEX user_name ON user (name);
+19 : CREATE INDEX user_nickname ON user (nickname);
+20 : CREATE INDEX user_mail ON user (mail);
+21 : CREATE INDEX user_birth_year_birth_month_birth_day ON user (birth_year,birth_month,birth_day);
+22 : sap\core\Database::load
+23 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`password`) VALUES (NULL,'1438253749','1438253749','0','','','admin','1234')
+24 : END
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\module\Install\Install::createDirs
+5 : sap\core\module\Install\Install::createStorage
+6 : sap\core\Config::initStorage
+7 : sap\core\Database::load
+8 : sap\core\Config::load : C:\work\www\sapcms2/data/config/database.php
+9 : config:
+10 : Array
+(
+    [path] => C:\work\www\sapcms2/data/config/database.php
+    [database] => mysql
+    [database_host] => localhost
+    [database_name] => test
+    [database_username] => root
+    [database_password] => 7777
+    [admin_id] => admin
+    [admin_password] => 1234
+)
+
+11 : sap\core\Database::load
+12 : sap\core\Database::load
+13 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`password`) VALUES (NULL,'1438253754','1438253754','0','','','admin','1234')
+14 : END
+0 : init begins
+1 : System object loaded.
+0 : init begins
+1 : System object loaded.
+0 : init begins
+1 : System object loaded.
+0 : init begins
+1 : System object loaded.
+0 : init begins
+1 : System object loaded.
+0 : init begins
+1 : System object loaded.
+0 : init begins
+1 : System object loaded.
+0 : init begins
+1 : System object loaded.

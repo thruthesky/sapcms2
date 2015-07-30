@@ -7,21 +7,8 @@ class InstallTest extends PHPUnit_Framework_TestCase {
     public function __construct() {
         parent::__construct();
     }
-    public function testInstall()
-    {
-        if ( Install::check() ) {
-            Config::create()
-                ->file(Config::getDatabasePath())
-                ->data([])
-                ->save();
-        }
+    public function test_install() {
         $this->assertEmpty(Install::check());
-
-
-
     }
-
-
-
 }
 

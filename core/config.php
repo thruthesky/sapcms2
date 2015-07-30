@@ -1,6 +1,8 @@
 <?php
 define('HTTP_VAR_ROUTE', 'route');
-define('CLASS_DEFAULT_CONTROLLER','defaultController');
+define('DEFAULT_MODULE','front');
+define('DEFAULT_CLASS','default');
+define('DEFAULT_CONTROLLER','defaultController');
 
 
 

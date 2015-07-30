@@ -71,22 +71,12 @@ class System {
             ->data($options)
             ->save();
 
-        Install::createTables();
-        $insert_id = db_insert('user', [ 'id'=>'admin', 'name'=>'abc' ]);
-        $insert_id = db_insert('user', [ 'id'=>'thruthesky', 'name'=>'JaeHo, Song' ]);
-        //$insert_id = db_insert('user', [ 'id'=>'thruthesky', 'username'=>'JaeHo, Song' ]);
+        Install::createStorage();
 
-        echo "Insert ID: $insert_id\n";
-        print_r(db_row('user', 'id', 'thruthesky'));
-
-
-
-        /*
         User::create()
-            ->set('username', 'admin')
-            ->set('password', '1234')
+            ->set('id',$options['admin-id'])
+            ->set('password', $options['admin-password'])
             ->save();
-        */
     }
 
 

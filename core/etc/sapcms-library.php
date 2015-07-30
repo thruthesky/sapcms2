@@ -2,6 +2,11 @@
 use sap\core\Database;
 use sap\core\System;
 use sap\core\Request;
+function di($obj) {
+    echo "<pre>";
+    print_r($obj);
+    echo "</pre>";
+}
 function theme_script($filename=null)
 {
     global $theme;
@@ -38,19 +43,10 @@ function dog($msg) {
     System::log($msg);
 }
 
-
-function db_insert($table, $fields) {
-    $db = Database::load();
-    return $db->insert($table, $fields);
+function ip() {
+    return isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
 }
 
-function db_update($table, $fields) {
-    $db = Database::load();
-    return $db->update($table, $fields);
-}
-
-
-function db_row($table, $field, $value) {
-    $db = Database::load();
-    return $db->row($table, $field, $value);
+function user_agent() {
+    return isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
 }

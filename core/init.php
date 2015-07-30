@@ -33,8 +33,9 @@ dog("System object loaded.");
  */
 if ( System::isCommandLineInterface() ) return core\CommandLineInterface::Run();
 
-
 if ( Install::check() ) {
     if ( Request::isPageInstall() ) System::runModule();
     else Response::redirect(Route::create(ROUTE_INSTALL));
 }
+else System::runModule();
+

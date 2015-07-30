@@ -3,10 +3,14 @@ namespace sap\core;
 class Database extends \PDO {
 
     private static $db = null;
-    protected $type = null;
+    private $create_table = null; // remember last create table
+    public $type = null;
 
-    public function __construct($dsn, $username=null, $password=null) {
-        parent::__construct($dsn, $username, $password);
+    public function __construct($dsn=null, $username=null, $password=null) {
+        if ( empty($dsn) ) {
+
+        }
+        else parent::__construct($dsn, $username, $password);
     }
 
 
@@ -44,8 +48,11 @@ class Database extends \PDO {
      */
     public static function load()
     {
+        dog(__METHOD__);
         if ( self::$db ) return self::$db;
         $config = Config::load(PATH_CONFIG_DATABASE);
+        dog("config:");
+        dog($config);
         $type = strtolower($config['database']);
         if ( $type == 'sqlite' ) {
             return self::$db = Database::sqlite(PATH_SQLITE_DATABASE);
@@ -61,23 +68,42 @@ class Database extends \PDO {
         else return FALSE;
     }
 
+    /**
+     * @param null $create_table
+     *
+     * @return $this|null
+     *
+     *      - If $create_table is null, then it returns a string with table name.
+     *
+     *      - If $create_table is not null, then it returns $this.
+     *
+     */
+    public function table($create_table=null) {
+        if ( $create_table ) {
+            $this->create_table = $create_table;
+            return $this;
+        }
+        else return $this->create_table;
+    }
+
 
 
     public function createTable($table) {
+        $this->table($table);
         if ( $this->type == 'mysql' ) {
             $q = "CREATE TABLE $table (idx INT, created INT UNSIGNED DEFAULT 0, changed INT UNSIGNED DEFAULT 0) DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;";
             $this->exec($q);
             $this->addPrimaryKey($table, 'idx');
             $this->addAutoIncrement($table, 'idx');
-            $this->addIndex($table, 'created');
-            $this->addIndex($table, 'changed');
         }
         else if ( $this->type == 'sqlite' ) {
             $q = "CREATE TABLE $table (idx INTEGER PRIMARY KEY, created INT UNSIGNED DEFAULT 0, changed INT UNSIGNED DEFAULT 0);";
             $this->exec($q);
-            $this->addIndex($table, 'created');
-            $this->addIndex($table, 'changed');
         }
+
+        $this->addIndex($table, 'created');
+        $this->addIndex($table, 'changed');
+
         return $this;
     }
 
@@ -88,68 +114,38 @@ class Database extends \PDO {
         return $this;
     }
 
-    public function addColumn($name, $column, $type, $size=0)
+    public function add($column, $type, $size=0)  {
+        $table = $this->table();
+        return $this->addColumn($table, $column, $type, $size);
+    }
+    public function addColumn($table, $column, $type, $size=0)
     {
+        if ( empty($size) ) {
+            if ( $type == 'varchar' || $type == 'char' ) $size = 255;
+        }
         if ( $size ) $type = "$type($size)";
-        $q = "ALTER TABLE $name ADD COLUMN $column $type";
+        $q = "ALTER TABLE $table ADD COLUMN $column $type";
         $this->exec($q);
         return $this;
     }
+    public function deleteColumn($table, $column) {
 
-    public function row($table, $field, $value)
-    {
-        $q = $this->prepare("SELECT * FROM $table WHERE `$field`=:$field");
-        $q->bindValue(":$field", $value);
-        $q->execute();
-        return $q->fetch(\PDO::FETCH_ASSOC);
-
-        /*
-        $this->queryType = 'SELECT';
-        $this->table = $table;
-        $this->fields = '*';
-        return $this;
-        */
-    }
-
-    /**
-     * @param $table
-     * @param $kvs
-     * @return string
-     */
-    public function insert($table, $kvs)
-    {
-
-        foreach($kvs as $k => $v ) {
-            $key_list[] = $k;
-            $value_list[] = $v; // @todo ESACPE the value
+        if ( $this->type == 'mysql' ) {
+            $q = "ALTER TABLE $table DROP $column";
+            $this->exec($q);
+            return $this;
         }
-        $keys = "`".implode("`,`",$key_list)."`";
-        $values = "'".implode("','",$value_list)."'";
-        $q = "INSERT INTO `{$table}` ({$keys}) VALUES ({$values})";
-
-        $result = $this->exec($q);
-        $insert_id = $this->lastInsertId();
-        return $insert_id;
-    }
-
-    /**
-     * @param $table
-     * @param $kvs
-     * @param int $where - a string of Where condition
-     * @return \PDOStatement
-     */
-    public function update($table, $kvs, $where=1)
-    {
-        $sets = [];
-        foreach($kvs as $k => $v) {
-            // @todo ESACPE the value
-            $sets[] = "`$k`='$v'";
+        else if ( $this->type == 'sqlite' ) {
+            // You can not delete a column in SQLite
+            return FALSE;
         }
-        $set = implode(", ", $sets);
-        $q = "UPDATE $table SET $set WHERE $where";
-        $statement = $this->query($q);
-        return $statement;
+        else {
+            $q = "ALTER TABLE $table DROP $column";
+            $this->exec($q);
+            return $this;
+        }
     }
+
 
     /**
      * Adds primary key on the table
@@ -181,6 +177,10 @@ class Database extends \PDO {
         }
     }
 
+
+    public function unique($fields) {
+        return $this->addUniqueKey($this->table(), $fields);
+    }
     public function addUniqueKey($table, $fields)
     {
         if ( $this->type == 'mysql' ) {
@@ -201,6 +201,9 @@ class Database extends \PDO {
         }
     }
 
+    public function index($fields) {
+        return $this->addIndex($this->table(), $fields);
+    }
     public function addIndex($table, $fields) {
 
         if ( $this->type == 'mysql' ) {
@@ -236,19 +239,104 @@ class Database extends \PDO {
         return $this;
     }
 
-    /*
-    public function condition($field, $value, $exp) {
-        $this->condition[$field] = $value;
-        $this->expression[$field] = $exp;
-        return $this;
+
+    /**
+     *
+     *
+     * @param $table
+     * @param $cond
+     * @param string $field
+     * @return mixed
+     *
+     * @code
+     *      $row = $this->row($this->table());
+     * @endcode
+     */
+    public function row($table, $cond=1, $field='*')
+    {
+        $q = "SELECT $field FROM $table WHERE $cond LIMIT 1";
+        dog($q);
+        $statement = $this->query($q);
+        return $statement->fetch(\PDO::FETCH_ASSOC);
     }
-    public function execute() {
-        if ( $this->queryType == 'SELECT' ) {
-            $q = $this->prepare("SELECT $fields FROM user WHERE id=:id");
+
+
+
+    /**
+     * @param $table
+     * @param $kvs
+     * @return string
+     */
+    public function insert($table, $kvs)
+    {
+
+        $key_list = [];
+        $value_list = [];
+        foreach($kvs as $k => $v ) {
+            $key_list[] = "`$k`";
+            // @todo ESCAPE the value
+            if ( $v === NULL ) {
+                $value_list[] = "NULL";
+            }
+            else $value_list[] = "'$v'";
         }
-        $q->bindValue(':id', 'admin', \PDO::PARAM_STR);
-        $q->execute();
-        $row = $q->fetch(\PDO::FETCH_ASSOC);
+        $keys = implode(",", $key_list);
+        $values = implode(",", $value_list);
+        $q = "INSERT INTO `{$table}` ({$keys}) VALUES ({$values})";
+        dog($q);
+        $result = $this->exec($q);
+        $insert_id = $this->lastInsertId();
+        return $insert_id;
     }
-    */
+
+    /**
+     * @param $table
+     * @param $kvs
+     * @param int $cond - a string of Where condition
+     * @return \PDOStatement
+     */
+    public function update($table, $kvs, $cond=1)
+    {
+        $sets = [];
+        foreach($kvs as $k => $v) {
+            // @todo ESACPE the value
+            $sets[] = "`$k`='$v'";
+        }
+        $set = implode(", ", $sets);
+        $q = "UPDATE $table SET $set WHERE $cond";
+        dog($q);
+        $statement = $this->query($q);
+        return $statement;
+    }
+
+
+    public function delete($table, $cond)
+    {
+        $q = "DELETE FROM $table WHERE $cond";
+        dog($q);
+        $statement = $this->query($q);
+        return OK;
+    }
+
+
+    /**
+     * @param $field
+     * @return bool
+     *  - TRUE if the key exists on the table
+     */
+    public function columnExists($table, $field=null) {
+        dog(__METHOD__);
+        if ( empty($field) ) {
+            $field = $table;
+            $table = $this->table();
+        }
+        dog("$table:$table, field:$field");
+        try {
+            $this->row($table, "$field=1");
+            return TRUE;
+        }
+        catch(\PDOException $e) {
+            return FALSE;
+        }
+    }
 }
