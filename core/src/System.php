@@ -1,9 +1,12 @@
 <?php
 namespace sap\core;
 
+use sap\core\module\Install\Install;
+
 class System {
     static $system = null;
     static $version = '2.0.1';
+    private static $count_log = 0;
     private $path = null;
     private $filename =null;
     public $script = null;
@@ -62,11 +65,22 @@ class System {
 
     public static function install($options)
     {
+        dog(__METHOD__);
         Config::create()
-            ->file(PATH_DATABASE_CONFIG)
+            ->file(Config::getDatabasePath())
             ->data($options)
             ->save();
-        self::createDatabase($options);
+
+        Install::createTables();
+        $insert_id = db_insert('user', [ 'id'=>'admin', 'name'=>'abc' ]);
+        $insert_id = db_insert('user', [ 'id'=>'thruthesky', 'name'=>'JaeHo, Song' ]);
+        //$insert_id = db_insert('user', [ 'id'=>'thruthesky', 'username'=>'JaeHo, Song' ]);
+
+        echo "Insert ID: $insert_id\n";
+        print_r(db_row('user', 'id', 'thruthesky'));
+
+
+
         /*
         User::create()
             ->set('username', 'admin')
@@ -75,36 +89,9 @@ class System {
         */
     }
 
-    private static function createDatabase($options)
-    {
-        $db = Database::sqlite(PATH_SQLITE_DATABASE);
-        $db->dropTable('user');
-        $db->createTable('user');
-        $db->addColumn('user', 'id', 'varchar(64)');
-        $db->addColumn('user', 'password', 'varchar(64)');
-        $db->addColumn('user', 'username', 'varchar(64)');
-        $db->addColumn('user', 'nickname', 'varchar(64)');
-        $db->addColumn('user', 'email', 'varchar(64)');
-        $db->addColumn('user', 'birth_year', 'int');
-        $db->addColumn('user', 'birth_month', 'int');
-        $db->addColumn('user', 'day', 'int');
 
-    }
 
-    private static function getDatabaseConfigPath()
-    {
-        return PATH_DATA . '/config.database.php';
-    }
 
-    /**
-     * @return bool
-     *  - return true if the system is installed.
-     *  - otherwise, returns false.
-     */
-    public function isInstalled()
-    {
-        return file_exists(self::getDatabaseConfigPath());
-    }
 
     public static function isCommandLineInterface()
     {
@@ -159,5 +146,21 @@ class System {
         $this->filename = $class;
         return $this;
     }
+
+
+    /**
+     * @param $str
+     * @TODO @WARNING If the log file permission is not open to public, then it will create error.
+     * @return int|void
+     */
+    public static function log ( $str )
+    {
+        if ( empty($str) ) return OK;
+
+        $str = is_string($str) ? $str : print_r( $str, true );
+
+        return File::append(PATH_LOG, self::$count_log++ . ' : ' . $str . "\n");
+    }
+
 
 }

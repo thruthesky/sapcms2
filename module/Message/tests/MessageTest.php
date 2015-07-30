@@ -1,5 +1,5 @@
 <?php
-include_once "core/etc/phpunit/unittest.php";
+include_once "core/etc/phpunit/test.php";
 class MessageTest extends PHPUnit_Framework_TestCase {
     public function __construct() {
 

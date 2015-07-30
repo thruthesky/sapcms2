@@ -1,5 +1,7 @@
 <?php
 namespace sap\core;
+define('ERROR_FILE_EXISTS', -402001);
+define('ERROR_CREATE_DIR', -402002);
 class File
 {
 
@@ -43,6 +45,9 @@ class File
     }
 
     /**
+     *
+     * @Attention It crates the file if the file does not exists.
+     *
      * @param $path
      * @param $data
      * @return int
@@ -51,5 +56,22 @@ class File
         $re = file_put_contents ( $path, $data, FILE_APPEND );
         if ( $re === false ) return ERROR_FAIL_TO_SAVE;
         return $re;
+    }
+
+    /**
+     * @param $path
+     * @param string $mode
+     * @param bool|true $recursive
+     * @return int
+     */
+    public static function createDir($path, $mode="0777", $recursive=true)
+    {
+        if ( file_exists($path) ) {
+            return ERROR_FILE_EXISTS;
+        }
+        else {
+            if ( mkdir($path, $mode, $recursive) ) return 0;
+            else return ERROR_CREATE_DIR;
+        }
     }
 }

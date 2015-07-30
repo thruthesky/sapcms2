@@ -1,0 +1,8 @@
+<?php
+$database = "SQLite";
+$database_host = "";
+$database_username = "";
+$database_password = "";
+$database_name = "";
+$admin_user_id = "abc";
+$admin_password = "1234";

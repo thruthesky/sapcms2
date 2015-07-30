@@ -22,6 +22,7 @@ class CommandLineInterface {
         }
     }
     public static function Run() {
+        dog(__METHOD__);
         self::parseArguments();
         if ( empty(self::$cmd) ) {
         }
@@ -32,14 +33,21 @@ class CommandLineInterface {
         else if ( self::$cmd == '--install' ) {
             System::install([
                 'database' => self::getArgument('--database'),
-                'database-host' => self::getArgument('--database--host'),
-                'database-username' => self::getArgument('--database--username'),
-                'database-password' => self::getArgument('--database--password'),
-                'database-name' => self::getArgument('--database--name'),
+                'database-host' => self::getArgument('--database-host'),
+                'database-name' => self::getArgument('--database-name'),
+                'database-username' => self::getArgument('--database-username'),
+                'database-password' => self::getArgument('--database-password'),
                 'admin-user-id' => self::getArgument('--admin-user-id'),
                 'admin-password' => self::getArgument('--admin-password'),
             ]);
         }
+        else {
+            $pi = pathinfo(self::$cmd);
+            if ( $pi['extension'] == 'php' ) {
+                include self::$cmd;
+            }
+        }
+        return OK;
     }
     public static function displayHelp() {
         echo <<<EOH
@@ -61,4 +69,5 @@ EOH;
     {
         return isset(self::$arg[$k]) ? self::$arg[$k] : null;
     }
+
 }
