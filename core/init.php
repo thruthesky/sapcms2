@@ -36,6 +36,21 @@ if ( System::isCommandLineInterface() ) return core\CommandLineInterface::Run();
 if ( Install::check() ) {
     if ( Request::isPageInstall() ) System::runModule();
     else Response::redirect(Route::create(ROUTE_INSTALL));
+    return;
 }
-else System::runModule();
+
+
+/**
+ * Loading modules initialization files.
+ *
+ *
+ *
+ */
+foreach ( core_modules() as $module ) {
+    $path = "core/module/$module/$module.init.php";
+    if ( file_exists($path) ) include $path;
+}
+
+
+System::runModule();
 

@@ -2,6 +2,7 @@
 use sap\core\Database;
 use sap\core\System;
 use sap\core\Request;
+
 function di($obj) {
     echo "<pre>";
     print_r($obj);
@@ -11,12 +12,14 @@ function theme_script($filename=null)
 {
     global $theme;
     if ( empty($filename) ) $filename = Request::getRoute();
+    call_hooks(__METHOD__, $filename);
     $path = "theme/$theme/$filename.html.php";
     if ( file_exists($path) ) return $path;
     $module = Request::get('module');
     $path = null;
     if ( System::isCoreModule($module) ) $path = 'core/';
     $path .= "module/$module/template/$filename.html.php";
+
     return $path;
 }
 
@@ -34,9 +37,12 @@ function theme_layout()
     return "theme/$theme/layout.html.php";
 }
 
+function core_modules() {
+    return $GLOBALS['core_modules'];
+}
 function is_core_module($module=null) {
     if ( empty($module) ) $module = sap\core\Request::get('module');
-    return in_array($module, ['File-upload', 'Install', 'Post', 'User']);
+    return in_array($module, $GLOBALS['core_modules']);
 }
 
 function dog($msg) {
@@ -49,4 +55,16 @@ function ip() {
 
 function user_agent() {
     return isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+}
+
+$hooks = [];
+function register_hook($hook, $func) {
+    global $hooks;
+    $hooks[$hook][] = $func;
+}
+function call_hooks($hook, &$args) {
+    global $hooks;
+    foreach( $hooks[$hook] as $func ) {
+        $func($args);
+    }
 }
