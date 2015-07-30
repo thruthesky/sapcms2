@@ -41,6 +41,27 @@ class CommandLineInterface {
                 'admin-password' => self::getArgument('--admin-password'),
             ]);
         }
+        else if ( self::$cmd == '--config' ) {
+            $args = self::getArguments();
+            foreach( $args as $code => $value ) {
+                if ( $code == '--delete' ) {
+                    $config = Config::load('code', $value);
+                    if ( $config ) $config->delete();
+                }
+                else if ( ! empty($value) ) {
+                    $config = Config::load('code', $code);
+                    if ( $config ) {
+                        $config->set('value', $value)->save();
+                    }
+                    else {
+                        Config::create()
+                            ->set('code', $code)
+                            ->set('value', $value)
+                            ->save();
+                    }
+                }
+            }
+        }
         else {
             $pi = pathinfo(self::$cmd);
             if ( $pi['extension'] == 'php' ) {
@@ -71,4 +92,9 @@ EOH;
         return isset(self::$arg[$k]) ? self::$arg[$k] : null;
     }
 
+
+    private static function getArguments()
+    {
+        return self::$arg;
+    }
 }

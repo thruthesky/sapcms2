@@ -27,6 +27,21 @@ spl_autoload_register( function( $class ) {
 dog("init begins");
 $system = core\System::load();
 dog("System object loaded.");
+
+
+/**
+ * Loading modules initialization files.
+ *
+ *
+ *
+ */
+foreach ( $core_modules as $module ) {
+    $path = "core/module/$module/$module.init.php";
+    if ( file_exists($path) ) include $path;
+}
+
+
+
 /**
  * Return after loading System and its core libraries,
  *  if it is running on CLI without checking Installation and running further.
@@ -38,19 +53,6 @@ if ( Install::check() ) {
     else Response::redirect(Route::create(ROUTE_INSTALL));
     return;
 }
-
-
-/**
- * Loading modules initialization files.
- *
- *
- *
- */
-foreach ( core_modules() as $module ) {
-    $path = "core/module/$module/$module.init.php";
-    if ( file_exists($path) ) include $path;
-}
-
 
 System::runModule();
 

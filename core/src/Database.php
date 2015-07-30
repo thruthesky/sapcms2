@@ -50,7 +50,7 @@ class Database extends \PDO {
     {
         dog(__METHOD__);
         if ( self::$db ) return self::$db;
-        $config = Config::load(PATH_CONFIG_DATABASE);
+        $config = Config::read(PATH_CONFIG_DATABASE);
         dog("config:");
         dog($config);
         $type = strtolower($config['database']);

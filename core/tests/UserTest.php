@@ -4,6 +4,8 @@ use sap\core\Database;
 use sap\core\Entity;
 use sap\core\SQL;
 use \sap\core\System;
+use sap\core\User;
+
 class UserTest extends PHPUnit_Framework_TestCase {
     public function __construct() {
         parent::__construct();
@@ -25,6 +27,9 @@ class UserTest extends PHPUnit_Framework_TestCase {
         $user->set('id', $id)
             ->set('name', 'JaeHo Song')
             ->save();
+
+
+
     }
     public function test_create_save_delete() {
         $user = Entity::create('user')
@@ -32,6 +37,25 @@ class UserTest extends PHPUnit_Framework_TestCase {
             ->save()
             ->delete();
         $this->assertNull($user);
+
+
+        $user = User::create()
+            ->set('id', 'test-id-3')
+            ->save();
+        $this->assertNotEmpty($user);
+
+        $idx = User::load('id', 'test-id-3')
+            ->get('idx');
+        $this->assertNotEmpty($idx);
+
+        $re = User::load('id', 'test-id-3')
+            ->delete();
+        $this->assertNull($re);
+
+        $re = User::load('id', 'test-id-3');
+        $this->assertFalse($re);
+
+
     }
 
 

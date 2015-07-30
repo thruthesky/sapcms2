@@ -6,21 +6,31 @@ class Config
 {
     private $file = null;
     private $data = null;
-    public static function create() {
-        Install::createDirs();
-        return new Config();
+
+    public static function create()
+    {
+        return Entity::create('config');
+    }
+    public static function load($field=null, $value='idx')
+    {
+        return Entity::load('config', $field, $value);
     }
 
     /**
      * @param $path
      * @return array
      */
-    public static function load($path)
+    public static function read($path)
     {
         dog(__METHOD__ . " : $path");
-        include $path;
-        return get_defined_vars();
+        if ( file_exists($path) ) {
+            include $path;
+            return get_defined_vars();
+        }
+        else return FALSE;
     }
+
+
 
     public static function initStorage()
     {
@@ -29,20 +39,14 @@ class Config
             ->add('code', 'varchar', 64)
             ->add('value', 'TEXT')
             ->unique('code');
-
-        /*
-        $db = Database::load();
-        $db->dropTable('config');
-        $db->createTable('config');
-        $db->addColumn('config', 'code', 'varchar', 65);
-        $db->addColumn('config', 'value', 'TEXT');
-        $db->addUniqueKey('config', 'code');
-        */
     }
 
-    public function file($file) {
-        $this->file = $file;
-        return $this;
+
+    public static function file($file) {
+        Install::createDirs();
+        $config = new Config();
+        $config ->file = $file;
+        return $config ;
     }
 
     /**
@@ -68,5 +72,10 @@ class Config
     public static function getDatabasePath()
     {
         return PATH_CONFIG_DATABASE;
+    }
+
+    public function delete()
+    {
+        return File::delete($this->file);
     }
 }
