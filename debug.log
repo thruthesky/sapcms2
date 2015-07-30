@@ -5767,3 +5767,147 @@
 8 : sap\core\Database::load
 9 : DELETE FROM config WHERE idx=5
 10 : END
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : END
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : END
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\module\Install\Install::createDirs
+5 : sap\core\module\Install\Install::createStorage
+6 : sap\core\Config::initStorage
+7 : sap\core\Database::load
+8 : sap\core\Config::read : C:\work\sapcms2/data/config/database.php
+9 : config:
+10 : Array
+(
+    [path] => C:\work\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_id] => admin
+    [admin_password] => 1234
+)
+
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\module\Install\Install::createDirs
+5 : sap\core\module\Install\Install::createStorage
+6 : sap\core\Config::initStorage
+7 : sap\core\Database::load
+8 : sap\core\Config::read : C:\work\sapcms2/data/config/database.php
+9 : config:
+10 : Array
+(
+    [path] => C:\work\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_id] => admin
+    [admin_password] => 1234
+)
+
+11 : CREATE INDEX config_created ON config (created);
+12 : CREATE INDEX config_changed ON config (changed);
+13 : CREATE INDEX config_idx_user ON config (idx_user);
+14 : sap\core\Database::load
+15 : CREATE INDEX user_created ON user (created);
+16 : CREATE INDEX user_changed ON user (changed);
+17 : CREATE INDEX user_idx_user ON user (idx_user);
+18 : CREATE INDEX user_name ON user (name);
+19 : CREATE INDEX user_nickname ON user (nickname);
+20 : CREATE INDEX user_mail ON user (mail);
+21 : CREATE INDEX user_birth_year_birth_month_birth_day ON user (birth_year,birth_month,birth_day);
+22 : sap\core\Database::load
+23 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`password`) VALUES (NULL,'1438274412','1438274412','0','','','admin','1234')
+24 : sap\core\Database::load
+25 : INSERT INTO `config` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`code`,`value`) VALUES (NULL,'1438274412','1438274412','0','','','admin-id','admin')
+26 : END
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : END
+4 : sap\core\module\Install\Install::createDirs
+5 : sap\core\Config::read : C:\work\sapcms2/data/config/my.config.php
+6 : sap\core\module\Install\Install::createDirs
+7 : sap\core\Config::read : C:\work\sapcms2/data/config/my.config.php
+8 : sap\core\Database::load
+9 : sap\core\Config::read : C:\work\sapcms2/data/config/database.php
+10 : config:
+11 : Array
+(
+    [path] => C:\work\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_id] => admin
+    [admin_password] => 1234
+)
+
+12 : SELECT * FROM config WHERE code = 'test-code' LIMIT 1
+13 : sap\core\Database::load
+14 : INSERT INTO `config` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`code`,`value`) VALUES (NULL,'1438274422','1438274422','0','','','test-code','This is value of the code - test-code')
+15 : sap\core\Database::load
+16 : UPDATE config SET `idx`='2', `created`='1438274422', `changed`='1438274422', `idx_user`='0', `ip`='', `user_agent`='', `code`='test-code', `value`='1' WHERE idx=2
+17 : sap\core\Database::load
+18 : UPDATE config SET `idx`='2', `created`='1438274422', `changed`='1438274422', `idx_user`='0', `ip`='', `user_agent`='', `code`='test-code', `value`='2' WHERE idx=2
+19 : sap\core\Database::load
+20 : SELECT * FROM config WHERE code = 'test-code' LIMIT 1
+21 : sap\core\Database::load
+22 : SELECT * FROM config WHERE code = 'test-code' LIMIT 1
+23 : sap\core\Database::load
+24 : DELETE FROM config WHERE idx=2
+25 : sap\core\Database::load
+26 : SELECT * FROM config WHERE code = 'test-code' LIMIT 1
+27 : sap\core\Database::load
+28 : CREATE INDEX temp_created ON temp (created);
+29 : CREATE INDEX temp_changed ON temp (changed);
+30 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+31 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+32 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+33 : sap\core\Database::load
+34 : sap\core\Database::columnExists
+35 : temp:temp, field:idx
+36 : SELECT * FROM temp WHERE idx=1 LIMIT 1
+37 : sap\core\Database::load
+38 : sap\core\Database::columnExists
+39 : temp:temp, field:no
+40 : SELECT * FROM temp WHERE no=1 LIMIT 1
+41 : sap\core\Database::load
+42 : sap\core\Database::columnExists
+43 : temp:temp, field:name
+44 : SELECT * FROM temp WHERE name=1 LIMIT 1
+45 : sap\core\Database::load
+46 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+47 : sap\core\Database::load
+48 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+49 : sap\core\Database::load
+50 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`,`name`) VALUES (NULL,'1438274422','1438274422','0','','','sapcms2-test-id','JaeHo Song')
+51 : sap\core\Database::load
+52 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES (NULL,'1438274422','1438274422','0','','','test-id-2')
+53 : sap\core\Database::load
+54 : DELETE FROM user WHERE idx=3
+55 : sap\core\Database::load
+56 : INSERT INTO `user` (`idx`,`created`,`changed`,`idx_user`,`ip`,`user_agent`,`id`) VALUES (NULL,'1438274422','1438274422','0','','','test-id-3')
+57 : sap\core\Database::load
+58 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+59 : sap\core\Database::load
+60 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+61 : sap\core\Database::load
+62 : DELETE FROM user WHERE idx=3
+63 : sap\core\Database::load
+64 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
