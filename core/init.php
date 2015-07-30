@@ -1,12 +1,15 @@
 <?php
 namespace sap;
+use sap\core\module\Install\Install;
 use sap\core\Request;
 use sap\core\Response;
 use sap\core\Route;
 use sap\core\System;
 
+
 include 'config.php';
 include 'etc/defines.php';
+include 'etc/helper-function.php';
 include 'etc/sapcms-library.php';
 
 spl_autoload_register( function( $class ) {
@@ -21,15 +24,17 @@ spl_autoload_register( function( $class ) {
 } );
 
 
+dog("init begins");
 $system = core\System::load();
+dog("System object loaded.");
+/**
+ * Return after loading System and its core libraries,
+ *  if it is running on CLI without checking Installation and running further.
+ */
+if ( System::isCommandLineInterface() ) return core\CommandLineInterface::Run();
 
 
-if ( System::isCommandLineInterface() ) {
-    core\CommandLineInterface::Run();
-}
-else {
-    if ( ! $system->isInstalled() ) {
-        if ( Request::isPageInstall() ) System::runModule();
-        else Response::redirect(Route::create("Install.Form.Input"));
-    }
+if ( Install::check() ) {
+    if ( Request::isPageInstall() ) System::runModule();
+    else Response::redirect(Route::create(ROUTE_INSTALL));
 }

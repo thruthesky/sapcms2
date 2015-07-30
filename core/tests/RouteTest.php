@@ -1,5 +1,5 @@
 <?php
-include_once "core/etc/phpunit/unittest.php";
+include_once "core/etc/phpunit/test.php";
 use \sap\core\Request;
 use \sap\core\Route;
 class RouteTest extends PHPUnit_Framework_TestCase {

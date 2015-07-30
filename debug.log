@@ -1,0 +1,558 @@
+0 : init begins1 : System object loaded.0 : init begins1 : System object loaded.0 : init begins
+1 : System object loaded.
+0 : init begins
+1 : System object loaded.
+0 : init begins
+1 : System object loaded.
+2 : Run command
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::sap\core\CommandLineInterface::Run : Run command
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run : Run command
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE TABLE user (idx INTEGER PRIMARY KEY ASC, created UNSIGNED INT, changed UNSIGNED INT);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE TABLE user (idx INT, created INT UNSIGNED, changed INT UNSIGNED);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE TABLE user (idx INT, created INT UNSIGNED DEFAULT 0, changed INT UNSIGNED DEFAULT 0);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE TABLE user (idx INT, created INT UNSIGNED DEFAULT 0, changed INT UNSIGNED DEFAULT 0);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE TABLE user (idx INT, created INT UNSIGNED DEFAULT 0, changed INT UNSIGNED DEFAULT 0);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE TABLE user (idx INT, created INT UNSIGNED DEFAULT 0, changed INT UNSIGNED DEFAULT 0);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE INDEX created ON config (created);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE INDEX created ON config (created);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE INDEX created ON config (created);
+6 : CREATE INDEX changed ON config (changed);
+7 : CREATE INDEX created ON user (created);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE INDEX created ON config (created);
+6 : CREATE INDEX changed ON config (changed);
+7 : CREATE INDEX created ON user (created);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE INDEX created ON config (created);
+6 : CREATE INDEX changed ON config (changed);
+7 : CREATE INDEX created ON user (created);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE INDEX created ON config (created);
+6 : CREATE INDEX changed ON config (changed);
+7 : CREATE INDEX created ON user (created);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE INDEX created ON config (created);
+6 : CREATE INDEX changed ON config (changed);
+7 : CREATE INDEX created ON user (created);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE INDEX created ON config (created);
+6 : CREATE INDEX changed ON config (changed);
+7 : CREATE INDEX created ON user (created);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE INDEX created ON config (created);
+6 : CREATE INDEX changed ON config (changed);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE INDEX created ON config (created);
+6 : CREATE INDEX changed ON config (changed);
+7 : CREATE INDEX created ON user (created);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE INDEX config_created ON config (created);
+6 : CREATE INDEX config_changed ON config (changed);
+7 : CREATE INDEX user_created ON user (created);
+8 : CREATE INDEX user_changed ON user (changed);
+9 : CREATE INDEX user_name ON user (name);
+10 : CREATE INDEX user_nickname ON user (nickname);
+11 : CREATE INDEX user_birth_year ON user (birth_year);
+12 : CREATE INDEX user_meta_created ON user_meta (created);
+13 : CREATE INDEX user_meta_changed ON user_meta (changed);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE INDEX config_created ON config (created);
+6 : CREATE INDEX config_changed ON config (changed);
+7 : CREATE INDEX user_created ON user (created);
+8 : CREATE INDEX user_changed ON user (changed);
+9 : CREATE INDEX user_name ON user (name);
+10 : CREATE INDEX user_nickname ON user (nickname);
+11 : CREATE INDEX user_birth_year ON user (birth_year);
+12 : CREATE INDEX user_meta_created ON user_meta (created);
+13 : CREATE INDEX user_meta_changed ON user_meta (changed);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE INDEX config_created ON config (created);
+6 : CREATE INDEX config_changed ON config (changed);
+7 : CREATE INDEX user_created ON user (created);
+8 : CREATE INDEX user_changed ON user (changed);
+9 : CREATE INDEX user_name ON user (name);
+10 : CREATE INDEX user_nickname ON user (nickname);
+11 : CREATE INDEX user_birth_year ON user (birth_year);
+12 : CREATE INDEX user_meta_created ON user_meta (created);
+13 : CREATE INDEX user_meta_changed ON user_meta (changed);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE INDEX config_created ON config (created);
+6 : CREATE INDEX config_changed ON config (changed);
+7 : CREATE INDEX user_created ON user (created);
+8 : CREATE INDEX user_changed ON user (changed);
+9 : CREATE INDEX user_name ON user (name);
+10 : CREATE INDEX user_nickname ON user (nickname);
+11 : CREATE INDEX user_birth_year ON user (birth_year);
+12 : CREATE INDEX user_meta_created ON user_meta (created);
+13 : CREATE INDEX user_meta_changed ON user_meta (changed);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE INDEX config_created ON config (created);
+6 : CREATE INDEX config_changed ON config (changed);
+7 : CREATE INDEX user_created ON user (created);
+8 : CREATE INDEX user_changed ON user (changed);
+9 : CREATE INDEX user_name ON user (name);
+10 : CREATE INDEX user_nickname ON user (nickname);
+11 : CREATE INDEX user_birth_year ON user (birth_year);
+12 : CREATE INDEX user_meta_created ON user_meta (created);
+13 : CREATE INDEX user_meta_changed ON user_meta (changed);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE INDEX config_created ON config (created);
+6 : CREATE INDEX config_changed ON config (changed);
+7 : CREATE INDEX user_created ON user (created);
+8 : CREATE INDEX user_changed ON user (changed);
+9 : CREATE INDEX user_name ON user (name);
+10 : CREATE INDEX user_nickname ON user (nickname);
+11 : CREATE INDEX user_birth_year ON user (birth_year);
+12 : CREATE INDEX user_meta_created ON user_meta (created);
+13 : CREATE INDEX user_meta_changed ON user_meta (changed);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE INDEX config_created ON config (created);
+6 : CREATE INDEX config_changed ON config (changed);
+7 : CREATE INDEX user_created ON user (created);
+8 : CREATE INDEX user_changed ON user (changed);
+9 : CREATE INDEX user_name ON user (name);
+10 : CREATE INDEX user_nickname ON user (nickname);
+11 : CREATE INDEX user_birth_year ON user (birth_year);
+12 : CREATE INDEX user_meta_created ON user_meta (created);
+13 : CREATE INDEX user_meta_changed ON user_meta (changed);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+5 : CREATE INDEX config_created ON config (created);
+6 : CREATE INDEX config_changed ON config (changed);
+7 : CREATE INDEX user_created ON user (created);
+8 : CREATE INDEX user_changed ON user (changed);
+9 : CREATE INDEX user_name ON user (name);
+10 : CREATE INDEX user_nickname ON user (nickname);
+11 : CREATE INDEX user_email ON user (email);
+12 : CREATE INDEX user_birth_year ON user (birth_year);
+13 : CREATE INDEX user_meta_created ON user_meta (created);
+14 : CREATE INDEX user_meta_changed ON user_meta (changed);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : sap\core\System::install
+4 : sap\core\Config::load
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : CREATE INDEX temp_created ON temp (created);
+4 : CREATE INDEX temp_changed ON temp (changed);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : CREATE INDEX temp_created ON temp (created);
+4 : CREATE INDEX temp_changed ON temp (changed);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : CREATE INDEX temp_created ON temp (created);
+4 : CREATE INDEX temp_changed ON temp (changed);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : CREATE INDEX temp_created ON temp (created);
+4 : CREATE INDEX temp_changed ON temp (changed);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : CREATE INDEX temp_created ON temp (created);
+4 : CREATE INDEX temp_changed ON temp (changed);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : CREATE INDEX temp_created ON temp (created);
+4 : CREATE INDEX temp_changed ON temp (changed);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
+3 : CREATE INDEX temp_created ON temp (created);
+4 : CREATE INDEX temp_changed ON temp (changed);
+0 : init begins
+1 : System object loaded.
+2 : sap\core\CommandLineInterface::Run
