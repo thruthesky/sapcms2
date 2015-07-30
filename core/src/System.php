@@ -66,8 +66,7 @@ class System {
     public static function install($options)
     {
         dog(__METHOD__);
-        Config::create()
-            ->file(Config::getDatabasePath())
+        Config::file(Config::getDatabasePath())
             ->data($options)
             ->save();
 
@@ -77,6 +76,12 @@ class System {
             ->set('id',$options['admin-id'])
             ->set('password', $options['admin-password'])
             ->save();
+
+        Entity::create('config')
+            ->set('code', 'admin-id')
+            ->set('value', $options['admin-id'])
+            ->save();
+
     }
 
 

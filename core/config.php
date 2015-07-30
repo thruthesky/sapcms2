@@ -5,7 +5,6 @@ define('DEFAULT_CLASS','front');
 define('DEFAULT_CONTROLLER','defaultController');
 
 
-
 $theme = 'default';
 
 define('PATH_INSTALL', getcwd());
@@ -25,5 +24,5 @@ define('PATH_UPLOAD', PATH_DATA . '/upload');
 define('PATH_THUMBNAIL', PATH_DATA . '/thumbnail');
 
 
-
 $core_modules = ['File-upload', 'front', 'Install', 'Post', 'User'];
+

@@ -4,6 +4,16 @@ class User {
     private $fields = [];
 
 
+    public static function create()
+    {
+        return Entity::create('user');
+    }
+    public static function load($field=null, $value='idx')
+    {
+        return Entity::load('user', $field, $value);
+    }
+
+
 
     public static function initStorage()
     {
@@ -31,10 +41,6 @@ class User {
             ->index('birth_year,birth_month,birth_day');
     }
 
-    public static function create()
-    {
-        return Entity::create('user');
-    }
 
 
 }

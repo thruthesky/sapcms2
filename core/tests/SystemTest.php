@@ -12,18 +12,10 @@ class SystemTest extends PHPUnit_Framework_TestCase {
 
     }
 
-    public function testInstall()
+    public function test_Install()
     {
 
-        /*
-        if ( System::get()->isInstalled() ) {
-
-        }
-        else {
-            System::install();
-        }
-        $this->assertTrue(System::get()->isInstalled());
-        */
+        
 
     }
 }

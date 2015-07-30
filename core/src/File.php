@@ -35,7 +35,8 @@ class File
      * @param $path
      * @param $data
      * @return int
-     * error code if there is error.
+     * - error code if there is error.
+     * - or bytes of written
      *
      */
     public static function save ($path, $data) {
@@ -73,5 +74,21 @@ class File
             if ( mkdir($path, $mode, $recursive) ) return 0;
             else return ERROR_CREATE_DIR;
         }
+    }
+
+    /**
+     *
+     * Alias of unlink()
+     *
+     * @param $path
+     * @return bool
+     *
+     *      - TRUE on success deleting
+     *      - FALSE if fail to delete.
+     *
+     */
+    public static function delete($path)
+    {
+        return @unlink($path);
     }
 }

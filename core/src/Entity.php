@@ -16,8 +16,30 @@ class Entity extends Database {
         $entity->set('idx_user', 0);
         $entity->set('ip', ip());
         $entity->set('user_agent', user_agent());
+
+        call_hooks('entity_create', $entity);
+
         return $entity;
     }
+
+
+
+    public static function load($table=null, $field=null, $value='idx') {
+        $entity = new Entity($table);
+        if ( empty($field) ) {
+            $item = db_row($table, "idx = '$field'");
+        }
+        else {
+            $item = db_row($table, "$field = '$value'");
+        }
+        if ( $item ) {
+            $entity->fields = $item;
+            call_hooks('entity_load', $entity);
+            return $entity;
+        }
+        else return FALSE;
+    }
+
 
     public function get($field)
     {
@@ -68,22 +90,6 @@ class Entity extends Database {
         return $db;
     }
 
-
-    public static function load($table=null, $field=null, $value='idx') {
-        $entity = new Entity($table);
-        if ( empty($field) ) {
-            $item = db_row($table, "idx = '$field'");
-        }
-        else {
-            $item = db_row($table, "$field = '$value'");
-        }
-        if ( $item ) {
-            $entity->fields = $item;
-            return $entity;
-        }
-        else return FALSE;
-    }
-
     /**
      * @param null $table - This parameter is only for the compatibility of parent class.
      * @param null $cond - This parameter is only for the compatibility of parent class.
@@ -103,6 +109,13 @@ class Entity extends Database {
     }
     public function __toString() {
         return print_r($this, true);
+    }
+
+    public function __get($field) {
+        return $this->get($field);
+    }
+    public function __set($field, $value) {
+        return $this->set($field, $value);
     }
 
 }
