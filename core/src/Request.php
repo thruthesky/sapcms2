@@ -28,6 +28,7 @@ class Request {
             $input['method'] = isset($arr[2]) ? $arr[2] : DEFAULT_CONTROLLER;
         }
         else {
+            $input[ HTTP_VAR_ROUTE ] = DEFAULT_MODULE . '.' . DEFAULT_CLASS . '.' . DEFAULT_CONTROLLER;
             $input['module'] = DEFAULT_MODULE;
             $input['class'] = DEFAULT_CLASS;
             $input['method'] = DEFAULT_CONTROLLER;

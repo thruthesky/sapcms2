@@ -1,7 +1,7 @@
 <?php
 define('HTTP_VAR_ROUTE', 'route');
 define('DEFAULT_MODULE','front');
-define('DEFAULT_CLASS','default');
+define('DEFAULT_CLASS','front');
 define('DEFAULT_CONTROLLER','defaultController');
 
 
@@ -23,3 +23,7 @@ define('PATH_CONFIG_DATABASE', PATH_CONFIG . '/database.php');
 
 define('PATH_UPLOAD', PATH_DATA . '/upload');
 define('PATH_THUMBNAIL', PATH_DATA . '/thumbnail');
+
+
+
+$core_modules = ['File-upload', 'front', 'Install', 'Post', 'User'];
