@@ -53,6 +53,21 @@ class Entity {
     }
 
     /**
+     * @param array $fields
+     * @return $this
+     *
+     * @code
+     * Entity::create($table)
+    ->sets(['a'=>1, 'b'=>'2', 'c'=>3])
+    ->save();
+     * @endcode
+     */
+    public function sets(array $fields) {
+        $this->fields = array_merge($this->fields, $fields);
+        return $this;
+    }
+
+    /**
      * @return $this
      *
      */
@@ -75,6 +90,8 @@ class Entity {
      * @param null $table
      * @return bool|null|Database
      *
+     *
+     * @see buildguide
      */
     public static function init($table=null)
     {
