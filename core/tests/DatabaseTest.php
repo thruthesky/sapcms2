@@ -18,6 +18,8 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
 
         $db->createTable($table);
         $this->assertTrue($db->tableExists($table));
+
+        Database::load()->dropTable($table);
     }
 
 
@@ -30,6 +32,8 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
 
         $db->createTable($table);
         $this->assertTrue($db->tableExists($table));
+
+        Database::load()->dropTable($table);
     }
 
 
@@ -179,6 +183,6 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($db->count($table) == 1);
 
         $db->dropTable($table);
-
     }
+
 }
