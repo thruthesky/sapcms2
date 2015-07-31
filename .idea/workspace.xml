@@ -1,29 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dedb495c-801f-427b-ac2d-43cb9235d7e2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/module/User/User.init.php" />
-      <change type="DELETED" beforePath="C:\work\www\sapcms2\core\module\User\index.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/CommandLineInterface.php" afterPath="$PROJECT_DIR$/core/src/CommandLineInterface.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/Config.php" afterPath="$PROJECT_DIR$/core/src/Config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/tests/ConfigTest.php" afterPath="$PROJECT_DIR$/core/tests/ConfigTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/Database.php" afterPath="$PROJECT_DIR$/core/src/Database.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/Entity.php" afterPath="$PROJECT_DIR$/core/src/Entity.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/File.php" afterPath="$PROJECT_DIR$/core/src/File.php" />
-      <change type="MODIFICATION" beforePath="C:\work\www\sapcms2\core\module\Install\tests\FormTest.php" afterPath="$PROJECT_DIR$/core/module/Install/tests/FormTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/System.php" afterPath="$PROJECT_DIR$/core/src/System.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/tests/SystemTest.php" afterPath="$PROJECT_DIR$/core/tests/SystemTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/User.php" afterPath="$PROJECT_DIR$/core/src/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/tests/UserTest.php" afterPath="$PROJECT_DIR$/core/tests/UserTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/config.php" afterPath="$PROJECT_DIR$/core/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/debug.log" afterPath="$PROJECT_DIR$/debug.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/theme/default/front.html.php" afterPath="$PROJECT_DIR$/theme/default/front.html.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/init.php" afterPath="$PROJECT_DIR$/core/init.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/theme/default/layout.html.php" afterPath="$PROJECT_DIR$/theme/default/layout.html.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/etc/sapcms-library.php" afterPath="$PROJECT_DIR$/core/etc/sapcms-library.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/sapcms.sqlite" afterPath="$PROJECT_DIR$/data/sapcms.sqlite" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="dedb495c-801f-427b-ac2d-43cb9235d7e2" name="Default" comment="" />
     <ignored path="sapcms2.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -238,8 +216,8 @@
           <file leaf-file-name="Entity.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/core/src/Entity.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.5952915">
-                  <caret line="106" column="13" selection-start-line="106" selection-start-column="13" selection-end-line="106" selection-end-column="13" />
+                <state vertical-scroll-proportion="0.08408072">
+                  <caret line="82" column="19" selection-start-line="82" selection-start-column="19" selection-end-line="82" selection-end-column="19" />
                   <folding />
                 </state>
               </provider>
@@ -534,6 +512,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="script" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sapcms2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sapcms2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="module" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1053,14 +1049,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/Entity.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5952915">
-          <caret line="106" column="13" selection-start-line="106" selection-start-column="13" selection-end-line="106" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/tests/ConfigTest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.964285">
@@ -1085,6 +1073,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7455157">
           <caret line="53" column="44" selection-start-line="53" selection-start-column="44" selection-end-line="53" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/Entity.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08408072">
+          <caret line="82" column="19" selection-start-line="82" selection-start-column="19" selection-end-line="82" selection-end-column="19" />
           <folding />
         </state>
       </provider>
