@@ -24,9 +24,9 @@ class Entity extends Database {
 
 
 
-    public static function load($table=null, $field=null, $value='idx') {
+    public static function load($table=null, $field=null, $value=null) {
         $entity = new Entity($table);
-        if ( empty($field) ) {
+        if ( empty($value) ) {
             $item = db_row($table, "idx = '$field'");
         }
         else {
