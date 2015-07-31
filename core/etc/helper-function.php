@@ -10,6 +10,12 @@ function db_or() {
     return SQL::where('OR');
 }
 
+function db_cond($name, $value, $exp='=')
+{
+    return SQL::where()
+        ->condition($name, $value, $exp);
+}
+
 
 function db_insert($table, $fields) {
     $db = Database::load();

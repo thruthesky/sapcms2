@@ -38,6 +38,7 @@ class UserTest extends PHPUnit_Framework_TestCase {
             ->delete();
         $this->assertNull($user);
 
+        if ( $user = User::load('id', 'test-id-3') ) $user->delete();
 
         $user = User::create()
             ->set('id', 'test-id-3')

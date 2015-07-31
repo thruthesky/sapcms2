@@ -1,13 +1,14 @@
 <?php
 namespace sap\core;
 
-class Entity extends Database {
+class Entity {
     private $fields = [];
     private $table = null;
     public function __construct($table) {
         $this->table = $table;
-        parent::__construct();
+
     }
+
     public static function create($table) {
         $entity = new Entity($table);
         $entity->set('idx', NULL);
@@ -21,8 +22,6 @@ class Entity extends Database {
 
         return $entity;
     }
-
-
 
     public static function load($table=null, $field=null, $value=null) {
         $entity = new Entity($table);
@@ -39,6 +38,7 @@ class Entity extends Database {
         }
         else return FALSE;
     }
+
 
 
     public function get($field)
@@ -71,7 +71,12 @@ class Entity extends Database {
     }
 
 
-    public static function init($table)
+    /**
+     * @param null $table
+     * @return bool|null|Database
+     *
+     */
+    public static function init($table=null)
     {
         $db = Database::load();
         $db->dropTable($table);

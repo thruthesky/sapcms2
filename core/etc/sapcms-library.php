@@ -8,6 +8,18 @@ function di($obj) {
     print_r($obj);
     echo "</pre>";
 }
+
+function beautify($obj) {
+    di($obj);
+}
+
+function systeminfo() {
+    $db = Database::load();
+    $info = [];
+    $info['database'] = $db->type;
+    $info['php'] = PHP_VERSION;
+    return $info;
+}
 function theme_script($filename=null)
 {
     global $theme;

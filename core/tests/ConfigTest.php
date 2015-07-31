@@ -58,7 +58,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($config->value == 1);
         $config->value = 2;
         $config->save();
-        
+
 
         $config = Config::load('code', $code);
         $this->assertTrue($config->value == 2);

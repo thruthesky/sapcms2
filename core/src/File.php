@@ -91,4 +91,10 @@ class File
     {
         return @unlink($path);
     }
+
+    public static function read($path) {
+        $content = file_get_contents($path);
+        if ( $content === false ) return ERROR_FAIL_TO_READ;
+        return $content;
+    }
 }

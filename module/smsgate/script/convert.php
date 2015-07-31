@@ -1,0 +1,10 @@
+stamp_last_sent
+count_sent
+keyword
+mobile_number
+count_collection
+username
+location
+title
+stamp_last_collection
+stamp_last_post
