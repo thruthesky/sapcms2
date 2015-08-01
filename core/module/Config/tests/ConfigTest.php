@@ -39,6 +39,34 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
             ->set('b', 'B', 2)
             ->set('c', 'Cake', 3);
 
+        $this->assertTrue(Config::load()->get('c') == 'Cake');
+
+        Config::load()
+            ->set('groupA.apple', 'Apple', 1)
+            ->set('groupA.banana', 'Banana', 2);
+
+        $rows = Config::load()
+            ->group('groupA');
+
+        $this->assertTrue(count($rows)==2);
+
+        $fruits = [
+            'GroupB.apple'=>'Apple',
+            'GroupB.banana'=>'Banana',
+            'GroupB.cherry'=>'Cherry',
+            'GroupC.A' => 'Anaconda',
+            'GroupC.C' => 'Cobra',
+            'D' => 'DDD',
+            'E' => 'ET'
+        ];
+
+        Config::load()->set($fruits);
+
+        $this->assertTrue(Config::load()->get('D') == 'DDD');
+        $this->assertTrue(Config::load()->get('E') == 'ET');
+        $this->assertTrue(Config::load()->get('GroupC.A') == 'Anaconda');
+        $row = Config::load()->group('GroupC');
+        $this->assertTrue(count($row) == 2);
 
 
     }
