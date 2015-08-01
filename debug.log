@@ -12952,3 +12952,999 @@
 207 : DELETE FROM user WHERE idx=3
 208 : sap\src\Database::load
 209 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\src\CommandLineInterface::Run
+3 : END
+4 : sap\core\Install::createDirs
+5 : sap\core\Config::read : C:\work\sapcms2/data/config/my.config.php
+6 : sap\core\Install::createDirs
+7 : sap\core\Config::read : C:\work\sapcms2/data/config/my.config.php
+8 : sap\src\Database::load
+9 : sap\core\Config::read : C:\work\sapcms2/data/config/database.php
+10 : config:
+11 : Array
+(
+    [path] => C:\work\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_id] => admin
+    [admin_password] => 1234
+)
+
+12 : SELECT * FROM config_meta WHERE code = 'a' LIMIT 1
+13 : sap\src\Database::load
+14 : UPDATE config_meta SET `idx`='2', `created`='1438445968', `changed`='1438455218', `idx_target`='1', `code`='a', `value`='A' WHERE idx=2
+15 : sap\src\Database::load
+16 : SELECT * FROM config_meta WHERE code = 'b' LIMIT 1
+17 : sap\src\Database::load
+18 : UPDATE config_meta SET `idx`='3', `created`='1438445968', `changed`='1438455218', `idx_target`='2', `code`='b', `value`='B' WHERE idx=3
+19 : sap\src\Database::load
+20 : SELECT * FROM config_meta WHERE code = 'c' LIMIT 1
+21 : sap\src\Database::load
+22 : UPDATE config_meta SET `idx`='4', `created`='1438445968', `changed`='1438455218', `idx_target`='3', `code`='c', `value`='Cake' WHERE idx=4
+23 : sap\src\Database::load
+24 : SELECT * FROM config_meta WHERE code = 'c' LIMIT 1
+25 : sap\src\Database::load
+26 : SELECT * FROM config_meta WHERE code = 'groupA.apple' LIMIT 1
+27 : sap\src\Database::load
+28 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455218','1438455218','groupA.apple','Apple','1')
+29 : sap\src\Database::load
+30 : SELECT * FROM config_meta WHERE code = 'groupA.banana' LIMIT 1
+31 : sap\src\Database::load
+32 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455218','1438455218','groupA.banana','Banana','2')
+33 : sap\src\Database::load
+34 : SELECT * FROM config_meta WHERE code LIKE 'groupA.%'
+35 : sap\src\Database::load
+36 : SELECT * FROM test_table  LIMIT 1
+37 : SELECT * FROM test_table  LIMIT 1
+38 : sap\src\Database::load
+39 : sap\src\Database::load
+40 : sap\src\Database::columnExists
+41 : test_table:test_table, field:idx
+42 : SELECT * FROM test_table WHERE idx=1 LIMIT 1
+43 : SELECT * FROM test_table  LIMIT 1
+44 : sap\src\Database::load
+45 : sap\src\Database::load
+46 : ALTER TABLE temp ADD COLUMN name varchar(255)
+47 : ALTER TABLE temp ADD COLUMN mail varchar(255)
+48 : ALTER TABLE temp ADD COLUMN birth_year int
+49 : ALTER TABLE temp ADD COLUMN no int
+50 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+51 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+52 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+53 : sap\src\Database::load
+54 : sap\src\Database::columnExists
+55 : temp:temp, field:idx
+56 : SELECT * FROM temp WHERE idx=1 LIMIT 1
+57 : sap\src\Database::load
+58 : sap\src\Database::columnExists
+59 : temp:temp, field:no
+60 : SELECT * FROM temp WHERE no=1 LIMIT 1
+61 : sap\src\Database::load
+62 : sap\src\Database::columnExists
+63 : temp:temp, field:name
+64 : SELECT * FROM temp WHERE name=1 LIMIT 1
+65 : SELECT * FROM temp WHERE name='JaeHo Song' LIMIT 1
+66 : SELECT * FROM temp WHERE (`name` = 'JaeHo Song') LIMIT 1
+67 : ALTER TABLE abc ADD COLUMN a varchar(255)
+68 : ALTER TABLE abc ADD COLUMN b varchar(255)
+69 : ALTER TABLE abc ADD COLUMN c varchar(255)
+70 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('A','B','C')
+71 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('ABC','BCD','CDE')
+72 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('1','2','3')
+73 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','banana','cherry')
+74 : SELECT * FROM abc WHERE (`a` like 'A%' AND ((`b` like 'B%' AND `c` like 'C%') OR (`b` = 'B' AND `c` = 'C'))) LIMIT 1
+75 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('Airplane','Boat','Cruze')
+76 : SELECT * FROM abc WHERE b='Boat' LIMIT 1
+77 : DELETE FROM abc WHERE b='Boat'
+78 : SELECT * FROM abc WHERE b='Boat' LIMIT 1
+79 : sap\src\Database::load
+80 : ALTER TABLE abc ADD COLUMN a varchar(255)
+81 : ALTER TABLE abc ADD COLUMN b varchar(255)
+82 : ALTER TABLE abc ADD COLUMN c varchar(255)
+83 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('A','B','C')
+84 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('ABC','BCD','CDE')
+85 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('1','2','3')
+86 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','banana','cherry')
+87 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','beach','city')
+88 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','box','cake')
+89 : SELECT * FROM abc  LIMIT 1
+90 : SELECT * FROM abc WHERE 1 LIMIT 0,1
+91 : SELECT * FROM abc LIMIT 1,1
+92 : SELECT * FROM abc ORDER BY idx ASC LIMIT 2,1
+93 : SELECT idx, a FROM abc  LIMIT 1
+94 : SELECT idx, a FROM abc WHERE A LIKE 'A%' ORDER BY a DESC LIMIT 1,1
+95 : sap\src\Database::load
+96 : ALTER TABLE abc ADD COLUMN a varchar(255)
+97 : ALTER TABLE abc ADD COLUMN b varchar(255)
+98 : ALTER TABLE abc ADD COLUMN c varchar(255)
+99 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('A','B','C')
+100 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('ABC','BCD','CDE')
+101 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('1','2','3')
+102 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','banana','cherry')
+103 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','beach','city')
+104 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','box','cake')
+105 : SELECT * FROM abc 
+106 : SELECT * FROM abc LIMIT 2,2
+107 : SELECT a,b,c,COUNT(*) as cnt FROM abc WHERE a LIKE 'a%' GROUP BY a ORDER BY cnt DESC LIMIT 0,2
+108 : sap\src\Database::load
+109 : ALTER TABLE test_result ADD COLUMN a varchar(255)
+110 : INSERT INTO `test_result` (`a`) VALUES ('b')
+111 : SELECT a FROM test_result  LIMIT 1
+112 : SELECT COUNT(*) FROM test_result  LIMIT 1
+113 : sap\src\Database::load
+114 : ALTER TABLE entity_test ADD COLUMN created INT UNSIGNED DEFAULT 0
+115 : ALTER TABLE entity_test ADD COLUMN changed INT UNSIGNED DEFAULT 0
+116 : CREATE INDEX entity_test_created ON entity_test (created);
+117 : CREATE INDEX entity_test_changed ON entity_test (changed);
+118 : ALTER TABLE entity_test ADD COLUMN name varchar(32)
+119 : sap\src\Database::load
+120 : INSERT INTO `entity_test` (`idx`,`created`,`changed`,`name`) VALUES (NULL,'1438455219','1438455219','JaeHo')
+121 : sap\src\Database::load
+122 : SELECT * FROM entity_test WHERE idx = '1' LIMIT 1
+123 : sap\src\Database::load
+124 : SELECT * FROM entity_test WHERE name = 'JaeHo' LIMIT 1
+125 : sap\src\Database::load
+126 : sap\src\Database::load
+127 : ALTER TABLE entity_test_2 ADD COLUMN created INT UNSIGNED DEFAULT 0
+128 : ALTER TABLE entity_test_2 ADD COLUMN changed INT UNSIGNED DEFAULT 0
+129 : CREATE INDEX entity_test_2_created ON entity_test_2 (created);
+130 : CREATE INDEX entity_test_2_changed ON entity_test_2 (changed);
+131 : ALTER TABLE entity_test_2 ADD COLUMN a char(255)
+132 : ALTER TABLE entity_test_2 ADD COLUMN b char(255)
+133 : ALTER TABLE entity_test_2 ADD COLUMN c char(255)
+134 : sap\src\Database::load
+135 : INSERT INTO `entity_test_2` (`idx`,`created`,`changed`,`a`,`b`,`c`) VALUES (NULL,'1438455219','1438455219','A','B','C')
+136 : sap\src\Database::load
+137 : SELECT * FROM entity_test_2 WHERE a = 'A' LIMIT 1
+138 : sap\src\Database::load
+139 : INSERT INTO `entity_test_2` (`idx`,`created`,`changed`,`a`,`b`,`c`) VALUES (NULL,'1438455219','1438455219','1','2','3')
+140 : sap\src\Database::load
+141 : SELECT * FROM entity_test_2 WHERE a = '1' LIMIT 1
+142 : sap\src\Database::load
+143 : sap\src\Database::load
+144 : ALTER TABLE user_meta ADD COLUMN created INT UNSIGNED DEFAULT 0
+145 : ALTER TABLE user_meta ADD COLUMN changed INT UNSIGNED DEFAULT 0
+146 : CREATE INDEX user_meta_created ON user_meta (created);
+147 : CREATE INDEX user_meta_changed ON user_meta (changed);
+148 : ALTER TABLE user_meta ADD COLUMN idx_target INT
+149 : ALTER TABLE user_meta ADD COLUMN code varchar(64)
+150 : ALTER TABLE user_meta ADD COLUMN value TEXT
+151 : CREATE INDEX user_meta_idx_target ON user_meta (idx_target);
+152 : sap\src\Database::load
+153 : SELECT * FROM user_meta  LIMIT 1
+154 : sap\src\Database::load
+155 : sap\src\Database::load
+156 : SELECT * FROM user_meta  LIMIT 1
+157 : sap\src\Database::load
+158 : sap\src\Database::load
+159 : ALTER TABLE test_meta ADD COLUMN created INT UNSIGNED DEFAULT 0
+160 : ALTER TABLE test_meta ADD COLUMN changed INT UNSIGNED DEFAULT 0
+161 : CREATE INDEX test_meta_created ON test_meta (created);
+162 : CREATE INDEX test_meta_changed ON test_meta (changed);
+163 : ALTER TABLE test_meta ADD COLUMN idx_target INT
+164 : ALTER TABLE test_meta ADD COLUMN code varchar(64)
+165 : ALTER TABLE test_meta ADD COLUMN value TEXT
+166 : CREATE INDEX test_meta_idx_target ON test_meta (idx_target);
+167 : sap\src\Database::load
+168 : SELECT * FROM test_meta WHERE code = 'a' LIMIT 1
+169 : sap\src\Database::load
+170 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455219','1438455219','a','A','0')
+171 : sap\src\Database::load
+172 : SELECT * FROM test_meta WHERE code = 'b' LIMIT 1
+173 : sap\src\Database::load
+174 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455219','1438455219','b','B','0')
+175 : sap\src\Database::load
+176 : SELECT * FROM test_meta WHERE code = 'c' LIMIT 1
+177 : sap\src\Database::load
+178 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455219','1438455219','c','C','0')
+179 : sap\src\Database::load
+180 : SELECT * FROM test_meta WHERE code = 'a' LIMIT 1
+181 : sap\src\Database::load
+182 : SELECT * FROM test_meta WHERE code = 'a' LIMIT 1
+183 : sap\src\Database::load
+184 : SELECT * FROM test_meta WHERE code = 'hi.ace' LIMIT 1
+185 : sap\src\Database::load
+186 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455219','1438455219','hi.ace','car','0')
+187 : sap\src\Database::load
+188 : SELECT * FROM test_meta WHERE code = 'hi.there' LIMIT 1
+189 : sap\src\Database::load
+190 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455219','1438455219','hi.there','hadein','0')
+191 : sap\src\Database::load
+192 : SELECT * FROM test_meta WHERE code = 'hi.toeic' LIMIT 1
+193 : sap\src\Database::load
+194 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455219','1438455219','hi.toeic','helloopic','0')
+195 : sap\src\Database::load
+196 : SELECT * FROM test_meta WHERE code LIKE 'hi.%'
+197 : sap\src\Database::load
+198 : sap\src\Database::load
+199 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+200 : sap\src\Database::load
+201 : DELETE FROM user WHERE idx=2
+202 : sap\src\Database::load
+203 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+204 : sap\src\Database::load
+205 : INSERT INTO `user` (`idx`,`created`,`changed`,`id`,`name`) VALUES (NULL,'1438455219','1438455219','sapcms2-test-id','JaeHo Song')
+206 : sap\src\Database::load
+207 : INSERT INTO `user` (`idx`,`created`,`changed`,`id`) VALUES (NULL,'1438455219','1438455219','test-id-2')
+208 : sap\src\Database::load
+209 : DELETE FROM user WHERE idx=3
+210 : sap\src\Database::load
+211 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+212 : sap\src\Database::load
+213 : INSERT INTO `user` (`idx`,`created`,`changed`,`id`) VALUES (NULL,'1438455219','1438455219','test-id-3')
+214 : sap\src\Database::load
+215 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+216 : sap\src\Database::load
+217 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+218 : sap\src\Database::load
+219 : DELETE FROM user WHERE idx=3
+220 : sap\src\Database::load
+221 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\src\CommandLineInterface::Run
+3 : END
+4 : sap\core\Install::createDirs
+5 : sap\core\Config::read : C:\work\sapcms2/data/config/my.config.php
+6 : sap\core\Install::createDirs
+7 : sap\core\Config::read : C:\work\sapcms2/data/config/my.config.php
+8 : sap\src\Database::load
+9 : sap\core\Config::read : C:\work\sapcms2/data/config/database.php
+10 : config:
+11 : Array
+(
+    [path] => C:\work\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_id] => admin
+    [admin_password] => 1234
+)
+
+12 : SELECT * FROM config_meta WHERE code = 'a' LIMIT 1
+13 : sap\src\Database::load
+14 : UPDATE config_meta SET `idx`='2', `created`='1438445968', `changed`='1438455226', `idx_target`='1', `code`='a', `value`='A' WHERE idx=2
+15 : sap\src\Database::load
+16 : SELECT * FROM config_meta WHERE code = 'b' LIMIT 1
+17 : sap\src\Database::load
+18 : UPDATE config_meta SET `idx`='3', `created`='1438445968', `changed`='1438455226', `idx_target`='2', `code`='b', `value`='B' WHERE idx=3
+19 : sap\src\Database::load
+20 : SELECT * FROM config_meta WHERE code = 'c' LIMIT 1
+21 : sap\src\Database::load
+22 : UPDATE config_meta SET `idx`='4', `created`='1438445968', `changed`='1438455226', `idx_target`='3', `code`='c', `value`='Cake' WHERE idx=4
+23 : sap\src\Database::load
+24 : SELECT * FROM config_meta WHERE code = 'c' LIMIT 1
+25 : sap\src\Database::load
+26 : SELECT * FROM config_meta WHERE code = 'groupA.apple' LIMIT 1
+27 : sap\src\Database::load
+28 : UPDATE config_meta SET `idx`='8', `created`='1438455218', `changed`='1438455226', `idx_target`='1', `code`='groupA.apple', `value`='Apple' WHERE idx=8
+29 : sap\src\Database::load
+30 : SELECT * FROM config_meta WHERE code = 'groupA.banana' LIMIT 1
+31 : sap\src\Database::load
+32 : UPDATE config_meta SET `idx`='9', `created`='1438455218', `changed`='1438455226', `idx_target`='2', `code`='groupA.banana', `value`='Banana' WHERE idx=9
+33 : sap\src\Database::load
+34 : SELECT * FROM config_meta WHERE code LIKE 'groupA.%'
+35 : sap\src\Database::load
+36 : SELECT * FROM test_table  LIMIT 1
+37 : SELECT * FROM test_table  LIMIT 1
+38 : sap\src\Database::load
+39 : sap\src\Database::load
+40 : sap\src\Database::columnExists
+41 : test_table:test_table, field:idx
+42 : SELECT * FROM test_table WHERE idx=1 LIMIT 1
+43 : SELECT * FROM test_table  LIMIT 1
+44 : sap\src\Database::load
+45 : sap\src\Database::load
+46 : ALTER TABLE temp ADD COLUMN name varchar(255)
+47 : ALTER TABLE temp ADD COLUMN mail varchar(255)
+48 : ALTER TABLE temp ADD COLUMN birth_year int
+49 : ALTER TABLE temp ADD COLUMN no int
+50 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+51 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+52 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+53 : sap\src\Database::load
+54 : sap\src\Database::columnExists
+55 : temp:temp, field:idx
+56 : SELECT * FROM temp WHERE idx=1 LIMIT 1
+57 : sap\src\Database::load
+58 : sap\src\Database::columnExists
+59 : temp:temp, field:no
+60 : SELECT * FROM temp WHERE no=1 LIMIT 1
+61 : sap\src\Database::load
+62 : sap\src\Database::columnExists
+63 : temp:temp, field:name
+64 : SELECT * FROM temp WHERE name=1 LIMIT 1
+65 : SELECT * FROM temp WHERE name='JaeHo Song' LIMIT 1
+66 : SELECT * FROM temp WHERE (`name` = 'JaeHo Song') LIMIT 1
+67 : ALTER TABLE abc ADD COLUMN a varchar(255)
+68 : ALTER TABLE abc ADD COLUMN b varchar(255)
+69 : ALTER TABLE abc ADD COLUMN c varchar(255)
+70 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('A','B','C')
+71 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('ABC','BCD','CDE')
+72 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('1','2','3')
+73 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','banana','cherry')
+74 : SELECT * FROM abc WHERE (`a` like 'A%' AND ((`b` like 'B%' AND `c` like 'C%') OR (`b` = 'B' AND `c` = 'C'))) LIMIT 1
+75 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('Airplane','Boat','Cruze')
+76 : SELECT * FROM abc WHERE b='Boat' LIMIT 1
+77 : DELETE FROM abc WHERE b='Boat'
+78 : SELECT * FROM abc WHERE b='Boat' LIMIT 1
+79 : sap\src\Database::load
+80 : ALTER TABLE abc ADD COLUMN a varchar(255)
+81 : ALTER TABLE abc ADD COLUMN b varchar(255)
+82 : ALTER TABLE abc ADD COLUMN c varchar(255)
+83 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('A','B','C')
+84 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('ABC','BCD','CDE')
+85 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('1','2','3')
+86 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','banana','cherry')
+87 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','beach','city')
+88 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','box','cake')
+89 : SELECT * FROM abc  LIMIT 1
+90 : SELECT * FROM abc WHERE 1 LIMIT 0,1
+91 : SELECT * FROM abc LIMIT 1,1
+92 : SELECT * FROM abc ORDER BY idx ASC LIMIT 2,1
+93 : SELECT idx, a FROM abc  LIMIT 1
+94 : SELECT idx, a FROM abc WHERE A LIKE 'A%' ORDER BY a DESC LIMIT 1,1
+95 : sap\src\Database::load
+96 : ALTER TABLE abc ADD COLUMN a varchar(255)
+97 : ALTER TABLE abc ADD COLUMN b varchar(255)
+98 : ALTER TABLE abc ADD COLUMN c varchar(255)
+99 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('A','B','C')
+100 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('ABC','BCD','CDE')
+101 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('1','2','3')
+102 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','banana','cherry')
+103 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','beach','city')
+104 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','box','cake')
+105 : SELECT * FROM abc 
+106 : SELECT * FROM abc LIMIT 2,2
+107 : SELECT a,b,c,COUNT(*) as cnt FROM abc WHERE a LIKE 'a%' GROUP BY a ORDER BY cnt DESC LIMIT 0,2
+108 : sap\src\Database::load
+109 : ALTER TABLE test_result ADD COLUMN a varchar(255)
+110 : INSERT INTO `test_result` (`a`) VALUES ('b')
+111 : SELECT a FROM test_result  LIMIT 1
+112 : SELECT COUNT(*) FROM test_result  LIMIT 1
+113 : sap\src\Database::load
+114 : ALTER TABLE entity_test ADD COLUMN created INT UNSIGNED DEFAULT 0
+115 : ALTER TABLE entity_test ADD COLUMN changed INT UNSIGNED DEFAULT 0
+116 : CREATE INDEX entity_test_created ON entity_test (created);
+117 : CREATE INDEX entity_test_changed ON entity_test (changed);
+118 : ALTER TABLE entity_test ADD COLUMN name varchar(32)
+119 : sap\src\Database::load
+120 : INSERT INTO `entity_test` (`idx`,`created`,`changed`,`name`) VALUES (NULL,'1438455227','1438455227','JaeHo')
+121 : sap\src\Database::load
+122 : SELECT * FROM entity_test WHERE idx = '1' LIMIT 1
+123 : sap\src\Database::load
+124 : SELECT * FROM entity_test WHERE name = 'JaeHo' LIMIT 1
+125 : sap\src\Database::load
+126 : sap\src\Database::load
+127 : ALTER TABLE entity_test_2 ADD COLUMN created INT UNSIGNED DEFAULT 0
+128 : ALTER TABLE entity_test_2 ADD COLUMN changed INT UNSIGNED DEFAULT 0
+129 : CREATE INDEX entity_test_2_created ON entity_test_2 (created);
+130 : CREATE INDEX entity_test_2_changed ON entity_test_2 (changed);
+131 : ALTER TABLE entity_test_2 ADD COLUMN a char(255)
+132 : ALTER TABLE entity_test_2 ADD COLUMN b char(255)
+133 : ALTER TABLE entity_test_2 ADD COLUMN c char(255)
+134 : sap\src\Database::load
+135 : INSERT INTO `entity_test_2` (`idx`,`created`,`changed`,`a`,`b`,`c`) VALUES (NULL,'1438455227','1438455227','A','B','C')
+136 : sap\src\Database::load
+137 : SELECT * FROM entity_test_2 WHERE a = 'A' LIMIT 1
+138 : sap\src\Database::load
+139 : INSERT INTO `entity_test_2` (`idx`,`created`,`changed`,`a`,`b`,`c`) VALUES (NULL,'1438455227','1438455227','1','2','3')
+140 : sap\src\Database::load
+141 : SELECT * FROM entity_test_2 WHERE a = '1' LIMIT 1
+142 : sap\src\Database::load
+143 : sap\src\Database::load
+144 : ALTER TABLE user_meta ADD COLUMN created INT UNSIGNED DEFAULT 0
+145 : ALTER TABLE user_meta ADD COLUMN changed INT UNSIGNED DEFAULT 0
+146 : CREATE INDEX user_meta_created ON user_meta (created);
+147 : CREATE INDEX user_meta_changed ON user_meta (changed);
+148 : ALTER TABLE user_meta ADD COLUMN idx_target INT
+149 : ALTER TABLE user_meta ADD COLUMN code varchar(64)
+150 : ALTER TABLE user_meta ADD COLUMN value TEXT
+151 : CREATE INDEX user_meta_idx_target ON user_meta (idx_target);
+152 : sap\src\Database::load
+153 : SELECT * FROM user_meta  LIMIT 1
+154 : sap\src\Database::load
+155 : sap\src\Database::load
+156 : SELECT * FROM user_meta  LIMIT 1
+157 : sap\src\Database::load
+158 : sap\src\Database::load
+159 : ALTER TABLE test_meta ADD COLUMN created INT UNSIGNED DEFAULT 0
+160 : ALTER TABLE test_meta ADD COLUMN changed INT UNSIGNED DEFAULT 0
+161 : CREATE INDEX test_meta_created ON test_meta (created);
+162 : CREATE INDEX test_meta_changed ON test_meta (changed);
+163 : ALTER TABLE test_meta ADD COLUMN idx_target INT
+164 : ALTER TABLE test_meta ADD COLUMN code varchar(64)
+165 : ALTER TABLE test_meta ADD COLUMN value TEXT
+166 : CREATE INDEX test_meta_idx_target ON test_meta (idx_target);
+167 : sap\src\Database::load
+168 : SELECT * FROM test_meta WHERE code = 'a' LIMIT 1
+169 : sap\src\Database::load
+170 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455227','1438455227','a','A','0')
+171 : sap\src\Database::load
+172 : SELECT * FROM test_meta WHERE code = 'b' LIMIT 1
+173 : sap\src\Database::load
+174 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455227','1438455227','b','B','0')
+175 : sap\src\Database::load
+176 : SELECT * FROM test_meta WHERE code = 'c' LIMIT 1
+177 : sap\src\Database::load
+178 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455227','1438455227','c','C','0')
+179 : sap\src\Database::load
+180 : SELECT * FROM test_meta WHERE code = 'a' LIMIT 1
+181 : sap\src\Database::load
+182 : SELECT * FROM test_meta WHERE code = 'a' LIMIT 1
+183 : sap\src\Database::load
+184 : SELECT * FROM test_meta WHERE code = 'hi.ace' LIMIT 1
+185 : sap\src\Database::load
+186 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455227','1438455227','hi.ace','car','0')
+187 : sap\src\Database::load
+188 : SELECT * FROM test_meta WHERE code = 'hi.there' LIMIT 1
+189 : sap\src\Database::load
+190 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455227','1438455227','hi.there','hadein','0')
+191 : sap\src\Database::load
+192 : SELECT * FROM test_meta WHERE code = 'hi.toeic' LIMIT 1
+193 : sap\src\Database::load
+194 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455227','1438455227','hi.toeic','helloopic','0')
+195 : sap\src\Database::load
+196 : SELECT * FROM test_meta WHERE code LIKE 'hi.%'
+197 : sap\src\Database::load
+198 : sap\src\Database::load
+199 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+200 : sap\src\Database::load
+201 : DELETE FROM user WHERE idx=2
+202 : sap\src\Database::load
+203 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+204 : sap\src\Database::load
+205 : INSERT INTO `user` (`idx`,`created`,`changed`,`id`,`name`) VALUES (NULL,'1438455227','1438455227','sapcms2-test-id','JaeHo Song')
+206 : sap\src\Database::load
+207 : INSERT INTO `user` (`idx`,`created`,`changed`,`id`) VALUES (NULL,'1438455227','1438455227','test-id-2')
+208 : sap\src\Database::load
+209 : DELETE FROM user WHERE idx=3
+210 : sap\src\Database::load
+211 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+212 : sap\src\Database::load
+213 : INSERT INTO `user` (`idx`,`created`,`changed`,`id`) VALUES (NULL,'1438455227','1438455227','test-id-3')
+214 : sap\src\Database::load
+215 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+216 : sap\src\Database::load
+217 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+218 : sap\src\Database::load
+219 : DELETE FROM user WHERE idx=3
+220 : sap\src\Database::load
+221 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\src\CommandLineInterface::Run
+3 : END
+4 : sap\core\Install::createDirs
+5 : sap\core\Config::read : C:\work\sapcms2/data/config/my.config.php
+6 : sap\core\Install::createDirs
+7 : sap\core\Config::read : C:\work\sapcms2/data/config/my.config.php
+8 : sap\src\Database::load
+9 : sap\core\Config::read : C:\work\sapcms2/data/config/database.php
+10 : config:
+11 : Array
+(
+    [path] => C:\work\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_id] => admin
+    [admin_password] => 1234
+)
+
+12 : SELECT * FROM config_meta WHERE code = 'a' LIMIT 1
+13 : sap\src\Database::load
+14 : UPDATE config_meta SET `idx`='2', `created`='1438445968', `changed`='1438455582', `idx_target`='1', `code`='a', `value`='A' WHERE idx=2
+15 : sap\src\Database::load
+16 : SELECT * FROM config_meta WHERE code = 'b' LIMIT 1
+17 : sap\src\Database::load
+18 : UPDATE config_meta SET `idx`='3', `created`='1438445968', `changed`='1438455582', `idx_target`='2', `code`='b', `value`='B' WHERE idx=3
+19 : sap\src\Database::load
+20 : SELECT * FROM config_meta WHERE code = 'c' LIMIT 1
+21 : sap\src\Database::load
+22 : UPDATE config_meta SET `idx`='4', `created`='1438445968', `changed`='1438455582', `idx_target`='3', `code`='c', `value`='Cake' WHERE idx=4
+23 : sap\src\Database::load
+24 : SELECT * FROM config_meta WHERE code = 'c' LIMIT 1
+25 : sap\src\Database::load
+26 : SELECT * FROM config_meta WHERE code = 'groupA.apple' LIMIT 1
+27 : sap\src\Database::load
+28 : UPDATE config_meta SET `idx`='8', `created`='1438455218', `changed`='1438455582', `idx_target`='1', `code`='groupA.apple', `value`='Apple' WHERE idx=8
+29 : sap\src\Database::load
+30 : SELECT * FROM config_meta WHERE code = 'groupA.banana' LIMIT 1
+31 : sap\src\Database::load
+32 : UPDATE config_meta SET `idx`='9', `created`='1438455218', `changed`='1438455582', `idx_target`='2', `code`='groupA.banana', `value`='Banana' WHERE idx=9
+33 : sap\src\Database::load
+34 : SELECT * FROM config_meta WHERE code LIKE 'groupA.%'
+35 : sap\src\Database::load
+36 : SELECT * FROM config_meta WHERE code = 'GroupB.apple' LIMIT 1
+37 : sap\src\Database::load
+38 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455582','1438455582','GroupB.apple','Apple','0')
+39 : sap\src\Database::load
+40 : SELECT * FROM config_meta WHERE code = 'GroupB.banana' LIMIT 1
+41 : sap\src\Database::load
+42 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455582','1438455582','GroupB.banana','Banana','0')
+43 : sap\src\Database::load
+44 : SELECT * FROM config_meta WHERE code = 'GroupB.cherry' LIMIT 1
+45 : sap\src\Database::load
+46 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455582','1438455582','GroupB.cherry','Cherry','0')
+47 : sap\src\Database::load
+48 : SELECT * FROM config_meta WHERE code = 'GroupC.A' LIMIT 1
+49 : sap\src\Database::load
+50 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455582','1438455582','GroupC.A','Anaconda','0')
+51 : sap\src\Database::load
+52 : SELECT * FROM config_meta WHERE code = 'GroupC.C' LIMIT 1
+53 : sap\src\Database::load
+54 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455582','1438455582','GroupC.C','Cobra','0')
+55 : sap\src\Database::load
+56 : SELECT * FROM config_meta WHERE code = 'D' LIMIT 1
+57 : sap\src\Database::load
+58 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455582','1438455582','D','DDD','0')
+59 : sap\src\Database::load
+60 : SELECT * FROM config_meta WHERE code = 'E' LIMIT 1
+61 : sap\src\Database::load
+62 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455582','1438455582','E','ET','0')
+63 : sap\src\Database::load
+64 : SELECT * FROM test_table  LIMIT 1
+65 : SELECT * FROM test_table  LIMIT 1
+66 : sap\src\Database::load
+67 : sap\src\Database::load
+68 : sap\src\Database::columnExists
+69 : test_table:test_table, field:idx
+70 : SELECT * FROM test_table WHERE idx=1 LIMIT 1
+71 : SELECT * FROM test_table  LIMIT 1
+72 : sap\src\Database::load
+73 : sap\src\Database::load
+74 : ALTER TABLE temp ADD COLUMN name varchar(255)
+75 : ALTER TABLE temp ADD COLUMN mail varchar(255)
+76 : ALTER TABLE temp ADD COLUMN birth_year int
+77 : ALTER TABLE temp ADD COLUMN no int
+78 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+79 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+80 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+81 : sap\src\Database::load
+82 : sap\src\Database::columnExists
+83 : temp:temp, field:idx
+84 : SELECT * FROM temp WHERE idx=1 LIMIT 1
+85 : sap\src\Database::load
+86 : sap\src\Database::columnExists
+87 : temp:temp, field:no
+88 : SELECT * FROM temp WHERE no=1 LIMIT 1
+89 : sap\src\Database::load
+90 : sap\src\Database::columnExists
+91 : temp:temp, field:name
+92 : SELECT * FROM temp WHERE name=1 LIMIT 1
+93 : SELECT * FROM temp WHERE name='JaeHo Song' LIMIT 1
+94 : SELECT * FROM temp WHERE (`name` = 'JaeHo Song') LIMIT 1
+95 : ALTER TABLE abc ADD COLUMN a varchar(255)
+96 : ALTER TABLE abc ADD COLUMN b varchar(255)
+97 : ALTER TABLE abc ADD COLUMN c varchar(255)
+98 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('A','B','C')
+99 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('ABC','BCD','CDE')
+100 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('1','2','3')
+101 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','banana','cherry')
+102 : SELECT * FROM abc WHERE (`a` like 'A%' AND ((`b` like 'B%' AND `c` like 'C%') OR (`b` = 'B' AND `c` = 'C'))) LIMIT 1
+103 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('Airplane','Boat','Cruze')
+104 : SELECT * FROM abc WHERE b='Boat' LIMIT 1
+105 : DELETE FROM abc WHERE b='Boat'
+106 : SELECT * FROM abc WHERE b='Boat' LIMIT 1
+107 : sap\src\Database::load
+108 : ALTER TABLE abc ADD COLUMN a varchar(255)
+109 : ALTER TABLE abc ADD COLUMN b varchar(255)
+110 : ALTER TABLE abc ADD COLUMN c varchar(255)
+111 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('A','B','C')
+112 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('ABC','BCD','CDE')
+113 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('1','2','3')
+114 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','banana','cherry')
+115 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','beach','city')
+116 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','box','cake')
+117 : SELECT * FROM abc  LIMIT 1
+118 : SELECT * FROM abc WHERE 1 LIMIT 0,1
+119 : SELECT * FROM abc LIMIT 1,1
+120 : SELECT * FROM abc ORDER BY idx ASC LIMIT 2,1
+121 : SELECT idx, a FROM abc  LIMIT 1
+122 : SELECT idx, a FROM abc WHERE A LIKE 'A%' ORDER BY a DESC LIMIT 1,1
+123 : sap\src\Database::load
+124 : ALTER TABLE abc ADD COLUMN a varchar(255)
+125 : ALTER TABLE abc ADD COLUMN b varchar(255)
+126 : ALTER TABLE abc ADD COLUMN c varchar(255)
+127 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('A','B','C')
+128 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('ABC','BCD','CDE')
+129 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('1','2','3')
+130 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','banana','cherry')
+131 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','beach','city')
+132 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','box','cake')
+133 : SELECT * FROM abc 
+134 : SELECT * FROM abc LIMIT 2,2
+135 : SELECT a,b,c,COUNT(*) as cnt FROM abc WHERE a LIKE 'a%' GROUP BY a ORDER BY cnt DESC LIMIT 0,2
+136 : sap\src\Database::load
+137 : ALTER TABLE test_result ADD COLUMN a varchar(255)
+138 : INSERT INTO `test_result` (`a`) VALUES ('b')
+139 : SELECT a FROM test_result  LIMIT 1
+140 : SELECT COUNT(*) FROM test_result  LIMIT 1
+141 : sap\src\Database::load
+142 : ALTER TABLE entity_test ADD COLUMN created INT UNSIGNED DEFAULT 0
+143 : ALTER TABLE entity_test ADD COLUMN changed INT UNSIGNED DEFAULT 0
+144 : CREATE INDEX entity_test_created ON entity_test (created);
+145 : CREATE INDEX entity_test_changed ON entity_test (changed);
+146 : ALTER TABLE entity_test ADD COLUMN name varchar(32)
+147 : sap\src\Database::load
+148 : INSERT INTO `entity_test` (`idx`,`created`,`changed`,`name`) VALUES (NULL,'1438455582','1438455582','JaeHo')
+149 : sap\src\Database::load
+150 : SELECT * FROM entity_test WHERE idx = '1' LIMIT 1
+151 : sap\src\Database::load
+152 : SELECT * FROM entity_test WHERE name = 'JaeHo' LIMIT 1
+153 : sap\src\Database::load
+154 : sap\src\Database::load
+155 : ALTER TABLE entity_test_2 ADD COLUMN created INT UNSIGNED DEFAULT 0
+156 : ALTER TABLE entity_test_2 ADD COLUMN changed INT UNSIGNED DEFAULT 0
+157 : CREATE INDEX entity_test_2_created ON entity_test_2 (created);
+158 : CREATE INDEX entity_test_2_changed ON entity_test_2 (changed);
+159 : ALTER TABLE entity_test_2 ADD COLUMN a char(255)
+160 : ALTER TABLE entity_test_2 ADD COLUMN b char(255)
+161 : ALTER TABLE entity_test_2 ADD COLUMN c char(255)
+162 : sap\src\Database::load
+163 : INSERT INTO `entity_test_2` (`idx`,`created`,`changed`,`a`,`b`,`c`) VALUES (NULL,'1438455582','1438455582','A','B','C')
+164 : sap\src\Database::load
+165 : SELECT * FROM entity_test_2 WHERE a = 'A' LIMIT 1
+166 : sap\src\Database::load
+167 : INSERT INTO `entity_test_2` (`idx`,`created`,`changed`,`a`,`b`,`c`) VALUES (NULL,'1438455582','1438455582','1','2','3')
+168 : sap\src\Database::load
+169 : SELECT * FROM entity_test_2 WHERE a = '1' LIMIT 1
+170 : sap\src\Database::load
+171 : sap\src\Database::load
+172 : ALTER TABLE user_meta ADD COLUMN created INT UNSIGNED DEFAULT 0
+173 : ALTER TABLE user_meta ADD COLUMN changed INT UNSIGNED DEFAULT 0
+174 : CREATE INDEX user_meta_created ON user_meta (created);
+175 : CREATE INDEX user_meta_changed ON user_meta (changed);
+176 : ALTER TABLE user_meta ADD COLUMN idx_target INT
+177 : ALTER TABLE user_meta ADD COLUMN code varchar(64)
+178 : ALTER TABLE user_meta ADD COLUMN value TEXT
+179 : CREATE INDEX user_meta_idx_target ON user_meta (idx_target);
+180 : sap\src\Database::load
+181 : SELECT * FROM user_meta  LIMIT 1
+182 : sap\src\Database::load
+183 : sap\src\Database::load
+184 : SELECT * FROM user_meta  LIMIT 1
+185 : sap\src\Database::load
+186 : sap\src\Database::load
+187 : ALTER TABLE test_meta ADD COLUMN created INT UNSIGNED DEFAULT 0
+188 : ALTER TABLE test_meta ADD COLUMN changed INT UNSIGNED DEFAULT 0
+189 : CREATE INDEX test_meta_created ON test_meta (created);
+190 : CREATE INDEX test_meta_changed ON test_meta (changed);
+191 : ALTER TABLE test_meta ADD COLUMN idx_target INT
+192 : ALTER TABLE test_meta ADD COLUMN code varchar(64)
+193 : ALTER TABLE test_meta ADD COLUMN value TEXT
+194 : CREATE INDEX test_meta_idx_target ON test_meta (idx_target);
+195 : sap\src\Database::load
+196 : SELECT * FROM test_meta WHERE code = 'a' LIMIT 1
+197 : sap\src\Database::load
+198 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455582','1438455582','a','A','0')
+199 : sap\src\Database::load
+200 : SELECT * FROM test_meta WHERE code = 'b' LIMIT 1
+201 : sap\src\Database::load
+202 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455582','1438455582','b','B','0')
+203 : sap\src\Database::load
+204 : SELECT * FROM test_meta WHERE code = 'c' LIMIT 1
+205 : sap\src\Database::load
+206 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455582','1438455582','c','C','0')
+207 : sap\src\Database::load
+208 : SELECT * FROM test_meta WHERE code = 'a' LIMIT 1
+209 : sap\src\Database::load
+210 : SELECT * FROM test_meta WHERE code = 'a' LIMIT 1
+211 : sap\src\Database::load
+212 : SELECT * FROM test_meta WHERE code = 'hi.ace' LIMIT 1
+213 : sap\src\Database::load
+214 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455582','1438455582','hi.ace','car','0')
+215 : sap\src\Database::load
+216 : SELECT * FROM test_meta WHERE code = 'hi.there' LIMIT 1
+217 : sap\src\Database::load
+218 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455582','1438455582','hi.there','hadein','0')
+219 : sap\src\Database::load
+220 : SELECT * FROM test_meta WHERE code = 'hi.toeic' LIMIT 1
+221 : sap\src\Database::load
+222 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455582','1438455582','hi.toeic','helloopic','0')
+223 : sap\src\Database::load
+224 : SELECT * FROM test_meta WHERE code LIKE 'hi.%'
+225 : sap\src\Database::load
+226 : sap\src\Database::load
+227 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+228 : sap\src\Database::load
+229 : DELETE FROM user WHERE idx=2
+230 : sap\src\Database::load
+231 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+232 : sap\src\Database::load
+233 : INSERT INTO `user` (`idx`,`created`,`changed`,`id`,`name`) VALUES (NULL,'1438455582','1438455582','sapcms2-test-id','JaeHo Song')
+234 : sap\src\Database::load
+235 : INSERT INTO `user` (`idx`,`created`,`changed`,`id`) VALUES (NULL,'1438455582','1438455582','test-id-2')
+236 : sap\src\Database::load
+237 : DELETE FROM user WHERE idx=3
+238 : sap\src\Database::load
+239 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+240 : sap\src\Database::load
+241 : INSERT INTO `user` (`idx`,`created`,`changed`,`id`) VALUES (NULL,'1438455582','1438455582','test-id-3')
+242 : sap\src\Database::load
+243 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+244 : sap\src\Database::load
+245 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+246 : sap\src\Database::load
+247 : DELETE FROM user WHERE idx=3
+248 : sap\src\Database::load
+249 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+0 : init begins
+1 : System object loaded.
+2 : sap\src\CommandLineInterface::Run
+3 : END
+4 : sap\core\Install::createDirs
+5 : sap\core\Config::read : C:\work\sapcms2/data/config/my.config.php
+6 : sap\core\Install::createDirs
+7 : sap\core\Config::read : C:\work\sapcms2/data/config/my.config.php
+8 : sap\src\Database::load
+9 : sap\core\Config::read : C:\work\sapcms2/data/config/database.php
+10 : config:
+11 : Array
+(
+    [path] => C:\work\sapcms2/data/config/database.php
+    [database] => SQLite
+    [database_host] => 
+    [database_name] => 
+    [database_username] => 
+    [database_password] => 
+    [admin_id] => admin
+    [admin_password] => 1234
+)
+
+12 : SELECT * FROM config_meta WHERE code = 'a' LIMIT 1
+13 : sap\src\Database::load
+14 : UPDATE config_meta SET `idx`='2', `created`='1438445968', `changed`='1438455702', `idx_target`='1', `code`='a', `value`='A' WHERE idx=2
+15 : sap\src\Database::load
+16 : SELECT * FROM config_meta WHERE code = 'b' LIMIT 1
+17 : sap\src\Database::load
+18 : UPDATE config_meta SET `idx`='3', `created`='1438445968', `changed`='1438455702', `idx_target`='2', `code`='b', `value`='B' WHERE idx=3
+19 : sap\src\Database::load
+20 : SELECT * FROM config_meta WHERE code = 'c' LIMIT 1
+21 : sap\src\Database::load
+22 : UPDATE config_meta SET `idx`='4', `created`='1438445968', `changed`='1438455702', `idx_target`='3', `code`='c', `value`='Cake' WHERE idx=4
+23 : sap\src\Database::load
+24 : SELECT * FROM config_meta WHERE code = 'c' LIMIT 1
+25 : sap\src\Database::load
+26 : SELECT * FROM config_meta WHERE code = 'groupA.apple' LIMIT 1
+27 : sap\src\Database::load
+28 : UPDATE config_meta SET `idx`='8', `created`='1438455218', `changed`='1438455702', `idx_target`='1', `code`='groupA.apple', `value`='Apple' WHERE idx=8
+29 : sap\src\Database::load
+30 : SELECT * FROM config_meta WHERE code = 'groupA.banana' LIMIT 1
+31 : sap\src\Database::load
+32 : UPDATE config_meta SET `idx`='9', `created`='1438455218', `changed`='1438455702', `idx_target`='2', `code`='groupA.banana', `value`='Banana' WHERE idx=9
+33 : sap\src\Database::load
+34 : SELECT * FROM config_meta WHERE code LIKE 'groupA.%'
+35 : sap\src\Database::load
+36 : SELECT * FROM config_meta WHERE code = 'GroupB.apple' LIMIT 1
+37 : sap\src\Database::load
+38 : UPDATE config_meta SET `idx`='10', `created`='1438455582', `changed`='1438455702', `idx_target`='0', `code`='GroupB.apple', `value`='Apple' WHERE idx=10
+39 : sap\src\Database::load
+40 : SELECT * FROM config_meta WHERE code = 'GroupB.banana' LIMIT 1
+41 : sap\src\Database::load
+42 : UPDATE config_meta SET `idx`='11', `created`='1438455582', `changed`='1438455702', `idx_target`='0', `code`='GroupB.banana', `value`='Banana' WHERE idx=11
+43 : sap\src\Database::load
+44 : SELECT * FROM config_meta WHERE code = 'GroupB.cherry' LIMIT 1
+45 : sap\src\Database::load
+46 : UPDATE config_meta SET `idx`='12', `created`='1438455582', `changed`='1438455702', `idx_target`='0', `code`='GroupB.cherry', `value`='Cherry' WHERE idx=12
+47 : sap\src\Database::load
+48 : SELECT * FROM config_meta WHERE code = 'GroupC.A' LIMIT 1
+49 : sap\src\Database::load
+50 : UPDATE config_meta SET `idx`='13', `created`='1438455582', `changed`='1438455702', `idx_target`='0', `code`='GroupC.A', `value`='Anaconda' WHERE idx=13
+51 : sap\src\Database::load
+52 : SELECT * FROM config_meta WHERE code = 'GroupC.C' LIMIT 1
+53 : sap\src\Database::load
+54 : UPDATE config_meta SET `idx`='14', `created`='1438455582', `changed`='1438455702', `idx_target`='0', `code`='GroupC.C', `value`='Cobra' WHERE idx=14
+55 : sap\src\Database::load
+56 : SELECT * FROM config_meta WHERE code = 'D' LIMIT 1
+57 : sap\src\Database::load
+58 : UPDATE config_meta SET `idx`='15', `created`='1438455582', `changed`='1438455702', `idx_target`='0', `code`='D', `value`='DDD' WHERE idx=15
+59 : sap\src\Database::load
+60 : SELECT * FROM config_meta WHERE code = 'E' LIMIT 1
+61 : sap\src\Database::load
+62 : UPDATE config_meta SET `idx`='16', `created`='1438455582', `changed`='1438455702', `idx_target`='0', `code`='E', `value`='ET' WHERE idx=16
+63 : sap\src\Database::load
+64 : SELECT * FROM config_meta WHERE code = 'D' LIMIT 1
+65 : sap\src\Database::load
+66 : SELECT * FROM config_meta WHERE code = 'E' LIMIT 1
+67 : sap\src\Database::load
+68 : SELECT * FROM config_meta WHERE code = 'GroupC.A' LIMIT 1
+69 : sap\src\Database::load
+70 : SELECT * FROM config_meta WHERE code LIKE 'GroupC.%'
+71 : sap\src\Database::load
+72 : SELECT * FROM test_table  LIMIT 1
+73 : SELECT * FROM test_table  LIMIT 1
+74 : sap\src\Database::load
+75 : sap\src\Database::load
+76 : sap\src\Database::columnExists
+77 : test_table:test_table, field:idx
+78 : SELECT * FROM test_table WHERE idx=1 LIMIT 1
+79 : SELECT * FROM test_table  LIMIT 1
+80 : sap\src\Database::load
+81 : sap\src\Database::load
+82 : ALTER TABLE temp ADD COLUMN name varchar(255)
+83 : ALTER TABLE temp ADD COLUMN mail varchar(255)
+84 : ALTER TABLE temp ADD COLUMN birth_year int
+85 : ALTER TABLE temp ADD COLUMN no int
+86 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+87 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+88 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+89 : sap\src\Database::load
+90 : sap\src\Database::columnExists
+91 : temp:temp, field:idx
+92 : SELECT * FROM temp WHERE idx=1 LIMIT 1
+93 : sap\src\Database::load
+94 : sap\src\Database::columnExists
+95 : temp:temp, field:no
+96 : SELECT * FROM temp WHERE no=1 LIMIT 1
+97 : sap\src\Database::load
+98 : sap\src\Database::columnExists
+99 : temp:temp, field:name
+100 : SELECT * FROM temp WHERE name=1 LIMIT 1
+101 : SELECT * FROM temp WHERE name='JaeHo Song' LIMIT 1
+102 : SELECT * FROM temp WHERE (`name` = 'JaeHo Song') LIMIT 1
+103 : ALTER TABLE abc ADD COLUMN a varchar(255)
+104 : ALTER TABLE abc ADD COLUMN b varchar(255)
+105 : ALTER TABLE abc ADD COLUMN c varchar(255)
+106 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('A','B','C')
+107 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('ABC','BCD','CDE')
+108 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('1','2','3')
+109 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','banana','cherry')
+110 : SELECT * FROM abc WHERE (`a` like 'A%' AND ((`b` like 'B%' AND `c` like 'C%') OR (`b` = 'B' AND `c` = 'C'))) LIMIT 1
+111 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('Airplane','Boat','Cruze')
+112 : SELECT * FROM abc WHERE b='Boat' LIMIT 1
+113 : DELETE FROM abc WHERE b='Boat'
+114 : SELECT * FROM abc WHERE b='Boat' LIMIT 1
+115 : sap\src\Database::load
+116 : ALTER TABLE abc ADD COLUMN a varchar(255)
+117 : ALTER TABLE abc ADD COLUMN b varchar(255)
+118 : ALTER TABLE abc ADD COLUMN c varchar(255)
+119 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('A','B','C')
+120 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('ABC','BCD','CDE')
+121 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('1','2','3')
+122 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','banana','cherry')
+123 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','beach','city')
+124 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','box','cake')
+125 : SELECT * FROM abc  LIMIT 1
+126 : SELECT * FROM abc WHERE 1 LIMIT 0,1
+127 : SELECT * FROM abc LIMIT 1,1
+128 : SELECT * FROM abc ORDER BY idx ASC LIMIT 2,1
+129 : SELECT idx, a FROM abc  LIMIT 1
+130 : SELECT idx, a FROM abc WHERE A LIKE 'A%' ORDER BY a DESC LIMIT 1,1
+131 : sap\src\Database::load
+132 : ALTER TABLE abc ADD COLUMN a varchar(255)
+133 : ALTER TABLE abc ADD COLUMN b varchar(255)
+134 : ALTER TABLE abc ADD COLUMN c varchar(255)
+135 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('A','B','C')
+136 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('ABC','BCD','CDE')
+137 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('1','2','3')
+138 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','banana','cherry')
+139 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','beach','city')
+140 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','box','cake')
+141 : SELECT * FROM abc 
+142 : SELECT * FROM abc LIMIT 2,2
+143 : SELECT a,b,c,COUNT(*) as cnt FROM abc WHERE a LIKE 'a%' GROUP BY a ORDER BY cnt DESC LIMIT 0,2
+144 : sap\src\Database::load
+145 : ALTER TABLE test_result ADD COLUMN a varchar(255)
+146 : INSERT INTO `test_result` (`a`) VALUES ('b')
+147 : SELECT a FROM test_result  LIMIT 1
+148 : SELECT COUNT(*) FROM test_result  LIMIT 1
+149 : sap\src\Database::load
+150 : ALTER TABLE entity_test ADD COLUMN created INT UNSIGNED DEFAULT 0
+151 : ALTER TABLE entity_test ADD COLUMN changed INT UNSIGNED DEFAULT 0
+152 : CREATE INDEX entity_test_created ON entity_test (created);
+153 : CREATE INDEX entity_test_changed ON entity_test (changed);
+154 : ALTER TABLE entity_test ADD COLUMN name varchar(32)
+155 : sap\src\Database::load
+156 : INSERT INTO `entity_test` (`idx`,`created`,`changed`,`name`) VALUES (NULL,'1438455702','1438455702','JaeHo')
+157 : sap\src\Database::load
+158 : SELECT * FROM entity_test WHERE idx = '1' LIMIT 1
+159 : sap\src\Database::load
+160 : SELECT * FROM entity_test WHERE name = 'JaeHo' LIMIT 1
+161 : sap\src\Database::load
+162 : sap\src\Database::load
+163 : ALTER TABLE entity_test_2 ADD COLUMN created INT UNSIGNED DEFAULT 0
+164 : ALTER TABLE entity_test_2 ADD COLUMN changed INT UNSIGNED DEFAULT 0
+165 : CREATE INDEX entity_test_2_created ON entity_test_2 (created);
+166 : CREATE INDEX entity_test_2_changed ON entity_test_2 (changed);
+167 : ALTER TABLE entity_test_2 ADD COLUMN a char(255)
+168 : ALTER TABLE entity_test_2 ADD COLUMN b char(255)
+169 : ALTER TABLE entity_test_2 ADD COLUMN c char(255)
+170 : sap\src\Database::load
+171 : INSERT INTO `entity_test_2` (`idx`,`created`,`changed`,`a`,`b`,`c`) VALUES (NULL,'1438455703','1438455703','A','B','C')
+172 : sap\src\Database::load
+173 : SELECT * FROM entity_test_2 WHERE a = 'A' LIMIT 1
+174 : sap\src\Database::load
+175 : INSERT INTO `entity_test_2` (`idx`,`created`,`changed`,`a`,`b`,`c`) VALUES (NULL,'1438455703','1438455703','1','2','3')
+176 : sap\src\Database::load
+177 : SELECT * FROM entity_test_2 WHERE a = '1' LIMIT 1
+178 : sap\src\Database::load
+179 : sap\src\Database::load
+180 : ALTER TABLE user_meta ADD COLUMN created INT UNSIGNED DEFAULT 0
+181 : ALTER TABLE user_meta ADD COLUMN changed INT UNSIGNED DEFAULT 0
+182 : CREATE INDEX user_meta_created ON user_meta (created);
+183 : CREATE INDEX user_meta_changed ON user_meta (changed);
+184 : ALTER TABLE user_meta ADD COLUMN idx_target INT
+185 : ALTER TABLE user_meta ADD COLUMN code varchar(64)
+186 : ALTER TABLE user_meta ADD COLUMN value TEXT
+187 : CREATE INDEX user_meta_idx_target ON user_meta (idx_target);
+188 : sap\src\Database::load
+189 : SELECT * FROM user_meta  LIMIT 1
+190 : sap\src\Database::load
+191 : sap\src\Database::load
+192 : SELECT * FROM user_meta  LIMIT 1
+193 : sap\src\Database::load
+194 : sap\src\Database::load
+195 : ALTER TABLE test_meta ADD COLUMN created INT UNSIGNED DEFAULT 0
+196 : ALTER TABLE test_meta ADD COLUMN changed INT UNSIGNED DEFAULT 0
+197 : CREATE INDEX test_meta_created ON test_meta (created);
+198 : CREATE INDEX test_meta_changed ON test_meta (changed);
+199 : ALTER TABLE test_meta ADD COLUMN idx_target INT
+200 : ALTER TABLE test_meta ADD COLUMN code varchar(64)
+201 : ALTER TABLE test_meta ADD COLUMN value TEXT
+202 : CREATE INDEX test_meta_idx_target ON test_meta (idx_target);
+203 : sap\src\Database::load
+204 : SELECT * FROM test_meta WHERE code = 'a' LIMIT 1
+205 : sap\src\Database::load
+206 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455703','1438455703','a','A','0')
+207 : sap\src\Database::load
+208 : SELECT * FROM test_meta WHERE code = 'b' LIMIT 1
+209 : sap\src\Database::load
+210 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455703','1438455703','b','B','0')
+211 : sap\src\Database::load
+212 : SELECT * FROM test_meta WHERE code = 'c' LIMIT 1
+213 : sap\src\Database::load
+214 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455703','1438455703','c','C','0')
+215 : sap\src\Database::load
+216 : SELECT * FROM test_meta WHERE code = 'a' LIMIT 1
+217 : sap\src\Database::load
+218 : SELECT * FROM test_meta WHERE code = 'a' LIMIT 1
+219 : sap\src\Database::load
+220 : SELECT * FROM test_meta WHERE code = 'hi.ace' LIMIT 1
+221 : sap\src\Database::load
+222 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455703','1438455703','hi.ace','car','0')
+223 : sap\src\Database::load
+224 : SELECT * FROM test_meta WHERE code = 'hi.there' LIMIT 1
+225 : sap\src\Database::load
+226 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455703','1438455703','hi.there','hadein','0')
+227 : sap\src\Database::load
+228 : SELECT * FROM test_meta WHERE code = 'hi.toeic' LIMIT 1
+229 : sap\src\Database::load
+230 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438455703','1438455703','hi.toeic','helloopic','0')
+231 : sap\src\Database::load
+232 : SELECT * FROM test_meta WHERE code LIKE 'hi.%'
+233 : sap\src\Database::load
+234 : sap\src\Database::load
+235 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+236 : sap\src\Database::load
+237 : DELETE FROM user WHERE idx=2
+238 : sap\src\Database::load
+239 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+240 : sap\src\Database::load
+241 : INSERT INTO `user` (`idx`,`created`,`changed`,`id`,`name`) VALUES (NULL,'1438455703','1438455703','sapcms2-test-id','JaeHo Song')
+242 : sap\src\Database::load
+243 : INSERT INTO `user` (`idx`,`created`,`changed`,`id`) VALUES (NULL,'1438455703','1438455703','test-id-2')
+244 : sap\src\Database::load
+245 : DELETE FROM user WHERE idx=3
+246 : sap\src\Database::load
+247 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+248 : sap\src\Database::load
+249 : INSERT INTO `user` (`idx`,`created`,`changed`,`id`) VALUES (NULL,'1438455703','1438455703','test-id-3')
+250 : sap\src\Database::load
+251 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+252 : sap\src\Database::load
+253 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+254 : sap\src\Database::load
+255 : DELETE FROM user WHERE idx=3
+256 : sap\src\Database::load
+257 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1

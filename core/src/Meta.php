@@ -22,8 +22,14 @@ class Meta {
         Database::load()->dropTable($this->table);
     }
 
-    public function set($code, $value, $target=0)
+    public function set($code, $value=null, $target=0)
     {
+        if ( is_array($code) ) {
+            foreach( $code as $key => $value ) {
+                $this->set($key, $value);
+            }
+            return $this;
+        }
         $config = Entity::load($this->table, 'code', $code);
         if ( $config ) {
             $config->set('value', $value)
