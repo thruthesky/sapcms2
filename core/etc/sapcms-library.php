@@ -1,12 +1,25 @@
 <?php
-use sap\core\Database;
 use sap\core\System;
-use sap\core\Request;
+use sap\src\Database;
+use sap\src\Request;
+
 
 function di($obj) {
     echo "<pre>";
     print_r($obj);
     echo "</pre>";
+}
+
+function beautify($obj) {
+    di($obj);
+}
+
+function systeminfo() {
+    $db = Database::load();
+    $info = [];
+    $info['database'] = $db->type;
+    $info['php'] = PHP_VERSION;
+    return $info;
 }
 function theme_script($filename=null)
 {
@@ -67,4 +80,10 @@ function call_hooks($hook, &$args) {
             $func($args);
         }
     }
+}
+
+
+function get_error_message($code) {
+    global $error_message;
+    return isset($error_message[$code]) ? $error_message[$code] : $code;
 }

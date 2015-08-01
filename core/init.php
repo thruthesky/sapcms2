@@ -1,32 +1,28 @@
 <?php
-namespace sap;
-use sap\core\module\Install\Install;
-use sap\core\Request;
-use sap\core\Response;
-use sap\core\Route;
+use sap\core\Install;
 use sap\core\System;
-
+use sap\src\CommandLineInterface;
+use sap\src\Config;
+use sap\src\Request;
+use sap\src\Response;
+use sap\src\Route;
 
 include 'config.php';
+
 include 'etc/defines.php';
+
 include 'etc/helper-function.php';
+
 include 'etc/sapcms-library.php';
 
-spl_autoload_register( function( $class ) {
-    $class = str_replace('sap', '', $class);
-    if ( strpos($class, 'module') ) {
-        $pi = pathinfo($class);
-        $class = $pi['dirname'] . '/src/' . $pi['filename'];
-    }
-    else if ( strpos($class, 'core') !== false ) $class = str_replace("core", "core/src", $class);
-    $path = PATH_INSTALL . "$class.php";
-    include $path;
-} );
+
+
 
 
 dog("init begins");
-$system = core\System::load();
+$system = System::load();
 dog("System object loaded.");
+
 
 
 /**
@@ -36,9 +32,11 @@ dog("System object loaded.");
  *
  */
 foreach ( $core_modules as $module ) {
-    $path = "core/module/$module/$module.init.php";
+    $path = "core/module/$module/$module.module";
     if ( file_exists($path) ) include $path;
 }
+
+
 
 
 
@@ -46,12 +44,21 @@ foreach ( $core_modules as $module ) {
  * Return after loading System and its core libraries,
  *  if it is running on CLI without checking Installation and running further.
  */
-if ( System::isCommandLineInterface() ) return core\CommandLineInterface::Run();
+if ( System::isCommandLineInterface() ) return CommandLineInterface::Run();
 
 if ( Install::check() ) {
     if ( Request::isPageInstall() ) System::runModule();
     else Response::redirect(Route::create(ROUTE_INSTALL));
     return;
+}
+
+
+$install = Config::load()->group('install');
+if ( $install ) {
+    foreach( $install as $module ) {
+        $path = "module/$module[value]/$module[value].module";
+        include $path;
+    }
 }
 
 System::runModule();

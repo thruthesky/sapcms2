@@ -1,6 +1,6 @@
 <?php
-use sap\core\Config;
-use sap\core\module\Install\Install;
+
+use sap\core\Install;
 
 include_once "core/etc/phpunit/test.php";
 class InstallTest extends PHPUnit_Framework_TestCase {

@@ -1,6 +1,7 @@
 <?php
-use sap\core\Database;
-use sap\core\SQL;
+use sap\src\Config;
+use sap\src\Database;
+use sap\src\SQL;
 
 function db_and() {
     return SQL::where();
@@ -8,6 +9,12 @@ function db_and() {
 
 function db_or() {
     return SQL::where('OR');
+}
+
+function db_cond($name, $value, $exp='=')
+{
+    return SQL::where()
+        ->condition($name, $value, $exp);
 }
 
 
@@ -29,3 +36,8 @@ function db_row($table, $cond, $field='*') {
 function db_delete($table, $cond) {
     return Database::load()->delete($table, $cond);
 }
+
+function config_get($code, $return_entity=false) {
+    return Config::load()->get($code, $return_entity);
+}
+

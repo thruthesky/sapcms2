@@ -17,6 +17,8 @@ define('PATH_SQLITE_DATABASE', PATH_DATA . '/sapcms.sqlite');
 define('PATH_CONFIG', PATH_DATA . '/config');
 define('PATH_CONFIG_DATABASE', PATH_CONFIG . '/database.php');
 
+define('PATH_MODULE', PATH_INSTALL . '/module');
+
 
 
 

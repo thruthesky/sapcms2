@@ -1,8 +1,9 @@
 <?php
-namespace sap\core;
+namespace sap\src;
 class Database extends \PDO {
 
     private static $db = null;
+    private static $db_reset = null;
     private $create_table = null; // remember last create table
     public $type = null;
 
@@ -28,6 +29,11 @@ class Database extends \PDO {
         return $db;
     }
 
+
+
+    /**
+     * Sets PDO Options
+     */
     private function setOptions()
     {
         try
@@ -91,18 +97,16 @@ class Database extends \PDO {
     public function createTable($table) {
         $this->table($table);
         if ( $this->type == 'mysql' ) {
-            $q = "CREATE TABLE $table (idx INT, created INT UNSIGNED DEFAULT 0, changed INT UNSIGNED DEFAULT 0) DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;";
+            $q = "CREATE TABLE $table (idx INT) DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;";
             $this->exec($q);
             $this->addPrimaryKey($table, 'idx');
             $this->addAutoIncrement($table, 'idx');
         }
         else if ( $this->type == 'sqlite' ) {
-            $q = "CREATE TABLE $table (idx INTEGER PRIMARY KEY, created INT UNSIGNED DEFAULT 0, changed INT UNSIGNED DEFAULT 0);";
+            $q = "CREATE TABLE $table (idx INTEGER PRIMARY KEY);";
             $this->exec($q);
         }
 
-        $this->addIndex($table, 'created');
-        $this->addIndex($table, 'changed');
 
         return $this;
     }
@@ -125,9 +129,18 @@ class Database extends \PDO {
         }
         if ( $size ) $type = "$type($size)";
         $q = "ALTER TABLE $table ADD COLUMN $column $type";
+        dog($q);
         $this->exec($q);
         return $this;
     }
+
+    /**
+     * @param $table
+     * @param $column
+     * @return $this|bool
+     *
+     * @Attention - You cannot delete a column with SQLite.
+     */
     public function deleteColumn($table, $column) {
 
         if ( $this->type == 'mysql' ) {
@@ -249,36 +262,107 @@ class Database extends \PDO {
      * @return mixed
      *
      * @code
-     *      $row = $this->row($this->table());
+     *      $row = $this->row($this->table()); // returns the first row
+     *      $row = $db->row('temp', "name='JaeHo Song'");
+     *      $row = $db->row('temp', db_and()->condition('name','JaeHo Song'));
+     *      $row = $db->row('temp', db_cond('name','JaeHo Song'));
      * @endcode
+     *
+     * @Attention
+     *
      */
-    public function row($table, $cond=1, $field='*')
+    public function row($table, $cond=null, $field='*')
     {
-        $q = "SELECT $field FROM $table WHERE $cond LIMIT 1";
+
+        $cond = $this->adjustCondition($cond);
+
+        if ( strpos($cond,'LIMIT') === false ) $cond .= " LIMIT 1";
+        $q = "SELECT $field FROM $table $cond";
         dog($q);
         $statement = $this->query($q);
         return $statement->fetch(\PDO::FETCH_ASSOC);
     }
 
 
+    public function rows($table, $cond=null, $field='*')
+    {
+        $cond = $this->adjustCondition($cond);
+        $q = "SELECT $field FROM $table $cond";
+        dog($q);
+        $statement = $this->query($q);
+        $rows = [];
+        while ( $row = $statement->fetch(\PDO::FETCH_ASSOC) ) {
+            $rows[] = $row;
+        }
+        return $rows;
+    }
+
+
+
+    /**
+     *
+     * Returns the first element of the first row.
+     *
+     * @param $table
+     * @param $field
+     * @param null $cond
+     * @return mixed
+     *
+     * @code
+     *      echo $db->result('sms_numbers'); // return the first element of the first row in the table
+     *      echo $db->result('sms_numbers', 'count(*)'); // return the number of record of the table
+     *      echo $db->result('sms_numbers', 'count(*)', 'idx >= 123');
+     *      echo $db->result('sms_numbers', 'idx, stamp_last_sent', 'idx >= 123'); // return 123
+     * @endcode
+     *
+     */
+    public function result($table, $field='*', $cond=null) {
+        $row = $this->row($table, $cond, $field);
+        if ( $row ) {
+            foreach( $row as $k => $v ) {
+                return $v;
+            }
+        }
+        return null;
+    }
+
+    /**
+     *
+     * Returns the number of record based on the condition
+     *
+     * @param $table
+     * @param null $cond
+     * @return mixed
+     *
+     * @code
+     *      echo $db->count('sms_numbers');
+     *      echo $db->count('sms_numbers', 'idx >= 1000');
+     * @endcode
+     */
+    public function count($table, $cond=null) {
+        return $this->result($table, "COUNT(*)", $cond);
+    }
+
 
     /**
      * @param $table
-     * @param $kvs
+     * @param array $keys_and_values
      * @return string
      */
-    public function insert($table, $kvs)
+    public function insert($table, array $keys_and_values)
     {
 
         $key_list = [];
         $value_list = [];
-        foreach($kvs as $k => $v ) {
+        foreach($keys_and_values as $k => $v ) {
             $key_list[] = "`$k`";
-            // @todo ESCAPE the value
+
             if ( $v === NULL ) {
                 $value_list[] = "NULL";
             }
-            else $value_list[] = "'$v'";
+            else {
+                $value_list[] = $this->quote($v);
+            }
         }
         $keys = implode(",", $key_list);
         $values = implode(",", $value_list);
@@ -299,8 +383,7 @@ class Database extends \PDO {
     {
         $sets = [];
         foreach($kvs as $k => $v) {
-            // @todo ESACPE the value
-            $sets[] = "`$k`='$v'";
+            $sets[] = "`$k`=" . $this->quote($v);
         }
         $set = implode(", ", $sets);
         $q = "UPDATE $table SET $set WHERE $cond";
@@ -310,6 +393,11 @@ class Database extends \PDO {
     }
 
 
+    /**
+     * @param $table
+     * @param $cond
+     * @return int
+     */
     public function delete($table, $cond)
     {
         $q = "DELETE FROM $table WHERE $cond";
@@ -323,6 +411,10 @@ class Database extends \PDO {
      * @param $field
      * @return bool
      *  - TRUE if the key exists on the table
+     *
+     * @code
+     *      Database::load()->columnExists('temp', 'idx')
+     * @endcode
      */
     public function columnExists($table, $field=null) {
         dog(__METHOD__);
@@ -339,4 +431,40 @@ class Database extends \PDO {
             return FALSE;
         }
     }
+    public function tableExists($table) {
+        try {
+            $this->row($table);
+            return TRUE;
+        }
+        catch(\PDOException $e) {
+            return FALSE;
+        }
+    }
+
+    private function adjustCondition($cond)
+    {
+        if ( $cond === null ) $cond = null;
+        else {
+            $cond = trim($cond);
+            if ( strpos($cond, 'ORDER') === 0 || strpos($cond, 'GROUP') === 0 || strpos($cond, 'LIMIT') === 0 ) {
+
+            }
+            else {
+                $cond = "WHERE $cond";
+            }
+        }
+        return $cond;
+    }
+
+    public function reset()
+    {
+        Database::$db_reset = Database::$db;
+        Database::$db = $this;
+    }
+
+    public function restore()
+    {
+        Database::$db = Database::$db_reset;
+    }
+
 }

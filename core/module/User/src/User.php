@@ -1,25 +1,26 @@
 <?php
 namespace sap\core;
-class User {
+use sap\src\Entity;
+
+class User extends Entity {
     private $fields = [];
 
 
-    public static function create()
+    public static function create($table='user')
     {
-        return Entity::create('user');
+        return parent::create($table);
     }
-    public static function load($field=null, $value='idx')
+    public static function load($field=null, $value='idx', $table='user')
     {
-        return Entity::load('user', $field, $value);
+        return parent::load($table, $field, $value);
     }
-
-
 
     public static function initStorage()
     {
-        Entity::init('user')
+        parent::init('user')
             ->add('id', 'varchar', 32)
             ->add('password', 'char', 32)
+            ->add('domain', 'varchar', 64)
             ->add('name', 'varchar', 32)
             ->add('nickname', 'varchar', 32)
             ->add('mail', 'varchar', 64)
@@ -35,6 +36,7 @@ class User {
             ->add('school', 'varchar', 128)
             ->add('work', 'varchar', 128)
             ->unique('id')
+            ->index('domain')
             ->index('name')
             ->index('nickname')
             ->index('mail')

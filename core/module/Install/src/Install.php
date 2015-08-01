@@ -1,10 +1,9 @@
 <?php
-namespace sap\core\module\Install;
+namespace sap\core;
 
-use sap\core\Config;
-use sap\core\Database;
-use sap\core\File;
-use sap\core\User;
+use sap\src\Config;
+use sap\src\Database;
+use sap\src\File;
 
 class Install {
 
@@ -38,11 +37,5 @@ class Install {
 
 
 
-    public static function createStorage()
-    {
-        dog(__METHOD__);
-        Config::initStorage();
-        User::initStorage();
-    }
 
 }
