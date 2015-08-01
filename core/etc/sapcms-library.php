@@ -80,3 +80,9 @@ function call_hooks($hook, &$args) {
         }
     }
 }
+
+
+function get_error_message($code) {
+    global $error_message;
+    return isset($error_message[$code]) ? $error_message[$code] : $code;
+}

@@ -97,18 +97,16 @@ class Database extends \PDO {
     public function createTable($table) {
         $this->table($table);
         if ( $this->type == 'mysql' ) {
-            $q = "CREATE TABLE $table (idx INT, created INT UNSIGNED DEFAULT 0, changed INT UNSIGNED DEFAULT 0) DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;";
+            $q = "CREATE TABLE $table (idx INT) DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;";
             $this->exec($q);
             $this->addPrimaryKey($table, 'idx');
             $this->addAutoIncrement($table, 'idx');
         }
         else if ( $this->type == 'sqlite' ) {
-            $q = "CREATE TABLE $table (idx INTEGER PRIMARY KEY, created INT UNSIGNED DEFAULT 0, changed INT UNSIGNED DEFAULT 0);";
+            $q = "CREATE TABLE $table (idx INTEGER PRIMARY KEY);";
             $this->exec($q);
         }
 
-        $this->addIndex($table, 'created');
-        $this->addIndex($table, 'changed');
 
         return $this;
     }
@@ -131,6 +129,7 @@ class Database extends \PDO {
         }
         if ( $size ) $type = "$type($size)";
         $q = "ALTER TABLE $table ADD COLUMN $column $type";
+        dog($q);
         $this->exec($q);
         return $this;
     }

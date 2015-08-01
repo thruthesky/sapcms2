@@ -1,4 +1,5 @@
 <?php
+use sap\core\Config;
 use sap\core\Database;
 use sap\core\SQL;
 
@@ -35,3 +36,8 @@ function db_row($table, $cond, $field='*') {
 function db_delete($table, $cond) {
     return Database::load()->delete($table, $cond);
 }
+
+function config_get($code, $return_entity=false) {
+    return Config::load()->get($code, $return_entity);
+}
+
