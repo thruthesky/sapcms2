@@ -1,5 +1,6 @@
 <?php
 namespace sap;
+use sap\core\Config;
 use sap\core\module\Install\Install;
 use sap\core\Request;
 use sap\core\Response;
@@ -36,9 +37,18 @@ dog("System object loaded.");
  *
  */
 foreach ( $core_modules as $module ) {
-    $path = "core/module/$module/$module.init.php";
+    $path = "core/module/$module/$module.module";
     if ( file_exists($path) ) include $path;
 }
+$install = Config::load()->group('install');
+if ( $install ) {
+    foreach( $install as $module ) {
+        $path = "module/$module[value]/$module[value].module";
+        include $path;
+    }
+}
+
+
 
 
 

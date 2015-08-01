@@ -38,11 +38,5 @@ class Install {
 
 
 
-    public static function createStorage()
-    {
-        dog(__METHOD__);
-        Config::initStorage();
-        User::initStorage();
-    }
 
 }

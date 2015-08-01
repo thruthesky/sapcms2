@@ -2,18 +2,23 @@
 namespace sap\core;
 use sap\core\module\Install\Install;
 
-class Config
+class Config extends Meta
 {
     private $file = null;
     private $data = null;
 
-    public static function create()
-    {
-        return Entity::create('config');
+
+    public function __construct() {
+        parent::__construct('config');
     }
-    public static function load($field=null, $value='idx')
+    public static function initStorage()
     {
-        return Entity::load('config', $field, $value);
+        dog(__METHOD__);
+        $config = new Config();
+        $config->install();
+    }
+    public static function load() {
+        return new Config();
     }
 
     /**
@@ -32,22 +37,13 @@ class Config
 
 
 
-    public static function initStorage()
-    {
-        dog(__METHOD__);
-        Entity::init('config')
-            ->add('code', 'varchar', 64)
-            ->add('value', 'TEXT')
-            ->unique('code');
-    }
-
-
     public static function file($file) {
         Install::createDirs();
         $config = new Config();
         $config ->file = $file;
         return $config ;
     }
+
 
     /**
      * @param $data
@@ -69,13 +65,15 @@ class Config
     }
 
 
+
     public static function getDatabasePath()
     {
         return PATH_CONFIG_DATABASE;
     }
 
-    public function delete()
+    public function deleteFile()
     {
         return File::delete($this->file);
     }
+
 }
