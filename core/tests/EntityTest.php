@@ -1,7 +1,7 @@
 <?php
 include_once "core/etc/phpunit/test.php";
-use sap\core\Database;
-use \sap\core\Entity;
+use sap\src\Database;
+use sap\src\Entity;
 class EntityTest extends PHPUnit_Framework_TestCase {
     public function __construct() {
 		parent::__construct();

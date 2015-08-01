@@ -1,5 +1,7 @@
 <?php
-namespace sap\core;
+namespace sap\src;
+use sap\core\System;
+
 class CommandLineInterface {
     static $arg = [];
     static $argv = [];
@@ -31,6 +33,8 @@ class CommandLineInterface {
             echo System::version();
         }
         else if ( self::$cmd == '--install' ) {
+
+
             System::install([
                 'database' => self::getArgument('--database'),
                 'database-host' => self::getArgument('--database-host'),

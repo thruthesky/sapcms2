@@ -1,7 +1,8 @@
 <?php
 include_once "core/etc/phpunit/test.php";
-use sap\core\Entity;
-use sap\core\Meta;
+use sap\src\Database;
+use sap\src\Entity;
+use sap\src\Meta;
 class MetaTest extends PHPUnit_Framework_TestCase {
     public function __construct() {
         parent::__construct();
@@ -10,9 +11,9 @@ class MetaTest extends PHPUnit_Framework_TestCase {
     public function test_meta_create() {
         $user_meta = new Meta('user');
         $user_meta->install();
-        $this->assertTrue( \sap\core\Database::load()->tableExists('user_meta') );
+        $this->assertTrue( Database::load()->tableExists('user_meta') );
         $user_meta->unInstall();
-        $this->assertFalse( \sap\core\Database::load()->tableExists('user_meta') );
+        $this->assertFalse( Database::load()->tableExists('user_meta') );
         $user_meta->unInstall();
     }
 

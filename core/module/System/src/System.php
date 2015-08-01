@@ -1,7 +1,8 @@
 <?php
 namespace sap\core;
-
-use sap\core\module\Install\Install;
+use sap\src\Config;
+use sap\src\File;
+use sap\src\Request;
 
 class System {
     static $system = null;
@@ -66,11 +67,10 @@ class System {
     public static function install($options)
     {
         dog(__METHOD__);
+
         Config::file(Config::getDatabasePath())
             ->data($options)
             ->save();
-
-
 
         Config::initStorage();
         User::initStorage();

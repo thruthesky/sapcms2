@@ -1,5 +1,5 @@
 <?php
-namespace sap\core;
+namespace sap\src;
 class Route {
     /**
      * @param $module

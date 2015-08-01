@@ -1,4 +1,7 @@
 <?php
+use sap\core\Install\Form;
+use sap\src\Request;
+
 include_once "core/etc/phpunit/test.php";
 class FormTest extends PHPUnit_Framework_TestCase {
     public function __construct() {
@@ -6,9 +9,9 @@ class FormTest extends PHPUnit_Framework_TestCase {
     }
     public function test_input()
     {
-        sap\core\Request::set(HTTP_VAR_ROUTE, "Install.Form.Input");
+        Request::set(HTTP_VAR_ROUTE, "Install.Form.Input");
         ob_start();
-        sap\core\module\Install\Form::Input();
+        Form::Input();
         $out = ob_get_clean();
         $this->assertNotEmpty($out);
     }

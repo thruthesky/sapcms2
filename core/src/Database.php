@@ -1,5 +1,5 @@
 <?php
-namespace sap\core;
+namespace sap\src;
 class Database extends \PDO {
 
     private static $db = null;
