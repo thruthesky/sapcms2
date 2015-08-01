@@ -1,8 +1,8 @@
 <?php
 include_once "core/etc/phpunit/test.php";
-use sap\core\Database;
-use sap\core\SQL;
-use \sap\core\System;
+use sap\src\Database;
+use sap\src\SQL;
+
 class DatabaseTest extends PHPUnit_Framework_TestCase {
     public function __construct() {
         parent::__construct();

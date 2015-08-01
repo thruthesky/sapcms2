@@ -1,6 +1,8 @@
 <?php
-namespace sap\core;
-use sap\core\module\Install\Install;
+namespace sap\src;
+
+
+use sap\core\Install;
 
 class Config extends Meta
 {

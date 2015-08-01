@@ -1,5 +1,5 @@
 <?php
-namespace sap\core;
+namespace sap\src;
 class Request {
     static $storage = [];
     public static function get($k) {

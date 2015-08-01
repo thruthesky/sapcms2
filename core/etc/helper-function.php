@@ -1,7 +1,7 @@
 <?php
-use sap\core\Config;
-use sap\core\Database;
-use sap\core\SQL;
+use sap\src\Config;
+use sap\src\Database;
+use sap\src\SQL;
 
 function db_and() {
     return SQL::where();

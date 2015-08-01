@@ -1,5 +1,5 @@
 <?php
-namespace sap\core;
+namespace sap\src;
 define('ERROR_FILE_EXISTS', -402001);
 define('ERROR_CREATE_DIR', -402002);
 class File

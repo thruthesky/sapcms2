@@ -1,5 +1,7 @@
 <?php
 namespace sap\core;
+use sap\src\Entity;
+
 class User extends Entity {
     private $fields = [];
 

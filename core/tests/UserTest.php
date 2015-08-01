@@ -1,10 +1,8 @@
 <?php
-include_once "core/etc/phpunit/test.php";
-use sap\core\Database;
-use sap\core\Entity;
-use sap\core\SQL;
-use \sap\core\System;
 use sap\core\User;
+use sap\src\Entity;
+
+include_once "core/etc/phpunit/test.php";
 
 class UserTest extends PHPUnit_Framework_TestCase {
     public function __construct() {

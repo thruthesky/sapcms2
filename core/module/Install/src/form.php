@@ -1,6 +1,8 @@
 <?php
-namespace sap\core\module\Install;
-use sap\core\Response;
+namespace sap\core\Install;
+
+
+use sap\src\Response;
 
 class Form {
     public static function defaultController() {

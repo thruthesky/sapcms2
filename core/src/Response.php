@@ -1,5 +1,7 @@
 <?php
-namespace sap\core;
+namespace sap\src;
+use sap\core\System;
+
 class Response {
     /**
      * @param $url

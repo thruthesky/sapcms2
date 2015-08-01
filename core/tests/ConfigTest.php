@@ -1,10 +1,7 @@
 <?php
 include_once "core/etc/phpunit/test.php";
-use sap\core\Config;
-use sap\core\Database;
-use sap\core\Entity;
-use sap\core\SQL;
-use \sap\core\System;
+use sap\src\Config;
+
 class ConfigTest extends PHPUnit_Framework_TestCase {
     public function __construct() {
         parent::__construct();
