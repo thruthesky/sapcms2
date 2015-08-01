@@ -1,7 +1,8 @@
 <?php
 namespace sap\core;
-
-use sap\core\module\Install\Install;
+use sap\src\Config;
+use sap\src\File;
+use sap\src\Request;
 
 class System {
     static $system = null;
@@ -66,21 +67,22 @@ class System {
     public static function install($options)
     {
         dog(__METHOD__);
+
         Config::file(Config::getDatabasePath())
             ->data($options)
             ->save();
 
-        Install::createStorage();
+        Config::initStorage();
+        User::initStorage();
 
         User::create()
             ->set('id',$options['admin-id'])
             ->set('password', $options['admin-password'])
             ->save();
 
-        Entity::create('config')
-            ->set('code', 'admin-id')
-            ->set('value', $options['admin-id'])
-            ->save();
+
+        Config::load()
+            ->set('admin-id', $options['admin-id']);
 
     }
 
@@ -99,6 +101,54 @@ class System {
         }
         return false;
     }
+
+
+
+    public static function module_install_code($name) {
+        return "install.$name";
+    }
+    public static function enable($name)
+    {
+        if ( empty($name) ) return ERROR_MODULE_NAME_EMPTY;
+        $code = self::module_install_code($name);
+        if ( Config::load()->get($code) ) return ERROR_MODULE_ALREADY_INSTALLED;
+        $path_module = PATH_MODULE . "/$name";
+        if ( ! is_dir($path_module) ) return ERROR_MODULE_NOT_EXISTS;
+
+
+        include "$path_module/$name.module";
+
+        $variables = ['name'=>$name];
+        call_hooks('module_enable', $variables);
+
+
+
+        Config::load()->set($code, $name);
+
+        return OK;
+    }
+
+    /**
+     * @param $name
+     * @return int
+     *
+     * It does not check if the module directory exists or not.
+     */
+    public static function disable($name)
+    {
+        if ( empty($name) ) return ERROR_MODULE_NAME_EMPTY;
+        $code = self::module_install_code($name);
+        if ( Config::load()->get($code) ) {
+            Config::load()->delete($code);
+
+            $variables = ['name'=>$name];
+            call_hooks('module_disable', $variables);
+        }
+        else return ERROR_MODULE_NOT_INSTALLED;
+
+        return OK;
+    }
+
 
     /**
      *

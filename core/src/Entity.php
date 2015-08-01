@@ -1,28 +1,26 @@
 <?php
-namespace sap\core;
+namespace sap\src;
 
-class Entity extends Database {
+class Entity {
     private $fields = [];
     private $table = null;
     public function __construct($table) {
         $this->table = $table;
-        parent::__construct();
+
     }
+
     public static function create($table) {
         $entity = new Entity($table);
         $entity->set('idx', NULL);
         $entity->set('created', time());
         $entity->set('changed', time());
-        $entity->set('idx_user', 0);
-        $entity->set('ip', ip());
-        $entity->set('user_agent', user_agent());
+
+        // $entity->set('idx_target', 0);
 
         call_hooks('entity_create', $entity);
 
         return $entity;
     }
-
-
 
     public static function load($table=null, $field=null, $value=null) {
         $entity = new Entity($table);
@@ -41,6 +39,7 @@ class Entity extends Database {
     }
 
 
+
     public function get($field)
     {
         return isset($this->fields[$field]) ? $this->fields[$field] : null;
@@ -49,6 +48,21 @@ class Entity extends Database {
     public function set($field, $value)
     {
         $this->fields[$field] = $value;
+        return $this;
+    }
+
+    /**
+     * @param array $fields
+     * @return $this
+     *
+     * @code
+     * Entity::create($table)
+    ->sets(['a'=>1, 'b'=>'2', 'c'=>3])
+    ->save();
+     * @endcode
+     */
+    public function sets(array $fields) {
+        $this->fields = array_merge($this->fields, $fields);
         return $this;
     }
 
@@ -71,15 +85,27 @@ class Entity extends Database {
     }
 
 
-    public static function init($table)
+    /**
+     * @param null $table
+     * @return bool|null|Database
+     *
+     *
+     * @see buildguide
+     */
+    public static function init($table=null)
     {
         $db = Database::load();
         $db->dropTable($table);
         $db->createTable($table);
-        $db->add('idx_user', 'INT');
-        $db->add('ip', 'char', 15);
-        $db->add('user_agent', 'varchar', 1024);
-        $db->index('idx_user');
+        $db->add('created', 'INT UNSIGNED DEFAULT 0');
+        $db->add('changed', 'INT UNSIGNED DEFAULT 0');
+        $db->addIndex($table, 'created');
+        $db->addIndex($table, 'changed');
+
+        //$db->add('idx_target', 'INT');
+        //$db->add('ip', 'char', 15);
+        //$db->add('user_agent', 'varchar', 1024);
+        //$db->index('idx_target');
         return $db;
     }
 
@@ -90,21 +116,12 @@ class Entity extends Database {
         return $db;
     }
 
-    /**
-     * @param null $table - This parameter is only for the compatibility of parent class.
-     * @param null $cond - This parameter is only for the compatibility of parent class.
-     * @return int
-     */
-    public function delete($table=null, $cond=null) {
-        if ( $table ) {
-            return FALSE;
-        }
-        else {
-            if ( $idx = $this->get('idx') ) {
-                db_delete($this->table, "idx=$idx");
-                $this->fields = [];
-                return NULL;
-            }
+
+    public function delete() {
+        if ( $idx = $this->get('idx') ) {
+            db_delete($this->table, "idx=$idx");
+            $this->fields = [];
+            return NULL;
         }
     }
     public function __toString() {

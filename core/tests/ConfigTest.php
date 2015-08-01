@@ -1,10 +1,7 @@
 <?php
 include_once "core/etc/phpunit/test.php";
-use sap\core\Config;
-use sap\core\Database;
-use sap\core\Entity;
-use sap\core\SQL;
-use \sap\core\System;
+use sap\src\Config;
+
 class ConfigTest extends PHPUnit_Framework_TestCase {
     public function __construct() {
         parent::__construct();
@@ -24,7 +21,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($config['a'] == 'b');
         $this->assertTrue($config['c'] == 'def');
 
-        $re = Config::file($path)->delete();
+        $re = Config::file($path)->deleteFile();
         $this->assertTrue($re);
 
         $config = Config::read($path);
@@ -32,44 +29,17 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
 
     }
 
-    public function test_entity_field_exist() {
-
-    }
-
-    public function test_create_load_update_delete() {
-
-        $code = "test-code";
-        $value = "This is value of the code - $code";
-
-        if ( $config = Config::load('code', $code) ) $config->delete();
-
-        $config = Config::create()
-            ->set('code', $code)
-            ->set('value', $value)
-            ->save();
-        $this->assertTrue($config->get('code') == $code);
-        $this->assertTrue($config->get('value') == $value);
 
 
+    public function test_config_action() {
+
+        $config = new Config();
         $config
-            ->set('value', 1)
-            ->save();
-
-        $this->assertTrue($config->value == 1);
-        $config->value = 2;
-        $config->save();
-        
-
-        $config = Config::load('code', $code);
-        $this->assertTrue($config->value == 2);
+            ->set('a', 'A', 1)
+            ->set('b', 'B', 2)
+            ->set('c', 'Cake', 3);
 
 
-        $new_config = Config::load('code', $code);
-        $this->assertNotTrue($config->get('value') == $value);
-        $new_config->delete();
-
-        $new_config = Config::load('code', $code);
-        $this->assertNotTrue($new_config);
 
     }
 }

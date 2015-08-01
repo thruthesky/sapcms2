@@ -1,5 +1,7 @@
 <?php
-namespace sap\core;
+namespace sap\src;
+use sap\core\System;
+
 class CommandLineInterface {
     static $arg = [];
     static $argv = [];
@@ -31,6 +33,8 @@ class CommandLineInterface {
             echo System::version();
         }
         else if ( self::$cmd == '--install' ) {
+
+
             System::install([
                 'database' => self::getArgument('--database'),
                 'database-host' => self::getArgument('--database-host'),
@@ -45,22 +49,24 @@ class CommandLineInterface {
             $args = self::getArguments();
             foreach( $args as $code => $value ) {
                 if ( $code == '--delete' ) {
-                    $config = Config::load('code', $value);
-                    if ( $config ) $config->delete();
+                    Config::load()->delete($value);
                 }
                 else if ( ! empty($value) ) {
-                    $config = Config::load('code', $code);
-                    if ( $config ) {
-                        $config->set('value', $value)->save();
-                    }
-                    else {
-                        Config::create()
-                            ->set('code', $code)
-                            ->set('value', $value)
-                            ->save();
-                    }
+                    Config::load()->set($code, $value);
                 }
             }
+        }
+        else if ( self::$cmd == '--enable' ) {
+            $name = self::segment(2);
+            echo "Enabling module : $name\n";
+            $code = System::enable($name);
+            if ( $code ) echo get_error_message($code);
+        }
+        else if ( self::$cmd == '--disable' ) {
+            $name = self::segment(2);
+            echo "Disabling module : $name\n";
+            $code = System::disable($name);
+            if ( $code ) echo get_error_message($code);
         }
         else {
             $pi = pathinfo(self::$cmd);
@@ -92,6 +98,9 @@ EOH;
         return isset(self::$arg[$k]) ? self::$arg[$k] : null;
     }
 
+    private static function segment($n) {
+        return isset(self::$argv[$n]) ? self::$argv[$n] : FALSE;
+    }
 
     private static function getArguments()
     {

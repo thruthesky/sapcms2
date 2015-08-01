@@ -1,5 +1,5 @@
 <?php
-namespace sap\core;
+namespace sap\src;
 define('ERROR_FILE_EXISTS', -402001);
 define('ERROR_CREATE_DIR', -402002);
 class File
@@ -90,5 +90,11 @@ class File
     public static function delete($path)
     {
         return @unlink($path);
+    }
+
+    public static function read($path) {
+        $content = file_get_contents($path);
+        if ( $content === false ) return ERROR_FAIL_TO_READ;
+        return $content;
     }
 }
