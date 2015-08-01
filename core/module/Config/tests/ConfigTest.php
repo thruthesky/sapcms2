@@ -1,6 +1,6 @@
 <?php
 include_once "core/etc/phpunit/test.php";
-use sap\src\Config;
+use sap\core\Config;
 
 class ConfigTest extends PHPUnit_Framework_TestCase {
     public function __construct() {
