@@ -48,11 +48,17 @@ class CommandLineInterface {
         else if ( self::$cmd == '--config' ) {
             $args = self::getArguments();
             foreach( $args as $code => $value ) {
-                if ( $code == '--delete' ) {
+                if ( self::$cmd == $code ) {
+
+                }
+                else if ( $code == '--delete' ) {
                     Config::load()->delete($value);
                 }
                 else if ( ! empty($value) ) {
                     Config::load()->set($code, $value);
+                }
+                else {
+                    echo Config::load()->get($code) . PHP_EOL;
                 }
             }
         }
