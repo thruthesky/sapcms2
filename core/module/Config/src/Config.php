@@ -2,7 +2,7 @@
 namespace sap\core\Config;
 
 
-use sap\core\Install;
+use sap\core\Install\Install;
 use sap\src\File;
 use sap\src\Meta;
 

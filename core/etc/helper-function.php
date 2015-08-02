@@ -1,5 +1,5 @@
 <?php
-use sap\src\Config;
+use sap\core\Config\Config;
 use sap\src\Database;
 use sap\src\SQL;
 

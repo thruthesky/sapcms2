@@ -1,6 +1,6 @@
 <?php
 namespace sap\src;
-use sap\core\System;
+use sap\core\System\System;
 
 class Response {
     /**

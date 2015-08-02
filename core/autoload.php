@@ -9,7 +9,6 @@ spl_autoload_register( function( $class ) {
     $class = str_replace('sap\\', '', $class);
     if ( strpos($class, "core") === 0 ) {
         $arr = explode('\\', $class);
-        print_r($arr);
         $module = $arr[1];
         $name = $arr[2];
         $path = PATH_INSTALL . "/core/module/$module/src/$name.php";
@@ -28,7 +27,7 @@ spl_autoload_register( function( $class ) {
             $module = $arr[0];
             $name = $arr[1];
         }
-        echo "path:$path\n";
+
         $path = PATH_INSTALL . "/module/$module/src/$name.php";
     }
     include $path;

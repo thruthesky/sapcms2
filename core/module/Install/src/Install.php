@@ -1,6 +1,7 @@
 <?php
 namespace sap\core\Install;
 
+use sap\core\Config\Config;
 use sap\src\File;
 
 class Install {

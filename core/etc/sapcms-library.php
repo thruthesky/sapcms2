@@ -2,6 +2,7 @@
 use sap\core\System\System;
 use sap\src\Database;
 use sap\src\Request;
+use sap\src\Theme;
 
 
 function di($obj) {
@@ -23,16 +24,7 @@ function systeminfo() {
 }
 function theme_script($filename=null)
 {
-    global $theme;
-    if ( empty($filename) ) $filename = Request::getRoute();
-    call_hooks(__METHOD__, $filename);
-    $path = "theme/$theme/$filename.html.php";
-    if ( file_exists($path) ) return $path;
-    $module = Request::get('module');
-    $path = null;
-    if ( System::isCoreModule($module) ) $path = 'core/';
-    $path .= "module/$module/template/$filename.html.php";
-    return $path;
+    return Theme::script($filename);
 }
 
 
@@ -53,7 +45,7 @@ function theme_layout()
 
 function is_core_module($module=null) {
     if ( empty($module) ) $module = Request::get('module');
-    return in_array($module, $GLOBALS['core_modules']);
+    return in_array($module, System::getCoreModules());
 }
 
 function dog($msg) {
