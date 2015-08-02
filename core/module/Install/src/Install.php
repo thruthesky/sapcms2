@@ -1,8 +1,6 @@
 <?php
 namespace sap\core;
 
-use sap\src\Config;
-use sap\src\Database;
 use sap\src\File;
 
 class Install {
@@ -15,8 +13,7 @@ class Install {
      */
     public static function check()
     {
-        if ( file_exists(Config::getDatabasePath()) ) return OK;
-        else return ERROR;
+        return file_exists(Config::getDatabasePath()) ? OK : ERROR;
     }
 
     /**
