@@ -25,7 +25,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($re);
 
         $config = Config::read($path);
-        $this->assertFalse($config);
+        $this->assertFalse($config !== FALSE);
 
     }
 
@@ -59,15 +59,12 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
             'D' => 'DDD',
             'E' => 'ET'
         ];
-
         Config::load()->set($fruits);
-
         $this->assertTrue(Config::load()->get('D') == 'DDD');
         $this->assertTrue(Config::load()->get('E') == 'ET');
         $this->assertTrue(Config::load()->get('GroupC.A') == 'Anaconda');
         $row = Config::load()->group('GroupC');
         $this->assertTrue(count($row) == 2);
-
 
     }
 }
