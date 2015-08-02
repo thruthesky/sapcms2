@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dedb495c-801f-427b-ac2d-43cb9235d7e2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/sapcms.sqlite" afterPath="$PROJECT_DIR$/data/sapcms.sqlite" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/module/Config/tests/ConfigTest.php" afterPath="$PROJECT_DIR$/core/module/Config/tests/ConfigTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/Meta.php" afterPath="$PROJECT_DIR$/core/src/Meta.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/debug.log" afterPath="$PROJECT_DIR$/debug.log" />
     </list>
     <ignored path="sapcms2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -83,7 +80,7 @@
             <entry file="file://$PROJECT_DIR$/core/module/Config/src/Config.php">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="-8.0">
-                  <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+                  <caret line="31" column="27" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
                   <folding>
                     <element signature="e#28#49#0#PHP" expanded="true" />
                   </folding>
@@ -94,8 +91,8 @@
           <file leaf-file-name="ConfigTest.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/core/module/Config/tests/ConfigTest.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.6741214">
-                  <caret line="60" column="10" selection-start-line="60" selection-start-column="10" selection-end-line="60" selection-end-column="10" />
+                <state vertical-scroll-proportion="0.36749116">
+                  <caret line="27" column="45" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
                   <folding />
                 </state>
               </provider>
@@ -216,8 +213,8 @@
           <file leaf-file-name="Database.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/core/src/Database.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.5702875">
-                  <caret line="60" column="22" selection-start-line="60" selection-start-column="22" selection-end-line="60" selection-end-column="22" />
+                <state vertical-scroll-proportion="1.5017668">
+                  <caret line="50" column="7" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="7" />
                   <folding>
                     <marker date="1438447557569" expanded="true" signature="3013:3034" placeholder="DROP TABLE I..." />
                     <marker date="1438447557569" expanded="true" signature="3490:3528" placeholder="ALTER TABLE ..." />
@@ -333,9 +330,8 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="x" value="6" />
-    <option name="y" value="5" />
     <option name="width" value="1386" />
-    <option name="height" value="788" />
+    <option name="height" value="728" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -759,7 +755,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="6" y="5" width="1386" height="788" extended-state="0" />
+    <frame x="6" y="0" width="1386" height="728" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17226277" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1159,10 +1155,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/module/Install/tests/InstallTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.5384617">
+          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/module/Install/src/Install.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.153846">
+          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/Meta.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.3461537">
+          <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/Database.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5702875">
-          <caret line="60" column="22" selection-start-line="60" selection-start-column="22" selection-end-line="60" selection-end-column="22" />
+        <state vertical-scroll-proportion="1.5017668">
+          <caret line="50" column="7" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="7" />
           <folding>
             <marker date="1438447557569" expanded="true" signature="3013:3034" placeholder="DROP TABLE I..." />
             <marker date="1438447557569" expanded="true" signature="3490:3528" placeholder="ALTER TABLE ..." />
@@ -1184,44 +1204,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/module/Install/tests/InstallTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.5384617">
-          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/module/Install/src/Install.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.153846">
-          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/module/Config/src/Config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.0">
-          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+          <caret line="31" column="27" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
           <folding>
             <element signature="e#28#49#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/Meta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.3461537">
-          <caret line="26" column="32" selection-start-line="26" selection-start-column="32" selection-end-line="26" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/module/Config/tests/ConfigTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6741214">
-          <caret line="60" column="10" selection-start-line="60" selection-start-column="10" selection-end-line="60" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.36749116">
+          <caret line="27" column="45" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
           <folding />
         </state>
       </provider>
