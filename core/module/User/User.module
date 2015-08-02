@@ -1,5 +1,5 @@
 <?php
-use sap\core\Entity;
+use sap\src\Entity;
 
 
 

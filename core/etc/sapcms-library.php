@@ -1,5 +1,5 @@
 <?php
-use sap\core\System;
+use sap\core\System\System;
 use sap\src\Database;
 use sap\src\Request;
 
@@ -52,7 +52,7 @@ function theme_layout()
 
 
 function is_core_module($module=null) {
-    if ( empty($module) ) $module = sap\core\Request::get('module');
+    if ( empty($module) ) $module = Request::get('module');
     return in_array($module, $GLOBALS['core_modules']);
 }
 

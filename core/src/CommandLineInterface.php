@@ -1,5 +1,6 @@
 <?php
 namespace sap\src;
+use sap\core\Config;
 use sap\core\System;
 
 class CommandLineInterface {

@@ -1,5 +1,5 @@
 <?php
-namespace sap\core;
+namespace sap\core\User;
 use sap\src\Entity;
 
 class User extends Entity {
