@@ -43,6 +43,8 @@ class EntityTest extends PHPUnit_Framework_TestCase {
             ->set('c', 'C')
             ->save();
 
+        $this->assertTrue(Entity::query('entity_test_2')->count() == 1);
+
         $this->assertTrue( Entity::load($table, 'a', 'A')->b == 'B' );
 
         Entity::create($table)

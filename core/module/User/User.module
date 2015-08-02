@@ -1,10 +1,8 @@
 <?php
 use sap\src\Entity;
 
-
-
 function number_of_users() {
-    // Entity::create();
+    return Entity::query('user')->count();
 }
 
 

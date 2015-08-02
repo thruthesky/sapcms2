@@ -1,7 +1,7 @@
 <?php
 namespace sap\src;
-use sap\core\Config;
-use sap\core\System;
+use sap\core\Config\Config;
+use sap\core\System\System;
 
 class CommandLineInterface {
     static $arg = [];

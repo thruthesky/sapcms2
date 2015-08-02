@@ -1,5 +1,8 @@
 <?php
 namespace sap\core\System;
+use sap\core\Config\Config;
+use sap\core\Install\Install;
+use sap\core\User\User;
 use sap\src\CommandLineInterface;
 use sap\src\File;
 use sap\src\Request;
@@ -10,6 +13,7 @@ class System {
     static $system = null;
     static $version = '2.0.1';
     private static $count_log = 0;
+    private static $core_modules = ['File-upload', 'front', 'Install', 'Post', 'User'];
     private $path = null;
     private $filename =null;
     public $script = null;
@@ -45,9 +49,9 @@ class System {
     {
         //$path = module_script();
         //include $path;
-        $module = Request::get('module');
-        $class = Request::get('class');
-        $method = Request::get('method');
+        $module = Route::load()->module;
+        $class = Route::load()->class;
+        $method = Route::load()->method;
 
 
         echo "<h2>$module . $class . $method</h2>";
@@ -56,7 +60,7 @@ class System {
         $core = is_core_module($module) ? "core\\" : null;
         echo "<h1>$module</h1>";
         $name = "sap\\{$core}$module\\$class";
-        //echo "<h1>name:$name</h1>";
+        echo "<h1>name:$name</h1>";
         $name::$method();
     }
     public static function loadModuleClass($module, $class) {
@@ -203,9 +207,9 @@ class System {
         }
     }
 
-    private static function getCoreModules()
+    public static function getCoreModules()
     {
-        return $GLOBALS['core_modules'];
+        return self::$core_modules;
     }
 
 

@@ -39,6 +39,7 @@ class Entity {
     }
 
 
+
     /**
      * @param null $field
      * @return array|null
@@ -147,6 +148,31 @@ class Entity {
     public function __set($field, $value) {
         return $this->set($field, $value);
     }
+
+
+    /**
+     *
+     * Helper methods for Database
+     *
+     * count()
+     * row()
+     * rows()
+     * insert()
+     * update()
+     * delete()
+     *
+     * @param $table_name
+     * @return Entity
+     */
+    public static function query($table_name)
+    {
+        return new Entity($table_name);
+    }
+    public function count($cond=null) {
+        return Database::load()->count($this->table, $cond);
+    }
+
+
 
 }
 

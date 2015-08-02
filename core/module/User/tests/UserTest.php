@@ -1,5 +1,5 @@
 <?php
-use sap\core\User;
+use sap\core\User\User;
 use sap\src\Entity;
 
 include_once "core/etc/phpunit/test.php";
