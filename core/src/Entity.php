@@ -39,32 +39,45 @@ class Entity {
     }
 
 
-
-    public function get($field)
+    /**
+     * @param null $field
+     * @return array|null
+     *
+     *  - if $field has a field name, then it returns the value of the field.
+     *
+     *  - if $field is null, then it returns the whole field array.
+     *
+     */
+    public function get($field=null)
     {
-        return isset($this->fields[$field]) ? $this->fields[$field] : null;
-    }
-
-    public function set($field, $value)
-    {
-        $this->fields[$field] = $value;
-        return $this;
+        if ( $field ) {
+            return isset($this->fields[$field]) ? $this->fields[$field] : null;
+        }
+        else return $this->fields;
     }
 
     /**
-     * @param array $fields
+     * @param $field
+     * @param $value
      * @return $this
+     *
      *
      * @code
      * Entity::create($table)
-    ->sets(['a'=>1, 'b'=>'2', 'c'=>3])
+    ->set(['a'=>1, 'b'=>'2', 'c'=>3])
     ->save();
      * @endcode
+     *
      */
-    public function sets(array $fields) {
-        $this->fields = array_merge($this->fields, $fields);
+    public function set($field, $value=null)
+    {
+        if ( is_array($field) ) {
+            $this->fields = array_merge($this->fields, $field);
+        }
+        else $this->fields[$field] = $value;
         return $this;
     }
+
 
     /**
      * @return $this

@@ -1,17 +1,17 @@
 <?php
+include 'config.php';
+include 'etc/defines.php';
+include 'etc/helper-function.php';
+include 'etc/sapcms-library.php';
+
 spl_autoload_register( function( $class ) {
     $path = null;
     $class = str_replace('sap\\', '', $class);
     if ( strpos($class, "core") === 0 ) {
         $arr = explode('\\', $class);
-        if ( count($arr) == 2 ) {
-            $module = $arr[1];
-            $name = $arr[1];
-        }
-        else {
-            $module = $arr[1];
-            $name = $arr[2];
-        }
+        print_r($arr);
+        $module = $arr[1];
+        $name = $arr[2];
         $path = PATH_INSTALL . "/core/module/$module/src/$name.php";
     }
     else if ( strpos($class, "src") === 0 ) {
@@ -28,6 +28,7 @@ spl_autoload_register( function( $class ) {
             $module = $arr[0];
             $name = $arr[1];
         }
+        echo "path:$path\n";
         $path = PATH_INSTALL . "/module/$module/src/$name.php";
     }
     include $path;

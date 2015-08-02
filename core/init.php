@@ -1,8 +1,8 @@
 <?php
+use sap\core\Config;
 use sap\core\Install;
 use sap\core\System;
 use sap\src\CommandLineInterface;
-use sap\src\Config;
 use sap\src\Request;
 use sap\src\Response;
 use sap\src\Route;

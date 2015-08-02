@@ -1,5 +1,5 @@
 <?php
-namespace sap\core;
+namespace sap\core\Config;
 
 
 use sap\core\Install;

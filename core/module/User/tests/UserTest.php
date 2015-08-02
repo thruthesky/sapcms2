@@ -43,6 +43,7 @@ class UserTest extends PHPUnit_Framework_TestCase {
             ->set('id', 'test-id-3')
             ->save();
         $this->assertNotEmpty($user);
+        $this->assertTrue( is_array($user->get()) );
 
         $idx = User::load('id', 'test-id-3')
             ->get('idx');

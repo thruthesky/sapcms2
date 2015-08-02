@@ -1,8 +1,10 @@
 <?php
-namespace sap\core;
-use sap\src\Config;
+namespace sap\core\System;
+use sap\src\CommandLineInterface;
 use sap\src\File;
 use sap\src\Request;
+use sap\src\Response;
+use sap\src\Route;
 
 class System {
     static $system = null;
@@ -46,10 +48,14 @@ class System {
         $module = Request::get('module');
         $class = Request::get('class');
         $method = Request::get('method');
+
+
+        echo "<h2>$module . $class . $method</h2>";
+
         //include self::loadModuleClass($module, $class);
-        $core = is_core_module() ? "core\\" : null;
-        //echo "<h1>$module</h1>";
-        $name = "sap\\{$core}module\\$module\\$class";
+        $core = is_core_module($module) ? "core\\" : null;
+        echo "<h1>$module</h1>";
+        $name = "sap\\{$core}$module\\$class";
         //echo "<h1>name:$name</h1>";
         $name::$method();
     }
@@ -147,6 +153,59 @@ class System {
         else return ERROR_MODULE_NOT_INSTALLED;
 
         return OK;
+    }
+
+    public static function run()
+    {
+        dog(__METHOD__);
+        self::load();
+        self::load_core_module_files();
+
+
+        /**
+         * Return after loading System and its core libraries,
+         *  if it is running on CLI without checking Installation and running further.
+         */
+        if ( System::isCommandLineInterface() ) return CommandLineInterface::Run();
+
+
+        if ( Install::check() ) {
+            if ( Request::isPageInstall() ) System::runModule();
+            else Response::redirect(Route::create(ROUTE_INSTALL));
+            return OK;
+        }
+
+
+        $install = Config::load()->group('install');
+        if ( $install ) {
+            foreach( $install as $module ) {
+                $path = "module/$module[value]/$module[value].module";
+                include $path;
+            }
+        }
+
+        System::runModule();
+
+        return OK;
+    }
+
+    private static function load_core_module_files()
+    {
+        /**
+         * Loading modules initialization files.
+         *
+         *
+         *
+         */
+        foreach ( self::getCoreModules() as $module ) {
+            $path = "core/module/$module/$module.module";
+            if ( file_exists($path) ) include $path;
+        }
+    }
+
+    private static function getCoreModules()
+    {
+        return $GLOBALS['core_modules'];
     }
 
 
