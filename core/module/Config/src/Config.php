@@ -1,8 +1,10 @@
 <?php
-namespace sap\src;
+namespace sap\core;
 
 
 use sap\core\Install;
+use sap\src\File;
+use sap\src\Meta;
 
 class Config extends Meta
 {
@@ -63,7 +65,7 @@ class Config extends Meta
         return File::save_in_php(
             $this->file,
             $this->data
-            );
+        );
     }
 
 
