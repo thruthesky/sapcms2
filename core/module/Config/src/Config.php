@@ -79,5 +79,4 @@ class Config extends Meta
     {
         return File::delete($this->file);
     }
-
 }
