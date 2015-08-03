@@ -1,7 +1,10 @@
 <?php
 define('OK', 0);
 define('ERROR', -1);
-define('ROUTE_INSTALL', "Install.Form.Input");
+define('ERROR_SYSTEM_NOT_INSTALLED', -401);
+$error_message[ERROR_SYSTEM_NOT_INSTALLED] = 'System is not installed.';
+
+define('ROUTE_INSTALL', "Install");
 define('ERROR_INSTALL', -1234);
 define('ERROR_FAIL_TO_SAVE', -400101);
 define('ERROR_FAIL_TO_READ', -400102);

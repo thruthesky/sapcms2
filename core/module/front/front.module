@@ -1,4 +1,4 @@
 <?php
 register_hook('template_script', function(&$variables){
-    if ( $variables['filename'] == 'front.front.defaultController' ) $variables['filename'] = "front";
+
 });

@@ -3,8 +3,17 @@ namespace sap\core\Install;
 
 use sap\core\Config\Config;
 use sap\src\File;
+use sap\src\Response;
 
 class Install {
+    /**
+     *
+     */
+    public static function page() {
+        dog(__METHOD__);
+        Response::renderSystemLayout(['template'=>'fornt.page']);
+    }
+
 
     /**
      * @return bool

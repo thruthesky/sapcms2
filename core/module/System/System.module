@@ -1,0 +1,5 @@
+<?php
+use sap\src\Route;
+
+Route::add('/admin', 'System\\System\\admin_page');
+

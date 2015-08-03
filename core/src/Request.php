@@ -42,7 +42,7 @@ class Request {
 
     public static function isPageInstall()
     {
-        return self::get('module') == 'Install';
+        return Route::load()->module == 'Install';
     }
 
 }

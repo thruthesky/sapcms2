@@ -24,13 +24,33 @@ class Response {
         echo $html->get();
     }
 
-    public static function renderLayout($filename=null) {
+    public static function renderLayout($render=[]) {
+
+        System::setRender($render);
+
         ob_start();
-        include theme_layout();
+
+        $path = theme_layout();
+        if ( file_exists($path) ) include $path;
+        else include system_layout();
+
+        $content = ob_get_clean();
+
+        self::setHeaders();
+        echo $content;
+
+    }
+
+
+    public static function renderSystemLayout($render=[]) {
+        System::setRender($render);
+        ob_start();
+        include system_layout();
         $content = ob_get_clean();
         self::setHeaders();
         echo $content;
     }
+
 
     private static function setHeaders()
     {

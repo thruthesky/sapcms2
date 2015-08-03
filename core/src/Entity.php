@@ -6,7 +6,6 @@ class Entity {
     private $table = null;
     public function __construct($table) {
         $this->table = $table;
-
     }
 
     public static function create($table) {
@@ -168,6 +167,7 @@ class Entity {
     {
         return new Entity($table_name);
     }
+
     public function count($cond=null) {
         return Database::load()->count($this->table, $cond);
     }

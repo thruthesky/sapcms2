@@ -52,8 +52,7 @@ class EntityTest extends PHPUnit_Framework_TestCase {
             ->save();
 
         $this->assertTrue( Entity::load($table, 'a', '1')->b == '2' );
-
-
+        
         Database::load()->dropTable($table);
     }
 }
