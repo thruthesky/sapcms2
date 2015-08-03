@@ -3,7 +3,6 @@ use sap\core\System\System;
 
 include 'core/autoload.php';
 
-
 System::run();
 
 

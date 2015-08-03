@@ -8,5 +8,5 @@ THIS IS layout.html.php
 
 Number of users: <?php echo number_of_users() ?>
 
-<?php include theme_script()?>
+<?php include template()?>
 

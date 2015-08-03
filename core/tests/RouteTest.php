@@ -1,4 +1,7 @@
 <?php
+use sap\core\Config\Config;
+use sap\core\System\System;
+use sap\src\Module;
 use sap\src\Request;
 use sap\src\Route;
 
@@ -26,11 +29,36 @@ class RouteTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($route->class == 'Install_TEST_CLASS');
         $this->assertTrue($route->method == 'check');
 
-        Request::set(HTTP_VAR_ROUTE, "Install.Form.Input");
+        Request::set(HTTP_VAR_ROUTE, "/Install/Form/Input");
         $route = Route::load()->reset();
         $this->assertTrue($route->module == 'Install');
 
+
+
+
+
+
+        Request::set(HTTP_VAR_ROUTE, "/G/H/I");
+        $route = Route::load()->reset();
+        $this->assertTrue($route->module == 'G');
+        $this->assertTrue($route->class == 'H');
+        $this->assertTrue($route->method == 'I');
     }
+
+
+
+    public function test_routing() {
+        Route::add('/install/check', "Install\\Install\\check");
+        $this->assertTrue( Route::run('/install/check') == OK );
+
+        $route = "/config/path/database";
+        Route::add($route, "Config\\Config\\getDatabasePath");
+        $this->assertTrue( Config::getDatabasePath() == Route::run($route) );
+        $this->assertTrue( Config::getDatabasePath() == Module::run($route) );
+        $this->assertTrue( Config::getDatabasePath() == System::runModule($route) );
+    }
+
+
 
 
 }

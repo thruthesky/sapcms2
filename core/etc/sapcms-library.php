@@ -2,7 +2,7 @@
 use sap\core\System\System;
 use sap\src\Database;
 use sap\src\Request;
-use sap\src\Theme;
+use sap\src\Template;
 
 
 function di($obj) {
@@ -22,17 +22,9 @@ function systeminfo() {
     $info['php'] = PHP_VERSION;
     return $info;
 }
-function theme_script($filename=null)
-{
-    return Theme::script($filename);
-}
 
-
-function module_script()
-{
-    return System::get()
-        ->module()
-        ->script();
+function template($filename=null) {
+    return Template::script($filename);
 }
 
 
@@ -41,6 +33,14 @@ function theme_layout()
     global $theme;
     return "theme/$theme/layout.html.php";
 }
+
+
+function system_layout()
+{
+    return "core/module/system/template/layout.html.php";
+}
+
+
 
 
 function is_core_module($module=null) {

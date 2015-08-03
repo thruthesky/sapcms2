@@ -1,8 +1,7 @@
 <?php
 define('HTTP_VAR_ROUTE', 'route');
 define('DEFAULT_MODULE','front');
-define('DEFAULT_CLASS','front');
-define('DEFAULT_CONTROLLER','defaultController');
+define('DEFAULT_CONTROLLER','page');
 
 
 $theme = 'default';

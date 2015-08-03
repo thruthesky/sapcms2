@@ -5,6 +5,7 @@ use sap\core\Install\Install;
 use sap\core\User\User;
 use sap\src\CommandLineInterface;
 use sap\src\File;
+use sap\src\Module;
 use sap\src\Request;
 use sap\src\Response;
 use sap\src\Route;
@@ -13,10 +14,17 @@ class System {
     static $system = null;
     static $version = '2.0.1';
     private static $count_log = 0;
-    private static $core_modules = ['File-upload', 'front', 'Install', 'Post', 'User'];
     private $path = null;
     private $filename =null;
     public $script = null;
+    private $render = [];
+
+
+
+    public static function admin_page() {
+        Response::renderSystemLayout(['template'=>'admin.page']);
+    }
+
 
     /**
      *
@@ -45,23 +53,9 @@ class System {
         return self::$version;
     }
 
-    public static function runModule()
+    public static function runModule($route=null)
     {
-        //$path = module_script();
-        //include $path;
-        $module = Route::load()->module;
-        $class = Route::load()->class;
-        $method = Route::load()->method;
-
-
-        echo "<h2>$module . $class . $method</h2>";
-
-        //include self::loadModuleClass($module, $class);
-        $core = is_core_module($module) ? "core\\" : null;
-        echo "<h1>$module</h1>";
-        $name = "sap\\{$core}$module\\$class";
-        echo "<h1>name:$name</h1>";
-        $name::$method();
+        return Module::run($route);
     }
     public static function loadModuleClass($module, $class) {
         return System::get()
@@ -209,7 +203,16 @@ class System {
 
     public static function getCoreModules()
     {
-        return self::$core_modules;
+        return Module::getCoreModules();
+    }
+
+    public static function setRender($render)
+    {
+        System::get()->render = $render;
+    }
+    public static function getRender()
+    {
+        return System::get()->render;
     }
 
 

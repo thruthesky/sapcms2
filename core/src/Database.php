@@ -73,7 +73,10 @@ class Database extends \PDO {
                 $config['database_password']
             );
         }
-        else return FALSE;
+        else {
+            echo "\nERROR: " . get_error_message(ERROR_SYSTEM_NOT_INSTALLED);
+            exit;
+        }
     }
 
     /**
