@@ -1,6 +1,7 @@
 <?php
 use sap\core\Config\Config;
 use sap\src\Database;
+use sap\src\Form;
 use sap\src\SQL;
 
 function db_and() {
@@ -41,3 +42,8 @@ function config_get($code, $return_entity=false) {
     return Config::load()->get($code, $return_entity);
 }
 
+
+
+function form_input($attr) {
+    echo form::input($attr);
+}

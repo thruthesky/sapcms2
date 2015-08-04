@@ -54,8 +54,6 @@ class Module {
     public static function run($route=null)
     {
 
-
-
         if ( empty($route) ) {
             $module = Route::load()->module;
             $class = Route::load()->class;

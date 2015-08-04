@@ -1,10 +1,17 @@
 <?php
 namespace sap\core\User;
 use sap\src\Entity;
+use sap\src\Response;
 
 class User extends Entity {
     private $fields = [];
 
+
+
+    public static function page() {
+        dog(__METHOD__);
+        Response::renderSystemLayout(['template'=>'user-page']);
+    }
 
     public static function create($table='user')
     {

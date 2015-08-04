@@ -21,3 +21,11 @@ parse_str($_SERVER['REQUEST_URI'], $_GET);
 Request::reset();
 Route::load()->reset();
 echo Theme::script();
+
+
+
+$_SERVER['REQUEST_URI'] = "/front/front/page?a=b&c=d";
+parse_str($_SERVER['REQUEST_URI'], $_GET);
+Request::reset();
+Route::load()->reset();
+echo Theme::script();

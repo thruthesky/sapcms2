@@ -1,5 +1,10 @@
 <?php
 use sap\src\Entity;
+use sap\src\Route;
+
+Route::add('/user', 'User\\User\\page');
+Route::add('/user/submit', 'User\\User\\page');
+
 
 function number_of_users() {
     return Entity::query('user')->count();

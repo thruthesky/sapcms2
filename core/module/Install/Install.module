@@ -1,5 +1,4 @@
 <?php
 use sap\src\Route;
 
-
-
+Route::add('/install/submit', 'Install\\Install\\submit');

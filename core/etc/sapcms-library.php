@@ -2,6 +2,7 @@
 use sap\core\System\System;
 use sap\src\Database;
 use sap\src\Request;
+use sap\src\Response;
 use sap\src\Template;
 
 
@@ -43,6 +44,7 @@ function system_layout()
 
 
 
+
 function is_core_module($module=null) {
     if ( empty($module) ) $module = Request::get('module');
     return in_array($module, System::getCoreModules());
@@ -78,4 +80,76 @@ function call_hooks($hook, &$args) {
 function get_error_message($code) {
     global $error_message;
     return isset($error_message[$code]) ? $error_message[$code] : $code;
+}
+
+function get_last_included_file() {
+    $arr = get_included_files();
+    return array_pop($arr);
+}
+
+function get_sapcms_path($path) {
+    $ds = DIRECTORY_SEPARATOR;
+    $folders = ['core', 'module', 'theme'];
+    foreach( $folders as $folder ) {
+        if ( $n = strpos($path, "$ds$folder$ds") ) {
+            $str = substr($path, $n + 1);
+            if ( $ds != '/' ) $str = str_replace($ds, '/', $str);
+            return $str;
+        }
+    }
+    return null;
+}
+
+function add_url_internal_root(&$path) {
+    if ( $path[0] == '/' ) {
+
+    }
+    else if ( strpos($path, 'http') === 0 ) {
+
+    }
+    else {
+        $path = URL_ROOT_INTERNAL. $path;
+    }
+    return $path;
+}
+
+function add_css($filename=null) {
+    if ( empty($filename) ) {
+        $file = get_last_included_file();
+        $path = get_sapcms_path($file);
+        $path = str_replace("/template/", '/css/', $path);
+        $path = str_replace(".html.php", '.css', $path);
+    }
+    else if ( strpos($filename, '/') === FALSE ) {
+        $file = get_last_included_file();
+        $path = get_sapcms_path($file);
+        $path = str_replace("/template/", '/css/', $path);
+        $pu = pathinfo($path);
+        $path = str_replace($pu['basename'], $filename, $path);
+    }
+    else {
+        $path = add_url_internal_root($filename);
+    }
+    Response::addCss($path);
+}
+
+
+function add_javascript($filename=null) {
+    if ( empty($filename) ) {
+        $file = get_last_included_file();
+        $path = get_sapcms_path($file);
+        $path = str_replace("/template/", '/js/', $path);
+        $path = str_replace(".html.php", '.js', $path);
+    }
+    else if ( strpos($filename, '/') === FALSE ) {
+        $file = get_last_included_file();
+        $path = get_sapcms_path($file);
+        $path = str_replace("/template/", '/js/', $path);
+        $pu = pathinfo($path);
+        $path = str_replace($pu['basename'], $filename, $path);
+    }
+    else {
+        $path = add_url_internal_root($filename);
+    }
+    Response::addJavascript($path);
 }

@@ -10,10 +10,24 @@ class Database extends \PDO {
     public $type = null;
 
     public function __construct($dsn=null, $username=null, $password=null) {
-        if ( empty($dsn) ) {
+        if ( empty($dsn) ) return;
 
+        try {
+            parent::__construct($dsn, $username, $password);
         }
-        else parent::__construct($dsn, $username, $password);
+        catch (\PDOException $e) {
+            echo "<h1>Database Connection Error</h1>";
+            echo $e->getMessage();
+            echo "
+            <ul>
+            <li>dsn:$dsn</li>
+            <li>username:$username</li>
+            <li>password:$password</li>
+            <li>Check database configuration file if it has correct information</li>
+            </ul>
+            ";
+            throw new \Exception('Connection failed.');
+        }
     }
 
 
