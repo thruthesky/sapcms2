@@ -3,6 +3,10 @@ namespace sap\src;
 use sap\core\System\System;
 
 class Response {
+
+    public static $javascript = [];
+    public static $css = [];
+
     /**
      * @param $url
      *
@@ -21,7 +25,8 @@ class Response {
         $html->body($content);
 
         self::setHeaders();
-        echo $html->get();
+        $content = $html->get();
+        self::processContent($content);
     }
 
     public static function renderLayout($render=[]) {
@@ -37,7 +42,7 @@ class Response {
         $content = ob_get_clean();
 
         self::setHeaders();
-        echo $content;
+        self::processContent($content);
 
     }
 
@@ -48,7 +53,7 @@ class Response {
         include system_layout();
         $content = ob_get_clean();
         self::setHeaders();
-        echo $content;
+        self::processContent($content);
     }
 
 
@@ -61,5 +66,44 @@ class Response {
             header('Content-Type: text/html; charset=UTF-8');
         }
     }
+
+    public static function addJavascript($path)
+    {
+        self::$javascript[$path] = true;
+    }
+
+    public static function addCss($path)
+    {
+        self::$css[$path] = true;
+    }
+
+    private static function processContent(&$content)
+    {
+        $content = str_ireplace('</head>', self::getCss() . '</head>', $content);
+        $content = str_ireplace('</body>', self::getJavascript() . '</body>', $content);
+        echo $content;
+    }
+
+    private static function getCss()
+    {
+        if ( empty(self::$css) ) return null;
+        $css = null;
+
+        foreach( self::$css as $path => $v ) {
+            $css .= "<link type='text/css' href='$path' rel='stylesheet' />" . PHP_EOL;
+        }
+        return $css;
+    }
+
+    private static function getJavascript()
+    {
+        if ( empty(self::$javascript) ) return null;
+        $js = null;
+        foreach( self::$javascript as $path => $v ) {
+            $js .= "<script type='text/javascript' src='$path'></script>" . PHP_EOL;
+        }
+        return $js;
+    }
+
 
 }

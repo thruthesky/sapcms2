@@ -72,22 +72,7 @@ class System {
     {
         dog(__METHOD__);
 
-        Config::file(Config::getDatabasePath())
-            ->data($options)
-            ->save();
-
-        Config::initStorage();
-        User::initStorage();
-
-        User::create()
-            ->set('id',$options['admin-id'])
-            ->set('password', $options['admin-password'])
-            ->save();
-
-
-        Config::load()
-            ->set('admin-id', $options['admin-id']);
-
+        Install::submit($options);
     }
 
 
@@ -167,7 +152,7 @@ class System {
         if ( System::isCommandLineInterface() ) return CommandLineInterface::Run();
 
 
-        if ( Install::check() ) {
+        if ( Install::check() == ERROR ) {
             if ( Request::isPageInstall() ) System::runModule();
             else Response::redirect(Route::create(ROUTE_INSTALL));
             return OK;

@@ -9,11 +9,9 @@ class Theme {
 
         // theme template check
 
-
-
         global $theme;
         if ( empty($filename) ) {
-            $module = Route::load()->module;
+            // $module = Route::load()->module;
             $class = Route::load()->class;
             $method = Route::load()->method;
             $filename = "$class.$method";
@@ -22,7 +20,7 @@ class Theme {
 
         $variables = ['filename'=>$filename];
         $variables['path'] = "theme/$theme/template/$variables[filename].html.php";
-        //dog($variables);
+        //print_r($variables);
         call_hooks('theme_script', $variables);
 
         if ( file_exists($variables['path']) ) return $variables['path'];

@@ -38,10 +38,10 @@ class CommandLineInterface {
 
             System::install([
                 'database' => self::getArgument('--database'),
-                'database-host' => self::getArgument('--database-host'),
-                'database-name' => self::getArgument('--database-name'),
-                'database-username' => self::getArgument('--database-username'),
-                'database-password' => self::getArgument('--database-password'),
+                'database_host' => self::getArgument('--database-host'),
+                'database_name' => self::getArgument('--database-name'),
+                'database_username' => self::getArgument('--database-username'),
+                'database_password' => self::getArgument('--database-password'),
                 'admin-id' => self::getArgument('--admin-id'),
                 'admin-password' => self::getArgument('--admin-password'),
             ]);

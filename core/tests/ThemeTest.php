@@ -20,12 +20,12 @@ class ThemeTest extends PHPUnit_Framework_TestCase {
         Route::load()->reset();
         $this->assertTrue(Template::script() == "module/L/template/M.N.html.php");
 
-        $_SERVER['REQUEST_URI'] = "/Install/form/Input?a=b&c=d";
+
+        $_SERVER['REQUEST_URI'] = "/front/front/page?a=b&c=d";
         parse_str($_SERVER['REQUEST_URI'], $_GET);
         Request::reset();
         Route::load()->reset();
-        $this->assertTrue(Theme::script() == "theme/default/template/Install.form.Input.html.php");
-
+        $this->assertTrue(Theme::script() == "theme/default/template/front.page.html.php");
 
     }
 }

@@ -27,3 +27,5 @@ define('PATH_THUMBNAIL', PATH_DATA . '/thumbnail');
 
 
 
+
+define('URL_ROOT_INTERNAL', '/');
