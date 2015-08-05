@@ -14,7 +14,7 @@
             'name' => URL_SITE,
             'label' => 'Input URL of the site :',
             'placeholder' => '',
-            'value'=>config(URL_SITE)
+            'value'=>system_config(URL_SITE)
         ]);?>
 
         <input type="submit" value="SUBMIT">

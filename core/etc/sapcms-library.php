@@ -186,3 +186,8 @@ function get_current_url()
     $url = $segments[0];
     return $url;
 }
+
+
+function widget($widget_name) {
+    include "widget/$widget_name/$widget_name.php";
+}

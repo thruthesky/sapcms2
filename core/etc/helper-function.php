@@ -1,8 +1,11 @@
 <?php
 use sap\core\Config\Config;
+use sap\core\System\System;
+use sap\core\User\User;
 use sap\src\Database;
 use sap\src\Form;
 use sap\src\SQL;
+
 
 function db_and() {
     return SQL::where();
@@ -46,4 +49,33 @@ function config_get($code) {
 
 function form_input($attr) {
     echo form::input($attr);
+}
+
+
+
+
+function user($field=null, $value='idx') {
+    if ( $field === null ) return User::create();
+    else return User::load($field, $value);
+}
+
+function config() {
+    return Config::load();
+}
+
+function system_config($code) {
+
+    $value = null;
+    switch( $code ) {
+        case 'database' :
+            $value = System::getDatabaseConfiguration();
+            break;
+        case '' :
+            break;
+        default :
+            $value = Config::load()->get($code);
+            break;
+    }
+
+    return $value;
 }

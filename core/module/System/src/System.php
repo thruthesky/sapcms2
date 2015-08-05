@@ -147,42 +147,22 @@ class System {
         return OK;
     }
 
+    /**
+     * @return int
+     */
     public static function run()
     {
-        dog(__METHOD__);
         self::load();
         self::loadDatabaseConfiguration();
         self::load_core_module_files();
-
-
         /**
          * Return after loading System and its core libraries,
          *  if it is running on CLI without checking Installation and running further.
          */
-
         if ( System::isCommandLineInterface() ) return CommandLineInterface::Run();
-
-        if ( ! Install::check() ) {
-            dog("System is going to install now.");
-            if ( Request::module('Install') ) System::runModule();
-            else Response::redirect(ROUTE_INSTALL);
-            return OK;
-        }
-
-
-
-
-
-        $install = Config::load()->group('install');
-        if ( $install ) {
-            foreach( $install as $module ) {
-                $path = "module/$module[value]/$module[value].module";
-                include $path;
-            }
-        }
-
+        if ( ! Install::check() ) return Install::runInstall();
+        self::load_module_files();
         System::runModule();
-
         return OK;
     }
 
@@ -198,7 +178,6 @@ class System {
             $path = "core/module/$module/$module.module";
             if ( file_exists($path) ) include $path;
         }
-
     }
 
     public static function getCoreModules()
@@ -243,6 +222,17 @@ class System {
     {
         if ( empty(self::$config_database) ) return FALSE;
         else return self::$config_database;
+    }
+
+    private static function load_module_files()
+    {
+        $install = config()->group('install');
+        if ( $install ) {
+            foreach( $install as $module ) {
+                $path = "module/$module[value]/$module[value].module";
+                include $path;
+            }
+        }
     }
 
 
