@@ -130,13 +130,19 @@ class Entity {
     }
 
 
+    /**
+     * @return $this
+     *
+     * @Attention it returns $this to allow chaining.
+     */
     public function delete() {
         if ( $idx = $this->get('idx') ) {
             db_delete($this->table, "idx=$idx");
             $this->fields = [];
-            return NULL;
         }
+        return $this;
     }
+
     public function __toString() {
         return print_r($this, true);
     }

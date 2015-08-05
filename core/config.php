@@ -19,13 +19,8 @@ define('PATH_CONFIG_DATABASE', PATH_CONFIG . '/database.php');
 define('PATH_MODULE', PATH_INSTALL . '/module');
 
 
-
-
 define('PATH_UPLOAD', PATH_DATA . '/upload');
 define('PATH_THUMBNAIL', PATH_DATA . '/thumbnail');
 
+define('URL_SITE', 'url_site');
 
-
-
-
-define('URL_ROOT_INTERNAL', '/');

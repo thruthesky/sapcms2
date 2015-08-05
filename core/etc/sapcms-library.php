@@ -1,4 +1,5 @@
 <?php
+use sap\core\Config\Config;
 use sap\core\System\System;
 use sap\src\Database;
 use sap\src\Request;
@@ -67,7 +68,7 @@ function register_hook($hook, $func) {
     global $hooks;
     $hooks[$hook][] = $func;
 }
-function call_hooks($hook, &$args) {
+function call_hooks($hook, &$args=[]) {
     global $hooks;
     if ( isset($hooks[$hook]) ) {
         foreach( $hooks[$hook] as $func ) {
@@ -108,10 +109,12 @@ function add_url_internal_root(&$path) {
 
     }
     else {
-        $path = URL_ROOT_INTERNAL. $path;
+        $pre = Config::load()->get(URL_SITE);
+        $path = $pre . $path;
     }
     return $path;
 }
+
 
 function add_css($filename=null) {
     if ( empty($filename) ) {
@@ -152,4 +155,34 @@ function add_javascript($filename=null) {
         $path = add_url_internal_root($filename);
     }
     Response::addJavascript($path);
+}
+
+
+/**
+ *
+ * Returns current site address
+ *
+ *
+ *
+ * @return string
+ *
+ *  - it returns '/' on CLI.
+ *
+ *
+ */
+function get_current_url()
+{
+    if ( System::isCommandLineInterface() ) return '/';
+    $s = &$_SERVER;
+    $ssl = (!empty($s['HTTPS']) && $s['HTTPS'] == 'on') ? true:false;
+    $sp = strtolower($s['SERVER_PROTOCOL']);
+    $protocol = substr($sp, 0, strpos($sp, '/')) . (($ssl) ? 's' : '');
+    $port = $s['SERVER_PORT'];
+    $port = ((!$ssl && $port=='80') || ($ssl && $port=='443')) ? '' : ':'.$port;
+    $host = isset($s['HTTP_X_FORWARDED_HOST']) ? $s['HTTP_X_FORWARDED_HOST'] : (isset($s['HTTP_HOST']) ? $s['HTTP_HOST'] : null);
+    $host = isset($host) ? $host : $s['SERVER_NAME'] . $port;
+    $uri = $protocol . '://' . $host . $s['REQUEST_URI'];
+    $segments = explode('?', $uri, 2);
+    $url = $segments[0];
+    return $url;
 }

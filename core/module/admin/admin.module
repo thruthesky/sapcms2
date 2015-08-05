@@ -1,0 +1,5 @@
+<?php
+use sap\src\Route;
+Route::add('/admin/database/information', 'admin\\admin\\database_information');
+include 'admin.hook.php';
+

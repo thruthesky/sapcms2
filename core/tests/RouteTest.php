@@ -49,7 +49,7 @@ class RouteTest extends PHPUnit_Framework_TestCase {
 
     public function test_routing() {
         Route::add('/install/check', "Install\\Install\\check");
-        $this->assertTrue( Route::run('/install/check') == OK );
+        $this->assertTrue( Route::run('/install/check') == true );
 
         $route = "/config/path/database";
         Route::add($route, "Config\\Config\\getDatabasePath");

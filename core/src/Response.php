@@ -48,6 +48,7 @@ class Response {
 
 
     public static function renderSystemLayout($render=[]) {
+        if ( System::isCommandLineInterface() ) return;
         System::setRender($render);
         ob_start();
         include system_layout();

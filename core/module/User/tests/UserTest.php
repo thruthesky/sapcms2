@@ -35,7 +35,9 @@ class UserTest extends PHPUnit_Framework_TestCase {
             ->save()
             ->delete();
 
-        $this->assertNull($user);
+        dog(__METHOD__);
+        dog($user->idx);
+        $this->assertNull($user->idx);
 
         if ( $user = User::load('id', 'test-id-3') ) $user->delete();
 
@@ -49,13 +51,12 @@ class UserTest extends PHPUnit_Framework_TestCase {
             ->get('idx');
         $this->assertNotEmpty($idx);
 
-        $re = User::load('id', 'test-id-3')
+        $user = User::load('id', 'test-id-3')
             ->delete();
-        $this->assertNull($re);
+        $this->assertNull($user->idx);
 
-        $re = User::load('id', 'test-id-3');
-        $this->assertFalse($re);
-
+        $user = User::load('id', 'test-id-3');
+        $this->assertEmpty($user);
 
     }
 

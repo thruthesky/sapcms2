@@ -1,7 +1,12 @@
 <?php add_css()?>
 <?php add_javascript()?>
-<h1 class="title">Installation</h1>
-<form action="/install/submit" data-ajax="false">
+<div data-role="header">
+    <h1>SAPCMS2 Installation</h1>
+</div>
+<div class="ui-content">
+    <h1 class="title">Installation</h1>
+<form data-ajax="false" method="post">
+    <input type="hidden" name="mode" value="submit">
     <fieldset data-role="controlgroup">
         <legend>Choose Database:</legend>
         <input type="radio" name="database" id="install-database-choce-1" value="sqlite" checked="checked">
@@ -48,3 +53,5 @@
     </fieldset>
     <input type="submit" value="SUBMIT">
 </form>
+</div>
+<div data-role="footer"><h1>SAPCMS 2</h1></div>

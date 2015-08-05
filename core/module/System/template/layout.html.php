@@ -3,15 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
-
     <link rel="stylesheet" href="/core/etc/js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
-
 </head>
 <body>
 <div data-role="page">
-    <div data-role="header"><h1>Admin Page</h1></div>
-    <div class="ui-content"><?php include template()?></div>
-    <div data-role="footer"><h1>SAPCMS 2</h1></div>
+    <?php include template()?>
 </div>
 
 <!--[if lt IE 9]>

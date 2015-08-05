@@ -3,8 +3,11 @@ define('OK', 0);
 define('ERROR', -1);
 define('ERROR_SYSTEM_NOT_INSTALLED', -401);
 $error_message[ERROR_SYSTEM_NOT_INSTALLED] = 'System is not installed.';
+define('ERROR_NO_DATABASE_CONFIG_FILE', -402);
+$error_message[ERROR_NO_DATABASE_CONFIG_FILE] = 'Database configuration file is not correct. The system may not be installed, yet.';
 
-define('ROUTE_INSTALL', "Install");
+
+define('ROUTE_INSTALL', "/install");
 define('ERROR_INSTALL', -1234);
 define('ERROR_FAIL_TO_SAVE', -400101);
 define('ERROR_FAIL_TO_READ', -400102);

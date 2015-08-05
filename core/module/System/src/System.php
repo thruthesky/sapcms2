@@ -4,6 +4,7 @@ use sap\core\Config\Config;
 use sap\core\Install\Install;
 use sap\core\User\User;
 use sap\src\CommandLineInterface;
+use sap\src\Database;
 use sap\src\File;
 use sap\src\Module;
 use sap\src\Request;
@@ -14,6 +15,7 @@ class System {
     static $system = null;
     static $version = '2.0.1';
     private static $count_log = 0;
+    private static $config_database = null;
     private $path = null;
     private $filename =null;
     public $script = null;
@@ -26,6 +28,8 @@ class System {
     }
 
 
+
+
     /**
      *
      * It creates and returns the System object.
@@ -35,6 +39,8 @@ class System {
      */
     public static function load() {
         if ( empty(self::$system) ) self::$system = new System();
+
+
         return self::$system;
     }
 
@@ -48,6 +54,9 @@ class System {
     public static function get() {
         return self::load();
     }
+
+
+
     public static function version()
     {
         return self::$version;
@@ -57,6 +66,7 @@ class System {
     {
         return Module::run($route);
     }
+
     public static function loadModuleClass($module, $class) {
         return System::get()
             ->module($module, $class)
@@ -111,7 +121,6 @@ class System {
         call_hooks('module_enable', $variables);
 
 
-
         Config::load()->set($code, $name);
 
         return OK;
@@ -142,6 +151,7 @@ class System {
     {
         dog(__METHOD__);
         self::load();
+        self::loadDatabaseConfiguration();
         self::load_core_module_files();
 
 
@@ -149,14 +159,18 @@ class System {
          * Return after loading System and its core libraries,
          *  if it is running on CLI without checking Installation and running further.
          */
+
         if ( System::isCommandLineInterface() ) return CommandLineInterface::Run();
 
-
-        if ( Install::check() == ERROR ) {
-            if ( Request::isPageInstall() ) System::runModule();
-            else Response::redirect(Route::create(ROUTE_INSTALL));
+        if ( ! Install::check() ) {
+            dog("System is going to install now.");
+            if ( Request::module('Install') ) System::runModule();
+            else Response::redirect(ROUTE_INSTALL);
             return OK;
         }
+
+
+
 
 
         $install = Config::load()->group('install');
@@ -184,6 +198,7 @@ class System {
             $path = "core/module/$module/$module.module";
             if ( file_exists($path) ) include $path;
         }
+
     }
 
     public static function getCoreModules()
@@ -198,6 +213,36 @@ class System {
     public static function getRender()
     {
         return System::get()->render;
+    }
+
+    /**
+     *
+     * It only loads database configuration once and for all.
+     *
+     * @return bool|null
+     */
+    public static function loadDatabaseConfiguration()
+    {
+        if ( self::$config_database === null ) {
+            self::$config_database = Config::read(PATH_CONFIG_DATABASE);
+        }
+        return self::getDatabaseConfiguration();
+    }
+
+    /**
+     *
+     * It reloads the database configuration
+     * @return bool|null
+     */
+    public static function reloadDatabaseConfiguration()
+    {
+        self::$config_database = Config::read(PATH_CONFIG_DATABASE);
+        return self::getDatabaseConfiguration();
+    }
+    public static function getDatabaseConfiguration()
+    {
+        if ( empty(self::$config_database) ) return FALSE;
+        else return self::$config_database;
     }
 
 

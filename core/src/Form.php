@@ -15,7 +15,7 @@ class Form {
         if ( ! isset($attr['label']) ) $attr['label'] = $attr['name'];
         if ( ! isset($attr['id']) ) $attr['id'] = $attr['name'];
         if ( ! isset($attr['value']) ) $attr['value'] = '';
-        if ( ! isset($attr['placeholder']) ) $attr['label'] = $attr['placeholder'];
+        if ( ! isset($attr['placeholder']) ) $attr['placeholder'] = $attr['name'];
 
 
         return <<<EOH

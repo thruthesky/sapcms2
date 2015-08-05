@@ -1,1 +1,0 @@
-<h1>This is system admin page.html.twig</h1>

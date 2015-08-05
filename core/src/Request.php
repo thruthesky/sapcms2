@@ -40,9 +40,14 @@ class Request {
     }
 
 
-    public static function isPageInstall()
+    public static function module($module_name)
     {
-        return Route::load()->module == 'Install';
+        return Route::load()->module == $module_name;
+    }
+
+    public static function submit()
+    {
+        return self::get('mode') == 'submit';
     }
 
 }

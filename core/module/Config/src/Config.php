@@ -3,6 +3,7 @@ namespace sap\core\Config;
 
 
 use sap\core\Install\Install;
+use sap\src\Database;
 use sap\src\File;
 use sap\src\Meta;
 
@@ -10,6 +11,7 @@ class Config extends Meta
 {
     private $file = null;
     private $data = null;
+    private static $config = null;
 
 
     public function __construct() {
@@ -22,7 +24,8 @@ class Config extends Meta
         $config->install();
     }
     public static function load() {
-        return new Config();
+        if ( empty(self::$config ) ) self::$config = new Config();
+        return self::$config ;
     }
 
     /**
@@ -31,10 +34,11 @@ class Config extends Meta
      */
     public static function read($path)
     {
-        dog(__METHOD__ . " : $path");
+        // dog(__METHOD__ . " : $path");
         if ( file_exists($path) ) {
             include $path;
-            return get_defined_vars();
+            $vars = get_defined_vars();
+            return $vars;
         }
         else return FALSE;
     }

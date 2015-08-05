@@ -3,6 +3,7 @@
     <h1>Admin</h1>
 </div>
 <div class="ui-content">
-    SAPCMS 2.0 Installation Successful !
+    <h2>Database Information</h2>
+    <?php beautify(config('database'))?>
 </div>
 <div data-role="footer"><h1>SAPCMS 2</h1></div>

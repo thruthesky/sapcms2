@@ -4,7 +4,7 @@ use sap\core\System\System;
 
 class Module {
 
-    private static $core_modules = ['Config', 'front', 'Install', 'System', 'User'];
+    private static $core_modules = ['admin', 'Config', 'front', 'Install', 'System', 'User'];
 
     public static function script($filename=null)
     {
@@ -26,6 +26,7 @@ class Module {
         call_hooks('module_script', $variables);
 
         return $variables['path'];
+
     }
 
     private static function path($module)
@@ -68,11 +69,12 @@ class Module {
 
         $name = "sap\\{$core}$module\\$class";
 
-        // dog("Module::run() => $name::$method ()");
+        dog("Module::run() => $name::$method ()");
 
         return $name::$method();
 
     }
+
 
 }
 
