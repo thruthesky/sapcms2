@@ -4,6 +4,7 @@ namespace sap\src;
 
 class Meta {
 
+    private static $loaded;
     private $table = null;
     public function __construct($table) {
         $this->table = $table . '_meta';
@@ -22,6 +23,14 @@ class Meta {
         Database::load()->dropTable($this->table);
     }
 
+    /**
+     * @param $code
+     *      - it can be an array.
+     *      - it can be a string.
+     * @param null $value
+     * @param int $target
+     * @return $this
+     */
     public function set($code, $value=null, $target=0)
     {
         if ( is_array($code) ) {
@@ -45,17 +54,39 @@ class Meta {
         }
         return $this;
     }
-    public function get($code=null, $return_entity=false)
+
+    /**
+     * @param null $code
+     * @return mixed
+     *
+     * @Attention it memory-caches internally.
+     */
+    public function get($code=null)
     {
-        $entity = Entity::load($this->table, 'code', $code);
-        if ( $entity ) {
-            if ( $return_entity ) return $entity;
-            else return $entity->value;
+        if ( ! isset(self::$loaded[$code]) ) {
+            $entity = Entity::load($this->table, 'code', $code);
+            if ( $entity ) self::$loaded[$code] = $entity->value;
+            else self::$loaded[$code] = FALSE;
         }
+        return self::$loaded[$code];
+    }
+
+    public function getEntity($code) {
+        $entity = Entity::load($this->table, 'code', $code);
+        if ( $entity ) return $entity;
         else return FALSE;
     }
+
+    /**
+     * @param $code
+     * @return $this
+     *
+     * @Attention it returns $this to allow chaining.
+     */
     public function delete($code) {
-        return Entity::load($this->table, 'code', $code)->delete();
+        Entity::load($this->table, 'code', $code)->delete();
+        unset(self::$loaded[$code]);
+        return $this;
     }
 
 
@@ -63,4 +94,5 @@ class Meta {
     {
         return Database::load()->rows($this->table,"code LIKE '$code.%'");
     }
+
 }

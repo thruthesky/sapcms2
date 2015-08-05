@@ -26,7 +26,7 @@ class MetaTest extends PHPUnit_Framework_TestCase {
             ->set('a','A')
             ->set('b', 'B')
             ->set('c', 'C');
-        $this->assertTrue( $meta->get('a', true) instanceof Entity );
+        $this->assertTrue( $meta->getEntity('a') instanceof Entity );
         $this->assertTrue( $meta->get('a') == 'A' );
 
         $meta

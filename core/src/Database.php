@@ -1,6 +1,7 @@
 <?php
 namespace sap\src;
 use sap\core\Config\Config;
+use sap\core\System\System;
 
 class Database extends \PDO {
 
@@ -70,11 +71,10 @@ class Database extends \PDO {
      */
     public static function load()
     {
-        dog(__METHOD__);
+        //dog(__METHOD__);
         if ( self::$db ) return self::$db;
-        $config = Config::read(PATH_CONFIG_DATABASE);
-        dog("config:");
-        dog($config);
+
+        $config = System::getDatabaseConfiguration();
         $type = strtolower($config['database']);
         if ( $type == 'sqlite' ) {
             return self::$db = Database::sqlite(PATH_SQLITE_DATABASE);
@@ -88,6 +88,7 @@ class Database extends \PDO {
             );
         }
         else {
+            echo"\n" .  __METHOD__ . '<hr>';
             echo "\nERROR: " . get_error_message(ERROR_SYSTEM_NOT_INSTALLED);
             exit;
         }
@@ -436,7 +437,7 @@ class Database extends \PDO {
      * @endcode
      */
     public function columnExists($table, $field=null) {
-        dog(__METHOD__);
+        //dog(__METHOD__);
         if ( empty($field) ) {
             $field = $table;
             $table = $this->table();

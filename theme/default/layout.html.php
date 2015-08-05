@@ -1,12 +1,22 @@
-<?php
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/core/etc/js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+</head>
+<body>
+<div data-role="page">
+    <?php include template()?>
+</div>
 
+<!--[if lt IE 9]>
+<script type='text/javascript' src='/core/etc/js/jquery-1.11.3/jquery-1.11.3.min.js'></script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+<script type='text/javascript' src='/core/etc/js/jquery-2.1.4/jquery-2.1.4.min.js'></script>
+<!--<![endif]-->
+<script src="/core/etc/js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
-?>
-
-THIS IS layout.html.php
-<hr>
-
-Number of users: <?php echo number_of_users() ?>
-
-<?php include template()?>
-
+</body>
+</html>

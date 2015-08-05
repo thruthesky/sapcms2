@@ -38,8 +38,16 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
             ->set('a', 'A', 1)
             ->set('b', 'B', 2)
             ->set('c', 'Cake', 3);
-
         $this->assertTrue(Config::load()->get('c') == 'Cake');
+
+        $config
+            ->delete('a')
+            ->delete('b')
+            ->delete('c');
+
+        $this->assertFalse(Config::load()->get('c') == 'Cake');
+
+
 
         Config::load()
             ->set('groupA.apple', 'Apple', 1)
@@ -49,6 +57,12 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
             ->group('groupA');
 
         $this->assertTrue(count($rows)==2);
+
+        $config
+            ->delete('groupA.apple')
+            ->delete('groupA.banana');
+
+
 
         $fruits = [
             'GroupB.apple'=>'Apple',
@@ -65,6 +79,10 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue(Config::load()->get('GroupC.A') == 'Anaconda');
         $row = Config::load()->group('GroupC');
         $this->assertTrue(count($row) == 2);
+
+        foreach ( array_keys($fruits) as $k ) {
+            $config->delete($k);
+        }
 
     }
 }

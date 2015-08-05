@@ -66,10 +66,14 @@ class Route {
     public function reset()
     {
         $route = Request::get( HTTP_VAR_ROUTE );
+
         if ( empty($route) ) {
-            $arr = explode('?', $_SERVER['REQUEST_URI'], 2);
-            $route = $arr[0];
+            if ( isset($_SERVER['REQUEST_URI']) ) {
+                $arr = explode('?', $_SERVER['REQUEST_URI'], 2);
+                $route = $arr[0];
+            }
         }
+
         if ( $route ) {
             $this->request_uri = $route;
             if ( $match = self::match( $this->request_uri ) ) {
@@ -85,27 +89,6 @@ class Route {
         }
         return $this;
 
-        /*
-
-
-        if ( $route = Request::get( HTTP_VAR_ROUTE ) ) {
-            $arr = explode('/', $route, 4);
-            array_shift($arr);
-            $this->module = isset($arr[0]) ? $arr[0] : DEFAULT_MODULE;
-            $this->class = isset($arr[1]) ? $arr[1] : $this->module;
-            $this->method = isset($arr[2]) ? $arr[2] : DEFAULT_CONTROLLER;
-        }
-        else {
-            $arr = explode('?', $_SERVER['REQUEST_URI'], 2);
-            $this->request_uri = $arr[0];
-            $this->request_uri = trim($this->request_uri, '/');
-            $this->segment = explode('/', $this->request_uri);
-            $this->module = ! empty( $this->segment[0] ) ? $this->segment[0] : DEFAULT_MODULE;
-            $this->class = isset( $this->segment[1] ) ? $this->segment[1] : $this->module;
-            $this->method = isset( $this->segment[2] ) ? $this->segment[2] : DEFAULT_CONTROLLER;
-        }
-        return $this;
-        */
     }
 
 

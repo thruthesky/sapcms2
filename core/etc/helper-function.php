@@ -38,8 +38,8 @@ function db_delete($table, $cond) {
     return Database::load()->delete($table, $cond);
 }
 
-function config_get($code, $return_entity=false) {
-    return Config::load()->get($code, $return_entity);
+function config_get($code) {
+    return Config::load()->get($code);
 }
 
 
