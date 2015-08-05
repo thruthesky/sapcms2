@@ -4,6 +4,6 @@
 </div>
 <div class="ui-content">
     <h2>Database Information</h2>
-    <?php beautify(config('database'))?>
+    <?php beautify(system_config('database'))?>
 </div>
 <div data-role="footer"><h1>SAPCMS 2</h1></div>

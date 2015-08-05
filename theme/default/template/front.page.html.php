@@ -7,6 +7,7 @@
         Default Theme Front Page
     </h2>
 
+    <?php widget('login-box'); ?>
 
     Number of users: <?php echo number_of_users() ?>
 

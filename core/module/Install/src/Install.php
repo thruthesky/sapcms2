@@ -106,5 +106,12 @@ class Install {
         return isset($config['database']);
     }
 
+    public static function runInstall()
+    {
+        dog("System is going to install now.");
+        if ( Request::module('Install') ) System::runModule();
+        else Response::redirect(ROUTE_INSTALL);
+        return OK;
+    }
 
 }

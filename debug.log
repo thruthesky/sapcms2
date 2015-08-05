@@ -44598,3 +44598,276 @@
 1 : SELECT * FROM config_meta WHERE code LIKE 'install.%'
 2 : Module::run() => sap\core\front\front::page ()
 3 : SELECT COUNT(*) FROM user  LIMIT 1
+0 : sap\core\System\System::run
+1 : SELECT * FROM config_meta WHERE code LIKE 'install.%'
+2 : Module::run() => sap\core\front\front::page ()
+3 : SELECT COUNT(*) FROM user  LIMIT 1
+0 : sap\core\System\System::run
+1 : SELECT * FROM config_meta WHERE code LIKE 'install.%'
+2 : Module::run() => sap\core\front\front::page ()
+3 : SELECT COUNT(*) FROM user  LIMIT 1
+0 : sap\core\System\System::run
+1 : SELECT * FROM config_meta WHERE code LIKE 'install.%'
+2 : Module::run() => sap\core\front\front::page ()
+3 : SELECT COUNT(*) FROM user  LIMIT 1
+0 : SELECT * FROM config_meta WHERE code LIKE 'install.%'
+1 : Module::run() => sap\core\front\front::page ()
+2 : SELECT COUNT(*) FROM user  LIMIT 1
+0 : SELECT * FROM config_meta WHERE code LIKE 'install.%'
+1 : Module::run() => sap\core\front\front::page ()
+2 : SELECT COUNT(*) FROM user  LIMIT 1
+0 : sap\src\CommandLineInterface::Run
+1 : sap\core\System\System::install
+2 : sap\core\Install\Install::createDirs
+3 : sap\core\Config\Config::initStorage
+4 : ALTER TABLE config_meta ADD COLUMN created INT UNSIGNED DEFAULT 0
+5 : ALTER TABLE config_meta ADD COLUMN changed INT UNSIGNED DEFAULT 0
+6 : CREATE INDEX config_meta_created ON config_meta (created);
+7 : CREATE INDEX config_meta_changed ON config_meta (changed);
+8 : ALTER TABLE config_meta ADD COLUMN idx_target INT
+9 : ALTER TABLE config_meta ADD COLUMN code varchar(64)
+10 : ALTER TABLE config_meta ADD COLUMN value TEXT
+11 : CREATE INDEX config_meta_idx_target ON config_meta (idx_target);
+12 : ALTER TABLE user ADD COLUMN created INT UNSIGNED DEFAULT 0
+13 : ALTER TABLE user ADD COLUMN changed INT UNSIGNED DEFAULT 0
+14 : CREATE INDEX user_created ON user (created);
+15 : CREATE INDEX user_changed ON user (changed);
+16 : ALTER TABLE user ADD COLUMN id varchar(32)
+17 : ALTER TABLE user ADD COLUMN password char(32)
+18 : ALTER TABLE user ADD COLUMN domain varchar(64)
+19 : ALTER TABLE user ADD COLUMN name varchar(32)
+20 : ALTER TABLE user ADD COLUMN nickname varchar(32)
+21 : ALTER TABLE user ADD COLUMN mail varchar(64)
+22 : ALTER TABLE user ADD COLUMN birth_year int
+23 : ALTER TABLE user ADD COLUMN birth_month int
+24 : ALTER TABLE user ADD COLUMN birth_day int
+25 : ALTER TABLE user ADD COLUMN landline varchar(32)
+26 : ALTER TABLE user ADD COLUMN mobile varchar(32)
+27 : ALTER TABLE user ADD COLUMN address varchar(255)
+28 : ALTER TABLE user ADD COLUMN country varchar(255)
+29 : ALTER TABLE user ADD COLUMN province varchar(255)
+30 : ALTER TABLE user ADD COLUMN city varchar(255)
+31 : ALTER TABLE user ADD COLUMN school varchar(128)
+32 : ALTER TABLE user ADD COLUMN work varchar(128)
+33 : CREATE INDEX user_domain ON user (domain);
+34 : CREATE INDEX user_name ON user (name);
+35 : CREATE INDEX user_nickname ON user (nickname);
+36 : CREATE INDEX user_mail ON user (mail);
+37 : CREATE INDEX user_birth_year_birth_month_birth_day ON user (birth_year,birth_month,birth_day);
+38 : INSERT INTO `user` (`idx`,`created`,`changed`,`id`,`password`) VALUES (NULL,'1438788288','1438788288','admin','1234')
+39 : SELECT * FROM config_meta WHERE code = 'admin_id' LIMIT 1
+40 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438788288','1438788288','admin_id','admin','0')
+41 : SELECT * FROM config_meta WHERE code = 'url_site' LIMIT 1
+42 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438788288','1438788288','url_site','/','0')
+43 : END
+0 : sap\src\CommandLineInterface::Run
+1 : END
+2 : sap\core\Install\Install::createDirs
+3 : sap\core\Install\Install::createDirs
+4 : SELECT * FROM config_meta WHERE code = 'a' LIMIT 1
+5 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438788293','1438788293','a','A','1')
+6 : SELECT * FROM config_meta WHERE code = 'b' LIMIT 1
+7 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438788294','1438788294','b','B','2')
+8 : SELECT * FROM config_meta WHERE code = 'c' LIMIT 1
+9 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438788294','1438788294','c','Cake','3')
+10 : SELECT * FROM config_meta WHERE code = 'c' LIMIT 1
+11 : SELECT * FROM config_meta WHERE code = 'a' LIMIT 1
+12 : DELETE FROM config_meta WHERE idx=3
+13 : SELECT * FROM config_meta WHERE code = 'b' LIMIT 1
+14 : DELETE FROM config_meta WHERE idx=4
+15 : SELECT * FROM config_meta WHERE code = 'c' LIMIT 1
+16 : DELETE FROM config_meta WHERE idx=5
+17 : SELECT * FROM config_meta WHERE code = 'c' LIMIT 1
+18 : SELECT * FROM config_meta WHERE code = 'groupA.apple' LIMIT 1
+19 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438788294','1438788294','groupA.apple','Apple','1')
+20 : SELECT * FROM config_meta WHERE code = 'groupA.banana' LIMIT 1
+21 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438788294','1438788294','groupA.banana','Banana','2')
+22 : SELECT * FROM config_meta WHERE code LIKE 'groupA.%'
+23 : SELECT * FROM config_meta WHERE code = 'groupA.apple' LIMIT 1
+24 : DELETE FROM config_meta WHERE idx=3
+25 : SELECT * FROM config_meta WHERE code = 'groupA.banana' LIMIT 1
+26 : DELETE FROM config_meta WHERE idx=4
+27 : SELECT * FROM config_meta WHERE code = 'GroupB.apple' LIMIT 1
+28 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438788294','1438788294','GroupB.apple','Apple','0')
+29 : SELECT * FROM config_meta WHERE code = 'GroupB.banana' LIMIT 1
+30 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438788294','1438788294','GroupB.banana','Banana','0')
+31 : SELECT * FROM config_meta WHERE code = 'GroupB.cherry' LIMIT 1
+32 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438788294','1438788294','GroupB.cherry','Cherry','0')
+33 : SELECT * FROM config_meta WHERE code = 'GroupC.A' LIMIT 1
+34 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438788294','1438788294','GroupC.A','Anaconda','0')
+35 : SELECT * FROM config_meta WHERE code = 'GroupC.C' LIMIT 1
+36 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438788294','1438788294','GroupC.C','Cobra','0')
+37 : SELECT * FROM config_meta WHERE code = 'D' LIMIT 1
+38 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438788294','1438788294','D','DDD','0')
+39 : SELECT * FROM config_meta WHERE code = 'E' LIMIT 1
+40 : INSERT INTO `config_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438788294','1438788294','E','ET','0')
+41 : SELECT * FROM config_meta WHERE code = 'D' LIMIT 1
+42 : SELECT * FROM config_meta WHERE code = 'E' LIMIT 1
+43 : SELECT * FROM config_meta WHERE code = 'GroupC.A' LIMIT 1
+44 : SELECT * FROM config_meta WHERE code LIKE 'GroupC.%'
+45 : SELECT * FROM config_meta WHERE code = 'GroupB.apple' LIMIT 1
+46 : DELETE FROM config_meta WHERE idx=3
+47 : SELECT * FROM config_meta WHERE code = 'GroupB.banana' LIMIT 1
+48 : DELETE FROM config_meta WHERE idx=4
+49 : SELECT * FROM config_meta WHERE code = 'GroupB.cherry' LIMIT 1
+50 : DELETE FROM config_meta WHERE idx=5
+51 : SELECT * FROM config_meta WHERE code = 'GroupC.A' LIMIT 1
+52 : DELETE FROM config_meta WHERE idx=6
+53 : SELECT * FROM config_meta WHERE code = 'GroupC.C' LIMIT 1
+54 : DELETE FROM config_meta WHERE idx=7
+55 : SELECT * FROM config_meta WHERE code = 'D' LIMIT 1
+56 : DELETE FROM config_meta WHERE idx=8
+57 : SELECT * FROM config_meta WHERE code = 'E' LIMIT 1
+58 : DELETE FROM config_meta WHERE idx=9
+59 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+60 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+61 : INSERT INTO `user` (`idx`,`created`,`changed`,`id`,`name`) VALUES (NULL,'1438788294','1438788294','sapcms2-test-id','JaeHo Song')
+62 : INSERT INTO `user` (`idx`,`created`,`changed`,`id`) VALUES (NULL,'1438788294','1438788294','test-id-2')
+63 : DELETE FROM user WHERE idx=3
+64 : UserTest::test_create_save_delete
+65 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+66 : INSERT INTO `user` (`idx`,`created`,`changed`,`id`) VALUES (NULL,'1438788294','1438788294','test-id-3')
+67 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+68 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+69 : DELETE FROM user WHERE idx=3
+70 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+71 : SELECT * FROM test_table  LIMIT 1
+72 : SELECT * FROM test_table  LIMIT 1
+73 : test_table:test_table, field:idx
+74 : SELECT * FROM test_table WHERE idx=1 LIMIT 1
+75 : SELECT * FROM test_table  LIMIT 1
+76 : ALTER TABLE temp ADD COLUMN name varchar(255)
+77 : ALTER TABLE temp ADD COLUMN mail varchar(255)
+78 : ALTER TABLE temp ADD COLUMN birth_year int
+79 : ALTER TABLE temp ADD COLUMN no int
+80 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+81 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+82 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+83 : temp:temp, field:idx
+84 : SELECT * FROM temp WHERE idx=1 LIMIT 1
+85 : temp:temp, field:no
+86 : SELECT * FROM temp WHERE no=1 LIMIT 1
+87 : temp:temp, field:name
+88 : SELECT * FROM temp WHERE name=1 LIMIT 1
+89 : SELECT * FROM temp WHERE name='JaeHo Song' LIMIT 1
+90 : SELECT * FROM temp WHERE (`name` = 'JaeHo Song') LIMIT 1
+91 : ALTER TABLE abc ADD COLUMN a varchar(255)
+92 : ALTER TABLE abc ADD COLUMN b varchar(255)
+93 : ALTER TABLE abc ADD COLUMN c varchar(255)
+94 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('A','B','C')
+95 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('ABC','BCD','CDE')
+96 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('1','2','3')
+97 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','banana','cherry')
+98 : SELECT * FROM abc WHERE (`a` like 'A%' AND ((`b` like 'B%' AND `c` like 'C%') OR (`b` = 'B' AND `c` = 'C'))) LIMIT 1
+99 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('Airplane','Boat','Cruze')
+100 : SELECT * FROM abc WHERE b='Boat' LIMIT 1
+101 : DELETE FROM abc WHERE b='Boat'
+102 : SELECT * FROM abc WHERE b='Boat' LIMIT 1
+103 : ALTER TABLE abc ADD COLUMN a varchar(255)
+104 : ALTER TABLE abc ADD COLUMN b varchar(255)
+105 : ALTER TABLE abc ADD COLUMN c varchar(255)
+106 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('A','B','C')
+107 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('ABC','BCD','CDE')
+108 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('1','2','3')
+109 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','banana','cherry')
+110 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','beach','city')
+111 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','box','cake')
+112 : SELECT * FROM abc  LIMIT 1
+113 : SELECT * FROM abc WHERE 1 LIMIT 0,1
+114 : SELECT * FROM abc LIMIT 1,1
+115 : SELECT * FROM abc ORDER BY idx ASC LIMIT 2,1
+116 : SELECT idx, a FROM abc  LIMIT 1
+117 : SELECT idx, a FROM abc WHERE A LIKE 'A%' ORDER BY a DESC LIMIT 1,1
+118 : ALTER TABLE abc ADD COLUMN a varchar(255)
+119 : ALTER TABLE abc ADD COLUMN b varchar(255)
+120 : ALTER TABLE abc ADD COLUMN c varchar(255)
+121 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('A','B','C')
+122 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('ABC','BCD','CDE')
+123 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('1','2','3')
+124 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','banana','cherry')
+125 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','beach','city')
+126 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','box','cake')
+127 : SELECT * FROM abc 
+128 : SELECT * FROM abc LIMIT 2,2
+129 : SELECT a,b,c,COUNT(*) as cnt FROM abc WHERE a LIKE 'a%' GROUP BY a ORDER BY cnt DESC LIMIT 0,2
+130 : ALTER TABLE test_result ADD COLUMN a varchar(255)
+131 : INSERT INTO `test_result` (`a`) VALUES ('b')
+132 : SELECT a FROM test_result  LIMIT 1
+133 : SELECT COUNT(*) FROM test_result  LIMIT 1
+134 : ALTER TABLE entity_test ADD COLUMN created INT UNSIGNED DEFAULT 0
+135 : ALTER TABLE entity_test ADD COLUMN changed INT UNSIGNED DEFAULT 0
+136 : CREATE INDEX entity_test_created ON entity_test (created);
+137 : CREATE INDEX entity_test_changed ON entity_test (changed);
+138 : ALTER TABLE entity_test ADD COLUMN name varchar(32)
+139 : INSERT INTO `entity_test` (`idx`,`created`,`changed`,`name`) VALUES (NULL,'1438788295','1438788295','JaeHo')
+140 : SELECT * FROM entity_test WHERE idx = '1' LIMIT 1
+141 : SELECT * FROM entity_test WHERE name = 'JaeHo' LIMIT 1
+142 : ALTER TABLE entity_test_2 ADD COLUMN created INT UNSIGNED DEFAULT 0
+143 : ALTER TABLE entity_test_2 ADD COLUMN changed INT UNSIGNED DEFAULT 0
+144 : CREATE INDEX entity_test_2_created ON entity_test_2 (created);
+145 : CREATE INDEX entity_test_2_changed ON entity_test_2 (changed);
+146 : ALTER TABLE entity_test_2 ADD COLUMN a char(255)
+147 : ALTER TABLE entity_test_2 ADD COLUMN b char(255)
+148 : ALTER TABLE entity_test_2 ADD COLUMN c char(255)
+149 : INSERT INTO `entity_test_2` (`idx`,`created`,`changed`,`a`,`b`,`c`) VALUES (NULL,'1438788295','1438788295','A','B','C')
+150 : SELECT COUNT(*) FROM entity_test_2  LIMIT 1
+151 : SELECT * FROM entity_test_2 WHERE a = 'A' LIMIT 1
+152 : INSERT INTO `entity_test_2` (`idx`,`created`,`changed`,`a`,`b`,`c`) VALUES (NULL,'1438788295','1438788295','1','2','3')
+153 : SELECT * FROM entity_test_2 WHERE a = '1' LIMIT 1
+154 : ALTER TABLE user_meta ADD COLUMN created INT UNSIGNED DEFAULT 0
+155 : ALTER TABLE user_meta ADD COLUMN changed INT UNSIGNED DEFAULT 0
+156 : CREATE INDEX user_meta_created ON user_meta (created);
+157 : CREATE INDEX user_meta_changed ON user_meta (changed);
+158 : ALTER TABLE user_meta ADD COLUMN idx_target INT
+159 : ALTER TABLE user_meta ADD COLUMN code varchar(64)
+160 : ALTER TABLE user_meta ADD COLUMN value TEXT
+161 : CREATE INDEX user_meta_idx_target ON user_meta (idx_target);
+162 : SELECT * FROM user_meta  LIMIT 1
+163 : SELECT * FROM user_meta  LIMIT 1
+164 : ALTER TABLE test_meta ADD COLUMN created INT UNSIGNED DEFAULT 0
+165 : ALTER TABLE test_meta ADD COLUMN changed INT UNSIGNED DEFAULT 0
+166 : CREATE INDEX test_meta_created ON test_meta (created);
+167 : CREATE INDEX test_meta_changed ON test_meta (changed);
+168 : ALTER TABLE test_meta ADD COLUMN idx_target INT
+169 : ALTER TABLE test_meta ADD COLUMN code varchar(64)
+170 : ALTER TABLE test_meta ADD COLUMN value TEXT
+171 : CREATE INDEX test_meta_idx_target ON test_meta (idx_target);
+172 : SELECT * FROM test_meta WHERE code = 'a' LIMIT 1
+173 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438788295','1438788295','a','A','0')
+174 : SELECT * FROM test_meta WHERE code = 'b' LIMIT 1
+175 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438788296','1438788296','b','B','0')
+176 : SELECT * FROM test_meta WHERE code = 'c' LIMIT 1
+177 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438788296','1438788296','c','C','0')
+178 : SELECT * FROM test_meta WHERE code = 'a' LIMIT 1
+179 : SELECT * FROM test_meta WHERE code = 'a' LIMIT 1
+180 : SELECT * FROM test_meta WHERE code = 'hi.ace' LIMIT 1
+181 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438788296','1438788296','hi.ace','car','0')
+182 : SELECT * FROM test_meta WHERE code = 'hi.there' LIMIT 1
+183 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438788296','1438788296','hi.there','hadein','0')
+184 : SELECT * FROM test_meta WHERE code = 'hi.toeic' LIMIT 1
+185 : INSERT INTO `test_meta` (`idx`,`created`,`changed`,`code`,`value`,`idx_target`) VALUES (NULL,'1438788296','1438788296','hi.toeic','helloopic','0')
+186 : SELECT * FROM test_meta WHERE code LIKE 'hi.%'
+187 : Module::run() => sap\core\Install\Install::check ()
+188 : Module::run() => sap\core\Config\Config::getDatabasePath ()
+189 : Module::run() => sap\core\Config\Config::getDatabasePath ()
+190 : Module::run() => sap\core\Config\Config::getDatabasePath ()
+0 : SELECT * FROM config_meta WHERE code LIKE 'install.%'
+1 : Module::run() => sap\core\front\front::page ()
+2 : SELECT COUNT(*) FROM user  LIMIT 1
+0 : SELECT * FROM config_meta WHERE code LIKE 'install.%'
+1 : Module::run() => sap\core\front\front::page ()
+2 : SELECT COUNT(*) FROM user  LIMIT 1
+0 : SELECT * FROM config_meta WHERE code LIKE 'install.%'
+1 : Module::run() => sap\core\front\front::page ()
+2 : SELECT COUNT(*) FROM user  LIMIT 1
+0 : SELECT * FROM config_meta WHERE code LIKE 'install.%'
+1 : Module::run() => sap\core\front\front::page ()
+2 : SELECT COUNT(*) FROM user  LIMIT 1
+0 : SELECT * FROM config_meta WHERE code LIKE 'install.%'
+1 : Module::run() => sap\core\front\front::page ()
+2 : SELECT COUNT(*) FROM user  LIMIT 1
+0 : SELECT * FROM config_meta WHERE code LIKE 'install.%'
+1 : Module::run() => sap\core\front\front::page ()
+2 : SELECT COUNT(*) FROM user  LIMIT 1
+0 : SELECT * FROM config_meta WHERE code LIKE 'install.%'
+1 : Module::run() => sap\user\login::page ()
