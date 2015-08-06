@@ -14,16 +14,17 @@ class User extends Entity {
         Response::renderSystemLayout(['template'=>'user-page']);
     }
 
-    public static function login() {
+    public static function login_page() {
         if ( submit() ) {
             if ( User::loginCheck(Request::get('id'), Request::get('password')) ) {
-                echo "login success";
+                User::login(Request::get('id'));
+                return Response::redirect(ROUTE_ROOT);
             }
             else {
 
             }
         }
-        Response::render(['template'=>'login']);
+        return Response::render(['template'=>'login']);
     }
 
     /**
@@ -113,6 +114,23 @@ class User extends Entity {
         if ( empty($id) ) return error(ERROR_ID_IS_EMPTY);
         if ( strlen($id) > 32 ) return error(ERROR_ID_TOO_LONG);
         return OK;
+    }
+
+    public static function login($id)
+    {
+        $user = User::load('id', $id);
+        session_set('user-id', $id);
+        session_set('user-session-id', self::getUserSessionID($user));
+    }
+
+    public static function getUserSessionID(Entity &$user)
+    {
+        $str = $user->get('idx');
+        $str .= ':' . $user->get('id');
+        $str .= ':' . $user->get('password');
+        $str .= ':' . $user->get('name');
+        $str .= ':' . $user->get('email');
+        return md5($str);
     }
 
 }
