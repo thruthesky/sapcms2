@@ -9,7 +9,7 @@
 
     <?php widget('login-box'); ?>
 
-    Number of users: <?php echo number_of_users() ?>
+    Number of users: <?php echo user_count() ?>
 
     <?php echo beautify(systeminfo())?>
 

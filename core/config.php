@@ -8,7 +8,8 @@ $theme = 'default';
 
 define('PATH_INSTALL', getcwd());
 define('PATH_DATA', PATH_INSTALL . '/data');
-define('PATH_LOG', PATH_INSTALL . '/debug.log');
+define('PATH_DEBUG_LOG', PATH_INSTALL . '/debug.log');
+define('PATH_ERROR_LOG', PATH_INSTALL . '/error.log');
 
 define('PATH_SQLITE_DATABASE', PATH_DATA . '/sapcms.sqlite');
 

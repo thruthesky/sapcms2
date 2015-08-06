@@ -368,10 +368,12 @@ class Database extends \PDO {
      * @param $table
      * @param array $keys_and_values
      * @return string
+     *
+     * @Attention When a value of a string is longer than then field character limit, it will cut off the last part of the string.
+     *      - This is the nature of PDO.
      */
     public function insert($table, array $keys_and_values)
     {
-
         $key_list = [];
         $value_list = [];
         foreach($keys_and_values as $k => $v ) {
@@ -387,8 +389,14 @@ class Database extends \PDO {
         $keys = implode(",", $key_list);
         $values = implode(",", $value_list);
         $q = "INSERT INTO `{$table}` ({$keys}) VALUES ({$values})";
-        dog($q);
-        $result = $this->exec($q);
+        $count = $this->exec($q);
+        if ( $count == 0 ) {
+            dog("SQL QUERY ERROR: $q");
+            return FALSE;
+        }
+        else {
+            dog("COUNT: $count");
+        }
         $insert_id = $this->lastInsertId();
         return $insert_id;
     }

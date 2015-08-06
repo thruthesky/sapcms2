@@ -50,10 +50,13 @@ class Response {
     public static function renderSystemLayout($render=[]) {
         if ( System::isCommandLineInterface() ) return;
         System::setRender($render);
+
         ob_start();
         include system_layout();
         $content = ob_get_clean();
+
         self::setHeaders();
+
         self::processContent($content);
     }
 
@@ -68,14 +71,70 @@ class Response {
         }
     }
 
-    public static function addJavascript($path)
+    public static function addJavascript($filename, $base=null)
     {
+        if ( empty($filename) ) {
+            $path = get_sapcms_path($base);
+            if ( strpos($path,'/template/') ) {
+                $path = str_replace(".html.php", '.js', $path);
+                $path = str_replace("/template/", '/js/', $path);
+            }
+            else {
+                $path = str_replace(".php", '.js', $path);
+                $pu = pathinfo($path);
+                $path = str_replace($pu['basename'], "js/$pu[basename]", $path);
+            }
+        }
+        else if ( strpos($filename, '/') === FALSE ) {
+            $path = get_sapcms_path($base);
+            $pu = pathinfo($path);
+            $path = str_replace($pu['basename'], $filename, $path);
+            if ( strpos($path,'/template/') ) {
+                $path = str_replace("/template/", '/js/', $path);
+            }
+            else {
+                $path = str_replace($filename, "js/$filename", $path);
+            }
+        }
+        else {
+            $path = $filename;
+        }
+        $path = url_complete($path);
         self::$javascript[$path] = true;
+        return $path;
     }
 
-    public static function addCss($path)
+    public static function addCss($filename, $base=null)
     {
+        if ( empty($filename) ) {
+            $path = get_sapcms_path($base);
+            if ( strpos($path,'/template/') ) {
+                $path = str_replace(".html.php", '.css', $path);
+                $path = str_replace("/template/", '/css/', $path);
+            }
+            else {
+                $path = str_replace(".php", '.css', $path);
+                $pu = pathinfo($path);
+                $path = str_replace($pu['basename'], "css/$pu[basename]", $path);
+            }
+        }
+        else if ( strpos($filename, '/') === FALSE ) {
+            $path = get_sapcms_path($base);
+            $pu = pathinfo($path);
+            $path = str_replace($pu['basename'], $filename, $path);
+            if ( strpos($path,'/template/') ) {
+                $path = str_replace("/template/", '/css/', $path);
+            }
+            else {
+                $path = str_replace($filename, "css/$filename", $path);
+            }
+        }
+        else {
+            $path = $filename;
+        }
+        $path = url_complete($path);
         self::$css[$path] = true;
+        return $path;
     }
 
     private static function processContent(&$content)
@@ -104,6 +163,11 @@ class Response {
             $js .= "<script type='text/javascript' src='$path'></script>" . PHP_EOL;
         }
         return $js;
+    }
+
+    public static function render($data=[])
+    {
+        self::renderLayout($data);
     }
 
 

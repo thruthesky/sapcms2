@@ -3,7 +3,9 @@ use sap\core\Config\Config;
 use sap\core\System\System;
 use sap\core\User\User;
 use sap\src\Database;
+use sap\src\Entity;
 use sap\src\Form;
+use sap\src\Request;
 use sap\src\SQL;
 
 
@@ -78,4 +80,13 @@ function system_config($code) {
     }
 
     return $value;
+}
+
+
+function submit() {
+    return Request::submit();
+}
+
+function user_count() {
+    return Entity::query('user')->count();
 }

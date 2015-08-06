@@ -21,5 +21,17 @@ $error_message[ERROR_MODULE_ALREADY_INSTALLED] = 'Module is already enabled.';
 define('ERROR_MODULE_NOT_INSTALLED', -400504);
 $error_message[ERROR_MODULE_NOT_INSTALLED] = 'Module is not enabled.';
 
+define('ERROR_USER_NOT_FOUND_BY_THAT_ID', -5011);
+$error_message[ERROR_USER_NOT_FOUND_BY_THAT_ID] = 'User is not found by that ID - #id';
+
+define('ERROR_WRONG_PASSWORD', -5012);
+$error_message[ERROR_WRONG_PASSWORD] = 'Wrong password.';
 
 
+define('ERROR_ID_TOO_LONG', -5013);
+$error_message[ERROR_ID_TOO_LONG] = 'The length of User ID is too long.';
+
+define('ERROR_ID_IS_EMPTY', -5014);
+$error_message[ERROR_ID_IS_EMPTY] = 'ID is empty.';
+define('ERROR_PASSWORD_IS_EMPTY', -5015);
+$error_message[ERROR_PASSWORD_IS_EMPTY] = 'Password is empty.';

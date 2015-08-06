@@ -1,6 +1,7 @@
 <?php
 namespace sap\core\User;
 use sap\src\Entity;
+use sap\src\Request;
 use sap\src\Response;
 
 class User extends Entity {
@@ -13,9 +14,36 @@ class User extends Entity {
         Response::renderSystemLayout(['template'=>'user-page']);
     }
 
-    public static function create($table='user')
+    public static function login() {
+        if ( submit() ) {
+            if ( User::loginCheck(Request::get('id'), Request::get('password')) ) {
+                echo "login success";
+            }
+            else {
+
+            }
+        }
+        Response::render(['template'=>'login']);
+    }
+
+    /**
+     * @param string $id
+     *
+     * @return Entity
+     *
+     * @Attention
+     *
+     *  - It does not check if the ID is already taken.
+     *
+     */
+    public static function create($id)
     {
-        return parent::create($table);
+        $user = parent::create('user');
+        if ( self::checkUserID($id) ) {
+            return FALSE;
+        }
+        $user->set('id', $id);
+        return $user;
     }
     public static function load($field=null, $value='idx', $table='user')
     {
@@ -50,6 +78,41 @@ class User extends Entity {
             ->index('birth_year,birth_month,birth_day');
     }
 
+    /**
+     * @param $id
+     * @param $password
+     * @return int
+     *
+     *      - TRUE if login is OKay.
+     *      - FALSE if error. Use get_error() function to check error.
+     *
+     * @Attention Use this method to check User ID and Password.
+     *
+     *      - Do not use Entity()->checkPassword directly since the return value is confusing.
+     *
+     *
+     */
+    public static function loginCheck($id, $password)
+    {
+        $user = User::load('id', $id);
+        if ( $user ) {
+            if ( $user->checkPassword($password) ) return TRUE;
+            else {
+                error(ERROR_WRONG_PASSWORD);
+                return FALSE;
+            }
+        }
+        else {
+            error(ERROR_USER_NOT_FOUND_BY_THAT_ID, ['id'=>$id]);
+            return FALSE;
+        }
+    }
 
+    private static function checkUserID($id)
+    {
+        if ( empty($id) ) return error(ERROR_ID_IS_EMPTY);
+        if ( strlen($id) > 32 ) return error(ERROR_ID_TOO_LONG);
+        return OK;
+    }
 
 }

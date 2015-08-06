@@ -11,11 +11,17 @@ use sap\src\Request;
 use sap\src\Response;
 use sap\src\Route;
 
+/**
+ *
+ *
+ */
 class System {
     static $system = null;
     static $version = '2.0.1';
     private static $count_log = 0;
     private static $config_database = null;
+    private static $isInstalled = false;
+    private static $error;
     private $path = null;
     private $filename =null;
     public $script = null;
@@ -155,12 +161,17 @@ class System {
         self::load();
         self::loadDatabaseConfiguration();
         self::load_core_module_files();
+
+        if ( Install::check() ) self::isInstalled(true);
         /**
          * Return after loading System and its core libraries,
          *  if it is running on CLI without checking Installation and running further.
          */
         if ( System::isCommandLineInterface() ) return CommandLineInterface::Run();
-        if ( ! Install::check() ) return Install::runInstall();
+        if ( ! self::isInstalled() ) return Install::runInstall();
+
+
+
         self::load_module_files();
         System::runModule();
         return OK;
@@ -235,6 +246,35 @@ class System {
         }
     }
 
+    public static function isInstalled($flag=null)
+    {
+        if ( $flag === null ) return self::$isInstalled;
+        else return self::$isInstalled = $flag;
+    }
+
+
+    /**
+     * @param $code
+     * @param array $array_kvs
+     * @return mixed
+     */
+    public static function error($code, $array_kvs=[])
+    {
+        $msg = get_error_message($code);
+        if ( $array_kvs ) {
+            foreach( $array_kvs as $k => $v ) {
+                $msg = str_replace('#'.$k, $v, $msg);
+            }
+        }
+        self::$error[$code] = $msg;
+        System::error_log("$code:$msg");
+        return $code;
+    }
+
+    public static function getError() {
+        return self::$error;
+    }
+
 
     /**
      *
@@ -278,7 +318,6 @@ class System {
         return $this;
     }
 
-
     /**
      * @param $str
      * @TODO @WARNING If the log file permission is not open to public, then it will create error.
@@ -287,10 +326,20 @@ class System {
     public static function log ( $str )
     {
         if ( empty($str) ) return OK;
-
         $str = is_string($str) ? $str : print_r( $str, true );
+        return File::append(PATH_DEBUG_LOG, self::$count_log++ . ' : ' . $str . "\n");
+    }
 
-        return File::append(PATH_LOG, self::$count_log++ . ' : ' . $str . "\n");
+    /**
+     * @param $str
+     * @TODO @WARNING If the log file permission is not open to public, then it will create error.
+     * @return int|void
+     */
+    public static function error_log ( $str )
+    {
+        if ( empty($str) ) return OK;
+        $str = is_string($str) ? $str : print_r( $str, true );
+        return File::append(PATH_ERROR_LOG, $str . "\n");
     }
 
 

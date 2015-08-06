@@ -51,9 +51,17 @@ function is_core_module($module=null) {
     return in_array($module, System::getCoreModules());
 }
 
+
 function dog($msg) {
     System::log($msg);
 }
+function error($code, $array_kvs=[]) {
+    return System::error($code, $array_kvs);
+}
+function get_error() {
+    return System::getError();
+}
+
 
 function ip() {
     return isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
@@ -89,19 +97,27 @@ function get_last_included_file() {
 }
 
 function get_sapcms_path($path) {
-    $ds = DIRECTORY_SEPARATOR;
-    $folders = ['core', 'module', 'theme'];
+    if ( DIRECTORY_SEPARATOR != '/' ) $path = str_replace(DIRECTORY_SEPARATOR, '/', $path);
+    $folders = ['core', 'module', 'theme', 'widget'];
     foreach( $folders as $folder ) {
-        if ( $n = strpos($path, "$ds$folder$ds") ) {
+        if ( $n = strpos($path, "/$folder/") ) {
             $str = substr($path, $n + 1);
-            if ( $ds != '/' ) $str = str_replace($ds, '/', $str);
             return $str;
         }
     }
     return null;
 }
 
-function add_url_internal_root(&$path) {
+/**
+ *
+ * This makes the $path into a complete URL.
+ *
+ * - if the System is not installed yet, it only returns the url begin with '/'.
+ *
+ * @param $path
+ * @return string
+ */
+function url_complete(&$path) {
     if ( $path[0] == '/' ) {
 
     }
@@ -109,13 +125,14 @@ function add_url_internal_root(&$path) {
 
     }
     else {
-        $pre = Config::load()->get(URL_SITE);
+        if ( ! System::isInstalled() ) $pre = '/';
+        else $pre = Config::load()->get(URL_SITE);
         $path = $pre . $path;
     }
     return $path;
 }
 
-
+/*
 function add_css($filename=null) {
     if ( empty($filename) ) {
         $file = get_last_included_file();
@@ -131,30 +148,20 @@ function add_css($filename=null) {
         $path = str_replace($pu['basename'], $filename, $path);
     }
     else {
-        $path = add_url_internal_root($filename);
+        $path = url_complete($filename);
     }
     Response::addCss($path);
 }
+*/
 
+function add_css($filename=null, $base=null) {
+    if ( empty($base) ) $base = get_last_included_file();
+    return Response::addCss($filename, $base);
+}
 
-function add_javascript($filename=null) {
-    if ( empty($filename) ) {
-        $file = get_last_included_file();
-        $path = get_sapcms_path($file);
-        $path = str_replace("/template/", '/js/', $path);
-        $path = str_replace(".html.php", '.js', $path);
-    }
-    else if ( strpos($filename, '/') === FALSE ) {
-        $file = get_last_included_file();
-        $path = get_sapcms_path($file);
-        $path = str_replace("/template/", '/js/', $path);
-        $pu = pathinfo($path);
-        $path = str_replace($pu['basename'], $filename, $path);
-    }
-    else {
-        $path = add_url_internal_root($filename);
-    }
-    Response::addJavascript($path);
+function add_javascript($filename=null, $base=null) {
+    if ( empty($base) ) $base = get_last_included_file();
+    return Response::addJavascript($filename, $base);
 }
 
 
@@ -190,4 +197,12 @@ function get_current_url()
 
 function widget($widget_name) {
     include "widget/$widget_name/$widget_name.php";
+}
+
+/**
+ * @param $plain_text_password
+ * @return string
+ */
+function encrypt_password($plain_text_password) {
+        return md5($plain_text_password);
 }
