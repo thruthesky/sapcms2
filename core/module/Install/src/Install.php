@@ -16,7 +16,9 @@ class Install {
     public static function page() {
         dog(__METHOD__);
         if ( Request::submit() ) self::submit();
-        else Response::renderSystemLayout(['template'=>'install.form']);
+        else {
+            Response::renderSystemLayout(['template'=>'install.form']);
+        }
     }
 
     public static function submit($options=[]) {
@@ -61,9 +63,8 @@ class Install {
         Config::initStorage();
         User::initStorage();
 
-        User::create()
-            ->set('id',$options['admin_id'])
-            ->set('password', $options['admin_password'])
+        User::create($options['admin_id'])
+            ->setPassword($options['admin_password'])
             ->save();
 
         Config::load()
@@ -109,9 +110,12 @@ class Install {
     public static function runInstall()
     {
         dog("System is going to install now.");
-        if ( Request::module('Install') ) System::runModule();
+        if ( Request::module('Install') ) {
+            System::runModule();
+        }
         else Response::redirect(ROUTE_INSTALL);
         return OK;
     }
+
 
 }

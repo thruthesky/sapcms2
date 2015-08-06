@@ -1,11 +1,10 @@
 <?php
-$database = "sqlite";
-$database_host = "";
-$database_name = "";
-$database_username = "";
-$database_password = "";
+$mode = "submit";
+$database = "mysql";
+$database_host = "localhost";
+$database_name = "test";
+$database_username = "root";
+$database_password = "7777";
 $admin_id = "admin";
 $admin_password = "1234";
-$admin_id = "admin";
-$admin_password = "1234";
-$url_site = "/";
+$url_site = "http://work.org:8080/";

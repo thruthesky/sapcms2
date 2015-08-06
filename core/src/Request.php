@@ -45,9 +45,18 @@ class Request {
         return Route::load()->module == $module_name;
     }
 
+    /**
+     *
+     * Returns TRUE
+     *  - if the form is submitted with the variable of'mode' and with value of 'submit'
+     *  - if the form is submitted in POST method.
+     *
+     * @return bool
+     */
     public static function submit()
     {
-        return self::get('mode') == 'submit';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') return TRUE;
+        else return self::get('mode') == 'submit';
     }
 
 }

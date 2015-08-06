@@ -21,14 +21,29 @@ class Entity {
         return $entity;
     }
 
+    /**
+     *
+     * Returns $this after loading Entity.
+     *
+     *      - return FALSE if no Entity found.
+     *
+     *      - You can check with 'emtpy()', 'false'.
+     *
+     * @param null $table
+     * @param null $field
+     * @param null $value
+     * @return bool|Entity
+     */
     public static function load($table=null, $field=null, $value=null) {
         $entity = new Entity($table);
+
         if ( empty($value) ) {
             $item = db_row($table, "idx = '$field'");
         }
         else {
             $item = db_row($table, "$field = '$value'");
         }
+
         if ( $item ) {
             $entity->fields = $item;
             call_hooks('entity_load', $entity);
@@ -78,9 +93,49 @@ class Entity {
         return $this;
     }
 
+    /**
+     *
+     * Encrypt the input (plain-text) password and save into 'password' field.
+     *
+     * @Attention This methods can be used only if the Entity has 'password fields'
+     *
+     * @param $plain_text_password
+     * @return $this
+     */
+    public function setPassword($plain_text_password)
+    {
+        if ( empty($plain_text_password) ) return error(ERROR_PASSWORD_IS_EMPTY);
+        $this->fields['password'] = encrypt_password($plain_text_password);
+        return $this;
+    }
 
     /**
+     *
+     * Checks the password.
+     *
+     * @param $plain_text_password
+     * @return bool
+     *
+     * @Attention
+     *
+     *      - FALSE is returned on wrong password.
+     *
+     *      - TRUE is returned on correct password.
+     */
+    public function checkPassword($plain_text_password)
+    {
+        if ( empty($plain_text_password) ) return FALSE;
+        return $this->fields['password'] == encrypt_password($plain_text_password);
+    }
+
+
+
+    /**
+     *
+     * @Attention it returns FALSE on error which is derived from PDO::exec()
+     *
      * @return $this
+     *
      *
      */
     public function save()
@@ -92,8 +147,13 @@ class Entity {
         }
         else {
             $idx = db_insert($this->table, $this->fields);
-            $this->fields['idx'] = $idx;
-            return $this;
+            if ( $idx === FALSE ) {
+                return FALSE;
+            }
+            else {
+                $this->fields['idx'] = $idx;
+                return $this;
+            }
         }
     }
 

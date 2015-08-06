@@ -1,0 +1,32 @@
+section.error {
+    background-color: #19b7ff;
+    text-shadow: none;
+    padding:1em;
+    border-radius: 2px;
+}
+section.error h2 {
+    margin:0;
+    padding:0;
+}
+section.error .row:after {
+    display:block;
+    content:'';
+    clear:both;
+}
+section.error .code,
+section.error .message {
+    float:left;
+    margin-right:.6em;
+    padding:.2em .6em;
+    background-color:white;
+    color:black;
+}
+section.error .message {
+}
+
+@media all and (min-width:400px) {
+    section.error .code,
+    section.error .message {
+        border-radius: 2px;
+    }
+}
