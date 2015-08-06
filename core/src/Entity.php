@@ -1,9 +1,13 @@
 <?php
 namespace sap\src;
 
+
 class Entity {
+    private static $loadCache = [];
     private $fields = [];
     private $table = null;
+    private $cacheCode = null;
+
     public function __construct($table) {
         $this->table = $table;
     }
@@ -27,27 +31,34 @@ class Entity {
      *
      *      - return FALSE if no Entity found.
      *
-     *      - You can check with 'emtpy()', 'false'.
+     *      - You can check with 'empty()', 'false'.
+     *
+     * @Attention It memory caches. So you can call this method as much as you can.
      *
      * @param null $table
      * @param null $field
      * @param null $value
-     * @return bool|Entity
+     * @return Entity
      */
     public static function load($table=null, $field=null, $value=null) {
+        $code = "$table:$field:$value";
+        if ( isset(self::$loadCache[$code]) ) return self::$loadCache[$code];
         $entity = new Entity($table);
-
+        /**
+         * Remember cacheCode to delete from memory when it is deleted
+         */
+        $entity->cacheCode = $code;
         if ( empty($value) ) {
             $item = db_row($table, "idx = '$field'");
         }
         else {
             $item = db_row($table, "$field = '$value'");
         }
-
         if ( $item ) {
             $entity->fields = $item;
             call_hooks('entity_load', $entity);
-            return $entity;
+            self::$loadCache[$code] = $entity;
+            return self::$loadCache[$code];
         }
         else return FALSE;
     }
@@ -199,6 +210,10 @@ class Entity {
         if ( $idx = $this->get('idx') ) {
             db_delete($this->table, "idx=$idx");
             $this->fields = [];
+            /**
+             * Deleting cache on made by load()
+             */
+            unset(self::$loadCache[$this->cacheCode]);
         }
         return $this;
     }

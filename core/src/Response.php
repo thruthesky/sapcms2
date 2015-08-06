@@ -11,11 +11,12 @@ class Response {
      * @param $url
      *
      * Attention It ends the script.
+     * @return int
      */
     public static function redirect($url) {
-
         self::setHeaders();
         echo Javascript::location($url);
+        return OK;
     }
 
     public static function html($content)
@@ -27,6 +28,7 @@ class Response {
         self::setHeaders();
         $content = $html->get();
         self::processContent($content);
+        return OK;
     }
 
     public static function renderLayout($render=[]) {
@@ -44,11 +46,12 @@ class Response {
         self::setHeaders();
         self::processContent($content);
 
+        return OK;
     }
 
 
     public static function renderSystemLayout($render=[]) {
-        if ( System::isCommandLineInterface() ) return;
+        if ( System::isCommandLineInterface() ) return OK;
         System::setRender($render);
 
         ob_start();
@@ -58,6 +61,7 @@ class Response {
         self::setHeaders();
 
         self::processContent($content);
+        return OK;
     }
 
 
@@ -167,7 +171,7 @@ class Response {
 
     public static function render($data=[])
     {
-        self::renderLayout($data);
+        return self::renderLayout($data);
     }
 
 

@@ -8,6 +8,9 @@ $error_message[ERROR_NO_DATABASE_CONFIG_FILE] = 'Database configuration file is 
 
 
 define('ROUTE_INSTALL', "/install");
+define('ROUTE_ROOT', '/');
+
+
 define('ERROR_INSTALL', -1234);
 define('ERROR_FAIL_TO_SAVE', -400101);
 define('ERROR_FAIL_TO_READ', -400102);

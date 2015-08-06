@@ -3,5 +3,5 @@ use sap\src\Entity;
 use sap\src\Route;
 
 Route::add('/user', 'User\\User\\page');
-Route::add('/user/login', 'User\\User\\login');
+Route::add('/user/login', 'User\\User\\login_page');
 include 'User.hook.php';

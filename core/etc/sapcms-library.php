@@ -1,6 +1,7 @@
 <?php
 use sap\core\Config\Config;
 use sap\core\System\System;
+use sap\core\User\User;
 use sap\src\Database;
 use sap\src\Request;
 use sap\src\Response;
@@ -205,4 +206,103 @@ function widget($widget_name) {
  */
 function encrypt_password($plain_text_password) {
         return md5($plain_text_password);
+}
+
+
+
+/**
+ * Returns domain in lower character.
+ *
+ * It includes all the domain ( 2nd, 3rd )
+ *
+ * @Attention it does not includes port.
+ *
+ * @code Return example
+abc.123.456.com
+www.abc.com
+abc.com
+ * @endcode
+
+ */
+
+function domain_name()
+{
+    if ( isset( $_SERVER['HTTP_HOST'] ) ) {
+        $domain = $_SERVER['HTTP_HOST'];
+        $domain = strtolower($domain);
+        if ( strpos($domain, ':') ) list ( $domain, $trash ) = explode(':', $domain, 2);
+        return $domain;
+    }
+    else return NULL;
+}
+
+/**
+ *
+ * @brief Saves key and value into cookie.
+ * @note
+ *  You can save NULL, empty string, 0
+ * @param $k - the key
+ * @param null $v - the value
+ * @param int $exp - the time to be expire. the default is 1 year.
+ * @param $domain - the domain that this cookie will be available.
+ *      - if $domain is null, it will be available for all subdomain.
+ *
+ */
+function session_set($k, $v=null, $exp=null, $domain=null)
+{
+    if ( empty($exp) ) $exp = time() + 365 * 24 * 60 * 60;
+    $dir = '/';
+    if ( empty($domain) ) $domain = domain_name();
+
+    /// cookie for that domain olnly
+    setcookie($k, $v, $exp, $dir, $domain);
+
+    /// cookie for all sub domain.
+    $domains = explode('.',$domain);
+    $count = count($domains) - 1;
+    for ( $i=0; $i < $count; $i ++ ) {
+        $sub_domain = '.' . implode('.', $domains);
+        array_shift($domains);
+        setcookie($k, $v, $exp, $dir, $sub_domain);
+    }
+}
+
+
+function session_delete($k, $domain=NULL)
+{
+    $dir = '/';
+    if ( empty($domain) ) $domain = domain_name();
+    setcookie($k, NULL, time()-3600*24*30, $dir, $domain);
+
+
+
+    /// cookie for all sub domain.
+    $domains = explode('.',$domain);
+    $count = count($domains) - 1;
+    for ( $i=0; $i < $count; $i ++ ) {
+        $sub_domain = '.' . implode('.', $domains);
+        array_shift($domains);
+        setcookie($k, NULL, time()-3600*24*30, $dir, $sub_domain);
+    }
+
+
+
+}
+
+function session_get($k)
+{
+    if ( isset($_COOKIE[$k]) ) return $_COOKIE[$k];
+    else return NULL;
+}
+
+function get_login_user() {
+    $id = session_get('user-id');
+    $session_id = session_get('user-session-id');
+    if ( empty($id) || empty($session_id) ) return FALSE;
+
+    $user = User::load('id', $id);
+    if ( empty($user) ) return FALSE;
+    
+    if ( $session_id == User::getUserSessionID($user) ) return $user;
+    else return FALSE;
 }
