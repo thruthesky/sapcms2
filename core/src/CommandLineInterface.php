@@ -51,13 +51,13 @@ class CommandLineInterface {
 
                 }
                 else if ( $code == '--delete' ) {
-                    Config::load()->delete($value);
+                    config()->delete($value);
                 }
                 else if ( ! empty($value) ) {
-                    Config::load()->set($code, $value);
+                    config()->set($code, $value);
                 }
                 else {
-                    echo Config::load()->get($code) . PHP_EOL;
+                    echo config()->get($code) . PHP_EOL;
                 }
             }
         }

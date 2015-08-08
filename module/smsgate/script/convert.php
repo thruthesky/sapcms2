@@ -1,6 +1,5 @@
 <?php
-use sap\core\Database;
-use sap\core\Entity;
+use sap\src\Database;
 
 $table = 'sms_extract_numbers';
 
@@ -8,7 +7,6 @@ $table = 'sms_extract_numbers';
 //$old = Database::mysql('localhost', 'test', 'root', '7777');
 
 $db = Database::load();
-
 
 $i = 0;
 
@@ -24,15 +22,15 @@ while ( $row = $db->row('sms_numbers') ) {
         if ( !empty($row['number']) ) {
             unset($row['mobile_number']);
             unset($row['idx']);
-            $sms = Entity::load($table, 'number', $row['number']);
+            $sms = entity($table)->load('number', $row['number']);
             if ( $sms ) {
                 echo 'U';
-                $sms->sets($row)->save();
+                $sms->set($row)->save();
             }
             else {
                 echo 'n';
-                Entity::create($table)
-                    ->sets($row)
+                entity($table)
+                    ->set($row)
                     ->save();
             }
         }
@@ -66,26 +64,3 @@ function adjust_number($number)
 }
 
 
-/*
-$sms = Entity::load($table, 'idx', 5);
-$sms->set('changed', time())
-    ->save();
-*/
-
-
-
-
-
-/*
-stamp_last_sent
-count_sent
-origin
-keyword
-mobile_number
-count_collection
-username
-location
-title
-stamp_last_collection
-stamp_last_post
-*/

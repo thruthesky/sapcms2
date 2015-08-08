@@ -110,14 +110,11 @@ class System {
 
 
 
-    public static function module_install_code($name) {
-        return "module.$name";
-    }
     public static function enable($name)
     {
         if ( empty($name) ) return ERROR_MODULE_NAME_EMPTY;
-        $code = self::module_install_code($name);
-        if ( config()->get($code) ) return ERROR_MODULE_ALREADY_INSTALLED;
+
+        if ( config()->group('module')->get($name) ) return ERROR_MODULE_ALREADY_INSTALLED;
         $path_module = PATH_MODULE . "/$name";
         if ( ! is_dir($path_module) ) return ERROR_MODULE_NOT_EXISTS;
 
@@ -133,7 +130,7 @@ class System {
         $variables = ['name'=>$name];
         hook('module_enable', $variables);
 
-        config()->set($code, $name);
+        config()->group('module')->set($name, $name);
         return OK;
     }
 
@@ -146,9 +143,9 @@ class System {
     public static function disable($name)
     {
         if ( empty($name) ) return ERROR_MODULE_NAME_EMPTY;
-        $code = self::module_install_code($name);
-        if ( config()->get($code) ) {
-            config()->delete($code);
+
+        if ( config()->group('module')->get($name) ) {
+            config()->group('module')->delete($name);
 
             $path_module = PATH_MODULE . "/$name";
 
@@ -178,7 +175,12 @@ class System {
         self::loadDatabaseConfiguration();
         self::load_core_module_files();
 
-        if ( Install::check() ) self::isInstalled(true);
+
+        if ( Install::check() ) {
+            self::isInstalled(true);
+            self::load_module_files();
+        }
+
         /**
          * Return after loading System and its core libraries,
          *  if it is running on CLI without checking Installation and running further.
@@ -186,20 +188,19 @@ class System {
         if ( System::isCommandLineInterface() ) return CommandLineInterface::Run();
         if ( ! self::isInstalled() ) return Install::runInstall();
 
-
-
-        self::load_module_files();
         System::runModule();
         return OK;
     }
 
     private static function load_module_files()
     {
-        $install = config()->group('install');
+
+        $install = config()->group('module')->gets();
+
         if ( $install ) {
-            foreach( $install as $module ) {
+            foreach( $install as $code => $module ) {
                 self::addModuleLoaded($module);
-                $path = "module/$module[value]/$module[value].module";
+                $path = "module/$module/$module.module";
                 $variables = ['module'=>$module, 'path'=>$path];
                 hook('before_module_load', $variables);
                 include $path;
