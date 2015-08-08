@@ -1,30 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dedb495c-801f-427b-ac2d-43cb9235d7e2" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\work\www\sapcms2\data\config\database.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/CommandLineInterface.php" afterPath="$PROJECT_DIR$/core/src/CommandLineInterface.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/module/Config/tests/ConfigTest.php" afterPath="$PROJECT_DIR$/core/module/Config/tests/ConfigTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/Database.php" afterPath="$PROJECT_DIR$/core/src/Database.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/Entity.php" afterPath="$PROJECT_DIR$/core/src/Entity.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/Meta.php" afterPath="$PROJECT_DIR$/core/src/Meta.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/tests/MetaTest.php" afterPath="$PROJECT_DIR$/core/tests/MetaTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/Module.php" afterPath="$PROJECT_DIR$/core/src/Module.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/module/System/src/System.php" afterPath="$PROJECT_DIR$/core/module/System/src/System.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/Theme.php" afterPath="$PROJECT_DIR$/core/src/Theme.php" />
-      <change type="MODIFICATION" beforePath="C:\work\www\sapcms2\core\module\user\User.hook.php" afterPath="$PROJECT_DIR$/core/module/user/User.hook.php" />
-      <change type="MODIFICATION" beforePath="C:\work\www\sapcms2\core\module\user\src\User.php" afterPath="$PROJECT_DIR$/core/module/user/src/User.php" />
-      <change type="MODIFICATION" beforePath="C:\work\www\sapcms2\core\module\user\src\UserController.php" afterPath="$PROJECT_DIR$/core/module/user/src/UserController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/module/admin/admin.hook.php" afterPath="$PROJECT_DIR$/core/module/admin/admin.hook.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/debug.log" afterPath="$PROJECT_DIR$/debug.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/error.log" afterPath="$PROJECT_DIR$/error.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/module/front/front.module" afterPath="$PROJECT_DIR$/core/module/front/front.module" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/module/admin/template/index.html.php" afterPath="$PROJECT_DIR$/core/module/admin/template/index.html.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/etc/sapcms-library.php" afterPath="$PROJECT_DIR$/core/etc/sapcms-library.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/sapcms.sqlite" afterPath="$PROJECT_DIR$/data/sapcms.sqlite" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module/smsgate/smsgate.module" afterPath="$PROJECT_DIR$/module/smsgate/smsgate.module" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="dedb495c-801f-427b-ac2d-43cb9235d7e2" name="Default" comment="" />
     <ignored path="sapcms2.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
