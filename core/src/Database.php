@@ -303,6 +303,12 @@ class Database extends \PDO {
     }
 
 
+    /**
+     * @param $table
+     * @param null $cond
+     * @param string $field
+     * @return array
+     */
     public function rows($table, $cond=null, $field='*')
     {
         $cond = $this->adjustCondition($cond);
@@ -433,6 +439,7 @@ class Database extends \PDO {
         $statement = $this->query($q);
         return OK;
     }
+
 
 
     /**

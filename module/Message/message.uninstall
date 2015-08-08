@@ -1,0 +1,8 @@
+<?php
+echo "-------------------------------------------\n";
+echo "Un-installing message module : ...\n";
+echo "Deleting table(s) : ...\n";
+
+message()->dropTable();
+
+echo "Un-installed !\n";

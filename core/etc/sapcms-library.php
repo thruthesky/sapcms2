@@ -72,11 +72,14 @@ function user_agent() {
     return isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
 }
 
-$hooks = [];
+// $hooks = [];
+/*
 function register_hook($hook, $func) {
     global $hooks;
     $hooks[$hook][] = $func;
 }
+*/
+/*
 function call_hooks($hook, &$args=[]) {
     global $hooks;
     if ( isset($hooks[$hook]) ) {
@@ -85,6 +88,16 @@ function call_hooks($hook, &$args=[]) {
         }
     }
 }
+*/
+
+
+function hook($hook_name, &$variables=[]) {
+    foreach( System::getModuleLoaded() as $module ) {
+        $func = "hook{$hook_name}_for_$module";
+        if ( function_exists($func) ) $func($variables);
+    }
+}
+
 
 
 function get_error_message($code) {

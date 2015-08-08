@@ -1,4 +1,2 @@
 <?php
-register_hook('template_script', function(&$variables){
 
-});

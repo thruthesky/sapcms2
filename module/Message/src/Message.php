@@ -1,5 +1,5 @@
 <?php
-namespace sap;
+namespace sap\message;
 use sap\src\Entity;
 define('MESSAGE_TABLE', 'message');
 class Message extends Entity {
@@ -12,22 +12,14 @@ class Message extends Entity {
         return "0.1";
     }
 
-    public static function init() {
-        parent::createTable(MESSAGE_TABLE)
+    public function createTable() {
+        parent::createTable()
             ->add('idx_from', 'INT UNSIGNED DEFAULT 0')
             ->add('idx_to', 'INT')
             ->add('title', 'varchar')
+            ->add('content', 'TEXT')
             ->index('idx_from')
             ->index('idx_to');
     }
-
-
-    public static function load($field=null, $value=null) {
-        $message = new Message();
-        $message->find(MESSAGE_TABLE, $field, $value);
-    }
-
-
-
 
 }

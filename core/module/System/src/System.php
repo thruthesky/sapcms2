@@ -22,6 +22,7 @@ class System {
     private static $config_database = null;
     private static $isInstalled = false;
     private static $error;
+    private static $module_loaded = [];
     private $path = null;
     private $filename =null;
     public $script = null;
@@ -110,25 +111,29 @@ class System {
 
 
     public static function module_install_code($name) {
-        return "install.$name";
+        return "module.$name";
     }
     public static function enable($name)
     {
         if ( empty($name) ) return ERROR_MODULE_NAME_EMPTY;
         $code = self::module_install_code($name);
-        if ( Config::load()->get($code) ) return ERROR_MODULE_ALREADY_INSTALLED;
+        if ( config()->get($code) ) return ERROR_MODULE_ALREADY_INSTALLED;
         $path_module = PATH_MODULE . "/$name";
         if ( ! is_dir($path_module) ) return ERROR_MODULE_NOT_EXISTS;
 
 
-        include "$path_module/$name.module";
+        // 1. include module script first
+        $path = "$path_module/$name.module";
+        if ( file_exists($path) ) include $path;
+
+        // 2. include install script
+        $path = "$path_module/$name.install";
+        if ( file_exists($path) ) include $path;
 
         $variables = ['name'=>$name];
-        call_hooks('module_enable', $variables);
+        hook('module_enable', $variables);
 
-
-        Config::load()->set($code, $name);
-
+        config()->set($code, $name);
         return OK;
     }
 
@@ -142,11 +147,22 @@ class System {
     {
         if ( empty($name) ) return ERROR_MODULE_NAME_EMPTY;
         $code = self::module_install_code($name);
-        if ( Config::load()->get($code) ) {
-            Config::load()->delete($code);
+        if ( config()->get($code) ) {
+            config()->delete($code);
+
+            $path_module = PATH_MODULE . "/$name";
+
+
+            // 1. include module script first
+            $path = "$path_module/$name.module";
+            if ( file_exists($path) ) include $path;
+
+            // 2. include uninstall script
+            $path = "$path_module/$name.uninstall";
+            if ( file_exists($path) ) include $path;
 
             $variables = ['name'=>$name];
-            call_hooks('module_disable', $variables);
+            hook('module_disable', $variables);
         }
         else return ERROR_MODULE_NOT_INSTALLED;
 
@@ -182,26 +198,28 @@ class System {
         $install = config()->group('install');
         if ( $install ) {
             foreach( $install as $module ) {
+                self::addModuleLoaded($module);
                 $path = "module/$module[value]/$module[value].module";
                 $variables = ['module'=>$module, 'path'=>$path];
-                call_hooks('before_module_load', $variables);
+                hook('before_module_load', $variables);
                 include $path;
-                call_hooks('after_module_load', $variables);
+                hook('after_module_load', $variables);
             }
-            call_hooks('module_load_complete');
+            hook('module_load_complete');
         }
     }
     private static function load_core_module_files()
     {
         foreach ( self::getCoreModules() as $module ) {
+            self::addModuleLoaded($module);
             $path = "core/module/$module/$module.module";
             if ( file_exists($path) ) {
                 include $path;
                 $variables = ['module'=>$module, 'path'=>$path];
-                call_hooks('core_module_load', $variables);
+                hook('core_module_load', $variables);
             }
         }
-        call_hooks('core_module_load_complete');
+        hook('core_module_load_complete');
     }
 
     public static function getCoreModules()
@@ -276,6 +294,15 @@ class System {
 
     public static function getError() {
         return self::$error;
+    }
+
+    private static function addModuleLoaded($module)
+    {
+        self::$module_loaded[] = $module;
+    }
+    public static function getModuleLoaded()
+    {
+        return self::$module_loaded;
     }
 
 

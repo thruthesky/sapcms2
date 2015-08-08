@@ -21,7 +21,7 @@ class Theme {
         $variables = ['filename'=>$filename];
         $variables['path'] = "theme/$theme/template/$variables[filename].html.php";
         //print_r($variables);
-        call_hooks('theme_script', $variables);
+        hook('theme_script', $variables);
 
         if ( file_exists($variables['path']) ) return $variables['path'];
         else return FALSE;

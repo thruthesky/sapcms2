@@ -1,0 +1,8 @@
+<?php
+echo "-------------------------------------------\n";
+echo "Message module install : ...\n";
+echo "Creating table(s) : ...\n";
+
+message()->createTable();
+
+echo "Installed !\n";
