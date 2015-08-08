@@ -1,13 +1,11 @@
 <?php
-use sap\core\Database;
-use sap\core\Entity;
+
+use sap\src\Database;
+use sap\src\Entity;
+
 $db = Database::load();
 
-// 아래의 코드는 Entity 를 초기화 하는 것으로
-// 실제로 데이터베이스 테이블을 생성하고
-// 필드를 추하며,
-// 인덱스를 생성한다.
-Entity::init('temp')
+entity('temp')->createTable()
     ->add('name', 'varchar')
     ->add('mail', 'varchar')
     ->add('birth_year', 'int')
@@ -17,43 +15,37 @@ Entity::init('temp')
     ->index('name')
     ->index('birth_year,birth_month,birth_day');
 
-// 초기화 한 Entity 테이블을 수정(필드 추가 등)하는 방법
-Entity::storage('temp')
+
+entity('temp')->loadTable()
     ->add('gender', 'char', 1)
     ->index('gender');
-
 
 Database::load()->table('temp')->add('address', 'varchar', 255);
 
 
-$temp = Entity::create('temp')
+$temp = entity('temp')
+    ->create(['created'=>1, 'changed'=>2])
     ->set('name', 'JaeHo Song')
-    ->set('mail', 'thruthesky@gmail.com')
-    ->set('birth_year', 1973)
-    ->set('birth_month', 10)
-    ->set('birth_day', 16)
     ->save();
 
-// Entity 를 출력 할 수 있다.
-echo Entity::load('temp', $temp->get('idx'));
 
-$temp = Entity::create('temp')
-    ->set('name', 'Jae')
-    ->set('mail', 'thruthesky@naver.com')
-    ->set('birth_year', 1993)
-    ->set('birth_month', 10)
-    ->set('birth_day', 16)
+$temp = entity('temp')
+    ->set('name', 'Your-name')
     ->save();
 
-// 아래의 코드는 Entity 를 로드하고 수정하는 방법이다.
-$temp = Entity::load('temp', $temp->get('name'), 'name')
-    ->set('name', 'My Name: Jae')
-    ->save();
-echo $temp;
+echo entity('temp')->load($temp->get('idx'));
+echo user(1);
+echo user('id', 'admin');
 
-// 아래의 코드는 해당 Entity 를 삭제하는 방법이다.
+
 $temp->delete();
-// 삭제를 하면,
-echo $temp;
+entity('temp')->dropTable();
 
+
+entity('def')->createTable();
+entity('def')->loadTable()
+    ->add('name', 'varchar');
+entity('def')->set('name', 'jaeho')->save();
+entity('def')->load('name', 'jaeho')->delete();
+entity('def')->dropTable();
 

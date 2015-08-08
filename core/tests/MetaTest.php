@@ -8,19 +8,31 @@ class MetaTest extends PHPUnit_Framework_TestCase {
         parent::__construct();
     }
 
+
+    public function test_meta_entity_type() {
+
+        /* @todo do entity test */
+        /*
+        $entity = entity('user')->load('id', 'admin');
+        $user = user()->load('id', 'admin');
+
+        $this->assertTrue($entity instanceof Entity);
+        $this->assertTrue($user instanceof User);
+        */
+    }
+
     public function test_meta_create() {
         $user_meta = new Meta('user');
-        $user_meta->install();
+        $user_meta->createTable();
         $this->assertTrue( Database::load()->tableExists('user_meta') );
-        $user_meta->unInstall();
+        $user_meta->dropTable();
         $this->assertFalse( Database::load()->tableExists('user_meta') );
-        $user_meta->unInstall();
     }
 
     public function test_meta_action() {
         $meta = new Meta('test');
 
-        $meta->install();
+        $meta->createTable();
 
         $meta
             ->set('a','A')
@@ -29,16 +41,7 @@ class MetaTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue( $meta->getEntity('a') instanceof Entity );
         $this->assertTrue( $meta->get('a') == 'A' );
 
-        $meta
-            ->set('hi.ace', 'car')
-            ->set('hi.there', 'hadein')
-            ->set('hi.toeic', 'helloopic');
-
-        $row = $meta->group('hi');
-        $this->assertTrue( count($row) == 3 );
-
-
-        $meta->unInstall();
+        $meta->dropTable();
     }
 
 }

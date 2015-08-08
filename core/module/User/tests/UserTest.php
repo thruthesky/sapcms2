@@ -9,59 +9,72 @@ class UserTest extends PHPUnit_Framework_TestCase {
         parent::__construct();
     }
 
+    public function test_user_entity_type() {
+
+        $entity = entity('user')->load('id', 'admin');
+        $user = user()->load('id', 'admin');
+
+        $this->assertTrue($entity instanceof Entity);
+        $this->assertTrue($user instanceof User);
+    }
 
     public function test_user() {
         $id = 'sapcms2-test-id';
 
-        $user = Entity::load('user', 'id', $id);
+        $user = user('id', $id);
         if ( $user ) $user->delete();
 
-        $user = Entity::load('user', 'id', $id);
+        $user = user('id', $id);
         $this->assertFalse($user);
 
-        $user = Entity::create('user');
+
+        $user = user()->create('abc');
+
+        $this->assertTrue( $user instanceof User );
+        $this->assertTrue( $user instanceof Entity );
+
+        $user = user()->create();
         $this->assertNotEmpty($user);
 
         $user->set('id', $id)
             ->set('name', 'JaeHo Song')
             ->save();
 
-        $this->assertTrue( Entity::query('user')->count() > 0 );
+        $this->assertTrue( user()->count() > 0 );
 
         $user->delete();
 
     }
     public function test_create_save_delete() {
-        $user = Entity::create('user')
+        $user = user()
             ->set('id', "test-id-2")
             ->save()
             ->delete();
-        dog($user->idx);
-        $this->assertNull($user->idx);
 
-        $user = User::create("test-id-2")
+        $this->assertNull($user->get('idx'));
+
+        $user = user()->create("test-id-2")
             ->save()
             ->delete();
-        dog($user->idx);
-        $this->assertNull($user->idx);
 
+        $this->assertNull($user->get('idx'));
 
-        if ( $user = User::load('id', 'test-id-3') ) $user->delete();
+        if ( $user = user('id', 'test-id-3') ) $user->delete();
 
-        $user = User::create('test-id-3')
+        $user = user()->create('test-id-3')
             ->save();
         $this->assertNotEmpty($user);
         $this->assertTrue( is_array($user->get()) );
 
-        $idx = User::load('id', 'test-id-3')
+        $idx = user('id', 'test-id-3')
             ->get('idx');
         $this->assertNotEmpty($idx);
 
-        $user = User::load('id', 'test-id-3')
+        $user = user('id', 'test-id-3')
             ->delete();
         $this->assertNull($user->idx);
 
-        $user = User::load('id', 'test-id-3');
+        $user = user('id', 'test-id-3');
         $this->assertEmpty($user);
 
 
@@ -71,16 +84,16 @@ class UserTest extends PHPUnit_Framework_TestCase {
     public function test_user_password() {
         $id = "TEST ID 937";
         $password = "Test password 937.";
-        if ( $user = User::load('id', $id) ) $user->delete();
-        $created = User::create($id)
+        if ( $user = user('id', $id) ) $user->delete();
+        $created = user()->create($id)
             ->setPassword($password)
             ->save();
-        $user = User::load('id', $id);
+        $user = user('id', $id);
         $this->assertTrue($created->get('password') == encrypt_password($password));
         $this->assertTrue($user->get('password') == encrypt_password($password));
         $this->assertFalse($user->get('password') == "This is wrong password.");
-        $this->assertTrue(User::loginCheck($id, $password));
-        $this->assertFalse(User::loginCheck($id, $password.'wrong'));
+        $this->assertTrue(User::checkIDPassword($id, $password));
+        $this->assertFalse(User::checkIDPassword($id, $password.'wrong'));
         $user->delete();
     }
 

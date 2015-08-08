@@ -9,9 +9,17 @@ use sap\core\User\User;
 
 $id = "This is new id.";
 $password = "hmmv";
-if ( $user = User::load('id', $id) ) $user->delete();
 
-$user = User::create($id);
+if ( $user = user('id', $id) ) {
+    echo "User ($id) found\n";
+    //print_r($user);
+    $user->delete();
+    //print_r($user);
+}
+
+
+$user = user()->create($id);
+
 
 if ( $user ) {
     $user
@@ -19,9 +27,11 @@ if ( $user ) {
         ->set('name', "JaeHo M. Song")
         ->set('mail', 'jaeho2@naver.com')
         ->save();
+
+
     if ( $user ) {
-        if ( $code = User::loginCheck($id, $password) ) echo "ERROR: " . get_error_message($code);
-        else echo "OK";
+        if ( $code = User::checkIDPassword($id, $password) ) echo "OK";
+        else echo "ERROR: " . get_error_message($code);
         $user->delete();
     }
     else {

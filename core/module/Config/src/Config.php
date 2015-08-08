@@ -1,11 +1,10 @@
 <?php
 namespace sap\core\Config;
-
-
 use sap\core\Install\Install;
-use sap\src\Database;
 use sap\src\File;
 use sap\src\Meta;
+
+define('CONFIG_TABLE', 'config');
 
 class Config extends Meta
 {
@@ -14,9 +13,11 @@ class Config extends Meta
     private static $config = null;
 
 
+
     public function __construct() {
         parent::__construct('config');
     }
+    /*
     public static function initStorage()
     {
         dog(__METHOD__);
@@ -27,6 +28,7 @@ class Config extends Meta
         if ( empty(self::$config ) ) self::$config = new Config();
         return self::$config ;
     }
+    */
 
     /**
      * @param $path
@@ -82,5 +84,12 @@ class Config extends Meta
     public function deleteFile()
     {
         return File::delete($this->file);
+    }
+
+    public function getUrlSite()
+    {
+        $url = config()->get('URL_SITE');
+        if ( empty($ur) ) return '/';
+        else return $url;
     }
 }

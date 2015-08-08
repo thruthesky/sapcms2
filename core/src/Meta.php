@@ -10,8 +10,22 @@ class Meta {
         $this->table = $table . '_meta';
     }
 
-    public function install() {
-        Entity::init($this->table)
+
+    /**
+     * @param null $table
+     * @return $this|null - If $work_table is null, then it returns a string with table name.
+     *
+     * - If $create_table is null, then it returns a string with table name.
+     *
+     * - If $create_table is not null, then it returns $this.
+     */
+    final public function table($table=null) {
+        if ( $table === null ) return $this->table;
+        return new Entity($table);
+    }
+
+    final public function createTable() {
+        entity($this->table)->createTable()
             ->add('idx_target', 'INT')
             ->add('code', 'varchar', 64)
             ->add('value', 'TEXT')
@@ -19,8 +33,13 @@ class Meta {
             ->index('idx_target');
         return $this;
     }
-    public function unInstall() {
-        Database::load()->dropTable($this->table);
+
+    final public function dropTable() {
+        return entity($this->table())->dropTable();
+    }
+
+    final public function loadTable() {
+        entity($this->table())->loadTable();
     }
 
     /**
@@ -39,14 +58,14 @@ class Meta {
             }
             return $this;
         }
-        $config = Entity::load($this->table, 'code', $code);
-        if ( $config ) {
-            $config->set('value', $value)
+        $item = entity($this->table())->load('code', $code);
+        if ( $item ) {
+            $item->set('value', $value)
                 ->set('idx_target', $target)
                 ->save();
         }
         else {
-            Entity::create($this->table)
+            entity($this->table())
                 ->set('code', $code)
                 ->set('value', $value)
                 ->set('idx_target', $target)
@@ -61,18 +80,19 @@ class Meta {
      *
      * @Attention it memory-caches internally.
      */
-    public function get($code=null)
+    final public function get($code=null)
     {
         if ( ! isset(self::$loaded[$code]) ) {
-            $entity = Entity::load($this->table, 'code', $code);
-            if ( $entity ) self::$loaded[$code] = $entity->value;
+            $entity = entity($this->table())->load('code', $code);
+            if ( $entity ) self::$loaded[$code] = $entity->get('value');
             else self::$loaded[$code] = FALSE;
         }
         return self::$loaded[$code];
     }
 
-    public function getEntity($code) {
-        $entity = Entity::load($this->table, 'code', $code);
+
+    final public function getEntity($code) {
+        $entity = entity($this->table())->load('code', $code);
         if ( $entity ) return $entity;
         else return FALSE;
     }
@@ -84,15 +104,34 @@ class Meta {
      * @Attention it returns $this to allow chaining.
      */
     public function delete($code) {
-        Entity::load($this->table, 'code', $code)->delete();
+        entity($this->table())->load('code', $code)->delete();
         unset(self::$loaded[$code]);
         return $this;
     }
 
+    /**
+     * @param $code
+     *
+     * @todo 아래의 코드 처럼 그룹 관리를 할 수 있게 하고, 그룹 로드를 할 수 있게 한다.
+     *
+    meta('z')->group('meal')->set('breakfast', 'fruits and milk');
+    meta('z')->group('meal')->set('lunch', 'beef and milk');
+    meta('z')->group('meal')->set('dinner', 'bread and milk');
+
+    meta('z')->group('user')->group('jaeho')->set('name', 'JaeHo Song');
+    meta('z')->group('user')->group('jaeho')->set('age', '41');
+    meta('z')->group('user')->group('jaeho')->set('gender', 'M');
+    meta('z')->group('user')->group('jaeho')->set('address', 'Balibago');
+
+    meta('z')->group('user')->group('woobum')->set('name', 'Woo Beom Jung');
+    meta('z')->group('user')->group('woobum')->set('age', '39');
+    meta('z')->group('user')->group('woobum')->set('gender', 'M');
+    meta('z')->group('user')->group('woobum')->set('address', 'Balibago');
+     */
 
     public function group($code)
     {
-        return Database::load()->rows($this->table,"code LIKE '$code.%'");
+        return null;
     }
 
 }

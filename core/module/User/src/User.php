@@ -1,59 +1,26 @@
 <?php
 namespace sap\core\User;
 use sap\src\Entity;
-use sap\src\Request;
-use sap\src\Response;
-
+define('USER_TABLE', 'user');
 class User extends Entity {
     private $fields = [];
 
 
-
-    public static function page() {
-        dog(__METHOD__);
-        Response::renderSystemLayout(['template'=>'user-page']);
+    public function __construct() {
+        parent::__construct(USER_TABLE);
     }
 
-    public static function login_page() {
-        if ( submit() ) {
-            if ( User::loginCheck(Request::get('id'), Request::get('password')) ) {
-                User::login(Request::get('id'));
-                return Response::redirect(ROUTE_ROOT);
-            }
-            else {
 
-            }
-        }
-        return Response::render(['template'=>'login']);
+    public function create($id=null) {
+        parent::create();
+        if ( $id ) $this->set('id', $id);
+        return $this;
     }
 
-    /**
-     * @param string $id
-     *
-     * @return Entity
-     *
-     * @Attention
-     *
-     *  - It does not check if the ID is already taken.
-     *
-     */
-    public static function create($id)
+
+    public function createTable()
     {
-        $user = parent::create('user');
-        if ( self::checkUserID($id) ) {
-            return FALSE;
-        }
-        $user->set('id', $id);
-        return $user;
-    }
-    public static function load($field=null, $value='idx', $table='user')
-    {
-        return parent::load($table, $field, $value);
-    }
-
-    public static function initStorage()
-    {
-        parent::init('user')
+        parent::createTable()
             ->add('id', 'varchar', 32)
             ->add('password', 'char', 32)
             ->add('domain', 'varchar', 64)
@@ -93,9 +60,11 @@ class User extends Entity {
      *
      *
      */
-    public static function loginCheck($id, $password)
+    public static function checkIDPassword($id, $password)
     {
-        $user = User::load('id', $id);
+        $user = user()->load('id', $id);
+        //print_r(__METHOD__);
+        //print_r($user);
         if ( $user ) {
             if ( $user->checkPassword($password) ) return TRUE;
             else {
@@ -118,9 +87,13 @@ class User extends Entity {
 
     public static function login($id)
     {
-        $user = User::load('id', $id);
+        $user = user('id', $id);
         session_set('user-id', $id);
         session_set('user-session-id', self::getUserSessionID($user));
+    }
+    public static function logout() {
+        session_delete('user-id');
+        session_delete('user-session-id');
     }
 
     public static function getUserSessionID(Entity &$user)

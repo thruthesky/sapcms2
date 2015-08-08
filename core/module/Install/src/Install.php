@@ -44,6 +44,10 @@ class Install {
     public static function initializeSystem($options)
     {
 
+        if ( empty($options['database']) ) die('Input admin database');
+        if ( empty($options['admin_id']) ) die('Input admin id');
+        if ( empty($options['admin_password']) ) die('Input admin password');
+
         Config::file(Config::getDatabasePath())
             ->data($options)
             ->save();
@@ -59,18 +63,16 @@ class Install {
         }
 
 
+        config()->createTable();
 
-        Config::initStorage();
-        User::initStorage();
-
-        User::create($options['admin_id'])
-            ->setPassword($options['admin_password'])
-            ->save();
-
-        Config::load()
+        config()
             ->set('admin_id', $options['admin_id'])
             ->set(URL_SITE, $options[URL_SITE]);
 
+        user()->createTable();
+        user()->create($options['admin_id'])
+            ->setPassword($options['admin_password'])
+            ->save();
     }
 
 
