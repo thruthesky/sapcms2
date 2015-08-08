@@ -5,7 +5,7 @@
 </div>
 <div class="ui-content">
     <ul data-role="listview" data-inset="true" data-divider-theme="a">
-        <?php call_hooks('admin_menu'); ?>
+        <?php hook('admin_menu'); ?>
     </ul>
 </div>
 <div data-role="footer"><h1>SAPCMS 2</h1></div>

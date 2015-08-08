@@ -53,18 +53,8 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
             ->set('groupA.apple', 'Apple', 1)
             ->set('groupA.banana', 'Banana', 2);
 
-        /*
-         * @todo group test.
-        $rows = config()
-            ->group('groupA');
-
-        $this->assertTrue(count($rows)==2);
-
-        $config
-            ->delete('groupA.apple')
-            ->delete('groupA.banana');
-
-
+        config()->delete('groupA.apple');
+        config()->delete('groupA.banana');
 
         $fruits = [
             'GroupB.apple'=>'Apple',
@@ -75,16 +65,58 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
             'D' => 'DDD',
             'E' => 'ET'
         ];
-        Config::load()->set($fruits);
-        $this->assertTrue(Config::load()->get('D') == 'DDD');
-        $this->assertTrue(Config::load()->get('E') == 'ET');
-        $this->assertTrue(Config::load()->get('GroupC.A') == 'Anaconda');
-        $row = Config::load()->group('GroupC');
-        $this->assertTrue(count($row) == 2);
+        config()->set($fruits);
+
+        $this->assertTrue(config()->get('D') == 'DDD');
+        $this->assertTrue(config()->get('E') == 'ET');
+        $this->assertTrue(config()->get('GroupC.A') == 'Anaconda');
 
         foreach ( array_keys($fruits) as $k ) {
-            $config->delete($k);
+            config()->delete($k);
         }
-        */
+
+
+        //$this->assertTrue(config()->get('d') == 'e');
+    }
+
+    public function test_config_group() {
+
+
+        config()->group('category')->group('car')
+            ->group('Hundai')
+            ->set('G-StareX', 'Grand StareX')
+            ->set('Accent', 'Accentry Vol. 3');
+
+        config()->group('category')->group('car')
+            ->group('BMW')
+            ->set('GM', 'Grand Motor BMW')
+            ->set('Nubira', 'GM Nubia');
+
+        $this->assertTrue(count(config()->group('category')->group('car')->gets()) == 4 );
+        $this->assertTrue(count(config()->group('category')->group('car')->group('Hundai')->gets()) == 2 );
+        $this->assertTrue(config()->group('category')->group('car')->group('Hundai')->get('Accent') == 'Accentry Vol. 3' );
+
+
+        config()->group('category')->group('phone')->group('samsung')
+            ->set('GalaxyS3', 'Galaxy S3')
+            ->set('GalaxyNote2', 'Galaxy Note 2')
+            ->set('GalaxyNote5', 'Galaxy Note 5');
+
+        config()->group('category')->group('phone')->group('apple')
+            ->set('iPhone2', 'iPhone 2')
+            ->set('iPhone3', 'iPhone 3')
+            ->set('iPhone4', 'iPhone 4')
+            ->set('iPhone5', 'iPhone 5')
+            ->set('iPhone6', 'iPhone 6');
+
+        $this->assertTrue(config()->group('category')->group('phone')->group('samsung')->get('GalaxyNote5') == 'Galaxy Note 5' );
+
+        $this->assertTrue(count(config()->group('category')->group('phone')->gets()) == 8 );
+        $this->assertTrue(count(config()->group('category')->gets()) == 12 );
+
+
+        config()->group('category')->delete();
+        $this->assertTrue(count(config()->group('category')->gets()) == 0 );
+
     }
 }

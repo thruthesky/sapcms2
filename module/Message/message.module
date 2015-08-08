@@ -1,0 +1,8 @@
+<?php
+
+use sap\message\Message;
+
+function message() {
+    return new Message();
+}
+

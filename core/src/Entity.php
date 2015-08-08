@@ -65,7 +65,7 @@ class Entity {
         $this->set('idx', NULL);
         $this->set('created', isset($options['created']) ? $options['created'] : time());
         $this->set('changed', isset($options['changed']) ? $options['changed'] : time());
-        call_hooks('entity_create', $this);
+        hook('entity_create', $this);
         return $this;
     }
 
@@ -86,7 +86,7 @@ class Entity {
      * @param null $value
      * @return Entity
      */
-    public function load($field, $value=null) {
+    final public function load($field, $value=null) {
         dog(__METHOD__);
         $table = $this->table();
         $code = "$table:$field:$value";
@@ -121,7 +121,7 @@ class Entity {
         if ( $this->fields ) {
             self::$loadCache[$code] = $this->fields;
         }
-        call_hooks('entity_load', $this);
+        hook('entity_load', $this);
         if ( empty(self::$loadCache[$code]) ) return FALSE;
         else return $this;
     }
@@ -236,13 +236,24 @@ class Entity {
     }
 
 
-
     /**
+     * @param null $cond
      * @return $this
-     *
      * @Attention it returns $this to allow chaining.
+     *
+     *
+     * @Attention
+     *
+     *      - If the input $cond is empty, then it delete the Entity.
+     *
+     *      - If the input $cond is NOT empty, then it does Database Query
+     *
+     *          and returns Database object or result.
+     *
+     *
      */
-    final public function delete() {
+    final public function delete($cond=null) {
+        if ( $cond ) return Database::load()->delete($this->table(), $cond);
         $idx = $this->get('idx');
         //echo __METHOD__ . " : idx=$idx\n";
         if ( $idx ) {
@@ -290,9 +301,15 @@ class Entity {
         return Database::load()->row($this->table(), $cond, $field);
     }
 
+    public function rows($cond=null, $field='*')
+    {
+        return Database::load()->rows($this->table(), $cond, $field);
+    }
+
     public function count($cond=null) {
         return Database::load()->count($this->table(), $cond);
     }
+
 
 }
 

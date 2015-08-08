@@ -1,12 +1,1 @@
 <?php
-
-
-register_hook('module_enable', function(&$variables){
-    echo "\t\tEnabling module .... $variables[name]";
-});
-register_hook('module_disable', function(&$variables){
-    echo "\t\tDisabling module .... $variables[name]";
-});
-
-
-

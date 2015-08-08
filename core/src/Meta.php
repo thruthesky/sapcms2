@@ -6,6 +6,8 @@ class Meta {
 
     private static $loaded;
     private $table = null;
+    private $group_code = null;
+
     public function __construct($table) {
         $this->table = $table . '_meta';
     }
@@ -25,7 +27,7 @@ class Meta {
     }
 
     final public function createTable() {
-        entity($this->table)->createTable()
+        entity($this->table())->createTable()
             ->add('idx_target', 'INT')
             ->add('code', 'varchar', 64)
             ->add('value', 'TEXT')
@@ -58,7 +60,11 @@ class Meta {
             }
             return $this;
         }
+
+        $code = $this->getGroupCode() . $code;
+
         $item = entity($this->table())->load('code', $code);
+
         if ( $item ) {
             $item->set('value', $value)
                 ->set('idx_target', $target)
@@ -75,19 +81,41 @@ class Meta {
     }
 
     /**
-     * @param null $code
+     * @param $code
      * @return mixed
      *
      * @Attention it memory-caches internally.
      */
-    final public function get($code=null)
+    final public function get($code)
     {
+
+        $code = $this->getGroupCode() . $code;
+
         if ( ! isset(self::$loaded[$code]) ) {
             $entity = entity($this->table())->load('code', $code);
             if ( $entity ) self::$loaded[$code] = $entity->get('value');
             else self::$loaded[$code] = FALSE;
         }
+        //dog("  --------- CODE:$code\n");
+        //dog(self::$loaded[$code]);
         return self::$loaded[$code];
+    }
+
+    /**
+     *
+     *
+     */
+    final public function gets() {
+        $code = $this->getGroupCode();
+        $rows = entity($this->table())->rows("code LIKE '$code%'", 'code,value');
+        $kvs = [];
+        if ( $rows ) {
+            foreach( $rows as $row ) {
+                self::$loaded[$row['code']] = $row['value'];
+                $kvs[$row['code']] = $row['value'];
+            }
+        }
+        return $kvs;
     }
 
 
@@ -102,36 +130,50 @@ class Meta {
      * @return $this
      *
      * @Attention it returns $this to allow chaining.
+     *
+     * @code
+     *      meta('z')->group('meal')->delete();
+     * @endcode
      */
-    public function delete($code) {
+    public function delete($code=null) {
+        if ( empty($code) ) return $this->group_delete();
         entity($this->table())->load('code', $code)->delete();
         unset(self::$loaded[$code]);
         return $this;
     }
 
+
+    /**
+     * @return $this
+     */
+    public function group_delete() {
+        $code = $this->getGroupCode();
+        if ( empty($code) ) return FALSE;
+        entity($this->table())->delete("code LIKE '$code%'");
+        return $this;
+    }
+
+
     /**
      * @param $code
      *
-     * @todo 아래의 코드 처럼 그룹 관리를 할 수 있게 하고, 그룹 로드를 할 수 있게 한다.
-     *
-    meta('z')->group('meal')->set('breakfast', 'fruits and milk');
-    meta('z')->group('meal')->set('lunch', 'beef and milk');
-    meta('z')->group('meal')->set('dinner', 'bread and milk');
-
-    meta('z')->group('user')->group('jaeho')->set('name', 'JaeHo Song');
-    meta('z')->group('user')->group('jaeho')->set('age', '41');
-    meta('z')->group('user')->group('jaeho')->set('gender', 'M');
-    meta('z')->group('user')->group('jaeho')->set('address', 'Balibago');
-
-    meta('z')->group('user')->group('woobum')->set('name', 'Woo Beom Jung');
-    meta('z')->group('user')->group('woobum')->set('age', '39');
-    meta('z')->group('user')->group('woobum')->set('gender', 'M');
-    meta('z')->group('user')->group('woobum')->set('address', 'Balibago');
+     * @see https://docs.google.com/document/d/156a65kERmYVeLOI_PqY_Ixrj8ARWt_nDIVK45C7zmPo/edit#heading=h.4pt2maebnhif
+     * @return $this
      */
 
     public function group($code)
     {
-        return null;
+        $this->setGroupCode($code);
+        return $this;
+    }
+
+    private function setGroupCode($code)
+    {
+        $this->group_code .= "$code.";
+    }
+    private function getGroupCode()
+    {
+        return $this->group_code;
     }
 
 }

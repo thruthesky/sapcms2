@@ -74,9 +74,11 @@ class CommandLineInterface {
             if ( $code ) echo get_error_message($code);
         }
         else {
-            $pi = pathinfo(self::$cmd);
-            if ( $pi['extension'] == 'php' ) {
-                include self::$cmd;
+            if ( self::$cmd ) {
+                $pi = pathinfo(self::$cmd);
+                if ( isset($pi['extension']) && $pi['extension'] == 'php' ) {
+                    include self::$cmd;
+                }
             }
         }
         dog("END");

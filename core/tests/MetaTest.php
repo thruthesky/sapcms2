@@ -44,4 +44,76 @@ class MetaTest extends PHPUnit_Framework_TestCase {
         $meta->dropTable();
     }
 
+
+    public function test_meta_group() {
+        meta('z')->createTable();
+        meta('z')->group('meal')->set('breakfast', 'fruits and milk', 10);
+        meta('z')->group('meal')->set('lunch', 'beef and milk', 20);
+        meta('z')->group('meal')->set('dinner', 'bread and milk', 30);
+
+        $this->assertTrue( count(meta('z')->group('meal')->gets()) == 3 );
+        $this->assertTrue( meta('z')->group('meal')->get('lunch') == 'beef and milk' );
+
+        meta('z')->group('meal')->delete();
+        $this->assertTrue( count(meta('z')->group('meal')->gets()) == 0 );
+
+
+        meta('z')->group('user')->group('jaeho')->set('name', 'JaeHo Song');
+        meta('z')->group('user')->group('jaeho')->set('age', '41');
+        meta('z')->group('user')->group('jaeho')->set('gender', 'M');
+        meta('z')->group('user')->group('jaeho')->set('address', 'Balibago');
+
+        meta('z')->group('user')->group('woobum')->set('name', 'Woo Beom Jung');
+        meta('z')->group('user')->group('woobum')->set('age', '39');
+        meta('z')->group('user')->group('woobum')->set('gender', 'M');
+        meta('z')->group('user')->group('woobum')->set('address', 'Balibago');
+
+
+
+        $this->assertTrue( count(meta('z')->group('user')->gets()) == 8 );
+        $this->assertTrue( count(meta('z')->group('user')->group('jaeho')->gets()) == 4 );
+
+        $this->assertTrue( meta('z')->group('user')->group('woobum')->get('age') == 39 );
+
+
+
+        meta('z')->group('user')->group('woobum')->delete();
+        $this->assertTrue( count(meta('z')->group('user')->group('woobum')->gets()) == 0 );
+        $this->assertTrue( count(meta('z')->group('user')->group('jaeho')->gets()) == 4 );
+        $this->assertTrue( count(meta('z')->group('user')->gets()) == 4 );
+
+        meta('z')->group('user')->delete();
+        $this->assertTrue( count(meta('z')->group('user')->group('jaeho')->gets()) == 0 );
+        $this->assertTrue( count(meta('z')->group('user')->gets()) == 0 );
+
+
+        /**
+         *
+         * @note code will be generated like below.
+         *
+         * user.thruthesky.name
+         * user.thruthesky.property.callcenter
+         * user.thruthesky.property.site
+         * user.thruthesky.property.consultancy
+         */
+        meta('z')
+            ->group('user')
+            ->group('thruthesky')
+            ->set('name', 'thruthesky')
+                ->group('property')
+                ->set('callcenter', 'angles')
+                ->set('site', 'philgo')
+                ->set('consultancy', 'viy');
+
+        $this->assertTrue( count(meta('z')->group('user')->group('thruthesky')->gets()) == 4 );
+        $this->assertTrue( count(meta('z')->group('user')->group('thruthesky')->group('property')->gets()) == 3 );
+        $this->assertTrue( meta('z')->group('user')->group('thruthesky')->group('property')->get('site') == 'philgo' );
+
+
+        meta('z')->group('user')->delete();
+
+        meta('z')->dropTable();
+
+    }
+
 }

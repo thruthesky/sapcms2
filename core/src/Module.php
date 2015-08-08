@@ -23,7 +23,7 @@ class Module {
 
 
         $variables['path'] = "$path_module/template/$filename.html.php";
-        call_hooks('module_script', $variables);
+        hook('module_script', $variables);
 
         return $variables['path'];
 
