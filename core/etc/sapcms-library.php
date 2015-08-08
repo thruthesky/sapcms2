@@ -127,7 +127,7 @@ function url_complete(&$path) {
     }
     else {
         if ( ! System::isInstalled() ) $pre = '/';
-        else $pre = Config::load()->get(URL_SITE);
+        else $pre = config()->get(URL_SITE);
         $path = $pre . $path;
     }
     return $path;
@@ -293,16 +293,4 @@ function session_get($k)
 {
     if ( isset($_COOKIE[$k]) ) return $_COOKIE[$k];
     else return NULL;
-}
-
-function get_login_user() {
-    $id = session_get('user-id');
-    $session_id = session_get('user-session-id');
-    if ( empty($id) || empty($session_id) ) return FALSE;
-
-    $user = User::load('id', $id);
-    if ( empty($user) ) return FALSE;
-    
-    if ( $session_id == User::getUserSessionID($user) ) return $user;
-    else return FALSE;
 }

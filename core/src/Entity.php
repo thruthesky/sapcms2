@@ -5,24 +5,68 @@ namespace sap\src;
 class Entity {
     private static $loadCache = [];
     private $fields = [];
-    private $table = null;
     private $cacheCode = null;
+    private $table = null;
 
-    public function __construct($table) {
+    public function __construct($table = null) {
         $this->table = $table;
     }
 
-    public static function create($table) {
-        $entity = new Entity($table);
-        $entity->set('idx', NULL);
-        $entity->set('created', time());
-        $entity->set('changed', time());
 
-        // $entity->set('idx_target', 0);
+    /**
+     *
+     * @return string - If $work_table is null, then it returns a string with table name.
+     *
+     */
+    final public function table() {
+        return $this->table;
+    }
 
-        call_hooks('entity_create', $entity);
 
-        return $entity;
+    /**
+     * Creates an Entity table.
+     *
+     * @return bool|null|Database
+     */
+    public function createTable() {
+        if ( empty($table) ) $table = $this->table();
+        $db = Database::load();
+        $db->dropTable($table);
+        $db->createTable($table);
+        $db->add('created', 'INT UNSIGNED DEFAULT 0');
+        $db->add('changed', 'INT UNSIGNED DEFAULT 0');
+        $db->addIndex($table, 'created');
+        $db->addIndex($table, 'changed');
+
+        return $db;
+    }
+
+    final public function dropTable() {
+        if ( empty($table) ) $table = $this->table();
+        $db = Database::load();
+        $db->dropTable($table);
+        return OK;
+    }
+
+
+    final public function loadTable() {
+        if ( empty($table) ) $table = $this->table();
+        $db = Database::load();
+        $db->table($table);
+        return $db;
+    }
+
+
+    /**
+     * @param array $options
+     * @return mixed
+     */
+    public function create($options=[]) {
+        $this->set('idx', NULL);
+        $this->set('created', isset($options['created']) ? $options['created'] : time());
+        $this->set('changed', isset($options['changed']) ? $options['changed'] : time());
+        call_hooks('entity_create', $this);
+        return $this;
     }
 
     /**
@@ -31,36 +75,55 @@ class Entity {
      *
      *      - return FALSE if no Entity found.
      *
+     *          -- AND the not-found-Entity is not cached. So, on next call, it will access database again.
+     *
+     *
      *      - You can check with 'empty()', 'false'.
      *
      * @Attention It memory caches. So you can call this method as much as you can.
      *
-     * @param null $table
      * @param null $field
      * @param null $value
      * @return Entity
      */
-    public static function load($table=null, $field=null, $value=null) {
+    public function load($field, $value=null) {
+        dog(__METHOD__);
+        $table = $this->table();
         $code = "$table:$field:$value";
-        if ( isset(self::$loadCache[$code]) ) return self::$loadCache[$code];
-        $entity = new Entity($table);
+        dog( __METHOD__  . ' : ' . $code);
+
+        if ( isset(self::$loadCache[$code]) ) {
+            //echo("load is cached: $code\n");
+            $this->cacheCode = $code;
+            $this->fields = self::$loadCache[$code];
+
+            if ( empty($this->fields) ) {
+                //dog("fields is empty");
+                return FALSE;
+            }
+            else {
+                return $this;
+            }
+        }
+        //echo("load is NOT cached:code\n");
+
+
         /**
          * Remember cacheCode to delete from memory when it is deleted
          */
-        $entity->cacheCode = $code;
-        if ( empty($value) ) {
-            $item = db_row($table, "idx = '$field'");
+        $this->cacheCode = $code;
+        if ( $value === null ) {
+            $this->fields = db_row($table, "idx = '$field'");
         }
         else {
-            $item = db_row($table, "$field = '$value'");
+            $this->fields = db_row($table, "$field = '$value'");
         }
-        if ( $item ) {
-            $entity->fields = $item;
-            call_hooks('entity_load', $entity);
-            self::$loadCache[$code] = $entity;
-            return self::$loadCache[$code];
+        if ( $this->fields ) {
+            self::$loadCache[$code] = $this->fields;
         }
-        else return FALSE;
+        call_hooks('entity_load', $this);
+        if ( empty(self::$loadCache[$code]) ) return FALSE;
+        else return $this;
     }
 
 
@@ -74,7 +137,7 @@ class Entity {
      *  - if $field is null, then it returns the whole field array.
      *
      */
-    public function get($field=null)
+    final public function get($field=null)
     {
         if ( $field ) {
             return isset($this->fields[$field]) ? $this->fields[$field] : null;
@@ -95,7 +158,7 @@ class Entity {
      * @endcode
      *
      */
-    public function set($field, $value=null)
+    final public function set($field, $value=null)
     {
         if ( is_array($field) ) {
             $this->fields = array_merge($this->fields, $field);
@@ -113,7 +176,7 @@ class Entity {
      * @param $plain_text_password
      * @return $this
      */
-    public function setPassword($plain_text_password)
+    final public function setPassword($plain_text_password)
     {
         if ( empty($plain_text_password) ) return error(ERROR_PASSWORD_IS_EMPTY);
         $this->fields['password'] = encrypt_password($plain_text_password);
@@ -149,15 +212,19 @@ class Entity {
      *
      *
      */
-    public function save()
+    final public function save()
     {
         if ( $this->get('idx') ) {
             $this->fields['changed'] = time();
-            $statement = db_update($this->table, $this->fields, "idx=".$this->get('idx'));
+            $statement = db_update($this->table(), $this->fields, "idx=".$this->get('idx'));
             return $this;
         }
         else {
-            $idx = db_insert($this->table, $this->fields);
+
+            if ( ! isset($this->fields['created']) ) $this->fields['created'] = time();
+            if ( ! isset($this->fields['changed']) ) $this->fields['changed'] = time();
+
+            $idx = db_insert($this->table(), $this->fields);
             if ( $idx === FALSE ) {
                 return FALSE;
             }
@@ -169,46 +236,17 @@ class Entity {
     }
 
 
-    /**
-     * @param null $table
-     * @return bool|null|Database
-     *
-     *
-     * @see buildguide
-     */
-    public static function init($table=null)
-    {
-        $db = Database::load();
-        $db->dropTable($table);
-        $db->createTable($table);
-        $db->add('created', 'INT UNSIGNED DEFAULT 0');
-        $db->add('changed', 'INT UNSIGNED DEFAULT 0');
-        $db->addIndex($table, 'created');
-        $db->addIndex($table, 'changed');
-
-        //$db->add('idx_target', 'INT');
-        //$db->add('ip', 'char', 15);
-        //$db->add('user_agent', 'varchar', 1024);
-        //$db->index('idx_target');
-        return $db;
-    }
-
-    public static function storage($table)
-    {
-        $db = Database::load();
-        $db->table($table);
-        return $db;
-    }
-
 
     /**
      * @return $this
      *
      * @Attention it returns $this to allow chaining.
      */
-    public function delete() {
-        if ( $idx = $this->get('idx') ) {
-            db_delete($this->table, "idx=$idx");
+    final public function delete() {
+        $idx = $this->get('idx');
+        //echo __METHOD__ . " : idx=$idx\n";
+        if ( $idx ) {
+            db_delete($this->table(), "idx=$idx");
             $this->fields = [];
             /**
              * Deleting cache on made by load()
@@ -241,19 +279,20 @@ class Entity {
      * update()
      * delete()
      *
-     * @param $table_name
+     * @param null $cond
+     * @param string $field
+     *
      * @return Entity
+     * @todo test, row(), rows(), count(), result()
      */
-    public static function query($table_name)
+    public function row($cond=null, $field='*')
     {
-        return new Entity($table_name);
+        return Database::load()->row($this->table(), $cond, $field);
     }
 
     public function count($cond=null) {
-        return Database::load()->count($this->table, $cond);
+        return Database::load()->count($this->table(), $cond);
     }
-
-
 
 }
 

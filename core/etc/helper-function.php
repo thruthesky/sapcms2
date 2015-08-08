@@ -5,6 +5,7 @@ use sap\core\User\User;
 use sap\src\Database;
 use sap\src\Entity;
 use sap\src\Form;
+use sap\src\Meta;
 use sap\src\Request;
 use sap\src\SQL;
 
@@ -56,13 +57,8 @@ function form_input($attr) {
 
 
 
-function user($field=null, $value='idx') {
-    if ( $field === null ) return User::create();
-    else return User::load($field, $value);
-}
-
 function config() {
-    return Config::load();
+    return new Config();
 }
 
 function system_config($code) {
@@ -75,7 +71,7 @@ function system_config($code) {
         case '' :
             break;
         default :
-            $value = Config::load()->get($code);
+            $value = config()->get($code);
             break;
     }
 
@@ -87,6 +83,42 @@ function submit() {
     return Request::submit();
 }
 
+/**
+ * @return mixed
+ */
 function user_count() {
-    return Entity::query('user')->count();
+    return user()->count();
+}
+
+function entity($table_name=null) {
+    return new Entity($table_name);
+}
+
+function meta($table_name) {
+    return new Meta($table_name);
+}
+
+
+function get_login_user() {
+    $id = session_get('user-id');
+    $session_id = session_get('user-session-id');
+    if ( empty($id) || empty($session_id) ) return FALSE;
+
+    $user = user('id', $id);
+    if ( empty($user) ) return FALSE;
+
+    if ( $session_id == User::getUserSessionID($user) ) return $user;
+    else return FALSE;
+}
+
+function login($field=null) {
+    $user = get_login_user();
+    if ( $user ) {
+        if ( $field ) return $user->get($field);
+        else return $user;
+    }
+    else return FALSE;
+}
+function my($field=null) {
+    return login($field);
 }

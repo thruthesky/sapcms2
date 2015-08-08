@@ -8,7 +8,5 @@ class MessageTest extends PHPUnit_Framework_TestCase {
     }
     public function testInput()
     {
-        $re = Message::version();
-        $this->assertNotEmpty($re);
     }
 }

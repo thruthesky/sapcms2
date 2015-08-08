@@ -7,7 +7,7 @@ class Database extends \PDO {
 
     private static $db = null;
     private static $db_reset = null;
-    private $create_table = null; // remember last create table
+    private $work_table = null; // remember last create table
     public $type = null;
 
     public function __construct($dsn=null, $username=null, $password=null) {
@@ -95,21 +95,20 @@ class Database extends \PDO {
     }
 
     /**
-     * @param null $create_table
+     * @param null $work_table
+     * @return $this|null - If $work_table is null, then it returns a string with table name.
      *
-     * @return $this|null
+     * - If $create_table is null, then it returns a string with table name.
      *
-     *      - If $create_table is null, then it returns a string with table name.
-     *
-     *      - If $create_table is not null, then it returns $this.
+     * - If $create_table is not null, then it returns $this.
      *
      */
-    public function table($create_table=null) {
-        if ( $create_table ) {
-            $this->create_table = $create_table;
+    public function table($work_table=null) {
+        if ( $work_table ) {
+            $this->work_table= $work_table;
             return $this;
         }
-        else return $this->create_table;
+        else return $this->work_table;
     }
 
 
@@ -389,6 +388,7 @@ class Database extends \PDO {
         $keys = implode(",", $key_list);
         $values = implode(",", $value_list);
         $q = "INSERT INTO `{$table}` ({$keys}) VALUES ({$values})";
+        dog($q);
         $count = $this->exec($q);
         if ( $count == 0 ) {
             dog("SQL QUERY ERROR: $q");

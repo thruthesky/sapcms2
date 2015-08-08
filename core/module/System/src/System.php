@@ -177,18 +177,31 @@ class System {
         return OK;
     }
 
+    private static function load_module_files()
+    {
+        $install = config()->group('install');
+        if ( $install ) {
+            foreach( $install as $module ) {
+                $path = "module/$module[value]/$module[value].module";
+                $variables = ['module'=>$module, 'path'=>$path];
+                call_hooks('before_module_load', $variables);
+                include $path;
+                call_hooks('after_module_load', $variables);
+            }
+            call_hooks('module_load_complete');
+        }
+    }
     private static function load_core_module_files()
     {
-        /**
-         * Loading modules initialization files.
-         *
-         *
-         *
-         */
         foreach ( self::getCoreModules() as $module ) {
             $path = "core/module/$module/$module.module";
-            if ( file_exists($path) ) include $path;
+            if ( file_exists($path) ) {
+                include $path;
+                $variables = ['module'=>$module, 'path'=>$path];
+                call_hooks('core_module_load', $variables);
+            }
         }
+        call_hooks('core_module_load_complete');
     }
 
     public static function getCoreModules()
@@ -235,16 +248,6 @@ class System {
         else return self::$config_database;
     }
 
-    private static function load_module_files()
-    {
-        $install = config()->group('install');
-        if ( $install ) {
-            foreach( $install as $module ) {
-                $path = "module/$module[value]/$module[value].module";
-                include $path;
-            }
-        }
-    }
 
     public static function isInstalled($flag=null)
     {

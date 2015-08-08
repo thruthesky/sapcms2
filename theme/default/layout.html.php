@@ -6,8 +6,12 @@
     <link rel="stylesheet" href="/core/etc/js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
 </head>
 <body>
+
 <div data-role="page">
-    <?php include template()?>
+    <?php include template('panel'); ?>
+    <div data-role="header"><?php include template('header'); ?></div>
+    <div class="ui-content"><?php include template()?></div>
+    <div data-role="footer"><?php include template('footer'); ?></div>
 </div>
 
 <!--[if lt IE 9]>
@@ -23,5 +27,6 @@
     });
 </script>
 <script src="/core/etc/js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<?php add_javascript('default.js'); ?>
 </body>
 </html>
