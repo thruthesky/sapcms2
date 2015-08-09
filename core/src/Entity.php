@@ -123,11 +123,11 @@ class Entity {
         }
         hook('entity_load', $this);
         if ( empty(self::$loadCache[$code]) ) {
-            dog("value is Empty for code = $code");
+            //dog("value is Empty for code = $code");
             return FALSE;
         }
         else {
-            dog("Value is not empty. returns this");
+            //dog("Value is not empty. returns this");
             return $this;
         }
     }

@@ -401,7 +401,7 @@ class Database extends \PDO {
             return FALSE;
         }
         else {
-            dog("COUNT: $count");
+            // dog("COUNT: $count");
         }
         $insert_id = $this->lastInsertId();
         return $insert_id;
