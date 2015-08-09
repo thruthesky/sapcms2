@@ -44,11 +44,6 @@ function db_delete($table, $cond) {
     return Database::load()->delete($table, $cond);
 }
 
-function config_get($code) {
-    return Config::load()->get($code);
-}
-
-
 
 function form_input($attr) {
     echo form::input($attr);
@@ -56,10 +51,6 @@ function form_input($attr) {
 
 
 
-
-function config() {
-    return new Config();
-}
 
 function system_config($code) {
 

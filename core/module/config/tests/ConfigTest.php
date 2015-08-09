@@ -30,6 +30,22 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
     }
 
 
+    public function test_config_short() {
+        config()->set('a', 'b', 1)->delete();
+        $this->assertTrue( config('a') === FALSE );
+
+        config('c', 'Cherry');
+        $this->assertTrue( config('c') == 'Cherry' );
+
+
+        config('d', 'Dove', 4);
+        $this->assertTrue( config('d') == 'Done' );
+        $this->assertTrue( config()->getEntity('d')->get('idx_target') == 4);
+        config()->getEntity('d')->delete();
+
+    }
+
+
 
     public function test_config_action() {
 
