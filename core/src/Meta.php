@@ -9,6 +9,7 @@ class Meta {
     private $group_code = null;
 
     public function __construct($table) {
+
         $this->table = $table . '_meta';
     }
 
@@ -119,6 +120,18 @@ class Meta {
     }
 
 
+    /**
+     * @param $code
+     * @return bool|Entity
+     *
+     *
+     * @Attention Since Meta class does not extends, it returns Entity class object to return a Entity item.
+     *
+     *      - For instance, the delete() below is on Entity class not in Meta class.
+     *
+     *              config()->getEntity('d')->delete();
+     *
+     */
     final public function getEntity($code) {
         $entity = entity($this->table())->load('code', $code);
         if ( $entity ) return $entity;
@@ -126,6 +139,11 @@ class Meta {
     }
 
     /**
+     *
+     * Deletes a code or group of code.
+     *
+     *  - If the input $code is empty, then it deletes a group.
+     *
      * @param $code
      * @return $this
      *
