@@ -127,7 +127,7 @@ class Entity {
             return FALSE;
         }
         else {
-            //dog("Value is not empty. returns this");
+            // dog("Value is not empty. returns this");
             return $this;
         }
     }
