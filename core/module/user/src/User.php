@@ -3,8 +3,6 @@ namespace sap\core\user;
 use sap\src\Entity;
 define('USER_TABLE', 'user');
 class User extends Entity {
-    private $fields = [];
-
 
     public function __construct() {
         parent::__construct(USER_TABLE);

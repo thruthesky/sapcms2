@@ -4,7 +4,7 @@ namespace sap\src;
 
 class Entity {
     private static $loadCache = [];
-    private $fields = [];
+    public $fields = [];
     private $cacheCode = null;
     private $table = null;
 
@@ -87,10 +87,10 @@ class Entity {
      * @return Entity
      */
     final public function load($field, $value=null) {
-        dog(__METHOD__);
+
         $table = $this->table();
         $code = "$table:$field:$value";
-        dog( __METHOD__  . ' : ' . $code);
+        dog(__METHOD__ . " ( $field, $value ) : $code");
 
         if ( isset(self::$loadCache[$code]) ) {
             //echo("load is cached: $code\n");
@@ -122,8 +122,14 @@ class Entity {
             self::$loadCache[$code] = $this->fields;
         }
         hook('entity_load', $this);
-        if ( empty(self::$loadCache[$code]) ) return FALSE;
-        else return $this;
+        if ( empty(self::$loadCache[$code]) ) {
+            dog("value is Empty for code = $code");
+            return FALSE;
+        }
+        else {
+            dog("Value is not empty. returns this");
+            return $this;
+        }
     }
 
 
@@ -142,7 +148,11 @@ class Entity {
         if ( $field ) {
             return isset($this->fields[$field]) ? $this->fields[$field] : null;
         }
-        else return $this->fields;
+        else {
+            dog(__METHOD__ . " ( $field ) : returns field array: ");
+            dog($this->fields);
+            return $this->fields;
+        }
     }
 
     /**
@@ -158,7 +168,7 @@ class Entity {
      * @endcode
      *
      */
-    final public function set($field, $value=null)
+    public function set($field, $value=null)
     {
         if ( is_array($field) ) {
             $this->fields = array_merge($this->fields, $field);
@@ -212,15 +222,19 @@ class Entity {
      *
      *
      */
-    final public function save()
+    public function save()
     {
+
+        //dog("Inside save");
+        //dog($this->fields);
+
         if ( $this->get('idx') ) {
             $this->fields['changed'] = time();
             $statement = db_update($this->table(), $this->fields, "idx=".$this->get('idx'));
             return $this;
         }
         else {
-
+            if ( ! isset($this->fields['idx']) ) $this->fields['idx'] = NULL;
             if ( ! isset($this->fields['created']) ) $this->fields['created'] = time();
             if ( ! isset($this->fields['changed']) ) $this->fields['changed'] = time();
 
@@ -259,12 +273,19 @@ class Entity {
         if ( $idx ) {
             db_delete($this->table(), "idx=$idx");
             $this->fields = [];
-            /**
-             * Deleting cache on made by load()
-             */
-            unset(self::$loadCache[$this->cacheCode]);
+            //unset(self::$loadCache[$this->cacheCode]);
+            $this->clearLoadCache($this->cacheCode);
         }
         return $this;
+    }
+
+
+    /**
+     * Deleting cache on made by load()
+     * @param $code
+     */
+    public function clearLoadCache($code) {
+        unset(self::$loadCache[$code]);
     }
 
     public function __toString() {
