@@ -10,15 +10,19 @@ class MetaTest extends PHPUnit_Framework_TestCase {
 
 
     public function test_meta_entity_type() {
+        meta('x')->createTable();
+        meta('x')->set('a','b', 1);
+        //dog(meta('x')->get('a'));
+        $this->assertTrue( meta('x')->load('code', 'a')->get('value') == 'b' );
+        $this->assertTrue( meta('x')->value('a') == 'b' );
 
-        /* @todo do entity test */
-        /*
-        $entity = entity('user')->load('id', 'admin');
-        $user = user()->load('id', 'admin');
+        $this->assertTrue( meta('x')->getEntity('a') instanceof Meta );
+        $this->assertTrue( meta('x')->getEntity('a') instanceof Entity );
 
-        $this->assertTrue($entity instanceof Entity);
-        $this->assertTrue($user instanceof User);
-        */
+        $this->assertTrue( meta('x')->load('code','a') instanceof Meta );
+        $this->assertTrue( meta('x')->load('code', 'a') instanceof Entity );
+
+        meta('x')->dropTable();
     }
 
     public function test_meta_create() {
@@ -39,7 +43,10 @@ class MetaTest extends PHPUnit_Framework_TestCase {
             ->set('b', 'B')
             ->set('c', 'C');
         $this->assertTrue( $meta->getEntity('a') instanceof Entity );
-        $this->assertTrue( $meta->get('a') == 'A' );
+        $this->assertTrue( $meta->value('a') == 'A' );
+
+        $meta->load('code', 'a')->delete();
+        $meta->delete("code='c'");
 
         $meta->dropTable();
     }
@@ -52,9 +59,9 @@ class MetaTest extends PHPUnit_Framework_TestCase {
         meta('z')->group('meal')->set('dinner', 'bread and milk', 30);
 
         $this->assertTrue( count(meta('z')->group('meal')->gets()) == 3 );
-        $this->assertTrue( meta('z')->group('meal')->get('lunch') == 'beef and milk' );
+        $this->assertTrue( meta('z')->group('meal')->value('lunch') == 'beef and milk' );
 
-        meta('z')->group('meal')->delete();
+        meta('z')->group('meal')->group_delete();
         $this->assertTrue( count(meta('z')->group('meal')->gets()) == 0 );
 
 
@@ -73,16 +80,16 @@ class MetaTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue( count(meta('z')->group('user')->gets()) == 8 );
         $this->assertTrue( count(meta('z')->group('user')->group('jaeho')->gets()) == 4 );
 
-        $this->assertTrue( meta('z')->group('user')->group('woobum')->get('age') == 39 );
+        $this->assertTrue( meta('z')->group('user')->group('woobum')->value('age') == 39 );
 
 
 
-        meta('z')->group('user')->group('woobum')->delete();
+        meta('z')->group('user')->group('woobum')->group_delete();
         $this->assertTrue( count(meta('z')->group('user')->group('woobum')->gets()) == 0 );
         $this->assertTrue( count(meta('z')->group('user')->group('jaeho')->gets()) == 4 );
         $this->assertTrue( count(meta('z')->group('user')->gets()) == 4 );
 
-        meta('z')->group('user')->delete();
+        meta('z')->group('user')->group_delete();
         $this->assertTrue( count(meta('z')->group('user')->group('jaeho')->gets()) == 0 );
         $this->assertTrue( count(meta('z')->group('user')->gets()) == 0 );
 
@@ -107,10 +114,10 @@ class MetaTest extends PHPUnit_Framework_TestCase {
 
         $this->assertTrue( count(meta('z')->group('user')->group('thruthesky')->gets()) == 4 );
         $this->assertTrue( count(meta('z')->group('user')->group('thruthesky')->group('property')->gets()) == 3 );
-        $this->assertTrue( meta('z')->group('user')->group('thruthesky')->group('property')->get('site') == 'philgo' );
+        $this->assertTrue( meta('z')->group('user')->group('thruthesky')->group('property')->value('site') == 'philgo' );
 
 
-        meta('z')->group('user')->delete();
+        meta('z')->group('user')->group_delete();
 
         meta('z')->dropTable();
 

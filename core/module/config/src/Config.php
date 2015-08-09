@@ -10,25 +10,13 @@ class Config extends Meta
 {
     private $file = null;
     private $data = null;
-    private static $config = null;
 
 
 
     public function __construct() {
         parent::__construct('config');
     }
-    /*
-    public static function initStorage()
-    {
-        dog(__METHOD__);
-        $config = new Config();
-        $config->install();
-    }
-    public static function load() {
-        if ( empty(self::$config ) ) self::$config = new Config();
-        return self::$config ;
-    }
-    */
+
 
     /**
      * @param $path
@@ -67,7 +55,7 @@ class Config extends Meta
     /**
      * @return int
      */
-    public function save() {
+    public function saveFileConfig() {
         return File::save_in_php(
             $this->file,
             $this->data

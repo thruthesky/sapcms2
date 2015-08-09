@@ -12,7 +12,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
         $path = PATH_CONFIG . '/my.config.php';
         $re = Config::file($path)
             ->data(['a'=>'b', 'c'=>'def'])
-            ->save();
+            ->saveFileConfig();
         $this->assertTrue( $re >= 0 );
 
         $config = Config::read($path);
@@ -32,6 +32,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
 
     public function test_config_short() {
         config()->set('a', 'b', 1)->delete();
+        dog(config('a'));
         $this->assertTrue( config('a') === FALSE );
 
         config('c', 'Cherry');
@@ -39,7 +40,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
 
 
         config('d', 'Dove', 4);
-        $this->assertTrue( config('d') == 'Done' );
+        $this->assertTrue( config('d') == 'Dove' );
         $this->assertTrue( config()->getEntity('d')->get('idx_target') == 4);
         config()->getEntity('d')->delete();
 
@@ -54,14 +55,13 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
             ->set('a', 'A', 1)
             ->set('b', 'B', 2)
             ->set('c', 'Cake', 3);
-        $this->assertTrue(config()->get('c') == 'Cake');
+        $this->assertTrue(config('c') == 'Cake');
 
-        $config
-            ->delete('a')
-            ->delete('b')
-            ->delete('c');
+        $config->getEntity('a')->delete();
+        $config->getEntity('b')->delete();
+        $config->getEntity('c')->delete();
 
-        $this->assertFalse(config()->get('c') == 'Cake');
+        $this->assertFalse(config('c') == 'Cake');
 
 
 
@@ -69,8 +69,8 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
             ->set('groupA.apple', 'Apple', 1)
             ->set('groupA.banana', 'Banana', 2);
 
-        config()->delete('groupA.apple');
-        config()->delete('groupA.banana');
+        config()->getEntity('groupA.apple')->delete();
+        config()->getEntity('groupA.banana')->delete();
 
         $fruits = [
             'GroupB.apple'=>'Apple',
@@ -83,12 +83,12 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
         ];
         config()->set($fruits);
 
-        $this->assertTrue(config()->get('D') == 'DDD');
-        $this->assertTrue(config()->get('E') == 'ET');
-        $this->assertTrue(config()->get('GroupC.A') == 'Anaconda');
+        $this->assertTrue(config('D') == 'DDD');
+        $this->assertTrue(config('E') == 'ET');
+        $this->assertTrue(config('GroupC.A') == 'Anaconda');
 
         foreach ( array_keys($fruits) as $k ) {
-            config()->delete($k);
+            config()->getEntity($k)->delete();
         }
 
 
@@ -110,7 +110,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
 
         $this->assertTrue(count(config()->group('category')->group('car')->gets()) == 4 );
         $this->assertTrue(count(config()->group('category')->group('car')->group('Hundai')->gets()) == 2 );
-        $this->assertTrue(config()->group('category')->group('car')->group('Hundai')->get('Accent') == 'Accentry Vol. 3' );
+        $this->assertTrue(config()->group('category')->group('car')->group('Hundai')->value('Accent') == 'Accentry Vol. 3' );
 
 
         config()->group('category')->group('phone')->group('samsung')
@@ -125,13 +125,13 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
             ->set('iPhone5', 'iPhone 5')
             ->set('iPhone6', 'iPhone 6');
 
-        $this->assertTrue(config()->group('category')->group('phone')->group('samsung')->get('GalaxyNote5') == 'Galaxy Note 5' );
+        $this->assertTrue(config()->group('category')->group('phone')->group('samsung')->value('GalaxyNote5') == 'Galaxy Note 5' );
 
         $this->assertTrue(count(config()->group('category')->group('phone')->gets()) == 8 );
         $this->assertTrue(count(config()->group('category')->gets()) == 12 );
 
 
-        config()->group('category')->delete();
+        config()->group('category')->group_delete();
         $this->assertTrue(count(config()->group('category')->gets()) == 0 );
 
     }

@@ -2,15 +2,12 @@
 namespace sap\src;
 
 
-class Meta {
+class Meta extends Entity {
 
-    private static $loaded;
-    private $table = null;
     private $group_code = null;
 
     public function __construct($table) {
-
-        $this->table = $table . '_meta';
+        parent::__construct($table . '_meta');
     }
 
 
@@ -22,13 +19,15 @@ class Meta {
      *
      * - If $create_table is not null, then it returns $this.
      */
+    /*
     final public function table($table=null) {
         if ( $table === null ) return $this->table;
         return new Entity($table);
     }
+    */
 
     final public function createTable() {
-        entity($this->table())->createTable()
+        parent::createTable()
             ->add('idx_target', 'INT')
             ->add('code', 'varchar', 64)
             ->add('value', 'TEXT')
@@ -37,13 +36,6 @@ class Meta {
         return $this;
     }
 
-    final public function dropTable() {
-        return entity($this->table())->dropTable();
-    }
-
-    final public function loadTable() {
-        entity($this->table())->loadTable();
-    }
 
     /**
      * @param $code
@@ -55,6 +47,7 @@ class Meta {
      */
     public function set($code, $value=null, $target=0)
     {
+        //dog(__METHOD__ . " ( $code, $value, $target )");
         if ( is_array($code) ) {
             foreach( $code as $key => $value ) {
                 $this->set($key, $value);
@@ -64,42 +57,64 @@ class Meta {
 
         $code = $this->getGroupCode() . $code;
 
-        $item = entity($this->table())->load('code', $code);
+        // $item = entity($this->table())->load('code', $code);
 
-        if ( $item ) {
-            $item->set('value', $value)
-                ->set('idx_target', $target)
-                ->save();
+        if ( $this->load('code', $code) ) {
+            parent::set('value', $value);
+            parent::set('idx_target', $target);
+            parent::save();
         }
         else {
-            entity($this->table())
-                ->set('code', $code)
-                ->set('value', $value)
-                ->set('idx_target', $target)
-                ->save();
+            //$this->fields['code'] = $code;
+            //$this->fields['value'] = $value;
+            parent::set('code', $code);
+            parent::set('value', $value);
+            parent::set('idx_target', $target);
+
+            //dog("before save:");
+            //dog(parent::get());
+            $this->save();
+            //dog("after save:");
+            //dog(parent::get());
         }
+        $this->clearLoadCache($this->table().":code:$code");
         return $this;
     }
 
     /**
+     *
+     * Returns value of a code or Values of a group.
+     *
+     *      - If the input $code is empty, then it returns values of group.
+     *
      * @param $code
      * @return mixed
      *
-     * @Attention it memory-caches internally.
+     * @Attention it does not memory cache since load() is cached in parent object already.
+     *
+     *
+     *
      */
-    final public function get($code)
+    final public function value($code)
     {
-
         $code = $this->getGroupCode() . $code;
 
+        if ( $this->load('code', $code) ) return $this->get('value');
+        else return FALSE;
+
+        /*
+
+
+
         if ( ! isset(self::$loaded[$code]) ) {
-            $entity = entity($this->table())->load('code', $code);
-            if ( $entity ) self::$loaded[$code] = $entity->get('value');
+            //$entity = entity($this->table())->load('code', $code);
+            if ( $this->load('code', $code) ) self::$loaded[$code] = $this->get('value');
             else self::$loaded[$code] = FALSE;
         }
         //dog("  --------- CODE:$code\n");
         //dog(self::$loaded[$code]);
         return self::$loaded[$code];
+        */
     }
 
     /**
@@ -108,11 +123,13 @@ class Meta {
      */
     final public function gets() {
         $code = $this->getGroupCode();
-        $rows = entity($this->table())->rows("code LIKE '$code%'", 'code,value');
+        // $rows = entity($this->table())->rows("code LIKE '$code%'", 'code,value');
+        $rows = $this->rows("code LIKE '$code%'", 'code,value');
+        //dog($rows);
         $kvs = [];
         if ( $rows ) {
             foreach( $rows as $row ) {
-                self::$loaded[$row['code']] = $row['value'];
+                //self::$loaded[$row['code']] = $row['value'];
                 $kvs[$row['code']] = $row['value'];
             }
         }
@@ -125,17 +142,11 @@ class Meta {
      * @return bool|Entity
      *
      *
-     * @Attention Since Meta class does not extends, it returns Entity class object to return a Entity item.
-     *
-     *      - For instance, the delete() below is on Entity class not in Meta class.
-     *
-     *              config()->getEntity('d')->delete();
      *
      */
     final public function getEntity($code) {
-        $entity = entity($this->table())->load('code', $code);
-        if ( $entity ) return $entity;
-        else return FALSE;
+        //$entity = entity($this->table())->load('code', $code);
+        return $this->load('code', $code);
     }
 
     /**
@@ -153,12 +164,15 @@ class Meta {
      *      meta('z')->group('meal')->delete();
      * @endcode
      */
+    /*
     public function delete($code=null) {
         if ( empty($code) ) return $this->group_delete();
-        entity($this->table())->load('code', $code)->delete();
-        unset(self::$loaded[$code]);
+        //entity($this->table())->load('code', $code)->delete();
+        parent::delete("code='$code'");
+        //unset(self::$loaded[$code]);
         return $this;
     }
+    */
 
 
     /**
@@ -167,7 +181,8 @@ class Meta {
     public function group_delete() {
         $code = $this->getGroupCode();
         if ( empty($code) ) return FALSE;
-        entity($this->table())->delete("code LIKE '$code%'");
+        //entity($this->table())->delete("code LIKE '$code%'");
+        parent::delete("code LIKE '$code%'");
         return $this;
     }
 

@@ -3,10 +3,10 @@ use sap\core\Config\Config;
 
 function config($code=null, $value=null, $target=0) {
     if ( $value || $target ) {
-        return config()->set($code, $value, $target=0);
+        return config()->set($code, $value, $target);
     }
     else if ( $code ) {
-        return config()->get($code);
+        return config()->value($code);
     }
     else return new Config();
 }

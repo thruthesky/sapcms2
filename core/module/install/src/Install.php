@@ -48,9 +48,17 @@ class Install {
         if ( empty($options['admin_id']) ) die('Input admin id');
         if ( empty($options['admin_password']) ) die('Input admin password');
 
+        $database['database'] = $options['database'];
+        $database['database_host'] = $options['database_host'];
+        $database['database_name'] = $options['database_name'];
+        $database['database_username'] = $options['database_username'];
+        $database['database_password'] = $options['database_password'];
+
+
+
         Config::file(Config::getDatabasePath())
-            ->data($options)
-            ->save();
+            ->data($database)
+            ->saveFileConfig();
 
         System::reloadDatabaseConfiguration();
 
@@ -106,7 +114,13 @@ class Install {
     public static function check()
     {
         $config = System::getDatabaseConfiguration();
-        return isset($config['database']);
+        if ( ! isset($config['database']) ) return FALSE;
+        if ( $config['database'] == 'mysql' ) {
+            if ( empty($config['database_name']) ) return FALSE;
+            return TRUE;
+        }
+        else if ( $config['database'] == 'sqlite' ) return TRUE;
+        return FALSE;
     }
 
     public static function runInstall()

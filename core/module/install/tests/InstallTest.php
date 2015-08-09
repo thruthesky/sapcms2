@@ -8,7 +8,7 @@ class InstallTest extends PHPUnit_Framework_TestCase {
         parent::__construct();
     }
     public function test_install() {
-        $this->assertNotEmpty(Install::check());
+        $this->assertTrue(Install::check());
     }
 }
 

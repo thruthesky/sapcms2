@@ -98,6 +98,7 @@ class System {
 
     public static function isCommandLineInterface()
     {
+        if ( isset($GLOBALS['argc']) && $GLOBALS['argc'] > 0 ) return true;
         if ( isset($GLOBALS['argv']) ) {
             if ( $GLOBALS['argv']['0'] == 'index.php' ) return true;
         }
@@ -180,6 +181,7 @@ class System {
             self::isInstalled(true);
             self::load_module_files();
         }
+
 
         /**
          * Return after loading System and its core libraries,
