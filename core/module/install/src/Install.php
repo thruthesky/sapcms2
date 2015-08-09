@@ -44,7 +44,8 @@ class Install {
     public static function initializeSystem($options)
     {
 
-        if ( empty($options['database']) ) die('Input admin database');
+        if ( empty($options['database']) ) die('Input database type');
+        if ( empty($options['database_name']) ) die('Input database name');
         if ( empty($options['admin_id']) ) die('Input admin id');
         if ( empty($options['admin_password']) ) die('Input admin password');
 
@@ -117,7 +118,7 @@ class Install {
         if ( ! isset($config['database']) ) return FALSE;
         if ( $config['database'] == 'mysql' ) {
             if ( empty($config['database_name']) ) return FALSE;
-            return TRUE;
+            else return TRUE;
         }
         else if ( $config['database'] == 'sqlite' ) return TRUE;
         return FALSE;

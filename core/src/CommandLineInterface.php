@@ -34,6 +34,10 @@ class CommandLineInterface {
             echo System::version();
         }
         else if ( self::$cmd == '--install' ) {
+
+            //print_r(self::getArguments());
+            //di('hi');exit;
+
             System::install([
                 'database' => self::getArgument('--database'),
                 'database_host' => self::getArgument('--database-host'),
