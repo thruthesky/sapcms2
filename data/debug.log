@@ -830,3 +830,394 @@
 381 : Module::run() => sap\core\Config\Config::getDatabasePath ()
 382 : Module::run() => sap\core\Config\Config::getDatabasePath ()
 383 : Module::run() => sap\core\Config\Config::getDatabasePath ()
+0 : SELECT code,value FROM config_meta WHERE code LIKE 'module.%'
+1 : sap\src\CommandLineInterface::Run
+2 : END
+3 : sap\core\Install\Install::createDirs
+4 : sap\core\Install\Install::createDirs
+5 : sap\src\Entity::load ( code, a ) : config_meta:code:a
+6 : SELECT * FROM config_meta WHERE code = 'a' LIMIT 1
+7 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('a','b','1',NULL,'1439208058','1439208058')
+8 : DELETE FROM config_meta WHERE idx=29
+9 : sap\src\Entity::load ( code, a ) : config_meta:code:a
+10 : SELECT * FROM config_meta WHERE code = 'a' LIMIT 1
+11 : sap\src\Entity::load ( code, a ) : config_meta:code:a
+12 : SELECT * FROM config_meta WHERE code = 'a' LIMIT 1
+13 : sap\src\Entity::load ( code, c ) : config_meta:code:c
+14 : SELECT * FROM config_meta WHERE code = 'c' LIMIT 1
+15 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('c','Cherry','0',NULL,'1439208058','1439208058')
+16 : sap\src\Entity::load ( code, c ) : config_meta:code:c
+17 : SELECT * FROM config_meta WHERE code = 'c' LIMIT 1
+18 : sap\src\Entity::load ( code, d ) : config_meta:code:d
+19 : SELECT * FROM config_meta WHERE code = 'd' LIMIT 1
+20 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('d','Dove','4',NULL,'1439208058','1439208058')
+21 : sap\src\Entity::load ( code, d ) : config_meta:code:d
+22 : SELECT * FROM config_meta WHERE code = 'd' LIMIT 1
+23 : sap\src\Entity::load ( code, d ) : config_meta:code:d
+24 : sap\src\Entity::load ( code, d ) : config_meta:code:d
+25 : DELETE FROM config_meta WHERE idx=31
+26 : sap\src\Entity::load ( code, a ) : config_meta:code:a
+27 : SELECT * FROM config_meta WHERE code = 'a' LIMIT 1
+28 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('a','A','1',NULL,'1439208058','1439208058')
+29 : sap\src\Entity::load ( code, b ) : config_meta:code:b
+30 : SELECT * FROM config_meta WHERE code = 'b' LIMIT 1
+31 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('b','B','2',NULL,'1439208059','1439208059')
+32 : sap\src\Entity::load ( code, c ) : config_meta:code:c
+33 : UPDATE config_meta SET `idx`='30', `created`='1439208058', `changed`='1439208059', `idx_target`='3', `code`='c', `value`='Cake' WHERE idx=30
+34 : sap\src\Entity::load ( code, c ) : config_meta:code:c
+35 : SELECT * FROM config_meta WHERE code = 'c' LIMIT 1
+36 : sap\src\Entity::load ( code, a ) : config_meta:code:a
+37 : SELECT * FROM config_meta WHERE code = 'a' LIMIT 1
+38 : DELETE FROM config_meta WHERE idx=32
+39 : sap\src\Entity::load ( code, b ) : config_meta:code:b
+40 : SELECT * FROM config_meta WHERE code = 'b' LIMIT 1
+41 : DELETE FROM config_meta WHERE idx=33
+42 : sap\src\Entity::load ( code, c ) : config_meta:code:c
+43 : DELETE FROM config_meta WHERE idx=30
+44 : sap\src\Entity::load ( code, c ) : config_meta:code:c
+45 : SELECT * FROM config_meta WHERE code = 'c' LIMIT 1
+46 : sap\src\Entity::load ( code, groupA.apple ) : config_meta:code:groupA.apple
+47 : SELECT * FROM config_meta WHERE code = 'groupA.apple' LIMIT 1
+48 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('groupA.apple','Apple','1',NULL,'1439208059','1439208059')
+49 : sap\src\Entity::load ( code, groupA.banana ) : config_meta:code:groupA.banana
+50 : SELECT * FROM config_meta WHERE code = 'groupA.banana' LIMIT 1
+51 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('groupA.banana','Banana','2',NULL,'1439208059','1439208059')
+52 : sap\src\Entity::load ( code, groupA.apple ) : config_meta:code:groupA.apple
+53 : SELECT * FROM config_meta WHERE code = 'groupA.apple' LIMIT 1
+54 : DELETE FROM config_meta WHERE idx=34
+55 : sap\src\Entity::load ( code, groupA.banana ) : config_meta:code:groupA.banana
+56 : SELECT * FROM config_meta WHERE code = 'groupA.banana' LIMIT 1
+57 : DELETE FROM config_meta WHERE idx=35
+58 : sap\src\Entity::load ( code, GroupB.apple ) : config_meta:code:GroupB.apple
+59 : SELECT * FROM config_meta WHERE code = 'GroupB.apple' LIMIT 1
+60 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('GroupB.apple','Apple','0',NULL,'1439208059','1439208059')
+61 : sap\src\Entity::load ( code, GroupB.banana ) : config_meta:code:GroupB.banana
+62 : SELECT * FROM config_meta WHERE code = 'GroupB.banana' LIMIT 1
+63 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('GroupB.banana','Banana','0',NULL,'1439208059','1439208059')
+64 : sap\src\Entity::load ( code, GroupB.cherry ) : config_meta:code:GroupB.cherry
+65 : SELECT * FROM config_meta WHERE code = 'GroupB.cherry' LIMIT 1
+66 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('GroupB.cherry','Cherry','0',NULL,'1439208059','1439208059')
+67 : sap\src\Entity::load ( code, GroupC.A ) : config_meta:code:GroupC.A
+68 : SELECT * FROM config_meta WHERE code = 'GroupC.A' LIMIT 1
+69 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('GroupC.A','Anaconda','0',NULL,'1439208059','1439208059')
+70 : sap\src\Entity::load ( code, GroupC.C ) : config_meta:code:GroupC.C
+71 : SELECT * FROM config_meta WHERE code = 'GroupC.C' LIMIT 1
+72 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('GroupC.C','Cobra','0',NULL,'1439208059','1439208059')
+73 : sap\src\Entity::load ( code, D ) : config_meta:code:D
+74 : SELECT * FROM config_meta WHERE code = 'D' LIMIT 1
+75 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('D','DDD','0',NULL,'1439208059','1439208059')
+76 : sap\src\Entity::load ( code, E ) : config_meta:code:E
+77 : SELECT * FROM config_meta WHERE code = 'E' LIMIT 1
+78 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('E','ET','0',NULL,'1439208059','1439208059')
+79 : sap\src\Entity::load ( code, D ) : config_meta:code:D
+80 : SELECT * FROM config_meta WHERE code = 'D' LIMIT 1
+81 : sap\src\Entity::load ( code, E ) : config_meta:code:E
+82 : SELECT * FROM config_meta WHERE code = 'E' LIMIT 1
+83 : sap\src\Entity::load ( code, GroupC.A ) : config_meta:code:GroupC.A
+84 : SELECT * FROM config_meta WHERE code = 'GroupC.A' LIMIT 1
+85 : sap\src\Entity::load ( code, GroupB.apple ) : config_meta:code:GroupB.apple
+86 : SELECT * FROM config_meta WHERE code = 'GroupB.apple' LIMIT 1
+87 : DELETE FROM config_meta WHERE idx=36
+88 : sap\src\Entity::load ( code, GroupB.banana ) : config_meta:code:GroupB.banana
+89 : SELECT * FROM config_meta WHERE code = 'GroupB.banana' LIMIT 1
+90 : DELETE FROM config_meta WHERE idx=37
+91 : sap\src\Entity::load ( code, GroupB.cherry ) : config_meta:code:GroupB.cherry
+92 : SELECT * FROM config_meta WHERE code = 'GroupB.cherry' LIMIT 1
+93 : DELETE FROM config_meta WHERE idx=38
+94 : sap\src\Entity::load ( code, GroupC.A ) : config_meta:code:GroupC.A
+95 : DELETE FROM config_meta WHERE idx=39
+96 : sap\src\Entity::load ( code, GroupC.C ) : config_meta:code:GroupC.C
+97 : SELECT * FROM config_meta WHERE code = 'GroupC.C' LIMIT 1
+98 : DELETE FROM config_meta WHERE idx=40
+99 : sap\src\Entity::load ( code, D ) : config_meta:code:D
+100 : DELETE FROM config_meta WHERE idx=41
+101 : sap\src\Entity::load ( code, E ) : config_meta:code:E
+102 : DELETE FROM config_meta WHERE idx=42
+103 : sap\src\Entity::load ( code, category.car.Hundai.G-StareX ) : config_meta:code:category.car.Hundai.G-StareX
+104 : SELECT * FROM config_meta WHERE code = 'category.car.Hundai.G-StareX' LIMIT 1
+105 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('category.car.Hundai.G-StareX','Grand StareX','0',NULL,'1439208059','1439208059')
+106 : sap\src\Entity::load ( code, category.car.Hundai.Accent ) : config_meta:code:category.car.Hundai.Accent
+107 : SELECT * FROM config_meta WHERE code = 'category.car.Hundai.Accent' LIMIT 1
+108 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('category.car.Hundai.Accent','Accentry Vol. 3','0',NULL,'1439208059','1439208059')
+109 : sap\src\Entity::load ( code, category.car.BMW.GM ) : config_meta:code:category.car.BMW.GM
+110 : SELECT * FROM config_meta WHERE code = 'category.car.BMW.GM' LIMIT 1
+111 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('category.car.BMW.GM','Grand Motor BMW','0',NULL,'1439208059','1439208059')
+112 : sap\src\Entity::load ( code, category.car.BMW.Nubira ) : config_meta:code:category.car.BMW.Nubira
+113 : SELECT * FROM config_meta WHERE code = 'category.car.BMW.Nubira' LIMIT 1
+114 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('category.car.BMW.Nubira','GM Nubia','0',NULL,'1439208059','1439208059')
+115 : SELECT code,value FROM config_meta WHERE code LIKE 'category.car.%'
+116 : SELECT code,value FROM config_meta WHERE code LIKE 'category.car.Hundai.%'
+117 : sap\src\Entity::load ( code, category.car.Hundai.Accent ) : config_meta:code:category.car.Hundai.Accent
+118 : SELECT * FROM config_meta WHERE code = 'category.car.Hundai.Accent' LIMIT 1
+119 : sap\src\Entity::load ( code, category.phone.samsung.GalaxyS3 ) : config_meta:code:category.phone.samsung.GalaxyS3
+120 : SELECT * FROM config_meta WHERE code = 'category.phone.samsung.GalaxyS3' LIMIT 1
+121 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('category.phone.samsung.GalaxyS3','Galaxy S3','0',NULL,'1439208059','1439208059')
+122 : sap\src\Entity::load ( code, category.phone.samsung.GalaxyNote2 ) : config_meta:code:category.phone.samsung.GalaxyNote2
+123 : SELECT * FROM config_meta WHERE code = 'category.phone.samsung.GalaxyNote2' LIMIT 1
+124 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('category.phone.samsung.GalaxyNote2','Galaxy Note 2','0',NULL,'1439208059','1439208059')
+125 : sap\src\Entity::load ( code, category.phone.samsung.GalaxyNote5 ) : config_meta:code:category.phone.samsung.GalaxyNote5
+126 : SELECT * FROM config_meta WHERE code = 'category.phone.samsung.GalaxyNote5' LIMIT 1
+127 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('category.phone.samsung.GalaxyNote5','Galaxy Note 5','0',NULL,'1439208059','1439208059')
+128 : sap\src\Entity::load ( code, category.phone.apple.iPhone2 ) : config_meta:code:category.phone.apple.iPhone2
+129 : SELECT * FROM config_meta WHERE code = 'category.phone.apple.iPhone2' LIMIT 1
+130 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('category.phone.apple.iPhone2','iPhone 2','0',NULL,'1439208059','1439208059')
+131 : sap\src\Entity::load ( code, category.phone.apple.iPhone3 ) : config_meta:code:category.phone.apple.iPhone3
+132 : SELECT * FROM config_meta WHERE code = 'category.phone.apple.iPhone3' LIMIT 1
+133 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('category.phone.apple.iPhone3','iPhone 3','0',NULL,'1439208059','1439208059')
+134 : sap\src\Entity::load ( code, category.phone.apple.iPhone4 ) : config_meta:code:category.phone.apple.iPhone4
+135 : SELECT * FROM config_meta WHERE code = 'category.phone.apple.iPhone4' LIMIT 1
+136 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('category.phone.apple.iPhone4','iPhone 4','0',NULL,'1439208059','1439208059')
+137 : sap\src\Entity::load ( code, category.phone.apple.iPhone5 ) : config_meta:code:category.phone.apple.iPhone5
+138 : SELECT * FROM config_meta WHERE code = 'category.phone.apple.iPhone5' LIMIT 1
+139 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('category.phone.apple.iPhone5','iPhone 5','0',NULL,'1439208059','1439208059')
+140 : sap\src\Entity::load ( code, category.phone.apple.iPhone6 ) : config_meta:code:category.phone.apple.iPhone6
+141 : SELECT * FROM config_meta WHERE code = 'category.phone.apple.iPhone6' LIMIT 1
+142 : INSERT INTO `config_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('category.phone.apple.iPhone6','iPhone 6','0',NULL,'1439208059','1439208059')
+143 : sap\src\Entity::load ( code, category.phone.samsung.GalaxyNote5 ) : config_meta:code:category.phone.samsung.GalaxyNote5
+144 : SELECT * FROM config_meta WHERE code = 'category.phone.samsung.GalaxyNote5' LIMIT 1
+145 : SELECT code,value FROM config_meta WHERE code LIKE 'category.phone.%'
+146 : SELECT code,value FROM config_meta WHERE code LIKE 'category.%'
+147 : DELETE FROM config_meta WHERE code LIKE 'category.%'
+148 : SELECT code,value FROM config_meta WHERE code LIKE 'category.%'
+149 : sap\src\Entity::load ( id, admin ) : user:id:admin
+150 : SELECT * FROM user WHERE id = 'admin' LIMIT 1
+151 : sap\src\Entity::load ( id, admin ) : user:id:admin
+152 : sap\src\Entity::load ( id, sapcms2-test-id ) : user:id:sapcms2-test-id
+153 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+154 : sap\src\Entity::load ( id, sapcms2-test-id ) : user:id:sapcms2-test-id
+155 : SELECT * FROM user WHERE id = 'sapcms2-test-id' LIMIT 1
+156 : INSERT INTO `user` (`idx`,`created`,`changed`,`id`,`name`) VALUES (NULL,'1439208060','1439208060','sapcms2-test-id','JaeHo Song')
+157 : SELECT COUNT(*) FROM user  LIMIT 1
+158 : DELETE FROM user WHERE idx=7
+159 : INSERT INTO `user` (`id`,`idx`,`created`,`changed`) VALUES ('test-id-2',NULL,'1439208060','1439208060')
+160 : DELETE FROM user WHERE idx=8
+161 : INSERT INTO `user` (`idx`,`created`,`changed`,`id`) VALUES (NULL,'1439208060','1439208060','test-id-2')
+162 : DELETE FROM user WHERE idx=9
+163 : sap\src\Entity::load ( id, test-id-3 ) : user:id:test-id-3
+164 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+165 : INSERT INTO `user` (`idx`,`created`,`changed`,`id`) VALUES (NULL,'1439208060','1439208060','test-id-3')
+166 : sap\src\Entity::get (  ) : returns field array: 
+167 : Array
+(
+    [idx] => 10
+    [created] => 1439208060
+    [changed] => 1439208060
+    [id] => test-id-3
+)
+
+168 : sap\src\Entity::load ( id, test-id-3 ) : user:id:test-id-3
+169 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+170 : sap\src\Entity::load ( id, test-id-3 ) : user:id:test-id-3
+171 : DELETE FROM user WHERE idx=10
+172 : sap\src\Entity::load ( id, test-id-3 ) : user:id:test-id-3
+173 : SELECT * FROM user WHERE id = 'test-id-3' LIMIT 1
+174 : sap\src\Entity::load ( id, TEST ID 937 ) : user:id:TEST ID 937
+175 : SELECT * FROM user WHERE id = 'TEST ID 937' LIMIT 1
+176 : INSERT INTO `user` (`idx`,`created`,`changed`,`id`,`password`) VALUES (NULL,'1439208060','1439208060','TEST ID 937','0fb02c6e8c61ecc073ecbac798449889')
+177 : sap\src\Entity::load ( id, TEST ID 937 ) : user:id:TEST ID 937
+178 : SELECT * FROM user WHERE id = 'TEST ID 937' LIMIT 1
+179 : sap\src\Entity::load ( id, TEST ID 937 ) : user:id:TEST ID 937
+180 : sap\src\Entity::load ( id, TEST ID 937 ) : user:id:TEST ID 937
+181 : DELETE FROM user WHERE idx=11
+182 : SELECT * FROM test_table  LIMIT 1
+183 : SELECT * FROM test_table  LIMIT 1
+184 : test_table:test_table, field:idx
+185 : SELECT * FROM test_table WHERE idx=1 LIMIT 1
+186 : SELECT * FROM test_table  LIMIT 1
+187 : ALTER TABLE temp ADD COLUMN name varchar(255)
+188 : ALTER TABLE temp ADD COLUMN mail varchar(255)
+189 : ALTER TABLE temp ADD COLUMN birth_year int
+190 : ALTER TABLE temp ADD COLUMN no int
+191 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('JaeHo Song','thruthesky@gmail.com','1973')
+192 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('Mr. Song JaeHo','thruthesky@naver.com','1983')
+193 : INSERT INTO `temp` (`name`,`mail`,`birth_year`) VALUES ('My Old Name?','thruthesky@hanmail.net','1993')
+194 : temp:temp, field:idx
+195 : SELECT * FROM temp WHERE idx=1 LIMIT 1
+196 : temp:temp, field:no
+197 : SELECT * FROM temp WHERE no=1 LIMIT 1
+198 : temp:temp, field:name
+199 : SELECT * FROM temp WHERE name=1 LIMIT 1
+200 : temp:temp, field:no
+201 : SELECT * FROM temp WHERE no=1 LIMIT 1
+202 : SELECT * FROM temp WHERE name='JaeHo Song' LIMIT 1
+203 : SELECT * FROM temp WHERE (`name` = 'JaeHo Song') LIMIT 1
+204 : ALTER TABLE abc ADD COLUMN a varchar(255)
+205 : ALTER TABLE abc ADD COLUMN b varchar(255)
+206 : ALTER TABLE abc ADD COLUMN c varchar(255)
+207 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('A','B','C')
+208 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('ABC','BCD','CDE')
+209 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('1','2','3')
+210 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','banana','cherry')
+211 : SELECT * FROM abc WHERE (`a` like 'A%' AND ((`b` like 'B%' AND `c` like 'C%') OR (`b` = 'B' AND `c` = 'C'))) LIMIT 1
+212 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('Airplane','Boat','Cruze')
+213 : SELECT * FROM abc WHERE b='Boat' LIMIT 1
+214 : DELETE FROM abc WHERE b='Boat'
+215 : SELECT * FROM abc WHERE b='Boat' LIMIT 1
+216 : ALTER TABLE abc ADD COLUMN a varchar(255)
+217 : ALTER TABLE abc ADD COLUMN b varchar(255)
+218 : ALTER TABLE abc ADD COLUMN c varchar(255)
+219 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('A','B','C')
+220 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('ABC','BCD','CDE')
+221 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('1','2','3')
+222 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','banana','cherry')
+223 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','beach','city')
+224 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','box','cake')
+225 : SELECT * FROM abc  LIMIT 1
+226 : SELECT * FROM abc WHERE 1 LIMIT 0,1
+227 : SELECT * FROM abc LIMIT 1,1
+228 : SELECT * FROM abc ORDER BY idx ASC LIMIT 2,1
+229 : SELECT idx, a FROM abc  LIMIT 1
+230 : SELECT idx, a FROM abc WHERE A LIKE 'A%' ORDER BY a DESC LIMIT 1,1
+231 : ALTER TABLE abc ADD COLUMN a varchar(255)
+232 : ALTER TABLE abc ADD COLUMN b varchar(255)
+233 : ALTER TABLE abc ADD COLUMN c varchar(255)
+234 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('A','B','C')
+235 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('ABC','BCD','CDE')
+236 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('1','2','3')
+237 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','banana','cherry')
+238 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','beach','city')
+239 : INSERT INTO `abc` (`a`,`b`,`c`) VALUES ('apple','box','cake')
+240 : SELECT * FROM abc 
+241 : SELECT * FROM abc LIMIT 2,2
+242 : SELECT a,b,c,COUNT(*) as cnt FROM abc WHERE a LIKE 'a%' GROUP BY a ORDER BY cnt DESC LIMIT 0,2
+243 : ALTER TABLE test_result ADD COLUMN a varchar(255)
+244 : INSERT INTO `test_result` (`a`) VALUES ('b')
+245 : SELECT a FROM test_result  LIMIT 1
+246 : SELECT COUNT(*) FROM test_result  LIMIT 1
+247 : ALTER TABLE entity_test ADD COLUMN created INT UNSIGNED DEFAULT 0
+248 : ALTER TABLE entity_test ADD COLUMN changed INT UNSIGNED DEFAULT 0
+249 : ALTER TABLE entity_test ADD COLUMN name varchar(32)
+250 : INSERT INTO `entity_test` (`name`,`idx`,`created`,`changed`) VALUES ('JaeHo',NULL,'1439208064','1439208064')
+251 : sap\src\Entity::load ( 1,  ) : entity_test:1:
+252 : SELECT * FROM entity_test WHERE idx = '1' LIMIT 1
+253 : sap\src\Entity::load ( name, JaeHo ) : entity_test:name:JaeHo
+254 : SELECT * FROM entity_test WHERE name = 'JaeHo' LIMIT 1
+255 : ALTER TABLE entity_test_2 ADD COLUMN created INT UNSIGNED DEFAULT 0
+256 : ALTER TABLE entity_test_2 ADD COLUMN changed INT UNSIGNED DEFAULT 0
+257 : ALTER TABLE entity_test_2 ADD COLUMN a char(255)
+258 : ALTER TABLE entity_test_2 ADD COLUMN b char(255)
+259 : ALTER TABLE entity_test_2 ADD COLUMN c char(255)
+260 : INSERT INTO `entity_test_2` (`idx`,`created`,`changed`,`a`,`b`,`c`) VALUES (NULL,'1439208064','1439208064','A','B','C')
+261 : SELECT COUNT(*) FROM entity_test_2  LIMIT 1
+262 : sap\src\Entity::load ( a, A ) : entity_test_2:a:A
+263 : SELECT * FROM entity_test_2 WHERE a = 'A' LIMIT 1
+264 : INSERT INTO `entity_test_2` (`a`,`b`,`c`,`idx`,`created`,`changed`) VALUES ('1','2','3',NULL,'1439208064','1439208064')
+265 : sap\src\Entity::load ( a, 1 ) : entity_test_2:a:1
+266 : SELECT * FROM entity_test_2 WHERE a = '1' LIMIT 1
+267 : ALTER TABLE x_meta ADD COLUMN created INT UNSIGNED DEFAULT 0
+268 : ALTER TABLE x_meta ADD COLUMN changed INT UNSIGNED DEFAULT 0
+269 : ALTER TABLE x_meta ADD COLUMN idx_target INT
+270 : ALTER TABLE x_meta ADD COLUMN code varchar(64)
+271 : ALTER TABLE x_meta ADD COLUMN value TEXT
+272 : sap\src\Entity::load ( code, a ) : x_meta:code:a
+273 : SELECT * FROM x_meta WHERE code = 'a' LIMIT 1
+274 : INSERT INTO `x_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('a','b','1',NULL,'1439208065','1439208065')
+275 : sap\src\Entity::load ( code, a ) : x_meta:code:a
+276 : SELECT * FROM x_meta WHERE code = 'a' LIMIT 1
+277 : sap\src\Entity::load ( code, a ) : x_meta:code:a
+278 : sap\src\Entity::load ( code, a ) : x_meta:code:a
+279 : sap\src\Entity::load ( code, a ) : x_meta:code:a
+280 : sap\src\Entity::load ( code, a ) : x_meta:code:a
+281 : sap\src\Entity::load ( code, a ) : x_meta:code:a
+282 : ALTER TABLE user_meta ADD COLUMN created INT UNSIGNED DEFAULT 0
+283 : ALTER TABLE user_meta ADD COLUMN changed INT UNSIGNED DEFAULT 0
+284 : ALTER TABLE user_meta ADD COLUMN idx_target INT
+285 : ALTER TABLE user_meta ADD COLUMN code varchar(64)
+286 : ALTER TABLE user_meta ADD COLUMN value TEXT
+287 : SELECT * FROM user_meta  LIMIT 1
+288 : SELECT * FROM user_meta  LIMIT 1
+289 : ALTER TABLE test_meta ADD COLUMN created INT UNSIGNED DEFAULT 0
+290 : ALTER TABLE test_meta ADD COLUMN changed INT UNSIGNED DEFAULT 0
+291 : ALTER TABLE test_meta ADD COLUMN idx_target INT
+292 : ALTER TABLE test_meta ADD COLUMN code varchar(64)
+293 : ALTER TABLE test_meta ADD COLUMN value TEXT
+294 : sap\src\Entity::load ( code, a ) : test_meta:code:a
+295 : SELECT * FROM test_meta WHERE code = 'a' LIMIT 1
+296 : INSERT INTO `test_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('a','A','0',NULL,'1439208066','1439208066')
+297 : sap\src\Entity::load ( code, b ) : test_meta:code:b
+298 : SELECT * FROM test_meta WHERE code = 'b' LIMIT 1
+299 : INSERT INTO `test_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('b','B','0',NULL,'1439208066','1439208066')
+300 : sap\src\Entity::load ( code, c ) : test_meta:code:c
+301 : SELECT * FROM test_meta WHERE code = 'c' LIMIT 1
+302 : INSERT INTO `test_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('c','C','0',NULL,'1439208066','1439208066')
+303 : sap\src\Entity::load ( code, a ) : test_meta:code:a
+304 : SELECT * FROM test_meta WHERE code = 'a' LIMIT 1
+305 : sap\src\Entity::load ( code, a ) : test_meta:code:a
+306 : sap\src\Entity::load ( code, a ) : test_meta:code:a
+307 : DELETE FROM test_meta WHERE idx=1
+308 : DELETE FROM test_meta WHERE code='c'
+309 : ALTER TABLE z_meta ADD COLUMN created INT UNSIGNED DEFAULT 0
+310 : ALTER TABLE z_meta ADD COLUMN changed INT UNSIGNED DEFAULT 0
+311 : ALTER TABLE z_meta ADD COLUMN idx_target INT
+312 : ALTER TABLE z_meta ADD COLUMN code varchar(64)
+313 : ALTER TABLE z_meta ADD COLUMN value TEXT
+314 : sap\src\Entity::load ( code, meal.breakfast ) : z_meta:code:meal.breakfast
+315 : SELECT * FROM z_meta WHERE code = 'meal.breakfast' LIMIT 1
+316 : INSERT INTO `z_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('meal.breakfast','fruits and milk','10',NULL,'1439208067','1439208067')
+317 : sap\src\Entity::load ( code, meal.lunch ) : z_meta:code:meal.lunch
+318 : SELECT * FROM z_meta WHERE code = 'meal.lunch' LIMIT 1
+319 : INSERT INTO `z_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('meal.lunch','beef and milk','20',NULL,'1439208067','1439208067')
+320 : sap\src\Entity::load ( code, meal.dinner ) : z_meta:code:meal.dinner
+321 : SELECT * FROM z_meta WHERE code = 'meal.dinner' LIMIT 1
+322 : INSERT INTO `z_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('meal.dinner','bread and milk','30',NULL,'1439208067','1439208067')
+323 : SELECT code,value FROM z_meta WHERE code LIKE 'meal.%'
+324 : sap\src\Entity::load ( code, meal.lunch ) : z_meta:code:meal.lunch
+325 : SELECT * FROM z_meta WHERE code = 'meal.lunch' LIMIT 1
+326 : DELETE FROM z_meta WHERE code LIKE 'meal.%'
+327 : SELECT code,value FROM z_meta WHERE code LIKE 'meal.%'
+328 : sap\src\Entity::load ( code, user.jaeho.name ) : z_meta:code:user.jaeho.name
+329 : SELECT * FROM z_meta WHERE code = 'user.jaeho.name' LIMIT 1
+330 : INSERT INTO `z_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('user.jaeho.name','JaeHo Song','0',NULL,'1439208067','1439208067')
+331 : sap\src\Entity::load ( code, user.jaeho.age ) : z_meta:code:user.jaeho.age
+332 : SELECT * FROM z_meta WHERE code = 'user.jaeho.age' LIMIT 1
+333 : INSERT INTO `z_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('user.jaeho.age','41','0',NULL,'1439208067','1439208067')
+334 : sap\src\Entity::load ( code, user.jaeho.gender ) : z_meta:code:user.jaeho.gender
+335 : SELECT * FROM z_meta WHERE code = 'user.jaeho.gender' LIMIT 1
+336 : INSERT INTO `z_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('user.jaeho.gender','M','0',NULL,'1439208067','1439208067')
+337 : sap\src\Entity::load ( code, user.jaeho.address ) : z_meta:code:user.jaeho.address
+338 : SELECT * FROM z_meta WHERE code = 'user.jaeho.address' LIMIT 1
+339 : INSERT INTO `z_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('user.jaeho.address','Balibago','0',NULL,'1439208067','1439208067')
+340 : sap\src\Entity::load ( code, user.woobum.name ) : z_meta:code:user.woobum.name
+341 : SELECT * FROM z_meta WHERE code = 'user.woobum.name' LIMIT 1
+342 : INSERT INTO `z_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('user.woobum.name','Woo Beom Jung','0',NULL,'1439208067','1439208067')
+343 : sap\src\Entity::load ( code, user.woobum.age ) : z_meta:code:user.woobum.age
+344 : SELECT * FROM z_meta WHERE code = 'user.woobum.age' LIMIT 1
+345 : INSERT INTO `z_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('user.woobum.age','39','0',NULL,'1439208067','1439208067')
+346 : sap\src\Entity::load ( code, user.woobum.gender ) : z_meta:code:user.woobum.gender
+347 : SELECT * FROM z_meta WHERE code = 'user.woobum.gender' LIMIT 1
+348 : INSERT INTO `z_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('user.woobum.gender','M','0',NULL,'1439208067','1439208067')
+349 : sap\src\Entity::load ( code, user.woobum.address ) : z_meta:code:user.woobum.address
+350 : SELECT * FROM z_meta WHERE code = 'user.woobum.address' LIMIT 1
+351 : INSERT INTO `z_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('user.woobum.address','Balibago','0',NULL,'1439208067','1439208067')
+352 : SELECT code,value FROM z_meta WHERE code LIKE 'user.%'
+353 : SELECT code,value FROM z_meta WHERE code LIKE 'user.jaeho.%'
+354 : sap\src\Entity::load ( code, user.woobum.age ) : z_meta:code:user.woobum.age
+355 : SELECT * FROM z_meta WHERE code = 'user.woobum.age' LIMIT 1
+356 : DELETE FROM z_meta WHERE code LIKE 'user.woobum.%'
+357 : SELECT code,value FROM z_meta WHERE code LIKE 'user.woobum.%'
+358 : SELECT code,value FROM z_meta WHERE code LIKE 'user.jaeho.%'
+359 : SELECT code,value FROM z_meta WHERE code LIKE 'user.%'
+360 : DELETE FROM z_meta WHERE code LIKE 'user.%'
+361 : SELECT code,value FROM z_meta WHERE code LIKE 'user.jaeho.%'
+362 : SELECT code,value FROM z_meta WHERE code LIKE 'user.%'
+363 : sap\src\Entity::load ( code, user.thruthesky.name ) : z_meta:code:user.thruthesky.name
+364 : SELECT * FROM z_meta WHERE code = 'user.thruthesky.name' LIMIT 1
+365 : INSERT INTO `z_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('user.thruthesky.name','thruthesky','0',NULL,'1439208067','1439208067')
+366 : sap\src\Entity::load ( code, user.thruthesky.property.callcenter ) : z_meta:code:user.thruthesky.property.callcenter
+367 : SELECT * FROM z_meta WHERE code = 'user.thruthesky.property.callcenter' LIMIT 1
+368 : INSERT INTO `z_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('user.thruthesky.property.callcenter','angles','0',NULL,'1439208067','1439208067')
+369 : sap\src\Entity::load ( code, user.thruthesky.property.site ) : z_meta:code:user.thruthesky.property.site
+370 : SELECT * FROM z_meta WHERE code = 'user.thruthesky.property.site' LIMIT 1
+371 : INSERT INTO `z_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('user.thruthesky.property.site','philgo','0',NULL,'1439208067','1439208067')
+372 : sap\src\Entity::load ( code, user.thruthesky.property.consultancy ) : z_meta:code:user.thruthesky.property.consultancy
+373 : SELECT * FROM z_meta WHERE code = 'user.thruthesky.property.consultancy' LIMIT 1
+374 : INSERT INTO `z_meta` (`code`,`value`,`idx_target`,`idx`,`created`,`changed`) VALUES ('user.thruthesky.property.consultancy','viy','0',NULL,'1439208067','1439208067')
+375 : SELECT code,value FROM z_meta WHERE code LIKE 'user.thruthesky.%'
+376 : SELECT code,value FROM z_meta WHERE code LIKE 'user.thruthesky.property.%'
+377 : sap\src\Entity::load ( code, user.thruthesky.property.site ) : z_meta:code:user.thruthesky.property.site
+378 : SELECT * FROM z_meta WHERE code = 'user.thruthesky.property.site' LIMIT 1
+379 : DELETE FROM z_meta WHERE code LIKE 'user.%'
+380 : Module::run() => sap\core\Install\Install::check ()
+381 : Module::run() => sap\core\Config\Config::getDatabasePath ()
+382 : Module::run() => sap\core\Config\Config::getDatabasePath ()
+383 : Module::run() => sap\core\Config\Config::getDatabasePath ()
