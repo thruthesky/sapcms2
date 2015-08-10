@@ -7,7 +7,7 @@ define('DEFAULT_CONTROLLER','page');
 $theme = 'default';
 
 define('PATH_INSTALL', getcwd());
-define('PATH_DATA', PATH_INSTALL . '/data');
+define('PATH_DATA', 'c:/work/www/sapcms2_data');
 define('PATH_DEBUG_LOG', PATH_DATA . '/debug.log');
 define('PATH_ERROR_LOG', PATH_DATA . '/error.log');
 
