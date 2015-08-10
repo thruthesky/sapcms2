@@ -71,7 +71,6 @@ class Database extends \PDO {
      */
     public static function load()
     {
-        //dog(__METHOD__);
         if ( self::$db ) return self::$db;
 
         $config = System::getDatabaseConfiguration();
@@ -148,7 +147,7 @@ class Database extends \PDO {
         }
         if ( $size ) $type = "$type($size)";
         $q = "ALTER TABLE $table ADD COLUMN $column $type";
-        dog($q);
+        System::log($q);
         $this->exec($q);
         return $this;
     }
@@ -246,7 +245,7 @@ class Database extends \PDO {
         else if ( $this->type == 'sqlite' ) {
             $index_name = str_replace(',', '_', $fields);
             $q = "CREATE INDEX {$table}_$index_name ON $table ($fields);";
-            dog($q);
+            System::log($q);
             $this->exec($q);
             return $this;
         }
@@ -297,7 +296,7 @@ class Database extends \PDO {
 
         if ( strpos($cond,'LIMIT') === false ) $cond .= " LIMIT 1";
         $q = "SELECT $field FROM $table $cond";
-        dog($q);
+        System::log($q);
         $statement = $this->query($q);
         return $statement->fetch(\PDO::FETCH_ASSOC);
     }
@@ -313,7 +312,7 @@ class Database extends \PDO {
     {
         $cond = $this->adjustCondition($cond);
         $q = "SELECT $field FROM $table $cond";
-        dog($q);
+        System::log($q);
         $statement = $this->query($q);
         $rows = [];
         while ( $row = $statement->fetch(\PDO::FETCH_ASSOC) ) {
@@ -394,10 +393,10 @@ class Database extends \PDO {
         $keys = implode(",", $key_list);
         $values = implode(",", $value_list);
         $q = "INSERT INTO `{$table}` ({$keys}) VALUES ({$values})";
-        dog($q);
+        System::log($q);
         $count = $this->exec($q);
         if ( $count == 0 ) {
-            dog("SQL QUERY ERROR: $q");
+            System::log("SQL QUERY ERROR: $q");
             return FALSE;
         }
         else {
@@ -421,7 +420,7 @@ class Database extends \PDO {
         }
         $set = implode(", ", $sets);
         $q = "UPDATE $table SET $set WHERE $cond";
-        dog($q);
+        System::log($q);
         $statement = $this->query($q);
         return $statement;
     }
@@ -435,7 +434,7 @@ class Database extends \PDO {
     public function delete($table, $cond)
     {
         $q = "DELETE FROM $table WHERE $cond";
-        dog($q);
+        System::log($q);
         $statement = $this->query($q);
         return OK;
     }
@@ -452,12 +451,11 @@ class Database extends \PDO {
      * @endcode
      */
     public function columnExists($table, $field=null) {
-        //dog(__METHOD__);
         if ( empty($field) ) {
             $field = $table;
             $table = $this->table();
         }
-        dog("$table:$table, field:$field");
+        System::log("$table:$table, field:$field");
         try {
             $this->row($table, "$field=1");
             return TRUE;

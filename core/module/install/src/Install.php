@@ -14,7 +14,6 @@ class Install {
      *
      */
     public static function page() {
-        dog(__METHOD__);
         if ( Request::submit() ) self::submit();
         else {
             Response::renderSystemLayout(['template'=>'install.form']);
@@ -105,7 +104,6 @@ class Install {
      */
     public static function createDirs()
     {
-        dog(__METHOD__);
         if ( $error_code = File::createDir(PATH_CONFIG) ) return $error_code;
         if ( $error_code = File::createDir(PATH_UPLOAD) ) return $error_code;
         if ( $error_code = File::createDir(PATH_THUMBNAIL) ) return $error_code;
@@ -126,7 +124,6 @@ class Install {
 
     public static function runInstall()
     {
-        dog("System is going to install now.");
         if ( Request::module('Install') ) {
             System::runModule();
         }
@@ -134,5 +131,65 @@ class Install {
         return OK;
     }
 
+
+
+
+    public static function enableModule($name)
+    {
+        if ( empty($name) ) return ERROR_MODULE_NAME_EMPTY;
+
+        if ( config()->group('module')->value($name) ) return ERROR_MODULE_ALREADY_INSTALLED;
+        $path_module = PATH_MODULE . "/$name";
+        if ( ! is_dir($path_module) ) return ERROR_MODULE_NOT_EXISTS;
+
+
+        // 1. include module script first
+        $path = "$path_module/$name.module";
+        if ( file_exists($path) ) include_once $path;
+
+        // 2. include install script
+        $path = "$path_module/$name.install";
+        if ( file_exists($path) ) include $path;
+
+        $variables = ['name'=>$name];
+        hook('module_enable', $variables);
+
+        config()->group('module')->set($name, $name);
+        return OK;
+    }
+
+
+
+    /**
+     * @param $name
+     * @return int
+     *
+     * It does not check if the module directory exists or not.
+     */
+    public static function disableModule($name)
+    {
+        if ( empty($name) ) return ERROR_MODULE_NAME_EMPTY;
+
+        if ( config()->group('module')->value($name) ) {
+            config()->group('module')->getEntity($name)->delete();
+
+            $path_module = PATH_MODULE . "/$name";
+
+
+            // 1. include module script first
+            $path = "$path_module/$name.module";
+            if ( file_exists($path) ) include_once $path;
+
+            // 2. include uninstall script
+            $path = "$path_module/$name.uninstall";
+            if ( file_exists($path) ) include_once $path;
+
+            $variables = ['name'=>$name];
+            hook('module_disable', $variables);
+        }
+        else return ERROR_MODULE_NOT_INSTALLED;
+
+        return OK;
+    }
 
 }

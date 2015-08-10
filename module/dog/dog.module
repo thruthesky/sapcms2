@@ -1,0 +1,21 @@
+<?php
+
+use sap\dog\Dog;
+
+function dog() {
+    static $_dog;
+    if ( isset($_dog) ) {
+        return $_dog;
+    }
+    else {
+        $_dog = new Dog();
+        return $_dog;
+    }
+}
+
+function hook_system_begin_dog() {
+    system_log("\t DOG HOOK SYSTEM BEGIN ----------: " . __METHOD__);
+}
+function hook_system_end_dog() {
+    system_log("\t DOG HOOK SYSTEM END ----------: " . __METHOD__);
+}

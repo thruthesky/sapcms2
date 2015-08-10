@@ -1,6 +1,7 @@
 <?php
 namespace sap\src;
 use sap\core\Config\Config;
+use sap\core\Install\Install;
 use sap\core\System\System;
 
 class CommandLineInterface {
@@ -25,7 +26,7 @@ class CommandLineInterface {
         }
     }
     public static function Run() {
-        dog(__METHOD__);
+        System::log(__METHOD__);
         self::parseArguments();
         if ( empty(self::$cmd) ) {
         }
@@ -68,24 +69,31 @@ class CommandLineInterface {
         else if ( self::$cmd == '--enable' ) {
             $name = self::segment(2);
             echo "Enabling module : $name\n";
-            $code = System::enable($name);
+            $code = Install::enableModule($name);
             if ( $code ) echo get_error_message($code);
         }
         else if ( self::$cmd == '--disable' ) {
             $name = self::segment(2);
             echo "Disabling module : $name\n";
-            $code = System::disable($name);
+            $code = Install::disableModule($name);
             if ( $code ) echo get_error_message($code);
+        }
+        else if ( self::$cmd == '--list-module') {
+            print_r(System::getModuleLoaded());
         }
         else {
             if ( self::$cmd ) {
-                $pi = pathinfo(self::$cmd);
+                $path = self::$cmd;
+                $pi = pathinfo($path);
                 if ( isset($pi['extension']) && $pi['extension'] == 'php' ) {
-                    include self::$cmd;
+                    $module = get_module_from_path($path);
+                    if ( System::isEnabled($module) ) include $path;
+                    else {
+                        echo "Module [ $module ] is not enabled.";
+                    }
                 }
             }
         }
-        dog("END");
         return OK;
     }
     public static function displayHelp() {

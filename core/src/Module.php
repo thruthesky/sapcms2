@@ -69,7 +69,7 @@ class Module {
 
         $name = "sap\\{$core}$module\\$class";
 
-        dog("Module::run() => $name::$method ()");
+        System::log("Module::run() => $name::$method ()");
 
         return $name::$method();
 

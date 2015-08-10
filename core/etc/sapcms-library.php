@@ -53,9 +53,6 @@ function is_core_module($module=null) {
 }
 
 
-function dog($msg) {
-    System::log($msg);
-}
 function error($code, $array_kvs=[]) {
     return System::error($code, $array_kvs);
 }
@@ -93,7 +90,7 @@ function call_hooks($hook, &$args=[]) {
 
 function hook($hook_name, &$variables=[]) {
     foreach( System::getModuleLoaded() as $module ) {
-        $func = "hook{$hook_name}_for_$module";
+        $func = "hook_{$hook_name}_$module";
         if ( function_exists($func) ) $func($variables);
     }
 }
@@ -121,6 +118,26 @@ function get_sapcms_path($path) {
     }
     return null;
 }
+
+
+/**
+ *
+ * Returns 'module-name' form file path.
+ *
+ * @param $path
+ *
+ *
+ * @return null
+ */
+function get_module_from_path($path) {
+    if ( DIRECTORY_SEPARATOR != '/' ) $path = str_replace(DIRECTORY_SEPARATOR, '/', $path);
+    $arr = explode('/', $path);
+    if ( $arr[0] == 'module' ) return $arr[1];
+    else if ( $arr[0] == 'core' && $arr[1] == 'module' ) return $arr[2];
+    return null;
+}
+
+
 
 /**
  *

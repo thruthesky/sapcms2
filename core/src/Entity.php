@@ -2,6 +2,8 @@
 namespace sap\src;
 
 
+use sap\core\System\System;
+
 class Entity {
     private static $loadCache = [];
     public $fields = [];
@@ -90,22 +92,19 @@ class Entity {
 
         $table = $this->table();
         $code = "$table:$field:$value";
-        dog(__METHOD__ . " ( $field, $value ) : $code");
+        System::log(__METHOD__ . " ( $field, $value ) : $code");
 
         if ( isset(self::$loadCache[$code]) ) {
-            //echo("load is cached: $code\n");
             $this->cacheCode = $code;
             $this->fields = self::$loadCache[$code];
 
             if ( empty($this->fields) ) {
-                //dog("fields is empty");
                 return FALSE;
             }
             else {
                 return $this;
             }
         }
-        //echo("load is NOT cached:code\n");
 
 
         /**
@@ -123,11 +122,9 @@ class Entity {
         }
         hook('entity_load', $this);
         if ( empty(self::$loadCache[$code]) ) {
-            //dog("value is Empty for code = $code");
             return FALSE;
         }
         else {
-            // dog("Value is not empty. returns this");
             return $this;
         }
     }
@@ -149,8 +146,6 @@ class Entity {
             return isset($this->fields[$field]) ? $this->fields[$field] : null;
         }
         else {
-            dog(__METHOD__ . " ( $field ) : returns field array: ");
-            dog($this->fields);
             return $this->fields;
         }
     }
@@ -225,8 +220,6 @@ class Entity {
     public function save()
     {
 
-        //dog("Inside save");
-        //dog($this->fields);
 
         if ( $this->get('idx') ) {
             $this->fields['changed'] = time();

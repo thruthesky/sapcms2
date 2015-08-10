@@ -12,7 +12,6 @@ class MetaTest extends PHPUnit_Framework_TestCase {
     public function test_meta_entity_type() {
         meta('x')->createTable();
         meta('x')->set('a','b', 1);
-        //dog(meta('x')->get('a'));
         $this->assertTrue( meta('x')->load('code', 'a')->get('value') == 'b' );
         $this->assertTrue( meta('x')->value('a') == 'b' );
 

@@ -1,2 +1,2 @@
 # sapcms2
-New CMS based on SAPCMS 1.2. It only support PHP7 and above.
+New CMS based on SAPCMS 1.2. It fully support PHP7.

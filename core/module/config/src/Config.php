@@ -24,7 +24,6 @@ class Config extends Meta
      */
     public static function read($path)
     {
-        // dog(__METHOD__ . " : $path");
         if ( file_exists($path) ) {
             include $path;
             $vars = get_defined_vars();

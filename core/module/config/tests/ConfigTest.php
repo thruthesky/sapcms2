@@ -32,7 +32,7 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
 
     public function test_config_short() {
         config()->set('a', 'b', 1)->delete();
-        dog(config('a'));
+
         $this->assertTrue( config('a') === FALSE );
 
         config('c', 'Cherry');
@@ -131,8 +131,22 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue(count(config()->group('category')->gets()) == 12 );
 
 
+        config()->group('category')->group('phone')->group_delete();
+
         config()->group('category')->group_delete();
         $this->assertTrue(count(config()->group('category')->gets()) == 0 );
+
+    }
+
+
+    public function test_config_group_delete() {
+        config()->group('phone')->group('my')->set('samsung', 22);
+        config()->group('phone')->group('my')->set('apple', 4);
+        $this->assertTrue(count(config()->group('phone')->group('my')->gets()) == 2 );
+        $this->assertTrue(config()->getEntity('phone.my.apple')->get('value') == 4);
+        $this->assertTrue(config()->group('phone')->group('my')->getEntity('apple')->get('value') == 4);
+        config()->group('phone')->group('my')->getEntity('apple')->delete();
+        $this->assertTrue(count(config()->group('phone')->group('my')->gets()) == 1 );
 
     }
 }

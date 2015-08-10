@@ -7,7 +7,6 @@ class UserController
 {
     public static function profile()
     {
-        dog(__METHOD__);
         Response::renderSystemLayout(['template' => 'user-profile']);
     }
 

@@ -12,7 +12,7 @@ register_hook('admin_menu', function(&$variable=[]){
 });
 */
 
-function hook_admin_menu_for_admin(&$variable=[]){
+function hook_admin_menu_admin(&$variable=[]){
     echo "
       <li data-role='list-divider'>System Information &amp; Settings</li>
       <li><a href='/admin/setting/url'>URL Settings</a></li>

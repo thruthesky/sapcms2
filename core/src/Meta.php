@@ -47,7 +47,6 @@ class Meta extends Entity {
      */
     public function set($code, $value=null, $target=0)
     {
-        //dog(__METHOD__ . " ( $code, $value, $target )");
         if ( is_array($code) ) {
             foreach( $code as $key => $value ) {
                 $this->set($key, $value);
@@ -71,11 +70,9 @@ class Meta extends Entity {
             parent::set('value', $value);
             parent::set('idx_target', $target);
 
-            //dog("before save:");
-            //dog(parent::get());
+
             $this->save();
-            //dog("after save:");
-            //dog(parent::get());
+
         }
         $this->clearLoadCache($this->table().":code:$code");
         return $this;
@@ -101,20 +98,14 @@ class Meta extends Entity {
 
         if ( $this->load('code', $code) ) return $this->get('value');
         else return FALSE;
+    }
 
-        /*
-
-
-
-        if ( ! isset(self::$loaded[$code]) ) {
-            //$entity = entity($this->table())->load('code', $code);
-            if ( $this->load('code', $code) ) self::$loaded[$code] = $this->get('value');
-            else self::$loaded[$code] = FALSE;
-        }
-        //dog("  --------- CODE:$code\n");
-        //dog(self::$loaded[$code]);
-        return self::$loaded[$code];
-        */
+    /**
+     * Returns an array of values of the group.
+     * @return array
+     */
+    final public function values() {
+        return $this->gets();
     }
 
     /**
@@ -123,9 +114,7 @@ class Meta extends Entity {
      */
     final public function gets() {
         $code = $this->getGroupCode();
-        // $rows = entity($this->table())->rows("code LIKE '$code%'", 'code,value');
         $rows = $this->rows("code LIKE '$code%'", 'code,value');
-        //dog($rows);
         $kvs = [];
         if ( $rows ) {
             foreach( $rows as $row ) {
@@ -146,6 +135,7 @@ class Meta extends Entity {
      */
     final public function getEntity($code) {
         //$entity = entity($this->table())->load('code', $code);
+        $code = $this->getGroupCode() . $code;
         return $this->load('code', $code);
     }
 

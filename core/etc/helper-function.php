@@ -113,3 +113,8 @@ function login($field=null) {
 function my($field=null) {
     return login($field);
 }
+
+
+function system_log($msg) {
+    System::log($msg);
+}

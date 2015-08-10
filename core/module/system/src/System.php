@@ -87,8 +87,6 @@ class System {
 
     public static function install($options)
     {
-        dog(__METHOD__);
-
         Install::submit($options);
     }
 
@@ -110,63 +108,6 @@ class System {
     }
 
 
-
-    public static function enable($name)
-    {
-        if ( empty($name) ) return ERROR_MODULE_NAME_EMPTY;
-
-        if ( config()->group('module')->get($name) ) return ERROR_MODULE_ALREADY_INSTALLED;
-        $path_module = PATH_MODULE . "/$name";
-        if ( ! is_dir($path_module) ) return ERROR_MODULE_NOT_EXISTS;
-
-
-        // 1. include module script first
-        $path = "$path_module/$name.module";
-        if ( file_exists($path) ) include $path;
-
-        // 2. include install script
-        $path = "$path_module/$name.install";
-        if ( file_exists($path) ) include $path;
-
-        $variables = ['name'=>$name];
-        hook('module_enable', $variables);
-
-        config()->group('module')->set($name, $name);
-        return OK;
-    }
-
-    /**
-     * @param $name
-     * @return int
-     *
-     * It does not check if the module directory exists or not.
-     */
-    public static function disable($name)
-    {
-        if ( empty($name) ) return ERROR_MODULE_NAME_EMPTY;
-
-        if ( config()->group('module')->get($name) ) {
-            config()->group('module')->delete($name);
-
-            $path_module = PATH_MODULE . "/$name";
-
-
-            // 1. include module script first
-            $path = "$path_module/$name.module";
-            if ( file_exists($path) ) include $path;
-
-            // 2. include uninstall script
-            $path = "$path_module/$name.uninstall";
-            if ( file_exists($path) ) include $path;
-
-            $variables = ['name'=>$name];
-            hook('module_disable', $variables);
-        }
-        else return ERROR_MODULE_NOT_INSTALLED;
-
-        return OK;
-    }
-
     /**
      * @return int
      */
@@ -181,6 +122,7 @@ class System {
             self::isInstalled(true);
             self::load_module_files();
         }
+        hook('system_begin');
 
 
 
@@ -188,11 +130,19 @@ class System {
          * Return after loading System and its core libraries,
          *  if it is running on CLI without checking Installation and running further.
          */
-        if ( System::isCommandLineInterface() ) return CommandLineInterface::Run();
-        if ( ! self::isInstalled() ) return Install::runInstall();
+        if ( System::isCommandLineInterface() ) {
+            $re = CommandLineInterface::Run();
+        }
+        else if ( ! self::isInstalled() ) {
+            $re = Install::runInstall();
+        }
+        else {
+            $re = System::runModule();
+        }
 
-        System::runModule();
-        return OK;
+        hook('system_end');
+
+        return $re;
     }
 
     private static function load_module_files()
@@ -206,7 +156,11 @@ class System {
                 $path = "module/$module/$module.module";
                 $variables = ['module'=>$module, 'path'=>$path];
                 hook('before_module_load', $variables);
-                include $path;
+                /**
+                 * It uses 'include_once' instead of 'include', since there might be changes to 're-include' same script
+                 *      just like when you include a module file here and you include it again on enabling/disabling the module.
+                 */
+                include_once $path;
                 hook('after_module_load', $variables);
             }
             hook('module_load_complete');
@@ -304,9 +258,26 @@ class System {
     {
         self::$module_loaded[] = $module;
     }
+
+    /**
+     *
+     * Returns an array of module that are installed(enabled)
+     *
+     * @return array
+     */
     public static function getModuleLoaded()
     {
         return self::$module_loaded;
+    }
+
+    /**
+     * Returns TRUE if the input $module_name is installed(enabled)
+     *
+     * @param $module_name
+     * @return bool
+     */
+    public static function isEnabled($module_name) {
+        return in_array($module_name, self::$module_loaded);
     }
 
 
