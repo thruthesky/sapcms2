@@ -19,14 +19,31 @@ class Response {
         return OK;
     }
 
-    public static function html($content)
-    {
-        $html = HTML::create();
-        $html->meta('charset', 'utf8');
-        $html->body($content);
 
+    public static function renderTemplate($variables=[])
+    {
+        System::setRender($variables);
+        ob_start();
+        include template();
+        $content = ob_get_clean();
         self::setHeaders();
-        $content = $html->get();
+        self::processContent($content);
+        return OK;
+    }
+
+    /**
+     * @todo Update HTML methods.
+     *
+     * @param array $variables
+     * @return int
+     */
+    public static function html($variables=[])
+    {
+        System::setRender($variables);
+        ob_start();
+        include template();
+        $content = ob_get_clean();
+        self::setHeaders();
         self::processContent($content);
         return OK;
     }

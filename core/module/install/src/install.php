@@ -16,7 +16,7 @@ class Install {
     public static function page() {
         if ( Request::submit() ) self::submit();
         else {
-            Response::renderSystemLayout(['template'=>'install.form']);
+            Response::renderTemplate(['template'=>'install.form']);
         }
     }
 
@@ -36,7 +36,7 @@ class Install {
 
 
         Install::initializeSystem($options);
-        Response::renderSystemLayout(['template'=>'install.success']);
+        Response::renderTemplate(['template'=>'install.success']);
 
     }
 

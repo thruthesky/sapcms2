@@ -6,8 +6,8 @@
     <link rel="stylesheet" href="/core/etc/js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
 </head>
 <body>
+
 <div data-role="page">
-    <?php include template('panel'); ?>
     <div data-role="header"><?php include 'core/module/system/template/header.html.php'; ?></div>
     <div class="ui-content"><?php include template()?></div>
     <div data-role="footer"><?php include 'core/module/system/template/footer.html.php'; ?></div>

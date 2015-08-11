@@ -4,13 +4,10 @@ use sap\core\System\System;
 
 class Module {
 
-    private static $core_modules = ['admin', 'Config', 'front', 'Install', 'System', 'User'];
+    private static $core_modules = ['admin', 'Config', 'front', 'install', 'System', 'User'];
 
     public static function script($filename=null)
     {
-
-
-
 
         $module = Route::load()->module;
         $path_module = self::path($module);
@@ -65,6 +62,8 @@ class Module {
             list($module, $class, $method) = explode("\\", $match);
         }
 
+
+
         $core = is_core_module($module) ? "core\\" : null;
 
         $name = "sap\\{$core}$module\\$class";
@@ -75,7 +74,6 @@ class Module {
         return $name::$method();
 
     }
-
 
 }
 
