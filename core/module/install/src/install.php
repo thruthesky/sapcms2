@@ -30,9 +30,9 @@ class Install {
             $options['admin_password'] = $options['admin-password'];
         }
 
-        $options[URL_SITE] = get_current_url();
+        $options[URL_SITE] = ''; // get_current_url();
 
-        $options[URL_SITE] = str_replace('install', '', $options[URL_SITE] );
+        // $options[URL_SITE] = str_replace('install', '', $options[URL_SITE] );
 
 
         Install::initializeSystem($options);

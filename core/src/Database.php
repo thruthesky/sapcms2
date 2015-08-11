@@ -479,7 +479,7 @@ class Database extends \PDO {
         if ( $cond === null ) $cond = null;
         else {
             $cond = trim($cond);
-            if ( strpos($cond, 'ORDER') === 0 || strpos($cond, 'GROUP') === 0 || strpos($cond, 'LIMIT') === 0 ) {
+            if ( stripos($cond, 'ORDER') === 0 || stripos($cond, 'GROUP') === 0 || stripos($cond, 'LIMIT') === 0 ) {
 
             }
             else {

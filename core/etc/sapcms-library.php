@@ -136,7 +136,7 @@ function get_module_from_path($path) {
         $arr = explode('core/', $path);
         if ( isset($arr[1]) ) {
             $arr = explode('/', $arr[1]);
-            return $arr[0];
+            return $arr[1];
         }
     }
     else if ( strpos($path, 'module/') !== false ) {
@@ -159,18 +159,26 @@ function get_module_from_path($path) {
  *
  * @param $path
  * @return string
+ *
+ * @see buildguide installation
  */
 function url_complete(&$path) {
     if ( $path[0] == '/' ) {
-
+        $url = config(URL_SITE);
+        if ( empty($url) ) $url = get_current_domain_url();
+        $url = rtrim($url,"/");
+        $path = $url . $path;
     }
     else if ( strpos($path, 'http') === 0 ) {
 
     }
     else {
-        if ( ! System::isInstalled() ) $pre = '/';
-        else $pre = config()->get(URL_SITE);
-        $path = $pre . $path;
+        if ( ! System::isInstalled() ) $url = '/';
+        else {
+            $url = config(URL_SITE);
+            if ( empty($url) ) $url = get_current_domain_url();
+        }
+        $path = $url . $path;
     }
     return $path;
 }
@@ -234,8 +242,34 @@ function get_current_url()
     $uri = $protocol . '://' . $host . $s['REQUEST_URI'];
     $segments = explode('?', $uri, 2);
     $url = $segments[0];
-    return $url;
+    return add_ending_slash($url);
 }
+
+/**
+ * Returns URL of domain without Path and Query String
+ *
+ * @note Return example
+ *  - https://www.abc:8080/
+ *  - http://aaa.bbb.ccc:1234/
+ *
+ *
+ * @return string
+ */
+function get_current_domain_url() {
+    if ( System::isCommandLineInterface() ) return '/';
+    $s = &$_SERVER;
+    $ssl = (!empty($s['HTTPS']) && $s['HTTPS'] == 'on') ? true:false;
+    $sp = strtolower($s['SERVER_PROTOCOL']);
+    $protocol = substr($sp, 0, strpos($sp, '/')) . (($ssl) ? 's' : '');
+    $port = $s['SERVER_PORT'];
+    $port = ((!$ssl && $port=='80') || ($ssl && $port=='443')) ? '' : ':'.$port;
+    $host = isset($s['HTTP_X_FORWARDED_HOST']) ? $s['HTTP_X_FORWARDED_HOST'] : (isset($s['HTTP_HOST']) ? $s['HTTP_HOST'] : null);
+    $host = isset($host) ? $host : $s['SERVER_NAME'] . $port;
+    $uri = $protocol . '://' . $host . '/';
+    return add_ending_slash($uri);
+}
+
+
 
 
 function widget($widget_name) {
@@ -335,4 +369,16 @@ function session_get($k)
 {
     if ( isset($_COOKIE[$k]) ) return $_COOKIE[$k];
     else return NULL;
+}
+
+
+/**
+ * Adds slash(/) at the end of the string if it is not end with slash(/)
+ * @param $path
+ * @return string
+ */
+function add_ending_slash($path) {
+    $last_char = substr($path, strlen($path)-1, 1);
+    if ( $last_char != '/' ) $path .= '/';
+    return $path;
 }

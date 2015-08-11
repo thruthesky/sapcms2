@@ -276,10 +276,13 @@ class System {
     /**
      * Returns TRUE if the input $module_name is installed(enabled)
      *
+     *      - if it is a core module, then it will return true.
+     *
      * @param $module_name
      * @return bool
      */
     public static function isEnabled($module_name) {
+        if ( Module::isCoreModule($module_name) ) return true;
         return in_array($module_name, self::$module_loaded);
     }
 

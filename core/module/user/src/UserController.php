@@ -54,4 +54,9 @@ class UserController
         return true;
     }
 
+
+    public static function userList() {
+        return Response::renderSystemLayout(['template'=>'admin.user-list']);
+    }
+
 }

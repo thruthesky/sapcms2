@@ -51,8 +51,13 @@ function form_input($attr) {
 }
 
 
-
-
+/**
+ *
+ * @todo merge this funtion into config()
+ *
+ * @param $code
+ * @return bool|mixed|null
+ */
 function system_config($code) {
 
     $value = null;
@@ -63,7 +68,7 @@ function system_config($code) {
         case '' :
             break;
         default :
-            $value = config()->get($code);
+            $value = config()->value($code);
             break;
     }
 

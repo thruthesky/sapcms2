@@ -9,7 +9,7 @@ class setting {
     public static function url() {
 
         if ( Request::submit() ) {
-            Config::load()->set(URL_SITE, Request::get(URL_SITE));
+            config()->set(URL_SITE, Request::get(URL_SITE));
         }
         Response::renderSystemLayout(['template'=>'url']);
     }
