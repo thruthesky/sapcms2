@@ -1,11 +1,10 @@
 <?php
 
-use sap\smsgate\Number;
 use sap\src\Route;
 
+define('QUEUE', 'smsgate_queue');
 
-Route::add('/smsgate/load-a-message', "smsgate\\smsgate\\load_a_message");
 
-function number() {
-    return new Number();
-}
+
+include 'smsgate.route.php';
+include 'smsgate.hook.php';

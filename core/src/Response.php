@@ -31,19 +31,17 @@ class Response {
         return OK;
     }
 
-    /**
-     * @todo Update HTML methods.
-     *
-     * @param array $variables
+    /***
+     * @param $content
      * @return int
      */
-    public static function html($variables=[])
+    public static function html($content)
     {
-        System::setRender($variables);
-        ob_start();
-        include template();
-        $content = ob_get_clean();
+        $html = HTML::create();
+        $html->meta('charset', 'utf8');
+        $html->body($content);
         self::setHeaders();
+        $content = $html->get();
         self::processContent($content);
         return OK;
     }

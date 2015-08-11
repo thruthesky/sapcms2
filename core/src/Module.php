@@ -1,6 +1,7 @@
 <?php
 namespace sap\src;
 use sap\core\System\System;
+use sap\core\System\SystemController;
 
 class Module {
 
@@ -69,7 +70,7 @@ class Module {
             return $name::$method();
         }
         else {
-            return "Module is not enabled";
+            return SystemController::moduleNotEnabled();
         }
 
     }

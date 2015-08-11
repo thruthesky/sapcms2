@@ -1,1 +1,14 @@
 <?php
+entity('smsgate_queue')
+    ->createTable()
+    ->add('number', 'char', '11')
+    ->add('priority', "INT UNSIGNED default '0'")
+    ->add('stamp_next_send', "int UNSIGNED default '0'")
+    ->add('no_send_try', "int UNSIGNED default '0'")
+    ->add('user_agent', 'varchar', 255)
+    ->add('message', 'varchar', 255)
+    ->index('priority')
+    ->index('stamp_next_send');
+
+
+
