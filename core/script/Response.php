@@ -1,7 +1,7 @@
 <?php
 use sap\src\Request;
 
-$url_site = system_config(URL_SITE);
+$url_site = sysconfig(URL_SITE);
 echo "URL SITE: $url_site\n";
 
 

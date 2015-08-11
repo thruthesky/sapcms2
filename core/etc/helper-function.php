@@ -52,27 +52,31 @@ function form_input($attr) {
 
 
 /**
+ * Returns System Configuration Value
  *
- * @todo merge this funtion into config()
+ * @Attention the difference between config() and sysconfig() is that,
+ *      sysconfig() wraps config() and it will return default values
+ *      if config() has no value or proper value.
+ *
  *
  * @param $code
  * @return bool|mixed|null
  */
-function system_config($code) {
+function sysconfig($code) {
 
     $value = null;
     switch( $code ) {
         case 'database' :
-            $value = System::getDatabaseConfiguration();
-            break;
-        case '' :
-            break;
+            return System::getDatabaseConfiguration();
+        case NO_ITEM :
+            if ( $no = config(NO_ITEM) ) return $no;
+            else return DEFAULT_NO_ITEM;
+        case NO_PAGE :
+            if ( $no = config(NO_PAGE) ) return $no;
+            else return DEFAULT_NO_PAGE;
         default :
-            $value = config()->value($code);
-            break;
+            return $value = config()->value($code);
     }
-
-    return $value;
 }
 
 

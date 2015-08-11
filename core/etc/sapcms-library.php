@@ -382,3 +382,18 @@ function add_ending_slash($path) {
     if ( $last_char != '/' ) $path .= '/';
     return $path;
 }
+
+
+/**
+ * Returns the no of the current page from URL.
+ *
+ *      - the mininum number is always 1.
+ *
+ * @return array|int|null
+ */
+function page_no() {
+    $page_no = Request::get('page_no');
+    if ( empty($page_no) ) return 1;
+    else if ( $page_no <= 0 ) return 1;
+    else return $page_no;
+}

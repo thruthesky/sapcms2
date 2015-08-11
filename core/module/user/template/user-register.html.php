@@ -5,6 +5,9 @@
     <input type="password" name="password" value="">
     Name
     <input type="text" name="name" value="">
+    Mail
+    <input type="text" name="mail" value="">
+
     <input type="submit" value="REGISTER">
     <a href="/" class="ui-btn ui-icon-action">CANCEL</a>
 </form>

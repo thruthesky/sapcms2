@@ -113,7 +113,7 @@ class HTML {
 
 
         /// If you uncomment below, "[ 1 ]" will not appear on a list where there is only 1 page.
-        /// if ( $total_record <= $no_of_items_per_page ) return NULL;
+        if ( $total_record <= $no_of_items_per_page ) return NULL;
 
 
 

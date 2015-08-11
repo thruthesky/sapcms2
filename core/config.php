@@ -26,3 +26,8 @@ define('PATH_THUMBNAIL', PATH_DATA . '/thumbnail');
 
 define('URL_SITE', 'url_site');
 
+
+define('NO_ITEM', 'no_item_per_page');
+define('DEFAULT_NO_ITEM', 10);
+define('NO_PAGE', 'no_page_per_nav');
+define('DEFAULT_NO_PAGE', 7);

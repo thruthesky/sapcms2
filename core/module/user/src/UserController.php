@@ -19,6 +19,7 @@ class UserController
                     ->create(Request::get('id'))
                     ->setPassword(Request::get('password'))
                     ->set('name', Request::get('name'))
+                    ->set('mail', Request::get('mail'))
                     ->save();
                 User::login(Request::get('id'));
                 return Response::redirect(config()->getUrlSite());
