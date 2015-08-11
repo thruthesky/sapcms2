@@ -62,16 +62,15 @@ class Module {
             list($module, $class, $method) = explode("\\", $match);
         }
 
-
-
-        $core = is_core_module($module) ? "core\\" : null;
-
-        $name = "sap\\{$core}$module\\$class";
-
-
-        System::log("Module::run() => $name::$method ()");
-
-        return $name::$method();
+        if ( System::isEnabled($module) ) {
+            $core = is_core_module($module) ? "core\\" : null;
+            $name = "sap\\{$core}$module\\$class";
+            System::log("Module::run() => $name::$method ()");
+            return $name::$method();
+        }
+        else {
+            return "Module is not enabled";
+        }
 
     }
 

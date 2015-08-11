@@ -111,6 +111,7 @@ class System {
      */
     public static function run()
     {
+
         self::load();
         self::loadDatabaseConfiguration();
         self::load_core_module_files();
