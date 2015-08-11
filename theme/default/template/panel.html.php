@@ -4,6 +4,9 @@
         Menu
     </h1>
     <ul data-role="listview">
+        <?php if ( admin() ) { ?>
+            <li><a href="/admin" class="ui-btn ui-btn-icon-left ui-icon-user">Admin Page</a></li>
+        <?php } ?>
         <?php if ( login() ) { ?>
             <li><a href="/user/profile" class="ui-btn ui-btn-icon-left ui-icon-user">Profile Update</a></li>
             <li><a href="/message" class="ui-btn ui-btn-icon-left ui-icon-mail">Message</a></li>
@@ -14,7 +17,5 @@
 
         <li><a href="#main-menu-panel" class="ui-btn ui-btn-icon-left ui-icon-delete">Close</a></li>
     </ul>
-
-
 
 </div><!-- /panel -->

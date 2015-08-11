@@ -19,6 +19,11 @@ function hook_admin_menu_admin(&$variable=[]){
       <li><a href='#'>Log Settings</a></li>
       <li><a href='/admin/database/information'>Database information</a></li>
       <li data-role='list-divider'>Permission Settings</li>
-      <li><a href='/admin/setting/url'>User Permission</a></li>
+      <li><a href='#'>User Permission</a></li>
+
+      <li data-role='list-divider'>Module Management</li>
+      <li><a href='/admin/module/all'>ALL List</a></li>
+      <li><a href='/admin/module/enabled'>Installed List</a></li>
+
    ";
 }

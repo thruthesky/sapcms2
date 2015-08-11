@@ -3,6 +3,7 @@ include 'config.php';
 include 'etc/defines.php';
 include 'etc/helper-function.php';
 include 'etc/sapcms-library.php';
+include 'etc/jquerymobile-wrapper.php';
 
 spl_autoload_register( function( $class ) {
     $path = null;

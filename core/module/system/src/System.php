@@ -46,8 +46,6 @@ class System {
      */
     public static function load() {
         if ( empty(self::$system) ) self::$system = new System();
-
-
         return self::$system;
     }
 
@@ -137,7 +135,7 @@ class System {
             $re = Install::runInstall();
         }
         else {
-            $re = System::runModule();
+            $re = Module::run();
         }
 
         hook('system_end');

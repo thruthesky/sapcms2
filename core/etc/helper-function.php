@@ -7,6 +7,7 @@ use sap\src\Entity;
 use sap\src\Form;
 use sap\src\Meta;
 use sap\src\Request;
+use sap\src\Route;
 use sap\src\SQL;
 
 
@@ -114,7 +115,28 @@ function my($field=null) {
     return login($field);
 }
 
+/**
+ *
+ * Returns TRUE if the login user is admin.
+ *
+ * @return bool
+ *
+ *
+ * @refer buildguide User
+ */
+function admin() {
+    $admin_id = config()->value('admin');
+    return my('id') == $admin_id;
+}
+
+
+
 
 function system_log($msg) {
     System::log($msg);
+}
+
+
+function route() {
+    return Route::load();
 }

@@ -31,9 +31,9 @@ class Response {
         return OK;
     }
 
-    public static function renderLayout($render=[]) {
+    public static function renderLayout($variables=[]) {
 
-        System::setRender($render);
+        System::setRender($variables);
 
         ob_start();
 
@@ -50,9 +50,9 @@ class Response {
     }
 
 
-    public static function renderSystemLayout($render=[]) {
+    public static function renderSystemLayout($variables=[]) {
         if ( System::isCommandLineInterface() ) return OK;
-        System::setRender($render);
+        System::setRender($variables);
 
         ob_start();
         include system_layout();

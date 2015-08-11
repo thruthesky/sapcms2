@@ -7,16 +7,17 @@
 </head>
 <body>
 <div data-role="page">
-    <?php include template()?>
+    <?php include template('panel'); ?>
+    <div data-role="header"><?php include 'core/module/system/template/header.html.php'; ?></div>
+    <div class="ui-content"><?php include template()?></div>
+    <div data-role="footer"><?php include 'core/module/system/template/footer.html.php'; ?></div>
 </div>
-
 <!--[if lt IE 9]>
 <script type='text/javascript' src='/core/etc/js/jquery-1.11.3/jquery-1.11.3.min.js'></script>
 <![endif]-->
 <!--[if gte IE 9]><!-->
 <script type='text/javascript' src='/core/etc/js/jquery-2.1.4/jquery-2.1.4.min.js'></script>
 <!--<![endif]-->
-
 <script>
     $( document ).on( "mobileinit", function() {
         //$.mobile.defaultPageTransition = 'slide';

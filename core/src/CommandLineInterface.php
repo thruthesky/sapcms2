@@ -79,7 +79,9 @@ class CommandLineInterface {
             if ( $code ) echo get_error_message($code);
         }
         else if ( self::$cmd == '--list-module') {
-            print_r(System::getModuleLoaded());
+            foreach ( System::getModuleLoaded() as $module ) {
+                echo "$module\n";
+            }
         }
         else {
             if ( self::$cmd ) {

@@ -74,13 +74,14 @@ class Install {
         config()->createTable();
 
         config()
-            ->set('admin_id', $options['admin_id'])
+            ->set('admin', $options['admin_id'])
             ->set(URL_SITE, $options[URL_SITE]);
 
         user()->createTable();
         user()->create($options['admin_id'])
             ->setPassword($options['admin_password'])
             ->save();
+
     }
 
 

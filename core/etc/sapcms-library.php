@@ -131,9 +131,21 @@ function get_sapcms_path($path) {
  */
 function get_module_from_path($path) {
     if ( DIRECTORY_SEPARATOR != '/' ) $path = str_replace(DIRECTORY_SEPARATOR, '/', $path);
-    $arr = explode('/', $path);
-    if ( $arr[0] == 'module' ) return $arr[1];
-    else if ( $arr[0] == 'core' && $arr[1] == 'module' ) return $arr[2];
+
+    if ( strpos($path, 'core/') !== false ) {
+        $arr = explode('core/', $path);
+        if ( isset($arr[1]) ) {
+            $arr = explode('/', $arr[1]);
+            return $arr[0];
+        }
+    }
+    else if ( strpos($path, 'module/') !== false ) {
+        $arr = explode('module/', $path);
+        if ( isset($arr[1]) ) {
+            $arr = explode('/', $arr[1]);
+            return $arr[0];
+        }
+    }
     return null;
 }
 

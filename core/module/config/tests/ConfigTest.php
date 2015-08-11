@@ -138,7 +138,6 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
 
     }
 
-
     public function test_config_group_delete() {
         config()->group('phone')->group('my')->set('samsung', 22);
         config()->group('phone')->group('my')->set('apple', 4);

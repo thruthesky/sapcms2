@@ -100,17 +100,33 @@ class Meta extends Entity {
         else return FALSE;
     }
 
+
     /**
-     * Returns an array of values of the group.
+     * Returns an array of codes (without values) of a group.
+     * @return array
+     */
+    final public function codes() {
+        $arr = $this->gets();
+        return array_keys($arr);
+    }
+
+
+    /**
+     * Returns an array of values (without code) of a group.
      * @return array
      */
     final public function values() {
-        return $this->gets();
+        $arr = $this->gets();
+        return array_values($arr);
     }
+
+
 
     /**
      *
+     * Returns keys and values of a group.
      *
+     * @return array
      */
     final public function gets() {
         $code = $this->getGroupCode();
@@ -134,7 +150,6 @@ class Meta extends Entity {
      *
      */
     final public function getEntity($code) {
-        //$entity = entity($this->table())->load('code', $code);
         $code = $this->getGroupCode() . $code;
         return $this->load('code', $code);
     }

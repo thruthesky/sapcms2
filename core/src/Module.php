@@ -69,6 +69,7 @@ class Module {
 
         $name = "sap\\{$core}$module\\$class";
 
+
         System::log("Module::run() => $name::$method ()");
 
         return $name::$method();

@@ -1,4 +1,4 @@
 <?php
 use sap\src\Route;
-
 Route::add('/install', 'Install\\Install\\page');
+include 'install.hook.php';

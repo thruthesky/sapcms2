@@ -57,6 +57,9 @@ class MetaTest extends PHPUnit_Framework_TestCase {
         meta('z')->group('meal')->set('lunch', 'beef and milk', 20);
         meta('z')->group('meal')->set('dinner', 'bread and milk', 30);
 
+        $this->assertTrue(meta('z')->group('meal')->codes()[0] == 'meal.breakfast');
+        $this->assertTrue(count(meta('z')->group('meal')->values()) == 3);
+
         $this->assertTrue( count(meta('z')->group('meal')->gets()) == 3 );
         $this->assertTrue( meta('z')->group('meal')->value('lunch') == 'beef and milk' );
 

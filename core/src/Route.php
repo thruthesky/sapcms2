@@ -120,5 +120,23 @@ class Route {
     }
 
 
+    /**
+     *
+     * Returns path of route
+     *
+     *
+     * @return string
+     *
+     *
+     *
+     */
+    public function path() {
+        $path = array();
+        $path[] = route()->module;
+        $path[] = route()->class;
+        $path[] = route()->method;
+        return implode(" &gt; ", $path);
+    }
+
 }
 
