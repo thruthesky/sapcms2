@@ -44,7 +44,12 @@ class Install {
     {
 
         if ( empty($options['database']) ) die('Input database type');
-        if ( empty($options['database_name']) ) die('Input database name');
+        if ( $options['database'] == 'sqlite' ) {
+
+        }
+        else {
+            if ( empty($options['database_name']) ) die('Input database name');
+        }
         if ( empty($options['admin_id']) ) die('Input admin id');
         if ( empty($options['admin_password']) ) die('Input admin password');
 
@@ -113,6 +118,7 @@ class Install {
 
     public static function check()
     {
+        //di(__METHOD__);
         $config = System::getDatabaseConfiguration();
         if ( ! isset($config['database']) ) return FALSE;
         if ( $config['database'] == 'mysql' ) {
@@ -125,7 +131,7 @@ class Install {
 
     public static function runInstall()
     {
-        if ( Request::module('Install') ) {
+        if ( Request::module('install') ) {
             System::runModule();
         }
         else Response::redirect(ROUTE_INSTALL);

@@ -116,9 +116,13 @@ class System {
         self::load_core_module_files();
 
 
+
         if ( Install::check() ) {
             self::isInstalled(true);
             self::load_module_files();
+        }
+        else {
+            //di("system is not installed");
         }
         hook('system_begin');
 
@@ -133,13 +137,13 @@ class System {
         }
         else if ( ! self::isInstalled() ) {
             $re = Install::runInstall();
+            exit; // @todo it should not exit here.
         }
         else {
             $re = Module::run();
         }
 
         hook('system_end');
-
         return $re;
     }
 
@@ -328,6 +332,7 @@ class System {
      */
     public static function log ( $str )
     {
+        if ( ! self::isInstalled() ) return OK;
         if ( empty($str) ) return OK;
         $str = is_string($str) ? $str : print_r( $str, true );
         return File::append(PATH_DEBUG_LOG, self::$count_log++ . ' : ' . $str . "\n");

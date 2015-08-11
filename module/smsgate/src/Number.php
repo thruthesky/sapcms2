@@ -1,7 +1,7 @@
 <?php
 namespace sap\smsgate;
 use sap\src\Entity;
-define('SMSGATE_TABLE', 'sms_extract_numbers');
+define('SMSGATE_TABLE', 'smsgate_mass_numbers');
 class Number extends Entity {
 
     public function __construct() {

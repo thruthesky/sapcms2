@@ -37,7 +37,7 @@ function db_update($table, $fields, $cond) {
 }
 
 
-function db_row($table, $cond, $field='*') {
+function db_row($table, $cond=null, $field='*') {
     return Database::load()->row($table, $cond, $field);
 }
 
