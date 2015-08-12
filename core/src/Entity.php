@@ -406,6 +406,32 @@ class Entity {
         }
     }
 
+    /**
+     *
+     * Returns an item of the entity.
+     *
+     *
+     *
+     *
+     * @param null $cond - SQL Query to extract an Entity Item.
+     *
+     *              - The input $cond query is just the same as Database::result()
+     *
+     *
+     * @return bool|Entity
+     *
+     * @code
+     *      $sms = entity(QUEUE)->query("idx > 2");
+     * @endcode
+     *
+     */
+    public function query($cond=null)
+    {
+        $idx = Database::load()->result($this->table(), 'idx', $cond);
+        if ( $idx ) return entity($this->table())->load($idx);
+        else return FALSE;
+    }
+
 
 }
 

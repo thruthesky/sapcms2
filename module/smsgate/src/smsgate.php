@@ -57,12 +57,20 @@ class smsgate {
 		//$url = "/smsgate/list/queue?page_no=".Request::get('page_no');
 		//return Response::redirect( $url );
 		//or show only..?
-        return Response::render( $data );
+        $data['template'] = 'smsgate.queue';
+        Response::render($data);
+        //return Response::render( $data );
     }
 
     public static function load_a_message() {
-        $row = db_row('sms_extract_numbers');
-        Response::json($row);
+
+        $sms = entity(QUEUE)->query("idx > 2");
+        if ( $sms ) {
+            Response::json($sms->get());
+        }
+        else {
+            Response::json(['error'=>'no item']);
+        }
     }
 
 }

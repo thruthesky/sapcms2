@@ -1,13 +1,17 @@
 <?php
-date_default_timezone_set("Asia/Singapore");//to remove the warning
 use sap\src\HTML;
+
+add_css();
+add_javascript();
 
 $no_item = sysconfig(NO_ITEM);
 $no_page = sysconfig(NO_PAGE);
 
 $total_record = $smses = entity(QUEUE)->count();
 
-$from = (page_no()-1) * $no_item;
+$page_no = page_no();
+
+$from = ($page_no-1) * $no_item;
 $smses = entity(QUEUE)->rows("limit $from, $no_item");
 
 
@@ -17,6 +21,12 @@ $smses = entity(QUEUE)->rows("limit $from, $no_item");
 <h1>
     SMSGate Message Queue
 </h1>
+
+<?php if( !empty( $variables['notice'] ) ){?>
+    <div class='notice <?php echo $variables['notice']['type'] ?>'>
+        <?php echo $variables['notice']['type'] ?> : <?php echo $variables['notice']['message'] ?>
+    </div>
+<?php }?>
 
 
 
@@ -33,8 +43,6 @@ $smses = entity(QUEUE)->rows("limit $from, $no_item");
     </thead>
     <tbody>
 
-
-
     <?php
 	//di( $_GET );exit;
 	
@@ -46,7 +54,7 @@ $smses = entity(QUEUE)->rows("limit $from, $no_item");
         echo "<td>$sms[priority]</td>";
         echo "<td>$sms[number]</td>";
         echo "<td>$sms[message]</td>";
-        echo "<td><a href='/smsgate/delete?idx=$sms[idx]&page_no=$_GET[page_no]'>Delete</a></td>";
+        echo "<td><a href='/smsgate/delete?idx=$sms[idx]&page_no=$page_no'>Delete</a></td>";
         echo "</tr>";
     }
     ?>
@@ -64,5 +72,5 @@ $smses = entity(QUEUE)->rows("limit $from, $no_item");
         }
     </style>
 <?php
-echo HTML::paging(page_no(), $total_record, $no_item, $no_page, null, null, '/smsgate/list/queue');
+echo HTML::paging($page_no, $total_record, $no_item, $no_page, null, null, '/smsgate/list/queue');
 

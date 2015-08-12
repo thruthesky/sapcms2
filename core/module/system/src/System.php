@@ -114,6 +114,7 @@ class System {
     public static function run()
     {
 
+
         if ( System::isCommandLineInterface() && CommandLineInterface::getCommand() == '--uninstall' )  {
 
         }

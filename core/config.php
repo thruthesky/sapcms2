@@ -6,7 +6,7 @@ define('DEFAULT_CONTROLLER','page');
 
 $theme = 'default';
 
-define('PATH_INSTALL', getcwd());
+
 define('PATH_DATA', PATH_INSTALL. '/data');
 define('PATH_DEBUG_LOG', PATH_DATA . '/debug.log');
 define('PATH_ERROR_LOG', PATH_DATA . '/error.log');
@@ -31,3 +31,8 @@ define('NO_ITEM', 'no_item_per_page');
 define('DEFAULT_NO_ITEM', 10);
 define('NO_PAGE', 'no_page_per_nav');
 define('DEFAULT_NO_PAGE', 7);
+
+define('DEFAULT_TIMEZONE', "UTC");
+
+
+date_default_timezone_set(DEFAULT_TIMEZONE);

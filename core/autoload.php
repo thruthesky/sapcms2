@@ -1,9 +1,11 @@
 <?php
-include 'config.php';
-include 'etc/defines.php';
-include 'etc/helper-function.php';
-include 'etc/sapcms-library.php';
-include 'etc/jquerymobile-wrapper.php';
+define('PATH_INSTALL', '.');
+
+include PATH_INSTALL.'/core/config.php';
+include PATH_INSTALL.'/core/etc/defines.php';
+include PATH_INSTALL.'/core/etc/helper-function.php';
+include PATH_INSTALL.'/core/etc/sapcms-library.php';
+include PATH_INSTALL.'/core/etc/jquerymobile-wrapper.php';
 
 spl_autoload_register( function( $class ) {
     $path = null;
