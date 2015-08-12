@@ -20,6 +20,12 @@ class Response {
     }
 
 
+    /**
+     * @param array $variables
+     * @return mixed|null - self::processContent() for the return value
+     *
+     *
+     */
     public static function renderTemplate($variables=[])
     {
         System::setRender($variables);
@@ -27,13 +33,12 @@ class Response {
         include template();
         $content = ob_get_clean();
         self::setHeaders();
-        self::processContent($content);
-        return OK;
+        return self::processContent($content);
     }
 
     /***
      * @param $content
-     * @return int
+     * @return mixed|null - self::processContent() for the return value
      */
     public static function html($content)
     {
@@ -42,10 +47,13 @@ class Response {
         $html->body($content);
         self::setHeaders();
         $content = $html->get();
-        self::processContent($content);
-        return OK;
+        return self::processContent($content);
     }
 
+    /**
+     * @param array $variables
+     * @return mixed|null - self::processContent() for the return value
+     */
     public static function renderLayout($variables=[]) {
 
         System::setRender($variables);
@@ -59,12 +67,14 @@ class Response {
         $content = ob_get_clean();
 
         self::setHeaders();
-        self::processContent($content);
-
-        return OK;
+        return self::processContent($content);
     }
 
 
+    /**
+     * @param array $variables
+     * @return mixed|null - self::processContent() for the return value
+     */
     public static function renderSystemLayout($variables=[]) {
         if ( System::isCommandLineInterface() ) return OK;
         System::setRender($variables);
@@ -75,8 +85,7 @@ class Response {
 
         self::setHeaders();
 
-        self::processContent($content);
-        return OK;
+        return self::processContent($content);
     }
 
 
@@ -104,6 +113,14 @@ class Response {
                 $path = str_replace($pu['basename'], "js/$pu[basename]", $path);
             }
         }
+
+        else if ( strpos($filename, '//') === 0 ) {
+            $path = $filename;
+        }
+        else if ( strpos($filename, 'http') === 0 ) {
+            $path = $filename;
+        }
+
         else if ( strpos($filename, '/') === FALSE ) {
             $path = get_sapcms_path($base);
             $pu = pathinfo($path);
@@ -137,6 +154,12 @@ class Response {
                 $path = str_replace($pu['basename'], "css/$pu[basename]", $path);
             }
         }
+        else if ( strpos($filename, '//') === 0 ) {
+            $path = $filename;
+        }
+        else if ( strpos($filename, 'http') === 0 ) {
+            $path = $filename;
+        }
         else if ( strpos($filename, '/') === FALSE ) {
             $path = get_sapcms_path($base);
             $pu = pathinfo($path);
@@ -156,11 +179,24 @@ class Response {
         return $path;
     }
 
+    /**
+     *
+     * @ATTENTION This is the actual method that prints out HTML data to web browser.
+     *
+     *  - If this is a CLI run, then it only RETURNS the HTML content without printing out.
+     *
+     * @param $content
+     * @return mixed|null
+     */
     private static function processContent(&$content)
     {
         $content = str_ireplace('</head>', self::getCss() . '</head>', $content);
         $content = str_ireplace('</body>', self::getJavascript() . '</body>', $content);
-        echo $content;
+        if ( System::isCommandLineInterface() ) return $content;
+        else {
+            echo $content;
+            return null;
+        }
     }
 
     private static function getCss()

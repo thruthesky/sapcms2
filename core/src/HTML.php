@@ -62,6 +62,9 @@ class HTML {
      *          -- Where '(n)' is number of actual page.
      * @param $path - is the page of the index.php
      * @return string
+     * @code
+     *      echo HTML::paging(page_no(), $total_record, $no_item, $no_page);
+     * @endcode
      * @code How to display list and navigation bar.
      *      // Get current page no
      *      if ( $in[page_no] ) $page_no = $in[page_no];
@@ -105,7 +108,16 @@ class HTML {
     border-radius: 2px;
     }
      */
-    public static function paging( $page_no, $total_record, $no_of_items_per_page, $qs=NULL, $no_of_pages_in_navigation_bar=10, $text=null, $path=null) {
+    public static function paging(
+        $page_no,
+        $total_record,
+        $no_of_items_per_page,
+        $no_of_pages_in_navigation_bar=10,
+        $text=null,
+        $qs=NULL,
+        $path=null
+    )
+    {
         if ( empty($total_record) ) return NULL;
         if ( empty($text) ) $text = array("&lt;&lt;", "Previous (n)", "Next (n)", "&gt;&gt;");
         $paging = $no_of_pages_in_navigation_bar;

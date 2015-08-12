@@ -5,12 +5,10 @@ use sap\src\Request;
 $no_item = sysconfig(NO_ITEM);
 $no_page = sysconfig(NO_PAGE);
 
-
 if ( $word = Request::get('word') ) {
     $cond = "id LIKE '%$word%' or name LIKE '%$word%' or mail LIKE '$word%'";
 }
 else $cond = null;
-
 
 $total_record = user()->count($cond);
 $from = (page_no()-1) * $no_item;
@@ -63,6 +61,7 @@ $rows = user()->rows("$cond limit $from, $no_item");
     }
 </style>
 <?php
-echo HTML::paging(page_no(), $total_record, $no_item, null, $no_page, null, null);
+echo HTML::paging(page_no(), $total_record, $no_item, $no_page);
+
 
 

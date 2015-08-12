@@ -22,8 +22,8 @@ function hook_admin_menu_admin(&$variable=[]){
       <li><a href='#'>User Permission</a></li>
 
       <li data-role='list-divider'>Module Management</li>
-      <li><a href='/admin/module/all'>ALL List</a></li>
-      <li><a href='/admin/module/enabled'>Installed List</a></li>
+      <li><a href='/admin/module/all'>All Module List</a></li>
+      <li><a href='/admin/module/enabled'>Installed Module List</a></li>
 
    ";
 }

@@ -89,9 +89,14 @@ class CommandLineInterface {
                 $pi = pathinfo($path);
                 if ( isset($pi['extension']) && $pi['extension'] == 'php' ) {
                     $module = get_module_from_path($path);
-                    if ( System::isEnabled($module) ) include $path;
+                    if ( $module ) {
+                        if ( System::isEnabled($module) ) include $path;
+                        else {
+                            echo "Module [ $module ] is not enabled.";
+                        }
+                    }
                     else {
-                        echo "Module [ $module ] is not enabled.";
+                        include $path;
                     }
                 }
             }

@@ -124,6 +124,8 @@ function get_sapcms_path($path) {
  *
  * Returns 'module-name' form file path.
  *
+ *      - Returns null if the path is not a module script.
+ *
  * @param $path
  *
  *
@@ -132,11 +134,11 @@ function get_sapcms_path($path) {
 function get_module_from_path($path) {
     if ( DIRECTORY_SEPARATOR != '/' ) $path = str_replace(DIRECTORY_SEPARATOR, '/', $path);
 
-    if ( strpos($path, 'core/') !== false ) {
-        $arr = explode('core/', $path);
+    if ( strpos($path, 'core/module/') !== false ) {
+        $arr = explode('core/module/', $path);
         if ( isset($arr[1]) ) {
             $arr = explode('/', $arr[1]);
-            return $arr[1];
+            return $arr[0];
         }
     }
     else if ( strpos($path, 'module/') !== false ) {
@@ -166,10 +168,12 @@ function url_complete(&$path) {
     if ( $path[0] == '/' ) {
         $url = config(URL_SITE);
         if ( empty($url) ) $url = get_current_domain_url();
-        $url = rtrim($url,"/");
-        $path = $url . $path;
+        $path = remove_ending_slash($url) . $path;
     }
     else if ( strpos($path, 'http') === 0 ) {
+
+    }
+    else if ( strpos($path, '//') === 0 ) {
 
     }
     else {
@@ -381,6 +385,9 @@ function add_ending_slash($path) {
     $last_char = substr($path, strlen($path)-1, 1);
     if ( $last_char != '/' ) $path .= '/';
     return $path;
+}
+function remove_ending_slash($url) {
+    return rtrim($url,"/");
 }
 
 
