@@ -50,10 +50,6 @@ entity('def')->load('name', 'jaeho')->delete();
 entity('def')->dropTable();
 
 
-
-
-
-
 $table = 'entity_test_2';
 entity($table)->createTable()
     ->add('Fruit', 'varchar')
@@ -73,6 +69,18 @@ else echo "error\n";
 entity($table)
     ->set(['Fruit'=>'Banana', 'Car'=>'Starex', 'Animal'=>'Dog'])
     ->save();
+
+/**
+ * The code below;
+ *
+ * 1. load a data with Fruit=Banana
+ * 2. load same data with Animal=Dog AND delete
+ * 3. load the same data with Fruit=Banana and the data is no longer exist.
+ *
+ *
+ */
+if (entity($table)->load('Fruit', 'Banana')->get('Animal') == 'Dog' ) echo "OK\n";
+else echo "ERROR\n";
 entity($table)->load('Animal', 'Dog')->delete();
 if ( entity($table)->load('Fruit', 'Banana') == false ) echo "OK" . PHP_EOL;
 else echo "Fruit Banana => ERROR\n";

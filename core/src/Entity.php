@@ -6,6 +6,7 @@ use sap\core\System\System;
 
 class Entity {
     private static $loadCache = [];
+    private static $loadCacheIdx = [];
     public $fields = [];
     private $cacheCode = null;
     private $table = null;
@@ -94,10 +95,11 @@ class Entity {
         $code = "$table:$field:$value";
         System::log(__METHOD__ . " ( $field, $value ) : $code");
 
-        if ( isset(self::$loadCache[$code]) ) {
-            $this->cacheCode = $code;
-            $this->fields = self::$loadCache[$code];
-            if ( empty($this->fields) ) {
+        $this->setCacheCode($code);
+
+        if ( $this->cached($code) ) { // alredy cached?
+            $this->fields = $this->getCache($code); // get data.
+            if ( empty($this->fields) ) { // cached but data is empty.
                 return FALSE;
             }
             else {
@@ -105,27 +107,15 @@ class Entity {
             }
         }
 
+        $data = $this->loadData($field, $value);
 
-        /**
-         * Remember cacheCode to delete from memory when it is deleted
-         */
-        $this->cacheCode = $code;
-        if ( $value === null ) {
-            $this->fields = db_row($table, "idx = '$field'");
-        }
-        else {
-            $this->fields = db_row($table, "$field = '$value'");
-        }
-        if ( $this->fields ) {
-            self::$loadCache[$code] = $this->fields;
-        }
-        hook('entity_load', $this);
-        if ( empty(self::$loadCache[$code]) ) {
-            return FALSE;
-        }
-        else {
+        if ( $data ) {
+            hook('entity_load', $this);
+            $this->setCache($this->getCacheCode(), $data);
             return $this;
         }
+        else return FALSE;
+
     }
 
 
@@ -271,15 +261,6 @@ class Entity {
         return $this;
     }
 
-
-    /**
-     * Deleting cache on made by load()
-     * @param $code
-     */
-    public function clearLoadCache($code) {
-        unset(self::$loadCache[$code]);
-    }
-
     public function __toString() {
         return print_r($this, true);
     }
@@ -321,6 +302,106 @@ class Entity {
 
     public function count($cond=null) {
         return Database::load()->count($this->table(), $cond);
+    }
+
+    /**
+     *
+     * Save cache code
+     *
+     * @param $code
+     */
+    private function setCacheCode($code)
+    {
+        $this->cacheCode = $code;
+    }
+
+    private function getCacheCode()
+    {
+        return $this->cacheCode;
+    }
+
+    private function loadData($field, $value)
+    {
+        $table = $this->table();
+        if ( $value === null ) {
+            $this->fields = db_row($table, "idx = '$field'");
+        }
+        else {
+            $this->fields = db_row($table, "$field = '$value'");
+        }
+        return $this->fields;
+    }
+
+
+    /**
+     * Sets data into cache variable.
+     *
+     * @Attention it will index by the cache code. and it will make another index by 'idx' of the item.
+     *
+     *      This is because
+     *
+     *          1. when you load item, it makes 'code' based on the field name.
+     *          2. when you delete the loaded item, it will remove cache data based on the 'code'
+     *          3. The problem begins on the two condition above.
+     *              3-1. load data 'A' with code 'abc'
+     *              3-2. load data 'A' with code 'def' and delete it.
+     *                  3-2-1. load data 'A' is deleted from data base but still alive in cache.
+     *              3-3. load data 'A' with code 'abc' and the data is still alive.
+     *
+     *      For this fact, it maintains another index by 'idx'
+     *
+     *
+     * @param $code
+     * @param $data
+     *
+     *
+     */
+    private function setCache($code, $data)
+    {
+        self::$loadCache[$code] = $data;
+        self::$loadCacheIdx[$data['idx']][] = $code;
+    }
+
+
+    /**
+     *
+     *
+     * @param $code
+     * @return bool
+     *
+     *      - returns FALSE if there is no cache. You must use '===' to check.
+     *
+     */
+    private function getCache($code)
+    {
+        if ( isset(self::$loadCache[$code]) ) return self::$loadCache[$code];
+        else return FALSE;
+    }
+
+
+    private function cached($code)
+    {
+        return isset(self::$loadCache[$code]);
+    }
+
+
+
+
+    /**
+     * Deleting cache on made by load()
+     * @param $code
+     */
+    public function clearLoadCache($code) {
+        if ( isset(self::$loadCache[$code]) ) {
+            $idx = self::$loadCache[$code]['idx'];
+            unset(self::$loadCache[$code]);
+            if ( isset(self::$loadCacheIdx[$idx]) ) {
+                foreach( self::$loadCacheIdx[$idx] as $code ) {
+                    unset(self::$loadCache[$code]);
+                }
+                unset(self::$loadCacheIdx[$idx]);
+            }
+        }
     }
 
 
