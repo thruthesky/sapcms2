@@ -62,14 +62,29 @@ class smsgate {
         //return Response::render( $data );
     }
 
-    public static function load_a_message() {
+    public static function sender_load_sms_from_queue() {
 
-        $sms = entity(QUEUE)->query("idx > 2");
+        $sms = entity(QUEUE)->query("ORDER BY priority desc");
         if ( $sms ) {
-            Response::json($sms->get());
+            $data = [
+                'idx' => $sms->get('idx'),
+                'number' => $sms->get('number'),
+                'message' => $sms->get('message'),
+            ];
+
+            Response::json($data);
         }
         else {
             Response::json(['error'=>'no item']);
+        }
+    }
+
+    public static function sender_record_result() {
+        $mode = Request::get('mode');
+        $idx = Request::get('idx');
+        $sms = entity(SMS)->load($idx);
+        if ( $mode == 'success' ) {
+
         }
     }
 

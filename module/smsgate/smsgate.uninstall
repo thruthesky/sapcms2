@@ -1,2 +1,4 @@
 <?php
 entity('smsgate_queue')->dropTable();
+entity('smsgate_success')->dropTable();
+entity('smsgate_failure')->dropTable();
