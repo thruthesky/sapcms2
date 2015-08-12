@@ -68,6 +68,12 @@ class System {
         return self::$version;
     }
 
+    public static function info() {
+        echo self::$version;
+        echo '<hr>';
+        phpinfo();
+    }
+
     public static function runModule($route=null)
     {
         return Module::run($route);
