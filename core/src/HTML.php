@@ -137,6 +137,7 @@ class HTML {
             $qv = Request::get();
             unset($qv["page_no"]);
             unset($qv["id"]);
+            unset($qv["idx"]);//added by benjamin
             $qs = http_build_query($qv);
         }
 
