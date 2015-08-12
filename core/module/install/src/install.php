@@ -10,11 +10,18 @@ use sap\src\Request;
 use sap\src\Response;
 
 class Install {
+
+    private static $done_install_check = false;
+    private static $check = false;
+
     /**
      *
      */
     public static function page() {
-        if ( Request::submit() ) self::submit();
+        if ( Request::submit() ) {
+            self::submit();
+            Response::renderTemplate(['template'=>'install.success']);
+        }
         else {
             Response::renderTemplate(['template'=>'install.form']);
         }
@@ -36,7 +43,6 @@ class Install {
 
 
         Install::initializeSystem($options);
-        Response::renderTemplate(['template'=>'install.success']);
 
     }
 
@@ -118,15 +124,16 @@ class Install {
 
     public static function check()
     {
-        //di(__METHOD__);
+        if (  self::$done_install_check ) return self::$check;
         $config = System::getDatabaseConfiguration();
-        if ( ! isset($config['database']) ) return FALSE;
+        if ( ! isset($config['database']) ) self::$check = false;
         if ( $config['database'] == 'mysql' ) {
-            if ( empty($config['database_name']) ) return FALSE;
-            else return TRUE;
+            if ( empty($config['database_name']) ) self::$check = false;
+            else self::$check = TRUE;
         }
-        else if ( $config['database'] == 'sqlite' ) return TRUE;
-        return FALSE;
+        else if ( $config['database'] == 'sqlite' ) self::$check = TRUE;
+
+        return self::$check;
     }
 
     public static function runInstall()

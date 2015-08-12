@@ -208,11 +208,10 @@ class Entity {
      */
     public function save()
     {
-
-
         if ( $this->get('idx') ) {
             $this->fields['changed'] = time();
             $statement = db_update($this->table(), $this->fields, "idx=".$this->get('idx'));
+            $this->clearLoadCache($this->getCacheCode());
             return $this;
         }
         else {
@@ -256,7 +255,7 @@ class Entity {
             db_delete($this->table(), "idx=$idx");
             $this->fields = [];
             //unset(self::$loadCache[$this->cacheCode]);
-            $this->clearLoadCache($this->cacheCode);
+            $this->clearLoadCache($this->getCacheCode());
         }
         return $this;
     }
@@ -389,6 +388,9 @@ class Entity {
 
     /**
      * Deleting cache on made by load()
+     *
+     *      - it deletes cache on deleting and updating(save)
+     *
      * @param $code
      */
     public function clearLoadCache($code) {

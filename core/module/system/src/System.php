@@ -20,9 +20,10 @@ class System {
     static $version = '2.0.1';
     private static $count_log = 0;
     private static $config_database = null;
-    private static $isInstalled = false;
     private static $error;
     private static $module_loaded = [];
+    private static $cli = false;
+    private static $done_cli_check = false;
     private $path = null;
     private $filename =null;
     public $script = null;
@@ -94,15 +95,16 @@ class System {
 
     public static function isCommandLineInterface()
     {
-        if ( isset($GLOBALS['argc']) && $GLOBALS['argc'] > 0 ) return true;
+        if ( self::$done_cli_check ) return self::$cli;
+        self::$done_cli_check = true;
+        if ( isset($GLOBALS['argc']) && $GLOBALS['argc'] > 0 ) self::$cli = true;
         if ( isset($GLOBALS['argv']) ) {
-            if ( $GLOBALS['argv']['0'] == 'index.php' ) return true;
+            if ( $GLOBALS['argv']['0'] == 'index.php' ) self::$cli = true;
         }
-
         if ( defined('CommandLineInterfaceMode') ) {
-            return true;
+            self::$cli = true;
         }
-        return false;
+        return self::$cli;
     }
 
 
@@ -112,18 +114,16 @@ class System {
     public static function run()
     {
 
-        self::load();
-        self::loadDatabaseConfiguration();
-        self::load_core_module_files();
+        if ( System::isCommandLineInterface() && CommandLineInterface::getCommand() == '--uninstall' )  {
 
-
-
-        if ( Install::check() ) {
-            self::isInstalled(true);
-            self::load_module_files();
         }
         else {
-            //di("system is not installed");
+            self::load();
+            self::loadDatabaseConfiguration();
+            self::load_core_module_files();
+            if ( Install::check() ) {
+                self::load_module_files();
+            }
         }
         hook('system_begin');
 
@@ -136,7 +136,7 @@ class System {
         if ( System::isCommandLineInterface() ) {
             $re = CommandLineInterface::Run();
         }
-        else if ( ! self::isInstalled() ) {
+        else if ( ! Install::check() ) {
             $re = Install::runInstall();
             exit; // @todo it should not exit here.
         }
@@ -228,11 +228,13 @@ class System {
     }
 
 
+    /**
     public static function isInstalled($flag=null)
     {
         if ( $flag === null ) return self::$isInstalled;
         else return self::$isInstalled = $flag;
     }
+     * */
 
 
     /**
@@ -336,7 +338,7 @@ class System {
      */
     public static function log ( $str )
     {
-        if ( ! self::isInstalled() ) return OK;
+        if ( ! Install::check() ) return OK;
         if ( empty($str) ) return OK;
         $str = is_string($str) ? $str : print_r( $str, true );
         return File::append(PATH_DEBUG_LOG, self::$count_log++ . ' : ' . $str . "\n");

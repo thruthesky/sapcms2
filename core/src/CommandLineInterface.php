@@ -11,6 +11,7 @@ class CommandLineInterface {
     static $cmd = null;
     public static function parseArguments()
     {
+        if ( ! empty( self::$cmd ) ) return;
         self::$argv = $GLOBALS['argv'];
         self::$argc = $GLOBALS['argc'];
         self::$cmd = isset(self::$argv[1]) ? self::$argv[1] : null;
@@ -25,6 +26,20 @@ class CommandLineInterface {
             }
         }
     }
+
+    public static function getCommand() {
+        self::parseArguments();
+        return self::$cmd;
+    }
+
+
+    /**
+     *
+     *
+     * @return int
+     *
+     *
+     */
     public static function Run() {
         System::log(__METHOD__);
         self::parseArguments();
@@ -48,6 +63,9 @@ class CommandLineInterface {
                 'admin-id' => self::getArgument('--admin-id'),
                 'admin-password' => self::getArgument('--admin-password'),
             ]);
+        }
+        else if ( self::$cmd == '--uninstall' ) {
+            File::delete(PATH_CONFIG_DATABASE);
         }
         else if ( self::$cmd == '--config' ) {
             $args = self::getArguments();

@@ -1,5 +1,6 @@
 <?php
 use sap\core\Config\Config;
+use sap\core\Install\Install;
 use sap\core\System\System;
 use sap\core\User\User;
 use sap\src\Database;
@@ -177,10 +178,11 @@ function url_complete(&$path) {
 
     }
     else {
-        if ( ! System::isInstalled() ) $url = '/';
+        if ( ! Install::check() ) $url = '/';
         else {
             $url = config(URL_SITE);
-            if ( empty($url) ) $url = get_current_domain_url();
+            if ( empty($url) ) $url = get_current_domain_url(); //
+            //if ( empty($url) ) $url = '/'; // if CLI run, $url will be emtpy.
         }
         $path = $url . $path;
     }

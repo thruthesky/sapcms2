@@ -62,6 +62,28 @@ class EntityTest extends PHPUnit_Framework_TestCase {
         Database::load()->dropTable($table);
     }
 
+    public function test_entity_update() {
+
+        $table = 'entity_test_update';
+
+        entity($table)->createTable()
+            ->add('name', 'varchar')
+            ->add('location', 'varchar');
+
+        entity($table)->create()
+            ->set('name', 'jaeho')
+            ->set('location','Korea')
+            ->save();
+
+        $this->assertTrue( entity($table)->load('location', 'Korea')->get('name') == 'jaeho' );
+
+        entity($table)->load('name', 'jaeho')->set('name', 'song')->save();
+        $this->assertTrue( entity($table)->load('location', 'Korea')->get('name') == 'song' );
+
+
+        entity($table)->dropTable();
+    }
+
     public function test_entity_cache() {
         $table = 'entity_test_cache';
 
@@ -87,12 +109,17 @@ class EntityTest extends PHPUnit_Framework_TestCase {
 
         $this->assertTrue(entity($table)->load('name', 'jaeho')->get('name') == 'jaeho');
         $this->assertTrue(entity($table)->load('name', 'jaeho')->get('location') == 'Korea');
-        $this->assertTrue(entity($table)->load('location', 'Korea')->get('name') == 'jaeho');
+
+        entity($table)->load('name', 'jaeho')->set('name', 'song')->save();
+        $this->assertTrue(entity($table)->load('location', 'Korea')->get('name') == 'song');
+
 
         entity($table)->load('location', 'Korea')->delete();
+        $this->assertTrue(entity($table)->count() == 1);
 
         $this->assertTrue(entity($table)->load('name', 'jaeho') == false );
         $this->assertTrue(entity($table)->load('location', 'Korea') == false );
+
 
 
 
