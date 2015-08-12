@@ -97,7 +97,6 @@ class Entity {
         if ( isset(self::$loadCache[$code]) ) {
             $this->cacheCode = $code;
             $this->fields = self::$loadCache[$code];
-
             if ( empty($this->fields) ) {
                 return FALSE;
             }

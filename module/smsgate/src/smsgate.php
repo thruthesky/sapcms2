@@ -42,5 +42,6 @@ class smsgate {
         $row = db_row('sms_extract_numbers');
         Response::json($row);
     }
+
 }
 

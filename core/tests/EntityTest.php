@@ -33,25 +33,31 @@ class EntityTest extends PHPUnit_Framework_TestCase {
     public function test_set_sets() {
         $table = 'entity_test_2';
         entity($table)->createTable()
-            ->add('a', 'char')
-            ->add('b', 'char')
-            ->add('c', 'char');
+            ->add('Fruit', 'varchar')
+            ->add('Car', 'varchar')
+            ->add('Animal', 'varchar');
 
-        entity($table)->create()
-            ->set('a', 'A')
-            ->set('b', 'B')
-            ->set('c', 'C')
+        entity($table)
+            ->set('Fruit', 'Apple')
+            ->set('Car', 'BMW')
+            ->set('Animal', 'Cat')
             ->save();
 
         $this->assertTrue(entity($table)->count() == 1);
 
-        $this->assertTrue( entity($table)->load('a', 'A')->get('b') == 'B' );
+        $this->assertTrue( entity($table)->load('Fruit', 'Apple')->get('Car') == 'BMW' );
 
         entity($table)
-            ->set(['a'=>1, 'b'=>'2', 'c'=>3])
+            ->set(['Fruit'=>'Banana', 'Car'=>'Starex', 'Animal'=>'Dog'])
             ->save();
 
-        $this->assertTrue( entity($table)->load('a', '1')->get('b') == '2' );
+        $this->assertTrue(entity($table)->load('Fruit', 'Banana')->get('Animal') == 'Dog');
+
+        entity($table)->load('Animal', 'Dog')->delete();
+
+        $this->assertTrue(entity($table)->load('Fruit', 'Banana') == false);
+
+        $this->assertTrue( entity($table)->load('Car', 'BMW')->get('Fruit') == 'Apple' );
         
         Database::load()->dropTable($table);
     }

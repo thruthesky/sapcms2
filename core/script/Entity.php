@@ -28,14 +28,14 @@ $temp = entity('temp')
     ->set('name', 'JaeHo Song')
     ->save();
 
+echo entity('temp')->load('name','JaeHo Song')->get('name') . PHP_EOL;
+
 
 $temp = entity('temp')
     ->set('name', 'Your-name')
     ->save();
 
-echo entity('temp')->load($temp->get('idx'));
-echo user(1);
-echo user('id', 'admin');
+echo entity('temp')->load($temp->get('idx'))->get('name') . PHP_EOL;
 
 
 $temp->delete();
@@ -49,3 +49,35 @@ entity('def')->set('name', 'jaeho')->save();
 entity('def')->load('name', 'jaeho')->delete();
 entity('def')->dropTable();
 
+
+
+
+
+
+$table = 'entity_test_2';
+entity($table)->createTable()
+    ->add('Fruit', 'varchar')
+    ->add('Car', 'varchar')
+    ->add('Animal', 'varchar');
+
+entity($table)
+    ->set('Fruit', 'Apple')
+    ->set('Car', 'BMW')
+    ->set('Animal', 'Cat')
+    ->save();
+
+echo entity($table)->count() . PHP_EOL;
+if ( 'BMW' == entity($table)->load('Fruit', 'Apple')->get('Car') ) echo "OK\n";
+else echo "error\n";
+
+entity($table)
+    ->set(['Fruit'=>'Banana', 'Car'=>'Starex', 'Animal'=>'Dog'])
+    ->save();
+entity($table)->load('Animal', 'Dog')->delete();
+if ( entity($table)->load('Fruit', 'Banana') == false ) echo "OK" . PHP_EOL;
+else echo "Fruit Banana => ERROR\n";
+
+if ( entity($table)->load('Car', 'BMW')->get('Fruit') == 'Apple' ) echo "OK\n";
+else echo "ERROR\n";
+
+Database::load()->dropTable($table);
