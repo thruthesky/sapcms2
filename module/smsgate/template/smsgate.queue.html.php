@@ -1,5 +1,5 @@
 <?php
-
+date_default_timezone_set("Asia/Singapore");//to remove the warning
 use sap\src\HTML;
 
 $no_item = sysconfig(NO_ITEM);
@@ -36,6 +36,8 @@ $smses = entity(QUEUE)->rows("limit $from, $no_item");
 
 
     <?php
+	//di( $_GET );exit;
+	
     foreach( $smses as $sms ) {
 
         echo "<tr>";
@@ -44,7 +46,7 @@ $smses = entity(QUEUE)->rows("limit $from, $no_item");
         echo "<td>$sms[priority]</td>";
         echo "<td>$sms[number]</td>";
         echo "<td>$sms[message]</td>";
-        echo "<td><a href='/smsgate/delete?idx=$sms[idx]'>Delete</a></td>";
+        echo "<td><a href='/smsgate/delete?idx=$sms[idx]&page_no=$_GET[page_no]'>Delete</a></td>";
         echo "</tr>";
     }
     ?>
@@ -62,4 +64,5 @@ $smses = entity(QUEUE)->rows("limit $from, $no_item");
         }
     </style>
 <?php
-echo HTML::paging(page_no(), $total_record, $no_item, $no_page);
+echo HTML::paging(page_no(), $total_record, $no_item, $no_page, null, null, '/smsgate/list/queue');
+
