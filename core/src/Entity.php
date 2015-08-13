@@ -140,6 +140,11 @@ class Entity {
     }
 
     /**
+     *
+     *
+     * If the $field is array, then it MERGE the array into $this->field.
+     *
+     *
      * @param $field
      * @param $value
      * @return $this

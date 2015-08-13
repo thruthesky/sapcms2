@@ -125,5 +125,29 @@ class EntityTest extends PHPUnit_Framework_TestCase {
 
         entity($table)->dropTable();
     }
+
+    public function test_entity_copy() {
+        $table = 'entity_test_copy';
+        entity($table)->createTable()
+            ->add('name', 'varchar')
+            ->add('age', 'int');
+
+        $jaeho = entity($table)
+            ->set('name', 'jaeho')
+            ->set('age', 41)
+            ->save();
+
+
+        $song = $jaeho;
+        $song->set('idx', NULL)->save();
+
+        $this->assertTrue(entity($table)->count() == 2);
+        $this->assertTrue($jaeho->get('idx') == $song->get('idx'));
+
+
+
+
+        entity($table)->dropTable();
+    }
 }
 
