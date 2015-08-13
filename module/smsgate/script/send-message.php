@@ -1,6 +1,6 @@
 <?php
 
-$number = 12345678901;
+$number = 1234901;
 $message = 'This is the Text message';
 
 
