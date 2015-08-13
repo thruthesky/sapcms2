@@ -228,6 +228,7 @@ class Response {
     public static function json($data) {
         header("Access-Control-Allow-Origin: *");
         echo json_encode($data);
+        return OK;
     }
 
 
