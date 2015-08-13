@@ -146,6 +146,14 @@ class ConfigTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue(config()->group('phone')->group('my')->getEntity('apple')->get('value') == 4);
         config()->group('phone')->group('my')->getEntity('apple')->delete();
         $this->assertTrue(count(config()->group('phone')->group('my')->gets()) == 1 );
+    }
 
+    public function test_config_load() {
+        config()->set('a', 'b', 3);
+        $this->assertTrue(config()->load('code', 'a')->get('value') == 'b');
+        $this->assertTrue(config()->load('code', 'a')->get('idx_target') == 3);
+        $this->assertTrue(config('a') == 'b');
+        $this->assertTrue(config()->getEntity('a')->get('value') == 'b');
+        $this->assertTrue(config()->getEntity('a')->get('idx_target') == 3);
     }
 }

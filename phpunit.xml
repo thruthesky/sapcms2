@@ -1,0 +1,7 @@
+<testsuites>
+    <testsuite name="system project">
+        <directory>core/module/*/tests</directory>
+        <directory>core/tests</directory>
+        <directory>module/*/tests</directory>
+    </testsuite>
+</testsuites>

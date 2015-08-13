@@ -11,7 +11,6 @@ class Dog extends Entity {
         system_log(__METHOD__);
     }
 
-
     public function createTable() {
         parent::createTable()
             ->add('idx_from', 'INT UNSIGNED DEFAULT 0')
