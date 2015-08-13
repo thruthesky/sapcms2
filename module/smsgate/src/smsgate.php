@@ -4,7 +4,19 @@ namespace sap\smsgate;
 use sap\src\Request;
 use sap\src\Response;
 
+
 class smsgate {
+	public static $send_delay =	[
+						600,//( 60 * 10 ),
+						7200,//( 60 * 60 * 2 ),
+						14400,//( 60 * 60 * 4 ),
+						28800,//( 60 * 60 * 8 ),
+						57600,//( 60 * 60 * 16 ),
+						115200,//( 60 * 60 * 32 ),
+						115200,//( 60 * 60 * 32 ),
+						115200,//( 60 * 60 * 32 ),
+						];
+
     public static function page() {
         Response::render();
     }
@@ -92,25 +104,38 @@ class smsgate {
     public static function sender_load_sms_from_queue() {
         $re = [];
         $sms = entity(QUEUE)->query("ORDER BY priority DESC, stamp_next_send ASC, idx ASC");
-        if ( $sms ) {
-            $count = entity(QUEUE)->count();
-            $re = [
-                'error' => 0,
-                'idx' => $sms->get('idx'),
-                'number' => $sms->get('number'),
-                'message' => $sms->get('message'),
-                'total_record' => $count
-            ];
-            $sms
-                ->set('stamp_next_send', time() + 60 * 10)
-                ->set('no_send_try', $sms->get('no_send_try') + 1)
-                ->set('sender', request('sender'))
-                ->save();
-        }
-        else {
-            $re['error'] = -409;
-            $re['message'] = 'No more data';
-        }
+		
+		$sms_tries = $sms->get('no_send_try');
+		$idx = $sms->get('idx');
+		
+		if( $sms_tries < 9 ){
+			if ( $sms ) {
+				$count = entity(QUEUE)->count();
+				$re = [
+					'error' => 0,
+					'idx' => $idx,
+					'number' => $sms->get('number'),
+					'message' => $sms->get('message'),
+					//'no_send_try' => $sms_tries,
+					'total_record' => $count
+				];
+				$sms
+					//->set('stamp_next_send', time() + 60 * 10)
+					->set('stamp_next_send', time() + self::$send_delay[ $sms_tries ] )
+					->set('no_send_try', $sms_tries + 1)
+					->set('sender', request('sender'))
+					->save();
+			}
+			else {
+				$re['error'] = -409;
+				$re['message'] = 'No more data';
+			}
+		}
+		else{			
+			$re['error'] = -410;
+			$re['message'] = 'Reached the max send attempts. Deleting idx [ '.$idx.' ] sms data';
+			//$sms->delete();
+		}
         Response::json($re);
     }
 
