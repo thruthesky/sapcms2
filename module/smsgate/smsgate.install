@@ -9,7 +9,9 @@ entity('smsgate_queue')
     ->add('no_fail', "int UNSIGNED default '0'")
     ->add('sender', 'varchar', 255)
     ->add('message', 'varchar', 255)
+    ->add('bulk', 'varchar', 64)
     ->index('priority')
+    ->index('bulk,number')
     ->index('stamp_next_send');
 
 entity('smsgate_success')
@@ -22,7 +24,9 @@ entity('smsgate_success')
     ->add('no_fail', "int UNSIGNED default '0'")
     ->add('sender', 'varchar', 255)
     ->add('message', 'varchar', 255)
+    ->add('bulk', 'varchar', 64)
     ->index('priority')
+    ->index('bulk,number')
     ->index('stamp_next_send');
 
 entity('smsgate_failure')
@@ -35,6 +39,7 @@ entity('smsgate_failure')
     ->add('no_fail', "int UNSIGNED default '0'")
     ->add('sender', 'varchar', 255)
     ->add('message', 'varchar', 255)
+    ->add('bulk', 'varchar', 64)
     ->add('reason', 'varchar', 255) //
     ->index('priority')
     ->index('stamp_next_send');
