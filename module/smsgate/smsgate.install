@@ -18,8 +18,6 @@ entity('smsgate_success')
     ->createTable()
     ->add('number', 'char', '11')
     ->add('priority', "INT UNSIGNED default '0'")
-    ->add('stamp_next_send', "int UNSIGNED default '0'")
-
     ->add('no_send_try', "int UNSIGNED default '0'")
     ->add('no_fail', "int UNSIGNED default '0'")
     ->add('sender', 'varchar', 255)

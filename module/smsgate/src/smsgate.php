@@ -140,16 +140,24 @@ class smsgate {
     }
 
     public static function sender_record_result() {
-        $mode = Request::get('mode');
-        $idx = Request::get('idx');
 
-        $sms = entity(QUEUE)->load($idx);
+
+        $sms = entity(QUEUE)->load(request('idx'));
         if ( empty($sms) ) return Response::json(['error'=>-4040, 'message'=>'SMS does not exists. Maybe wrong idx.']);
 
         $data = ['error'=>0];
 
-        if ( $mode == 'Y' ) {
-
+        if ( request('result') == 'Y' ) {
+            entity(SMS_SUCCESS)
+                ->set('number', $sms->get('number'))
+                ->set('priority', $sms->get('priority'))
+                ->set('no_send_try', $sms->get('no_send_try'))
+                ->set('no_fail', $sms->get('no_fail'))
+                ->set('sender', $sms->get('sender'))
+                ->set('message', $sms->get('message'))
+                ->set('bulk', $sms->get('bulk'))
+                ->save();
+            $sms->delete();
         }
         else {
             $sms
