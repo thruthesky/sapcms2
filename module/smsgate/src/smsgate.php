@@ -22,7 +22,7 @@ class smsgate {
                         ->set('number', $number)
                         ->set('message', Request::get('message'))
                         ->set('priority', 9)
-                        ->set('user_agent', user_agent())
+                        ->set('sender', '')
                         ->save();
                     $scheduled[] = $number;
                 }
@@ -63,29 +63,37 @@ class smsgate {
     }
 
     public static function sender_load_sms_from_queue() {
-
+        $re = [];
         $sms = entity(QUEUE)->query("ORDER BY priority desc");
         if ( $sms ) {
-            $data = [
+            $count = entity(QUEUE)->count();
+            $re = [
+                'error' => 0,
                 'idx' => $sms->get('idx'),
                 'number' => $sms->get('number'),
                 'message' => $sms->get('message'),
+                'total_record' => $count
             ];
-
-            Response::json($data);
+            $sms->set('sender', request('sender'));
         }
         else {
-            Response::json(['error'=>'no item']);
+            $re['error'] = -409;
+            $re['message'] = 'No more data';
         }
+        Response::json($re);
     }
 
     public static function sender_record_result() {
         $mode = Request::get('mode');
         $idx = Request::get('idx');
         $sms = entity(SMS)->load($idx);
+
+        $data = ['error'=>0];
         if ( $mode == 'success' ) {
 
         }
+
+        Response::json($data);
     }
 
 }

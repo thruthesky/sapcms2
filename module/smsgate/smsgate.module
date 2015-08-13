@@ -6,5 +6,5 @@ define('QUEUE', 'smsgate_queue');
 define('SMS', 'smsgate_mass_numbers');
 
 
-include 'smsgate.route.php';
+include 'smsgate.routing.php';
 include 'smsgate.hook.php';

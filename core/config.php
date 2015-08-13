@@ -3,7 +3,7 @@ define('HTTP_VAR_ROUTE', 'route');
 define('DEFAULT_MODULE','front');
 define('DEFAULT_CONTROLLER','page');
 
-
+define('DEVELOPMENT_MODE', true);
 $theme = 'default';
 
 

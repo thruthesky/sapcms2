@@ -1,12 +1,10 @@
 <?php
 define('PATH_INSTALL', '.');
-
 include PATH_INSTALL.'/core/config.php';
 include PATH_INSTALL.'/core/etc/defines.php';
 include PATH_INSTALL.'/core/etc/helper-function.php';
 include PATH_INSTALL.'/core/etc/sapcms-library.php';
 include PATH_INSTALL.'/core/etc/jquerymobile-wrapper.php';
-
 require PATH_INSTALL.'/core/composer/vendor/autoload.php';
 spl_autoload_register( function( $class ) {
     $path = null;
@@ -41,3 +39,4 @@ spl_autoload_register( function( $class ) {
         include $path;
     }
 } );
+include PATH_INSTALL . '/core/bootstrap.php';

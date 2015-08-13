@@ -4,8 +4,7 @@ use GuzzleHttp\Client;
 
 $client = new Client();
 $res = $client->get('http://sapcms2.org/smsgate/sender/load');
-$data = json_decode($res->getBody(), true);
-
+$body = $res->getBody();
+$data = json_decode($body, true);
+print_r( $data );
 $res = $client->get("http://sapcms2.org/smsgate/sender/result?mode=success&idx=$data[idx]");
-
-

@@ -87,6 +87,10 @@ function submit() {
     return Request::submit();
 }
 
+function request($key=null) {
+    return Request::get($key);
+}
+
 /**
  * @return mixed
  */
@@ -152,3 +156,5 @@ function system_log($msg) {
 function route() {
     return Route::load();
 }
+
+
