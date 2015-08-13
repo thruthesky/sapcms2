@@ -121,7 +121,7 @@ class smsgate {
 				];
 				$sms
 					//->set('stamp_next_send', time() + 60 * 10)
-					->set('stamp_next_send', time() + self::$send_delay[ $sms_tries ] )
+					->set('stamp_next_send', time() + self::$send_delay[ $sms_tries - 1 ] )
 					->set('no_send_try', $sms_tries + 1)
 					->set('sender', request('sender'))
 					->save();
