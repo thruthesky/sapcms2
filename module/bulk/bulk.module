@@ -1,6 +1,7 @@
 <?php
 define('BULK_DATA', 'smsgate_bulk_data');
 define('BULK', 'smsgate_bulk');
+define('BULK_HISTORY', 'smsgate_bulk_history');
 
 
 route('/bulk', 'bulk\\bulk\\index');

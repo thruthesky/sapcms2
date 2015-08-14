@@ -7,7 +7,8 @@ if ( ! entity(BULK_DATA)->tableExists() ) {
         ->add('origin', 'varchar', '32')
         ->add('keyword', 'varchar', '64')
         ->add('username', 'varchar', '64')
-        ->add('location', 'varchar', '64')
+        ->add('province', 'varchar', '32')
+        ->add('city', 'varchar', '32')
         ->add('title', 'varchar', '512')
         ->add('count_collection', 'int unsigned default 0')
         ->add('stamp_last_sent', 'int unsigned default 0')
@@ -22,8 +23,15 @@ if ( ! entity(BULK)->tableExists() ) {
     entity(BULK)
         ->createTable()
         ->add('name', 'varchar', '64')
-        ->add('category', 'varchar', '64')
-        ->add('location', 'varchar', '64')
         ->add('message', 'varchar')
+        ->unique('name');
+}
+
+if ( ! entity(BULK_HISTORY)->tableExists() ) {
+    entity(BULK_HISTORY)
+        ->createTable()
+        ->add('idx_bulk', 'int unsgined default 0')
+        ->add('location', 'varchar', 64)
+        ->add('category', 'varchar', 64)
         ->unique('name');
 }
