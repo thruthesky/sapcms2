@@ -1,5 +1,5 @@
 <?php
-use sap\core\User\User;
+use sap\core\user\User;
 function user($field=null, $value=null) {
     if ( $field === null ) return new User();
     else {
