@@ -65,15 +65,15 @@ class File
      * @param bool|true $recursive
      * @return int
      */
-    public static function createDir($path, $mode="0777", $recursive=true)
+    public static function createDir($path, $mode=0777, $recursive=true)
     {
         if ( file_exists($path) ) {
             return ERROR_FILE_EXISTS;
         }
         else {
-	$old = umask(0);
+	//$old = umask(0);
     $re = mkdir($path, $mode, $recursive);
-	umask($old);
+	//umask($old);
             if ( $re ) return 0;
             else return ERROR_CREATE_DIR;
         }
