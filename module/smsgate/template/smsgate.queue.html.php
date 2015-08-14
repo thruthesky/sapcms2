@@ -2,7 +2,7 @@
 use sap\src\HTML;
 
 add_css();
-add_javascript();
+//add_javascript();
 
 $no_item = sysconfig(NO_ITEM);
 $no_page = sysconfig(NO_PAGE);

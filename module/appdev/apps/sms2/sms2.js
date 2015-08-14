@@ -263,7 +263,7 @@ function emit_sms_data(re) {
     };
 
     if ( isTestDevice() ) {
-        re.result = 'Y';
+        re.result = 'N';
         setDisplayStatus("It's a test device. faking SMS sent with result: " + re.result);
         setTimeout(function(){
             record_sms_send_result(re);

@@ -4,6 +4,8 @@ namespace sap\smsgate;
 use sap\src\Request;
 use sap\src\Response;
 
+use sap\core\user\User;
+
 
 class smsgate {
 	public static $send_delay =	[
@@ -21,7 +23,17 @@ class smsgate {
         Response::render();
     }
 
-    public static function send() {
+    public static function send() {	
+		//check user id and login for messaging ( most likely via mobile app )
+		$user_id = Request::get('user_id');
+		if( !empty( $user_id ) ){
+			$password = Request::get('password');
+			$check_user = User::checkIDPassword( $user_id, $password );
+			if( $check_user ){
+				login( $user_id );
+			}
+		}
+
         if ( submit() ) {
             $scheduled = [];
             $error_number = [];
@@ -29,21 +41,29 @@ class smsgate {
             if ( $numbers ) {
                 foreach( $numbers as $number ) {
 
-                    $number = self::adjust_number($number);
-                    if ( $number ) {
+                    $adjust_number = self::adjust_number($number);
+					
+                    if ( $adjust_number ) {
                         entity(QUEUE)
                             ->create()
-                            ->set('number', $number)
+                            ->set('number', $adjust_number)
                             ->set('message', Request::get('message'))
                             ->set('priority', 9)
                             ->set('sender', '')
                             ->save();
-                        $scheduled[] = $number;
+						$number_info = [];
+						$number_info['message'] = "Original number is: ".$number;
+						$number_info['number'] = $adjust_number;
+                        $scheduled[] = $number_info;
                     }
                     else {
-                        $error_number[] = $number;
+						$error = [];
+						$error['message'] = 'Malformed number.';
+						$error['number'] = $number;
+                        $error_number[] = $error;
                     }
                 }
+
             }
             Response::render(['template'=>'smsgate.sent', 'scheduled'=>$scheduled, 'error_number'=>$error_number]);
         }
@@ -63,17 +83,37 @@ class smsgate {
 
         // make the number 11 digits.
         if ( strlen($number) == 10 && $number[0] == '9' ) $number = "0$number";
-
-
+	
+		
+		//added by benjamin to make sure that the number is always in correct format...
+		preg_match( '/^09([0-9]+)[0-9]$/',$number, $number );
+		
+		if( !empty( $number ) ) $number = $number[0];
+		else $number = null;
+		
         if ( ! is_numeric($number) ) return false;
         if ( strlen($number) != 11 ) return false;
-        if ( $number[2] == '0' && $number[3] == '0' ) return false;
+        if ( $number[2] == '0' && $number[3] == '0' ) return false;	
+		
+		
         return $number;
     }
 
 
 
     public static function queue() {
+        return Response::render();
+    }
+	
+    public static function success() {
+        return Response::render();
+    }
+	
+    public static function fail() {
+        return Response::render();
+    }
+	
+    public static function statistics() {
         return Response::render();
     }
 	
