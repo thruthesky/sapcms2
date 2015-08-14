@@ -23,6 +23,8 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
     }
 
 
+
+
     public function test_table_field_exits() {
         $table = 'test_table';
         $db = Database::load();
@@ -32,6 +34,11 @@ class DatabaseTest extends PHPUnit_Framework_TestCase {
 
         $db->createTable($table);
         $this->assertTrue($db->tableExists($table));
+        $this->assertFalse($db->columnExists($table, 'columnA'));
+
+        $db->add('columnA', 'varchar');
+        $this->assertTrue($db->columnExists($table, 'columnA'));
+
 
         Database::load()->dropTable($table);
     }

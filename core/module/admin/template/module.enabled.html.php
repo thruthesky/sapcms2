@@ -1,3 +1,4 @@
+<?php widget('error'); ?>
 <table data-role="table" id="table-module-list" data-mode="columntoggle" class="ui-responsive table-stroke">
     <thead>
     <tr>

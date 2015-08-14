@@ -16,7 +16,7 @@ if ( ! entity(BULK_DATA)->tableExists() ) {
         ->add('stamp_last_post', 'int unsigned default 0')
         ->unique('number')
         ->index('keyword')
-        ->index('location');
+        ->index('province,city');
 }
 
 if ( ! entity(BULK)->tableExists() ) {
@@ -30,9 +30,8 @@ if ( ! entity(BULK)->tableExists() ) {
 if ( ! entity(BULK_HISTORY)->tableExists() ) {
     entity(BULK_HISTORY)
         ->createTable()
-        ->add('idx_bulk', 'int unsgined default 0')
+        ->add('idx_bulk', 'int unsigned default 0')
         ->add('province', 'varchar', 32)
         ->add('city', 'varchar', 32)
-        ->add('category', 'varchar', 64)
-        ->unique('name');
+        ->add('category', 'varchar', 64);
 }

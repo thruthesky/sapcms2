@@ -117,13 +117,13 @@ class Database extends \PDO {
         $this->table($table);
         if ( $this->type == 'mysql' ) {
             $q = "CREATE TABLE $table (idx INT) DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;";
-            $this->exec($q);
+            $this->runExec($q);
             $this->addPrimaryKey($table, 'idx');
             $this->addAutoIncrement($table, 'idx');
         }
         else if ( $this->type == 'sqlite' ) {
             $q = "CREATE TABLE $table (idx INTEGER PRIMARY KEY);";
-            $this->exec($q);
+            $this->runExec($q);
         }
 
 
@@ -133,7 +133,7 @@ class Database extends \PDO {
     public function dropTable($name)
     {
         $q = "DROP TABLE IF EXISTS $name;";
-        $this->exec($q);
+        $this->runExec($q);
         return $this;
     }
 
@@ -148,10 +148,37 @@ class Database extends \PDO {
         }
         if ( $size ) $type = "$type($size)";
         $q = "ALTER TABLE $table ADD COLUMN $column $type";
-        System::log($q);
-        $this->exec($q);
+        $this->runExec($q);
         return $this;
     }
+
+
+    public function log($q) {
+        system_log($q);
+    }
+    public function runExec($q) {
+        $this->log($q);
+        try
+        {
+            return $this->exec($q);
+        }
+        catch (\PDOException $e)
+        {
+            die($e->getMessage());
+        }
+    }
+    public function runQuery($q) {
+        $this->log($q);
+        try
+        {
+            return $this->query($q);
+        }
+        catch (\PDOException $e)
+        {
+            die($e->getMessage());
+        }
+    }
+
 
     /**
      * @param $table
@@ -164,7 +191,7 @@ class Database extends \PDO {
 
         if ( $this->type == 'mysql' ) {
             $q = "ALTER TABLE $table DROP $column";
-            $this->exec($q);
+            $this->runExec($q);
             return $this;
         }
         else if ( $this->type == 'sqlite' ) {
@@ -173,7 +200,7 @@ class Database extends \PDO {
         }
         else {
             $q = "ALTER TABLE $table DROP $column";
-            $this->exec($q);
+            $this->runExec($q);
             return $this;
         }
     }
@@ -195,7 +222,7 @@ class Database extends \PDO {
     {
         if ( $this->type == 'mysql' ) {
             $q = "ALTER TABLE $table ADD PRIMARY KEY ($fields)";
-            $this->exec($q);
+            $this->runExec($q);
             return $this;
         }
         else if ( $this->type == 'sqlite' ) {
@@ -204,7 +231,7 @@ class Database extends \PDO {
         }
         else {
             $q = "ALTER TABLE $table ADD PRIMARY KEY ($fields)";
-            $this->exec($q);
+            $this->runExec($q);
             return $this;
         }
     }
@@ -217,18 +244,18 @@ class Database extends \PDO {
     {
         if ( $this->type == 'mysql' ) {
             $q = "ALTER TABLE $table ADD UNIQUE KEY ($fields)";
-            $this->exec($q);
+            $this->runExec($q);
             return $this;
         }
         else if ( $this->type == 'sqlite' ) {
             $index_name = str_replace(',', '_', $fields);
             $q = "CREATE UNIQUE INDEX {$table}_$index_name ON $table ($fields);";
-            $this->exec($q);
+            $this->runExec($q);
             return $this;
         }
         else {
             $q = "ALTER TABLE $table ADD UNIQUE KEY ($fields)";
-            $this->exec($q);
+            $this->runExec($q);
             return $this;
         }
     }
@@ -240,19 +267,18 @@ class Database extends \PDO {
 
         if ( $this->type == 'mysql' ) {
             $q = "ALTER TABLE $table ADD INDEX ($fields)";
-            $this->exec($q);
+            $this->runExec($q);
             return $this;
         }
         else if ( $this->type == 'sqlite' ) {
             $index_name = str_replace(',', '_', $fields);
             $q = "CREATE INDEX {$table}_$index_name ON $table ($fields);";
-            System::log($q);
-            $this->exec($q);
+            $this->runExec($q);
             return $this;
         }
         else {
             $q = "ALTER TABLE $table ADD UNIQUE KEY ($fields)";
-            $this->exec($q);
+            $this->runExec($q);
             return $this;
         }
 
@@ -267,7 +293,7 @@ class Database extends \PDO {
         else {
             $q = "ALTER TABLE `$table` MODIFY COLUMN `$field` INT AUTO_INCREMENT;";
         }
-        $this->exec($q);
+        $this->runExec($q);
         return $this;
     }
 
@@ -297,8 +323,7 @@ class Database extends \PDO {
 
         if ( strpos($cond,'LIMIT') === false ) $cond .= " LIMIT 1";
         $q = "SELECT $field FROM $table $cond";
-        System::log($q);
-        $statement = $this->query($q);
+        $statement = $this->runQuery($q);
         return $statement->fetch(\PDO::FETCH_ASSOC);
     }
 
@@ -313,8 +338,7 @@ class Database extends \PDO {
     {
         $cond = $this->adjustCondition($cond);
         $q = "SELECT $field FROM $table $cond";
-        System::log($q);
-        $statement = $this->query($q);
+        $statement = $this->runQuery($q);
         $rows = [];
         while ( $row = $statement->fetch(\PDO::FETCH_ASSOC) ) {
             $rows[] = $row;
@@ -394,10 +418,8 @@ class Database extends \PDO {
         $keys = implode(",", $key_list);
         $values = implode(",", $value_list);
         $q = "INSERT INTO `{$table}` ({$keys}) VALUES ({$values})";
-        System::log($q);
-        $count = $this->exec($q);
+        $count = $this->runExec($q);
         if ( $count == 0 ) {
-            System::log("SQL QUERY ERROR: $q");
             return FALSE;
         }
         else {
@@ -421,8 +443,7 @@ class Database extends \PDO {
         }
         $set = implode(", ", $sets);
         $q = "UPDATE $table SET $set WHERE $cond";
-        System::log($q);
-        $statement = $this->query($q);
+        $statement = $this->runQuery($q);
         return $statement;
     }
 
@@ -435,8 +456,7 @@ class Database extends \PDO {
     public function delete($table, $cond)
     {
         $q = "DELETE FROM $table WHERE $cond";
-        System::log($q);
-        $statement = $this->query($q);
+        $statement = $this->runQuery($q);
         return OK;
     }
 
@@ -456,9 +476,8 @@ class Database extends \PDO {
             $field = $table;
             $table = $this->table();
         }
-        System::log("$table:$table, field:$field");
         try {
-            $this->row($table, "$field=1");
+            $this->query("SELECT $field FROM $table LIMIT 1");
             return TRUE;
         }
         catch(\PDOException $e) {
@@ -467,7 +486,7 @@ class Database extends \PDO {
     }
     public function tableExists($table) {
         try {
-            $this->row($table);
+            $this->query("SELECT * FROM $table");
             return TRUE;
         }
         catch(\PDOException $e) {
