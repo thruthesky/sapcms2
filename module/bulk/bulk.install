@@ -31,7 +31,8 @@ if ( ! entity(BULK_HISTORY)->tableExists() ) {
     entity(BULK_HISTORY)
         ->createTable()
         ->add('idx_bulk', 'int unsgined default 0')
-        ->add('location', 'varchar', 64)
+        ->add('province', 'varchar', 32)
+        ->add('city', 'varchar', 32)
         ->add('category', 'varchar', 64)
         ->unique('name');
 }
