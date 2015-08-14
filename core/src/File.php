@@ -71,7 +71,10 @@ class File
             return ERROR_FILE_EXISTS;
         }
         else {
-            if ( mkdir($path, $mode, $recursive) ) return 0;
+	$old = umask(0);
+    $re = mkdir($path, $mode, $recursive);
+	umask($old);
+            if ( $re ) return 0;
             else return ERROR_CREATE_DIR;
         }
     }
