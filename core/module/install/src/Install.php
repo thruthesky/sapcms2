@@ -159,18 +159,31 @@ class Install {
 
         // 1. include module script first
         $path = "$path_module/$name.module";
+        //echo "module init: $path\n";
         if ( file_exists($path) ) {
             include_once $path;
         }
-        else return ERROR_NO_MODULE_INIT_SCRIPT;
+        else {
+            echo get_error_message(ERROR_NO_MODULE_INIT_SCRIPT);
+            return ERROR_NO_MODULE_INIT_SCRIPT;
+        }
 
         // 2. include install script
         $path = "$path_module/$name.install";
+        //echo "install path: $path\n";
         if ( file_exists($path) ) {
+            //echo "include $path\n";
             $re = include $path;
             if ( $re < 0 ) {
+                //echo "ERROR: ";
                 return $re;
             }
+            else {
+                //echo "NO ERROR: ";
+            }
+        }
+        else {
+            //echo "Install file does not exists\n";
         }
 
         $variables = ['name'=>$name];
@@ -193,7 +206,6 @@ class Install {
         if ( empty($name) ) return ERROR_MODULE_NAME_EMPTY;
 
         if ( config()->group('module')->value($name) ) {
-            config()->group('module')->getEntity($name)->delete();
 
             $path_module = PATH_MODULE . "/$name";
 
@@ -205,10 +217,14 @@ class Install {
             // 2. include uninstall script
             $path = "$path_module/$name.uninstall";
             if ( file_exists($path) ) {
-                $re = include_once $path;
-                if ( $re < 0 ) return $re;
+                $code = include_once $path;
+                if ( $code < 0 ) {
+                    return $code;
+                }
+
             }
 
+            config()->group('module')->getEntity($name)->delete();
             $variables = ['name'=>$name];
             hook('module_disable', $variables);
         }

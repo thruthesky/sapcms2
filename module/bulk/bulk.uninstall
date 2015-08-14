@@ -2,8 +2,15 @@
 if ( entity(BULK_DATA)->count() ) {
     return set_error(-4006, BULK_DATA . ' table is not empty.');
 }
-entity(BULK_DATA)->dropTable();
+
 if ( entity(BULK)->count() ) {
     return set_error(-4007, BULK_DATA . ' table is not empty.');
 }
+
+if ( entity(BULK_HISTORY)->count() ) {
+    return set_error(-4007, BULK_HISTORY. ' table is not empty.');
+}
+
+entity(BULK_DATA)->dropTable();
 entity(BULK)->dropTable();
+entity(BULK_HISTORY)->dropTable();

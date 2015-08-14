@@ -14,9 +14,6 @@ $page_no = page_no();
 $from = ($page_no-1) * $no_item;
 $smses = entity(QUEUE)->rows("limit $from, $no_item");
 
-
-
-
 ?>
 <h1>
     SMSGate Message Queue
@@ -61,16 +58,6 @@ $smses = entity(QUEUE)->rows("limit $from, $no_item");
     </tbody>
 </table>
 
-
-    <style>
-        nav.navigation-bar a {
-            display:inline-block;
-            margin:0 1px;
-            padding:4px 6px;
-            background-color: #d3e8f4;
-            border-radius: 2px;
-        }
-    </style>
 <?php
-echo HTML::paging($page_no, $total_record, $no_item, $no_page, null, null, '/smsgate/list/queue');
+echo HTML::paging($page_no, $total_record, $no_item, $no_page);
 

@@ -18,6 +18,8 @@ class UserTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($user instanceof User);
     }
 
+
+
     public function test_user() {
         $id = 'sapcms2-test-id';
 
@@ -46,6 +48,7 @@ class UserTest extends PHPUnit_Framework_TestCase {
 
     }
     public function test_create_save_delete() {
+        if ( $user = user('id', 'test-id-2') ) $user->delete();
         $user = user()
             ->set('id', "test-id-2")
             ->save()
