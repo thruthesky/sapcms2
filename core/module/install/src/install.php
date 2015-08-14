@@ -204,7 +204,10 @@ class Install {
 
             // 2. include uninstall script
             $path = "$path_module/$name.uninstall";
-            if ( file_exists($path) ) include_once $path;
+            if ( file_exists($path) ) {
+                $re = include_once $path;
+                if ( $re < 0 ) return $re;
+            }
 
             $variables = ['name'=>$name];
             hook('module_disable', $variables);

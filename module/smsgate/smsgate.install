@@ -1,46 +1,45 @@
 <?php
-entity('smsgate_queue')
-    ->createTable()
-    ->add('number', 'char', '11')
-    ->add('priority', "INT UNSIGNED default '0'")
-    ->add('stamp_next_send', "int UNSIGNED default '0'")
+if ( ! entity(QUEUE)->tableExists() ) {
+    entity(QUEUE)
+        ->createTable()
+        ->add('number', 'char', '11')
+        ->add('priority', "INT UNSIGNED default '0'")
+        ->add('stamp_next_send', "int UNSIGNED default '0'")
+        ->add('no_send_try', "int UNSIGNED default '0'")
+        ->add('no_fail', "int UNSIGNED default '0'")
+        ->add('sender', 'varchar', 255)
+        ->add('message', 'varchar', 255)
+        ->add('bulk', 'varchar', 64)
+        ->index('priority')
+        ->index('bulk,number')
+        ->index('stamp_next_send');
+}
+if ( ! entity(SMS_SUCCESS)->tableExists() ) {
+    entity(SMS_SUCCESS)
+        ->createTable()
+        ->add('number', 'char', '11')
+        ->add('priority', "INT UNSIGNED default '0'")
+        ->add('no_send_try', "int UNSIGNED default '0'")
+        ->add('no_fail', "int UNSIGNED default '0'")
+        ->add('sender', 'varchar', 255)
+        ->add('message', 'varchar', 255)
+        ->add('bulk', 'varchar', 64)
+        ->index('priority')
+        ->index('bulk,number');
+}
 
-    ->add('no_send_try', "int UNSIGNED default '0'")
-    ->add('no_fail', "int UNSIGNED default '0'")
-    ->add('sender', 'varchar', 255)
-    ->add('message', 'varchar', 255)
-    ->add('bulk', 'varchar', 64)
-    ->index('priority')
-    ->index('bulk,number')
-    ->index('stamp_next_send');
-
-entity('smsgate_success')
-    ->createTable()
-    ->add('number', 'char', '11')
-    ->add('priority', "INT UNSIGNED default '0'")
-    ->add('no_send_try', "int UNSIGNED default '0'")
-    ->add('no_fail', "int UNSIGNED default '0'")
-    ->add('sender', 'varchar', 255)
-    ->add('message', 'varchar', 255)
-    ->add('bulk', 'varchar', 64)
-    ->index('priority')
-    ->index('bulk,number');
-    //->index('stamp_next_send');
-
-entity('smsgate_failure')
-    ->createTable()
-    ->add('number', 'char', '11')
-    ->add('priority', "INT UNSIGNED default '0'")
-    ->add('stamp_next_send', "int UNSIGNED default '0'")
-
-    ->add('no_send_try', "int UNSIGNED default '0'")
-    ->add('no_fail', "int UNSIGNED default '0'")
-    ->add('sender', 'varchar', 255)
-    ->add('message', 'varchar', 255)
-    ->add('bulk', 'varchar', 64)
-    ->add('reason', 'varchar', 255) //
-    ->index('priority')
-    ->index('stamp_next_send');
-
-
-
+if ( ! entity(SMS_FAILURE)->tableExists() ) {
+    entity(SMS_FAILURE)
+        ->createTable()
+        ->add('number', 'char', '11')
+        ->add('priority', "INT UNSIGNED default '0'")
+        ->add('stamp_next_send', "int UNSIGNED default '0'")
+        ->add('no_send_try', "int UNSIGNED default '0'")
+        ->add('no_fail', "int UNSIGNED default '0'")
+        ->add('sender', 'varchar', 255)
+        ->add('message', 'varchar', 255)
+        ->add('bulk', 'varchar', 64)
+        ->add('reason', 'varchar', 255) //
+        ->index('priority')
+        ->index('stamp_next_send');
+}
