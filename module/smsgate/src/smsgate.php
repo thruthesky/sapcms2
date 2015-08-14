@@ -46,6 +46,26 @@ class smsgate {
         }
     }
 
+
+    public static function adjust_number($number)
+    {
+        $number = preg_replace("/[^0-9]/", '', $number); // remove all characters
+        $number = preg_replace("/^639/", "09", $number);
+        $number = preg_replace("/^630/", "0", $number);
+        $number = preg_replace("/^63/", "0", $number);
+
+        // make the number 11 digits.
+        if ( strlen($number) == 10 && $number[0] == '9' ) $number = "0$number";
+
+
+        if ( ! is_numeric($number) ) return false;
+        if ( strlen($number) != 11 ) return false;
+        if ( $number[2] == '0' && $number[3] == '0' ) return false;
+        return $number;
+    }
+
+
+
     public static function queue() {
         return Response::render();
     }
@@ -127,7 +147,7 @@ class smsgate {
 						->set('sender', request('sender'))
 						->save();
 			}
-			else{			
+			else {
 				$re['error'] = -410;
 				$re['message'] = 'Reached the max send attempts for number [ '.$number.'. ] Moving sms_data idx [ '.$idx.' ] to sms_fail';
 				entity(SMS_FAILURE)
