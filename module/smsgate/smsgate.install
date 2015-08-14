@@ -24,8 +24,8 @@ entity('smsgate_success')
     ->add('message', 'varchar', 255)
     ->add('bulk', 'varchar', 64)
     ->index('priority')
-    ->index('bulk,number')
-    ->index('stamp_next_send');
+    ->index('bulk,number');
+    //->index('stamp_next_send');
 
 entity('smsgate_failure')
     ->createTable()
