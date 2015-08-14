@@ -60,7 +60,6 @@ function adjust_number($number)
     $number = preg_replace("/^630/", "0", $number);
     $number = preg_replace("/^63/", "0", $number);
 
-
     if ( strlen($number) == 10 && $number[0] == '9' ) $number = "0$number";
 
     // echo "$number\n";

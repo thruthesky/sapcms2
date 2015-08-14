@@ -24,22 +24,28 @@ class smsgate {
     public static function send() {
         if ( submit() ) {
             $scheduled = [];
+            $error_number = [];
             $numbers = explode("\n", Request::get('numbers'));
             if ( $numbers ) {
                 foreach( $numbers as $number ) {
-                    $number = trim($number);
-                    if ( empty($number) ) continue;
-                    entity(QUEUE)
-                        ->create()
-                        ->set('number', $number)
-                        ->set('message', Request::get('message'))
-                        ->set('priority', 9)
-                        ->set('sender', '')
-                        ->save();
-                    $scheduled[] = $number;
+
+                    $number = self::adjust_number($number);
+                    if ( $number ) {
+                        entity(QUEUE)
+                            ->create()
+                            ->set('number', $number)
+                            ->set('message', Request::get('message'))
+                            ->set('priority', 9)
+                            ->set('sender', '')
+                            ->save();
+                        $scheduled[] = $number;
+                    }
+                    else {
+                        $error_number[] = $number;
+                    }
                 }
             }
-            Response::render(['template'=>'smsgate.sent', 'scheduled'=>$scheduled]);
+            Response::render(['template'=>'smsgate.sent', 'scheduled'=>$scheduled, 'error_number'=>$error_number]);
         }
         else {
             Response::render();
@@ -49,6 +55,7 @@ class smsgate {
 
     public static function adjust_number($number)
     {
+        $number = trim($number);
         $number = preg_replace("/[^0-9]/", '', $number); // remove all characters
         $number = preg_replace("/^639/", "09", $number);
         $number = preg_replace("/^630/", "0", $number);
