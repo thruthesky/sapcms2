@@ -1,6 +1,6 @@
 <?php
 include 'core/autoload.php';
 
-sap\core\System\System::run();
+sap\core\system\System::run();
 
 

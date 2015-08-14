@@ -1,4 +1,4 @@
 <?php
-include 'User.hook.php';
-include 'User.routing.php';
-include 'User.function.php';
+include 'user.hook.php';
+include 'user.routing.php';
+include 'user.function.php';

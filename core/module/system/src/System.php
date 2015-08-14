@@ -1,8 +1,8 @@
 <?php
 namespace sap\core\System;
-use sap\core\Config\Config;
-use sap\core\Install\Install;
-use sap\core\User\User;
+use sap\core\config\Config;
+use sap\core\install\Install;
+use sap\core\user\User;
 use sap\src\CommandLineInterface;
 use sap\src\Database;
 use sap\src\File;
