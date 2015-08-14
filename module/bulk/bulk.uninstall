@@ -1,0 +1,9 @@
+<?php
+if ( entity(BULK_DATA)->count() ) {
+    return set_error(-4006, BULK_DATA . ' table is not empty.');
+}
+entity(BULK_DATA)->dropTable();
+if ( entity(BULK)->count() ) {
+    return set_error(-4007, BULK_DATA . ' table is not empty.');
+}
+entity(BULK)->dropTable();

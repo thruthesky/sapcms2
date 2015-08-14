@@ -53,10 +53,21 @@ function is_core_module($module=null) {
     return in_array($module, System::getCoreModules());
 }
 
-
+// alias of system::error()
 function error($code, $array_kvs=[]) {
     return System::error($code, $array_kvs);
 }
+
+// alias of system::setError();
+function set_error($code, $message) {
+    return System::setError($code, $message);
+}
+
+
+/**
+ * alias of system::getError();
+ * @return mixed
+ */
 function get_error() {
     return System::getError();
 }
@@ -406,3 +417,5 @@ function page_no() {
     else if ( $page_no <= 0 ) return 1;
     else return $page_no;
 }
+
+

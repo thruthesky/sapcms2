@@ -88,7 +88,9 @@ class CommandLineInterface {
             $name = self::segment(2);
             echo "Enabling module : $name\n";
             $code = Install::enableModule($name);
-            if ( $code ) echo get_error_message($code);
+            if ( $code ) {
+                echo get_error_message($code);
+            }
         }
         else if ( self::$cmd == '--disable' ) {
             $name = self::segment(2);

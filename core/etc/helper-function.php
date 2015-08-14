@@ -92,6 +92,26 @@ function request($key=null) {
 }
 
 /**
+ *
+ * Returns route or Add route
+ *
+ * @param null $route
+ * @param null $controller
+ * @return null|Route
+ */
+function route($route=null, $controller=null) {
+    if ( $route === null ) {
+        return Route::load();
+    }
+    else {
+        return Route::add($route, $controller);
+    }
+}
+
+
+
+
+/**
  * @return mixed
  */
 function user_count() {
@@ -152,9 +172,5 @@ function system_log($msg) {
     System::log($msg);
 }
 
-
-function route() {
-    return Route::load();
-}
 
 

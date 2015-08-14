@@ -1,6 +1,7 @@
 <?php
 define('OK', 0);
 define('ERROR', -1);
+$error_message = [];
 define('ERROR_SYSTEM_NOT_INSTALLED', -401);
 $error_message[ERROR_SYSTEM_NOT_INSTALLED] = 'System is not installed.';
 define('ERROR_NO_DATABASE_CONFIG_FILE', -402);
@@ -38,3 +39,7 @@ define('ERROR_ID_IS_EMPTY', -5014);
 $error_message[ERROR_ID_IS_EMPTY] = 'ID is empty.';
 define('ERROR_PASSWORD_IS_EMPTY', -5015);
 $error_message[ERROR_PASSWORD_IS_EMPTY] = 'Password is empty.';
+
+define('ERROR_NO_MODULE_INIT_SCRIPT', -5016);
+$error_message[ERROR_NO_MODULE_INIT_SCRIPT] = 'Module init script does not exists.';
+

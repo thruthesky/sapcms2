@@ -159,11 +159,19 @@ class Install {
 
         // 1. include module script first
         $path = "$path_module/$name.module";
-        if ( file_exists($path) ) include_once $path;
+        if ( file_exists($path) ) {
+            include_once $path;
+        }
+        else return ERROR_NO_MODULE_INIT_SCRIPT;
 
         // 2. include install script
         $path = "$path_module/$name.install";
-        if ( file_exists($path) ) include $path;
+        if ( file_exists($path) ) {
+            $re = include $path;
+            if ( $re < 0 ) {
+                return $re;
+            }
+        }
 
         $variables = ['name'=>$name];
         hook('module_enable', $variables);

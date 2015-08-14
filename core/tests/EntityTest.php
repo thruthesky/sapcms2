@@ -149,5 +149,14 @@ class EntityTest extends PHPUnit_Framework_TestCase {
 
         entity($table)->dropTable();
     }
+
+    public function test_entity_tableExists() {
+        $table = 'entity_test_table_exists';
+        $this->assertFalse( entity($table)->tableExists() );
+        entity($table)->createTable();
+        $this->assertTrue( entity($table)->tableExists() );
+        entity($table)->dropTable();
+        $this->assertFalse( entity($table)->tableExists() );
+    }
 }
 

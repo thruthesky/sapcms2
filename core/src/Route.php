@@ -37,7 +37,7 @@ class Route {
 
 
     public static function add($route, $controller) {
-        self::$routes[$route] = $controller;
+        return self::$routes[$route] = $controller;
     }
 
     public static function match($route) {

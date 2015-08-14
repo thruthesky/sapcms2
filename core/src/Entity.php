@@ -59,6 +59,16 @@ class Entity {
         return $db;
     }
 
+    /**
+     * @see test_entity_tableExists()
+     * @return bool
+     */
+    final public function tableExists() {
+        if ( empty($table) ) $table = $this->table();
+        $db = Database::load();
+        return $db->tableExists($table);
+    }
+
 
     /**
      * @param array $options

@@ -56,6 +56,13 @@ class Response {
      */
     public static function renderLayout($variables=[]) {
 
+        return self::render($variables);
+    }
+
+
+    public static function render($variables=[])
+    {
+
         System::setRender($variables);
 
         ob_start();
@@ -68,6 +75,7 @@ class Response {
 
         self::setHeaders();
         return self::processContent($content);
+
     }
 
 
@@ -220,10 +228,6 @@ class Response {
         return $js;
     }
 
-    public static function render($data=[])
-    {
-        return self::renderLayout($data);
-    }
 
     public static function json($data) {
         header("Access-Control-Allow-Origin: *");
