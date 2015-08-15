@@ -5,13 +5,62 @@
  *
  */
 
+use sap\src\Database;
 use sap\src\Route;
 
 define('QUEUE', 'smsgate_queue');
+define('SMS_MSSAGE', 'smsgate_message');
 define('SMS_SUCCESS', 'smsgate_success');
 define('SMS_FAILURE', 'smsgate_failure');
-
-
+define('LOCATION', 'location_of_philippines');
 
 include 'smsgate.routing.php';
 include 'smsgate.hook.php';
+
+
+
+
+
+global $locations;
+function get_locations() {
+    global $locations;
+    if ( ! isset($locations) || empty($locations) ) {
+        $locations = entity(LOCATION)->rows();
+    }
+    return $locations;
+}
+
+
+function get_province_city($place) {
+    $place = strtolower(trim($place));
+    $max = 0;
+    $max_location = [];
+
+    $p = 0;
+    foreach( get_locations() as $location ) {
+        $city = $location['city'];
+        if ( $city == $place ) return $location;
+        $province = $location['province'];
+        if ( $province == $place ) return $location;
+
+
+        similar_text($place, "$city $province", $p);
+        if ( $p > $max ) {
+            $max = $p;
+            $max_location = $location;
+        }
+
+        similar_text($place, $city, $p);
+        if ( $p > $max ) {
+            $max = $p;
+            $max_location = $location;
+        }
+    }
+    return $max_location;
+}
+
+
+function get_location_province() {
+    $db = Database::load();
+    return $db->rows(LOCATION, "group by province", "province, sum(`count`) as cnt");
+}

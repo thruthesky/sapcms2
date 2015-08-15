@@ -18,6 +18,7 @@ $smses = entity(QUEUE)->rows("limit $from, $no_item");
 <h1>
     SMSGate Message Queue
 </h1>
+<?php include template('smsgate.menu'); ?>
 
 <?php if( !empty( $variables['notice'] ) ){?>
     <div class='notice <?php echo $variables['notice']['type'] ?>'>

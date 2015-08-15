@@ -86,19 +86,20 @@ class smsgate {
 	
 		
 		//added by benjamin to make sure that the number is always in correct format...
-		preg_match( '/^09([0-9]+)[0-9]$/',$number, $number );
+		//preg_match( '/^09([0-9]+)[0-9]$/',$number, $number );
 		
-		if( !empty( $number ) ) $number = $number[0];
-		else $number = null;
+		//if( !empty( $number ) ) $number = $number[0];
+		//else $number = null;
 		
         if ( ! is_numeric($number) ) return false;
         if ( strlen($number) != 11 ) return false;
+        if ( $number[0] != '0' ) return false;
+        if ( $number[1] != '9' ) return false;
         if ( $number[2] == '0' && $number[3] == '0' ) return false;	
 		
 		
         return $number;
     }
-
 
 
     public static function queue() {

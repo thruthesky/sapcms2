@@ -4,6 +4,7 @@
 	$total_fail = entity(SMS_FAILURE)->count();
 ?>
 <h1>Overall</h1>
+<?php include template('smsgate.menu'); ?>
 <table data-role="table" id="table-module-list" data-mode="columntoggle" class="ui-responsive table-stroke">
     <thead>
     <tr>        
