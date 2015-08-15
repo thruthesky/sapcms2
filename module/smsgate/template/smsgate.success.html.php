@@ -9,7 +9,7 @@ $total_record = $smses = entity(SMS_SUCCESS)->count();
 $page_no = page_no();
 
 $from = ($page_no-1) * $no_item;
-$smses = entity(SMS_SUCCESS)->rows("limit $from, $no_item");
+$smses = entity(SMS_SUCCESS)->rows("ORDER BY idx DESC LIMIT $from, $no_item");
 
 
 
@@ -33,7 +33,7 @@ $smses = entity(SMS_SUCCESS)->rows("limit $from, $no_item");
     <tr>
         <th data-priority="5">No.</th>
         <th data-priority="3">Created</th>
-        <th data-priority="4">Priority</th>
+        <th data-priority="4">Tag</th>
         <th>Number</th>
         <th data-priority="1">Message</th>
         
@@ -49,7 +49,7 @@ $smses = entity(SMS_SUCCESS)->rows("limit $from, $no_item");
         echo "<tr>";
         echo "<td><a href='#'>$sms[idx]</a></td>";
         echo "<td>" . date("m/d H:i", $sms['created']) . "</td>";
-        echo "<td>$sms[priority]</td>";
+        echo "<td>$sms[tag]</td>";
         echo "<td>$sms[number]</td>";
         echo "<td>".smsgate::getMessage($sms['idx_message'])."</td>";
         

@@ -18,6 +18,7 @@ class smsgate {
 						115200,//( 60 * 60 * 32 ),
 						115200,//( 60 * 60 * 32 ),
 						];
+    private static $messageSend = null;
 
     public static function page() {
         Response::render();
@@ -25,6 +26,14 @@ class smsgate {
 
     public static function send() {	
 		//check user id and login for messaging ( most likely via mobile app )
+
+        /**
+         * SMSGate is completely separated solution.
+         * But,
+         * @todo needs to authenticate who can send SMS. It needs to create smsgate_user table for ACL.
+         *
+         */
+        /*
 		$user_id = Request::get('user_id');
 		if( !empty( $user_id ) ){
 			$password = Request::get('password');
@@ -33,43 +42,52 @@ class smsgate {
 				login( $user_id );
 			}
 		}
+        */
+
 
         if ( submit() ) {
             $scheduled = [];
             $error_number = [];
             $numbers = explode("\n", Request::get('numbers'));
             if ( $numbers ) {
-
-                foreach( $numbers as $number ) {
-
-                    $adjust_number = self::adjust_number($number);
-					
-                    if ( $adjust_number ) {
-                        entity(QUEUE)
-                            ->create()
-                            ->set('idx_message', self::getMessageIdx())
-                            ->set('number', $adjust_number)
-                            ->set('priority', request('priority', 0))
-                            ->save();
-						$number_info = [];
-						$number_info['message'] = "Original number is: ".$number;
-						$number_info['number'] = $adjust_number;
-                        $scheduled[] = $number_info;
-                    }
-                    else {
-						$error = [];
-						$error['message'] = 'Malformed number.';
-						$error['number'] = $number;
-                        $error_number[] = $error;
-                    }
-                }
-
+                $data = self::scheduleMessage($numbers, request('message'));
             }
-            Response::render(['template'=>'smsgate.sent', 'scheduled'=>$scheduled, 'error_number'=>$error_number]);
+            $data['template'] = 'smsgate.sent';
+            Response::render($data);
         }
         else {
             Response::render();
         }
+    }
+
+    public static function scheduleMessage($numbers, $message, $tag='') {
+        self::$messageSend = $message;
+        $data = [];
+        $data['scheduled'] = [];
+        $data['error_number'] = [];
+        foreach( $numbers as $number ) {
+            $adjust_number = self::adjust_number($number);
+            if ( $adjust_number ) {
+                entity(QUEUE)
+                    ->create()
+                    ->set('idx_message', self::getMessageIdx())
+                    ->set('number', $adjust_number)
+                    ->set('priority', request('priority', 0))
+                    ->set('tag', $tag)
+                    ->save();
+                $number_info = [];
+                $number_info['message'] = "Original number is: ".$number;
+                $number_info['number'] = $adjust_number;
+                $data['scheduled'][] = $number_info;
+            }
+            else {
+                $error = [];
+                $error['message'] = 'Malformed number.';
+                $error['number'] = $number;
+                $data['error_number'][] = $error;
+            }
+        }
+        return $data;
     }
 
 
@@ -205,7 +223,7 @@ class smsgate {
 					->set('sender', $sms->get('sender'))					
 					->set('message', $sms->get('message'))
 					->set('reason', $re['message'])
-					->set('bulk', $sms->get('bulk'))
+					->set('tag', $sms->get('tag'))
 					->save();
 				$sms->delete();
 			}
@@ -255,7 +273,7 @@ class smsgate {
     {
         static $idx_message;
         if ( ! isset($idx_message) ) {
-            $message = entity(SMS_MESSAGE)->set('message', request('message'))->save();
+            $message = entity(SMS_MESSAGE)->set('message', self::$messageSend)->save();
             if ( empty($message) ) { } // error. if it happens, it's a big problem.
             $idx_message = $message->get('idx');
         }

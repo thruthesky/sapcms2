@@ -423,7 +423,7 @@ class Entity {
 
     /**
      *
-     * Returns an item of the entity.
+     * Returns an item of the entity based on the SQL Query condition
      *
      *
      *

@@ -13,7 +13,7 @@ $total_record = $smses = entity(QUEUE)->count();
 $page_no = page_no();
 
 $from = ($page_no-1) * $no_item;
-$smses = entity(QUEUE)->rows("limit $from, $no_item");
+$smses = entity(QUEUE)->rows("ORDER BY idx DESC limit $from, $no_item");
 
 ?>
 <h1>
@@ -35,6 +35,7 @@ $smses = entity(QUEUE)->rows("limit $from, $no_item");
         <th data-priority="5">No.</th>
         <th data-priority="3">Created</th>
         <th data-priority="4">Priority</th>
+        <th data-priority="1">Tag</th>
         <th>Number</th>
         <th data-priority="1">Message</th>
         <th data-priority="2">Delete</th>
@@ -51,6 +52,7 @@ $smses = entity(QUEUE)->rows("limit $from, $no_item");
         echo "<td><a href='#'>$sms[idx]</a></td>";
         echo "<td>" . date("m/d H:i", $sms['created']) . "</td>";
         echo "<td>$sms[priority]</td>";
+        echo "<td>$sms[tag]</td>";
         echo "<td>$sms[number]</td>";
         echo "<td>".smsgate::getMessage($sms['idx_message'])."</td>";
         echo "<td><a href='/smsgate/delete?idx=$sms[idx]&page_no=$page_no'>Delete</a></td>";

@@ -8,7 +8,11 @@
 use sap\src\Database;
 use sap\src\Route;
 
+/**
+ * @deprecated Do not use QUEUE. Use SMS_QUEUE instead.
+ */
 define('QUEUE', 'smsgate_queue');
+define('SMS_QUEUE', 'smsgate_queue');
 define('SMS_MESSAGE', 'smsgate_message');
 define('SMS_SUCCESS', 'smsgate_success');
 define('SMS_FAILURE', 'smsgate_failure');

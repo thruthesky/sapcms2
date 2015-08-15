@@ -34,7 +34,7 @@ $bulks = entity(BULK)->rows("limit $from, $no_item");
     }
     $select_category .= "</select>";
 
-    $select_last_send = "<select name='' data-inline='true'>";
+    $select_last_send = "<select name='days' data-inline='true'>";
     $select_last_send .= "<option value='7'>7 Day</option>";
     $select_last_send .= "<option value=''>Last Send</option>";
     $select_last_send .= "<option value='1'>1 Day</option>";
@@ -88,6 +88,18 @@ $bulks = entity(BULK)->rows("limit $from, $no_item");
     <li>
         Last send
         - Sends SMS BULK TXT only to those people who did not get SMS within the day.
+    </li>
+    <li>How to combine
+        <ul>
+            <li>
+                Last send(days) is important not to send over again on same number.<br>
+                For instance,<br>
+                You sent a message with 'phone' bulk on a number yesterday and you send another bulk 'car' on the same number today.<br>
+                The person may get irritated.<br>
+                If you set Last send(days) to 3 days, then the person will not get SMS again even though the 'bulk' has changed.<br>
+                After three days, if you send that bulk again or with a new bulk and set the 'last send(days)' to 3 days, then the person will get a TEXT again.
+            </li>
+        </ul>
     </li>
     <li>
         Note: If you combine the options, the number of SMS TXT may differ from the number appears beside the option.
