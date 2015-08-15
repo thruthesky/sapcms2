@@ -9,7 +9,7 @@ use sap\src\Database;
 use sap\src\Route;
 
 define('QUEUE', 'smsgate_queue');
-define('SMS_MSSAGE', 'smsgate_message');
+define('SMS_MESSAGE', 'smsgate_message');
 define('SMS_SUCCESS', 'smsgate_success');
 define('SMS_FAILURE', 'smsgate_failure');
 define('LOCATION', 'location_of_philippines');

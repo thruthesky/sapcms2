@@ -2,6 +2,7 @@
 
 ?>
 
+<?php include template('smsgate.menu'); ?>
 <H1>SENT!!</H1>
 
 <?php

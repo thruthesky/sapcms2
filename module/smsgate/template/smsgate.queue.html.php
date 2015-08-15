@@ -1,4 +1,5 @@
 <?php
+use sap\smsgate\smsgate;
 use sap\src\HTML;
 
 add_css();
@@ -51,7 +52,7 @@ $smses = entity(QUEUE)->rows("limit $from, $no_item");
         echo "<td>" . date("m/d H:i", $sms['created']) . "</td>";
         echo "<td>$sms[priority]</td>";
         echo "<td>$sms[number]</td>";
-        echo "<td>$sms[message]</td>";
+        echo "<td>".smsgate::getMessage($sms['idx_message'])."</td>";
         echo "<td><a href='/smsgate/delete?idx=$sms[idx]&page_no=$page_no'>Delete</a></td>";
         echo "</tr>";
     }

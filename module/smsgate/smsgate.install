@@ -8,10 +8,10 @@ if ( ! entity(QUEUE)->tableExists() ) {
         ->add('stamp_next_send', "int UNSIGNED default '0'")
         ->add('no_send_try', "int UNSIGNED default '0'")
         ->add('no_fail', "int UNSIGNED default '0'")
-        ->add('sender', 'varchar', 255)
+        ->add('sender', 'varchar', 64)
         ->add('tag', 'varchar', 64)
         ->index('priority')
-        ->index('bulk,number')
+        ->index('tag,number')
         ->index('stamp_next_send');
 }
 
@@ -29,10 +29,10 @@ if ( ! entity(SMS_SUCCESS)->tableExists() ) {
         ->add('priority', "INT UNSIGNED default '0'")
         ->add('no_send_try', "int UNSIGNED default '0'")
         ->add('no_fail', "int UNSIGNED default '0'")
-        ->add('sender', 'varchar', 255)
+        ->add('sender', 'varchar', 64)
         ->add('tag', 'varchar', 64)
         ->index('priority')
-        ->index('bulk,number');
+        ->index('tag,number');
 }
 
 if ( ! entity(SMS_FAILURE)->tableExists() ) {
@@ -44,7 +44,7 @@ if ( ! entity(SMS_FAILURE)->tableExists() ) {
         ->add('stamp_next_send', "int UNSIGNED default '0'")
         ->add('no_send_try', "int UNSIGNED default '0'")
         ->add('no_fail', "int UNSIGNED default '0'")
-        ->add('sender', 'varchar', 255)
+        ->add('sender', 'varchar', 64)
         ->add('tag', 'varchar', 64)
         ->add('reason', 'varchar', 255)
         ->index('priority')

@@ -39,6 +39,7 @@ class smsgate {
             $error_number = [];
             $numbers = explode("\n", Request::get('numbers'));
             if ( $numbers ) {
+
                 foreach( $numbers as $number ) {
 
                     $adjust_number = self::adjust_number($number);
@@ -46,10 +47,9 @@ class smsgate {
                     if ( $adjust_number ) {
                         entity(QUEUE)
                             ->create()
+                            ->set('idx_message', self::getMessageIdx())
                             ->set('number', $adjust_number)
-                            ->set('message', Request::get('message'))
-                            ->set('priority', 9)
-                            ->set('sender', '')
+                            ->set('priority', request('priority', 0))
                             ->save();
 						$number_info = [];
 						$number_info['message'] = "Original number is: ".$number;
@@ -172,20 +172,19 @@ class smsgate {
     public static function sender_load_sms_from_queue() {
         $re = [];
         $sms = entity(QUEUE)->query("ORDER BY priority DESC, stamp_next_send ASC, idx ASC");
-		
+
 		if ( $sms ) {	
 			$sms_tries = $sms->get('no_send_try');
 			$idx = $sms->get('idx');
 			$number = $sms->get('number');
-			
+
 			if( $sms_tries < 8 ){//including 0 will be a  total of 9 tries...
 					$count = entity(QUEUE)->count();
 					$re = [
 						'error' => 0,
 						'idx' => $idx,
 						'number' => $number,
-						'message' => $sms->get('message'),
-						//'no_send_try' => $sms_tries,
+						'message' => self::getMessage($sms->get('idx_message')),
 						'total_record' => $count
 					];
 					$sms
@@ -227,24 +226,45 @@ class smsgate {
         $data = ['error'=>0];
 
         if ( request('result') == 'Y' ) {
-            entity(SMS_SUCCESS)
+            $entity = entity(SMS_SUCCESS)
                 ->set('number', $sms->get('number'))
                 ->set('priority', $sms->get('priority'))
                 ->set('no_send_try', $sms->get('no_send_try'))
                 ->set('no_fail', $sms->get('no_fail'))
                 ->set('sender', $sms->get('sender'))
-                ->set('message', $sms->get('message'))
-                ->set('bulk', $sms->get('bulk'))
+                ->set('idx_message', $sms->get('idx_message'))
+                ->set('tag', $sms->get('tag'))
                 ->save();
+            if ( empty($entity) ) {
+                $data['error'] = -40441;
+                $data['message'] = "failed on transferring message to success table.";
+            }
             $sms->delete();
         }
         else {
             $sms
                 ->set('no_fail', $sms->get('no_fail') + 1)
                 ->save();
+            $data['message'] = 'Increased number of failure';
         }
 
         Response::json($data);
+    }
+
+    private static function getMessageIdx()
+    {
+        static $idx_message;
+        if ( ! isset($idx_message) ) {
+            $message = entity(SMS_MESSAGE)->set('message', request('message'))->save();
+            if ( empty($message) ) { } // error. if it happens, it's a big problem.
+            $idx_message = $message->get('idx');
+        }
+        return $idx_message;
+    }
+
+    public static function getMessage($idx_message)
+    {
+        return entity(SMS_MESSAGE)->load($idx_message)->get('message');
     }
 
 }

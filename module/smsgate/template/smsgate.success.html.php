@@ -1,4 +1,5 @@
 <?php
+use sap\smsgate\smsgate;
 use sap\src\HTML;
 $no_item = sysconfig(NO_ITEM);
 $no_page = sysconfig(NO_PAGE);
@@ -50,7 +51,7 @@ $smses = entity(SMS_SUCCESS)->rows("limit $from, $no_item");
         echo "<td>" . date("m/d H:i", $sms['created']) . "</td>";
         echo "<td>$sms[priority]</td>";
         echo "<td>$sms[number]</td>";
-        echo "<td>$sms[message]</td>";
+        echo "<td>".smsgate::getMessage($sms['idx_message'])."</td>";
         
         echo "</tr>";
     }
@@ -69,5 +70,5 @@ $smses = entity(SMS_SUCCESS)->rows("limit $from, $no_item");
         }
     </style>
 <?php
-echo HTML::paging($page_no, $total_record, $no_item, $no_page, null, null, '/smsgate/list/queue');
+echo HTML::paging($page_no, $total_record, $no_item, $no_page);
 
