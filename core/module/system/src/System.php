@@ -383,7 +383,7 @@ class System {
         if ( ! Install::check() ) return OK;
         if ( empty($str) ) return OK;
         $str = is_string($str) ? $str : print_r( $str, true );
-        return File::append(PATH_DEBUG_LOG, self::$count_log++ . ' : ' . $str . "\n");
+        return @File::append(PATH_DEBUG_LOG, self::$count_log++ . ' : ' . $str . "\n");
     }
 
     /**
