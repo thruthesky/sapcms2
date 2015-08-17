@@ -54,7 +54,6 @@ class bulk {
                     continue;
                 }
 
-
                 $success = entity(SMS_SUCCESS)->query("tag='$tag' AND number='$row[number]'");
                 if ( $success ) {
                     $already_sent[] = $success->get('number');

@@ -63,7 +63,7 @@ if ( isset($variables['scheduled']) ) {
 <?php
 if ( isset($variables['error_number']) ) {
     if ( $variables['error_number'] ) {
-        foreach( $variables['error_number'] as $error ){
+        foreach( $variables['error_number'] as $error ) {
             echo "<div>$error[number] - $error[message]</div>";
         }
     }
