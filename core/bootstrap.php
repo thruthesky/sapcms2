@@ -1,7 +1,7 @@
 <?php
 
 
-use sap\core\System\System;
+use sap\core\system\System;
 
 if ( DEVELOPMENT_MODE ) {
     if ( System::isCommandLineInterface() ) {
