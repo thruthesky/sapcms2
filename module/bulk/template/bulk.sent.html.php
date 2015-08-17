@@ -29,7 +29,7 @@ if ( empty($variables['numbers']) ) {
 if ( isset($variables['in_queue']) && $variables['in_queue'] ) {
     echo "<H1>ALREADY IN QUEUE with same bulk</H1>";
     foreach( $variables['in_queue'] as $number ) {
-        echo "<div>$number</div>";
+        echo "$number, ";
     }
 }
 ?>
@@ -40,7 +40,7 @@ if ( isset($variables['already_sent']) && $variables['already_sent']) {
     echo "<H1>ALREADY IN SENT with same bulk</H1>";
     foreach( $variables['already_sent'] as $number ){
 
-        echo "<div>$number</div>";
+        echo "$number, ";
     }
 }
 ?>
@@ -50,7 +50,7 @@ if ( isset($variables['already_sent']) && $variables['already_sent']) {
 if ( isset($variables['scheduled']) ) {
     if ( $variables['scheduled'] ) {
         foreach( $variables['scheduled'] as $schedule ){
-            echo "<div>$schedule[number]</div>";
+            echo "$schedule[number], ";
         }
     }
     else {
@@ -64,7 +64,7 @@ if ( isset($variables['scheduled']) ) {
 if ( isset($variables['error_number']) ) {
     if ( $variables['error_number'] ) {
         foreach( $variables['error_number'] as $error ) {
-            echo "<div>$error[number] - $error[message]</div>";
+            echo "$error[number] - $error[message], ";
         }
     }
     else {

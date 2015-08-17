@@ -39,33 +39,35 @@ class bulk {
         $numbers = [];
         $already_sent = [];
         $in_queue = [];
+
+        /*
         $rows = entity(BULK_DATA)->rows($cond, "idx,number");
         $count = count($rows);
-
-
         $q = null;
         if ( $rows ) {
             echo "<h1>No of Search from smsgate_bulk_data table: $count</h1>";
             foreach( $rows as $row ) {
-
                 $queue = entity(SMS_QUEUE)->query("tag='$tag' AND number='$row[number]'");
                 if ( $queue ) {
                     $in_queue[] = $queue->get('number');
                     continue;
                 }
-
                 $success = entity(SMS_SUCCESS)->query("tag='$tag' AND number='$row[number]'");
                 if ( $success ) {
                     $already_sent[] = $success->get('number');
                     continue;
                 }
-
                 // entity(BULK_DATA)->which($row['idx'])->set('stamp_last_sent', time())->save();
                 //$ups[ $row['idx'] ] = time();
                 $q .= "UPDATE ".BULK_DATA." SET stamp_last_sent=".time()." WHERE idx=$row[idx];";
                 $numbers[] = $row['number'];
             }
         }
+        */
+
+
+
+
 
         if ( $q ) {
             entity()->beginTransaction();

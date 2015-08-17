@@ -1,5 +1,7 @@
 <?php
-$db = \sap\core\Database::load();
+use sap\src\Database;
+
+$db = Database::load();
 
 $db->dropTable('abc');
 

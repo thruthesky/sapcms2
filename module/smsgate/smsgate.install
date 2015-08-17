@@ -1,6 +1,6 @@
 <?php
-if ( ! entity(QUEUE)->tableExists() ) {
-    entity(QUEUE)
+if ( ! entity(SMS_QUEUE)->tableExists() ) {
+    entity(SMS_QUEUE)
         ->createTable()
         ->add('idx_message', "int unsigned default '0'")
         ->add('number', 'char', '11')
