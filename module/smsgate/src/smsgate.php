@@ -75,10 +75,11 @@ class smsgate {
         $password = request('password');
         $message = request('message');
         $number = request('number');
+        $tag = request('tag');
 
         if ( ! User::checkIDPassword( $id, $password ) ) return [ 'error'=>-4001, 'Wrong User ID or Password'];
 
-        $data = self::scheduleMessage($number, $message, 'sonub.com');
+        $data = self::scheduleMessage($number, $message, $tag);
 
         if ( isset($data['error_number'][0]) ) {
             return $data['error_number'][0];

@@ -55,7 +55,7 @@ $bulks = entity(BULK)->rows("limit $from, $no_item");
     foreach( $bulks as $bulk ) {
         $no_sent = entity(SMS_SUCCESS)->result('COUNT(*)', "tag='$bulk[name]'");
         echo "<tr>";
-        echo "<td>$bulk[name]</td>";
+        echo "<td><b>$bulk[name]</b></td>";
         echo "<td>$bulk[message]</td>";
         echo "<td><a href='/smsgate/delete?idx=$bulk[idx]&page_no=$page_no'>Edit</a></td>";
         echo "<td><a href='/smsgate/delete?idx=$bulk[idx]&page_no=$page_no'>Delete</a></td>";
