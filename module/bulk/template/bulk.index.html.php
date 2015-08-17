@@ -16,9 +16,10 @@ $bulks = entity(BULK)->rows("limit $from, $no_item");
 
     <?php
 
+    $count_entire_number = entity(BULK_DATA)->count();
     $locations = get_location_province();
     $select_location = "<select name='location' data-inline='true'>";
-    $select_location .= "<option value=''>Entire Location</option>";
+    $select_location .= "<option value=''>Entire Location ($count_entire_number)</option>";
     foreach( $locations as $location ) {
         $select_location .= "<option value='$location[province]'>$location[province] ($location[cnt])</option>";
     }
@@ -27,7 +28,7 @@ $bulks = entity(BULK)->rows("limit $from, $no_item");
     $categories = get_bulk_category();
 
     $select_category = "<select name='category' data-inline='true'>";
-    $select_category .= "<option value=''>Entire Category</option>";
+    $select_category .= "<option value=''>Entire Category ($count_entire_number)</option>";
     foreach( $categories as $category ) {
         if ( empty($category['category']) ) $category['category'] = 'No category';
         $select_category .= "<option value='$category[category]'>$category[category] ($category[cnt])</option>";
@@ -52,7 +53,7 @@ $bulks = entity(BULK)->rows("limit $from, $no_item");
 
 
     foreach( $bulks as $bulk ) {
-
+        $no_sent = entity(SMS_SUCCESS)->result('COUNT(*)', "tag='$bulk[name]'");
         echo "<tr>";
         echo "<td>$bulk[name]</td>";
         echo "<td>$bulk[message]</td>";
@@ -68,6 +69,8 @@ $bulks = entity(BULK)->rows("limit $from, $no_item");
             $select_category
             $select_last_send
                 <input type='submit' value='SEND' data-inline='true'>
+
+                ( No. of SENT: $no_sent )
                 </form>
             </td>";
         echo "</tr>";

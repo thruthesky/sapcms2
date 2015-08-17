@@ -11,7 +11,7 @@ if ( ! entity(QUEUE)->tableExists() ) {
         ->add('sender', 'varchar', 64)
         ->add('tag', 'varchar', 64)
         ->index('priority')
-        ->index('tag,number')
+        ->unique('tag,number')
         ->index('stamp_next_send');
 }
 
@@ -32,7 +32,7 @@ if ( ! entity(SMS_SUCCESS)->tableExists() ) {
         ->add('sender', 'varchar', 64)
         ->add('tag', 'varchar', 64)
         ->index('priority')
-        ->index('tag,number');
+        ->unique('tag,number');
 }
 
 if ( ! entity(SMS_FAILURE)->tableExists() ) {

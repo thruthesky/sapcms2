@@ -19,6 +19,9 @@ $smses = entity(QUEUE)->rows("ORDER BY idx DESC limit $from, $no_item");
 <h1>
     SMSGate Message Queue
 </h1>
+
+
+<div>No of SMS in Queue : <?php echo $total_record; ?></div>
 <?php include template('smsgate.menu'); ?>
 
 <?php if( !empty( $variables['notice'] ) ){?>

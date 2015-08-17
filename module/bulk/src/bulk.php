@@ -22,6 +22,7 @@ class bulk {
     }
 
     public static function send() {
+        set_time_limit(0);
         $conds = [];
         if ( $location = request('location') ) $conds[] = "province='$location'";
         if ( $category = request('category') ) $conds[] = "category='$category'";
@@ -39,36 +40,48 @@ class bulk {
         $already_sent = [];
         $in_queue = [];
         $rows = entity(BULK_DATA)->rows($cond, "idx,number");
-        foreach( $rows as $row ) {
-
-            //entity(BULK_DATA)->load($row['idx'])->set('stamp_last_sent', time())->save();
+        $count = count($rows);
 
 
-            $queue = entity(SMS_QUEUE)->query("tag='$tag' AND number='$row[number]'");
-            if ( $queue ) {
-                $in_queue[] = $queue->get('number');
-                continue;
+        $q = null;
+        if ( $rows ) {
+            echo "<h1>No of Search from smsgate_bulk_data table: $count</h1>";
+            foreach( $rows as $row ) {
+
+                $queue = entity(SMS_QUEUE)->query("tag='$tag' AND number='$row[number]'");
+                if ( $queue ) {
+                    $in_queue[] = $queue->get('number');
+                    continue;
+                }
+
+
+                $success = entity(SMS_SUCCESS)->query("tag='$tag' AND number='$row[number]'");
+                if ( $success ) {
+                    $already_sent[] = $success->get('number');
+                    continue;
+                }
+
+                // entity(BULK_DATA)->which($row['idx'])->set('stamp_last_sent', time())->save();
+                //$ups[ $row['idx'] ] = time();
+                $q .= "UPDATE ".BULK_DATA." SET stamp_last_sent=".time()." WHERE idx=$row[idx];";
+                $numbers[] = $row['number'];
             }
-
-
-            $success = entity(SMS_SUCCESS)->query("tag='$tag' AND number='$row[number]'");
-            if ( $success ) {
-                $already_sent[] = $success->get('number');
-                continue;
-            }
-
-
-
-            $numbers[] = $row['number'];
-
         }
 
+        if ( $q ) {
+            entity()->beginTransaction();
+            entity()->exec($q);
+            system_log($q);
+            entity()->commit();
+        }
 
         $data = smsgate::scheduleMessage($numbers, $bulk->get('message'), $tag);
+
         $data['template'] = 'bulk.sent';
         $data['numbers'] = &$numbers;
         $data['already_sent'] = $already_sent;
         $data['in_queue'] = $in_queue;
+        $data['cond'] = $cond;
         Response::render($data);
     }
 }

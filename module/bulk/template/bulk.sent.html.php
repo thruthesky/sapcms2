@@ -1,12 +1,26 @@
-<?php
 
-?>
 
 <?php include template('bulk.menu'); ?>
 
 <?php
+echo "<h4>CONDITION: $variables[cond]</h4>";
+?>
+
+<?php
 if ( $variables['numbers'] ) {
-    echo "Number of SMS TEXT : " . count($variables['numbers']);
+    echo "<h2>No. of SMS to send : " . count($variables['numbers']) . '</h2>';
+}
+else {
+if ( empty($variables['numbers']) ) {
+    echo "<h2>No. of SMS to send : " . count($variables['numbers']) . '</h2>';
+    echo "
+                <div>
+                There is no number by that search.<br>
+                                1. Maybe all number in the search has sent within the 'days'<br>
+                                2. Maybe there is no number in that province or category.<br>
+                </div>
+            ";
+}
 }
 ?>
 
@@ -14,7 +28,7 @@ if ( $variables['numbers'] ) {
 <?php
 if ( isset($variables['in_queue']) && $variables['in_queue'] ) {
     echo "<H1>ALREADY IN QUEUE with same bulk</H1>";
-    foreach( $variables['in_queue'] as $number ){
+    foreach( $variables['in_queue'] as $number ) {
         echo "<div>$number</div>";
     }
 }

@@ -18,6 +18,7 @@ $smses = entity(SMS_SUCCESS)->rows("ORDER BY idx DESC LIMIT $from, $no_item");
 <h1>
     SMSGate Message Success
 </h1>
+<div>No of SMS in success table : <?php echo $total_record; ?></div>
 <?php include template('smsgate.menu'); ?>
 
 <?php if( !empty( $variables['notice'] ) ){?>

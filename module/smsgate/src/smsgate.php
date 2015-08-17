@@ -65,9 +65,11 @@ class smsgate {
         $data = [];
         $data['scheduled'] = [];
         $data['error_number'] = [];
+        $q = null;
         foreach( $numbers as $number ) {
             $adjust_number = self::adjust_number($number);
             if ( $adjust_number ) {
+                /*
                 entity(QUEUE)
                     ->create()
                     ->set('idx_message', self::getMessageIdx())
@@ -75,6 +77,11 @@ class smsgate {
                     ->set('priority', request('priority', 0))
                     ->set('tag', $tag)
                     ->save();
+                */
+                $idx = self::getMessageIdx();
+                $priority = request('priority', 0);
+                $tag = $tag;
+                $q .= "INSERT INTO " . SMS_QUEUE . " (idx_message, number, priority, tag) VALUES ($idx, '$adjust_number', $priority, '$tag');";
                 $number_info = [];
                 $number_info['message'] = "Original number is: ".$number;
                 $number_info['number'] = $adjust_number;
@@ -86,6 +93,12 @@ class smsgate {
                 $error['number'] = $number;
                 $data['error_number'][] = $error;
             }
+        }
+        if ( $q ) {
+            entity()->beginTransaction();
+            entity()->exec($q);
+            system_log($q);
+            entity()->commit();
         }
         return $data;
     }
