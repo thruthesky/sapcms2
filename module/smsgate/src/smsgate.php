@@ -78,6 +78,14 @@ class smsgate {
                     ->set('tag', $tag)
                     ->save();
                 */
+				/*
+				$number = entity(QUEUE)->query('NUMBER = '.$adjust_number);
+				//should see if the number with unique TAG...? already exists in db so skip...
+				if( empty( $number ) ){
+				}
+				di( $number );
+				exit;
+				*/
                 $idx = self::getMessageIdx();
                 $priority = request('priority', 0);
                 $tag = $tag;
@@ -94,6 +102,7 @@ class smsgate {
                 $data['error_number'][] = $error;
             }
         }
+
         if ( $q ) {
             entity()->beginTransaction();
             entity()->exec($q);

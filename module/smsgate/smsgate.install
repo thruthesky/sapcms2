@@ -15,8 +15,8 @@ if ( ! entity(QUEUE)->tableExists() ) {
         ->index('stamp_next_send');
 }
 
-if ( ! entity(SMS_MSSAGE)->tableExists() ) {
-    entity(SMS_MSSAGE)
+if ( ! entity(SMS_MESSAGE)->tableExists() ) {
+    entity(SMS_MESSAGE)
         ->createTable()
         ->add('message', 'varchar', '255');
 }
