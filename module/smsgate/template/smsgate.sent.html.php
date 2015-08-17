@@ -8,7 +8,7 @@
 <?php
 	foreach( $variables['scheduled'] as $schedule ){
 	
-		echo "<div>$schedule[message] --> $schedule[number]</div>";
+		echo "<div>$schedule[message] => $schedule[number]</div>";
 	
 	}
 ?>
