@@ -1,3 +1,3 @@
 $(function(){
-    $("#main-menu-panel").panel('open');
+    // $("#main-menu-panel").panel('open');
 });

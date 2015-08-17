@@ -10,6 +10,9 @@ class Entity {
     public $fields = [];
     private $cacheCode = null;
     private $table = null;
+    private $which = false;
+    private $which_field = null;
+    private $which_value = null;
 
     public function __construct($table = null) {
         $this->table = $table;
@@ -213,17 +216,46 @@ class Entity {
 
 
 
+    public function which($field, $value=null) {
+        $this->which = true;
+        $this->which_field = $field;
+        $this->which_value = $value;
+        return $this;
+    }
+
     /**
      *
-     * @Attention it returns FALSE on error which is derived from PDO::exec()
+     * Saves information of the Entity.
+     *
+     * It has three(3) action of CRUE ( create, update, edit ).
+     *
+     * entity()->create()->set()->save(); // Creating an entity
+     * entity()->load()->set()->save(); // Loading and editing an entity
+     * entity()->which()->set()->save(); // Just editing an entity
+     *
+     * @Attention when you use which()->...->save(), it clears all the Entity cache
+     *
+     *
      *
      * @return $this
-     *
-     *
      */
     public function save()
     {
-        if ( $this->get('idx') ) {
+        if ( $this->which ) {
+            if ( empty($this->which_value) ) {
+                $cond = "idx=" . $this->which_field;
+            }
+            else {
+                $cond = $this->which_field . "='" . $this->which_value . "'";
+            }
+            $re = db_update($this->table(), $this->fields, $cond);
+            $this->clearLoadCache();
+            $this->which = false;
+            $this->which_field = null;
+            $this->which_value = null;
+            return $re;
+        }
+        else if ( $this->get('idx') ) {
             $this->fields['changed'] = time();
             $statement = db_update($this->table(), $this->fields, "idx=".$this->get('idx'));
             $this->clearLoadCache($this->getCacheCode());
@@ -314,8 +346,27 @@ class Entity {
         return Database::load()->rows($this->table(), $cond, $field);
     }
 
+    public function result($field='*', $cond=null) {
+        return Database::load()->result($this->table(), $field, $cond);
+    }
+
+
+    public function update($field, $cond=true) {
+        return Database::load()->update($this->table(), $field, $cond);
+    }
+
+
+
     public function count($cond=null) {
         return Database::load()->count($this->table(), $cond);
+    }
+
+
+    public function beginTransaction() {
+        Database::load()->beginTransaction();
+    }
+    public function commit() {
+        Database::load()->commit();
     }
 
     /**
@@ -408,8 +459,11 @@ class Entity {
      *
      * @param $code
      */
-    public function clearLoadCache($code) {
-        if ( isset(self::$loadCache[$code]) ) {
+    public function clearLoadCache($code=null) {
+        if ( $code === null ) {
+            self::$loadCache = [];
+        }
+        else if ( isset(self::$loadCache[$code]) ) {
             $idx = self::$loadCache[$code]['idx'];
             unset(self::$loadCache[$code]);
             if ( isset(self::$loadCacheIdx[$idx]) ) {
@@ -423,7 +477,7 @@ class Entity {
 
     /**
      *
-     * Returns an item of the entity.
+     * Returns an item of the entity based on the SQL Query condition
      *
      *
      *
@@ -445,6 +499,11 @@ class Entity {
         $idx = Database::load()->result($this->table(), 'idx', $cond);
         if ( $idx ) return entity($this->table())->load($idx);
         else return FALSE;
+    }
+
+    public function exec($q)
+    {
+        return Database::load()->exec($q);
     }
 
 

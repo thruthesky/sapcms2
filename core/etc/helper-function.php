@@ -87,8 +87,18 @@ function submit() {
     return Request::submit();
 }
 
-function request($key=null) {
-    return Request::get($key);
+/**
+ *
+ * Returns the value of the HTTP input. If the value is empty(null), then it returns the default.
+ *
+ * @param null $key
+ * @param null $default
+ * @return array|null
+ */
+function request($key=null, $default=null) {
+    $value = Request::get($key);
+    if ( $value === null ) return $default;
+    else return $value;
 }
 
 /**

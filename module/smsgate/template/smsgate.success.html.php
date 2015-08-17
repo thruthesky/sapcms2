@@ -1,4 +1,5 @@
 <?php
+use sap\smsgate\smsgate;
 use sap\src\HTML;
 $no_item = sysconfig(NO_ITEM);
 $no_page = sysconfig(NO_PAGE);
@@ -8,7 +9,7 @@ $total_record = $smses = entity(SMS_SUCCESS)->count();
 $page_no = page_no();
 
 $from = ($page_no-1) * $no_item;
-$smses = entity(SMS_SUCCESS)->rows("limit $from, $no_item");
+$smses = entity(SMS_SUCCESS)->rows("ORDER BY idx DESC LIMIT $from, $no_item");
 
 
 
@@ -17,6 +18,8 @@ $smses = entity(SMS_SUCCESS)->rows("limit $from, $no_item");
 <h1>
     SMSGate Message Success
 </h1>
+<div>No of SMS in success table : <?php echo $total_record; ?></div>
+<?php include template('smsgate.menu'); ?>
 
 <?php if( !empty( $variables['notice'] ) ){?>
     <div class='notice <?php echo $variables['notice']['type'] ?>'>
@@ -31,7 +34,7 @@ $smses = entity(SMS_SUCCESS)->rows("limit $from, $no_item");
     <tr>
         <th data-priority="5">No.</th>
         <th data-priority="3">Created</th>
-        <th data-priority="4">Priority</th>
+        <th data-priority="4">Tag</th>
         <th>Number</th>
         <th data-priority="1">Message</th>
         
@@ -47,9 +50,9 @@ $smses = entity(SMS_SUCCESS)->rows("limit $from, $no_item");
         echo "<tr>";
         echo "<td><a href='#'>$sms[idx]</a></td>";
         echo "<td>" . date("m/d H:i", $sms['created']) . "</td>";
-        echo "<td>$sms[priority]</td>";
+        echo "<td>$sms[tag]</td>";
         echo "<td>$sms[number]</td>";
-        echo "<td>$sms[message]</td>";
+        echo "<td>".smsgate::getMessage($sms['idx_message'])."</td>";
         
         echo "</tr>";
     }
@@ -68,5 +71,5 @@ $smses = entity(SMS_SUCCESS)->rows("limit $from, $no_item");
         }
     </style>
 <?php
-echo HTML::paging($page_no, $total_record, $no_item, $no_page, null, null, '/smsgate/list/queue');
+echo HTML::paging($page_no, $total_record, $no_item, $no_page);
 

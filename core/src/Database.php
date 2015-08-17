@@ -431,18 +431,20 @@ class Database extends \PDO {
 
     /**
      * @param $table
-     * @param $kvs
-     * @param int $cond - a string of Where condition
+     * @param $fields
+     * @param int $cond
      * @return \PDOStatement
      */
-    public function update($table, $kvs, $cond=1)
+    public function update($table, $fields, $cond=null)
     {
         $sets = [];
-        foreach($kvs as $k => $v) {
+        foreach($fields as $k => $v) {
             $sets[] = "`$k`=" . $this->quote($v);
         }
         $set = implode(", ", $sets);
-        $q = "UPDATE $table SET $set WHERE $cond";
+        $where = null;
+        if ( $cond ) $where = "WHERE $cond";
+        $q = "UPDATE $table SET $set $where";
         $statement = $this->runQuery($q);
         return $statement;
     }
@@ -519,5 +521,6 @@ class Database extends \PDO {
     {
         Database::$db = Database::$db_reset;
     }
+
 
 }

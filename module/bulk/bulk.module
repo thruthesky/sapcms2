@@ -1,9 +1,19 @@
 <?php
+use sap\src\Database;
+
 define('BULK_DATA', 'smsgate_bulk_data');
 define('BULK', 'smsgate_bulk');
 define('BULK_HISTORY', 'smsgate_bulk_history');
 
 
+
 route('/bulk', 'bulk\\bulk\\index');
 route('/bulk/create', 'bulk\\bulk\\create');
+route('/bulk/send', 'bulk\\bulk\\send');
 
+
+
+function get_bulk_category() {
+    $db = Database::load();
+    return $db->rows(BULK_DATA, "group by category order by cnt desc", "category, count(*) cnt");
+}

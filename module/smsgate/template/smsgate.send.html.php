@@ -1,3 +1,4 @@
+<?php include template('smsgate.menu'); ?>
 <form method="post">
 
 

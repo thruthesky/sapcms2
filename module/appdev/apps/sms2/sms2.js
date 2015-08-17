@@ -1,4 +1,5 @@
 var url_server = 'http://sap.withcenter.com'; // SMSGate Server which has Message Database.
+var url_server = 'http://sapcms2.org'; // TEST to my computer
 var url_load_sms = url_server + '/smsgate/sender/load';
 var url_report_result = url_server + '/smsgate/sender/result';
 /**
@@ -263,7 +264,7 @@ function emit_sms_data(re) {
     };
 
     if ( isTestDevice() ) {
-        re.result = 'N';
+        re.result = 'Y';
         setDisplayStatus("It's a test device. faking SMS sent with result: " + re.result);
         setTimeout(function(){
             record_sms_send_result(re);

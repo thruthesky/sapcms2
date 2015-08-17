@@ -18,6 +18,7 @@ class smsgate {
 						115200,//( 60 * 60 * 32 ),
 						115200,//( 60 * 60 * 32 ),
 						];
+    private static $messageSend = null;
 
     public static function page() {
         Response::render();
@@ -25,6 +26,14 @@ class smsgate {
 
     public static function send() {	
 		//check user id and login for messaging ( most likely via mobile app )
+
+        /**
+         * SMSGate is completely separated solution.
+         * But,
+         * @todo needs to authenticate who can send SMS. It needs to create smsgate_user table for ACL.
+         *
+         */
+        /*
 		$user_id = Request::get('user_id');
 		if( !empty( $user_id ) ){
 			$password = Request::get('password');
@@ -33,43 +42,65 @@ class smsgate {
 				login( $user_id );
 			}
 		}
+        */
+
 
         if ( submit() ) {
             $scheduled = [];
             $error_number = [];
             $numbers = explode("\n", Request::get('numbers'));
             if ( $numbers ) {
-                foreach( $numbers as $number ) {
-
-                    $adjust_number = self::adjust_number($number);
-					
-                    if ( $adjust_number ) {
-                        entity(QUEUE)
-                            ->create()
-                            ->set('number', $adjust_number)
-                            ->set('message', Request::get('message'))
-                            ->set('priority', 9)
-                            ->set('sender', '')
-                            ->save();
-						$number_info = [];
-						$number_info['message'] = "Original number is: ".$number;
-						$number_info['number'] = $adjust_number;
-                        $scheduled[] = $number_info;
-                    }
-                    else {
-						$error = [];
-						$error['message'] = 'Malformed number.';
-						$error['number'] = $number;
-                        $error_number[] = $error;
-                    }
-                }
-
+                $data = self::scheduleMessage($numbers, request('message'));
             }
-            Response::render(['template'=>'smsgate.sent', 'scheduled'=>$scheduled, 'error_number'=>$error_number]);
+            $data['template'] = 'smsgate.sent';
+            Response::render($data);
         }
         else {
             Response::render();
         }
+    }
+
+    public static function scheduleMessage($numbers, $message, $tag='') {
+        self::$messageSend = $message;
+        $data = [];
+        $data['scheduled'] = [];
+        $data['error_number'] = [];
+        $q = null;
+        foreach( $numbers as $number ) {
+            $adjust_number = self::adjust_number($number);
+            if ( $adjust_number ) {
+                /*
+                entity(QUEUE)
+                    ->create()
+                    ->set('idx_message', self::getMessageIdx())
+                    ->set('number', $adjust_number)
+                    ->set('priority', request('priority', 0))
+                    ->set('tag', $tag)
+                    ->save();
+                */
+                $idx = self::getMessageIdx();
+                $priority = request('priority', 0);
+                $tag = $tag;
+                $q .= "INSERT INTO " . SMS_QUEUE . " (idx_message, number, priority, tag) VALUES ($idx, '$adjust_number', $priority, '$tag');";
+                $number_info = [];
+                $number_info['message'] = "Original number is: ".$number;
+                $number_info['number'] = $adjust_number;
+                $data['scheduled'][] = $number_info;
+            }
+            else {
+                $error = [];
+                $error['message'] = 'Malformed number.';
+                $error['number'] = $number;
+                $data['error_number'][] = $error;
+            }
+        }
+        if ( $q ) {
+            entity()->beginTransaction();
+            entity()->exec($q);
+            system_log($q);
+            entity()->commit();
+        }
+        return $data;
     }
 
 
@@ -86,19 +117,20 @@ class smsgate {
 	
 		
 		//added by benjamin to make sure that the number is always in correct format...
-		preg_match( '/^09([0-9]+)[0-9]$/',$number, $number );
+		//preg_match( '/^09([0-9]+)[0-9]$/',$number, $number );
 		
-		if( !empty( $number ) ) $number = $number[0];
-		else $number = null;
+		//if( !empty( $number ) ) $number = $number[0];
+		//else $number = null;
 		
         if ( ! is_numeric($number) ) return false;
         if ( strlen($number) != 11 ) return false;
+        if ( $number[0] != '0' ) return false;
+        if ( $number[1] != '9' ) return false;
         if ( $number[2] == '0' && $number[3] == '0' ) return false;	
 		
 		
         return $number;
     }
-
 
 
     public static function queue() {
@@ -171,20 +203,19 @@ class smsgate {
     public static function sender_load_sms_from_queue() {
         $re = [];
         $sms = entity(QUEUE)->query("ORDER BY priority DESC, stamp_next_send ASC, idx ASC");
-		
+
 		if ( $sms ) {	
 			$sms_tries = $sms->get('no_send_try');
 			$idx = $sms->get('idx');
 			$number = $sms->get('number');
-			
+
 			if( $sms_tries < 8 ){//including 0 will be a  total of 9 tries...
 					$count = entity(QUEUE)->count();
 					$re = [
 						'error' => 0,
 						'idx' => $idx,
 						'number' => $number,
-						'message' => $sms->get('message'),
-						//'no_send_try' => $sms_tries,
+						'message' => self::getMessage($sms->get('idx_message')),
 						'total_record' => $count
 					];
 					$sms
@@ -205,7 +236,7 @@ class smsgate {
 					->set('sender', $sms->get('sender'))					
 					->set('message', $sms->get('message'))
 					->set('reason', $re['message'])
-					->set('bulk', $sms->get('bulk'))
+					->set('tag', $sms->get('tag'))
 					->save();
 				$sms->delete();
 			}
@@ -226,24 +257,45 @@ class smsgate {
         $data = ['error'=>0];
 
         if ( request('result') == 'Y' ) {
-            entity(SMS_SUCCESS)
+            $entity = entity(SMS_SUCCESS)
                 ->set('number', $sms->get('number'))
                 ->set('priority', $sms->get('priority'))
                 ->set('no_send_try', $sms->get('no_send_try'))
                 ->set('no_fail', $sms->get('no_fail'))
                 ->set('sender', $sms->get('sender'))
-                ->set('message', $sms->get('message'))
-                ->set('bulk', $sms->get('bulk'))
+                ->set('idx_message', $sms->get('idx_message'))
+                ->set('tag', $sms->get('tag'))
                 ->save();
+            if ( empty($entity) ) {
+                $data['error'] = -40441;
+                $data['message'] = "failed on transferring message to success table.";
+            }
             $sms->delete();
         }
         else {
             $sms
                 ->set('no_fail', $sms->get('no_fail') + 1)
                 ->save();
+            $data['message'] = 'Increased number of failure';
         }
 
         Response::json($data);
+    }
+
+    private static function getMessageIdx()
+    {
+        static $idx_message;
+        if ( ! isset($idx_message) ) {
+            $message = entity(SMS_MESSAGE)->set('message', self::$messageSend)->save();
+            if ( empty($message) ) { } // error. if it happens, it's a big problem.
+            $idx_message = $message->get('idx');
+        }
+        return $idx_message;
+    }
+
+    public static function getMessage($idx_message)
+    {
+        return entity(SMS_MESSAGE)->load($idx_message)->get('message');
     }
 
 }

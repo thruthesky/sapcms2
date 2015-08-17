@@ -158,5 +158,35 @@ class EntityTest extends PHPUnit_Framework_TestCase {
         entity($table)->dropTable();
         $this->assertFalse( entity($table)->tableExists() );
     }
+
+
+    public function test_entity_which() {
+        $table = 'entity_test_which';
+        entity($table)->createTable()->add('name', 'varchar')->add('age', 'int')->add('gender', 'char');
+        entity($table)->set('name', 'jaeho')->set('age', 41)->save();
+        $this->assertTrue( entity($table)->load('name', 'jaeho')->get('age') == 41 );
+        entity($table)->set('name', 'bum')->set('age', 40)->save();
+        $this->assertTrue( entity($table)->load('name', 'bum')->get('age') == 40 );
+        entity($table)->which('name', 'bum')->set('age', 42)->save();
+        $this->assertTrue( entity($table)->load('name', 'bum')->get('age') == 42 );
+        entity($table)->which('name', 'bum')->set('age', 43)->set('gender', 'G')->save();
+        $this->assertTrue( entity($table)->load('name', 'bum')->get('gender') == 'G' );
+        entity($table)->which('gender', 'G')->set('gender', 'M')->save();
+        $this->assertTrue( entity($table)->load('name', 'bum')->get('gender') == 'M' );
+        entity($table)->which('name', 'bum')->set(['age'=>44, 'gender'=>'F'])->save();
+        $this->assertTrue( entity($table)->load('name', 'bum')->get('age') == 44 );
+        $mary = entity($table)->create()
+            ->set('name', 'mary')
+            ->set('age', 25)
+            ->set('gender', 'F')
+            ->save();
+        $this->assertTrue( entity($table)->load('name', 'mary')->get('age') == 25 );
+        entity($table)->which( $mary->idx )->set('age', 26)->save();
+        entity($table)->which( $mary->idx )->set('age', 27)->save();
+        entity($table)->which( $mary->idx )->set('age', 28)->save();
+        entity($table)->which( $mary->idx )->set('age', 29)->save();
+        $this->assertTrue( entity($table)->load('name', 'mary')->get('age') == 29 );
+        entity($table)->dropTable();
+    }
 }
 

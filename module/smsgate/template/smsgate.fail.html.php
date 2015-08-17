@@ -1,4 +1,5 @@
 <?php
+use sap\smsgate\smsgate;
 use sap\src\HTML;
 
 $no_item = sysconfig(NO_ITEM);
@@ -18,6 +19,7 @@ $smses = entity(SMS_FAILURE)->rows("limit $from, $no_item");
 <h1>
     SMSGate Message Fail
 </h1>
+<?php include template('smsgate.menu'); ?>
 
 <?php if( !empty( $variables['notice'] ) ){?>
     <div class='notice <?php echo $variables['notice']['type'] ?>'>
@@ -50,7 +52,7 @@ $smses = entity(SMS_FAILURE)->rows("limit $from, $no_item");
         echo "<td>" . date("m/d H:i", $sms['created']) . "</td>";
         echo "<td>$sms[priority]</td>";
         echo "<td>$sms[number]</td>";
-        echo "<td>$sms[message]</td>";
+        echo "<td>".smsgate::getMessage($sms['idx_message'])."</td>";
         echo "<td><a href='/smsgate/delete?idx=$sms[idx]&page_no=$page_no'>Delete</a></td>";
         echo "</tr>";
     }

@@ -2,44 +2,51 @@
 if ( ! entity(QUEUE)->tableExists() ) {
     entity(QUEUE)
         ->createTable()
+        ->add('idx_message', "int unsigned default '0'")
         ->add('number', 'char', '11')
         ->add('priority', "INT UNSIGNED default '0'")
         ->add('stamp_next_send', "int UNSIGNED default '0'")
         ->add('no_send_try', "int UNSIGNED default '0'")
         ->add('no_fail', "int UNSIGNED default '0'")
-        ->add('sender', 'varchar', 255)
-        ->add('message', 'varchar', 255)
-        ->add('bulk', 'varchar', 64)
+        ->add('sender', 'varchar', 64)
+        ->add('tag', 'varchar', 64)
         ->index('priority')
-        ->index('bulk,number')
+        ->unique('tag,number')
         ->index('stamp_next_send');
 }
+
+if ( ! entity(SMS_MSSAGE)->tableExists() ) {
+    entity(SMS_MSSAGE)
+        ->createTable()
+        ->add('message', 'varchar', '255');
+}
+
 if ( ! entity(SMS_SUCCESS)->tableExists() ) {
     entity(SMS_SUCCESS)
         ->createTable()
+        ->add('idx_message', "int unsigned default '0'")
         ->add('number', 'char', '11')
         ->add('priority', "INT UNSIGNED default '0'")
         ->add('no_send_try', "int UNSIGNED default '0'")
         ->add('no_fail', "int UNSIGNED default '0'")
-        ->add('sender', 'varchar', 255)
-        ->add('message', 'varchar', 255)
-        ->add('bulk', 'varchar', 64)
+        ->add('sender', 'varchar', 64)
+        ->add('tag', 'varchar', 64)
         ->index('priority')
-        ->index('bulk,number');
+        ->unique('tag,number');
 }
 
 if ( ! entity(SMS_FAILURE)->tableExists() ) {
     entity(SMS_FAILURE)
         ->createTable()
+        ->add('idx_message', "int unsigned default '0'")
         ->add('number', 'char', '11')
         ->add('priority', "INT UNSIGNED default '0'")
         ->add('stamp_next_send', "int UNSIGNED default '0'")
         ->add('no_send_try', "int UNSIGNED default '0'")
         ->add('no_fail', "int UNSIGNED default '0'")
-        ->add('sender', 'varchar', 255)
-        ->add('message', 'varchar', 255)
-        ->add('bulk', 'varchar', 64)
-        ->add('reason', 'varchar', 255) //
+        ->add('sender', 'varchar', 64)
+        ->add('tag', 'varchar', 64)
+        ->add('reason', 'varchar', 255)
         ->index('priority')
         ->index('stamp_next_send');
 }
