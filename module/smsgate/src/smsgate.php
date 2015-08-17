@@ -109,22 +109,25 @@ class smsgate {
                     ->set('tag', $tag)
                     ->save();
                 */
-				/*
-				$number = entity(QUEUE)->query('NUMBER = '.$adjust_number);
+				
+				$sms = entity(QUEUE)->query('NUMBER = '.$adjust_number);
 				//should see if the number with unique TAG...? already exists in db so skip...
-				if( empty( $number ) ){
+				if( empty( $sms ) ){
+					$idx = self::getMessageIdx();
+					$priority = request('priority', 0);
+					$tag = $tag;
+					$q .= "INSERT INTO " . SMS_QUEUE . " (idx_message, number, priority, tag) VALUES ($idx, '$adjust_number', $priority, '$tag');";
+					$number_info = [];
+					$number_info['message'] = "Original number is: ".$number;
+					$number_info['number'] = $adjust_number;
+					$data['scheduled'][] = $number_info;
 				}
-				di( $number );
-				exit;
-				*/
-                $idx = self::getMessageIdx();
-                $priority = request('priority', 0);
-                $tag = $tag;
-                $q .= "INSERT INTO " . SMS_QUEUE . " (idx_message, number, priority, tag) VALUES ($idx, '$adjust_number', $priority, '$tag');";
-                $number_info = [];
-                $number_info['message'] = "Original number is: ".$number;
-                $number_info['number'] = $adjust_number;
-                $data['scheduled'][] = $number_info;
+				else{					
+					$error = [];
+					$error['message'] = 'Number is already in queue.';
+					$error['number'] = $sms->fields['number'];
+					$data['error_number'][] = $error;
+				}
             }
             else {
                 $error = [];
