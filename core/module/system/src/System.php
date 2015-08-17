@@ -251,15 +251,17 @@ class System {
      * @param $code
      * @param array $array_kvs
      * @return mixed
+* @todo fix bug error(-40502, SMS_SUCCESS . " table is NOT empty."); is not working
      */
     public static function error($code, $array_kvs=[])
     {
         $msg = get_error_message($code);
-        if ( $array_kvs ) {
+        if ( $array_kvs && is_array($array_kvs) ) {
             foreach( $array_kvs as $k => $v ) {
                 $msg = str_replace('#'.$k, $v, $msg);
             }
         }
+	else $msg = $array_kvs;
         self::$error[$code] = $msg;
         System::error_log("$code:$msg");
         return $code;
@@ -383,7 +385,7 @@ class System {
         if ( ! Install::check() ) return OK;
         if ( empty($str) ) return OK;
         $str = is_string($str) ? $str : print_r( $str, true );
-        return File::append(PATH_DEBUG_LOG, self::$count_log++ . ' : ' . $str . "\n");
+        return @File::append(PATH_DEBUG_LOG, self::$count_log++ . ' : ' . $str . "\n");
     }
 
     /**

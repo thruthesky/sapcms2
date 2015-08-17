@@ -1,7 +1,7 @@
 <?php
 namespace sap\src;
-use sap\core\System\System;
-use sap\core\System\SystemController;
+use sap\core\system\System;
+use sap\core\system\SystemController;
 
 class Module {
 

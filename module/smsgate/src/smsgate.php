@@ -33,6 +33,7 @@ class smsgate {
          * @todo needs to authenticate who can send SMS. It needs to create smsgate_user table for ACL.
          *
          */
+
         /*
 		$user_id = Request::get('user_id');
 		if( !empty( $user_id ) ){
@@ -43,6 +44,9 @@ class smsgate {
 			}
 		}
         */
+
+
+
 
 
         if ( submit() ) {
@@ -60,12 +64,39 @@ class smsgate {
         }
     }
 
+
+
+    public static function api() {
+        $method = request('method');
+        Response::json(self::$method());
+    }
+    public static function sendSms() {
+        $id = request('id');
+        $password = request('password');
+        $message = request('message');
+        $number = request('number');
+
+        if ( ! User::checkIDPassword( $id, $password ) ) return [ 'error'=>-4001, 'Wrong User ID or Password'];
+
+        $data = self::scheduleMessage($number, $message, 'sonub.com');
+
+        if ( isset($data['error_number'][0]) ) {
+            return $data['error_number'][0];
+        }
+        else return ['error'=>0];
+    }
+
+
+
     public static function scheduleMessage($numbers, $message, $tag='') {
         self::$messageSend = $message;
         $data = [];
         $data['scheduled'] = [];
         $data['error_number'] = [];
         $q = null;
+        if ( ! is_array($numbers) ) $numbers = array($numbers); //
+        system_log(__METHOD__);
+        system_log($numbers);
         foreach( $numbers as $number ) {
             $adjust_number = self::adjust_number($number);
             if ( $adjust_number ) {
