@@ -45,16 +45,13 @@ class smsgate {
 		}
         */
 
-
-
-
-
         if ( submit() ) {
             $scheduled = [];
             $error_number = [];
             $numbers = explode("\n", Request::get('numbers'));
             if ( $numbers ) {
-                $data = self::scheduleMessage($numbers, request('message'));
+				$tag = "sonub.".login('idx').".".date("ymdhis",time());
+                $data = self::scheduleMessage($numbers, request('message'), $tag);
             }
             $data['template'] = 'smsgate.sent';
             Response::render($data);
@@ -70,7 +67,7 @@ class smsgate {
         $method = request('method');
         Response::json(self::$method());
     }
-    public static function sendSms() {
+    public static function sendSms() {	
         $id = request('id');
         $password = request('password');
         $message = request('message');
@@ -89,7 +86,7 @@ class smsgate {
 
 
 
-    public static function scheduleMessage($numbers, $message, $tag='') {
+    public static function scheduleMessage($numbers, $message, $tag='') {	
         self::$messageSend = $message;
         $data = [];
         $data['scheduled'] = [];
@@ -101,34 +98,14 @@ class smsgate {
         foreach( $numbers as $number ) {
             $adjust_number = self::adjust_number($number);
             if ( $adjust_number ) {
-                /*
-                entity(QUEUE)
-                    ->create()
-                    ->set('idx_message', self::getMessageIdx())
-                    ->set('number', $adjust_number)
-                    ->set('priority', request('priority', 0))
-                    ->set('tag', $tag)
-                    ->save();
-                */
-				
-				$sms = entity(QUEUE)->query('NUMBER = '.$adjust_number);
-				//should see if the number with unique TAG...? already exists in db so skip...
-				if( empty( $sms ) ){
 					$idx = self::getMessageIdx();
 					$priority = request('priority', 0);
-					$tag = $tag;
+					$tag = $tag;										
 					$q .= "INSERT INTO " . SMS_QUEUE . " (idx_message, number, priority, tag) VALUES ($idx, '$adjust_number', $priority, '$tag');";
 					$number_info = [];
 					$number_info['message'] = "Original number is: ".$number;
 					$number_info['number'] = $adjust_number;
 					$data['scheduled'][] = $number_info;
-				}
-				else{					
-					$error = [];
-					$error['message'] = 'Number is already in queue.';
-					$error['number'] = $sms->fields['number'];
-					$data['error_number'][] = $error;
-				}
             }
             else {
                 $error = [];
@@ -260,7 +237,7 @@ class smsgate {
 						'idx' => $idx,
 						'number' => $number,
 						'message' => self::getMessage($sms->get('idx_message')),
-						'total_record' => $count
+						'total_record' => $count						
 					];
 					$sms
 						//->set('stamp_next_send', time() + 60 * 10)
@@ -293,14 +270,12 @@ class smsgate {
     }
 
     public static function sender_record_result() {
-
-
         $sms = entity(QUEUE)->load(request('idx'));
         if ( empty($sms) ) return Response::json(['error'=>-4040, 'message'=>'SMS does not exists. Maybe wrong idx.']);
 
         $data = ['error'=>0];
 
-        if ( request('result') == 'Y' ) {
+        if ( request('result') == 'Y' ) {			
             $entity = entity(SMS_SUCCESS)
                 ->set('number', $sms->get('number'))
                 ->set('priority', $sms->get('priority'))
