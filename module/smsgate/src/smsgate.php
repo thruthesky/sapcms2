@@ -98,10 +98,11 @@ class smsgate {
         foreach( $numbers as $number ) {
             $adjust_number = self::adjust_number($number);
             if ( $adjust_number ) {
+					$created = time();
 					$idx = self::getMessageIdx();
 					$priority = request('priority', 0);
 					$tag = $tag;										
-					$q .= "INSERT INTO " . SMS_QUEUE . " (idx_message, number, priority, tag) VALUES ($idx, '$adjust_number', $priority, '$tag');";
+					$q .= "INSERT INTO " . SMS_QUEUE . " (created, idx_message, number, priority, tag) VALUES ($created ,$idx, '$adjust_number', $priority, '$tag');";
 					$number_info = [];
 					$number_info['message'] = "Original number is: ".$number;
 					$number_info['number'] = $adjust_number;
@@ -253,6 +254,7 @@ class smsgate {
 				$re['message'] = 'Reached the max send attempts for number [ '.$number.'. ] Moving sms_data idx [ '.$idx.' ] to sms_fail';
 				entity(SMS_FAILURE)
 					->set('number', $sms->get('number'))
+					->set('created', time())
 					->set('priority', $sms->get('priority'))
 					->set('no_send_try', $sms->get('no_send_try'))
 					->set('no_fail', $sms->get('no_fail'))
@@ -280,6 +282,7 @@ class smsgate {
         if ( request('result') == 'Y' ) {			
             $entity = entity(SMS_SUCCESS)
                 ->set('number', $sms->get('number'))
+				->set('created', time())
                 ->set('priority', $sms->get('priority'))
                 ->set('no_send_try', $sms->get('no_send_try'))
                 ->set('no_fail', $sms->get('no_fail'))
