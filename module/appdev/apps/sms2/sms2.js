@@ -23,8 +23,8 @@ var url_report_result = url_server + '/smsgate/sender/result';
  *  - For test, set it to 3 both minimum_wait and interval.
  *  - For production, set it to 30.
  */
-var minimum_wait = 1;
-var interval = 2;
+var minimum_wait = 30;
+var interval = 30;
 var count_run = 0;
 var count_no_data = 0;
 var count_success = 0;
@@ -259,14 +259,13 @@ function load_sms_data_from_server() {
  */
 function emit_sms_data(re) {
 
-    setDisplayStatus("emit_sms_data() : Emitting SMS data");
+    setDisplayStatus("emit_sms_data() : Emitting SMS data...");
     trace(re);
     if ( checkNumber(re) ) return callback_sms_send_finished();
     if ( checkMessage(re) ) return callback_sms_send_finished();
     setDisplayStatus('number: ' + re.number);
     setDisplayStatus('message: ' + re.message);
     setDisplayTotalRecord(re.total_record);
-
 
 
     var messageInfo = {
@@ -282,6 +281,7 @@ function emit_sms_data(re) {
         }, 1000);
     }
     else {
+		setDisplayStatus('Not a test device, sending message via SMS...');
         sms.sendMessage(messageInfo, success_callback_sendMessage, failure_callback_sendMessage);
         function success_callback_sendMessage(message) {
             setDisplayStatus("Emitting success: " + message);

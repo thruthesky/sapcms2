@@ -37,7 +37,8 @@ $smses = entity(SMS_FAILURE)->rows("limit $from, $no_item");
         <th data-priority="4">Priority</th>
         <th>Number</th>
         <th data-priority="1">Message</th>
-        <th data-priority="2">Delete</th>
+        <th data-priority="6">Tries</th>
+		<th data-priority="7">Next Try on</th>
     </tr>
     </thead>
     <tbody>
@@ -53,7 +54,9 @@ $smses = entity(SMS_FAILURE)->rows("limit $from, $no_item");
         echo "<td>$sms[priority]</td>";
         echo "<td>$sms[number]</td>";
         echo "<td>".smsgate::getMessage($sms['idx_message'])."</td>";
-        echo "<td><a href='/smsgate/delete?idx=$sms[idx]&page_no=$page_no'>Delete</a></td>";
+		echo "<td>".$sms['no_send_try']."</td>";        
+		if( $sms['stamp_next_send'] ) $next_send = date("Y-m-d H:i",$sms['stamp_next_send']);
+		else $next_send = 'none';
         echo "</tr>";
     }
     ?>
@@ -71,5 +74,5 @@ $smses = entity(SMS_FAILURE)->rows("limit $from, $no_item");
         }
     </style>
 <?php
-echo HTML::paging($page_no, $total_record, $no_item, $no_page, null, null, '/smsgate/list/queue');
+echo HTML::paging($page_no, $total_record, $no_item, $no_page, null, null, '/smsgate/list/fail');
 

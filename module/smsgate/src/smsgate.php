@@ -104,31 +104,15 @@ class smsgate {
         foreach( $numbers as $number ) {
             $adjust_number = self::adjust_number($number);
             if ( $adjust_number ) {
-                /*
-                entity(QUEUE)
-                    ->create()
-                    ->set('idx_message', self::getMessageIdx())
-                    ->set('number', $adjust_number)
-                    ->set('priority', request('priority', 0))
-                    ->set('tag', $tag)
-                    ->save();
-                */
-				/*
-				$number = entity(QUEUE)->query('NUMBER = '.$adjust_number);
-				//should see if the number with unique TAG...? already exists in db so skip...
-				if( empty( $number ) ){
-				}
-				di( $number );
-				exit;
-				*/
-                $idx = self::getMessageIdx();
-                $priority = request('priority', 0);
-                $tag = $tag;
-                $q .= "INSERT INTO " . SMS_QUEUE . " (idx_message, number, priority, tag) VALUES ($idx, '$adjust_number', $priority, '$tag');";
-                $number_info = [];
-                $number_info['message'] = "Original number is: ".$number;
-                $number_info['number'] = $adjust_number;
-                $data['scheduled'][] = $number_info;
+					$created = time();
+					$idx = self::getMessageIdx();
+					$priority = request('priority', 0);
+					$tag = $tag;										
+					$q .= "INSERT INTO " . SMS_QUEUE . " (created, idx_message, number, priority, tag) VALUES ($created ,$idx, '$adjust_number', $priority, '$tag');";
+					$number_info = [];
+					$number_info['message'] = "Original number is: ".$number;
+					$number_info['number'] = $adjust_number;
+					$data['scheduled'][] = $number_info;
             }
             else {
                 $error = [];
@@ -246,8 +230,10 @@ class smsgate {
      */
     public static function sender_load_sms_from_queue() {
         $re = [];
+		
+		//current time() should be less than stamp_next_send
         $sms = entity(QUEUE)->query("ORDER BY priority DESC, stamp_next_send ASC, idx ASC");
-
+		//$sms = entity(QUEUE)->query("stamp_next_send <= '".time()."' ORDER BY priority DESC, stamp_next_send ASC, idx ASC");
 		if ( $sms ) {	
 			$sms_tries = $sms->get('no_send_try');
 			$idx = $sms->get('idx');
@@ -260,7 +246,7 @@ class smsgate {
 						'idx' => $idx,
 						'number' => $number,
 						'message' => self::getMessage($sms->get('idx_message')),
-						'total_record' => $count
+						'total_record' => $count						
 					];
 					$sms
 						//->set('stamp_next_send', time() + 60 * 10)
