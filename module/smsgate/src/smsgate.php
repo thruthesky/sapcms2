@@ -24,37 +24,15 @@ class smsgate {
         Response::render();
     }
 
-    public static function send() {	
-		//check user id and login for messaging ( most likely via mobile app )
-
-        /**
-         * SMSGate is completely separated solution.
-         * But,
-         * @todo needs to authenticate who can send SMS. It needs to create smsgate_user table for ACL.
-         *
-         */
-
-        /*
-		$user_id = Request::get('user_id');
-		if( !empty( $user_id ) ){
-			$password = Request::get('password');
-			$check_user = User::checkIDPassword( $user_id, $password );
-			if( $check_user ){
-				login( $user_id );
-			}
-		}
-        */
-
-
-
-
+    public static function send() {
 
         if ( submit() ) {
+            $tag = self::getTagFromInput();
             $scheduled = [];
             $error_number = [];
             $numbers = explode("\n", Request::get('numbers'));
             if ( $numbers ) {
-                $data = self::scheduleMessage($numbers, request('message'));
+                $data = self::scheduleMessage($numbers, request('message'), $tag);
             }
             $data['template'] = 'smsgate.sent';
             Response::render($data);
@@ -326,6 +304,15 @@ class smsgate {
     public static function getMessage($idx_message)
     {
         return entity(SMS_MESSAGE)->load($idx_message)->get('message');
+    }
+
+    private static function getTagFromInput()
+    {
+        $tag = request('tag');
+        if ( empty($tag) ) {
+            $tag = "No-Tag:" . login('idx') . ':' . uniqid(time());
+        }
+        return $tag;
     }
 
 }
