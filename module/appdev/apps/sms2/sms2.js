@@ -23,8 +23,8 @@ var url_report_result = url_server + '/smsgate/sender/result';
  *  - For test, set it to 3 both minimum_wait and interval.
  *  - For production, set it to 30.
  */
-var minimum_wait = 30;
-var interval = 30;
+var minimum_wait = 1;
+var interval = 2;
 var count_run = 0;
 var count_no_data = 0;
 var count_success = 0;
