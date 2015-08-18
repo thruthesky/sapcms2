@@ -271,6 +271,7 @@ function emit_sms_data(re) {
         }, 1000);
     }
     else {
+		setDisplayStatus('Not a test device, sending message...');
         sms.sendMessage(messageInfo, success_callback_sendMessage, failure_callback_sendMessage);
         function success_callback_sendMessage(message) {
             setDisplayStatus("Emitting success: " + message);
