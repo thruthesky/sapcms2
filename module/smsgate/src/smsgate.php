@@ -209,9 +209,10 @@ class smsgate {
     public static function sender_load_sms_from_queue() {
         $re = [];
 		
+        //$sms = entity(QUEUE)->query("ORDER BY priority DESC, stamp_next_send ASC, idx ASC");
 		//current time() should be less than stamp_next_send
-        $sms = entity(QUEUE)->query("ORDER BY priority DESC, stamp_next_send ASC, idx ASC");
-		//$sms = entity(QUEUE)->query("stamp_next_send <= '".time()."' ORDER BY priority DESC, stamp_next_send ASC, idx ASC");
+		$sms = entity(QUEUE)->query("stamp_next_send <= '".time()."' ORDER BY priority DESC, stamp_next_send ASC, idx ASC");
+		
 		if ( $sms ) {	
 			$sms_tries = $sms->get('no_send_try');
 			$idx = $sms->get('idx');
