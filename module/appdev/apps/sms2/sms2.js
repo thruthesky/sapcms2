@@ -255,7 +255,6 @@ function emit_sms_data(re) {
     setDisplayStatus('number: ' + re.number);
     setDisplayStatus('message: ' + re.message);
     setDisplayTotalRecord(re.total_record);
-	setDisplayStatus('starting test');
 
 
     var messageInfo = {
@@ -271,7 +270,7 @@ function emit_sms_data(re) {
         }, 1000);
     }
     else {
-		setDisplayStatus('Not a test device, sending message...');
+		setDisplayStatus('Not a test device, sending message via SMS...');
         sms.sendMessage(messageInfo, success_callback_sendMessage, failure_callback_sendMessage);
         function success_callback_sendMessage(message) {
             setDisplayStatus("Emitting success: " + message);
