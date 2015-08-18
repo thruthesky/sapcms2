@@ -50,7 +50,7 @@ class smsgate {
             $error_number = [];
             $numbers = explode("\n", Request::get('numbers'));
             if ( $numbers ) {
-				$tag = "sonub.".login('idx').".".date("ymdhis",time());
+				$tag = "smsgate.".login('idx').".".date("ymdhis",time());
                 $data = self::scheduleMessage($numbers, request('message'), $tag);
             }
             $data['template'] = 'smsgate.sent';
