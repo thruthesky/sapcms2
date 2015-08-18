@@ -255,7 +255,7 @@ function emit_sms_data(re) {
     setDisplayStatus('number: ' + re.number);
     setDisplayStatus('message: ' + re.message);
     setDisplayTotalRecord(re.total_record);
-
+	setDisplayStatus('starting test');
 
 
     var messageInfo = {
