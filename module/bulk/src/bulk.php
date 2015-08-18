@@ -15,6 +15,7 @@ class bulk {
             entity(BULK)
                 ->set('name', request('name'))
                 ->set('message', request('message'))
+                ->set('number', request('number'))
                 ->save();
             return Response::redirect('/bulk');
         }
@@ -37,6 +38,7 @@ class bulk {
 
         $bulk = entity(BULK)->load(request('idx'));
         $tag = $bulk->get('name');
+        $notify_number = $bulk->get('number');
         $numbers = [];
 
 
@@ -89,6 +91,7 @@ class bulk {
                 entity()->runExec($q);
                 $numbers = array_values($data);
                 $data = smsgate::scheduleMessage($numbers, $bulk->get('message'), $tag);
+                smsgate::scheduleMessage($notify_number, "Bulk - $tag ($cond) - has been sent", $tag . ':notify:' . date('ymdHi'));
             }
 
         }

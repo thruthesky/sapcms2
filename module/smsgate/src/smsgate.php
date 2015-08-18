@@ -103,7 +103,7 @@ class smsgate {
         if ( $q ) {
             entity()->beginTransaction();
             entity()->exec($q);
-            system_log($q);
+            //system_log($q);
             entity()->commit();
         }
         return $data;
