@@ -74,5 +74,5 @@ $smses = entity(SMS_FAILURE)->rows("limit $from, $no_item");
         }
     </style>
 <?php
-echo HTML::paging($page_no, $total_record, $no_item, $no_page, null, null, '/smsgate/list/queue');
+echo HTML::paging($page_no, $total_record, $no_item, $no_page, null, null, '/smsgate/list/fail');
 

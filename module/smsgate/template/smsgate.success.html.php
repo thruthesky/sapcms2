@@ -71,5 +71,5 @@ $smses = entity(SMS_SUCCESS)->rows("ORDER BY idx DESC LIMIT $from, $no_item");
         }
     </style>
 <?php
-echo HTML::paging($page_no, $total_record, $no_item, $no_page);
+echo HTML::paging($page_no, $total_record, $no_item, $no_page, null, null, '/smsgate/list/success');
 

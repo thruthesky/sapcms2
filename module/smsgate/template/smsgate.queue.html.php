@@ -72,5 +72,5 @@ $smses = entity(QUEUE)->rows("ORDER BY idx DESC limit $from, $no_item");
 </table>
 
 <?php
-echo HTML::paging($page_no, $total_record, $no_item, $no_page);
+echo HTML::paging($page_no, $total_record, $no_item, $no_page, null, null, '/smsgate/list/queue');
 
