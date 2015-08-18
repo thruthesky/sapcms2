@@ -80,18 +80,22 @@ class bulk {
 
 
         $rows = entity(BULK_DATA)->rows($cond, "idx,number", \PDO::FETCH_KEY_PAIR);
+		//di( $notify_number );
+		//di( $rows );
+		//exit;
         if ( $rows ) {
             $success = entity(SMS_SUCCESS)->rows("tag='$tag'", 'idx,number', \PDO::FETCH_KEY_PAIR);
             $queue = entity(SMS_QUEUE)->rows("tag='$tag'", 'idx,number', \PDO::FETCH_KEY_PAIR);
             $data = array_diff($rows, $success, $queue);
-            if ( $data ) {
+            if ( $data ) {			
+				
                 $idxes = array_keys($data);
                 $str_idxes = implode(',', $idxes);
                 $q = "UPDATE ".BULK_DATA." SET stamp_last_sent=".time()." WHERE idx IN ( $str_idxes );";
                 entity()->runExec($q);
                 $numbers = array_values($data);
                 $data = smsgate::scheduleMessage($numbers, $bulk->get('message'), $tag);
-                smsgate::scheduleMessage($notify_number, "Bulk - $tag ($cond) - has been sent", $tag . ':notify:' . date('ymdHi'));
+                smsgate::scheduleMessage($notify_number, "Bulk - $tag ($cond) - has been sent (".count($rows).")", $tag . ':notify:' . date('ymdHi'));				
             }
 
         }

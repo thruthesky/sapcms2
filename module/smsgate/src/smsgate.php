@@ -68,10 +68,12 @@ class smsgate {
 
 
     public static function scheduleMessage($numbers, $message, $tag='') {
+		self::$messageSend = null;
+		
         if ( empty($numbers) ) {
             return ['error'=>'No number to send(or schedule)'];
         }
-        self::$messageSend = $message;
+        
         $data = [];
         $data['scheduled'] = [];
         $data['error_number'] = [];
@@ -79,17 +81,21 @@ class smsgate {
         if ( ! is_array($numbers) ) $numbers = array($numbers); //
         system_log(__METHOD__);
         //system_log($numbers);
+		self::$messageSend = $message;						
+		$idx = self::getMessageIdx();
+		
         foreach( $numbers as $number ) {
             $adjust_number = self::adjust_number($number);
             if ( $adjust_number ) {
-					$created = time();
-					$idx = self::getMessageIdx();
+					$created = time();										
 					$priority = request('priority', 0);
+					
 					$tag = $tag;										
 					$q .= "INSERT INTO " . SMS_QUEUE . " (created, idx_message, number, priority, tag) VALUES ($created ,$idx, '$adjust_number', $priority, '$tag');";
 					$number_info = [];
 					$number_info['message'] = "Original number is: ".$number;
 					$number_info['number'] = $adjust_number;
+					$number_info['sms_message'] = $idx;
 					$data['scheduled'][] = $number_info;
             }
             else {
@@ -293,7 +299,8 @@ class smsgate {
 
     private static function getMessageIdx()
     {
-        static $idx_message;
+        //static $idx_message;//is this really needed to be static?
+
         if ( ! isset($idx_message) ) {
             $message = entity(SMS_MESSAGE)->set('message', self::$messageSend)->save();
             if ( empty($message) ) { } // error. if it happens, it's a big problem.
