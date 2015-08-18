@@ -37,7 +37,7 @@ $smses = entity(SMS_SUCCESS)->rows("ORDER BY idx DESC LIMIT $from, $no_item");
         <th data-priority="4">Tag</th>
         <th>Number</th>
         <th data-priority="1">Message</th>
-        
+        <th data-priority="6">Tries</th>
     </tr>
     </thead>
     <tbody>
@@ -53,7 +53,7 @@ $smses = entity(SMS_SUCCESS)->rows("ORDER BY idx DESC LIMIT $from, $no_item");
         echo "<td>$sms[tag]</td>";
         echo "<td>$sms[number]</td>";
         echo "<td>".smsgate::getMessage($sms['idx_message'])."</td>";
-        
+        echo "<td>".$sms['no_send_try']."</td>";
         echo "</tr>";
     }
     ?>

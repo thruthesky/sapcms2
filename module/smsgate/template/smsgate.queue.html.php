@@ -41,6 +41,8 @@ $smses = entity(QUEUE)->rows("ORDER BY idx DESC limit $from, $no_item");
         <th data-priority="1">Tag</th>
         <th>Number</th>
         <th data-priority="1">Message</th>
+		<th data-priority="6">Tries</th>
+		<th data-priority="7">Next Try on</th>
         <th data-priority="2">Delete</th>
     </tr>
     </thead>
@@ -58,6 +60,10 @@ $smses = entity(QUEUE)->rows("ORDER BY idx DESC limit $from, $no_item");
         echo "<td>$sms[tag]</td>";
         echo "<td>$sms[number]</td>";
         echo "<td>".smsgate::getMessage($sms['idx_message'])."</td>";
+		echo "<td>".$sms['no_send_try']."</td>";
+		if( $sms['stamp_next_send'] ) $next_send = date("Y-m-d H:i",$sms['stamp_next_send']);
+		else $next_send = 'none';
+		echo "<td>".$next_send."</td>";
         echo "<td><a href='/smsgate/delete?idx=$sms[idx]&page_no=$page_no'>Delete</a></td>";
         echo "</tr>";
     }

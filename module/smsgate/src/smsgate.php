@@ -114,7 +114,7 @@ class smsgate {
                 $data['error_number'][] = $error;
             }
         }
-
+		
         if ( $q ) {
             entity()->beginTransaction();
             entity()->exec($q);
