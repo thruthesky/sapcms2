@@ -93,41 +93,6 @@ class bulk {
         $numbers = [];
 
 
-        /*
-        $rows = entity(BULK_DATA)->rows($cond, "idx,number");
-        $count = count($rows);
-        $q = null;
-        if ( $rows ) {
-            echo "<h1>No of Search from smsgate_bulk_data table: $count</h1>";
-            foreach( $rows as $row ) {
-                $queue = entity(SMS_QUEUE)->query("tag='$tag' AND number='$row[number]'");
-                if ( $queue ) {
-                    $in_queue[] = $queue->get('number');
-                    continue;
-                }
-                $success = entity(SMS_SUCCESS)->query("tag='$tag' AND number='$row[number]'");
-                if ( $success ) {
-                    $already_sent[] = $success->get('number');
-                    continue;
-                }
-                // entity(BULK_DATA)->which($row['idx'])->set('stamp_last_sent', time())->save();
-                //$ups[ $row['idx'] ] = time();
-                $q .= "UPDATE ".BULK_DATA." SET stamp_last_sent=".time()." WHERE idx=$row[idx];";
-                $numbers[] = $row['number'];
-            }
-        }
-
-
-
-
-        if ( $q ) {
-            entity()->beginTransaction();
-            entity()->exec($q);
-            system_log($q);
-            entity()->commit();
-        }
-        */
-
 
 
         $rows = entity(BULK_DATA)->rows($cond, "idx,number", \PDO::FETCH_KEY_PAIR);
@@ -138,17 +103,17 @@ class bulk {
             $success = entity(SMS_SUCCESS)->rows("tag='$tag'", 'idx,number', \PDO::FETCH_KEY_PAIR);
             $queue = entity(SMS_QUEUE)->rows("tag='$tag'", 'idx,number', \PDO::FETCH_KEY_PAIR);
             $data = array_diff($rows, $success, $queue);
-            if ( $data ) {			
-				
+            if ( $data ) {
                 $idxes = array_keys($data);
                 $str_idxes = implode(',', $idxes);
                 $q = "UPDATE ".BULK_DATA." SET stamp_last_sent=".time()." WHERE idx IN ( $str_idxes );";
                 entity()->runExec($q);
                 $numbers = array_values($data);
                 $data = smsgate::scheduleMessage($numbers, $bulk->get('message'), $tag);
-                smsgate::scheduleMessage($notify_number, "Bulk - $tag ($cond) - has been sent (".count($rows).")", $tag . ':notify:' . date('ymdHi'));				
+                if ( empty($data['scheduled']) ) {
+                    smsgate::scheduleMessage($notify_number, "Bulk - $tag ($cond) - has been sent (".count($rows).")", $tag . ':notify:' . date('ymdHi'));
+                }
             }
-
         }
 
         $data['template'] = 'bulk.sent';
