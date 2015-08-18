@@ -7,13 +7,17 @@ entity(LOCATION)->createTable()
     ->unique('province,city');
 
 include 'locations.php';
+
+
 $location = trim($locations);
-$provinces = explode("\r\n\r\n", $location);
+//old code : $provinces = explode("\r\n\r\n", $location);-->not working for my computer and dev server
+$provinces = explode("\n\n", $location);
+
 //echo count($provinces);
 foreach( $provinces as $place ) {
     $places = explode("\n", $place);
     $province = trim($places[0]);
-
+	
     entity(LOCATION)
         ->set('province', strtolower($province))
         ->set('city', '')
@@ -23,11 +27,14 @@ foreach( $provinces as $place ) {
         $city = $places[$i];
         $city = str_ireplace('city', '', $city);
         $city = trim($city);
-        entity(LOCATION)
-            ->set('province', strtolower($province))
-            ->set('city', strtolower($city))
-            ->save();
-        echo '.';
+		
+				
+		entity(LOCATION)
+			->set('province', strtolower($province))
+			->set('city', strtolower($city))
+			->save();
+			
+		echo $province." - ".$city."\n";	        
     }
 }
 

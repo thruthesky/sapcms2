@@ -53,7 +53,7 @@ class smsgate {
         $password = request('password');
         $message = request('message');
         $number = request('number');
-        $tag = request('tag');
+        $tag = self::getTagFromInput();
 
         if ( ! User::checkIDPassword( $id, $password ) ) return [ 'error'=>-4001, 'Wrong User ID or Password'];
 
