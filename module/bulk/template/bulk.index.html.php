@@ -60,8 +60,8 @@ $bulks = entity(BULK)->rows("limit $from, $no_item");
         echo "<tr>";
         echo "<td><b>$bulk[name]</b></td>";
         echo "<td>$bulk[message]</td>";
-        echo "<td><a href='/smsgate/delete?idx=$bulk[idx]&page_no=$page_no'>Edit</a></td>";
-        echo "<td><a href='/smsgate/delete?idx=$bulk[idx]&page_no=$page_no'>Delete</a></td>";
+        echo "<td><a href='/bulk/edit?idx=$bulk[idx]'>Edit</a></td>";
+        echo "<td><a href='/bulk/delete?idx=$bulk[idx]&page_no=$page_no'>Delete</a></td>";
         echo "</tr>";
         echo "<tr>";
         echo "

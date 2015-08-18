@@ -4,24 +4,75 @@ namespace sap\bulk;
 
 use sap\smsgate\smsgate;
 use sap\src\Response;
+use sap\src\Request;
+
 
 class bulk {
     public static function index() {
         return Response::render();
     }
     public static function create() {
-        if ( submit() ) {
+        if ( submit() ) {			
             //di( entity(BULK_DATA)->count() );
-            entity(BULK)
-                ->set('name', request('name'))
-                ->set('message', request('message'))
-                ->set('number', request('number'))
-                ->save();
+			$idx = Request::get('idx');
+			if( !empty( $idx ) ){
+				$bulk = entity(BULK)
+							->load( $idx )
+							->set('name', request('name'))
+							->set('message', request('message'))
+							->set('number', request('number'))
+							->save();
+			}
+			else{
+				entity(BULK)
+					->set('name', request('name'))
+					->set('message', request('message'))
+					->set('number', request('number'))
+					->save();
+			}
             return Response::redirect('/bulk');
         }
         else return Response::render();
     }
 
+	public static function edit() {
+		$data = [];
+		$idx = Request::get('idx');
+		if( !empty( $idx ) ){
+			$bulk = entity(BULK)->load( $idx );
+			
+			if( !empty( $bulk ) ){
+				$bulk = $bulk->fields;				
+				$data['bulk'] = $bulk;
+			}
+			else{
+				$data['message'] = "Invalid Bulk IDX";
+			}
+		}
+		
+		$data['template'] = 'bulk.create';
+		return Response::render( $data );
+	}
+	
+	public static function delete() {
+		$data = [];
+		$idx = Request::get('idx');
+		if( !empty( $idx ) ){
+			$bulk = entity(BULK)->load( $idx );
+			
+			if( !empty( $bulk ) ){
+				$bulk->delete();
+				$data['message'] = "Succesfully deleted Bulk IDX [ $idx ]";
+			}
+			else{
+				$data['message'] = "Invalid Bulk IDX";
+			}
+		}
+		
+		$data['template'] = 'bulk.index';
+		return Response::render( $data );
+	}
+	
     public static function send() {
         set_time_limit(0);
         $conds = [];

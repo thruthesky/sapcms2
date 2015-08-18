@@ -9,6 +9,8 @@ define('BULK_HISTORY', 'smsgate_bulk_history');
 
 route('/bulk', 'bulk\\bulk\\index');
 route('/bulk/create', 'bulk\\bulk\\create');
+route('/bulk/edit', 'bulk\\bulk\\edit');
+route('/bulk/delete', 'bulk\\bulk\\delete');
 route('/bulk/send', 'bulk\\bulk\\send');
 
 
