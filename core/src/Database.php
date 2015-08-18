@@ -332,18 +332,23 @@ class Database extends \PDO {
      * @param $table
      * @param null $cond
      * @param string $field
+     * @param null $fetch_mode
      * @return array
      */
-    public function rows($table, $cond=null, $field='*')
+    public function rows($table, $cond=null, $field='*', $fetch_mode=null)
     {
+        if ( $fetch_mode === null ) $fetch_mode = \PDO::FETCH_ASSOC;
         $cond = $this->adjustCondition($cond);
         $q = "SELECT $field FROM $table $cond";
         $statement = $this->runQuery($q);
+        return $statement->fetchAll($fetch_mode);
+        /*
         $rows = [];
-        while ( $row = $statement->fetch(\PDO::FETCH_ASSOC) ) {
+        while ( $row = $statement->fetch($fetch_mode) ) {
             $rows[] = $row;
         }
         return $rows;
+        */
     }
 
 

@@ -24,6 +24,7 @@ class bulk {
     public static function send() {
         set_time_limit(0);
         $conds = [];
+        $cond = null;
         if ( $location = request('location') ) $conds[] = "province='$location'";
         if ( $category = request('category') ) $conds[] = "category='$category'";
         if ( $days = request('days') ) {
@@ -37,8 +38,7 @@ class bulk {
         $bulk = entity(BULK)->load(request('idx'));
         $tag = $bulk->get('name');
         $numbers = [];
-        $already_sent = [];
-        $in_queue = [];
+
 
         /*
         $rows = entity(BULK_DATA)->rows($cond, "idx,number");
@@ -63,8 +63,6 @@ class bulk {
                 $numbers[] = $row['number'];
             }
         }
-        */
-
 
 
 
@@ -75,13 +73,28 @@ class bulk {
             system_log($q);
             entity()->commit();
         }
+        */
 
-        $data = smsgate::scheduleMessage($numbers, $bulk->get('message'), $tag);
+
+
+        $rows = entity(BULK_DATA)->rows($cond, "idx,number", \PDO::FETCH_KEY_PAIR);
+        if ( $rows ) {
+            $success = entity(SMS_SUCCESS)->rows("tag='$tag'", 'idx,number', \PDO::FETCH_KEY_PAIR);
+            $queue = entity(SMS_QUEUE)->rows("tag='$tag'", 'idx,number', \PDO::FETCH_KEY_PAIR);
+            $data = array_diff($rows, $success, $queue);
+            if ( $data ) {
+                $idxes = array_keys($data);
+                $str_idxes = implode(',', $idxes);
+                $q = "UPDATE ".BULK_DATA." SET stamp_last_sent=".time()." WHERE idx IN ( $str_idxes );";
+                entity()->runExec($q);
+                $numbers = array_values($data);
+                $data = smsgate::scheduleMessage($numbers, $bulk->get('message'), $tag);
+            }
+
+        }
 
         $data['template'] = 'bulk.sent';
         $data['numbers'] = &$numbers;
-        $data['already_sent'] = $already_sent;
-        $data['in_queue'] = $in_queue;
         $data['cond'] = $cond;
         Response::render($data);
     }

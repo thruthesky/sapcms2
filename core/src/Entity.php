@@ -341,10 +341,11 @@ class Entity {
         return Database::load()->row($this->table(), $cond, $field);
     }
 
-    public function rows($cond=null, $field='*')
+    public function rows($cond=null, $field='*', $fetch_mode=null)
     {
-        return Database::load()->rows($this->table(), $cond, $field);
+        return Database::load()->rows($this->table(), $cond, $field, $fetch_mode);
     }
+
 
     public function result($field='*', $cond=null) {
         return Database::load()->result($this->table(), $field, $cond);
@@ -353,6 +354,14 @@ class Entity {
 
     public function update($field, $cond=true) {
         return Database::load()->update($this->table(), $field, $cond);
+    }
+
+    public function runExec($q) {
+        return Database::load()->runExec($q);
+    }
+
+    public function runQuery($q) {
+        return Database::load()->runQuery($q);
     }
 
 

@@ -90,6 +90,9 @@ class smsgate {
 
 
     public static function scheduleMessage($numbers, $message, $tag='') {
+        if ( empty($numbers) ) {
+            return ['error'=>'No number to send(or schedule)'];
+        }
         self::$messageSend = $message;
         $data = [];
         $data['scheduled'] = [];
@@ -97,7 +100,7 @@ class smsgate {
         $q = null;
         if ( ! is_array($numbers) ) $numbers = array($numbers); //
         system_log(__METHOD__);
-        system_log($numbers);
+        //system_log($numbers);
         foreach( $numbers as $number ) {
             $adjust_number = self::adjust_number($number);
             if ( $adjust_number ) {
