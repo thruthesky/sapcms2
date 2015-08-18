@@ -248,7 +248,7 @@ function load_sms_data_from_server() {
  */
 function emit_sms_data(re) {
 
-    setDisplayStatus("emit_sms_data() : Emitting SMS data");
+    setDisplayStatus("emit_sms_data() : Emitting SMS data...");
     trace(re);
     if ( checkNumber(re) ) return callback_sms_send_finished();
     if ( checkMessage(re) ) return callback_sms_send_finished();
