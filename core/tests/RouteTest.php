@@ -34,10 +34,6 @@ class RouteTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($route->module == 'Install');
 
 
-
-
-
-
         Request::set(HTTP_VAR_ROUTE, "/G/H/I");
         $route = Route::load()->reset();
         $this->assertTrue($route->module == 'G');

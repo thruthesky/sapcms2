@@ -74,6 +74,9 @@ class Entity {
 
 
     /**
+     *
+     * Creates an Entity Item
+     *
      * @param array $options
      * @return mixed
      */
@@ -100,7 +103,8 @@ class Entity {
      *
      * @param null $field
      * @param null $value
-     * @return Entity
+     *
+     * @return $this|bool
      */
     final public function load($field, $value=null) {
 
@@ -394,6 +398,16 @@ class Entity {
         return $this->cacheCode;
     }
 
+    /**
+     *
+     * Retrieves the actual record from database.
+     *
+     * - It is only used by load()
+     *
+     * @param $field
+     * @param $value
+     * @return array|mixed
+     */
     private function loadData($field, $value)
     {
         $table = $this->table();

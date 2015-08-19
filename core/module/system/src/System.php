@@ -343,13 +343,6 @@ class System {
     public function check()
     {
         return 0;
-        /*
-        $markup = Markup::create();
-        if ( ! self::install() ) {
-            // return $markup->set('type','box.error')->set('code', ERROR_INSTALL)->set('message', 'System is not installed')->display();
-        }
-        return 0;
-        */
     }
 
     public function theme()

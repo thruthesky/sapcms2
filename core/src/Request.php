@@ -2,6 +2,8 @@
 namespace sap\src;
 class Request {
     static $storage = [];
+    private static $request_uri = null;
+
     public static function get($k=null) {
         if ( empty(self::$storage) ) self::reset();
         if ( empty($k) ) return self::$storage;
@@ -13,6 +15,19 @@ class Request {
         self::$storage = array_merge($_GET, $_POST);
         return self::$storage;
     }
+
+    /**
+     *
+     * @param $n
+     * @return bool
+     */
+    public static function segment($n) {
+        $segment = self::getSegment();
+        if ( isset($segment[$n]) ) return $segment[$n];
+        else return FALSE;
+    }
+
+
 
 
 
@@ -57,6 +72,26 @@ class Request {
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') return TRUE;
         else return self::get('mode') == 'submit';
+    }
+
+    /**
+     *
+     * @note it parses only once.
+     *
+     * @return array|null
+     */
+    private static function getSegment()
+    {
+        if ( self::$request_uri === null && isset($_SERVER['REQUEST_URI']) ) {
+            if ( isset($_SERVER['REQUEST_URI']) ) {
+                $arr = explode('?', $_SERVER['REQUEST_URI'], 2);
+                $route = $arr[0];
+                self::$request_uri = $route;
+                self::$request_uri = trim(self::$request_uri , '/');
+                self::$request_uri = explode('/', self::$request_uri );
+            }
+        }
+        return self::$request_uri;
     }
 
 }

@@ -14,6 +14,10 @@ class Route {
     }
 
 
+    /**
+     * @deprecated
+     * @return null|Route
+     */
     public static function load() {
         if ( self::$router ) return self::$router;
         $route = new Route();
@@ -48,6 +52,8 @@ class Route {
 
 
     /**
+     *
+     * @deprecated Use request class
      *
      * This method resets with $_SERVER['REQUEST_URI']
      *

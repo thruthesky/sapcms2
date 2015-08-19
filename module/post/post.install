@@ -1,0 +1,73 @@
+<?php
+entity(POST_CONFIG)
+    ->createTable()
+    ->add('id', 'varchar', 64)
+    ->add('idx_user', 'INT UNSIGNED DEFAULT 0')
+    ->add('name', 'varchar')
+    ->add('description', 'text')
+    ->add('no_item_per_page', 'SMALLINT UNSIGNED default 0')
+    ->add('no_page_per_nav', 'SMALLINT UNSIGNED default 0')
+    ->add('widget_list', 'varchar')
+    ->add('widget_view', 'varchar')
+    ->add('widget_edit', 'varchar')
+    ->add('widget_comment', 'varchar')
+    ->add('widget_search_box', 'varchar')
+    ->unique('id');
+
+$db = entity(POST_CONFIG)->loadTable();
+for ( $i=1; $i<=10; $i++ ) {
+    $db->add("int_$i", 'int');
+    $db->add("char_$i", 'char');
+    $db->add("varchar_$i", 'varchar');
+}
+
+entity(POST_DATA)
+    ->createTable()
+    ->add('idx_config', 'INT UNSIGNED DEFAULT 0')
+    ->add('idx_user', 'INT UNSIGNED DEFAULT 0')
+    ->add('idx_root', 'INT UNSIGNED DEFAULT 0')
+    ->add('idx_parent', 'INT UNSIGNED DEFAULT 0')
+    ->add('idx_first_image', 'INT UNSIGNED DEFAULT 0')
+    ->add('title', 'varchar', 1024)
+    ->add('no_view', 'INT UNSIGNED default 0')
+    ->add('no_comment', 'SMALLINT UNSIGNED default 0')
+    ->add('no_vote_good', 'SMALLINT UNSIGNED default 0')
+    ->add('no_vote_bad', 'SMALLINT UNSIGNED default 0')
+    ->add('secret', 'char')
+    ->add('bilnd', 'char')
+    ->add('block', 'char')
+    ->add('report', 'char')
+    ->add('deleted', 'char')
+    ->add('reason', 'varchar')
+    ->add('browser_id', 'varchar', 32)
+    ->add('ip', 'varchar', 32) // for IPv4 and IPv6
+    ->add('domain', 'varchar', 32)
+    ->add('user_agent', 'varchar')
+    ->add('content', 'text')
+    ->add('content_stripped', 'text')
+    ->add('private_title', 'varchar', 1024)
+    ->add('private_content', 'text')
+    ->add('private_content_stripped', 'text')
+    ->add('country', 'varchar', 64)
+    ->add('province', 'varchar', 64)
+    ->add('city', 'varchar', 64)
+    ->add('link_1', 'varchar', 1024)
+    ->add('link_2', 'varchar', 1024)
+    ->add('link_3', 'varchar', 1024)
+    ->index('idx_config')
+    ->index('idx_user')
+    ->index('idx_root')
+    ->index('ip')
+    ->index('domain')
+    ->index('browser_id')
+    ->index('country,province,city');
+
+$db = entity(POST_DATA)->loadTable();
+for ( $i=1; $i<=10; $i++ ) {
+    $db->add("category_$i", 'INT UNSIGNED DEFAULT 0');
+    $db->add("int_$i", 'int');
+    $db->add("char_$i", 'char');
+    $db->add("varchar_$i", 'varchar');
+    $db->add("text_$i", 'text');
+}
+

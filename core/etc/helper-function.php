@@ -5,6 +5,7 @@ use sap\core\User\User;
 use sap\src\Database;
 use sap\src\Entity;
 use sap\src\Form;
+use sap\src\jQM;
 use sap\src\Meta;
 use sap\src\Request;
 use sap\src\Route;
@@ -100,6 +101,9 @@ function request($key=null, $default=null) {
     if ( $value === null ) return $default;
     else return $value;
 }
+function segment($n) {
+    return Request::segment($n);
+}
 
 /**
  *
@@ -184,3 +188,6 @@ function system_log($msg) {
 
 
 
+function jqm() {
+    return new jQM();
+}
