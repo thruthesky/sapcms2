@@ -5,7 +5,7 @@ define('BULK_DATA', 'smsgate_bulk_data');
 define('BULK', 'smsgate_bulk');
 define('BULK_HISTORY', 'smsgate_bulk_history');
 
-
+include 'bulk.hook.php';
 
 route('/bulk', 'bulk\\bulk\\index');
 route('/bulk/create', 'bulk\\bulk\\create');

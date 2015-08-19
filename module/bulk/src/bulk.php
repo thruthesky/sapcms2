@@ -110,7 +110,7 @@ class bulk {
                 entity()->runExec($q);
                 $numbers = array_values($data);
                 $data = smsgate::scheduleMessage($numbers, $bulk->get('message'), $tag);
-                if ( empty($data['scheduled']) ) {
+                if ( !empty($data['scheduled']) ) {
                     smsgate::scheduleMessage($notify_number, "Bulk - $tag ($cond) - has been sent (".count($rows).")", $tag . ':notify:' . date('ymdHi'));
                 }
             }
