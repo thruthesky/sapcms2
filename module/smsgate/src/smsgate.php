@@ -98,7 +98,7 @@ class smsgate {
             }
         }
 
-        if ( $_numbers ) {
+        if ( !empty( $_numbers ) ) {
             self::createMessage($message);
         }
 
@@ -106,7 +106,7 @@ class smsgate {
             $created = time();
             $priority = request('priority', 0);
             $idx = self::getMessageIdx();
-            $tag = $tag;
+            //$tag = $tag;
             $q .= "INSERT INTO " . SMS_QUEUE . " (created, idx_message, number, priority, tag) VALUES ($created ,$idx, '$adjust_number', $priority, '$tag');";
             $number_info = [];
             $number_info['message'] = "Original number is: ".$number;
