@@ -20,8 +20,8 @@ function post_config($field=null, $value=null) {
         return post_config()->load($field, $value);
     }
     else if ( $field ) {
-        if ( is_numeric($field) ) return post_config($field);
-        else return post_config($field, $value);
+        if ( is_numeric($field) ) return post_config()->load('idx', $field);
+        else return post_config()->load('id', $field);
     }
     else return new PostConfig();
 }

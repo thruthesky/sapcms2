@@ -14,12 +14,5 @@ class PostConfig extends Entity {
         return Response::render(['template'=>'post.config.list']);
     }
 
-    public static function createSubmit() {
-        post_config()
-            ->set('id', request('id'))
-            ->set('name', request('name'))
-            ->save();
-        return Response::redirect('/post/config/list');
-    }
 
 }
