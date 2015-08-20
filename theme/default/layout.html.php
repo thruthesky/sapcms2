@@ -1,4 +1,7 @@
 <!doctype html>
+<?php
+
+?>
 <html>
 <head>
     <meta charset="utf-8">
@@ -9,7 +12,9 @@
 <div data-role="page">
     <?php include template('panel'); ?>
     <div data-role="header"><?php include template('header'); ?></div>
+
     <div class="ui-content"><?php include template()?></div>
+
     <div data-role="footer"><?php include template('footer'); ?></div>
 </div>
 <!--[if lt IE 9]>

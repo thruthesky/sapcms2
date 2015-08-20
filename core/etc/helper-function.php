@@ -191,3 +191,7 @@ function system_log($msg) {
 function jqm() {
     return new jQM();
 }
+
+function errorHandler() {
+    return new \sap\src\ErrorHandler();
+}

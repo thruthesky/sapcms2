@@ -68,6 +68,7 @@ class Response {
         ob_start();
 
         $path = theme_layout();
+        
         if ( file_exists($path) ) include $path;
         else include system_layout();
 
