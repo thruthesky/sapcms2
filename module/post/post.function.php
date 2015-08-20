@@ -1,6 +1,7 @@
 <?php
 
 use sap\post\PostConfig;
+use sap\post\PostData;
 use sap\src\Route;
 
 /**
@@ -27,9 +28,25 @@ function post_config($field=null, $value=null) {
 }
 
 
+
+
 function is_post_page() {
     return segment(0) == 'post';
 }
 function is_post_config_page() {
     return segment(1) == 'config';
+}
+
+
+function post_data($idx=null) {
+    if ( $idx ) {
+        return post_data()->load('idx', $idx);
+    }
+    return new PostData();
+}
+
+function url_post_edit() {
+    if ( $idx = request('idx') ) return "/post/edit?idx=$idx";
+    else if ( $id = request('id') ) return "/post/edit?id=$id";
+    else return null;
 }

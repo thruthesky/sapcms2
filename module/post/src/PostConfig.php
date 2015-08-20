@@ -3,16 +3,22 @@ namespace sap\post;
 
 
 use sap\src\Entity;
-use sap\src\Response;
 
 class PostConfig extends Entity {
     public function __construct() {
         parent::__construct(POST_CONFIG);
     }
 
-    public static function collection() {
-        return Response::render(['template'=>'post.config.list']);
-    }
 
+    public function getCurrentConfig() {
+
+        if ( $id = request('id') ) {
+            return $this->load('id', $id);
+        }
+        else if ( $idx = request('idx') ) {
+            $this->load(post_data($idx)->get('idx_config'));
+        }
+        return FALSE;
+    }
 
 }

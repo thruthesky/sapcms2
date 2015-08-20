@@ -31,8 +31,16 @@ class post {
     }
 
 
-    public static function search() {
+    public static function listPostConfig() {
+        return Response::render(['template'=>'post.config.list']);
+    }
 
+    public static function listPostData() {
+        return Response::render(['template'=>'post.data.list']);
+    }
+
+    public static function editPostData() {
+        return Response::render(['template'=>'post.data.edit']);
     }
 
 }
