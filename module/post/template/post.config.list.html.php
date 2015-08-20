@@ -1,22 +1,29 @@
-<form action="/post/config/create_submit">
-    Post configuration ID :
-    <input type="text" name="id" value="">
-
-    Post configuration name :
-    <input type="text" name="name" value="">
-
-    <input type="submit" value="CREATE A POST CONFIG">
-</form>
-
+<?php include template('post.admin.menu'); ?>
 <?php
 
 $rows = post_config()->rows(null, 'id,name');
 if ( $rows ) {
-    $jqm = jqm()->listview('UL');
-    foreach ( $rows as $config ) {
-        $jqm->item($config['name']);
-    }
-    echo $jqm;
-}
 
 ?>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>List</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+<?php foreach ( $rows as $config ) { ?>
+    <tr>
+        <td><?php echo $config['id']; ?></td>
+        <td><?php echo $config['name']; ?></td>
+        <td><a href="/post/list?id=<?php echo $config['id']; ?>">List</a></td>
+        <td>Edit</td>
+        <td>Delete</td>
+    </tr>
+<?php
+        }
+    }
+?>
+    </table>
