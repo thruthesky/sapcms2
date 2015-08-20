@@ -52,6 +52,8 @@ while ( $row ) {
 	}
     	
     if ( $idx ) {		
+		//if the transfer is success make content '' and add current time in extracted
+		//*will be used to avoid re-inserting of the same URL
         $db->update('page_number_extract', ['content'=>'','extracted'=>time()], "idx=$idx");
 		$row = $db->row('page_number_extract', 'extracted = 0');
     }
