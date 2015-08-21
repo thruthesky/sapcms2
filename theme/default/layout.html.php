@@ -34,5 +34,6 @@
 </script>
 <script src="/core/etc/js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
 <?php add_javascript('default.js'); ?>
+<?php widget('timezone'); ?>
 </body>
 </html>

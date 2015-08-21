@@ -74,7 +74,10 @@ class Database extends \PDO {
     {
         if ( self::$db ) return self::$db;
 
-        $config = System::getDatabaseConfiguration();
+
+
+        $config = System::loadDatabaseConfiguration();
+        //$config = System::getDatabaseConfiguration();
         $type = strtolower($config['database']);
         if ( $type == 'sqlite' ) {
             return self::$db = Database::sqlite(PATH_SQLITE_DATABASE);

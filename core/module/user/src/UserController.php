@@ -15,7 +15,6 @@ class UserController
 
     public static function register()
     {
-
         if (self::userFormSubmit()) {
             return Response::redirect(config()->getUrlSite());
         }
@@ -84,5 +83,18 @@ class UserController
     public static function userList() {
         return Response::renderSystemLayout(['template'=>'admin.user-list']);
     }
+
+
+
+    public static function setting()
+    {
+        if (submit()) {
+            session_set(USER_TIMEZONE_1, request(USER_TIMEZONE_1));
+            session_set('language', request('language'));
+            return Response::redirect('/user/setting');
+        }
+        return Response::render(['template' => 'user.setting']);
+    }
+
 
 }

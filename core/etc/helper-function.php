@@ -47,10 +47,6 @@ function db_delete($table, $cond) {
 }
 
 
-function form_input($attr) {
-    echo form::input($attr);
-}
-
 
 /**
  * Returns System Configuration Value
@@ -68,7 +64,7 @@ function sysconfig($code) {
     $value = null;
     switch( $code ) {
         case 'database' :
-            return System::getDatabaseConfiguration();
+            return System::loadDatabaseConfiguration();
         case NO_ITEM :
             if ( $no = config(NO_ITEM) ) return $no;
             else return DEFAULT_NO_ITEM;
@@ -194,4 +190,22 @@ function jqm() {
 
 function errorHandler() {
     return new \sap\src\ErrorHandler();
+}
+
+
+/**
+ * @ATTENTION This function must be here so that this function can be used in bootstrap
+ * @param null $code
+ * @param null $value
+ * @param int $target
+ * @return $this|mixed|Config
+ */
+function config($code=null, $value=null, $target=0) {
+    if ( $value || $target ) {
+        return config()->set($code, $value, $target);
+    }
+    else if ( $code ) {
+        return config()->value($code);
+    }
+    else return new Config();
 }

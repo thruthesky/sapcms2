@@ -10,6 +10,16 @@ $error_message[ERROR_NO_DATABASE_CONFIG_FILE] = 'Database configuration file is 
 
 define('ROUTE_INSTALL', "/install");
 define('ROUTE_ROOT', '/');
+define('USER_TIMEZONE_1', 'utz1');
+define('USER_TIMEZONE_2', 'utz2');
+define('USER_TIMEZONE_3', 'utz3');
+/**
+ * UNDEFINED is constant that can be used on behalf of null comparison.
+ * Use UNDEFINED when the value of parameter could be FALSE, empty, null, etc.
+ *
+ */
+define('UNDEFINED', 'U.cbav~@^^/0');
+
 
 
 define('ERROR_INSTALL', -1234);

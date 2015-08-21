@@ -298,7 +298,7 @@ function widget($widget_name) {
  * @return string
  */
 function encrypt_password($plain_text_password) {
-        return md5($plain_text_password);
+    return md5($plain_text_password);
 }
 
 
@@ -432,9 +432,30 @@ function date_short($stamp=0) {
 }
 
 
-function html_row($o) {
+/**
+ * @param $option
+ * @param null $text
+ * @return string
+ *
+ * @code
+ * echo html_row([
+'caption' => 'Now',
+'text' => date('r')
+]);
+ * @endcode
+ *
+ * @code
+ *      echo html_row('Your Selection', config(USER_TIMEZONE_3));
+ * @endcode
+ */
+function html_row($option, $text=UNDEFINED) {
+    if ( $text == UNDEFINED ) $o = $option;
+    else {
+        $o['caption'] = $option;
+        $o['text'] = $text;
+    }
     $re = "<div class='row";
-        if ( isset($o['class']) ) $re .= " $o[class]";
+    if ( isset($o['class']) ) $re .= " $o[class]";
     $re .= "'>";
     if ( isset($o['caption']) ) {
         $re .= "<div class='caption'>$o[caption]</div>";
@@ -445,6 +466,10 @@ function html_row($o) {
     $re .= "</div>";
     return $re;
 }
+
+
+
+
 function html_input($o) {
     $re = "<input";
     if ( isset($o['type']) ) $re .= " type='$o[type]'";
@@ -472,4 +497,68 @@ function html_password($o) {
 function html_hidden($o) {
     $o['type'] = 'hidden';
     return html_input($o);
+}
+
+function html_select($o) {
+    $re = "<select";
+    if ( isset($o['id']) ) $re .= " id='$o[id]'";
+    if ( isset($o['class']) ) $re .= " class='$o[class]'";
+    if ( isset($o['name']) ) $re .= " name='$o[name]'";
+    $re .= ">";
+    foreach( $o['options'] as $key => $value ) {
+        $re .= "<option value='$key'>$value</option>";
+    }
+    $re .= "</select>";
+    return $re;
+}
+
+function html_select_timezone($form_name, $value=null) {
+    $regions = array(
+        'Africa' => DateTimeZone::AFRICA,
+        'America' => DateTimeZone::AMERICA,
+        'Antarctica' => DateTimeZone::ANTARCTICA,
+        'Aisa' => DateTimeZone::ASIA,
+        'Atlantic' => DateTimeZone::ATLANTIC,
+        'Europe' => DateTimeZone::EUROPE,
+        'Indian' => DateTimeZone::INDIAN,
+        'Pacific' => DateTimeZone::PACIFIC
+    );
+
+    $timezones = array();
+    foreach ($regions as $name => $mask)
+    {
+        $zones = DateTimeZone::listIdentifiers($mask);
+        foreach($zones as $timezone)
+        {
+            // Lets sample the time there right now
+            $time = new DateTime(NULL, new DateTimeZone($timezone));
+
+            // Us dumb Americans can't handle millitary time
+            $ampm = $time->format('H') > 12 ? ' ('. $time->format('g:i a'). ')' : '';
+
+            // Remove region name and add a sample time
+            $timezones[$name][$timezone] = substr($timezone, strlen($name) + 1) . ' - ' . $time->format('H:i') . $ampm;
+        }
+    }
+
+
+// View
+
+
+    $re = "<select name='$form_name'>";
+    $re .= '<option value="">Select Timezone</option>';
+
+    foreach($timezones as $region => $list)
+    {
+        $re .= '<optgroup label="' . $region . '">' . "\n";
+        foreach($list as $timezone => $name)
+        {
+            $re .= '<option value="' . $timezone . '"';
+            if ( $timezone == $value ) $re .= " selected=1";
+            $re .= '>' . $name . '</option>' . "\n";
+        }
+        $re .= '<optgroup>' . "\n";
+    }
+    $re .= '</select>';
+    return $re;
 }
