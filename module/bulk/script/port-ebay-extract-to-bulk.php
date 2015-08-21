@@ -2,72 +2,138 @@
 	//<div class="tab-pane active">
 	use sap\src\Database;
 	$db = Database::load();
+	$success_count = 0;
+	$fail_count = 0;
+	$rows = $db->rows('page_number_extract', "extracted = 0 AND keyword = 'Real Estate' LIMIT 0, 400");
+	//http://www.ebay.ph/itm/Rent-To-Own-Condo-Units-in-Mandaluyong-City-No-DP-/291538751047?hash=item43e1104e47
+	//http://www.ebay.ph/itm/Spacious-1-BR-Cubao-Condo-for-Rent-/262012556390?hash=item3d012a5466
+	//$rows = $db->rows('page_number_extract', "extracted = 0 AND url ='http://www.ebay.ph/itm/apartment-for-rent-in-san-roque-/271949436529?hash=item3f51731671' LIMIT 1");
 	
-	$rows = $db->rows('page_number_extract', 'extracted = 0 LIMIT 379, 4');
-	foreach ( $rows as $row ) {		
-		$data = [];
+	$page_extract_update = [];
+	$page_extract_update['content'] = '';
+	$page_extract_update['extracted'] = time();	
+	
+	foreach ( $rows as $row ) {				
+		$data = [];		
+		$page_extract_cond = "url='".$row['url']."'";
 		
-		$data['number'] = get_number( $row );		
+		$data['number'] = get_number( $row );
+	
 		if( !empty( $data['number'] ) ){
 			$res = $db->row( 'smsgate_bulk_data', "number = '".$data['number']."'" );
 				if( empty( $res ) ){
 				$data['origin'] = $row['origin'];
 				$data['category'] = $row['keyword'];
-				$data['name'] = get_name( $row );
+				$data['username'] = get_name( $row );
 				$data['title'] = get_title( $row );
 				$data['location'] = get_location( $row );
 				$data['stamp_last_collection'] = time();
 				$data['stamp_last_post'] = get_post_date($row);
-				
-				print_r( $data );
-				echo "Success! $row[url]";
+				//print_r( $data );
+				continue;
+				echo "Success! $row[url]\n";
+				//$db->insert('smsgate_bulk_data', $data);				
+				$success_count ++;
+				//print_r( $data );
+				if( !empty( $page_extract_update['fail_reason'] ) ) unset( $page_extract_update['fail_reason'] );				
 			}
-			else{
-				echo "Number exists: $row[url] skipping...";
-			}
+			else{				
+				$page_extract_update['fail_reason'] = 'N';
+				//echo "Number exists: $row[url] skipping...";				
+			}			
 		}
 		else{
-			echo "Missing number - $row[url] - skipping this ad";
+			$page_extract_update['fail_reason'] = 'M';
+			//echo "Missing number - $row[url] - skipping this ad";
+			$fail_count ++;
 		}
-		echo "\n";
 		
+		//$db->update('page_number_extract', $page_extract_update, $page_extract_cond);
+		//echo "\n";	
 	}
-	
+	echo "success = $success_count - fail = $fail_count ++;";
 	
 	function get_number(array & $row) {
-    $delimiter = '<div class="tab-pane active">';
-    $delimiter2 = '<div class="tab-pane ">';
-    $content = $row['content'];
-    $arr = explode($delimiter, $content, 2);
+		$number = null;
+		$content = $row['content'];
+		//for ebay real estate...
+		if( strpos( $row['content'], 'Contact the seller:</div>' ) !== false ){
+			$delimiter = 'Contact the seller:</div>';
+			$delimiter2 = 'Email the seller';
+			
+			$arr = explode($delimiter, $content, 2);
+			
+			if ( isset($arr[1]) ) {
+				$arr = explode($delimiter2, $arr[1], 2);
+				//$markup = str_replace( "&nbsp;", "", $arr[0] );
+				
+				$markup = trim( $arr[0] );			
+				
+				$exploded = explode( "</div>", $markup );								
+				foreach( $exploded as $e ){
+					$markup = strip_tags( $e );
+					$markup = preg_replace("/[^0-9]/", '', $markup); // remove all except numbers
+					if( !empty( $markup ) ){
+						$number = adjustNumber( $markup );
+						if( empty( $number ) ) $number = null;
+						else break;
+					}
+				}
+			}	
+	}
+	//for content number search
 	
-    if ( isset($arr[1]) ) {
-        $arr = explode($delimiter2, $arr[1], 2);
-		$markup = str_replace( "&nbsp;", "", $arr[0] );
-		$markup = trim( $markup );
+	if( empty( $number ) ){
+		$delimiter = '<div class="tab-pane active">';
+		$delimiter2 = '<div class="tab-pane ">';
 		
-		//$markup = "639063104270";
-		$markup = preg_replace("/\-\+/", '', $markup); // remove all dashes and + signs
+		$arr = explode($delimiter, $content, 2);
 		
-		preg_match_all( "/(09)([0-9]+){8}[0-9$]|(639)([0-9]+){8}[0-9$]/", $markup, $number );
-		
-		/*
-        $markup = strip_tags($markup);				
-        $markup = trim($markup);
-		$markup = adjustNumber( $markup );
-        return $markup;*/
-		if( !empty( $number[0][0] ) ){
-			$number = adjustNumber( $number[0][0] );
-		}
-		else $number = null;
-    }
+		if ( isset($arr[1]) ) {
+			$arr = explode($delimiter2, $arr[1], 2);
+			$markup = str_replace( "&nbsp;", "", $arr[0] );
+			$markup = trim( $markup );
+			
+			//$markup = "09 06 01 04 2 7 0 8129213213123123212390218";
+			$markup = preg_replace("/\(|\)|\-|\+|\s|\s+/", '', $markup); // remove all "-", "+", "(", ")", spaces
+			//$markup = preg_replace("/\(|\)|\-|\+/", '', $markup); // remove all "-", "+", "(", ")", spaces
+			//^ special characters already removed here
+			//considering starting of 9, 09, and 639
+			
+			//preg_match_all( "/(9)([0-9]+){7,7}[0-9$]|(09)([0-9]+){8}[0-9$]|(639)([0-9]+){8}[0-9$]/", $markup, $number );
+			preg_match_all( "/(9)([0-9]){9}|(09)([0-9]){9}|(639)([0-9]){9}/", $markup, $number );
+			if( empty( $number[0] ) ){
+				$number = null;
+			}
+			else{
+				foreach( $number[0] as $n ){				
+					$number = adjustNumber( $n );
+					if( $number != false ) break;				
+				}
+			}
+		}		
+	}
+	
+	echo $number." - $row[url]\n";
+	
     return $number;
 }
 
 function adjustNumber($number){
 	$number = preg_replace("/[^0-9]/", '', $number); // remove all characters
-	$number = str_replace("639", "09", $number);
-	$number = str_replace("630", "0", $number);
-	$number = str_replace("63", "0", $number);
+	$number = preg_replace("/^639/", "09", $number);
+	$number = preg_replace("/^630/", "0", $number);
+	$number = preg_replace("/^63/", "0", $number);
+	
+	// make the 10 digit number into 11 digit.
+	if ( strlen($number) == 10 && $number[0] == '9' ) $number = "0$number";
+	
+	if ( ! is_numeric($number) ) return false;
+	if ( strlen($number) != 11 ) return false;
+	if ( $number[0] != '0' ) return false;
+	if ( $number[1] != '9' ) return false;
+	if ( $number[2] == '0' && $number[3] == '0' ) return false;
+	
 	return $number;
 }
 

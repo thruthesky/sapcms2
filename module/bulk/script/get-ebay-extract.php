@@ -45,21 +45,30 @@
 	else $last_page = 5;
 	
 	if( isset( $argv[3] ) ) $categories[] = $argv[3];
-	else $categories = [ 11450=>"Clothing, Shoes Accessories" ];
+	else $categories = [ "10542"=>"Real Estate" ];
 	
 	//print_r( $argv );exit;	
 	foreach( $categories as $k => $v ){
-		/*echo "first_page: $start_page - last_page: $last_page - category: $v \n";
-		echo "starting in 5 secs...\n\n\n";
-		sleep(5);
-		exit;*/
-		
-		//&LH_SubLocation = 1 //only show location chekc box
-		//&_fsradio2=%26LH_LocatedIn%3D1 //located only in
-		//&_salic=162 //located in philippines
+		/*
+		//located only in PH
+		&LH_SubLocation=1 //only show location chekc box
+		&_fsradio2=%26LH_LocatedIn%3D1 //located only in
+		&_salic=162 //located in philippines
+
+		&LH_SubLocation=1&_fsradio2=%26LH_LocatedIn%3D1&_salic=162
+
+
+
+		//avail in PH ( includes other countries that serve PH )
+		&LH_SubLocation=1 //only show location chekc box
+		&_fsradio2=%26LH_AvailTo%3D1 //located only in
+		&_saact=162 //located in philippines
+
+		&LH_SubLocation=1&_fsradio2=%26LH_AvailTo%3D1&_saact=162
+		*/
 		
 		for( $i =$start_page; $i<=$last_page; $i ++ ) {	
-			$url = "http://www.ebay.ph/sch/i.html?&_sacat=$k&_pgn=$i&LH_SubLocation=1&_salic=162&_fsradio2=%26LH_LocatedIn%3D1";
+			$url = "http://www.ebay.ph/sch/i.html?&_sacat=$k&_pgn=$i";
 			echo $url."\n\n";
 			$body = get_page( $url );			
 			
@@ -83,14 +92,14 @@
 		foreach( $urls as $url ){
 			$res = $db->row( 'page_number_extract', "url = '$url'" );
 			if( empty( $res ) ){	
+				echo "Inserting: $url\n";
 				$data = [];
 				$data['origin'] = 'ebay.ph';
 				$data['keyword'] = $category;
 				$data['stamp'] = time();
 				$data['url'] = $url;
 				$data['content'] = get_page( $url );			
-				$db->insert('page_number_extract', $data);
-				echo "Insert Success: $url\n";
+				$db->insert('page_number_extract', $data);				
 				sleep( 5 );
 			}
 			else{
@@ -114,8 +123,10 @@
 			print_r( $e );exit;
 		}
 		
-		
-		return $response->getBody()->getContents();		
+		$body = $response->getBody()->getContents();
+		$body = utf8_decode( $body );
+		$body = preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $body);
+		return $body;	
 	}
 	
 	/*function get_page($url) {
