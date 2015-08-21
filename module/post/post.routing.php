@@ -14,4 +14,5 @@ route('/post/config/create_submit', 'post\\post\\configCreateSubmit');
 
 route('/post/list', 'post\\post\\listPostData');
 route('/post/edit', 'post\\post\\editPostData');
+route('/post/edit/submit', 'post\\post\\editSubmitPostData');
 

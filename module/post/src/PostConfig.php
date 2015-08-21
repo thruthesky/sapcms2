@@ -10,7 +10,7 @@ class PostConfig extends Entity {
     }
 
 
-    public function getCurrentConfig() {
+    public function getCurrent() {
 
         if ( $id = request('id') ) {
             return $this->load('id', $id);

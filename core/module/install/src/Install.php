@@ -125,7 +125,8 @@ class Install {
     public static function check()
     {
         if (  self::$done_install_check ) return self::$check;
-        $config = System::getDatabaseConfiguration();
+        //$config = System::getDatabaseConfiguration();
+        $config = System::loadDatabaseConfiguration();
         if ( ! isset($config['database']) ) self::$check = false;
         if ( $config['database'] == 'mysql' ) {
             if ( empty($config['database_name']) ) self::$check = false;

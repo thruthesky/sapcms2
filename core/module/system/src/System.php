@@ -119,14 +119,13 @@ class System {
      */
     public static function run()
     {
+        $re = null;
 
 
         if ( System::isCommandLineInterface() && CommandLineInterface::getCommand() == '--uninstall' )  {
 
         }
         else {
-            self::load();
-            self::loadDatabaseConfiguration();
             self::load_core_module_files();
             if ( Install::check() ) {
                 self::load_module_files();
@@ -148,7 +147,12 @@ class System {
             exit; // @todo it should not exit here.
         }
         else {
-            $re = Module::run();
+            if ( $widget = self::isWidgetCall() ) {
+                include PATH_INSTALL . "/widget/$widget/$widget.php";
+            }
+            else {
+                $re = Module::run();
+            }
         }
 
         hook('system_end');
@@ -208,6 +212,8 @@ class System {
      *
      * It only loads database configuration once and for all.
      *
+     * You can call this function as much as you want.
+     *
      * @return bool|null
      */
     public static function loadDatabaseConfiguration()
@@ -215,7 +221,7 @@ class System {
         if ( self::$config_database === null ) {
             self::$config_database = Config::read(PATH_CONFIG_DATABASE);
         }
-        return self::getDatabaseConfiguration();
+        return self::$config_database;
     }
 
     /**
@@ -226,13 +232,17 @@ class System {
     public static function reloadDatabaseConfiguration()
     {
         self::$config_database = Config::read(PATH_CONFIG_DATABASE);
-        return self::getDatabaseConfiguration();
+        return self::$config_database;
     }
+
+
+    /**
     public static function getDatabaseConfiguration()
     {
         if ( empty(self::$config_database) ) return FALSE;
         else return self::$config_database;
     }
+     * */
 
 
     /**
@@ -330,6 +340,17 @@ class System {
     public static function isEnabled($module_name) {
         if ( Module::isCoreModule($module_name) ) return true;
         return in_array($module_name, self::$module_loaded);
+    }
+
+    /**
+     *
+     * Returns widget name from HTTP INPUT
+     *
+     * @return Request
+     */
+    private static function isWidgetCall()
+    {
+        return request('widget');
     }
 
 
