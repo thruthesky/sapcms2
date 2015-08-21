@@ -15,6 +15,7 @@
             <li><a href="/user/register" class="ui-btn ui-btn-icon-left ui-icon-user">Register</a></li>
         <?php } ?>
 
+        <li><a href="/user/settings" class="ui-btn ui-btn-icon-left ui-icon-gear">Settings</a></li>
         <li><a href="#main-menu-panel" class="ui-btn ui-btn-icon-left ui-icon-delete">Close</a></li>
     </ul>
 

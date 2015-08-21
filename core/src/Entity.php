@@ -157,6 +157,14 @@ class Entity {
     }
 
     /**
+     * Returns fields array
+     * @return array|null
+     */
+    final public function getFields() {
+        return $this->get();
+    }
+
+    /**
      *
      *
      * If the $field is array, then it MERGE the array into $this->field.

@@ -1,11 +1,27 @@
 <a class="ui-btn" href="/post/admin">Post Admin</a>
+
+
 <?php
-$rows = entity(POST_CONFIG)->rows(null, 'id,name');
-if ( $rows ) {
-    $jqm = jqm()->listview('UL');
-    foreach ( $rows as $config ) {
-        $jqm->item($config['name']);
+$configs = post_config()->rows();
+if ( $configs ) {
+    echo "<table>";
+    echo "<tr>
+
+    <th>ID</th>
+    <th>Name</th>
+    <th>Description</th>
+
+</tr>";
+    foreach( $configs as $config ) {
+        echo "
+        <tr>
+        <td>$config[id]</td>
+        <td>$config[name]</td>
+        <td>$config[description]</td>
+        <td><a href='/post/list?id=$config[id]'>LIST</a></td>
+        </tr>
+        ";
     }
-    echo $jqm;
+    echo "</table>";
 }
 

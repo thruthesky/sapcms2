@@ -419,3 +419,57 @@ function page_no() {
 }
 
 
+
+
+function date_short($stamp=0) {
+    if ( empty($stamp) ) $stamp = time();
+    if ( $stamp > time() - 24 * 60 * 60 ) {
+        return date('h:i a', $stamp);
+    }
+    else {
+        return date('Y-m-d', $stamp);
+    }
+}
+
+
+function html_row($o) {
+    $re = "<div class='row";
+        if ( isset($o['class']) ) $re .= " $o[class]";
+    $re .= "'>";
+    if ( isset($o['caption']) ) {
+        $re .= "<div class='caption'>$o[caption]</div>";
+    }
+    if ( isset($o['text']) ) {
+        $re .= "<div class='text'>$o[text]</div>";
+    }
+    $re .= "</div>";
+    return $re;
+}
+function html_input($o) {
+    $re = "<input";
+    if ( isset($o['type']) ) $re .= " type='$o[type]'";
+    if ( isset($o['id']) ) $re .= " id='$o[id]'";
+    if ( isset($o['class']) ) $re .= " class='$o[class]'";
+    if ( isset($o['name']) ) $re .= " name='$o[name]'";
+    if ( isset($o['value']) ) $re .= " value='$o[value]'";
+    if ( isset($o['placeholder']) ) $re .= " placeholder='$o[placeholder]'";
+    $re .= ">";
+    return $re;
+}
+
+function html_password($o) {
+    $o['type'] = 'password';
+    return html_input($o);
+}
+
+/**
+ * @param $o
+ * @return string
+ * @code
+ *      echo html_hidden(['name'=>'idx', 'value'=>$user->get('idx')]);
+ * @endcode
+ */
+function html_hidden($o) {
+    $o['type'] = 'hidden';
+    return html_input($o);
+}

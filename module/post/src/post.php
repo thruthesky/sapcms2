@@ -1,5 +1,6 @@
 <?php
 namespace sap\post;
+use sap\src\Database;
 use sap\src\Response;
 
 class post {
@@ -36,11 +37,73 @@ class post {
     }
 
     public static function listPostData() {
-        return Response::render(['template'=>'post.data.list']);
+        $config = post_config()->getCurrent()->get();
+        $posts = self::searchPostData();
+        return Response::render([
+            'template'=>'post.data.list',
+            'config' => $config,
+            'posts' => $posts,
+        ]);
     }
 
     public static function editPostData() {
         return Response::render(['template'=>'post.data.edit']);
+    }
+
+    public static function editSubmitPostData() {
+        if ( self::validateEditSubmit() ) {
+            return Response::render(['template'=>'post.data.edit']);
+        }
+
+        $config = post_config( request('id') );
+        $data = post_data();
+        $data->set('idx_config', $config->get('idx'));
+        $data->set('title', request('title'));
+        $data->set('content', request('content'));
+        $data->save();
+
+        $post = post_data($data->idx)->getFields();
+
+
+        return Response::render([
+            'template' => 'post.data.view',
+            'config' => $config->getFields(),
+            'post' => $post,
+        ]);
+
+    }
+
+
+    public static function validateEditSubmit() {
+        $id = request('id');
+        $config = post_config($id);
+        if ( empty($config) ) {
+            return set_error(-50104, "No configuration record found by '$id'.");
+        }
+
+        $title = request('title');
+        if ( empty($title) ) {
+            return set_error(-50105, "Please input title");
+        }
+        $content = request('content');
+        if ( empty($content) ) {
+            return set_error(-50106, "Please input content");
+        }
+        return OK;
+    }
+
+    private static function searchPostData($option=[])
+    {
+        $new_posts = [];
+        $posts = post_data()->rows(null, '*');
+        foreach ( $posts as $post ) {
+            if ( $post['idx_user'] ) {
+                $post['user'] = user($post['idx_user']);
+            }
+            else $post['user'] = FALSE;
+            $new_posts[] = $post;
+        }
+        return $new_posts;
     }
 
 }

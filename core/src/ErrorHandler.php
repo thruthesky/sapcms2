@@ -22,15 +22,15 @@ class ErrorHandler {
                 break;
 
             case E_USER_WARNING:
-                $message = "<b>My WARNING</b> [$errno] $errstr<br />\n";
+                $message = "<b>My WARNING</b> [$errno] $errstr<br />on line $errline in file $errfile\n";
                 break;
 
             case E_USER_NOTICE:
-                $message = "<b>My NOTICE</b> [$errno] $errstr<br />\n";
+                $message = "<b>My NOTICE</b> [$errno] $errstr<br />on line $errline in file $errfile\n";
                 break;
 
             default:
-                $message = "Unknown error type: [$errno] $errstr<br />\n";
+                $message = "Unknown error type: [$errno] $errstr<br />on line $errline in file $errfile\n";
                 break;
         }
         $this->showErrorBox($message);
@@ -57,7 +57,12 @@ class ErrorHandler {
     }
     public function showIncludedFiles() {
 
-        $files = array_reverse(get_included_files());
+        ob_start();
+        debug_print_backtrace();
+        $trace = ob_get_clean();
+        $files = explode("\n", $trace);
+        array_shift($files);
+        array_shift($files);
 
         echo "<h3>Included files</h3>";
         echo "<div style='background-color:#c5c3b3;color:black;word-wrap: break-word;padding:1em; box-sizing: border-box; line-height:140%; font-size:120%;border-radius:2px;'>";

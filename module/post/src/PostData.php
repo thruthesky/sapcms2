@@ -9,11 +9,16 @@ class PostData extends Entity {
         parent::__construct(POST_DATA);
     }
 
+    /**
+     *
+     * If there is no current data, then returns FALSE.
+     *
+     * @return $this|bool
+     */
     public function getCurrent() {
-
         if ( $idx = request('idx') ) {
-            $this->load(post_data($idx)->get('idx_config'));
+            return $this->load($idx);
         }
-        return FALSE;
+        else return FALSE;
     }
 }

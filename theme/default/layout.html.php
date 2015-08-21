@@ -13,7 +13,10 @@
     <?php include template('panel'); ?>
     <div data-role="header"><?php include template('header'); ?></div>
 
-    <div class="ui-content"><?php include template()?></div>
+    <div class="ui-content">
+        <?php widget('error') ?>
+        <?php include template(); ?>
+    </div>
 
     <div data-role="footer"><?php include template('footer'); ?></div>
 </div>
