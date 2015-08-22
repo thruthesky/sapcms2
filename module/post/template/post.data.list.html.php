@@ -1,5 +1,5 @@
 <?php
-extract($variables);
+
 ?>
 <?php widget('post_list_menu_default'); ?>
 <div class="post list">
@@ -13,7 +13,7 @@ extract($variables);
         <?php foreach( $posts as $post ) { ?>
             <tr>
                 <td><?php echo $post['idx']?></td>
-                <td><?php echo $post['title']?></td>
+                <td><a href="<?php echo $post['url']?>"><?php echo $post['title']?></a></td>
                 <td><?php echo $post['user']['name']?></td>
                 <td><?php echo date_short($post['created']);?></td>
             </tr>

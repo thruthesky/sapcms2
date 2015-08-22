@@ -1,5 +1,5 @@
 <?php
-extract($variables);
+
 ?>
 
 <div>Title: <?php echo $post['title']; ?></div>

@@ -423,7 +423,7 @@ function page_no() {
 
 function date_short($stamp=0) {
     if ( empty($stamp) ) $stamp = time();
-    if ( $stamp > time() - 24 * 60 * 60 ) {
+    if ( date('d', $stamp) == date('d') ) {
         return date('h:i a', $stamp);
     }
     else {
@@ -561,4 +561,27 @@ function html_select_timezone($form_name, $value=null) {
     }
     $re .= '</select>';
     return $re;
+}
+
+
+/**
+ *
+ * Cut UTF-8 string
+ *
+ * @param $str
+ * @param $len
+ * @param string $suffix
+ * @return string
+ */
+function strcut($str, $len, $suffix="")
+{
+    $s = substr($str, 0, $len);
+    $cnt = 0;
+    for ($i=0; $i<strlen($s); $i++)
+        if (ord($s[$i]) > 127)
+            $cnt++;
+    $s = substr($s, 0, $len - ($cnt % 3));
+    if (strlen($s) >= strlen($str))
+        $suffix = "";
+    return $s . $suffix;
 }

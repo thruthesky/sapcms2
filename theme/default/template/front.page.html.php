@@ -4,6 +4,10 @@
         Default Theme Front Page
     </h2>
 
+    <a href="/post">POST</a>
+    <br>
+
+
     <?php echo date('r'); ?>
 
     <?php di($_COOKIE); ?>

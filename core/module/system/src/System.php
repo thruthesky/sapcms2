@@ -271,7 +271,7 @@ class System {
                 $msg = str_replace('#'.$k, $v, $msg);
             }
         }
-	else $msg = $array_kvs;
+        else $msg = $array_kvs;
         self::$error[$code] = $msg;
         System::error_log("$code:$msg");
         return $code;
