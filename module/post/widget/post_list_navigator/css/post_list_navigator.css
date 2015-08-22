@@ -1,0 +1,7 @@
+nav.navigation-bar a {
+    display:inline-block;
+    margin:0 1px;
+    padding:4px 6px;
+    background-color: #d3e8f4;
+    border-radius: 2px;
+}

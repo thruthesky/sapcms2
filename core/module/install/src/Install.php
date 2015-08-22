@@ -139,7 +139,7 @@ class Install {
 
     public static function runInstall()
     {
-        if ( Request::module('install') ) {
+        if ( Request::isModule('install') ) {
             System::runModule();
         }
         else Response::redirect(ROUTE_INSTALL);

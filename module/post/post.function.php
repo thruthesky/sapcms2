@@ -1,5 +1,6 @@
 <?php
 
+use sap\post\post;
 use sap\post\PostConfig;
 use sap\post\PostData;
 use sap\src\Route;
@@ -43,6 +44,10 @@ function post_data($idx=null) {
         return post_data()->load('idx', $idx);
     }
     return new PostData();
+}
+
+function post() {
+    return new post();
 }
 
 function url_post_edit() {

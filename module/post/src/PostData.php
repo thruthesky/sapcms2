@@ -12,19 +12,27 @@ class PostData extends Entity {
 
     /**
      *
-     * Pre-process for post(s)
+     * Pre-process single post
      *
+     * @param $post
+     * @return array
+     */
+    public static function preProcess($post)
+    {
+        if ( empty($post) ) return FALSE;
+        if ( $post instanceof PostData ) {
+            $post = $post->getFields();
+        }
+        $post = self::pre($post);
+        return $post;
+    }
+
+    /**
+     * Pre-process multi posts.
      * @param $posts
      * @return array
      */
-    public static function preProcess($posts)
-    {
-        if ( empty($posts) ) return FALSE;
-        if ( $posts instanceof PostData ) {
-            $post = $posts->getFields();
-            $post = self::pre($post);
-            return $post;
-        }
+    public static function multiPreProcess($posts) {
         $new_posts = [];
         foreach ( $posts as $post ) {
             $new_posts[] = self::pre($post);
@@ -39,10 +47,10 @@ class PostData extends Entity {
      */
     public static function pre(array & $post) {
         $post['title'] = self::getTitleOrContent($post);
-        $post['url'] = "/post/view?$post[title]&idx=$post[idx]";
 
+        $post['url'] = post::getViewUrl($post);
         if ( $post['idx_user'] ) {
-            $post['user'] = user($post['idx_user']);
+            $post['user'] = user($post['idx_user'])->getFields();
         }
         else $post['user'] = FALSE;
         return $post;
@@ -61,6 +69,19 @@ class PostData extends Entity {
         else if ( ! empty($post['content']) ) return strcut($post['content'], 128);
         else return null;
     }
+
+    public static function formSubmit()
+    {
+        $config = post_config()->getCurrent();
+        $data = post_data();
+        $data->set('idx_config', $config->get('idx'));
+        $data->set('idx_user', login('idx'));
+        $data->set('title', request('title'));
+        $data->set('content', request('content'));
+        $data->save();
+        return $data;
+    }
+
 
     /**
      *

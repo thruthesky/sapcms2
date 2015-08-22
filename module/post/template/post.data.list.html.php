@@ -21,3 +21,6 @@
     </table>
 </div>
 
+
+<?php widget('post_list_navigator', $variables); ?>
+

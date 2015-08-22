@@ -55,11 +55,13 @@ class post {
     public static function listPostData() {
         $config = post_config()->getCurrent()->get();
         $posts = self::searchPostData();
+        $total_record = self::countPostData();
         return Response::render([
             'template'=>'post.layout',
             'page'=>'post.data.list',
             'config' => $config,
             'posts' => $posts,
+            'total_record' => $total_record,
         ]);
     }
 
@@ -77,17 +79,14 @@ class post {
                 'page'=>'post.data.edit',
             ]);
         }
-        $config = post_config( request('id') );
-        $data = post_data();
-        $data->set('idx_config', $config->get('idx'));
-        $data->set('title', request('title'));
-        $data->set('content', request('content'));
-        $data->save();
-        $post = post_data($data->idx)->getFields();
+
+        $data = PostData::formSubmit();
+
+        $post = PostData::preProcess(post_data($data->idx)->getFields());
         return Response::render([
             'template' => 'post.layout',
             'page'=>'post.data.view',
-            'config' => $config->getFields(),
+            'config' => post_config()->getCurrent()->getFields(),
             'post' => $post,
         ]);
     }
@@ -118,10 +117,14 @@ class post {
         $condition = self::searchCondition($options);
         $order = self::searchConditionOrder($options);
         $limit = self::searchLimit($options);
-
-
         $posts = post_data()->rows("$condition $order $limit", $fields);
-        return PostData::preProcess($posts);
+        return PostData::multiPreProcess($posts);
+    }
+
+    private static function countPostData(array $options=[])
+    {
+        $condition = self::searchCondition($options);
+        return post_data()->count("$condition");
     }
 
     private static function searchConditionOrder(array & $options)
@@ -139,21 +142,59 @@ class post {
     private static function searchLimit(array & $options)
     {
         if ( isset($options['limit_from']) ) $limit_from = $options['limit_from'];
-        else $limit_from = 0;
+        else {
+            $no_item = self::getOptionConfig($options)->get('no_item_per_page');
+            if ( empty($no_item) ) $no_item = sysconfig(NO_ITEM);
+            $limit_from = (page_no() - 1 ) * $no_item;
+        }
         if ( isset($options['limit_to']) ) $limit_to = $options['limit_to'];
-        else $limit_to = 10;
-        return "LIMIT $limit_from, $limit_to";
+        else {
+            $limit_to = self::getOptionConfig($options)->get('no_item_per_page');
+            if ( empty($limit_to) ) $limit_to = sysconfig(NO_ITEM);
+        }
+        $re = "LIMIT $limit_from, $limit_to";
+
+        system_log(__METHOD__);
+        system_log($re);
+
+        return $re;
     }
 
+
+    /**
+     * @param array $options
+     * @return bool|PostConfig
+     */
+    private static function getOptionConfig(array & $options) {
+        if ( isset($options['id']) ) {
+            return post_config($options['id']);
+        }
+        else if ( $id = request('id') ) {
+            return post_config($id);
+        }
+        else return FALSE;
+    }
+
+    /**
+     *
+     *
+     *
+     * @param array $options
+     *
+     *  'id' - is the config id of the forum.
+     *          if 'id' is not set, then it look for request(id)
+     *
+     * @return null|string
+     *
+     */
     private static function searchCondition(array & $options)
     {
         $config = null;
         $and = [];
-        if ( isset($options['id']) ) {
-            if ( $config = post_config($options['id']) ) {
-                $and[] = "idx_config=$config[idx]";
-            }
-        }
+        // post config
+        $config = self::getOptionConfig($options);
+        $and[] = "idx_config=".$config->get('idx');
+
         if ( isset($options['root']) ) $and[] = 'idx_root=0';
         if ( isset($options['comment']) ) $and[] = 'idx_root>0';
 
@@ -191,11 +232,33 @@ class post {
 
 
     public static function viewPostData() {
-        if ( ! $post = PostData::preProcess(post_data(request('idx'))) ) error(-50119, "Post does not exist.");
+        $config = null;
+        $post = PostData::preProcess(post_data(request('idx')));
+        if ( empty($post) ) error(-50119, "Post does not exist.");
+        else {
+            $config = post_config($post['idx_config']);
+        }
         return Response::render([
             'template'=>'post.layout',
             'page'=>'post.view',
-            'post'=>$post
+            'post'=>$post,
+            'config' => $config->getFields(),
         ]);
+    }
+
+    public static function getViewUrl(array & $post)
+    {
+        $url = "/post/view?$post[title]&idx=$post[idx]";
+        if ( $page_no = request('page_no') ) {
+            $url .= "&page_no=$page_no";
+        }
+        return $url;
+    }
+    public static function getListUrl() {
+        $url = "/post/list?id=" . post_config()->getCurrent()->get('id');
+        if ( $page_no = request('page_no') ) {
+            $url .= "&page_no=$page_no";
+        }
+        return $url;
     }
 }

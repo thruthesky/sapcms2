@@ -1,7 +1,7 @@
 <?php
     // add_javascript();
     //add_css();
-if ( get_login_user() ) {
+if ( login() ) {
     include 'login-info.php';
 }
 else {

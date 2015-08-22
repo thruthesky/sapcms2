@@ -97,6 +97,7 @@ function request($key=null, $default=null) {
     if ( $value === null ) return $default;
     else return $value;
 }
+
 function segment($n) {
     return Request::segment($n);
 }
@@ -137,20 +138,17 @@ function meta($table_name) {
 }
 
 
-function get_login_user() {
-    $id = session_get('user-id');
-    $session_id = session_get('user-session-id');
-    if ( empty($id) || empty($session_id) ) return FALSE;
-
-    $user = user('id', $id);
-    if ( empty($user) ) return FALSE;
-
-    if ( $session_id == User::getUserSessionID($user) ) return $user;
-    else return FALSE;
-}
-
+/**
+ * @param null $field
+ * @return array|bool|null|User
+ *
+ * @code
+ * login('idx')
+ * $data->set('idx_user', login('idx'));
+ * @endcode
+ */
 function login($field=null) {
-    $user = get_login_user();
+    $user = user()->getCurrent();
     if ( $user ) {
         if ( $field ) return $user->get($field);
         else return $user;

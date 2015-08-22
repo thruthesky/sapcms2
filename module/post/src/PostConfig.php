@@ -10,13 +10,18 @@ class PostConfig extends Entity {
     }
 
 
+    /**
+     * @return $this|bool
+     */
     public function getCurrent() {
-
         if ( $id = request('id') ) {
             return $this->load('id', $id);
         }
         else if ( $idx = request('idx') ) {
-            $this->load(post_data($idx)->get('idx_config'));
+            $post = post_data($idx);
+            if ( $post ) {
+                if ( $post->get('idx_config') ) return $this->load($post->get('idx_config'));
+            }
         }
         return FALSE;
     }

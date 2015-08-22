@@ -289,8 +289,13 @@ function get_current_domain_url() {
 
 
 
-function widget($widget_name) {
-    include "widget/$widget_name/$widget_name.php";
+function widget($widget_name, $variables=null) {
+    $path = "widget/$widget_name/$widget_name.php";
+    if ( ! file_exists($path) ) {
+        $module = Request::module();
+        $path = PATH_INSTALL . "/module/$module/widget/$widget_name/$widget_name.php";
+    }
+    include $path;
 }
 
 /**
@@ -343,6 +348,7 @@ function domain_name()
  */
 function session_set($k, $v=null, $exp=null, $domain=null)
 {
+    if ( System::isCommandLineInterface() ) return ;
     if ( empty($exp) ) $exp = time() + 365 * 24 * 60 * 60;
     $dir = '/';
     if ( empty($domain) ) $domain = domain_name();
@@ -363,6 +369,8 @@ function session_set($k, $v=null, $exp=null, $domain=null)
 
 function session_delete($k, $domain=NULL)
 {
+    if ( System::isCommandLineInterface() ) return ;
+
     $dir = '/';
     if ( empty($domain) ) $domain = domain_name();
     setcookie($k, NULL, time()-3600*24*30, $dir, $domain);

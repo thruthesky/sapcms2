@@ -35,7 +35,9 @@ class UserController
                 $user->set('name', Request::get('name'))
                     ->set('mail', Request::get('mail'))
                     ->save();
+
                 if ( ! login() ) User::login(Request::get('id'));
+
                 return TRUE;
             }
         }

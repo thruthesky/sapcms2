@@ -132,11 +132,14 @@ class HTML {
 
         if ( empty($qs) ) {
             /// @warning when the input of $qs is empty,
-            /// it returns the value of HTTP input excep page_no and idx
+            /// it returns the value of HTTP input except page_no and idx
             /// and it puts $in[action]='list'
             $qv = Request::get();
             unset($qv["page_no"]);
-            unset($qv["id"]);
+
+            // Add 'id' on HTTP Vars.
+            //unset($qv["id"]);
+
             unset($qv["idx"]);//added by benjamin
             $qs = http_build_query($qv);
         }

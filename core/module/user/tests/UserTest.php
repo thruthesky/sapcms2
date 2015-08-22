@@ -100,4 +100,26 @@ class UserTest extends PHPUnit_Framework_TestCase {
         $user->delete();
     }
 
+    public function test_user_login() {
+        $id = "TEST ID LOGIN";
+        $password = "TEST PASSWORD";
+        if ( $user = user('id', $id) ) $user->delete();
+
+        // create user account
+        user()->create($id)
+            ->setPassword($password)
+            ->save();
+
+
+        // login user
+        user()->logout();
+        $user = user()->getCurrent();
+        $this->assertFalse($user);
+        user()->login($id);
+
+        // check if user login
+        $this->assertTrue(user()->getCurrent()->get('id') == $id);
+        user($id)->delete();
+    }
+
 }

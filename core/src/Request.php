@@ -55,10 +55,29 @@ class Request {
     }
 
 
-    public static function module($module_name)
+    /**
+     *
+     * Return module name
+     *
+     * @param $module_name
+     * @return bool
+     */
+    public static function module($module_name=null)
     {
-        return Route::load()->module == $module_name;
+        return segment(0);
     }
+
+    /**
+     * Compares module name
+     * @param $module_name
+     * @return bool
+     */
+    public static function isModule($module_name)
+    {
+        return segment(0) == $module_name;
+    }
+
+
 
     /**
      *
@@ -93,5 +112,6 @@ class Request {
         }
         return self::$request_uri;
     }
+
 
 }

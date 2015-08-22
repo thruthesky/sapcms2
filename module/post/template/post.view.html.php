@@ -1,27 +1,10 @@
 <?php
 if ( empty($post) ) return;
+
 ?>
-
-<h3 class='title'>
-    <hr>Title Widget<hr>
-    <?php if ( $post['deleted'] ) { ?>
-        This post is deleted.
-    <?php } else { ?>
-        <?php echo $post['title'] ?>
-    <?php } ?>
-</h3>
-<nav>
-    <hr>Menu Widget</hr>
-</nav>
-<section class="content">
-    <hr>Content Widget<hr>
-    <?php if ( $post['deleted'] ) { ?>
-        This post is deleted.
-    <?php } else { ?>
-        <?php echo $post['content'] ?>
-    <?php } ?>
-</section>
-
+<h3 class='title'><?php widget('post_view_title', $variables)?></h3>
+<nav class=""><?php widget('post_view_menu', $variables)?></nav>
+<section class="content"><?php widget('post_view_content', $variables)?></section>
 <section role="files">
     <hr>File Widget<hr>
 </section>
