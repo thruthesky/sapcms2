@@ -7,10 +7,11 @@ $client = new \GuzzleHttp\Client([
 
 
 $jar = new \GuzzleHttp\Cookie\CookieJar;
-
+//https://ssl.olx.ph/account/?ref%5B0%5D%5Baction%5D=myaccount&ref%5B0%5D%5Bmethod%5D=index
 
 // LOGIN
 $response = $client->post("https://ssl.olx.ph/account/?ref%5B0%5D%5Baction%5D=myaccount&ref%5B0%5D%5Bmethod%5D=index", [
+
 //$response = $client->post("http://work.org/phpinfo.php", [
 //$response = $client->post("http://work.org:8080/", [
 
@@ -40,5 +41,4 @@ foreach ( $urls as $url ) {
     print_r($response->getBody()->getContents());
     sleep(1);
 }
-
 
