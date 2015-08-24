@@ -57,8 +57,7 @@ $bulks = entity(BULK)->rows("limit $from, $no_item");
     $select_last_send .= "</select>";
 
 	$select_limit_send = "<select name='limit' data-inline='true'>";	
-	$select_limit_send .= "<option value=''>Limit</option>";	
-	$select_limit_send .= "<option value='5'>5</option>";
+	$select_limit_send .= "<option value=''>Limit</option>";		
 	$select_limit_send .= "<option value='1000'>1000</option>";
 	$select_limit_send .= "<option value='3000'>3000</option>";
 	$select_limit_send .= "<option value='5000'>5000</option>";
