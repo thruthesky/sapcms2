@@ -30,7 +30,10 @@ $bulks = entity(BULK)->rows("limit $from, $no_item");
     $select_category = "<select name='category' data-inline='true'>";
     $select_category .= "<option value=''>Entire Category ($count_entire_number)</option>";
     foreach( $categories as $category ) {
-        if ( empty($category['category']) ) $text = "NO-CATEGORY ($category[cnt])";
+        if ( empty($category['category']) ) {
+			$text = "NO-CATEGORY ($category[cnt])";
+			$category['category'] = "no_category";
+		}
         else $text = "$category[category] ($category[cnt])";
         $select_category .= "<option value='$category[category]'>$text</option>";
     }
@@ -53,7 +56,14 @@ $bulks = entity(BULK)->rows("limit $from, $no_item");
     $select_last_send .= "<option value='100'>100 Day</option>";
     $select_last_send .= "</select>";
 
-
+	$select_limit_send = "<select name='limit' data-inline='true'>";	
+	$select_limit_send .= "<option value=''>Limit</option>";		
+	$select_limit_send .= "<option value='1000'>1000</option>";
+	$select_limit_send .= "<option value='3000'>3000</option>";
+	$select_limit_send .= "<option value='5000'>5000</option>";
+	$select_limit_send .= "<option value='10000'>10000</option>";
+	$select_limit_send .= "</select>";
+	
     foreach( $bulks as $bulk ) {
         $no_sent = entity(SMS_SUCCESS)->result('COUNT(*)', "tag='$bulk[name]'");
         $no_queue = entity(SMS_QUEUE)->result('COUNT(*)', "tag='$bulk[name]'");
@@ -71,6 +81,7 @@ $bulks = entity(BULK)->rows("limit $from, $no_item");
             $select_location
             $select_category
             $select_last_send
+			$select_limit_send
                 <input type='submit' value='SEND' data-inline='true'>
                 ( No. of SENT: $no_sent )
                 ( No. in Queue: $no_queue )

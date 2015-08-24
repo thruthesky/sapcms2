@@ -30,9 +30,8 @@
 				$data['stamp_last_collection'] = time();
 				$data['stamp_last_post'] = get_post_date($row);
 				//print_r( $data );
-				continue;
 				echo "Success! $row[url]\n";
-				//$db->insert('smsgate_bulk_data', $data);				
+				$db->insert('smsgate_bulk_data', $data);				
 				$success_count ++;
 				//print_r( $data );
 				if( !empty( $page_extract_update['fail_reason'] ) ) unset( $page_extract_update['fail_reason'] );				
@@ -48,7 +47,7 @@
 			$fail_count ++;
 		}
 		
-		//$db->update('page_number_extract', $page_extract_update, $page_extract_cond);
+		$db->update('page_number_extract', $page_extract_update, $page_extract_cond);
 		//echo "\n";	
 	}
 	echo "success = $success_count - fail = $fail_count ++;";
@@ -114,7 +113,7 @@
 		}		
 	}
 	
-	echo $number." - $row[url]\n";
+	//echo $number." - $row[url]\n";
 	
     return $number;
 }

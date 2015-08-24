@@ -1,6 +1,10 @@
 <?php
+	//$ch = curl_init ();
+	//curl_setopt ( $ch, CURLOPT_TIMEOUT, 120);	
+
 	use sap\src\Database;
-	//$db = Database::load();
+	global $db;
+	$db = Database::load();
 	
 	$ebay_categories =	[
 					//"20081"=>"Antiques",
@@ -39,10 +43,10 @@
 	if( isset( $argv[1] ) ) $start_page = $argv[1];
 	else $start_page = 1;
 
-	if( $start_page < 1 ) $start_page = 1;//cannot be less than 1 for start_page
+	if( $start_page < 1 ) $start_page = 2;//cannot be less than 1 for start_page
 
 	if( isset( $argv[2] ) ) $last_page = $argv[2];
-	else $last_page = 5;
+	else $last_page = 16;
 	
 	if( isset( $argv[3] ) ) $categories[] = $argv[3];
 	else $categories = [ "10542"=>"Real Estate" ];
@@ -87,7 +91,8 @@
 	}
 	
 	function save_pages_into_database( $urls, $category ){	
-		$db = Database::load();
+		//$db = Database::load();
+		global $db;
 	
 		foreach( $urls as $url ){
 			$res = $db->row( 'page_number_extract', "url = '$url'" );

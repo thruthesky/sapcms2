@@ -78,7 +78,11 @@ class bulk {
         $conds = [];
         $cond = null;
         if ( $location = request('location') ) $conds[] = "province='$location'";
-        if ( $category = request('category') ) $conds[] = "category='$category'";
+        if ( $category = request('category') ){
+			//empty category is different from ignoring category value so I added this
+			if( $category == 'no_category' ) $conds[] = "category=''";
+			else $conds[] = "category='$category'";
+		}
         if ( $days = request('days') ) {
             $stamp = time() - $days * 24 * 60 * 60;
             $conds[] = "stamp_last_sent<$stamp";
@@ -87,15 +91,16 @@ class bulk {
             $cond = implode(' AND ', $conds);
         }
 
+		//temp added by benjamin for limit ( automatic stamp_last_sent to avoid getting the same date )...
+		if( $limit = request('limit') ) $cond = $cond." ORDER BY stamp_last_sent ASC LIMIT $limit";
+
         $bulk = entity(BULK)->load(request('idx'));
         $tag = $bulk->get('name');
         $notify_number = $bulk->get('number');
         $numbers = [];
-
-
-
-
+		
         $rows = entity(BULK_DATA)->rows($cond, "idx,number", \PDO::FETCH_KEY_PAIR);
+				
 		//di( $notify_number );
 		//di( $rows );
 		//exit;
@@ -111,7 +116,7 @@ class bulk {
                 $numbers = array_values($data);
                 $data = smsgate::scheduleMessage($numbers, $bulk->get('message'), $tag);
                 if ( !empty($data['scheduled']) ) {
-                    smsgate::scheduleMessage($notify_number, "Bulk - $tag ($cond) - has been sent (".count($rows).")", $tag . ':notify:' . date('ymdHi'));
+                    smsgate::scheduleMessage($notify_number, "Bulk - $tag ($cond) - has been sent (".count($rows).")", $tag . ':notify:' . date('ymdHis'));
                 }
             }
         }
