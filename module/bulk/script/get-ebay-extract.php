@@ -41,12 +41,12 @@
 					];
 	
 	if( isset( $argv[1] ) ) $start_page = $argv[1];
-	else $start_page = 24;
+	else $start_page = 1;
 
 	if( $start_page < 1 ) $start_page = 2;//cannot be less than 1 for start_page
 
 	if( isset( $argv[2] ) ) $last_page = $argv[2];
-	else $last_page = 50;
+	else $last_page = 16;
 	
 	if( isset( $argv[3] ) ) $categories[] = $argv[3];
 	else $categories = [ "10542"=>"Real Estate" ];
