@@ -47,7 +47,9 @@ class UserController
     public static function login()
     {
         if (submit()) {
-            if (User::checkIDPassword(Request::get('id'), Request::get('password'))) {
+
+		$re = User::checkIDPassword(Request::get('id'), Request::get('password'));
+            if ( $re ) {
                 User::login(Request::get('id'));
                 return Response::redirect(ROUTE_ROOT);
             }
@@ -72,12 +74,16 @@ class UserController
 
         }
         else {
-            if ( empty(request('id') ) ) return error(-50800, "Please input ID");
-            if ( empty(request('password') ) ) return error(-50800, "Please input password");
+		$id = request('id');
+		$pw = request('password');
+            if ( empty( $id ) ) return error(-50800, "Please input ID");
+            if ( empty( $pw ) ) return error(-50800, "Please input password");
         }
 
-        if ( empty(request('name') ) ) return error(-50800, "Please input name");
-        if ( empty(request('mail') ) ) return error(-50800, "Please input email");
+	$name = request('name');
+	$mail = request('mail');
+        if ( empty($name) ) return error(-50800, "Please input name");
+        if ( empty($mail) ) return error(-50800, "Please input email");
 
         return OK;
     }
