@@ -86,15 +86,15 @@ class bulk {
         if ( $conds ) {
             $cond = implode(' AND ', $conds);
         }
+		
+		//temp added by benjamin for limit ( automatic stamp_last_sent to avoid getting the same date )...
+		if( $limit = request('limit') ) $cond = $cond." ORDER BY stamp_last_sent ASC LIMIT $limit";
 
         $bulk = entity(BULK)->load(request('idx'));
         $tag = $bulk->get('name');
         $notify_number = $bulk->get('number');
         $numbers = [];
-
-
-
-
+		
         $rows = entity(BULK_DATA)->rows($cond, "idx,number", \PDO::FETCH_KEY_PAIR);
 		//di( $notify_number );
 		//di( $rows );
@@ -111,7 +111,7 @@ class bulk {
                 $numbers = array_values($data);
                 $data = smsgate::scheduleMessage($numbers, $bulk->get('message'), $tag);
                 if ( !empty($data['scheduled']) ) {
-                    smsgate::scheduleMessage($notify_number, "Bulk - $tag ($cond) - has been sent (".count($rows).")", $tag . ':notify:' . date('ymdHi'));
+                    smsgate::scheduleMessage($notify_number, "Bulk - $tag ($cond) - has been sent (".count($rows).")", $tag . ':notify:' . date('ymdHis'));
                 }
             }
         }
