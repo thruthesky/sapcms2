@@ -1,6 +1,6 @@
 <?php
-	$ch = curl_init ();
-	curl_setopt ( $ch, CURLOPT_TIMEOUT, 120);	
+	//$ch = curl_init ();
+	//curl_setopt ( $ch, CURLOPT_TIMEOUT, 120);	
 
 	use sap\src\Database;
 	global $db;
