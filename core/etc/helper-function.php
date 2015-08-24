@@ -1,7 +1,7 @@
 <?php
-use sap\core\Config\Config;
-use sap\core\System\System;
-use sap\core\User\User;
+use sap\core\config\Config;
+use sap\core\system\System;
+use sap\core\user\User;
 use sap\src\Database;
 use sap\src\Entity;
 use sap\src\Form;
