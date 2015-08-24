@@ -1,6 +1,6 @@
 <?php
 
-ini_set('memory_limit','256M');//temp
+//ini_set('memory_limit','256M');//temp
 
 include 'core/autoload.php';
 
