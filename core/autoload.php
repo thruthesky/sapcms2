@@ -31,11 +31,12 @@ spl_autoload_register( function( $class ) {
             }
             $path = PATH_INSTALL . "/module/$module/src/$name.php";
         }
-        include $path;
+	include $path;
     }
     else if (strpos($class, 'PHPImageWorkshop') !== false ) {
+
         $path = PATH_INSTALL . "/core/external-library/$class.php";
-        include $path;
+	include $path;
     }
 } );
 include PATH_INSTALL . '/core/bootstrap.php';
