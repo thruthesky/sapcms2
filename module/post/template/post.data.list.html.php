@@ -23,4 +23,4 @@
 
 
 <?php widget('post_list_navigator', $variables); ?>
-
+<?php widget('post_list_search_box', $variables); ?>
