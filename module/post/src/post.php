@@ -54,7 +54,7 @@ class post {
 
     public static function listPostData() {
         $config = post_config()->getCurrent()->get();
-        $posts = self::searchPostData();
+        $posts = self::searchPostDataCondition();
         $total_record = self::countPostData();
         return Response::render([
             'template'=>'post.layout',
@@ -64,6 +64,19 @@ class post {
             'total_record' => $total_record,
         ]);
     }
+
+
+    public static function searchPostData() {
+        $posts = self::searchPostDataCondition();
+        $total_record = self::countPostData();
+        return Response::render([
+            'template'=>'post.layout',
+            'page'=>'post.data.search',
+            'posts' => $posts,
+            'total_record' => $total_record,
+        ]);
+    }
+
 
     public static function editPostData() {
         return Response::render([
@@ -111,7 +124,12 @@ class post {
         return OK;
     }
 
-    private static function searchPostData(array $options=[])
+
+    /**
+     * @param array $options
+     * @return array
+     */
+    private static function searchPostDataCondition(array $options=[])
     {
         $fields = self::searchFields($options);
         $condition = self::searchCondition($options);
@@ -143,13 +161,17 @@ class post {
     {
         if ( isset($options['limit_from']) ) $limit_from = $options['limit_from'];
         else {
-            $no_item = self::getOptionConfig($options)->get('no_item_per_page');
+            $config = self::getOptionConfig($options);
+            if ( $config ) {
+                $no_item = $config->get('no_item_per_page');
+            }
             if ( empty($no_item) ) $no_item = sysconfig(NO_ITEM);
             $limit_from = (page_no() - 1 ) * $no_item;
         }
         if ( isset($options['limit_to']) ) $limit_to = $options['limit_to'];
         else {
-            $limit_to = self::getOptionConfig($options)->get('no_item_per_page');
+            $config = self::getOptionConfig($options);
+            if ( $config ) $limit_to = $config->get('no_item_per_page');
             if ( empty($limit_to) ) $limit_to = sysconfig(NO_ITEM);
         }
         $re = "LIMIT $limit_from, $limit_to";
@@ -162,6 +184,12 @@ class post {
 
 
     /**
+     *
+     * Return Config Entity of the SEARCH condition.
+     *
+     * If $options['id'] is empty,
+     * then, it looks for the HTTP INPUT as in request('id')
+     *
      * @param array $options
      * @return bool|PostConfig
      */
@@ -193,7 +221,9 @@ class post {
         $and = [];
         // post config
         $config = self::getOptionConfig($options);
-        $and[] = "idx_config=".$config->get('idx');
+        if ( $config )  {
+            $and[] = "idx_config=".$config->get('idx');
+        }
 
         if ( isset($options['root']) ) $and[] = 'idx_root=0';
         if ( isset($options['comment']) ) $and[] = 'idx_root>0';
@@ -201,7 +231,10 @@ class post {
         if ( $q = request('q') ) {
             if ( $qn = request('qn') ) {
                 if ( $user = user($q) ) {
-                    $ands[] = 'user_id=' . $user->get('id');
+                    $and[] = 'idx_user=' . $user->get('idx');
+                }
+                else {
+                    $and[] = 'idx_user=-1'; // ERROR
                 }
             }
             else if ( request('qt') || request('qc') ) {
@@ -211,7 +244,7 @@ class post {
                 foreach( $words as $word ) {
                     $or = [];
                     if ( $qt ) $or[] = "`title` LIKE '%$word%'";
-                    if ( $qc ) $or[] = "content_stripped__value LIKE '%$word%'";
+                    if ( $qc ) $or[] = "content_stripped LIKE '%$word%'";
                     $and[] = '(' . implode(' OR ', $or) .')';
                 }
             }
@@ -221,12 +254,17 @@ class post {
                 foreach( $words as $word ) {
                     $or = [];
                     $or[] = "`title` LIKE '%$word%'";
-                    $or[] = "content_stripped__value LIKE '%$word%'";
+                    $or[] = "content_stripped LIKE '%$word%'";
                     $and[] = '(' . implode(' OR ', $or) .')';
                 }
             }
         }
-        if ( $and ) return implode(' AND ', $and);
+
+
+        if ( $and ) {
+            $re = implode(' AND ', $and);
+            return $re;
+        }
         else return null;
     }
 
@@ -249,16 +287,40 @@ class post {
     public static function getViewUrl(array & $post)
     {
         $url = "/post/view?$post[title]&idx=$post[idx]";
-        if ( $page_no = request('page_no') ) {
-            $url .= "&page_no=$page_no";
-        }
+        $url .= self::getUrlVariables();
         return $url;
     }
+
     public static function getListUrl() {
         $url = "/post/list?id=" . post_config()->getCurrent()->get('id');
+        $url .= self::getUrlVariables();
+        return $url;
+    }
+
+    public static function getEditUrl() {
+        $url = "/post/edit?idx=" . post_data()->getCurrent()->get('idx');
+        return $url;
+    }
+
+    public static function getUrlVariables() {
+        $url = null;
         if ( $page_no = request('page_no') ) {
             $url .= "&page_no=$page_no";
         }
+        if ( $q = request('q') ) {
+            $url .= "&q=$q";
+        }
+        if ( $qn = request('qn') ) {
+            $url .= "&qn=$qn";
+        }
+        if ( $qt = request('qt') ) {
+            $url .= "&qt=$qt";
+        }
+        if ( $qc = request('qc') ) {
+            $url .= "&qc=$qc";
+        }
         return $url;
     }
+
 }
+

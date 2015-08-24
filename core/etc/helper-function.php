@@ -98,6 +98,8 @@ function request($key=null, $default=null) {
     else return $value;
 }
 
+
+
 function segment($n) {
     return Request::segment($n);
 }

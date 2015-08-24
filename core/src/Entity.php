@@ -110,7 +110,7 @@ class Entity {
 
         $table = $this->table();
         $code = "$table:$field:$value";
-        System::log(__METHOD__ . " ( $field, $value ) : $code");
+        //System::log(__METHOD__ . " ( $field, $value ) : $code");
 
         $this->setCacheCode($code);
 

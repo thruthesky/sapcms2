@@ -5,3 +5,7 @@ nav.navigation-bar a {
     background-color: #d3e8f4;
     border-radius: 2px;
 }
+nav.navigation-bar .selected {
+    background-color:grey;
+    color:white;
+}

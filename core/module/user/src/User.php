@@ -81,6 +81,7 @@ class User extends Entity {
             error(ERROR_USER_NOT_FOUND_BY_THAT_ID, ['id'=>$id]);
             return FALSE;
         }
+
     }
 
     private static function checkUserID($id)

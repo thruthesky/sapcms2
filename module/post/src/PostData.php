@@ -5,6 +5,9 @@ namespace sap\post;
 use sap\src\Entity;
 
 class PostData extends Entity {
+
+    private static $current = null;
+
     public function __construct() {
         parent::__construct(POST_DATA);
     }
@@ -73,13 +76,11 @@ class PostData extends Entity {
     public static function formSubmit()
     {
         $config = post_config()->getCurrent();
-        $data = post_data();
-        $data->set('idx_config', $config->get('idx'));
-        $data->set('idx_user', login('idx'));
-        $data->set('title', request('title'));
-        $data->set('content', request('content'));
-        $data->save();
-        return $data;
+        $options['idx_config'] = $config->get('idx');
+        $options['idx_user'] = login('idx');
+        $options['title'] = request('title');
+        $options['content'] = request('content');
+        return PostData::newPost($options);
     }
 
 
@@ -87,12 +88,52 @@ class PostData extends Entity {
      *
      * If there is no current data, then returns FALSE.
      *
+     * @Attention it search the current data
+     *
+     *      - Firstly, if request('idx') is available.
+     *      - Secondly, if self::$current is set by setCurrent().
+     *
      * @return $this|bool
      */
     public function getCurrent() {
         if ( $idx = request('idx') ) {
             return $this->load($idx);
         }
+        else if ( self::$current ) {
+            return self::$current;
+        }
         else return FALSE;
     }
+
+    public static function setCurrent(PostData & $data) {
+        self::$current = $data;
+    }
+
+
+    /**
+     *
+     *
+     * @Attention It create a new post and sets to current data.
+     *
+     * @param array $options
+     * @return $this|bool|PostData
+     */
+    public static function newPost(array &$options) {
+        $data = post_data();
+        $data->set($options);
+        $data->set('delete', 0);
+        $data->set('block', 0);
+        $data->set('blind', 0);
+        $data->set('report', 0);
+        $data->set('content_stripped', strip_tags($options['content']));
+        $data->set('ip', ip());
+        if ( ! isset($options['domain']) ) $data->set('domain', domain());
+        if ( ! isset($options['user_agent']) ) $data->set('domain', user_agent());
+        $data->save();
+        self::setCurrent($data);
+        return $data;
+    }
+
+
+
 }
