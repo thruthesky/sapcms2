@@ -30,7 +30,10 @@ $bulks = entity(BULK)->rows("limit $from, $no_item");
     $select_category = "<select name='category' data-inline='true'>";
     $select_category .= "<option value=''>Entire Category ($count_entire_number)</option>";
     foreach( $categories as $category ) {
-        if ( empty($category['category']) ) $text = "NO-CATEGORY ($category[cnt])";
+        if ( empty($category['category']) ) {
+			$text = "NO-CATEGORY ($category[cnt])";
+			$category['category'] = "no_category";
+		}
         else $text = "$category[category] ($category[cnt])";
         $select_category .= "<option value='$category[category]'>$text</option>";
     }
@@ -55,6 +58,7 @@ $bulks = entity(BULK)->rows("limit $from, $no_item");
 
 	$select_limit_send = "<select name='limit' data-inline='true'>";	
 	$select_limit_send .= "<option value=''>Limit</option>";	
+	$select_limit_send .= "<option value='5'>5</option>";
 	$select_limit_send .= "<option value='1000'>1000</option>";
 	$select_limit_send .= "<option value='3000'>3000</option>";
 	$select_limit_send .= "<option value='5000'>5000</option>";

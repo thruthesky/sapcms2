@@ -78,7 +78,11 @@ class bulk {
         $conds = [];
         $cond = null;
         if ( $location = request('location') ) $conds[] = "province='$location'";
-        if ( $category = request('category') ) $conds[] = "category='$category'";
+        if ( $category = request('category') ){
+			//empty category is different from ignoring category value so I added this
+			if( $category == 'no_category' ) $conds[] = "category=''";
+			else $conds[] = "category='$category'";
+		}
         if ( $days = request('days') ) {
             $stamp = time() - $days * 24 * 60 * 60;
             $conds[] = "stamp_last_sent<$stamp";
@@ -86,7 +90,7 @@ class bulk {
         if ( $conds ) {
             $cond = implode(' AND ', $conds);
         }
-		
+
 		//temp added by benjamin for limit ( automatic stamp_last_sent to avoid getting the same date )...
 		if( $limit = request('limit') ) $cond = $cond." ORDER BY stamp_last_sent ASC LIMIT $limit";
 
@@ -96,6 +100,7 @@ class bulk {
         $numbers = [];
 		
         $rows = entity(BULK_DATA)->rows($cond, "idx,number", \PDO::FETCH_KEY_PAIR);
+				
 		//di( $notify_number );
 		//di( $rows );
 		//exit;
