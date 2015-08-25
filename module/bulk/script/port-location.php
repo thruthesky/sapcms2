@@ -3,7 +3,7 @@ use sap\src\Database;
 
 $db = Database::load();
 
-$stmt = $db->query("SELECT idx, location FROM " . BULK_DATA . " WHERE location <> ''");
+$stmt = $db->query("SELECT idx, location FROM " . BULK_DATA . " WHERE location <> '' AND city is null AND province is null");
 $i = 0;
 
 foreach( $stmt as $row ) {
