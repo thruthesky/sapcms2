@@ -25,7 +25,7 @@ class smsgate {
     }
 
     public static function send() {
-
+		$data = [];
         if ( submit() ) {
             $tag = self::getTagFromInput();
             $scheduled = [];
@@ -35,12 +35,9 @@ class smsgate {
                 $data = self::scheduleMessage($numbers, request('message'), $tag);
             }
             $data['template'] = 'smsgate.sent';
-			$data['page'] = 'send';
-            Response::render($data);
-        }
-        else {
-            Response::render();
-        }
+		}
+		$data['page'] = 'send';
+        Response::render($data);
     }
 	
     public static function block() {
