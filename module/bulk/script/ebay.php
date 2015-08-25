@@ -142,10 +142,9 @@
 				],
 			]);
 		}
-		catch (\Guzzle\Http\Exception\CurlException $e) 
-		{
-			// throw a craft exception which displays the error cleanly
-			throw new HttpException(400, 'Internet connection not available');
+		catch( Exception $e ) {
+			// do nothing
+			return null;
 		}
 		
 		$body = $response->getBody()->getContents();
