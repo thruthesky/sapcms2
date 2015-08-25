@@ -85,16 +85,16 @@ class post {
         ]);
     }
 
-    public static function editSubmitPostData() {
-        if ( self::validateEditSubmit() ) {
-            return Response::render([
-                'template'=>'post.layout',
-                'page'=>'post.data.edit',
-            ]);
-        }
-
+    public static function editSubmitPostData()
+    {
+        if (self::isNewPostSubmit()) return self::formSubmitForPost();
+        else if (self::isNewComment()) return self::formSubmitForComment();
+        return setError(-50291, "Wrong form");
+    }
+    public static function formSubmitForPost() {
+        if ( self::validateEditSubmit() ) return Response::render([ 'template'=>'post.layout', 'page'=>'post.data.edit' ]);
         $data = PostData::formSubmit();
-
+        if ( empty($data) ) return Response::render([ 'template'=>'post.layout', 'page'=>'post.data.edit' ]);
         $post = PostData::preProcess(post_data($data->idx)->getFields());
         return Response::render([
             'template' => 'post.layout',
@@ -104,22 +104,76 @@ class post {
         ]);
     }
 
+    /**
+     * https://docs.google.com/document/d/1624WxUtMw95UwCgj2YI25IWMbLkcNlbN_pHyugHRWyI/edit#heading=h.etolzwsd49az
+     * @return int
+     */
+    public static function formSubmitForComment() {
+        if ( self::validateEditSubmit() ) return jsBack(getErrorString());
+        $data = PostData::formSubmit();
+        if ( empty($data) ) return jsBack(getErrorString());
+        else {
+            $url = self::getViewCommentUrl($data->idx);
+            system_log("URL: $url");
+            return Response::redirect($url);
+        }
+    }
 
 
+    /**
+     *
+     *
+     * @Attention It only checks INPUT from Web browser FORM Submit. You may not use this method on your own code.
+     *
+     * @return int|mixed
+     */
     public static function validateEditSubmit() {
-        $id = request('id');
+        if ( self::isNewPostSubmit() ) {
+            return self::validateNewPost([
+                'id' => request('id'),
+                'title' => request('title'),
+                'content' => request('content'),
+            ]);
+        }
+        else if ( self::isNewComment() ) {
+            return self::validateNewComment([
+                'idx_parent' => request('idx_parent'),
+                'content' => request('content'),
+            ]);
+        }
+        else return setError(-50108, "Wrong form submit");
+    }
+
+    public static function validateNewPost(array $options) {
+        $id = $options['id'];
         $config = post_config($id);
         if ( empty($config) ) {
-            return set_error(-50104, "No configuration record found by '$id'.");
+            return setError(-50104, "No configuration record found by '$id'.");
         }
-
-        $title = request('title');
+        $title = $options['title'];
         if ( empty($title) ) {
-            return set_error(-50105, "Please input title");
+            return setError(-50105, "Please input title");
         }
-        $content = request('content');
+        $content = $options['content'];
         if ( empty($content) ) {
-            return set_error(-50106, "Please input content");
+            return setError(-50106, "Please input content");
+        }
+        return OK;
+    }
+
+    /**
+     * @Attention USE this method to check if all the inputs are valid for creating new comment.
+     * @param array $options
+     * @return int|mixed
+     */
+    public static function validateNewComment(array $options) {
+        if ( empty($options['idx_parent']) ) {
+            return setError(-50201, "Wrong idx_parent");
+        }
+        $data = post_data($options['idx_parent']);
+        if ( empty($data) ) return setError(-50202, "No parent data");
+        if ( empty($options['content']) ) {
+            return setError(-50106, "Please input content");
         }
         return OK;
     }
@@ -278,7 +332,7 @@ class post {
         }
         return Response::render([
             'template'=>'post.layout',
-            'page'=>'post.view',
+            'page'=>'post.data.view',
             'post'=>$post,
             'config' => $config->getFields(),
         ]);
@@ -290,6 +344,20 @@ class post {
         $url .= self::getUrlVariables();
         return $url;
     }
+
+    /**
+     *
+     */
+    public static function getViewCommentUrl($idx_comment)
+    {
+        $data = post_data($idx_comment);
+        $title = $data->get('title');
+        $idx_root = $data->get('idx_root');
+        $url = "/post/view?$title&idx=$idx_root#comment$idx_comment";
+        return $url;
+    }
+
+
 
     public static function getListUrl() {
         $url = "/post/list?id=" . post_config()->getCurrent()->get('id');
@@ -321,6 +389,26 @@ class post {
         }
         return $url;
     }
+
+    /**
+     * Return TRUE if the FORM submit is for creating a new post.
+     * @return bool
+     */
+    public static function isNewPostSubmit()
+    {
+        return ! request('idx_parent', FALSE);
+    }
+
+    /**
+     * Returns TRUE value if the FORM submit is for creating a new comment.
+     *
+     * @return Request
+     */
+    public static function isNewComment()
+    {
+        return request('idx_parent', FALSE);
+    }
+
 
 }
 

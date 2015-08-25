@@ -43,9 +43,7 @@ class ErrorHandler {
         if ( empty($error) ) return;
         while ( ob_get_clean() ) ;
 
-
-
-        $this->showErrorBox('<pre>' . $error['message'] .'</pre>');
+        $this->showErrorBox('<pre>' . $error['message'] . PHP_EOL . "on line $error[line] in file $error[file]</pre>");
         $this->showIncludedFiles();
 
     }

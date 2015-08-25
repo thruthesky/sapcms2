@@ -227,11 +227,24 @@ class Entity {
     }
 
 
-
+    /**
+     *
+     *
+     *
+     * @param $field - if $value is empty, it is "idx"
+     * @param null $value
+     * @return $this
+     */
     public function which($field, $value=null) {
         $this->which = true;
-        $this->which_field = $field;
-        $this->which_value = $value;
+        if ( $value === null ) {
+            $this->which_field = 'idx';
+            $this->which_value = $field;
+        }
+        else {
+            $this->which_field = $field;
+            $this->which_value = $value;
+        }
         return $this;
     }
 

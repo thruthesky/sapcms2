@@ -1,4 +1,5 @@
 <?php
+include_once "core/etc/phpunit/test.php";
 
 use sap\src\Request;
 
@@ -17,8 +18,17 @@ class RequestTest extends PHPUnit_Framework_TestCase {
         $input = Request::reset();
         $this->assertTrue( count($input) == 4 );
         $this->assertTrue( Request::get('B') == 'BBB' );
+    }
 
-
+    public function test_request_set() {
+        $_SERVER['REQUEST_URI'] = "A=AAA&B=BBB";
+        parse_str($_SERVER['REQUEST_URI'], $_GET);
+        $_POST['C'] = 'CCC';
+        Request::reset();
+        $this->assertTrue(Request::get('C') == 'CCC');
+        $this->assertTrue(Request::get('D') == null);
+        Request::set('D', 'DDD');
+        $this->assertTrue(Request::get('D') == 'DDD');
     }
 
 }

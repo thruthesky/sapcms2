@@ -1,5 +1,6 @@
 <?php
 use sap\post\PostConfig;
+use sap\src\Request;
 
 include_once "core/etc/phpunit/test.php";
 class PostConfigTest extends PHPUnit_Framework_TestCase {
@@ -40,5 +41,28 @@ class PostConfigTest extends PHPUnit_Framework_TestCase {
             ->save();
         $post->delete();
         post_config($id)->delete();
+    }
+
+
+    public function test_get_current() {
+        $id = 'test-config';
+        if ( $config = post_config($id) ) $config->delete();
+        $config = post_config()->set('id', $id)->set('name', 'Test config')->save();
+        Request::set('id', $id);
+        $this->assertTrue(post_config()->getCurrent()->id == $id);
+        Request::reset();
+        $this->assertFalse(post_config()->getCurrent());
+
+        $data = post_data()->newPost([
+            'idx_config' => $config->idx,
+            'title'=>'hello',
+            'content' => 'This is content',
+        ]);
+        $this->assertFalse( post_config()->getCurrent() );
+        Request::set('idx', $data->idx);
+        $this->assertTrue( post_config()->getCurrent()->id == $id );
+
+        $config->delete();
+        $data->delete();
     }
 }

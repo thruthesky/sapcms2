@@ -4,6 +4,18 @@ class Request {
     static $storage = [];
     private static $request_uri = null;
 
+    /**
+     *
+     * @ATTENTION
+     *
+     *      1. If it has not parsed INPUT data yet, it parse.
+     *          1.1. If it parsed already, it does not parse.
+     *          1.2 BUT if reset() is called then, it parse AGAIN based on the GET/POST
+     *
+     *
+     * @param null $k
+     * @return array|null
+     */
     public static function get($k=null) {
         if ( empty(self::$storage) ) self::reset();
         if ( empty($k) ) return self::$storage;
@@ -11,10 +23,41 @@ class Request {
         else return null;
     }
 
+
+    /**
+     * @param $k
+     * @param $v
+     *
+     *
+     * @ATTENTION
+     *      1. It adds key/value in request()
+     *      2. If it has not parse the GET/POST it parse first.
+     *
+     * @code Setting new variable for input
+     *
+    Request::set('module', 'Install');
+    Request::set('class', 'Form');
+    Request::set('method', 'Input');
+     *
+     * @endcode
+     *
+     * @code Setting new variable and let it adjust.
+     *  Request::set(HTTP_VAR_ROUTE, "Install.Form.Input");
+     * @endcode
+     *
+     */
+    public static function set($k, $v)
+    {
+        if ( empty(self::$storage) ) self::reset();
+        self::$storage[$k] = $v;
+    }
+
+
     public static function reset() {
         self::$storage = array_merge($_GET, $_POST);
         return self::$storage;
     }
+
 
     /**
      *
@@ -32,27 +75,6 @@ class Request {
 
 
 
-    /**
-     * @param $k
-     * @param $v
-     *
-     * @code Setting new variable for input
-     *
-        Request::set('module', 'Install');
-        Request::set('class', 'Form');
-        Request::set('method', 'Input');
-     *
-     * @endcode
-     *
-     * @code Setting new variable and let it adjust.
-     *  Request::set(HTTP_VAR_ROUTE, "Install.Form.Input");
-     * @endcode
-     *
-     */
-    public static function set($k, $v)
-    {
-        self::$storage[$k] = $v;
-    }
 
 
     /**

@@ -39,6 +39,6 @@ if ( $user ) {
     }
 }
 
-if ( $error = get_error() ) {
+if ( $error = getError() ) {
     print_r($error);
 }

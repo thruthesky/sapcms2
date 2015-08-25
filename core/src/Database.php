@@ -147,7 +147,11 @@ class Database extends \PDO {
     public function addColumn($table, $column, $type, $size=0)
     {
         if ( empty($size) ) {
-            if ( $type == 'varchar' || $type == 'char' ) $size = 255;
+            if ( $type == 'varchar' ) $size = 255;
+            else if ( $type == 'char' ) $size = 1;
+        }
+        if ( strtolower($type) == 'float' ) {
+            if ( $this->type == 'sqlite' ) $type = 'real';
         }
         if ( $size ) $type = "$type($size)";
         $q = "ALTER TABLE $table ADD COLUMN $column $type";

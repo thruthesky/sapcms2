@@ -1,5 +1,5 @@
 <?php
-$error = get_error();
+$error = getError();
 if ( empty($error) ) return;
 add_css();
 ?>

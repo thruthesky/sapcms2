@@ -58,8 +58,24 @@ function error($code, $array_kvs=[]) {
     return System::error($code, $array_kvs);
 }
 
-// alias of system::setError();
+/**
+ * @deprecated use setError();
+ * @param $code
+ * @param $message
+ * @return mixed
+ */
 function set_error($code, $message) {
+    return setError($code, $message);
+}
+
+/**
+ * alias of system::setError();
+ *
+ * @param $code
+ * @param $message
+ * @return mixed
+ */
+function setError($code, $message) {
     return System::setError($code, $message);
 }
 
@@ -68,8 +84,15 @@ function set_error($code, $message) {
  * alias of system::getError();
  * @return mixed
  */
-function get_error() {
+function getError() {
     return System::getError();
+}
+/**
+ * alias of system::getError();
+ * @return mixed
+ */
+function getErrorString() {
+    return System::getErrorString();
 }
 
 
@@ -596,4 +619,96 @@ function strcut($str, $len, $suffix="")
     if (strlen($s) >= strlen($str))
         $suffix = "";
     return $s . $suffix;
+}
+
+
+
+/**
+ * Returns "Escaped String" to use in javascript alert()
+ *
+ *      - it escapes single quote, line feed, etc.
+ *
+ * @param $msg
+ * @return mixed
+ */
+function jsMessage($msg)
+{
+    $msg = str_replace("\\", "\\\\", $msg);
+    $msg = str_replace("\n", "\\n", $msg);
+    $msg = str_replace("\r", "\\r", $msg);
+    $msg = str_replace("\"", "'", $msg);
+
+    return $msg;
+}
+
+
+/**
+ *
+ * Redirect PAGE into another.
+ *
+ * @ATTENTION It ECHOes to browser directly meaning you may need to terminate right after you call this function.
+ * @ATTENTION it displays UTF-8 HTML structure.
+ *
+ *
+ * @param $url
+ * @param null $message - is the message to alert
+ * @param null $target - is the target window or frame to open the PAGE of URL
+ * @return int
+ */
+function jsGo($url, $message=NULL, $target=NULL) {
+    if ( $message ) $message = jsMessage($message);
+    $out = "<!doctype html><html><head><meta charset='utf-8'></head><body>";
+    $out .= "<script>";
+    if ( $message ) $out.= "alert(\"$message\");";
+    if ( $target ) $target = "$target.";
+    $out.= "
+			{$target}location.href='$url';
+			</script>
+		";
+    $out .= "</body></html>";
+    echo $out;
+    return OK;
+}
+
+/**
+ * Prints out javascript alert() with a message.
+ * @param $message
+ * @param bool|false $header - if it is true, it echoes UTF-8 header.
+ * @return int
+ */
+function jsAlert($message, $header=true)
+{
+    if ( $message ) $message = jsMessage($message);
+    if ( $message ) {
+        if ( $header ) echo "<!doctype html><html><head><meta charset='utf-8'></head><body>";
+        echo "<script>";
+        echo "alert(\"$message\");";
+        echo "</script>";
+        if ( $header ) echo "</body></html>";
+    }
+    return OK;
+}
+
+/**
+ * Prints out "javascript history go back" to browser.
+ *
+ * @Attention it prints out HTML5 UTF-8 basic structure.
+ * @Attention You may need to terminate the RUN after this call.
+ *
+ * @param $message
+ * @param bool|true $header
+ * @return int
+ */
+function jsBack($message, $header=true)
+{
+    if ( $header ) echo "<!doctype html><html><head><meta charset='utf-8'></head><body>";
+    if ( $message ) $message = jsMessage($message);
+    echo "<script>";
+    if ( $message ) echo "alert(\"$message\");";
+    echo "
+			history.go(-1);
+			</script>
+		";
+    if ( $header ) echo "</body></html>";
+    return OK;
 }

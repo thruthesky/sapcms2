@@ -11,6 +11,14 @@ class PostConfig extends Entity {
 
 
     /**
+     *
+     *
+     * Returns a Post Configuration Entity
+     *
+     *      - Firstly, it looks for request('id')
+     *      - Secondly, it looks for request('idx')
+     *      - Lastly, it looks for request('idx_parent')
+     *
      * @return $this|bool
      */
     public function getCurrent() {
@@ -23,8 +31,13 @@ class PostConfig extends Entity {
                 if ( $post->get('idx_config') ) return $this->load($post->get('idx_config'));
             }
         }
+        else if ( $idx = request('idx_parent') ) {
+            $post = post_data($idx);
+            if ( $post ) {
+                if ( $post->get('idx_config') ) return $this->load($post->get('idx_config'));
+            }
+        }
         return FALSE;
     }
-
 
 }
