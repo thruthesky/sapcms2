@@ -62,5 +62,5 @@ $smses = entity(SMS_BLOCKED)->rows("ORDER BY idx DESC limit $from, $no_item");
 </table>
 
 <?php
-echo HTML::paging($page_no, $total_record, $no_item, $no_page, null, null, '/smsgate/list/queue');
+echo HTML::paging($page_no, $total_record, $no_item, $no_page, null, null, '/smsgate/list/blocked');
 
