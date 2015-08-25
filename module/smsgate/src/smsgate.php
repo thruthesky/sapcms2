@@ -41,14 +41,80 @@ class smsgate {
             Response::render();
         }
     }
+	
+    public static function block() {
+		$data = [];
+        if ( submit() ) {		
+			$numbers = explode("\n", Request::get('numbers'));
+			$reason = Request::get('reason');
+			
+			if( $numbers ){
+				$data = self::block_sms_numbers( $numbers, $reason );				
+				$data['template'] = 'smsgate.sent';
+			}
+        }
+        Response::render( $data );
+    }
+	
+	
+	//this looks like scheduleMessage... must merge...?
+	public static function block_sms_numbers( $numbers, $reason){
+		if( empty( $reason ) ) return [ 'error'=>-6001, 'Reason cannot be empty.'];
+		else if( strlen( $reason ) > 256 ) return [ 'error'=>-6002, 'Reason length too long. Should be less than [ 256 ].'];
+		
+		$_numbers = [];
+		$error = [];
+		foreach( $numbers as $number ) {
+            $adjusted_number = self::adjust_number($number);
+            if ( $adjusted_number ) {
+                $_numbers[] = $adjusted_number;
+            }
+            else {                
+                $error['message'] = 'Malformed number.';
+                $error['number'] = $number;
+                $data['error_number'][] = $error;
+            }
+        }
+		
+		$q = "";
+		if( !empty( $_numbers ) ){
+			foreach( $_numbers as $adjust_number ) {
+				$sms = entity(SMS_BLOCKED)->row( "number = '$adjust_number'", 'idx,number', \PDO::FETCH_KEY_PAIR);
+				if( empty( $sms ) ){
+					$created = time();
+					$priority = request('priority', 0);
+					//$tag = $tag;
+					$q .= "INSERT INTO " . SMS_BLOCKED . " (created, number, reason) VALUES ($created , '$adjust_number', '$reason');";
+					$number_info = [];
+					$number_info['message'] = "Successfully Blocked: ";
+					$number_info['number'] = $adjust_number;
+					$data['scheduled'][] = $number_info;					
+				}
+				else{
+					$q .= "UPDATE " . SMS_BLOCKED . " SET reason='$reason',changed='".time()."' WHERE idx = ".$sms['idx'].";";					
+					$error['message'] = "Number already blocked, updating reason to $reason: ";
+					$error['number'] = $adjust_number;
+					$data['error_number'][] = $error;
+				}
+				
+			}
+		}
 
-
+		if ( $q ) {
+            entity()->beginTransaction();
+            entity()->exec($q);
+            //system_log($q);
+            entity()->commit();
+        }
+		
+		return $data;
+	}
 
     public static function api() {
         $method = request('method');
         Response::json(self::$method());
     }
-    public static function sendSms() {
+    public static function sendSms() {		
         $id = request('id');
         $password = request('password');
         $message = request('message');
@@ -85,13 +151,13 @@ class smsgate {
         //system_log($numbers);
 
         $_numbers = [];
+		$error = [];
         foreach( $numbers as $number ) {
-            $number = self::adjust_number($number);
-            if ( $number ) {
-                $_numbers[] = $number;
+            $adjusted_number = self::adjust_number($number);
+            if ( $adjusted_number ) {
+                $_numbers[] = $adjusted_number;
             }
-            else {
-                $error = [];
+            else {               
                 $error['message'] = 'Malformed number.';
                 $error['number'] = $number;
                 $data['error_number'][] = $error;
@@ -102,17 +168,25 @@ class smsgate {
             self::createMessage($message);
         }
 
-        foreach( $_numbers as $adjust_number ) {
-            $created = time();
-            $priority = request('priority', 0);
-            $idx = self::getMessageIdx();
-            //$tag = $tag;
-            $q .= "INSERT INTO " . SMS_QUEUE . " (created, idx_message, number, priority, tag) VALUES ($created ,$idx, '$adjust_number', $priority, '$tag');";
-            $number_info = [];
-            $number_info['message'] = "Original number is: ".$number;
-            $number_info['number'] = $adjust_number;
-            $number_info['sms_message'] = $idx;
-            $data['scheduled'][] = $number_info;
+        foreach( $_numbers as $adjust_number ) {			
+			$sms = entity(SMS_BLOCKED)->row( "number = '$adjust_number'", 'idx,number,reason', \PDO::FETCH_KEY_PAIR);
+			if( empty( $sms ) ){		
+				$created = time();
+				$priority = request('priority', 0);
+				$idx = self::getMessageIdx();
+				//$tag = $tag;
+				$q .= "INSERT INTO " . SMS_QUEUE . " (created, idx_message, number, priority, tag) VALUES ($created ,$idx, '$adjust_number', $priority, '$tag');";
+				$number_info = [];
+				$number_info['message'] = "Successfully added to queue: ";
+				$number_info['number'] = $adjust_number;
+				$number_info['sms_message'] = $idx;
+				$data['scheduled'][] = $number_info;
+			}
+			else{
+				$error['message'] = 'Blocked : Reason -> '.$sms['reason']." :";
+                $error['number'] = $adjust_number;
+                $data['error_number'][] = $error;
+			}			
         }
 
         if ( $q ) {
@@ -165,6 +239,10 @@ class smsgate {
     public static function fail() {
         return Response::render();
     }
+	
+    public static function blocked() {
+        return Response::render();
+    }
 
     public static function statistics() {
         return Response::render();
@@ -174,24 +252,35 @@ class smsgate {
         $data = [];
 
         $idx = Request::get('idx');
-        $ent = entity(QUEUE)->load( $idx );
-        if( !empty( $ent ) ){
-            $data['notice']['type'] = "success";
-            $data['notice']['message'] = "Successfully deleted message idx [ $idx ]";
-            $ent->delete();
-        }
-        else{
-            $data['notice']['type'] = "error";
-            $data['notice']['message'] = "idx [ $idx ] does not exist.";
-        }
-
-        //redirect??
-        //$url = "/smsgate/list/queue?page_no=".Request::get('page_no');
-        //return Response::redirect( $url );
-        //or show only..?
-        $data['template'] = 'smsgate.queue';
+        $type = Request::get('type');		
+		if( empty( $type ) ){
+			$data['notice']['type'] = "error";
+			$data['notice']['message'] = "Missing delete type.";
+		}
+		else{
+			if( $type == 'queue' ) $table = SMS_QUEUE;
+			else if ( $type == 'blocked' ) $table = SMS_BLOCKED;			
+			
+			if( !empty( $table ) ){
+				$ent = entity( $table )->load( $idx );
+				if( !empty( $ent ) ){
+					$data['notice']['type'] = "success";
+					$data['notice']['message'] = "Successfully deleted message idx [ $idx ]";
+					$ent->delete();
+				}
+				else{
+					$data['notice']['type'] = "error";
+					$data['notice']['message'] = "idx [ $idx ] does not exist.";
+				}
+			}
+			else{
+				$data['notice']['type'] = "error";
+				$data['notice']['message'] = "Invalid delete type of [ $type ]";
+			}
+			$data['template'] = 'smsgate.'.$type;
+		}
+        
         Response::render($data);
-        //return Response::render( $data );
     }
 
     /**

@@ -50,3 +50,11 @@ if ( ! entity(SMS_FAILURE)->tableExists() ) {
         ->index('priority')
         ->index('stamp_next_send');
 }
+
+if ( ! entity(SMS_BLOCKED)->tableExists() ) {
+    entity(SMS_BLOCKED)
+        ->createTable()
+        ->add('number', 'char', '11')
+        ->add('reason', 'varchar', 255)
+		->unique('number');
+}
