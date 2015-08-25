@@ -150,11 +150,11 @@ class Database extends \PDO {
             if ( $type == 'varchar' ) $size = 255;
             else if ( $type == 'char' ) $size = 1;
         }
-        if ( strtolower($type) == 'float' ) {
-            if ( $this->type == 'sqlite' ) $type = 'real';
+        if ( stripos($type, 'float') !== false ) {
+            if ( $this->type == 'sqlite' ) $type = str_ireplace('float', 'real', $type);
         }
         if ( $size ) $type = "$type($size)";
-        $q = "ALTER TABLE $table ADD COLUMN $column $type";
+        $q = "ALTER TABLE `$table` ADD COLUMN `$column` $type";
         $this->runExec($q);
         return $this;
     }

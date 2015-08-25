@@ -173,12 +173,15 @@ class PostData extends Entity {
      * @endcode
      */
     public static function newPost(array $options) {
+
         $data = post_data();
+
         $data->set($options);
         $data->set('delete', 0);
         $data->set('block', 0);
         $data->set('blind', 0);
         $data->set('report', 0);
+        $data->set('order_list', 0);
         $data->set('content_stripped', strip_tags($options['content']));
         $data->set('ip', ip());
         if ( ! isset($options['domain']) ) $data->set('domain', domain());
@@ -186,22 +189,47 @@ class PostData extends Entity {
         $data->save();
 
 
-        // set idx_root
-        if ( $options['idx_parent'] ) {
+        // set idx_root into table record
+        if ( isset($options['idx_parent']) && $options['idx_parent'] ) {
+            $idx_root = post_data($options['idx_parent'])->get('idx_root');
             post_data()->which($data->get('idx'))
-                ->set('idx_root', post_data($options['idx_parent'])->get('idx_root'))
+                ->set('idx_root', $idx_root)
                 ->save();
         }
         else {
             post_data()->which($data->get('idx'))->set('idx_root', $data->get('idx'))->save();
-            $data->set('idx_root', $data->get('idx'));
+            $idx_root = $data->get('idx');
+        }
+
+        // set idx_root into the object(memory)
+        $data->set('idx_root', $idx_root);
+
+        $count = post_data()->count("idx_root=$idx_root");
+        if ( $count > 1 ) {
+            // GET Parent order_list
+            $parent_order_list = post_data($options['idx_parent'])->get('order_list');
+            // If parent order_list is 0, meaning This is the 1st depth son of the original post.
+            // set +2 on the maximum order_list.
+            if ( $parent_order_list == 0 ) {
+                $parent_order_list = round(post_data()->result('MAX(order_list)', "idx_root=$idx_root") + 2);
+            }
+
+            // get next order_list from parent.
+            $row = post_data()->row("idx_root=$idx_root AND order_list>$parent_order_list", 'idx,order_list');
+            //
+            if ( $row ) {
+                $next_order_list = $row['order_list'];
+            }
+            // if there is no next number, meaning (1) if it's the 1st depth comment, or (2) the last comment.
+            else {
+                $next_order_list = $parent_order_list + 2;
+            }
+            $new_order_list = round(( $parent_order_list + $next_order_list ) / 2);
+            post_data()->which($data->get('idx'))->set('order_list', $new_order_list)->save();
         }
 
         self::setCurrent($data);
         return $data;
     }
-
-
-
 
 }
