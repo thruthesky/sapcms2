@@ -26,4 +26,5 @@ class PostConfig extends Entity {
         return FALSE;
     }
 
+
 }

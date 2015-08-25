@@ -16,3 +16,7 @@ route('/post/list', 'post\\post\\listPostData');
 route('/post/edit', 'post\\post\\editPostData');
 route('/post/edit/submit', 'post\\post\\editSubmitPostData');
 route('/post/view', 'post\\post\\viewPostData');
+
+
+
+route('/post/search', 'post\\post\\searchPostData');

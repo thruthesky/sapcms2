@@ -1,8 +1,9 @@
 <?php
 add_css();
-$config = $variables['config'];
-$url = post()->getListUrl();
+$url_list = post()->getListUrl();
+$url_edit = post()->getEditUrl();
 ?>
 
-<a href="<?php echo $url?>">LIST</a>
+<a href="<?php echo $url_list?>">LIST</a>
+<a href="<?php echo $url_edit?>">EDIT</a>
 

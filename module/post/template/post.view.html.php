@@ -8,3 +8,5 @@ if ( empty($post) ) return;
 <section role="files">
     <hr>File Widget<hr>
 </section>
+
+<section class="content"><?php widget('post_view_comment')?></section>

@@ -1,8 +1,10 @@
 <?php
 
 ?>
-<?php widget('post_list_menu_default'); ?>
-<div class="post list">
+
+<?php widget('post_list_search_box'); ?>
+Total Record: <?php echo $variables['total_record']?><hr>
+<div class="post search">
     <table>
         <tr>
             <th>NO</th>
@@ -23,4 +25,4 @@
 
 
 <?php widget('post_list_navigator', $variables); ?>
-<?php widget('post_list_search_box', $variables); ?>
+

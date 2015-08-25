@@ -15,7 +15,6 @@ class PostConfigTest extends PHPUnit_Framework_TestCase {
         $this->assertFalse(post_config('id', $id));
         $count = post_config()->count();
 
-
         post_config()
             ->set('id', $id)
             ->set('name', 'QnA Forum')
@@ -29,6 +28,17 @@ class PostConfigTest extends PHPUnit_Framework_TestCase {
         post_config('id', $id)->delete();
         $this->assertTrue( $count == post_config()->count() );
 
+    }
 
+    public function test_create_post() {
+        $id = "temp-forum";
+        if ( $config = post_config($id) ) $config->delete();
+        $config = post_config()->set('id', $id)->set('name', 'Temp')->save();
+        $post = post_data()
+            ->set('idx_config', $config->get('idx'))
+            ->set('title', 'hi')
+            ->save();
+        $post->delete();
+        post_config($id)->delete();
     }
 }

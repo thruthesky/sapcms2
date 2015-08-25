@@ -73,8 +73,12 @@ function get_error() {
 }
 
 
+
 function ip() {
     return isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+}
+function domain() {
+    return domain_name();
 }
 
 function user_agent() {
