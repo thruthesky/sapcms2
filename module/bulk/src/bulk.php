@@ -104,14 +104,18 @@ class bulk {
 		//di( $notify_number );
 		//di( $rows );
 		//exit;
+		
         if ( $rows ) {
             $success = entity(SMS_SUCCESS)->rows("tag='$tag'", 'idx,number', \PDO::FETCH_KEY_PAIR);
             $queue = entity(SMS_QUEUE)->rows("tag='$tag'", 'idx,number', \PDO::FETCH_KEY_PAIR);
-            $data = array_diff($rows, $success, $queue);
+            //$blocked = entity(SMS_BLOCKED)->rows(null, 'idx,number', \PDO::FETCH_KEY_PAIR);
+
+            $data = array_diff( $rows, $success, $queue );
             if ( $data ) {
                 $idxes = array_keys($data);
                 $str_idxes = implode(',', $idxes);
                 $q = "UPDATE ".BULK_DATA." SET stamp_last_sent=".time()." WHERE idx IN ( $str_idxes );";
+
                 entity()->runExec($q);
                 $numbers = array_values($data);
                 $data = smsgate::scheduleMessage($numbers, $bulk->get('message'), $tag);

@@ -1,3 +1,4 @@
+<h1>Send a message</h1>
 <?php include template('smsgate.menu'); ?>
 <form method="post">
 

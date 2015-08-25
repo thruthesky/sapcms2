@@ -1,0 +1,30 @@
+
+.notice{
+    padding: 10px;
+    margin: 0 10px 10px 10px;
+    border-radius: 2px;
+    background-color: #f2f2f2;
+    font-size: 1em;
+    text-align: center;
+}
+
+.notice.success{
+    border: 1px solid #009900;
+    color: #009900;
+}
+
+.notice.error{
+    border: 1px solid red;
+    color: red;
+}
+
+
+
+
+ nav.navigation-bar a {
+     display:inline-block;
+     margin:0 1px;
+     padding:4px 6px;
+     background-color: #d3e8f4;
+     border-radius: 2px;
+ }

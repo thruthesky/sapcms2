@@ -1,6 +1,6 @@
 <?php
-	//$ch = curl_init ();
-	//curl_setopt ( $ch, CURLOPT_TIMEOUT, 120);	
+	$ch = curl_init ();
+	curl_setopt ( $ch, CURLOPT_TIMEOUT, 120);	
 
 	use sap\src\Database;
 	global $db;
@@ -133,21 +133,3 @@
 		$body = preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $body);
 		return $body;	
 	}
-	
-	/*function get_page($url) {
-		$client = new GuzzleHttp\Client();
-		//$jar = new \GuzzleHttp\Cookie\CookieJar;
-
-		// @todo set user-agent. set random time interval.
-
-		$result = $client->get($url
-			,
-			[
-				'cookies' => $jar,
-				'headers'=> ['User-Agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.130 Safari/537.36']
-			]
-		);
-		$body = $result->getBody();
-		
-		return $body;
-	}*/

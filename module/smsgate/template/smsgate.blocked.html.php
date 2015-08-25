@@ -8,16 +8,16 @@ add_css();
 $no_item = sysconfig(NO_ITEM);
 $no_page = sysconfig(NO_PAGE);
 
-$total_record = $smses = entity(SMS_QUEUE)->count();
+$total_record = $smses = entity(SMS_BLOCKED)->count();
 
 $page_no = page_no();
 
 $from = ($page_no-1) * $no_item;
-$smses = entity(SMS_QUEUE)->rows("ORDER BY idx DESC limit $from, $no_item");
+$smses = entity(SMS_BLOCKED)->rows("ORDER BY idx DESC limit $from, $no_item");
 
 ?>
 <h1>
-    SMSGate Message Queue
+    SMSGate Message Blocked
 </h1>
 
 
@@ -35,15 +35,11 @@ $smses = entity(SMS_QUEUE)->rows("ORDER BY idx DESC limit $from, $no_item");
 <table data-role="table" id="table-module-list" data-mode="columntoggle" class="ui-responsive table-stroke">
     <thead>
     <tr>
-        <th data-priority="5">No.</th>
+        <th data-priority="4">No.</th>
         <th data-priority="3">Created</th>
-        <th data-priority="4">Priority</th>
-        <th data-priority="1">Tag</th>
         <th>Number</th>
-        <th data-priority="1">Message</th>
-		<th data-priority="6">Tries</th>
-		<th data-priority="7">Next Try on</th>
-        <th data-priority="2">Delete</th>
+        <th data-priority="2">Reason</th>
+        <th data-priority="1">Delete</th>
     </tr>
     </thead>
     <tbody>
@@ -56,15 +52,9 @@ $smses = entity(SMS_QUEUE)->rows("ORDER BY idx DESC limit $from, $no_item");
         echo "<tr>";
         echo "<td><a href='#'>$sms[idx]</a></td>";
         echo "<td>" . date("m/d H:i", $sms['created']) . "</td>";
-        echo "<td>$sms[priority]</td>";
-        echo "<td>$sms[tag]</td>";
         echo "<td>$sms[number]</td>";
-        echo "<td>".smsgate::getMessage($sms['idx_message'])."</td>";
-		echo "<td>".$sms['no_send_try']."</td>";
-		if( $sms['stamp_next_send'] ) $next_send = date("Y-m-d H:i",$sms['stamp_next_send']);
-		else $next_send = 'none';
-		echo "<td>".$next_send."</td>";
-        echo "<td><a href='/smsgate/delete?idx=$sms[idx]&page_no=$page_no&type=queue'>Delete</a></td>";
+		echo "<td>$sms[reason]</td>";
+        echo "<td><a href='/smsgate/delete?idx=$sms[idx]&page_no=$page_no&type=blocked'>Delete</a></td>";
         echo "</tr>";
     }
     ?>
@@ -72,5 +62,5 @@ $smses = entity(SMS_QUEUE)->rows("ORDER BY idx DESC limit $from, $no_item");
 </table>
 
 <?php
-echo HTML::paging($page_no, $total_record, $no_item, $no_page, null, null, '/smsgate/list/queue');
+echo HTML::paging($page_no, $total_record, $no_item, $no_page, null, null, '/smsgate/list/blocked');
 
