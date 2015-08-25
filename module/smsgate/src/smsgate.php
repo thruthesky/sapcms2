@@ -35,6 +35,7 @@ class smsgate {
                 $data = self::scheduleMessage($numbers, request('message'), $tag);
             }
             $data['template'] = 'smsgate.sent';
+			$data['page'] = 'send';
             Response::render($data);
         }
         else {
@@ -53,6 +54,8 @@ class smsgate {
 				$data['template'] = 'smsgate.sent';
 			}
         }
+		
+		$data['page'] = 'block';
         Response::render( $data );
     }
 	
@@ -229,23 +232,23 @@ class smsgate {
 
 
     public static function queue() {
-        return Response::render();
+        return Response::render( ['page'=>'queue'] );
     }
 
     public static function success() {
-        return Response::render();
+        return Response::render( ['page'=>'success'] );
     }
 
     public static function fail() {
-        return Response::render();
+        return Response::render( ['page'=>'fail'] );
     }
 	
     public static function blocked() {
-        return Response::render();
+        return Response::render( ['page'=>'blocked'] );
     }
 
     public static function statistics() {
-        return Response::render();
+        return Response::render( ['page'=>'statistics'] );
     }
 
     public static function delete() {

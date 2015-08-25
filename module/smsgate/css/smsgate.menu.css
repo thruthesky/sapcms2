@@ -1,0 +1,6 @@
+a.ui-btn.ui-btn-inline.selected{
+	background-color: darkblue;
+    color: #fff;
+    text-shadow: 0 0 0;
+	padding: .7em 1em .6em 1em;
+}
