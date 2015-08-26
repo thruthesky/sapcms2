@@ -1,0 +1,79 @@
+.post .comment-list .comment {
+    margin: 1em 0;
+    padding:1em;
+    box-sizing: border-box;
+    background-color:#eeeeee;
+}
+
+.post .comment-list .comment[depth='2'] {
+    margin-left:3em;
+}
+.post .comment-list .comment[depth='3'] {
+    margin-left:5.5em;
+}
+.post .comment-list .comment[depth='4'] {
+    margin-left:7.5em;
+}
+.post .comment-list .comment[depth='5'] {
+    margin-left:9em;
+}
+.post .comment-list .comment[depth='6'] {
+    margin-left:10.4em;
+}
+.post .comment-list .comment[depth='7'] {
+    margin-left:11.3em;
+}
+.post .comment-list .comment[depth='8'] {
+    margin-left:12.2em;
+}
+.post .comment-list .comment[depth='9'] {
+    margin-left:13.1em;
+}
+.post .comment-list .comment[depth='10'] {
+    margin-left:14em;
+}
+.post .comment-list .comment[depth='11'] {
+    margin-left:14.9em;
+}
+.post .comment-list .comment[depth='12'] {
+    margin-left:15.8em;
+}
+.post .comment-list .comment[depth='13'] {
+    margin-left:16.7em;
+}
+.post .comment-list .comment[depth='14'] {
+    margin-left:17.6em;
+}
+.post .comment-list .comment[depth='15'] {
+    margin-left:18.5em;
+}
+.post .comment-list .comment[depth='16'] {
+    margin-left:19.4em;
+}
+.post .comment-list .comment[depth='17'] {
+    margin-left:20.3em;
+}
+.post .comment-list .comment[depth='18'] {
+    margin-left:21.2em;
+}
+.post .comment-list .comment[depth='19'] {
+    margin-left:22.1em;
+}
+.post .comment-list .comment[depth='20'],
+.post .comment-list .comment[depth='21'],
+.post .comment-list .comment[depth='22'],
+.post .comment-list .comment[depth='23'],
+.post .comment-list .comment[depth='24'],
+.post .comment-list .comment[depth='25'],
+.post .comment-list .comment[depth='26'],
+.post .comment-list .comment[depth='27'],
+.post .comment-list .comment[depth='28'],
+.post .comment-list .comment[depth='29'],
+.post .comment-list .comment[depth='30'],
+.post .comment-list .comment[depth='31'],
+.post .comment-list .comment[depth='32'],
+.post .comment-list .comment[depth='33'],
+.post .comment-list .comment[depth='34']
+{
+    margin-left:23.0em;
+}

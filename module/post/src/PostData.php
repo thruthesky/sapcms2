@@ -93,6 +93,7 @@ class PostData extends Entity {
     }
 
 
+
     /**
      *
      * If there is no current data, then returns FALSE.
@@ -128,7 +129,7 @@ class PostData extends Entity {
      *      - If it is set to 0, then it returns the comments of current post.
      * @return mixed
      */
-    public function getComments($idx=0) {
+    public function getComments($idx=0, $field='*') {
         if ( empty($idx) ) {
             $data = post_data()->getCurrent();
         }
@@ -139,19 +140,13 @@ class PostData extends Entity {
         if ( $data->get('idx_parent') ) return setError(-50341, "Cannot get post comemnt because the data is not an original post");
         $idx_root = $data->get('idx');
 
-        return self::getCommentsInOrder($idx_root);
+        return self::getCommentsInOrder($idx_root, $field);
     }
 
-    private static function getCommentsInOrder($idx_root)
+    private static function getCommentsInOrder($idx_root, $field='*')
     {
-        $comments = post_data()->rows("idx_root=$idx_root AND idx_parent>0");
-
-
-        //$comments = self::multiPreProcess($comments);
+        return post_data()->rows("idx_root=$idx_root AND idx_parent>0 ORDER BY order_list ASC", $field);
     }
-
-
-
 
 
     /**
@@ -171,8 +166,11 @@ class PostData extends Entity {
             'content' => 'This is content',
         ]);
      * @endcode
+     *
+     * @example For order list example see - post/script/order-list.php
      */
     public static function newPost(array $options) {
+
 
         $data = post_data();
 
@@ -187,49 +185,147 @@ class PostData extends Entity {
         if ( ! isset($options['domain']) ) $data->set('domain', domain());
         if ( ! isset($options['user_agent']) ) $data->set('domain', user_agent());
         $data->save();
+        $idx = $data->get('idx');
 
 
         // set idx_root into table record
+        $parent = null;
         if ( isset($options['idx_parent']) && $options['idx_parent'] ) {
-            $idx_root = post_data($options['idx_parent'])->get('idx_root');
-            post_data()->which($data->get('idx'))
-                ->set('idx_root', $idx_root)
-                ->save();
+            $parent = post_data($options['idx_parent']);
+            $idx_root = $parent->get('idx_root');
+            $depth = $parent->get('depth') + 1;
         }
         else {
-            post_data()->which($data->get('idx'))->set('idx_root', $data->get('idx'))->save();
             $idx_root = $data->get('idx');
+            $depth = 0;
         }
+
 
         // set idx_root into the object(memory)
-        $data->set('idx_root', $idx_root);
+        $up = ['idx_root'=>$idx_root, 'depth'=>$depth];
+        post_data()->which($data->get('idx'))->set($up)->save();
 
-        $count = post_data()->count("idx_root=$idx_root");
-        if ( $count > 1 ) {
-            // GET Parent order_list
-            $parent_order_list = post_data($options['idx_parent'])->get('order_list');
-            // If parent order_list is 0, meaning This is the 1st depth son of the original post.
-            // set +2 on the maximum order_list.
-            if ( $parent_order_list == 0 ) {
-                $parent_order_list = round(post_data()->result('MAX(order_list)', "idx_root=$idx_root") + 2);
-            }
 
-            // get next order_list from parent.
-            $row = post_data()->row("idx_root=$idx_root AND order_list>$parent_order_list", 'idx,order_list');
-            //
-            if ( $row ) {
-                $next_order_list = $row['order_list'];
+        // set order_list
+        $new_order_list = 0;
+        if ( $count = self::countComment($idx_root) ) {
+
+            if ( $max = self::maxOrderListOfParent($parent->get('idx')) ) {
+                if ( $next = self::nextOrderListOfRoot($idx_root, $max) ) {
+                    $new_order_list = ( $max + $next ) / 2;
+                    //echo "$idx=$idx,idx_parent=$options[idx_parent] , max:$max / next:$next = new_order_list=$new_order_list\n";
+                }
+                else {
+                    $new_order_list = round($max + 2);
+                    //echo "$idx=$idx,max:round($max +2) = new_order_list=$new_order_list\n";
+                }
             }
-            // if there is no next number, meaning (1) if it's the 1st depth comment, or (2) the last comment.
             else {
-                $next_order_list = $parent_order_list + 2;
+                $new_order_list = 1;
             }
-            $new_order_list = round(( $parent_order_list + $next_order_list ) / 2);
-            post_data()->which($data->get('idx'))->set('order_list', $new_order_list)->save();
+            $up['order_list'] = $new_order_list;
         }
+        else {
+            // echo "No comment\n";
+        }
+
+
+
+        system_log($up);
+
+        post_data()->which($data->get('idx'))->set('order_list', $new_order_list)->save();
+        $data->set('idx_root', $idx_root);
 
         self::setCurrent($data);
         return $data;
+    }
+
+    /**
+     * @param $idx_root
+     * @return mixed
+     */
+    public static function countComment($idx_root) {
+        return post_data()->count("idx_root=$idx_root AND idx_parent>0");
+    }
+
+
+    /**
+     * Returns the MAX order_list among the children of parents.
+     *
+     * @param $idx_parent
+     * @return mixed
+     */
+    private static function maxOrderListOfParent($idx_parent, $depth=0)
+    {
+        $max = 0;
+        /*
+        $rows = post_data()->rows("idx_parent=$idx_parent", "idx, idx_parent, order_list");
+        if ( $rows ) {
+            foreach( $rows as $row ) {
+                $ret = self::maxOrderListOfParent($row['idx'], $depth + 1);
+                if ( $ret > $row['order_list'] ) {
+                    $max = $ret;
+                }
+                else if ( $row['order_list'] > $max ) $max = $row['order_list'];
+            }
+        }
+        */
+
+        $tree = self::getRecursiveTreeWithSelf($idx_parent);
+        if ( $tree ) {
+            foreach ( $tree as $comment ) {
+                if ( $comment['order_list'] > $max ) {
+                    $max = $comment['order_list'];
+                }
+            }
+        }
+
+        return $max;
+    }
+
+    /**
+     *
+     * Returns the list of a tree based on $idx_parent
+     *
+     * @param $idx_parent
+     * @param string $fields
+     * @return array
+     *
+     * @code
+     * print_r( post_data()->getRecursiveTree($post->get('idx'), "idx, idx_root, idx_parent, title, order_list"));
+    print_r( post_data()->getRecursiveTree($child1->get('idx'), "idx, idx_root, idx_parent, title, order_list"));
+    print_r( post_data()->getRecursiveTree($child2_1->get('idx'), "idx, idx_root, idx_parent, title, order_list"));
+     * @endcode
+     *
+     */
+    public static function getRecursiveTree($idx_parent, $fields='idx, idx_root, idx_parent, depth, order_list') {
+        $rows = post_data()->rows("idx_parent=$idx_parent", $fields);
+        if ( $rows ) {
+            foreach( $rows as $row ) {
+                $ret = self::getRecursiveTree($row['idx'], $fields);
+                $rows = array_merge($rows, $ret);
+            }
+        }
+        return $rows;
+    }
+
+    /**
+     * Returns the list of a tree including the post data of input parameter idx.
+     * @param $idx
+     * @param string $fields
+     * @return array
+     */
+    public static function getRecursiveTreeWithSelf($idx, $fields='idx, idx_root, idx_parent, depth, order_list') {
+        $post = post_data()->row("idx=$idx", $fields);
+        $rows = self::getRecursiveTree($idx, $fields);
+        array_unshift($rows, $post);
+        return $rows;
+    }
+
+
+    private static function nextOrderListOfRoot($idx_root, $order_list)
+    {
+        return post_data()->result("order_list", "idx_root=$idx_root AND order_list>$order_list ORDER BY order_list ASC");
     }
 
 }

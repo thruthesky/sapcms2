@@ -54,7 +54,7 @@ class post {
 
     public static function listPostData() {
         $config = post_config()->getCurrent()->get();
-        $posts = self::searchPostDataCondition();
+        $posts = self::searchPostDataCondition(['comment'=>false]);
         $total_record = self::countPostData();
         return Response::render([
             'template'=>'post.layout',
@@ -279,8 +279,14 @@ class post {
             $and[] = "idx_config=".$config->get('idx');
         }
 
-        if ( isset($options['root']) ) $and[] = 'idx_root=0';
-        if ( isset($options['comment']) ) $and[] = 'idx_root>0';
+        if ( isset($options['comment']) ) {
+            if ( $options['comment'] ){
+                $and[] = 'idx_parent>0';
+            }
+            else {
+                $and[] = 'idx_parent=0';
+            }
+        }
 
         if ( $q = request('q') ) {
             if ( $qn = request('qn') ) {
@@ -353,7 +359,7 @@ class post {
         $data = post_data($idx_comment);
         $title = $data->get('title');
         $idx_root = $data->get('idx_root');
-        $url = "/post/view?$title&idx=$idx_root#comment$idx_comment";
+        $url = "/post/view?$title&idx=$idx_root&idx_comment=$idx_comment";
         return $url;
     }
 
