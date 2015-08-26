@@ -10,5 +10,6 @@ Route::add('/smsgate/list/fail', "smsgate\\smsgate\\fail");
 Route::add('/smsgate/list/blocked', "smsgate\\smsgate\\blocked");
 Route::add('/smsgate/statistics', "smsgate\\smsgate\\statistics");
 Route::add('/smsgate/delete', "smsgate\\smsgate\\delete");
+Route::add('/smsgate/delete_blocked', "smsgate\\smsgate\\delete_blocked");
 Route::add('/smsgate/sender/load', "smsgate\\smsgate\\sender_load_sms_from_queue");
 Route::add('/smsgate/sender/result', "smsgate\\smsgate\\sender_record_result");

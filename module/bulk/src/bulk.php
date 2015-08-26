@@ -108,9 +108,10 @@ class bulk {
         if ( $rows ) {
             $success = entity(SMS_SUCCESS)->rows("tag='$tag'", 'idx,number', \PDO::FETCH_KEY_PAIR);
             $queue = entity(SMS_QUEUE)->rows("tag='$tag'", 'idx,number', \PDO::FETCH_KEY_PAIR);
-            //$blocked = entity(SMS_BLOCKED)->rows(null, 'idx,number', \PDO::FETCH_KEY_PAIR);
+			//this will just omit the numbers from blocked number ( and we will not receive any notice that the number in bulk sending is blocked
+            $blocked = entity(SMS_BLOCKED)->rows(null, 'idx,number', \PDO::FETCH_KEY_PAIR);
 
-            $data = array_diff( $rows, $success, $queue );
+            $data = array_diff( $rows, $success, $queue, $blocked );
             if ( $data ) {
                 $idxes = array_keys($data);
                 $str_idxes = implode(',', $idxes);

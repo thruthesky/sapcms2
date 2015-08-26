@@ -64,7 +64,7 @@ $smses = entity(SMS_QUEUE)->rows("ORDER BY idx DESC limit $from, $no_item");
 		if( $sms['stamp_next_send'] ) $next_send = date("Y-m-d H:i",$sms['stamp_next_send']);
 		else $next_send = 'none';
 		echo "<td>".$next_send."</td>";
-        echo "<td><a href='/smsgate/delete?idx=$sms[idx]&page_no=$page_no&type=queue'>Delete</a></td>";
+        echo "<td><a href='/smsgate/delete?idx=$sms[idx]&page_no=$page_no'>Delete</a></td>";
         echo "</tr>";
     }
     ?>
