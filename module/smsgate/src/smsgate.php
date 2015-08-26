@@ -57,7 +57,8 @@ class smsgate {
     }
 	
 	
-	//this looks like scheduleMessage... must merge...?
+	//this looks like scheduleMessage... should merge...?
+	//atleast this can be in smsgate? ( inserting numbers inside smsgate_blocked )
 	public static function block_sms_numbers( $numbers, $reason){
 		if( empty( $reason ) ) return [ 'error'=>-6001, 'Reason cannot be empty.'];
 		else if( strlen( $reason ) > 256 ) return [ 'error'=>-6002, 'Reason length too long. Should be less than [ 256 ].'];
@@ -169,24 +170,15 @@ class smsgate {
         }
 
         foreach( $_numbers as $adjust_number ) {			
-			$sms = entity(SMS_BLOCKED)->row( "number = '$adjust_number'", 'idx,number,reason', \PDO::FETCH_KEY_PAIR);
-			if( empty( $sms ) ){		
-				$created = time();
-				$priority = request('priority', 0);
-				$idx = self::getMessageIdx();
-				//$tag = $tag;
-				$q .= "INSERT INTO " . SMS_QUEUE . " (created, idx_message, number, priority, tag) VALUES ($created ,$idx, '$adjust_number', $priority, '$tag');";
-				$number_info = [];
-				$number_info['message'] = "Successfully added to queue: ";
-				$number_info['number'] = $adjust_number;
-				$number_info['sms_message'] = $idx;
-				$data['scheduled'][] = $number_info;
-			}
-			else{
-				$error['message'] = 'Blocked : Reason -> '.$sms['reason']." :";
-                $error['number'] = $adjust_number;
-                $data['error_number'][] = $error;
-			}			
+			$created = time();
+			$priority = request('priority', 0);
+			$idx = self::getMessageIdx();
+			$q .= "INSERT INTO " . SMS_QUEUE . " (created, idx_message, number, priority, tag) VALUES ($created ,$idx, '$adjust_number', $priority, '$tag');";
+			$number_info = [];
+			$number_info['message'] = "Successfully added to queue: ";
+			$number_info['number'] = $adjust_number;
+			$number_info['sms_message'] = $idx;
+			$data['scheduled'][] = $number_info;	
         }
 
         if ( $q ) {
@@ -252,33 +244,41 @@ class smsgate {
         $data = [];
 
         $idx = Request::get('idx');
-        $type = Request::get('type');		
-		if( empty( $type ) ){
-			$data['notice']['type'] = "error";
-			$data['notice']['message'] = "Missing delete type.";
+
+		$ent = entity( SMS_QUEUE )->load( $idx );
+		if( !empty( $ent ) ){
+			$data['notice']['type'] = "success";
+			$data['notice']['message'] = "Successfully deleted message idx [ $idx ]";
+			$ent->delete();
 		}
 		else{
-			if( $type == 'queue' ) $table = SMS_QUEUE;
-			else if ( $type == 'blocked' ) $table = SMS_BLOCKED;			
-			
-			if( !empty( $table ) ){
-				$ent = entity( $table )->load( $idx );
-				if( !empty( $ent ) ){
-					$data['notice']['type'] = "success";
-					$data['notice']['message'] = "Successfully deleted message idx [ $idx ]";
-					$ent->delete();
-				}
-				else{
-					$data['notice']['type'] = "error";
-					$data['notice']['message'] = "idx [ $idx ] does not exist.";
-				}
-			}
-			else{
-				$data['notice']['type'] = "error";
-				$data['notice']['message'] = "Invalid delete type of [ $type ]";
-			}
-			$data['template'] = 'smsgate.'.$type;
+			$data['notice']['type'] = "error";
+			$data['notice']['message'] = "idx [ $idx ] does not exist.";
 		}
+		$data['page'] = 'queue';
+		$data['template'] = 'smsgate.queue';
+        
+        Response::render($data);
+    }
+	
+	//same as function delete should merge?
+    public static function delete_blocked() {
+         $data = [];
+
+        $idx = Request::get('idx');
+
+		$ent = entity( SMS_BLOCKED )->load( $idx );
+		if( !empty( $ent ) ){
+			$data['notice']['type'] = "success";
+			$data['notice']['message'] = "Successfully deleted message idx [ $idx ]";
+			$ent->delete();
+		}
+		else{
+			$data['notice']['type'] = "error";
+			$data['notice']['message'] = "idx [ $idx ] does not exist.";
+		}
+		$data['page'] = 'blocked';
+		$data['template'] = 'smsgate.blocked';
         
         Response::render($data);
     }

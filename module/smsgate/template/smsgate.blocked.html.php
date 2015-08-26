@@ -54,7 +54,7 @@ $smses = entity(SMS_BLOCKED)->rows("ORDER BY idx DESC limit $from, $no_item");
         echo "<td>" . date("m/d H:i", $sms['created']) . "</td>";
         echo "<td>$sms[number]</td>";
 		echo "<td>$sms[reason]</td>";
-        echo "<td><a href='/smsgate/delete?idx=$sms[idx]&page_no=$page_no&type=blocked'>Delete</a></td>";
+        echo "<td><a href='/smsgate/delete_blocked?idx=$sms[idx]&page_no=$page_no'>Delete</a></td>";
         echo "</tr>";
     }
     ?>
