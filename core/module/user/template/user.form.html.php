@@ -23,7 +23,7 @@
 
 	if( !empty( $variables['user'] ) ){
 		echo "<h1>Admin Edit mode</h1>";
-		echo html_hidden(['name'=>'idx', 'value'=>$variables['user']->get('idx')]);
+		echo html_hidden(['name'=>'idx', 'value'=>$variables['user']->get('idx')]);		
 	}
 ?>
 
@@ -59,10 +59,10 @@
 <?php } ?>
 
 <?php
-	$user_data = [];
 	if( !empty( $variables['user'] ) ){
-		$name = $variables['user']->get('name');
-		$mail = $variables['user']->get('mail');		
+		$user = $variables['user'] ;
+		$name = $user->get('name');
+		$mail = $user->get('mail');		
 	}
 ?>
 
