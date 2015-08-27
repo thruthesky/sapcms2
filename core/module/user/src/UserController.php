@@ -244,6 +244,7 @@ class UserController
         $data['input'] = Request::get();
         $data['template'] = 'user.register';
 		
+		//added by benjamin
 		$idx = request('idx');
 		if( $idx ) $data['user'] = user( $idx );
 
