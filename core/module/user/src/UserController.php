@@ -29,7 +29,7 @@ class UserController
     public static function adminUpdate()
     {			
         if ( submit() ) return self::adminUpdateFormSubmit();				
-        return self::adminUserRegisterTemplate();
+        return self::userRegisterTemplate();
     }
 
 
@@ -243,25 +243,13 @@ class UserController
         $data = [];
         $data['input'] = Request::get();
         $data['template'] = 'user.register';
-
-        return Response::render($data);
-    }
-	
-    private static function adminUserRegisterTemplate()
-    {
-	
-		$data = [];
+		
 		$idx = request('idx');
-		if( $idx ){
-			$data['user'] = user( $idx );
-			$data['template'] = 'user.register';
-		}
-		else{
-			$data['error'] = "Invalid IDX";
-		}
+		if( $idx ) $data['user'] = user( $idx );
+
         return Response::render($data);
     }
-
+	
     private static function updateUser($options)
     {
 
