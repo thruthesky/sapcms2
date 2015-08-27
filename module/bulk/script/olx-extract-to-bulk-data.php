@@ -28,16 +28,17 @@
 			if( empty( $sms ) ){
 				$origin = $row['origin'];
 				$category = $row['keyword'];
-				$username = get_name( $row );
+				$username = get_name( $row );				
 				$title = get_title( $row );
 				$location = get_location( $row );				
 				$stamp_last_post = get_post_date($row);
 				//print_r( $data );		
+
 				$q = "
 				  INSERT INTO smsgate_bulk_data (created, changed, origin, `category`, number, count_collection, username, location, `title`, stamp_last_collection, stamp_last_post)
 					VALUES ( $stamp_last_collection, $stamp_last_collection, '$origin', '$category', '$number', 1, '$username', '$location', '$title', $stamp_last_collection, $stamp_last_post)
 				  ";
-				$db->query($q);
+				$db->query($q);				
 				echo "Success! $number : $origin : $row[url]\n";
 				$success_count++;					
 			}
@@ -63,7 +64,6 @@
 		$q = "SELECT * FROM page_number_extract WHERE origin='olx.ph' AND extracted=0 LIMIT 1";
 		$res = $db->query($q);
 		$row = $res->fetch(\PDO::FETCH_ASSOC);	
-		exit;
 	}
 	echo "success = $success_count - fail = $fail_count ++;";
 
@@ -103,7 +103,10 @@ function adjustNumber($number){
 }
 
 function get_name(array & $row) {
-    return get_data($row, 'username">', '</a>');
+    $name = get_data($row, 'username">', '</a>');
+	$name = str_replace( "'", "''", $name );//to escape single quote...
+	$name = str_replace( "\\", "", $name );//to escape backslash...
+    return $name;
 }
 
 function get_location(array & $row) {
@@ -111,7 +114,10 @@ function get_location(array & $row) {
 }
 
 function get_title(array & $row) {
-    return get_data($row, '<h1 class="brkword lheight28">', '</h1>');
+	$title = get_data($row, '<h1 class="brkword lheight28">', '</h1>');
+	$title = str_replace( "'", "''", $title );//to escape single quote...
+	$title = str_replace( "\\", "", $title );//to escape backslash...
+    return $title;
 }
 
 function get_post_date(array & $row) {

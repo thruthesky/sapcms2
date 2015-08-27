@@ -54,9 +54,3 @@
     'text' => html_input(['type'=>'email', 'name'=>'mail', 'value'=>$mail, 'placeholder'=>'Input Email']),
 ]);
 ?>
-<?php 
-/*echo html_row([
-    'caption' => 'Year',
-    'text' => html_select(['type'=>'email', 'name'=>'mail', 'value'=>$mail]),
-]);*/
-?>

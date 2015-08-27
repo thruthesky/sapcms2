@@ -8,6 +8,7 @@ class UserController
     public static function profile()
     {
         if ( submit() ) {
+			exit;
             $options['id'] = login('id');
             $options['name'] = request('name');
             $options['mail'] = request('mail');
@@ -22,6 +23,13 @@ class UserController
         if ( submit() ) return self::registerFormSubmit();
 
         return self::userRegisterTemplate();
+    }
+	
+	//added by benjamin
+    public static function adminUpdate()
+    {			
+        if ( submit() ) return self::adminUpdateFormSubmit();				
+        return self::adminUserRegisterTemplate();
     }
 
 
@@ -45,13 +53,43 @@ class UserController
         if ( isset($options['birth_month']) ) $user->set('birth_month', $options['birth_month']);
         if ( isset($options['birth_day']) ) $user->set('birth_day', $options['birth_day']);
         if ( isset($options['mobile']) ) $user->set('mobile', $options['mobile']);
+        if ( isset($options['address']) ) $user->set('address', $options['address']);
+        if ( isset($options['country']) ) $user->set('country', $options['country']);
+        if ( isset($options['province']) ) $user->set('province', $options['province']);
+        if ( isset($options['city']) ) $user->set('city', $options['city']);
+        if ( isset($options['school']) ) $user->set('school', $options['school']);
+        if ( isset($options['work']) ) $user->set('work', $options['work']);
 
         $user->save();
         return $user;
 
 
     }
+	
+	//added by benjamin
+	public static function adminUpdateUser($options) {
+		$user = user( $options['idx'] );
+		
+		if ( isset($options['name']) ) $user->set('name', $options['name']);
+        if ( isset($options['middle_name']) ) $user->set('middle_name', $options['middle_name']);
+        if ( isset($options['last_name']) ) $user->set('last_name', $options['last_name']);
+        if ( isset($options['nickname']) ) $user->set('nickname', $options['nickname']);
+        if ( isset($options['mail']) ) $user->set('mail', $options['mail']);
+        if ( isset($options['birth_year']) ) $user->set('birth_year', $options['birth_year']);
+        if ( isset($options['birth_month']) ) $user->set('birth_month', $options['birth_month']);
+        if ( isset($options['birth_day']) ) $user->set('birth_day', $options['birth_day']);
+        if ( isset($options['mobile']) ) $user->set('mobile', $options['mobile']);
+        if ( isset($options['address']) ) $user->set('address', $options['address']);
+        if ( isset($options['country']) ) $user->set('country', $options['country']);
+        if ( isset($options['province']) ) $user->set('province', $options['province']);
+        if ( isset($options['city']) ) $user->set('city', $options['city']);
+        if ( isset($options['school']) ) $user->set('school', $options['school']);
+        if ( isset($options['work']) ) $user->set('work', $options['work']);
 
+        $user->save();
+        return $user;
+	}
+	
     /**
      *
      * @deperecated Do not use this function. Use createUser method.
@@ -188,6 +226,16 @@ class UserController
         return Response::redirect(config()->getUrlSite());
 
     }
+	
+	//added by benjamin
+	private static function adminUpdateFormSubmit(){
+		$options['idx'] = request('idx');
+		$options['name'] = request('name');
+        $options['mail'] = request('mail');
+		$user = self::adminUpdateUser( $options );
+		
+		return Response::redirect( "/admin/user" );
+	}
 
     private static function userRegisterTemplate()
     {
@@ -196,6 +244,21 @@ class UserController
         $data['input'] = Request::get();
         $data['template'] = 'user.register';
 
+        return Response::render($data);
+    }
+	
+    private static function adminUserRegisterTemplate()
+    {
+	
+		$data = [];
+		$idx = request('idx');
+		if( $idx ){
+			$data['user'] = user( $idx );
+			$data['template'] = 'user.register';
+		}
+		else{
+			$data['error'] = "Invalid IDX";
+		}
         return Response::render($data);
     }
 
