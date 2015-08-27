@@ -7,36 +7,63 @@ class UserController
 {
     public static function profile()
     {
-        if (self::userFormSubmit()) {
+        if ( submit() ) {
+            $options['id'] = login('id');
+            $options['name'] = request('name');
+            $options['mail'] = request('mail');
+            self::updateUser($options);
         }
-        Response::renderSystemLayout(['template' => 'user-profile']);
+        Response::render(['template' => 'user-profile']);
     }
 
 
     public static function register()
     {
-        if ( $submit_response = self::userFormSubmit() ) {
-			if( $submit_response == 'admin-edit' ) return Response::redirect('/admin/user');
-            return Response::redirect(config()->getUrlSite());
-        }
-		
-		$data = [];
-		$data['input'] = Request::get();
-		if( !empty( $data['input']['idx'] ) ){
-			//check if admin
-			$idx = $data['input']['idx'];
-			$user = user( $idx );
-			$data['user'] = $user;			
-		}
+        if ( submit() ) return self::registerFormSubmit();
 
-		$data['template'] = 'user-register';
-		
-        return Response::render($data);
+        return self::userRegisterTemplate();
     }
 
+
+    public static function createUser($options) {
+
+        $user = user();
+        $user ->create($options['id']);
+        if ( isset($options['password']) ) $user->setPassword($options['password']);
+
+        if ( isset($options['domain']) ) $user->set('domain', $options['domain']);
+        else $user->set('domain', domain());
+
+
+
+        if ( isset($options['name']) ) $user->set('name', $options['name']);
+        if ( isset($options['middle_name']) ) $user->set('middle_name', $options['middle_name']);
+        if ( isset($options['last_name']) ) $user->set('last_name', $options['last_name']);
+        if ( isset($options['nickname']) ) $user->set('nickname', $options['nickname']);
+        if ( isset($options['mail']) ) $user->set('mail', $options['mail']);
+        if ( isset($options['birth_year']) ) $user->set('birth_year', $options['birth_year']);
+        if ( isset($options['birth_month']) ) $user->set('birth_month', $options['birth_month']);
+        if ( isset($options['birth_day']) ) $user->set('birth_day', $options['birth_day']);
+        if ( isset($options['mobile']) ) $user->set('mobile', $options['mobile']);
+
+        $user->save();
+        return $user;
+
+
+    }
+
+    /**
+     *
+     * @deperecated Do not use this function. Use createUser method.
+     * @return bool|string
+     */
     public static function userFormSubmit() {
 		if ( submit()) {
+
 			if ( self::validateRegisterFrom() == OK ) {
+
+
+
 				$idx = Request::get('idx');
 				if( $idx ){
 					//if admin...
@@ -68,7 +95,7 @@ class UserController
 				if( !empty( $is_admin_edit ) ) return $is_admin_edit;
                 return TRUE;
 			}
-			else{
+			else {
 				$error = self::validateRegisterFrom();
 				//return $error;
 			}
@@ -76,6 +103,8 @@ class UserController
 
         return FALSE;
     }
+
+
 
     public static function login()
     {
@@ -101,23 +130,28 @@ class UserController
         return Response::redirect(config()->getUrlSite());
     }
 
+
+    /**
+     *
+     * @Attention Use this method only for registering. You cannot use this for updating.
+     *
+     * @return int|mixed
+     */
     private static function validateRegisterFrom()
     {
         if ( login('idx') ) {
-
-        }
-        else {
-		$id = request('id');
-		$pw = request('password');
-            if ( empty( $id ) ) return error(-50800, "Please input ID");
-            if ( empty( $pw ) ) return error(-50800, "Please input password");
+            return error(-50809, "You already logged in");
         }
 
-	$name = request('name');
-	$mail = request('mail');
-        if ( empty($name) ) return error(-50800, "Please input name");
-        if ( empty($mail) ) return error(-50800, "Please input email");
 
+        $id = request('id');
+        $pw = request('password');
+        if ( empty( $id ) ) return error(-50801, "Please input ID");
+        if ( empty( $pw ) ) return error(-50802, "Please input password");
+
+        /**
+         * @TODO get system option of which form field are required.
+         */
         return OK;
     }
 
@@ -135,6 +169,53 @@ class UserController
             return Response::redirect('/user/setting');
         }
         return Response::render(['template' => 'user.setting']);
+    }
+
+
+
+    private static function registerFormSubmit()
+    {
+        if ( self::validateRegisterFrom() ) return self::userRegisterTemplate();
+
+        $options['id'] = request('id');
+        $options['password'] = request('password');
+        $options['name'] = request('name');
+        $options['mail'] = request('mail');
+
+        $user = self::createUser($options);
+        if ( empty($user) ) return self::userRegisterTemplate();
+
+        return Response::redirect(config()->getUrlSite());
+
+    }
+
+    private static function userRegisterTemplate()
+    {
+
+        $data = [];
+        $data['input'] = Request::get();
+        $data['template'] = 'user.register';
+
+        return Response::render($data);
+    }
+
+    private static function updateUser($options)
+    {
+
+        $user = user($options['id']);
+        unset($options['id']);
+        if ( isset($options['password']) ) {
+            $user->setPassword($options['password']);
+            unset($options['password']);
+        }
+
+        if ( $options ) {
+            foreach( $options as $field => $value ) {
+                $user->set($field, $value);
+            }
+        }
+        $user->save();
+        return $user;
     }
 
 

@@ -29,7 +29,9 @@ class User extends Entity {
             ->add('id', 'varchar', 32)
             ->add('password', 'char', 32)
             ->add('domain', 'varchar', 64)
-            ->add('name', 'varchar', 32)
+            ->add('name', 'varchar', 32) // first name
+            ->add('middle_name', 'varchar', 32)
+            ->add('last_name', 'varchar', 32)
             ->add('nickname', 'varchar', 32)
             ->add('mail', 'varchar', 64)
             ->add('birth_year', 'int')

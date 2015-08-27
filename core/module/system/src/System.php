@@ -257,14 +257,18 @@ class System {
     public static function error($code, $array_kvs=[])
     {
         $msg = get_error_message($code);
+
         if ( $array_kvs && is_array($array_kvs) ) {
             foreach( $array_kvs as $k => $v ) {
                 $msg = str_replace('#'.$k, $v, $msg);
             }
         }
         else $msg = $array_kvs;
+
         self::$error[$code] = $msg;
-        System::error_log("$code:$msg");
+
+        System::error_log($code);
+        System::error_log($msg);
         return $code;
     }
 
