@@ -14,10 +14,3 @@ if ( entity(SMS_FAILURE)->tableExists() ) {
     if ( entity(SMS_FAILURE)->count() ) return error(-40503, SMS_FAILURE . " table is NOT empty.");
     else entity(SMS_FAILURE)->dropTable();
 }
-
-if ( entity(SMS_BLOCKED)->tableExists() ) {
-    if ( entity(SMS_BLOCKED)->count() ) return error(-40504, SMS_BLOCKED . " table is NOT empty.");
-    else entity(SMS_BLOCKED)->dropTable();
-}
-
-

@@ -4,6 +4,7 @@ use sap\src\Database;
 define('BULK_DATA', 'smsgate_bulk_data');
 define('BULK', 'smsgate_bulk');
 define('BULK_HISTORY', 'smsgate_bulk_history');
+define('BULK_BLOCKED', 'smsgate_bulk_blocked');
 
 include 'bulk.hook.php';
 
@@ -12,6 +13,9 @@ route('/bulk/create', 'bulk\\bulk\\create');
 route('/bulk/edit', 'bulk\\bulk\\edit');
 route('/bulk/delete', 'bulk\\bulk\\delete');
 route('/bulk/send', 'bulk\\bulk\\send');
+route('/bulk/block', 'bulk\\bulk\\block');
+route('/bulk/block/list', 'bulk\\bulk\\block_list');
+route('/bulk/block/delete', 'bulk\\bulk\\block_delete');
 
 
 

@@ -45,7 +45,7 @@ $rows = user()->rows("$cond limit $from, $no_item");
         echo "<td>$user[id]</td>";
         echo "<td>$user[name]</td>";
         echo "<td>$user[mail]</td>";
-        echo "<td>Edit</td>";
+        echo "<td><a href='/user/register?idx=$user[idx]'>Edit</a></td>";
         echo "</tr>";
     }
     ?>

@@ -15,32 +15,65 @@ class UserController
 
     public static function register()
     {
-        if (self::userFormSubmit()) {
+        if ( $submit_response = self::userFormSubmit() ) {
+			if( $submit_response == 'admin-edit' ) return Response::redirect('/admin/user');
             return Response::redirect(config()->getUrlSite());
         }
-        return Response::render(['template' => 'user-register']);
+		
+		$data = [];
+		$data['input'] = Request::get();
+		if( !empty( $data['input']['idx'] ) ){
+			//check if admin
+			$idx = $data['input']['idx'];
+			$user = user( $idx );
+			$data['user'] = $user;			
+		}
+
+		$data['template'] = 'user-register';
+		
+        return Response::render($data);
     }
 
     public static function userFormSubmit() {
-        if (submit()) {
-            if ( self::validateRegisterFrom() == OK ) {
-                if ( login() ) {
-                    $user = login();
-                }
-                else {
-                    $user = user();
-                    $user ->create(Request::get('id'))
-                        ->setPassword(Request::get('password'));
-                }
-                $user->set('name', Request::get('name'))
-                    ->set('mail', Request::get('mail'))
-                    ->save();
-
-                if ( ! login() ) User::login(Request::get('id'));
-
+		if ( submit()) {
+			if ( self::validateRegisterFrom() == OK ) {
+				$idx = Request::get('idx');
+				if( $idx ){
+					//if admin...
+					$user = user( $idx );
+					$is_admin_edit = 'admin-edit';//temp just for redirect
+				}
+				else{
+					if ( login() ) {
+						$user = login();
+					}
+					else {
+						$user = user();
+						$user ->create(Request::get('id'))
+						->setPassword(Request::get('password'));
+					}
+				}
+				
+				if( $user ){					
+					$user->set('name', Request::get('name'))
+						->set('mail', Request::get('mail'));			
+					$user->save();
+				}
+				else{
+					//return invalid user ID
+				}
+				
+				if ( ! login() ) User::login(Request::get('id'));
+				
+				if( !empty( $is_admin_edit ) ) return $is_admin_edit;
                 return TRUE;
-            }
-        }
+			}
+			else{
+				$error = self::validateRegisterFrom();
+				//return $error;
+			}
+		}
+
         return FALSE;
     }
 

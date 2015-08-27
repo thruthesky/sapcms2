@@ -21,7 +21,7 @@
 	//http://www.ebay.ph/itm/Spacious-1-BR-Cubao-Condo-for-Rent-/262012556390?hash=item3d012a5466
 	//$rows = $db->rows('page_number_extract', "extracted = 0 AND url ='http://www.ebay.ph/itm/apartment-for-rent-in-san-roque-/271949436529?hash=item3f51731671' LIMIT 1");
 	
-	$q = "SELECT * FROM page_number_extract WHERE origin='ebay.ph' AND extracted=0 LIMIT 1";
+	$q = "SELECT * FROM page_number_extract WHERE origin='ebay.ph' AND extracted=0 AND content <> '' LIMIT 1";
 	$res = $db->query($q);
 	$row = $res->fetch(\PDO::FETCH_ASSOC);	
 	while ( $row  ) {			
@@ -37,14 +37,14 @@
 				$username = get_name( $row );
 				$title = get_title( $row );
 				$location = get_location( $row );				
-				$stamp_last_post = get_post_date($row);
+				$stamp_last_post = 0;//get_post_date($row);
 				//print_r( $data );		
 				$q = "
-				  INSERT INTO smsgate_bulk_data (origin, `category`, number, count_collection, username, location, `title`, stamp_last_collection, stamp_last_post)
-					VALUES ( '$origin', '$category', '$number', 1, '$username', '$location', '$title', $stamp_last_collection, $stamp_last_post)
+				  INSERT INTO smsgate_bulk_data (created, changed, origin, `category`, number, count_collection, username, location, `title`, stamp_last_collection, stamp_last_post)
+					VALUES ( $stamp_last_collection, $stamp_last_collection, '$origin', '$category', '$number', 1, '$username', '$location', '$title', $stamp_last_collection, $stamp_last_post)
 				  ";
 				$db->query($q);
-				echo "Success! $row[url]\n";
+				echo "Success! $number : $origin : $row[url]\n";
 				$success_count++;					
 			}
 			else{				
@@ -58,6 +58,9 @@
 			$fail_reason = 'M';//number missing
 			$fail_count ++;
 		}
+		
+		if( !empty( $fail_reason ) ) echo "Fail... [ $fail_reason ] : $number : $row[url]\n";
+		
 		$q = "UPDATE page_number_extract SET content='', extracted='$stamp_last_collection'";
 		if( !empty( $fail_reason ) ) $q .= ", fail_reason='$fail_reason'";
 		$q .= " WHERE idx=$row[idx]";
@@ -172,6 +175,8 @@ function get_location(array & $row) {
     return $location;
 }
 
+/*
+//made a mistake, this is the bidding duration
 function get_post_date(array & $row) {
 	if( strpos( $row['content'], '<span class="vi-tm-left">' ) !== false ){
 		$date = get_data($row, '<span class="vi-tm-left">', '</span>');//only gets date ( ignores time )
@@ -194,7 +199,7 @@ function get_post_date(array & $row) {
 
 
 }
-
+*/
 function get_data(array & $row, $d1, $d2 ) {
 
     $content = $row['content'];

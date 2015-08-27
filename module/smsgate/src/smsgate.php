@@ -40,77 +40,6 @@ class smsgate {
         Response::render($data);
     }
 	
-    public static function block() {
-		$data = [];
-        if ( submit() ) {		
-			$numbers = explode("\n", Request::get('numbers'));
-			$reason = Request::get('reason');
-			
-			if( $numbers ){
-				$data = self::block_sms_numbers( $numbers, $reason );				
-				$data['template'] = 'smsgate.sent';
-			}
-        }
-		
-		$data['page'] = 'block';
-        Response::render( $data );
-    }
-	
-	
-	//this looks like scheduleMessage... should merge...?
-	//atleast this can be in smsgate? ( inserting numbers inside smsgate_blocked )
-	public static function block_sms_numbers( $numbers, $reason){
-		if( empty( $reason ) ) return [ 'error'=>-6001, 'Reason cannot be empty.'];
-		else if( strlen( $reason ) > 256 ) return [ 'error'=>-6002, 'Reason length too long. Should be less than [ 256 ].'];
-		
-		$_numbers = [];
-		$error = [];
-		foreach( $numbers as $number ) {
-            $adjusted_number = self::adjust_number($number);
-            if ( $adjusted_number ) {
-                $_numbers[] = $adjusted_number;
-            }
-            else {                
-                $error['message'] = 'Malformed number.';
-                $error['number'] = $number;
-                $data['error_number'][] = $error;
-            }
-        }
-		
-		$q = "";
-		if( !empty( $_numbers ) ){
-			foreach( $_numbers as $adjust_number ) {
-				$sms = entity(SMS_BLOCKED)->row( "number = '$adjust_number'", 'idx,number', \PDO::FETCH_KEY_PAIR);
-				if( empty( $sms ) ){
-					$created = time();
-					$priority = request('priority', 0);
-					//$tag = $tag;
-					$q .= "INSERT INTO " . SMS_BLOCKED . " (created, number, reason) VALUES ($created , '$adjust_number', '$reason');";
-					$number_info = [];
-					$number_info['message'] = "Successfully Blocked: ";
-					$number_info['number'] = $adjust_number;
-					$data['scheduled'][] = $number_info;					
-				}
-				else{
-					$q .= "UPDATE " . SMS_BLOCKED . " SET reason='$reason',changed='".time()."' WHERE idx = ".$sms['idx'].";";					
-					$error['message'] = "Number already blocked, updating reason to $reason: ";
-					$error['number'] = $adjust_number;
-					$data['error_number'][] = $error;
-				}
-				
-			}
-		}
-
-		if ( $q ) {
-            entity()->beginTransaction();
-            entity()->exec($q);
-            //system_log($q);
-            entity()->commit();
-        }
-		
-		return $data;
-	}
-
     public static function api() {
         $method = request('method');
         Response::json(self::$method());
@@ -231,10 +160,6 @@ class smsgate {
     public static function fail() {
         return Response::render( ['page'=>'fail'] );
     }
-	
-    public static function blocked() {
-        return Response::render( ['page'=>'blocked'] );
-    }
 
     public static function statistics() {
         return Response::render( ['page'=>'statistics'] );
@@ -257,28 +182,6 @@ class smsgate {
 		}
 		$data['page'] = 'queue';
 		$data['template'] = 'smsgate.queue';
-        
-        Response::render($data);
-    }
-	
-	//same as function delete should merge?
-    public static function delete_blocked() {
-         $data = [];
-
-        $idx = Request::get('idx');
-
-		$ent = entity( SMS_BLOCKED )->load( $idx );
-		if( !empty( $ent ) ){
-			$data['notice']['type'] = "success";
-			$data['notice']['message'] = "Successfully deleted message idx [ $idx ]";
-			$ent->delete();
-		}
-		else{
-			$data['notice']['type'] = "error";
-			$data['notice']['message'] = "idx [ $idx ] does not exist.";
-		}
-		$data['page'] = 'blocked';
-		$data['template'] = 'smsgate.blocked';
         
         Response::render($data);
     }

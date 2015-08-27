@@ -5,8 +5,17 @@
 	curl_setopt ( $ch, CURLOPT_TIMEOUT, 120);
 	//global $db;
 	//$db = Database::load();
-	$db = new PDO('mysql:host=sap.withcenter.com;dbname=sapcms2', "sapcms2", "Wcinc0453224133~h8");
-	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$db_error = true;
+	while( $db_error == true ){
+		try{
+			$db = new PDO('mysql:host=sap.withcenter.com;dbname=sapcms2', "sapcms2", "Wcinc0453224133~h8");
+			$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$db_error = false;
+		}catch( Exception $e ) {
+			echo "$e \n\n";
+			$db_error = true;
+		}
+	}
 	
 	$ebay_categories =	[
 					"20081"=>"Antiques",
@@ -117,6 +126,7 @@
 				$stamp = time();
 				$url = $url;
 				$body = get_page( $url );
+				if( !$body ) continue;
 				$body = addslashes($body);
 				
 				$q = "INSERT INTO page_number_extract (origin, keyword, stamp, url, content) VALUES ('$origin', '$keyword', '$stamp', '$url', '$body')";
@@ -143,7 +153,7 @@
 			]);
 		}
 		catch( Exception $e ) {
-			// do nothing
+			echo "Error $e\n\n";
 			return null;
 		}
 		
