@@ -1,4 +1,6 @@
-
+<?php
+add_css();
+?>
 <ul id="main-menu">
     <?php if ( admin() ) { ?>
         <li><a href="/admin" class="ui-btn ui-btn-icon-left ui-icon-user">Admin Page</a></li>
