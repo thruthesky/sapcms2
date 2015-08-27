@@ -11,6 +11,11 @@ if ( entity(BULK_HISTORY)->count() ) {
     return set_error(-4007, BULK_HISTORY. ' table is not empty.');
 }
 
+if ( entity(BULK_BLOCKED)->tableExists() ) {
+    if ( entity(BULK_BLOCKED)->count() ) return error(-40504, BULK_BLOCKED . " table is NOT empty.");
+    else entity(BULK_BLOCKED)->dropTable();
+}
+
 entity(BULK_DATA)->dropTable();
 entity(BULK)->dropTable();
 entity(BULK_HISTORY)->dropTable();

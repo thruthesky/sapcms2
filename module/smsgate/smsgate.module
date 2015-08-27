@@ -16,7 +16,7 @@ define('SMS_QUEUE', 'smsgate_queue');
 define('SMS_MESSAGE', 'smsgate_message');
 define('SMS_SUCCESS', 'smsgate_success');
 define('SMS_FAILURE', 'smsgate_failure');
-define('SMS_BLOCKED', 'smsgate_blocked');
+
 define('LOCATION', 'location_of_philippines');
 
 include 'smsgate.routing.php';

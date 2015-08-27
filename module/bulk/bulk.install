@@ -36,3 +36,11 @@ if ( ! entity(BULK_HISTORY)->tableExists() ) {
         ->add('city', 'varchar', 32)
         ->add('category', 'varchar', 64);
 }
+
+if ( ! entity(BULK_BLOCKED)->tableExists() ) {
+    entity(BULK_BLOCKED)
+        ->createTable()
+        ->add('number', 'char', '11')
+        ->add('reason', 'varchar', 255)
+		->unique('number');
+}
