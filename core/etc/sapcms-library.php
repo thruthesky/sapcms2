@@ -712,3 +712,12 @@ function jsBack($message, $header=true)
     if ( $header ) echo "</body></html>";
     return OK;
 }
+
+function system_runtime() {
+    global $time_start_script;
+    $time_end = microtime(true);
+    $time = $time_end - $time_start_script;
+    return round($time, 2);
+}
+
+

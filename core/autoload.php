@@ -1,4 +1,5 @@
 <?php
+$time_start_script = microtime(true);
 define('PATH_INSTALL', '.');
 include PATH_INSTALL.'/core/config.php';
 include PATH_INSTALL.'/core/etc/defines.php';

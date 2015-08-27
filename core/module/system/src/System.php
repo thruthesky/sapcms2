@@ -27,7 +27,6 @@ class System {
     private $path = null;
     private $filename =null;
     public $script = null;
-    private $render = [];
 
 
 
@@ -148,6 +147,7 @@ class System {
         }
         else {
             if ( $widget = self::isWidgetCall() ) {
+                $variables = Module::getVariables(); // $variables in widget is available by here.
                 include PATH_INSTALL . "/widget/$widget/$widget.php";
             }
             else {
@@ -197,15 +197,6 @@ class System {
     public static function getCoreModules()
     {
         return Module::getCoreModules();
-    }
-
-    public static function setRender($render)
-    {
-        System::get()->render = $render;
-    }
-    public static function getRender()
-    {
-        return System::get()->render;
     }
 
     /**

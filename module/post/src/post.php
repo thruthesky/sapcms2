@@ -52,10 +52,14 @@ class post {
         ]);
     }
 
+    /**
+     * @return mixed|null
+     */
     public static function listPostData() {
         $config = post_config()->getCurrent()->get();
-        $posts = self::searchPostDataCondition(['comment'=>false]);
-        $total_record = self::countPostData();
+        $options = ['comment'=>false];
+        $posts = self::searchPostDataCondition($options);
+        $total_record = self::countPostData($options);
         return Response::render([
             'template'=>'post.layout',
             'page'=>'post.data.list',

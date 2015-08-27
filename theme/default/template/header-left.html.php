@@ -1,1 +1,0 @@
-<a href='/' class="ui-btn-left ui-btn ui-btn-b ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-home">Home</a>

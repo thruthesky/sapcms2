@@ -7,6 +7,9 @@ class Module {
 
     private static $core_modules = ['admin', 'config', 'front', 'install', 'system', 'user'];
 
+    private static $variables = [];
+
+
     public static function script($filename=null)
     {
 
@@ -73,6 +76,19 @@ class Module {
             return SystemController::moduleNotEnabled();
         }
 
+    }
+
+
+    /**
+     * @param $variables
+     */
+    public static function setVariables($variables)
+    {
+        self::$variables = $variables;
+    }
+    public static function getVariables()
+    {
+        return self::$variables;
     }
 
 }

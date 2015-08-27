@@ -7,6 +7,7 @@ use sap\src\Entity;
 use sap\src\Form;
 use sap\src\jQM;
 use sap\src\Meta;
+use sap\src\Module;
 use sap\src\Request;
 use sap\src\Route;
 use sap\src\SQL;
@@ -47,6 +48,9 @@ function db_delete($table, $cond) {
 }
 
 
+function module() {
+    return new Module();
+}
 
 /**
  * Returns System Configuration Value

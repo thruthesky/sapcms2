@@ -153,6 +153,10 @@ class Database extends \PDO {
         if ( stripos($type, 'float') !== false ) {
             if ( $this->type == 'sqlite' ) $type = str_ireplace('float', 'real', $type);
         }
+        if ( stripos($type, 'double') !== false ) {
+            if ( $this->type == 'sqlite' ) $type = str_ireplace('double', 'real', $type);
+        }
+
         if ( $size ) $type = "$type($size)";
         $q = "ALTER TABLE `$table` ADD COLUMN `$column` $type";
         $this->runExec($q);

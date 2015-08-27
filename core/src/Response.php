@@ -28,7 +28,7 @@ class Response {
      */
     public static function renderTemplate($variables=[])
     {
-        System::setRender($variables);
+        Module::setVariables($variables);
         ob_start();
         include template();
         $content = ob_get_clean();
@@ -63,7 +63,7 @@ class Response {
     public static function render($variables=[])
     {
 
-        System::setRender($variables);
+        Module::setVariables($variables);
 
         ob_start();
 
@@ -86,7 +86,7 @@ class Response {
      */
     public static function renderSystemLayout($variables=[]) {
         if ( System::isCommandLineInterface() ) return OK;
-        System::setRender($variables);
+        Module::setVariables($variables);
 
         ob_start();
         include system_layout();

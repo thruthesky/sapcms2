@@ -3,6 +3,13 @@ use sap\core\System\System;
 use sap\src\Route;
 
 
+/**
+ * @return null|System
+ *
+ * @code
+ * sys()->getVariables();
+ * @endcode
+ */
 function sys() {
     return System::get();
 }

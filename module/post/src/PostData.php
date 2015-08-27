@@ -93,7 +93,6 @@ class PostData extends Entity {
     }
 
 
-
     /**
      *
      * If there is no current data, then returns FALSE.
@@ -128,6 +127,7 @@ class PostData extends Entity {
      *      - is the original post whose idx_parent is 0
      *      - If it is set to 0, then it returns the comments of current post.
      * @return mixed
+     *
      */
     public function getComments($idx=0, $field='*') {
         if ( empty($idx) ) {
@@ -143,6 +143,14 @@ class PostData extends Entity {
         return self::getCommentsInOrder($idx_root, $field);
     }
 
+    /**
+     * @param $idx_root
+     * @param string $field
+     * @return array
+     *
+     * @Attention Only this method returns in order of comment.
+     * - Do not use other method to get comment in ordered.
+     */
     private static function getCommentsInOrder($idx_root, $field='*')
     {
         return post_data()->rows("idx_root=$idx_root AND idx_parent>0 ORDER BY order_list ASC", $field);
@@ -153,7 +161,7 @@ class PostData extends Entity {
      *
      *
      * @Attention It create a new post and sets to current data.
-     *
+     * @Attention It does not check if the post_config exists or not. It must be checked earlier before this method call
      * @Attention - idx_config, idx_user, title, content MUST be set in options.
      *
      * @param array $options
@@ -168,9 +176,10 @@ class PostData extends Entity {
      * @endcode
      *
      * @example For order list example see - post/script/order-list.php
+     *
+     *
      */
     public static function newPost(array $options) {
-
 
         $data = post_data();
 
@@ -210,8 +219,17 @@ class PostData extends Entity {
         $new_order_list = 0;
         if ( $count = self::countComment($idx_root) ) {
 
-            if ( $max = self::maxOrderListOfParent($parent->get('idx')) ) {
+            if ( $parent->get('idx') == $idx_root ) {
+                $max = self::maxOrderListOfRoot($idx_root);
+                $new_order_list = round($max + 2);
+            }
+            else if ( $max = self::maxOrderListOfParent($parent->get('idx')) ) {
                 if ( $next = self::nextOrderListOfRoot($idx_root, $max) ) {
+                    if ( $max == $next ) {
+                        $next = self::nextOrderListOfRoot($idx_root, $max);
+                        echo "\nERROR max and next are the same\n";
+                        exit;
+                    }
                     $new_order_list = ( $max + $next ) / 2;
                     //echo "$idx=$idx,idx_parent=$options[idx_parent] , max:$max / next:$next = new_order_list=$new_order_list\n";
                 }
@@ -229,9 +247,7 @@ class PostData extends Entity {
             // echo "No comment\n";
         }
 
-
-
-        system_log($up);
+        //system_log($up);
 
         post_data()->which($data->get('idx'))->set('order_list', $new_order_list)->save();
         $data->set('idx_root', $idx_root);
@@ -241,13 +257,37 @@ class PostData extends Entity {
     }
 
     /**
+     *
+     * Creates a post with random title and content.
+     *
+     *
+     * @param $options
+     *      - 'idx_config' is the title
+     *      - 'idx_parent' is the parent
+     * @return $this|bool|PostData - PostData Entity
+     *
+     *
+     * @Attention It does not check if the post_config exists or not.
+     *
+     * @NOTE If you do not need a post_config, you can just omit it.
+     */
+    public static function createRandomPost($options=[]) {
+        if ( ! isset($options['title']) ) $options['title'] ="TITLE " . date("M-d H:i:s");
+        if ( ! isset($options['content']) ) $options['content'] = "Content" . date("r");
+        return post_data()->newPost($options);
+    }
+
+    /**
      * @param $idx_root
      * @return mixed
+     *
+     * @code
+     *  $max = post_data()->countComment($idx_root);
+     * @endcode
      */
     public static function countComment($idx_root) {
         return post_data()->count("idx_root=$idx_root AND idx_parent>0");
     }
-
 
     /**
      * Returns the MAX order_list among the children of parents.
@@ -255,22 +295,9 @@ class PostData extends Entity {
      * @param $idx_parent
      * @return mixed
      */
-    private static function maxOrderListOfParent($idx_parent, $depth=0)
+    private static function maxOrderListOfParent($idx_parent)
     {
         $max = 0;
-        /*
-        $rows = post_data()->rows("idx_parent=$idx_parent", "idx, idx_parent, order_list");
-        if ( $rows ) {
-            foreach( $rows as $row ) {
-                $ret = self::maxOrderListOfParent($row['idx'], $depth + 1);
-                if ( $ret > $row['order_list'] ) {
-                    $max = $ret;
-                }
-                else if ( $row['order_list'] > $max ) $max = $row['order_list'];
-            }
-        }
-        */
-
         $tree = self::getRecursiveTreeWithSelf($idx_parent);
         if ( $tree ) {
             foreach ( $tree as $comment ) {
@@ -279,7 +306,6 @@ class PostData extends Entity {
                 }
             }
         }
-
         return $max;
     }
 
@@ -293,8 +319,8 @@ class PostData extends Entity {
      *
      * @code
      * print_r( post_data()->getRecursiveTree($post->get('idx'), "idx, idx_root, idx_parent, title, order_list"));
-    print_r( post_data()->getRecursiveTree($child1->get('idx'), "idx, idx_root, idx_parent, title, order_list"));
-    print_r( post_data()->getRecursiveTree($child2_1->get('idx'), "idx, idx_root, idx_parent, title, order_list"));
+     * print_r( post_data()->getRecursiveTree($child1->get('idx'), "idx, idx_root, idx_parent, title, order_list"));
+     * print_r( post_data()->getRecursiveTree($child2_1->get('idx'), "idx, idx_root, idx_parent, title, order_list"));
      * @endcode
      *
      */
@@ -323,9 +349,26 @@ class PostData extends Entity {
     }
 
 
+    /**
+     * @param $idx_root
+     * @param $order_list
+     * @return mixed
+     */
     private static function nextOrderListOfRoot($idx_root, $order_list)
     {
         return post_data()->result("order_list", "idx_root=$idx_root AND order_list>$order_list ORDER BY order_list ASC");
     }
+
+
+    /**
+     * Returns max order list value of the root and comments.
+     * @param $idx_root
+     * @return mixed
+     */
+    private static function maxOrderListOfRoot($idx_root)
+    {
+        return post_data()->result("MAX(order_list)", "idx_root=$idx_root");
+    }
+
 
 }
