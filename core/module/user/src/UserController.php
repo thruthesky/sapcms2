@@ -15,7 +15,8 @@ class UserController
 
     public static function register()
     {
-        if (self::userFormSubmit()) {
+        if ( $submit_response = self::userFormSubmit() ) {
+			if( $submit_response == 'admin-edit' ) return Response::redirect('/admin/user');
             return Response::redirect(config()->getUrlSite());
         }
 		
@@ -39,7 +40,8 @@ class UserController
 				$idx = Request::get('idx');
 				if( $idx ){
 					//if admin...
-					$user = user( $idx );					
+					$user = user( $idx );
+					$is_admin_edit = 'admin-edit';//temp just for redirect
 				}
 				else{
 					if ( login() ) {
@@ -62,7 +64,8 @@ class UserController
 				}
 				
 				if ( ! login() ) User::login(Request::get('id'));
-
+				
+				if( !empty( $is_admin_edit ) ) return $is_admin_edit;
                 return TRUE;
 			}
 			else{
