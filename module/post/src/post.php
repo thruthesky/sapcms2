@@ -35,8 +35,8 @@ class post {
 		
 		$id = request('id');		
 		if( !empty( $id ) ){
-			$post_data = post_config($id);			
-			if( !empty( $post_data ) ) $data['post_data'] = $post_data->fields;
+			$post_config = post_config($id);			
+			if( !empty( $post_config ) ) $data['post_config'] = $post_config->fields;
 			else error(-60401, "Invalid ID.");
 		}
 		else{
@@ -67,19 +67,30 @@ class post {
     public static function configEditSubmit() {
 		$id = request( 'id' );
 		if( empty( $id ) ) {
+			//
 			error(-60400, "Missing ID.");
 		}
 		else{
 			$input = request();		
 			unset( $input['id'] );
 			
-			$post_config = post_config( $id );
-			
-			foreach( $input as $k => $v ){			
-				if( empty( $v ) ) continue;								
-				$post_config->set( $k, $v );
+			$post_config = post_config($id);			
+			if( !empty( $post_config ) ){
+				foreach( $input as $k => $v ){			
+					if( empty( $v ) ) continue;								
+					$post_config->set( $k, $v );
+				}
+				$post_config->save();
+				$data['post_config'] = $post_config->fields;
 			}
-			$post_config->save();
+			else{
+				//
+				error(-60401, "Invalid ID.");
+				$data = [];
+				$data['template'] = 'post.layout';
+				$data['page'] = 'post.config.edit';
+				return Response::renderSystemLayout($data);
+			}
 		}				
 		return Response::redirect('/admin/post/config/edit?id='.$id);
     }
@@ -87,11 +98,20 @@ class post {
 	public static function configDeleteSubmit() {
 		$id = request( 'id' );
 		if( empty( $id ) ) {
+			//redundant code with configEditSubmit() for if missing ID
 			error(-60400, "Missing ID.");
 		}
 		else{			
-			$post_config = post_config( $id );
-			$post_config->delete();
+			$post_config = post_config($id);	
+			if( !empty( $post_config ) ) $post_config->delete();
+			else {
+				//redundant code with configEditSubmit() for invalid ID value
+				error(-60401, "Invalid ID.");
+				$data = [];
+				$data['template'] = 'post.layout';
+				$data['page'] = 'post.adminPostConfigList';
+				return Response::renderSystemLayout($data);
+			}
 		}				
 		return Response::redirect('/admin/post/config/list');
 	}
