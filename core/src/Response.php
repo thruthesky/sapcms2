@@ -97,6 +97,17 @@ class Response {
         return self::processContent($content);
     }
 
+    /**
+     * Alias of renderSystemLayout
+     *
+     * @param array $variables
+     * @return mixed|null
+     */
+    public static function renderAdminPage($variables=[])
+    {
+        return self::renderSystemLayout($variables);
+    }
+
 
     private static function setHeaders()
     {
@@ -235,6 +246,7 @@ class Response {
         echo json_encode($data);
         return OK;
     }
+
 
 
 }

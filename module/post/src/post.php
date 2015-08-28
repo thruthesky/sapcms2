@@ -11,12 +11,14 @@ class post {
             'page'=>'post.index',
         ]);
     }
+    /**
     public static function admin() {
-        return Response::renderSystemLayout([
-            'template'=>'post.layout',
-            'page'=>'post.admin',
-        ]);
+    return Response::renderSystemLayout([
+    'template'=>'post.layout',
+    'page'=>'post.admin',
+    ]);
     }
+     * */
 
 
     public static function configCreate() {
@@ -40,15 +42,15 @@ class post {
                 ->set('id', request('id'))
                 ->set('name', request('name'))
                 ->save();
-            return Response::redirect('/post/config/list');
+            return Response::redirect('/admin/post/config/list');
         }
     }
 
 
-    public static function listPostConfig() {
-        return Response::render([
+    public static function adminPostConfigList() {
+        return Response::renderSystemLayout([
             'template'=>'post.layout',
-            'page'=>'post.config.list',
+            'page'=>'post.adminPostConfigList',
         ]);
     }
 
@@ -419,6 +421,17 @@ class post {
         return request('idx_parent', FALSE);
     }
 
+
+    public static function adminPostConfigGlobal() {
+        if ( submit() ) {
+            config(NO_ITEM, request(NO_ITEM));
+            config(NO_PAGE, request(NO_PAGE));
+        }
+        return Response::renderAdminPage([
+            'template' => 'post.layout',
+            'page' => 'post.adminPostConfigGlobal',
+        ]);
+    }
 
 }
 

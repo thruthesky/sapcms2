@@ -4,6 +4,7 @@ define('POST_DATA', 'post_data');
 
 include 'post.routing.php';
 include 'post.function.php';
+include 'post.hook.php';
 
 if ( is_post_page() ) {
     add_css('/module/post/css/post.base.css');

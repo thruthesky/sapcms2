@@ -1,4 +1,5 @@
-<form action="/post/config/create_submit">
+<?php include template('post.admin.menu'); ?>
+<form action="/admin/post/config/create_submit">
     Post configuration ID :
     <input type="text" name="id" value="<?php echo request('id'); ?>">
 

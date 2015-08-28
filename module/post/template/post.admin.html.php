@@ -1,1 +1,0 @@
-<?php include template('post.admin.menu'); ?>

@@ -1,28 +1,10 @@
 <?php
+use sap\src\Date;
+
 extract( module()->getVariables() );
 
-	for( $i = 1940; $i <= date( "Y",time() ); $i++ ){
-		$years[$i] = $i;
-	}	
-	
-	for( $i = 1; $i <= 31; $i++ ){
-		$days[$i] = $i;
-	}
-	
-	$months =	[
-				"1"=>"January",
-				"2"=>"February",
-				"3"=>"March",
-				"4"=>"April",
-				"5"=>"May",
-				"6"=>"June",
-				"7"=>"July",
-				"8"=>"August",
-				"9"=>"September",
-				"10"=>"October",
-				"11"=>"November",
-				"12"=>"December",
-				];	
+
+
 ?>
 <form  method="post">
 
@@ -87,21 +69,21 @@ extract( module()->getVariables() );
     <?php echo html_row(
         [
             'caption'=>'Year',
-            'text'=> html_select(['name'=>'birth_year', 'selected'=>$user['birth_year'], 'options'=>$years]),
+            'text'=> html_select(['name'=>'birth_year', 'selected'=>$user['birth_year'], 'options'=>Date::years()]),
         ]
     ); ?>
 	
     <?php echo html_row(
         [
             'caption'=>'Month',
-            'text'=> html_select(['name'=>'birth_month', 'selected'=>$user['birth_month'], 'options'=>$months]),
+            'text'=> html_select(['name'=>'birth_month', 'selected'=>$user['birth_month'], 'options'=>Date::months()]),
         ]
     ); ?>
 	
     <?php echo html_row(
         [
             'caption'=>'Day',
-            'text'=> html_select(['name'=>'birth_day', 'selected'=>$user['birth_day'], 'options'=>$days]),
+            'text'=> html_select(['name'=>'birth_day', 'selected'=>$user['birth_day'], 'options'=>Date::days()]),
         ]
     ); ?>
 	
