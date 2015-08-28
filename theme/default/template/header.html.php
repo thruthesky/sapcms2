@@ -5,6 +5,7 @@ add_css();
     <?php if ( admin() ) { ?>
         <li><a href="/admin" class="ui-btn ui-btn-icon-left ui-icon-user">Admin Page</a></li>
     <?php } ?>
+    <li><a href="/post">Forums</a></li>
     <?php if ( login() ) { ?>
         <li><a href="/user/profile" class="ui-btn ui-btn-icon-left ui-icon-user">Profile Update</a></li>
         <li><a href="/message" class="ui-btn ui-btn-icon-left ui-icon-mail">Message</a></li>

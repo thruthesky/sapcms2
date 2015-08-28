@@ -479,9 +479,24 @@ function date_short($stamp=0) {
 ]);
  * @endcode
  *
- * @code
+ * @code Caption and Text
  *      echo html_row('Your Selection', config(USER_TIMEZONE_3));
  * @endcode
+ *
+ *
+ * @code Caption and HTML Element
+ *
+<?php echo html_row([
+'class' => 'title',
+'caption' => 'TITLE',
+'text' => html_input([
+'name' => 'title',
+'placeholder' => 'Input title'
+]),
+]); ?>
+ *
+ * @endcode
+ *
  */
 function html_row($option, $text=UNDEFINED) {
     if ( $text == UNDEFINED ) $o = $option;
@@ -550,6 +565,19 @@ function html_select($o) {
     $re .= "</select>";
     return $re;
 }
+
+function html_textarea($o) {
+    $re = "<textarea";
+    if ( isset($o['id']) ) $re .= " id='$o[id]'";
+    if ( isset($o['class']) ) $re .= " class='$o[class]'";
+    if ( isset($o['name']) ) $re .= " name='$o[name]'";
+    if ( isset($o['placeholder']) ) $re .= " placeholder='$o[placeholder]'";
+    $re .= ">";
+    if ( isset($o['value']) ) $re .= $o['value'];
+    $re .= "</textarea>";
+    return $re;
+}
+
 
 function html_select_timezone($form_name, $value=null) {
     $regions = array(

@@ -14,7 +14,7 @@
     <div id="header"><?php include template('header'); ?></div>
     <div class="ui-content">
         <table cellpadding="0" cellspacing="0">
-            <tr>
+            <tr valign="top">
                 <td><?php include template('left'); ?></td>
                 <td>
                     <?php widget('error') ?>
@@ -33,7 +33,6 @@
 <!--[if gte IE 9]><!-->
 <script type='text/javascript' src='/core/etc/js/jquery-2.1.4/jquery-2.1.4.min.js'></script>
 <!--<![endif]-->
-
 
 <?php add_javascript('default.js'); ?>
 <?php widget('timezone'); ?>
