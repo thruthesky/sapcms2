@@ -71,6 +71,8 @@
 	}
 	else $categories = [ "10542"=>"Real Estate" ];
 	
+	$count_already = $count_saved = 0;
+	
 	foreach( $categories as $k => $v ){
 		/*
 		//located only in PH
@@ -111,7 +113,7 @@
 	
 	function save_pages_into_database( $urls, $category ){	
 		//$db = Database::load();
-		global $db;
+		global $db, $count_already, $count_saved;
 	
 		foreach( $urls as $url ){
 			$q = "SELECT idx,url from page_number_extract WHERE url='$url'";
@@ -120,7 +122,7 @@
 			$row = $result->fetch(PDO::FETCH_ASSOC);
 			
 			if( empty( $row ) ){	
-				echo "Inserting: $url\n";				
+								
 				$origin = 'ebay.ph';
 				$keyword = $category;
 				$stamp = time();
@@ -132,6 +134,8 @@
 				$q = "INSERT INTO page_number_extract (origin, keyword, stamp, url, content) VALUES ('$origin', '$keyword', '$stamp', '$url', '$body')";
 				$db->query($q);
 				//$db->insert('page_number_extract', $data);
+				$count_saved++;
+				echo "Success Inserting ( count $count_saved ) : $url\n";
 				$rand_sleep = 10 + rand(1,30);
 				sleep( $rand_sleep );
 			}
@@ -153,7 +157,7 @@
 			]);
 		}
 		catch( Exception $e ) {
-			echo "Error $e\n\n";
+			echo "Guzzle Error: $url \n";
 			return null;
 		}
 		

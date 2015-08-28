@@ -8,7 +8,6 @@ use sap\src\Request;
 use sap\src\Response;
 use sap\src\Template;
 
-
 function di($obj) {
     echo "<pre>";
     print_r($obj);
@@ -559,8 +558,14 @@ function html_select($o) {
     if ( isset($o['class']) ) $re .= " class='$o[class]'";
     if ( isset($o['name']) ) $re .= " name='$o[name]'";
     $re .= ">";
+		
     foreach( $o['options'] as $key => $value ) {
-        $re .= "<option value='$key'>$value</option>";
+		//condition added by benjamin for selected
+		$selected = '';
+		if( isset( $o['selected']  ) ){
+			if( $o['selected'] == $key ) $selected = ' selected';			
+		}
+        $re .= "<option value='$key'$selected>$value</option>";
     }
     $re .= "</select>";
     return $re;
