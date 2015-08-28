@@ -503,11 +503,15 @@ function html_row($option, $text=UNDEFINED) {
 }
 
 
-
-
+/**
+ * @param $o
+ *      - $o['type'] - is the type of FORM INPUT element. if it is not set, default is 'text'
+ * @return string
+ */
 function html_input($o) {
     $re = "<input";
     if ( isset($o['type']) ) $re .= " type='$o[type]'";
+    else  $re .= " type='type'";
     if ( isset($o['id']) ) $re .= " id='$o[id]'";
     if ( isset($o['class']) ) $re .= " class='$o[class]'";
     if ( isset($o['name']) ) $re .= " name='$o[name]'";

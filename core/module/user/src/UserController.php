@@ -8,13 +8,12 @@ class UserController
     public static function profile()
     {
         if ( submit() ) {
-			exit;
             $options['id'] = login('id');
             $options['name'] = request('name');
             $options['mail'] = request('mail');
             self::updateUser($options);
         }
-        Response::render(['template' => 'user-profile']);
+        Response::render(['template' => 'user.profile']);
     }
 
 
@@ -26,10 +25,10 @@ class UserController
     }
 	
 	//added by benjamin
-    public static function adminUpdate()
+    public static function adminUserEdit()
     {			
-        if ( submit() ) return self::adminUpdateFormSubmit();				
-        return self::userRegisterTemplate();
+        if ( submit() ) return self::adminUserEditSubmit();
+        return self::adminUserEditTemplate();
     }
 
 
@@ -38,57 +37,15 @@ class UserController
         $user = user();
         $user ->create($options['id']);
         if ( isset($options['password']) ) $user->setPassword($options['password']);
-
         if ( isset($options['domain']) ) $user->set('domain', $options['domain']);
         else $user->set('domain', domain());
-
-
-
-        if ( isset($options['name']) ) $user->set('name', $options['name']);
-        if ( isset($options['middle_name']) ) $user->set('middle_name', $options['middle_name']);
-        if ( isset($options['last_name']) ) $user->set('last_name', $options['last_name']);
-        if ( isset($options['nickname']) ) $user->set('nickname', $options['nickname']);
-        if ( isset($options['mail']) ) $user->set('mail', $options['mail']);
-        if ( isset($options['birth_year']) ) $user->set('birth_year', $options['birth_year']);
-        if ( isset($options['birth_month']) ) $user->set('birth_month', $options['birth_month']);
-        if ( isset($options['birth_day']) ) $user->set('birth_day', $options['birth_day']);
-        if ( isset($options['mobile']) ) $user->set('mobile', $options['mobile']);
-        if ( isset($options['address']) ) $user->set('address', $options['address']);
-        if ( isset($options['country']) ) $user->set('country', $options['country']);
-        if ( isset($options['province']) ) $user->set('province', $options['province']);
-        if ( isset($options['city']) ) $user->set('city', $options['city']);
-        if ( isset($options['school']) ) $user->set('school', $options['school']);
-        if ( isset($options['work']) ) $user->set('work', $options['work']);
-
+        $user->setFields($options);
         $user->save();
         return $user;
 
 
     }
-	
-	//added by benjamin
-	public static function adminUpdateUser($options) {
-		$user = user( $options['idx'] );
-		
-		if ( isset($options['name']) ) $user->set('name', $options['name']);
-        if ( isset($options['middle_name']) ) $user->set('middle_name', $options['middle_name']);
-        if ( isset($options['last_name']) ) $user->set('last_name', $options['last_name']);
-        if ( isset($options['nickname']) ) $user->set('nickname', $options['nickname']);
-        if ( isset($options['mail']) ) $user->set('mail', $options['mail']);
-        if ( isset($options['birth_year']) ) $user->set('birth_year', $options['birth_year']);
-        if ( isset($options['birth_month']) ) $user->set('birth_month', $options['birth_month']);
-        if ( isset($options['birth_day']) ) $user->set('birth_day', $options['birth_day']);
-        if ( isset($options['mobile']) ) $user->set('mobile', $options['mobile']);
-        if ( isset($options['address']) ) $user->set('address', $options['address']);
-        if ( isset($options['country']) ) $user->set('country', $options['country']);
-        if ( isset($options['province']) ) $user->set('province', $options['province']);
-        if ( isset($options['city']) ) $user->set('city', $options['city']);
-        if ( isset($options['school']) ) $user->set('school', $options['school']);
-        if ( isset($options['work']) ) $user->set('work', $options['work']);
 
-        $user->save();
-        return $user;
-	}
 	
     /**
      *
@@ -228,13 +185,13 @@ class UserController
     }
 	
 	//added by benjamin
-	private static function adminUpdateFormSubmit(){
-		$options['idx'] = request('idx');
-		$options['name'] = request('name');
-        $options['mail'] = request('mail');
-		$user = self::adminUpdateUser( $options );
-		
-		return Response::redirect( "/admin/user" );
+	private static function adminUserEditSubmit() {
+        $user = user( request('idx') );
+        if ( $password = request('password') ) $user->setPassword($password);
+        if ( $domain = request('domain') ) $user->set('domain', $domain);
+        $user->setBasicFields(request());
+        $user->save();
+		return Response::redirect( "/admin/user/edit?idx=" . request('idx') );
 	}
 
     private static function userRegisterTemplate()
@@ -250,9 +207,39 @@ class UserController
 
         return Response::render($data);
     }
-	
+
+    private static function adminUserEditTemplate() {
+
+        $data = [];
+        $data['input'] = Request::get();
+        $data['template'] = 'admin.user.edit';
+
+        //added by benjamin
+        $idx = request('idx');
+        if( $idx ) $data['user'] = user( $idx )->get();
+        else {
+            error(-50123, "User idx is not provided.");
+        }
+
+        return Response::renderSystemLayout($data);
+    }
+
+
+    /**
+     *
+     * @Attention Do not put options directly from FORM submit. Form could have invalid or un-wanted data.
+     *
+     *
+     *
+     *
+     *
+     * @param $options
+     * @return $this|bool|User
+     *
+     */
     private static function updateUser($options)
     {
+        if ( ! isset($options['id']) ) return error(-50150, "User id is not provided");
 
         $user = user($options['id']);
         unset($options['id']);

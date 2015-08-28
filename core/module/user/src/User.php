@@ -45,6 +45,8 @@ class User extends Entity {
             ->add('city', 'varchar', 255)
             ->add('school', 'varchar', 128)
             ->add('work', 'varchar', 128)
+            ->add('last_login_stamp', 'INT UNSIGNED DEFAULT 0')
+            ->add('last_login_ip', 'varchar', 32)
             ->unique('id')
             ->index('domain')
             ->index('name')
@@ -131,6 +133,34 @@ class User extends Entity {
         if ( ! $this->load('id', $id) ) return FALSE;
         if ( $session_id == User::getUserSessionID($this) ) return $this;
         else return FALSE;
+    }
+
+
+    /**
+     *
+     * Sets ONLY basic fields of the user.
+     *
+     *      - It does not set password, domain, ip, etc.
+     *      - DOMAIN must be set in other place.
+     *
+     * @param $options
+     */
+    public function setBasicFields($options) {
+        if ( isset($options['name']) ) $this->set('name', $options['name']);
+        if ( isset($options['middle_name']) ) $this->set('middle_name', $options['middle_name']);
+        if ( isset($options['last_name']) ) $this->set('last_name', $options['last_name']);
+        if ( isset($options['nickname']) ) $this->set('nickname', $options['nickname']);
+        if ( isset($options['mail']) ) $this->set('mail', $options['mail']);
+        if ( isset($options['birth_year']) ) $this->set('birth_year', $options['birth_year']);
+        if ( isset($options['birth_month']) ) $this->set('birth_month', $options['birth_month']);
+        if ( isset($options['birth_day']) ) $this->set('birth_day', $options['birth_day']);
+        if ( isset($options['mobile']) ) $this->set('mobile', $options['mobile']);
+        if ( isset($options['address']) ) $this->set('address', $options['address']);
+        if ( isset($options['country']) ) $this->set('country', $options['country']);
+        if ( isset($options['province']) ) $this->set('province', $options['province']);
+        if ( isset($options['city']) ) $this->set('city', $options['city']);
+        if ( isset($options['school']) ) $this->set('school', $options['school']);
+        if ( isset($options['work']) ) $this->set('work', $options['work']);
     }
 
 }

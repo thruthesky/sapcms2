@@ -97,9 +97,12 @@ function submit() {
  * @return array|null
  */
 function request($key=null, $default=null) {
-    $value = Request::get($key);
-    if ( $value === null ) return $default;
-    else return $value;
+    if ( empty($key) ) return Request::get();
+    else {
+        $value = Request::get($key);
+        if ( $value === null ) return $default;
+        else return $value;
+    }
 }
 
 
