@@ -7,10 +7,10 @@ class UserController
 {
     public static function profile()
     {
-        if ( submit() ) {
-            $options['id'] = login('id');
-            $options['name'] = request('name');
-            $options['mail'] = request('mail');
+        if ( submit() ) {			
+			
+            $options = request();
+			if( empty( $options['password'] ) ) unset( $options['password'] );
             self::updateUser($options);
         }
         Response::render(['template' => 'user.profile']);
