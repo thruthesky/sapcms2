@@ -49,6 +49,7 @@
 			}
 			else{				
 				$fail_reason = 'N';//number exists
+				$fail_count ++;
 				$count_collection = $sms['count_collection'] + 1;
 				$q = "UPDATE smsgate_bulk_data SET count_collection=$count_collection WHERE idx=$sms[idx]";
 				$db->query( $q );
