@@ -24,7 +24,13 @@
 	if( isset( $argv[2] ) ) $last_page = $argv[2];
 	else $last_page = 10;
 	
-	if( isset( $argv[3] ) ){
+	if( isset( $argv[3] ) ){		
+		if( !in_array( $argv[3], $categories ) ){
+			echo "Invalid category!\n\n";
+			print_r( $categories );
+			echo "\n Exiting...\n";
+			exit;
+		}
 		$categories = [];
 		$categories[] = $argv[3];
 	}

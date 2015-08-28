@@ -26,7 +26,7 @@ class UserController
 	
 	//added by benjamin
     public static function adminUserEdit()
-    {			
+    {					
         if ( submit() ) return self::adminUserEditSubmit();
         return self::adminUserEditTemplate();
     }
@@ -39,7 +39,7 @@ class UserController
         if ( isset($options['password']) ) $user->setPassword($options['password']);
         if ( isset($options['domain']) ) $user->set('domain', $options['domain']);
         else $user->set('domain', domain());
-        $user->setFields($options);
+        $user->setBasicFields($options);
         $user->save();
         return $user;
 
@@ -187,6 +187,7 @@ class UserController
 	//added by benjamin
 	private static function adminUserEditSubmit() {
         $user = user( request('idx') );
+
         if ( $password = request('password') ) $user->setPassword($password);
         if ( $domain = request('domain') ) $user->set('domain', $domain);
         $user->setBasicFields(request());
@@ -219,7 +220,7 @@ class UserController
         if( $idx ) $data['user'] = user( $idx )->get();
         else {
             error(-50123, "User idx is not provided.");
-        }
+        }	
 
         return Response::renderSystemLayout($data);
     }

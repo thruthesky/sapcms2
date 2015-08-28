@@ -145,7 +145,7 @@ class User extends Entity {
      *
      * @param $options
      */
-    public function setBasicFields($options) {
+    public function setBasicFields($options) {		
         if ( isset($options['name']) ) $this->set('name', $options['name']);
         if ( isset($options['middle_name']) ) $this->set('middle_name', $options['middle_name']);
         if ( isset($options['last_name']) ) $this->set('last_name', $options['last_name']);
@@ -154,6 +154,7 @@ class User extends Entity {
         if ( isset($options['birth_year']) ) $this->set('birth_year', $options['birth_year']);
         if ( isset($options['birth_month']) ) $this->set('birth_month', $options['birth_month']);
         if ( isset($options['birth_day']) ) $this->set('birth_day', $options['birth_day']);
+        if ( isset($options['landline']) ) $this->set('landline', $options['landline']);
         if ( isset($options['mobile']) ) $this->set('mobile', $options['mobile']);
         if ( isset($options['address']) ) $this->set('address', $options['address']);
         if ( isset($options['country']) ) $this->set('country', $options['country']);
