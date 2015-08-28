@@ -2,7 +2,10 @@
 
 // Admin Page
 route('/admin/post/config/create', 'post\\post\\configCreate');
+route('/admin/post/config/edit', 'post\\post\\configEdit');
 route('/admin/post/config/create_submit', 'post\\post\\configCreateSubmit');
+route('/admin/post/config/edit_submit', 'post\\post\\configEditSubmit');
+route('/admin/post/config/delete_submit', 'post\\post\\configDeleteSubmit');
 
 route('/admin/post/config/list', 'post\\post\\adminPostConfigList');
 

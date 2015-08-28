@@ -20,7 +20,24 @@ class post {
             'page'=>'post.config.create',
         ]);
     }
+	
+    public static function configEdit() {
+		$data = [];
+		$data['template'] = 'post.layout';
+		$data['page'] = 'post.config.edit';
+		
+		$id = request('id');		
+		if( !empty( $id ) ){
+			$post_config = post_config($id);			
+			if( !empty( $post_config ) ) $data['post_config'] = $post_config->fields;
+			else error(-60401, "Invalid ID.");
+		}
+		else{
+			error(-60400, "Missing ID.");		
+		}	
 
+        return Response::renderSystemLayout($data);
+    }
 
     public static function configCreateSubmit() {
         if ( post_config(request('id')) ) {
@@ -34,12 +51,61 @@ class post {
             post_config()
                 ->set('id', request('id'))
                 ->set('name', request('name'))
+                ->set('description', request('description'))
                 ->save();
             return Response::redirect('/admin/post/config/list');
         }
     }
 
+    public static function configEditSubmit() {
+		$id = request( 'id' );
+		if( empty( $id ) ) {					
+			return self::postConfigSubmitError(-60400,'Missing ID','post.config.edit');				
+		}
+		else{
+			$input = request();		
+			unset( $input['id'] );
+			
+			$post_config = post_config($id);			
+			if( !empty( $post_config ) ){
+				foreach( $input as $k => $v ){			
+					if( empty( $v ) ) continue;								
+					$post_config->set( $k, $v );
+				}
+				$post_config->save();
+				$data['post_config'] = $post_config->fields;
+			}
+			else{				
+				return self::postConfigSubmitError(-60401,"Invalid ID [ $id ]",'post.config.edit');				
+			}
+		}				
+		return Response::redirect('/admin/post/config/edit?id='.$id);
+    }
 
+	public static function configDeleteSubmit() {
+		$id = request( 'id' );
+		if( empty( $id ) ) {
+			//redundant code with configEditSubmit() for if missing ID			
+			return self::postConfigSubmitError(-60400,'Missing ID','post.adminPostConfigList');
+		}
+		else{			
+			$post_config = post_config($id);	
+			if( !empty( $post_config ) ) $post_config->delete();
+			else {						
+				return self::postConfigSubmitError(-60401,"Invalid ID [ $id ]",'post.adminPostConfigList');
+			}
+		}				
+		return Response::redirect('/admin/post/config/list');
+	}
+	
+	public static function postConfigSubmitError( $code, $message, $page ){
+		error($code, $message);		
+		$data = [];
+		$data['template'] = 'post.layout';
+		$data['page'] = $page;
+		return Response::renderSystemLayout($data);
+	}
+	
     public static function adminPostConfigList() {
         return Response::renderSystemLayout([
             'template'=>'post.layout',
