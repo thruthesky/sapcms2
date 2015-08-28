@@ -66,9 +66,8 @@ class post {
 
     public static function configEditSubmit() {
 		$id = request( 'id' );
-		if( empty( $id ) ) {
-			//
-			error(-60400, "Missing ID.");
+		if( empty( $id ) ) {					
+			return self::postConfigSubmitError(-60400,'Missing ID','post.config.edit');				
 		}
 		else{
 			$input = request();		
@@ -83,13 +82,8 @@ class post {
 				$post_config->save();
 				$data['post_config'] = $post_config->fields;
 			}
-			else{
-				//
-				error(-60401, "Invalid ID.");
-				$data = [];
-				$data['template'] = 'post.layout';
-				$data['page'] = 'post.config.edit';
-				return Response::renderSystemLayout($data);
+			else{				
+				return self::postConfigSubmitError(-60401,"Invalid ID [ $id ]",'post.config.edit');				
 			}
 		}				
 		return Response::redirect('/admin/post/config/edit?id='.$id);
@@ -98,24 +92,27 @@ class post {
 	public static function configDeleteSubmit() {
 		$id = request( 'id' );
 		if( empty( $id ) ) {
-			//redundant code with configEditSubmit() for if missing ID
-			error(-60400, "Missing ID.");
+			//redundant code with configEditSubmit() for if missing ID			
+			return self::postConfigSubmitError(-60400,'Missing ID','post.adminPostConfigList');
 		}
 		else{			
 			$post_config = post_config($id);	
 			if( !empty( $post_config ) ) $post_config->delete();
-			else {
-				//redundant code with configEditSubmit() for invalid ID value
-				error(-60401, "Invalid ID.");
-				$data = [];
-				$data['template'] = 'post.layout';
-				$data['page'] = 'post.adminPostConfigList';
-				return Response::renderSystemLayout($data);
+			else {						
+				return self::postConfigSubmitError(-60401,"Invalid ID [ $id ]",'post.adminPostConfigList');
 			}
 		}				
 		return Response::redirect('/admin/post/config/list');
 	}
-
+	
+	public static function postConfigSubmitError( $code, $message, $page ){
+		error($code, $message);		
+		$data = [];
+		$data['template'] = 'post.layout';
+		$data['page'] = $page;
+		return Response::renderSystemLayout($data);
+	}
+	
     public static function adminPostConfigList() {
         return Response::renderSystemLayout([
             'template'=>'post.layout',
