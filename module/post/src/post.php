@@ -27,7 +27,24 @@ class post {
             'page'=>'post.config.create',
         ]);
     }
+	
+    public static function configEdit() {
+		$data = [];
+		$data['template'] = 'post.layout';
+		$data['page'] = 'post.config.edit';
+		
+		$id = request('id');		
+		if( !empty( $id ) ){
+			$post_data = post_config($id);			
+			if( !empty( $post_data ) ) $data['post_data'] = $post_data->fields;
+			else error(-60401, "Invalid ID.");
+		}
+		else{
+			error(-60400, "Missing ID.");		
+		}	
 
+        return Response::renderSystemLayout($data);
+    }
 
     public static function configCreateSubmit() {
         if ( post_config(request('id')) ) {
@@ -41,11 +58,43 @@ class post {
             post_config()
                 ->set('id', request('id'))
                 ->set('name', request('name'))
+                ->set('description', request('description'))
                 ->save();
             return Response::redirect('/admin/post/config/list');
         }
     }
 
+    public static function configEditSubmit() {
+		$id = request( 'id' );
+		if( empty( $id ) ) {
+			error(-60400, "Missing ID.");
+		}
+		else{
+			$input = request();		
+			unset( $input['id'] );
+			
+			$post_config = post_config( $id );
+			
+			foreach( $input as $k => $v ){			
+				if( empty( $v ) ) continue;								
+				$post_config->set( $k, $v );
+			}
+			$post_config->save();
+		}				
+		return Response::redirect('/admin/post/config/edit?id='.$id);
+    }
+
+	public static function configDeleteSubmit() {
+		$id = request( 'id' );
+		if( empty( $id ) ) {
+			error(-60400, "Missing ID.");
+		}
+		else{			
+			$post_config = post_config( $id );
+			$post_config->delete();
+		}				
+		return Response::redirect('/admin/post/config/list');
+	}
 
     public static function adminPostConfigList() {
         return Response::renderSystemLayout([

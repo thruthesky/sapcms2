@@ -180,7 +180,6 @@ class PostData extends Entity {
      *
      */
     public static function newPost(array $options) {
-
         $data = post_data();
 
         $data->set($options);
@@ -190,8 +189,8 @@ class PostData extends Entity {
         $data->set('report', 0);
         $data->set('order_list', 0);
         $data->set('content_stripped', strip_tags($options['content']));
-        $data->set('ip', ip());
-        if ( ! isset($options['domain']) ) $data->set('domain', domain());
+        $data->set('ip', ip());				
+        if ( ! isset($options['domain']) ) $data->set('domain', domain());		
         if ( ! isset($options['user_agent']) ) $data->set('domain', user_agent());
         $data->save();
         $idx = $data->get('idx');

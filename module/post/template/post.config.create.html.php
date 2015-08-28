@@ -6,5 +6,8 @@
     Post configuration name :
     <input type="text" name="name" value="<?php echo request('name'); ?>">
 
+    Post configuration Description :
+    <input type="text" name="description" value="<?php echo request('description'); ?>">
+
     <input type="submit" value="CREATE A POST CONFIG">
 </form>
