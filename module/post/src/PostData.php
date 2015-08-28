@@ -74,24 +74,34 @@ class PostData extends Entity {
         else return null;
     }
 
+
+    /**
+     * @return $this|bool|PostData
+     */
+    /*
     public static function formSubmit()
     {
         $config = post_config()->getCurrent();
         $options['idx_config'] = $config->get('idx');
         $options['idx_user'] = login('idx');
-        if ( post::isNewPostSubmit() ) {
+        $options['title'] = request('title');
+        $options['content'] = request('content');
 
+        if ( post::isNewPostSubmit() ) {
+            return PostData::newPost($options);
+        }
+        else if ( post::isPostUpdate() ) {
+            $options['idx'] = request('idx');
+            return PostData::updatePost($options);
         }
         else if ( post::isNewComment() ) {
             $options['idx_root'] = post_data(request('idx_parent'))->get('idx_root');
             $options['idx_parent'] = request('idx_parent');
+            return PostData::newPost($options);
         }
-        $options['title'] = request('title');
-        $options['content'] = request('content');
-        return PostData::newPost($options);
-
+        return null;
     }
-
+    */
 
     /**
      *
@@ -253,6 +263,28 @@ class PostData extends Entity {
         $data->set('idx_root', $idx_root);
 
         self::setCurrent($data);
+        return $data;
+    }
+
+    /**
+     *
+     * Updates post data.
+     *
+     *
+     *
+     * @param $options
+     *      - $options['idx'] is the mandatory field.
+     * @return $this|bool|PostData
+     */
+    public static function updatePost($options) {
+        $idx = $options['idx'];
+        $data = post_data($idx);
+        if ( empty($data) ) return error(-50508, "No post by that idx");
+        unset($options['idx']);
+        foreach( $options as $field => $value ) {
+            $data->set($field, $value);
+        }
+        $data->save();
         return $data;
     }
 

@@ -22,8 +22,8 @@ route('/post/config/edit', 'post\\post\\editPostConfig');
 
 
 route('/post/list', 'post\\post\\listPostData');
-route('/post/edit', 'post\\post\\editPostData');
-route('/post/edit/submit', 'post\\post\\editSubmitPostData');
+route('/post/edit', 'post\\post\\postEdit');
+route('/post/comment/submit', 'post\\post\\postCommentSubmit');
 route('/post/view', 'post\\post\\viewPostData');
 
 

@@ -11,12 +11,12 @@ else {
     $title = request('title');
     $content = request('content');
 }
-
-
-
 ?>
-<form action="/post/edit/submit">
+<script src="/core/etc/editor/ckeditor/ckeditor.js"></script>
+
+<form action="/post/edit" method="post">
     <input type="hidden" name="id" value="<?php echo $config->id; ?>">
+    <input type="hidden" name="idx" value="<?php echo $idx; ?>">
 
     <?php echo html_row([
         'class' => 'title',
@@ -33,6 +33,7 @@ else {
         'class' => 'content',
         'caption' => 'CONTENT',
         'text' => html_textarea([
+            'id' => 'contentEditor',
             'name' => 'content',
             'placeholder' => 'Input content',
             'value' => $content,
@@ -42,6 +43,10 @@ else {
 
     <input type="submit" value="UPDATE POST">
 </form>
-
+<script>
+    CKEDITOR.replace( 'contentEditor', {
+        uiColor: '#f0f0f0'
+    } );
+</script>
 
 

@@ -1,7 +1,9 @@
 <?php
 if ( empty($post) ) return;
+add_css();
 add_javascript();
 ?>
+<script src="/core/etc/editor/ckeditor/ckeditor.js"></script>
 <div class="view">
     <h3 class='title'><?php widget('post_view_title', $variables)?></h3>
     <nav class=""><?php widget('post_view_menu', $variables)?></nav>

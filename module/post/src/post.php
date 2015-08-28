@@ -11,14 +11,7 @@ class post {
             'page'=>'post.index',
         ]);
     }
-    /**
-    public static function admin() {
-    return Response::renderSystemLayout([
-    'template'=>'post.layout',
-    'page'=>'post.admin',
-    ]);
-    }
-     * */
+
 
 
     public static function configCreate() {
@@ -84,46 +77,121 @@ class post {
     }
 
 
-    public static function editPostData() {
-        return Response::render([
+
+    public static function postEdit() {
+        if ( submit() ) return self::formSubmitForPost();
+        else return Response::render([
             'template'=>'post.layout',
             'page'=>'post.data.edit',
         ]);
     }
 
-    public static function editSubmitPostData()
+
+    /*
+    public static function postEditSubmit()
     {
-        if (self::isNewPostSubmit()) return self::formSubmitForPost();
-        else if (self::isNewComment()) return self::formSubmitForComment();
-        return setError(-50291, "Wrong form");
+        if (self::isNewPostSubmit()) {
+            return self::formSubmitForPost();
+        }
+        else if (self::isNewComment()) {
+
+            return self::formSubmitForComment();
+        }
+        else if ( self::isPostUpdate() ) {
+            return self::formSubmitForUpdate();
+        }
+        else {
+            return setError(-50291, "Wrong form");
+        }
     }
-    public static function formSubmitForPost() {
-        if ( self::validateEditSubmit() ) return Response::render([ 'template'=>'post.layout', 'page'=>'post.data.edit' ]);
-        $data = PostData::formSubmit();
-        if ( empty($data) ) return Response::render([ 'template'=>'post.layout', 'page'=>'post.data.edit' ]);
-        $post = PostData::preProcess(post_data($data->idx)->getFields());
-        return Response::render([
-            'template' => 'post.layout',
-            'page'=>'post.data.view',
-            'config' => post_config()->getCurrent()->getFields(),
-            'post' => $post,
-        ]);
-    }
+    */
+
 
     /**
      * https://docs.google.com/document/d/1624WxUtMw95UwCgj2YI25IWMbLkcNlbN_pHyugHRWyI/edit#heading=h.etolzwsd49az
      * @return int
      */
-    public static function formSubmitForComment() {
-        if ( self::validateEditSubmit() ) return jsBack(getErrorString());
-        $data = PostData::formSubmit();
-        if ( empty($data) ) return jsBack(getErrorString());
+    public static function postCommentSubmit() {
+        if ( self::validateContent() ) return jsBack(getErrorString());
+
+        $config = post_config()->getCurrent();
+        $options['idx_config'] = $config->get('idx');
+        $options['idx_user'] = login('idx');
+        $options['title'] = request('title');
+        $options['content'] = request('content');
+
+        $options['idx_root'] = post_data(request('idx_parent'))->get('idx_root');
+        $options['idx_parent'] = request('idx_parent');
+        $data = PostData::newPost($options);
+
+        if ( empty($data) ) {
+            setError(-50551, "Could not create a comment");
+            return jsBack(getErrorString());
+        }
         else {
             $url = self::getViewCommentUrl($data->idx);
-            system_log("URL: $url");
             return Response::redirect($url);
         }
     }
+
+
+
+    /*
+    public static function formSubmitForUpdate() {
+        $data = PostData::formSubmit();
+        $url = self::getViewUrl($data->get());
+        return Response::redirect($url);
+    }
+    */
+
+    public static function formSubmitForPost() {
+
+        if ( self::validateTitle() ) return Response::render([ 'template'=>'post.layout', 'page'=>'post.data.edit' ]);
+        if ( self::validateConfig() ) return Response::render([ 'template'=>'post.layout', 'page'=>'post.data.edit' ]);
+        if ( self::validateContent() ) return Response::render([ 'template'=>'post.layout', 'page'=>'post.data.edit' ]);
+
+        if ( $idx = request('idx') ) {
+            $options['idx'] = $idx;
+            $options['title'] = request('title');
+            $options['content'] = request('content');
+            $data = PostData::updatePost($options);
+        }
+        else {
+            $config = post_config()->getCurrent();
+            $options['idx_config'] = $config->get('idx');
+            $options['idx_user'] = login('idx');
+            $options['title'] = request('title');
+            $options['content'] = request('content');
+            $data = PostData::newPost($options);
+        }
+
+        if ( empty($data) ) {
+            setError(-50510, "Could not create a new post");
+            return Response::render([ 'template'=>'post.layout', 'page'=>'post.data.edit' ]);
+        }
+
+        return Response::redirect("/post/view?idx=" . $data->get('idx'));
+    }
+
+
+
+    public static function validateTitle() {
+        $title = request('title');
+        if ( empty($title) ) return setError(-50105, "Please input title");
+        else return OK;
+    }
+    public static function validateContent() {
+        $title = request('content');
+        if ( empty($title) ) return setError(-50105, "Please input content");
+        else return OK;
+    }
+    public static function validateConfig() {
+        $id = request('id');
+        $config = post_config($id);
+        if ( empty($config) ) return setError(-50105, "Wrong configuration");
+        else return OK;
+    }
+
 
 
     /**
@@ -133,6 +201,7 @@ class post {
      *
      * @return int|mixed
      */
+    /*
     public static function validateEditSubmit() {
         if ( self::isNewPostSubmit() ) {
             return self::validateNewPost([
@@ -149,7 +218,9 @@ class post {
         }
         else return setError(-50108, "Wrong form submit");
     }
+    */
 
+    /*
     public static function validateNewPost(array $options) {
         $id = $options['id'];
         $config = post_config($id);
@@ -166,6 +237,7 @@ class post {
         }
         return OK;
     }
+    */
 
     /**
      * @Attention USE this method to check if all the inputs are valid for creating new comment.
@@ -350,11 +422,22 @@ class post {
         ]);
     }
 
-    public static function getViewUrl(array & $post)
+    /**
+     * @Attention It will call 'getViewCommentUrl' if needed.
+     *
+     * @param array $post
+     * @return string
+     */
+    public static function getViewUrl(array $post)
     {
-        $url = "/post/view?$post[title]&idx=$post[idx]";
-        $url .= self::getUrlVariables();
-        return $url;
+        if ( $post['idx_parent'] ) {
+            return self::getViewCommentUrl($post['idx']);
+        }
+        else {
+            $url = "/post/view?$post[title]&idx=$post[idx]";
+            $url .= self::getUrlVariables();
+            return $url;
+        }
     }
 
     /**
@@ -402,24 +485,6 @@ class post {
         return $url;
     }
 
-    /**
-     * Return TRUE if the FORM submit is for creating a new post.
-     * @return bool
-     */
-    public static function isNewPostSubmit()
-    {
-        return ! request('idx_parent', FALSE);
-    }
-
-    /**
-     * Returns TRUE value if the FORM submit is for creating a new comment.
-     *
-     * @return Request
-     */
-    public static function isNewComment()
-    {
-        return request('idx_parent', FALSE);
-    }
 
 
     public static function adminPostConfigGlobal() {
@@ -432,6 +497,38 @@ class post {
             'page' => 'post.adminPostConfigGlobal',
         ]);
     }
+
+
+    /**
+     * Return TRUE if the FORM submit is for creating a new post.
+     * @return bool
+     */
+    /*
+    public static function isNewPostSubmit()
+    {
+        if ( request('idx') ) return FALSE;
+        if ( request('idx_parent') ) return FALSE;
+        return FALSE;
+    }
+    */
+
+    /**
+     * Returns TRUE value if the FORM submit is for creating a new comment.
+     *
+     * @return Request
+     */
+    /*
+    public static function isNewComment()
+    {
+        if ( request('idx') ) return FALSE;
+        return request('idx_parent', FALSE);
+    }
+
+    public static function isPostUpdate()
+    {
+        return request('idx');
+    }
+    */
 
 }
 

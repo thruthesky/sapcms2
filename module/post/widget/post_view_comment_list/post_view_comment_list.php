@@ -10,10 +10,10 @@ if ( empty($comments) ) return;
             글번호 : <?php echo $comment['idx']?>
         </nav>
         <div class="content">
-            <?php echo nl2br($comment['content']); ?>
+            <?php echo $comment['content']; ?>
         </div>
         <section role="files"><?php widget('post_display_files')?></section>
-        <form action="/post/edit/submit">
+        <form action="/post/comment/submit">
             <input type="hidden" name="idx_parent" value="<?php echo $comment['idx'] ?>">
             <textarea name="content"></textarea>
             <input type="submit" value="ADD COMMENT">
