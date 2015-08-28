@@ -145,6 +145,7 @@ class Entity {
      *
      *  - if $field is null, then it returns the whole field array.
      *
+     * @TODO add parameter for default value.
      */
     final public function get($field=null)
     {

@@ -21,22 +21,44 @@ class post {
         ]);
     }
 	
-    public static function configEdit() {
+    public static function adminPostConfigEdit() {
 		$data = [];
 		$data['template'] = 'post.layout';
-		$data['page'] = 'post.config.edit';
-		
-		$id = request('id');		
-		if( !empty( $id ) ){
+		$data['page'] = 'post.adminPostConfigEdit';
+		$id = request('id');
+		if ( ! empty( $id ) ) {
 			$post_config = post_config($id);			
-			if( !empty( $post_config ) ) $data['post_config'] = $post_config->fields;
+			if( ! empty( $post_config ) ) $data['post_config'] = $post_config->fields;
 			else error(-60401, "Invalid ID.");
 		}
-		else{
-			error(-60400, "Missing ID.");		
-		}	
-
+		else {
+            error(-60400, "Missing ID.");
+        }
         return Response::renderSystemLayout($data);
+    }
+
+    public static function adminPostConfigEditSubmit() {
+        $id = request( 'id' );
+        if( empty( $id ) ) {
+            return self::postConfigSubmitError(-60400,'Missing ID','post.config.edit');
+        }
+        else{
+            $input = request();
+            unset( $input['id'] );
+
+            $post_config = post_config($id);
+            if( $post_config ){
+                foreach( $input as $k => $v ) {
+                    $post_config->set( $k, $v );
+                }
+                $post_config->save();
+                $data['post_config'] = $post_config->fields;
+            }
+            else{
+                return self::postConfigSubmitError(-60401,"Invalid ID [ $id ]",'post.config.edit');
+            }
+        }
+        return Response::redirect('/admin/post/config/edit?id='.$id);
     }
 
     public static function configCreateSubmit() {
@@ -57,30 +79,6 @@ class post {
         }
     }
 
-    public static function configEditSubmit() {
-		$id = request( 'id' );
-		if( empty( $id ) ) {					
-			return self::postConfigSubmitError(-60400,'Missing ID','post.config.edit');				
-		}
-		else{
-			$input = request();		
-			unset( $input['id'] );
-			
-			$post_config = post_config($id);			
-			if( !empty( $post_config ) ){
-				foreach( $input as $k => $v ){			
-					if( empty( $v ) ) continue;								
-					$post_config->set( $k, $v );
-				}
-				$post_config->save();
-				$data['post_config'] = $post_config->fields;
-			}
-			else{				
-				return self::postConfigSubmitError(-60401,"Invalid ID [ $id ]",'post.config.edit');				
-			}
-		}				
-		return Response::redirect('/admin/post/config/edit?id='.$id);
-    }
 
 	public static function configDeleteSubmit() {
 		$id = request( 'id' );
@@ -116,7 +114,7 @@ class post {
     /**
      * @return mixed|null
      */
-    public static function listPostData() {
+    public static function postList() {
         $config = post_config()->getCurrent()->get();
         $options = ['comment'=>false];
         $posts = self::searchPostDataCondition($options);
@@ -564,37 +562,17 @@ class post {
         ]);
     }
 
-
     /**
-     * Return TRUE if the FORM submit is for creating a new post.
-     * @return bool
-     */
-    /*
-    public static function isNewPostSubmit()
-    {
-        if ( request('idx') ) return FALSE;
-        if ( request('idx_parent') ) return FALSE;
-        return FALSE;
-    }
-    */
-
-    /**
-     * Returns TRUE value if the FORM submit is for creating a new comment.
+     * @param $field
+     * @return mixed
      *
-     * @return Request
+     * @code
+     * $no_item = post()->config(NO_ITEM);
+    $no_page = post()->config(NO_PAGE);
+     * @endcode
      */
-    /*
-    public static function isNewComment()
-    {
-        if ( request('idx') ) return FALSE;
-        return request('idx_parent', FALSE);
+    public function config($field) {
+        return post_config()->getCurrent()->config($field);
     }
-
-    public static function isPostUpdate()
-    {
-        return request('idx');
-    }
-    */
-
 }
 

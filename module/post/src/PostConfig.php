@@ -40,4 +40,29 @@ class PostConfig extends Entity {
         return FALSE;
     }
 
+
+    /**
+     *
+     * @param $field
+     * @return array|bool|mixed|null
+     *
+     * @code
+     *
+    $no_item = post_config()->getCurrent()->config(NO_ITEM);
+    $no_page = post_config()->getCurrent()->config(NO_PAGE);
+
+     * @endcode
+     */
+    public function config($field) {
+
+        $re = $this->get($field);
+        if ( $re ) return $re;
+
+        switch ( $field ) {
+            case NO_ITEM : return sysconfig(NO_ITEM);
+            case NO_PAGE : return sysconfig(NO_PAGE);
+            default: return null;
+        }
+    }
+
 }

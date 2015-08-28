@@ -16,10 +16,10 @@ if( !empty( $post_config ) ){
     <input type="text" name="description" value="<?php echo $post_config['description']; ?>">
 
     Item Per Page
-    <input type="text" name="no_item_per_page" value="<?php echo $post_config['no_item_per_page']; ?>">
+    <input type="text" name="<?php echo NO_ITEM?>" value="<?php echo $post_config[NO_ITEM]; ?>">
 
     Item Per Nav
-    <input type="text" name="no_page_per_nav" value="<?php echo $post_config['no_page_per_nav']; ?>">
+    <input type="text" name="<?php echo NO_PAGE?>" value="<?php echo $post_config[NO_PAGE]; ?>">
 	
     Widget List
     <input type="text" name="widget_list" value="<?php echo $post_config['widget_list']; ?>">
