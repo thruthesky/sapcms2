@@ -15,7 +15,7 @@ $post = $widget['post'];
         <input type="hidden" name="fid" value="">
         <?php echo html_hidden_post_variables(); ?>
 
-        <img class="file-upload-button" src="/module/post/img/camera.png">
+        <img class="file-upload-button" src="/core/module/post/img/camera.png">
         <textarea name="content"></textarea>
 
         <div class="uploaded-files"></div>
