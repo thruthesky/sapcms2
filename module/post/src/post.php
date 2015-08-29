@@ -22,30 +22,29 @@ class post {
     }
 	
     public static function adminPostConfigEdit() {
-		$data = [];
-		$data['template'] = 'post.layout';
-		$data['page'] = 'post.adminPostConfigEdit';
-		$id = request('id');
-		if ( ! empty( $id ) ) {
-			$post_config = post_config($id);			
-			if( ! empty( $post_config ) ) $data['post_config'] = $post_config->fields;
-			else error(-60401, "Invalid ID.");
-		}
-		else {
-            error(-60400, "Missing ID.");
-        }
-        return Response::renderSystemLayout($data);
+        if ( ! $config = post_config()->getCurrent() ) error(-60400, "Could not find configuration");
+        return Response::renderSystemLayout([
+            'template' => 'post.layout',
+            'page' => 'post.adminPostConfigEdit',
+            'post_config' => $config->get(),
+        ]);
     }
 
+    /**
+     * @return int|mixed|null
+     *
+     * @TODO If there error, you need to auto-fill the input on the form.
+     * @TODO Wrong error handling
+     *
+     */
     public static function adminPostConfigEditSubmit() {
         $id = request( 'id' );
         if( empty( $id ) ) {
-            return self::postConfigSubmitError(-60400,'Missing ID','post.config.edit');
+            return self::postConfigSubmitError(-60415,'Missing ID','post.adminPostConfigEdit');
         }
-        else{
+        else {
             $input = request();
             unset( $input['id'] );
-
             $post_config = post_config($id);
             if( $post_config ){
                 foreach( $input as $k => $v ) {
@@ -116,16 +115,17 @@ class post {
      */
     public static function postList() {
         $config = post_config()->getCurrent()->get();
-        $options = ['comment'=>false];
-        $posts = self::searchPostDataCondition($options);
-        $total_record = self::countPostData($options);
         return Response::render([
             'template'=>'post.layout',
             'page'=>'post.data.list',
             'config' => $config,
-            'posts' => $posts,
-            'total_record' => $total_record,
         ]);
+    }
+    public static function postListData() {
+        return self::searchPostDataCondition(['comment'=>false]);
+    }
+    public static function postListDataCount() {
+        return self::countPostData(['comment'=>false]);
     }
 
 
@@ -151,24 +151,7 @@ class post {
     }
 
 
-    /*
-    public static function postEditSubmit()
-    {
-        if (self::isNewPostSubmit()) {
-            return self::formSubmitForPost();
-        }
-        else if (self::isNewComment()) {
 
-            return self::formSubmitForComment();
-        }
-        else if ( self::isPostUpdate() ) {
-            return self::formSubmitForUpdate();
-        }
-        else {
-            return setError(-50291, "Wrong form");
-        }
-    }
-    */
 
 
     /**
@@ -193,7 +176,7 @@ class post {
             return jsBack(getErrorString());
         }
         else {
-            $url = self::getViewCommentUrl($data->idx);
+            $url = self::urlViewComment($data->idx);
             return Response::redirect($url);
         }
     }
@@ -234,7 +217,7 @@ class post {
             return Response::render([ 'template'=>'post.layout', 'page'=>'post.data.edit' ]);
         }
 
-        return Response::redirect("/post/view?idx=" . $data->get('idx'));
+        return Response::redirect(self::urlPostView($data));
     }
 
 
@@ -383,8 +366,8 @@ class post {
      *
      * Return Config Entity of the SEARCH condition.
      *
-     * If $options['id'] is empty,
-     * then, it looks for the HTTP INPUT as in request('id')
+     *      - Firstly, look for $options['id']
+     *      - Lastly, look for post_config()->getCurrent();
      *
      * @param array $options
      * @return bool|PostConfig
@@ -393,8 +376,8 @@ class post {
         if ( isset($options['id']) ) {
             return post_config($options['id']);
         }
-        else if ( $id = request('id') ) {
-            return post_config($id);
+        else if ( $config = post_config()->getCurrent() ) {
+            return $config;
         }
         else return FALSE;
     }
@@ -472,65 +455,168 @@ class post {
 
 
     public static function viewPostData() {
-        $config = null;
-        $post = PostData::preProcess(post_data(request('idx')));
-        if ( empty($post) ) error(-50119, "Post does not exist.");
-        else {
-            $config = post_config($post['idx_config']);
-        }
-        return Response::render([
+        $data = [
             'template'=>'post.layout',
             'page'=>'post.data.view',
-            'post'=>$post,
-            'config' => $config->getFields(),
-        ]);
+        ];
+        $post = PostData::preProcess(post_data(request('idx')));
+        if ( empty($post) ) {
+            error(-50119, "Post does not exist.");
+            $data['page'] = 'post.error';
+        }
+        else {
+            $config = post_config($post['idx_config']);
+            $data['config'] = $config->getFields();
+            $data['post'] = $post;
+        }
+        return Response::render($data);
     }
 
     /**
-     * @Attention It will call 'getViewCommentUrl' if needed.
+     * @Attention It will call 'urlViewComment' if needed.
      *
-     * @param array $post
+     * @param $post - is the array of post data entity record OR it can be Post data entity.
      * @return string
+     *
+     * @code
+    $data = post_data($idx)->set('content', request('content'))->save();
+    return Response::redirect(post::getViewUrl($data));
+     * @endcode
+     * @code
+    $data = post_data($idx)->set('content', request('content'))->save();
+    return Response::redirect(post::getViewUrl($data->get()));
+     * @endcode
      */
-    public static function getViewUrl(array $post)
+    public static function urlPostView($post)
     {
-        if ( $post['idx_parent'] ) {
-            return self::getViewCommentUrl($post['idx']);
+        if ( empty($post) ) {
+            return error(-50591, "post is empty");
+        }
+        if ( $post instanceof PostData ) {
+            $post = $post->get();
+        }
+        if ( isset($post['idx_parent']) && $post['idx_parent'] ) {
+            return self::urlViewComment($post['idx']);
         }
         else {
-            $url = "/post/view?$post[title]&idx=$post[idx]";
-            $url .= self::getUrlVariables();
+            $url = "/post/view?";
+            $qs = ['idx'=>$post['idx']];
+            if ( isset($post['title']) ) $qs['title'] = $post['title'];
+            $url .= http_build_query($qs);
+            $url .= self::getHttpVariablesAsRequest();
             return $url;
         }
     }
 
     /**
+     * @param int $idx
+     * @return string
+     */
+    public static function urlPostDelete($idx=0)
+    {
+        if ( empty($idx) ) $idx = post_data()->getCurrent()->get('idx');
+        return "/post/data/delete/" . $idx . "?" . self::getHttpVariablesAsRequest();
+    }
+
+
+    /**
      *
      */
-    public static function getViewCommentUrl($idx_comment)
+    public static function urlViewComment($idx_comment)
     {
         $data = post_data($idx_comment);
         $title = $data->get('title');
         $idx_root = $data->get('idx_root');
         $url = "/post/view?$title&idx=$idx_root&idx_comment=$idx_comment";
+        $url .= self::getHttpVariablesAsRequest();
+        return $url;
+    }
+
+    public static function urlPostEdit() {
+        $data = post_data()->getCurrent();
+        // edit
+        if ( $data ) {
+            $url = "/post/edit?idx=" . $data->get('idx');
+            $url .= self::getHttpVariablesAsRequest();
+        }
+        // new
+        else {
+            $config = post_config()->getCurrent();
+            if ( $config ) {
+                $url = "/post/edit?id=" . $config->get('id');
+            }
+            else {
+                // error. There is no hint to get config. no 'idx', nor 'idx_config', nor 'id'.
+            }
+        }
         return $url;
     }
 
 
 
-    public static function getListUrl() {
-        $url = "/post/list?id=" . post_config()->getCurrent()->get('id');
-        $url .= self::getUrlVariables();
+
+    public static function urlPostCommentEdit($idx)
+    {
+        $url = "/post/comment/edit?idx=$idx";
+        $url .= self::getHttpVariablesAsRequest();
         return $url;
     }
 
-    public static function getEditUrl() {
-        $url = "/post/edit?idx=" . post_data()->getCurrent()->get('idx');
+    /**
+     * @return string
+     */
+    public static function urlEditPostConfig() {
+        $url = "/admin/post/config/edit?idx=" . post_config()->getCurrent()->get('idx');
         return $url;
     }
 
-    public static function getUrlVariables() {
+    /**
+     * @param bool $add_vars - if it's TRUE, then it just list 1st page without options.
+     *
+     * @return string
+     */
+    public static function urlPostList($id=null, $add_vars=true) {
+        if ( empty($id) ) {
+            $data = post_config()->getCurrent();
+            if ( $data ) {
+                $id = $data->get('id');
+            }
+            else {
+                $id = null; // error ...
+            }
+        }
+        $url = "/post/list?id=$id";
+        if ( $add_vars ) $url .= self::getHttpVariablesAsRequest();
+        return $url;
+    }
+
+
+    public static function getHttpVariables() {
+        return [
+            'page_no',
+            'q',
+            'qn',
+            'qt',
+            'qc',
+        ];
+    }
+
+    public static function getHttpVariablesAsHidden() {
+        $markup = null;
+        foreach( self::getHttpVariables() as $k ) {
+            if ( $v = request($k) ) {
+                $markup .= "<input type='hidden' name='$k' value='$v'>". PHP_EOL;
+            }
+        }
+        return $markup;
+    }
+    public static function getHttpVariablesAsRequest() {
         $url = null;
+        foreach( self::getHttpVariables() as $k ) {
+            if ( $v = request($k) ) $url .= "&$k=$v";
+        }
+        return $url;
+        /*
         if ( $page_no = request('page_no') ) {
             $url .= "&page_no=$page_no";
         }
@@ -546,7 +632,7 @@ class post {
         if ( $qc = request('qc') ) {
             $url .= "&qc=$qc";
         }
-        return $url;
+        */
     }
 
 
@@ -562,6 +648,7 @@ class post {
         ]);
     }
 
+
     /**
      * @param $field
      * @return mixed
@@ -574,5 +661,50 @@ class post {
     public function config($field) {
         return post_config()->getCurrent()->config($field);
     }
+
+
+    public static function postCommentEdit() {
+        return Response::render([
+            'template' => 'post.layout',
+            'page' => 'post.comment.edit',
+        ]);
+    }
+
+    public static function postCommentEditSubmit() {
+        $idx = request('idx');
+        if ( $idx ) {
+            $data = post_data($idx)->set('content', request('content'))->save();
+            return Response::redirect(post::urlPostView($data->get()));
+        }
+        else {
+            error(-50559, "Wrong idx");
+            return Response::render([
+                'template' => 'post.layout',
+                'page' => 'post.comment.edit',
+            ]);
+        }
+
+    }
+
+
+    /**
+     * @param $idx
+     * @return int
+     */
+    public static function postDataDelete($idx) {
+        $data = post_data($idx);
+        if ( empty($data) ) {
+            error(-50581, "Post does not exists");
+            return jsBack(getErrorString());
+        }
+        $id_config = $data->config('id');
+        if ( $data->markAsDelete() ) {
+            return Response::redirect(self::urlPostList($id_config, false));
+        }
+        else {
+            return Response::redirect(self::urlPostView($data));
+        }
+    }
+
 }
 

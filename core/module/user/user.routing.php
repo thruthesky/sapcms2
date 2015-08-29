@@ -17,3 +17,5 @@ Route::add('/user/setting', 'user\\UserController\\setting');
 
 Route::add('/admin/user', 'user\\UserController\\userList');
 
+
+route('/user/hello/*', 'user\\UserController\\hello');

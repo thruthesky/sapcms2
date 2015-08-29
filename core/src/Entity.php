@@ -307,7 +307,7 @@ class Entity {
     /**
      * @param null $cond
      * @return $this
-     * @Attention it returns $this to allow chaining.
+     * @Attention it returns $this to allow chaining. BUT the internal 'fields' variable is empty.
      *
      *
      * @Attention
@@ -391,8 +391,14 @@ class Entity {
     }
 
 
-
-    public function count($cond=null) {
+    /**
+     *
+     * Return the number of Record of the DATABASE TABLE
+     *
+     * @param null $cond
+     * @return mixed
+     */
+    final public function count($cond=null) {
         return Database::load()->count($this->table(), $cond);
     }
 

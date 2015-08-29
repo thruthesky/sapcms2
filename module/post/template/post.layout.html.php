@@ -1,4 +1,5 @@
 <?php
+add_css('post.component.css');
 extract($variables);
 ?>
 <div class="post">

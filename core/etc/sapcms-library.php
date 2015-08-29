@@ -74,7 +74,9 @@ function set_error($code, $message) {
 }
 
 /**
- * alias of system::setError();
+ * alias of System::setError();
+ *
+ * @Attention setError() and error() are different.
  *
  * @param $code
  * @param $message
@@ -321,7 +323,7 @@ function get_current_domain_url() {
 
 
 
-function widget($widget_name, $variables=null) {
+function widget($widget_name, $widget=null) {
     $path = "widget/$widget_name/$widget_name.php";
     if ( ! file_exists($path) ) {
         $module = Request::module();

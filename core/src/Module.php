@@ -52,6 +52,11 @@ class Module {
      * @param null $route
      * @return mixed
      *
+     * @code
+     *  $re = Module::run('/install/check');
+     * @endcode
+     *
+     *
      */
     public static function run($route=null)
     {
@@ -70,7 +75,7 @@ class Module {
             $core = is_core_module($module) ? "core\\" : null;
             $name = "sap\\{$core}$module\\$class";
             System::log("Module::run() => $name::$method ()");
-            return $name::$method();
+            return $name::$method(Route::getMatchVar());
         }
         else {
             return SystemController::moduleNotEnabled();

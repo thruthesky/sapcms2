@@ -8,15 +8,19 @@ if ( empty($comments) ) return;
     <div id="comment<?php echo $comment['idx']?>" class="comment" depth="<?php echo $comment['depth']?>">
         <nav class="menu">
             글번호 : <?php echo $comment['idx']?>
+
+
+            <a href="<?php echo url_post_comment_edit($comment['idx'])?>">수정</a>
+
+            <a href="<?php echo url_post_delete($comment['idx'])?>">삭제</a>
+
         </nav>
         <div class="content">
-            <?php echo $comment['content']; ?>
+            <?php widget('post_view_content', ['post'=>$comment]) ?>
         </div>
         <section role="files"><?php widget('post_display_files')?></section>
-        <form action="/post/comment/submit">
-            <input type="hidden" name="idx_parent" value="<?php echo $comment['idx'] ?>">
-            <textarea name="content"></textarea>
-            <input type="submit" value="ADD COMMENT">
-        </form>
+
+        <?php widget('post_view_comment_form', ['post'=>$comment]); ?>
+
     </div>
 <?php } ?>

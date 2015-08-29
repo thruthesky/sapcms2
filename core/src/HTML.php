@@ -80,6 +80,15 @@ class HTML {
      *      echo paging( $page_no, $total_record, $no_of_items_per_page );
      * @endcode
      *
+     * @code
+    $qs = request();
+    unset($qs["page_no"]);
+    unset($qs["idx"]);
+    unset($qs["idx_comment"]);
+    $qs['id'] = post_config()->getCurrent()->get('id');
+    $q = http_build_query($qs);
+    echo HTML::paging(page_no(), $total_record, $no_item, $no_page, null, $q, '/post/list');
+     * @endcode
      *
      *
      * @note If you omit $qs, $_GET['page_no'] will be deleted and set new page no.
@@ -128,18 +137,15 @@ class HTML {
         if ( $total_record <= $no_of_items_per_page ) return NULL;
 
 
-
-
-        if ( empty($qs) ) {
+        /**
+         * @Attention Do not edit this code. It will ruin every where if you edit it.
+         */
+        if ( $qs === null ) {
             /// @warning when the input of $qs is empty,
             /// it returns the value of HTTP input except page_no and idx
             /// and it puts $in[action]='list'
             $qv = Request::get();
             unset($qv["page_no"]);
-
-            // Add 'id' on HTTP Vars.
-            //unset($qv["id"]);
-
             unset($qv["idx"]);//added by benjamin
             $qs = http_build_query($qv);
         }

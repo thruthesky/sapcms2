@@ -3,6 +3,7 @@ namespace sap\src;
 class Route {
 
     private static $router = null;
+    private static $matchVar = null;
     private $request_uri = null;
     private $segment = null;
     public $module = null;
@@ -44,10 +45,33 @@ class Route {
         return self::$routes[$route] = $controller;
     }
 
+    /**
+     * @param $route
+     * @return null
+     */
     public static function match($route) {
-        return isset(self::$routes[$route]) ? self::$routes[$route] : null;
+        if ( isset(self::$routes[$route]) ) return self::$routes[$route];
+
+        $pos = strrpos($route, '/');
+        if ( $pos > 0 ) {
+            $relRoute = substr($route, 0, $pos) . '/*';
+            if ( isset(self::$routes[$relRoute]) ) {
+                self::$matchVar = substr($route, $pos+1);
+                return self::$routes[$relRoute];
+            }
+        }
+
+        return null;
     }
 
+
+    /**
+     * @Returns matched variable on the route.
+     */
+    public static function getMatchVar()
+    {
+        return self::$matchVar;
+    }
 
 
 
@@ -125,6 +149,7 @@ class Route {
 
         return Module::run($route);
     }
+
 
 
     /**

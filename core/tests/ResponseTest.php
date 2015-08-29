@@ -1,5 +1,7 @@
 <?php
 
+include_once "core/etc/phpunit/test.php";
+
 class ResponseTest extends PHPUnit_Framework_TestCase
 {
     public function test_css()

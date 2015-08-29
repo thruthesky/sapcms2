@@ -51,7 +51,21 @@ function post() {
 }
 
 function url_post_edit() {
-    if ( $idx = request('idx') ) return "/post/edit?idx=$idx";
-    else if ( $id = request('id') ) return "/post/edit?id=$id";
-    else return null;
+    return post::urlPostEdit();
+}
+function url_post_config() {
+    return post::urlEditPostConfig();
+}
+function url_post_list() {
+    return post::urlPostList();
+}
+
+function html_hidden_post_variables() {
+    return post::getHttpVariablesAsHidden();
+}
+function url_post_comment_edit($idx) {
+    return post::urlPostCommentEdit($idx);
+}
+function url_post_delete($idx=0) {
+    return post::urlPostDelete($idx);
 }

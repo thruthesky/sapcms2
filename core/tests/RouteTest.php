@@ -15,13 +15,11 @@ class RouteTest extends PHPUnit_Framework_TestCase {
 
     public function test_module_class_method()
     {
-
         $_SERVER['REQUEST_URI'] = "/module/class/method";
         $route = Route::load();
         $this->assertTrue($route->module == 'module');
         $this->assertTrue($route->class == 'class');
         $this->assertTrue($route->method == 'method');
-
 
         $_SERVER['REQUEST_URI'] = "/System_TEST/Install_TEST_CLASS/check?a=b&c=d";
         $route = Route::load()->reset();
@@ -33,15 +31,12 @@ class RouteTest extends PHPUnit_Framework_TestCase {
         $route = Route::load()->reset();
         $this->assertTrue($route->module == 'Install');
 
-
         Request::set(HTTP_VAR_ROUTE, "/G/H/I");
         $route = Route::load()->reset();
         $this->assertTrue($route->module == 'G');
         $this->assertTrue($route->class == 'H');
         $this->assertTrue($route->method == 'I');
     }
-
-
 
     public function test_routing() {
         Route::add('/install/check', "install\\install\\check");
@@ -54,8 +49,20 @@ class RouteTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue( Config::getDatabasePath() == System::runModule($route) );
     }
 
+    public function test_routing_variable() {
+        route('/a/b/c', 'a\\b\\c');
+        $this->assertTrue(route()->match('/a/b/c') == 'a\\b\\c');
 
+        route('/d/e/*', 'd\\e\\ALL');
+        $this->assertTrue(route()->match('/d/e/f') == 'd\\e\\ALL');
+        $this->assertTrue(route()->match('/d/e/') == 'd\\e\\ALL');
+        $this->assertTrue(route()->match('/d/e/ALL') == 'd\\e\\ALL');
 
+        route('/a/*', 'a\\b\\ALL');
+        $this->assertTrue(route()->match('/a/abc') == 'a\\b\\ALL');
+        $this->assertTrue(route()->getMatchVar() == 'abc');
+
+    }
 
 }
 

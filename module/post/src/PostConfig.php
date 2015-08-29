@@ -17,6 +17,8 @@ class PostConfig extends Entity {
      *
      *      - Firstly, it looks for request('id')
      *      - Secondly, it looks for request('idx')
+     *          -- If it's in admin page, then the 'idx' is post_config.idx
+     *          -- if it's not in admin page, then the 'idx' is post_data.idx
      *      - Lastly, it looks for request('idx_parent')
      *
      * @return $this|bool
@@ -26,9 +28,14 @@ class PostConfig extends Entity {
             return $this->load('id', $id);
         }
         else if ( $idx = request('idx') ) {
-            $post = post_data($idx);
-            if ( $post ) {
-                if ( $post->get('idx_config') ) return $this->load($post->get('idx_config'));
+            if ( segment(0) == 'admin' ) {
+                return $this->load($idx);
+            }
+            else {
+                $post = post_data($idx);
+                if ( $post ) {
+                    if ( $post->get('idx_config') ) return $this->load($post->get('idx_config'));
+                }
             }
         }
         else if ( $idx = request('idx_parent') ) {
@@ -63,6 +70,10 @@ class PostConfig extends Entity {
             case NO_PAGE : return sysconfig(NO_PAGE);
             default: return null;
         }
+    }
+
+    public function countData() {
+        return post_data()->count("idx_config=".$this->get('idx'));
     }
 
 }

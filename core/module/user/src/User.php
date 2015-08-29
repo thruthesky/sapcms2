@@ -16,6 +16,7 @@ class User extends Entity {
     }
 
 
+
     public function create($id=null) {
         parent::create();
         if ( $id ) $this->set('id', $id);
@@ -54,6 +55,9 @@ class User extends Entity {
             ->index('mail')
             ->index('birth_year,birth_month,birth_day');
     }
+
+
+
 
     /**
      * @param $id

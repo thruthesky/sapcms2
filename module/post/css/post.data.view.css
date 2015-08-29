@@ -1,3 +1,7 @@
 .show-on-click {
     display:none;
 }
+
+form[name='comment'] input[type='submit'] {
+    width:100%;
+}

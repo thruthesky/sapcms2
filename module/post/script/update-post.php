@@ -1,7 +1,6 @@
 <?php
 $id = "form-test-2";
 if ( $config = post_config($id) ) $config->delete();
-
 $config = post_config()->set('id', $id)->set('name', 'Temp Forum')->save();
 
 

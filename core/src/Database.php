@@ -98,6 +98,19 @@ class Database extends \PDO {
     }
 
     /**
+     * @param $field
+     * @return string
+     */
+    private static function escapeField($field)
+    {
+        if ( strpos($field,'*') !== false ) return $field;
+        else if ( strpos($field, ',') ) return $field;
+        else if ( strpos($field, '.') ) return $field;
+        else if ( strpos($field, '(') !== false ) return $field;
+        else return "`$field`";
+    }
+
+    /**
      * @param null $work_table
      * @return $this|null - If $work_table is null, then it returns a string with table name.
      *
@@ -329,7 +342,7 @@ class Database extends \PDO {
      */
     public function row($table, $cond=null, $field='*')
     {
-
+        $field = self::escapeField($field);
         $cond = $this->adjustCondition($cond);
 
         if ( strpos($cond,'LIMIT') === false ) $cond .= " LIMIT 1";
@@ -348,6 +361,7 @@ class Database extends \PDO {
      */
     public function rows($table, $cond=null, $field='*', $fetch_mode=null)
     {
+        $field = self::escapeField($field);
         if ( $fetch_mode === null ) $fetch_mode = \PDO::FETCH_ASSOC;
         $cond = $this->adjustCondition($cond);
         $q = "SELECT $field FROM $table $cond";

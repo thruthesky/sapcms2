@@ -76,7 +76,7 @@ function sysconfig($code) {
             if ( $no = config(NO_PAGE) ) return $no;
             else return DEFAULT_NO_PAGE;
         case URL_SITE :
-            if ( $value = config(NO_PAGE) ) return $value;
+            if ( $value = config(URL_SITE) ) return $value;
             return '/';
         default :
             return $value = config()->value($code);

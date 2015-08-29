@@ -16,6 +16,9 @@ class UserController
         Response::render(['template' => 'user.profile']);
     }
 
+    public static function hello() {
+
+    }
 
     public static function register()
     {

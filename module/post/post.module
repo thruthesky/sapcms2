@@ -9,7 +9,7 @@ include 'post.hook.php';
 if ( is_post_page() ) {
     add_css('/module/post/css/post.base.css');
     add_css('/module/post/css/post.layout.css');
-    add_css('/module/post/css/post.css');
+    add_css('/module/post/css/post.component.css');
 }
 if ( is_post_config_page() ) {
     add_css('/module/post/css/post.config.css');

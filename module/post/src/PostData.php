@@ -22,7 +22,9 @@ class PostData extends Entity {
      */
     public static function preProcess($post)
     {
-        if ( empty($post) ) return FALSE;
+        if ( empty($post) ) {
+            return FALSE;
+        }
         if ( $post instanceof PostData ) {
             $post = $post->getFields();
         }
@@ -51,8 +53,8 @@ class PostData extends Entity {
     public static function pre(array & $post) {
         $post['title'] = self::getTitleOrContent($post);
 
-        if ( $post['idx_parent'] ) $post['url'] = post::getViewCommentUrl($post['idx']);
-        else $post['url'] = post::getViewUrl($post);
+        if ( $post['idx_parent'] ) $post['url'] = post::urlViewComment($post['idx']);
+        else $post['url'] = post::urlPostView($post);
         if ( $post['idx_user'] ) {
             $post['user'] = user($post['idx_user'])->getFields();
         }
@@ -75,33 +77,6 @@ class PostData extends Entity {
     }
 
 
-    /**
-     * @return $this|bool|PostData
-     */
-    /*
-    public static function formSubmit()
-    {
-        $config = post_config()->getCurrent();
-        $options['idx_config'] = $config->get('idx');
-        $options['idx_user'] = login('idx');
-        $options['title'] = request('title');
-        $options['content'] = request('content');
-
-        if ( post::isNewPostSubmit() ) {
-            return PostData::newPost($options);
-        }
-        else if ( post::isPostUpdate() ) {
-            $options['idx'] = request('idx');
-            return PostData::updatePost($options);
-        }
-        else if ( post::isNewComment() ) {
-            $options['idx_root'] = post_data(request('idx_parent'))->get('idx_root');
-            $options['idx_parent'] = request('idx_parent');
-            return PostData::newPost($options);
-        }
-        return null;
-    }
-    */
 
     /**
      *
@@ -222,44 +197,44 @@ class PostData extends Entity {
         // set idx_root into the object(memory)
         $up = ['idx_root'=>$idx_root, 'depth'=>$depth];
         post_data()->which($data->get('idx'))->set($up)->save();
+        $data->set('idx_root', $idx_root);
 
 
-        // set order_list
-        $new_order_list = 0;
-        if ( $count = self::countComment($idx_root) ) {
+        // set order_list Only On comment.
+        if ( $parent ) {
+            $new_order_list = 0;
+            if ( $count = self::countComment($idx_root) ) {
 
-            if ( $parent->get('idx') == $idx_root ) {
-                $max = self::maxOrderListOfRoot($idx_root);
-                $new_order_list = round($max + 2);
-            }
-            else if ( $max = self::maxOrderListOfParent($parent->get('idx')) ) {
-                if ( $next = self::nextOrderListOfRoot($idx_root, $max) ) {
-                    if ( $max == $next ) {
-                        $next = self::nextOrderListOfRoot($idx_root, $max);
-                        echo "\nERROR max and next are the same\n";
-                        exit;
+                if ( $parent->get('idx') == $idx_root ) {
+                    $max = self::maxOrderListOfRoot($idx_root);
+                    $new_order_list = round($max + 2);
+                }
+                else if ( $max = self::maxOrderListOfParent($parent->get('idx')) ) {
+                    if ( $next = self::nextOrderListOfRoot($idx_root, $max) ) {
+                        if ( $max == $next ) {
+                            $next = self::nextOrderListOfRoot($idx_root, $max);
+                            echo "\nERROR max and next are the same\n";
+                            exit;
+                        }
+                        $new_order_list = ( $max + $next ) / 2;
+                        //echo "$idx=$idx,idx_parent=$options[idx_parent] , max:$max / next:$next = new_order_list=$new_order_list\n";
                     }
-                    $new_order_list = ( $max + $next ) / 2;
-                    //echo "$idx=$idx,idx_parent=$options[idx_parent] , max:$max / next:$next = new_order_list=$new_order_list\n";
+                    else {
+                        $new_order_list = round($max + 2);
+                        //echo "$idx=$idx,max:round($max +2) = new_order_list=$new_order_list\n";
+                    }
                 }
                 else {
-                    $new_order_list = round($max + 2);
-                    //echo "$idx=$idx,max:round($max +2) = new_order_list=$new_order_list\n";
+                    $new_order_list = 1;
                 }
+                $up['order_list'] = $new_order_list;
             }
             else {
-                $new_order_list = 1;
+                // echo "No comment\n";
             }
-            $up['order_list'] = $new_order_list;
+            //system_log($up);
+            post_data()->which($data->get('idx'))->set('order_list', $new_order_list)->save();
         }
-        else {
-            // echo "No comment\n";
-        }
-
-        //system_log($up);
-
-        post_data()->which($data->get('idx'))->set('order_list', $new_order_list)->save();
-        $data->set('idx_root', $idx_root);
 
         self::setCurrent($data);
         return $data;
@@ -342,7 +317,7 @@ class PostData extends Entity {
 
     /**
      *
-     * Returns the list of a tree based on $idx_parent
+     * Returns the list of a tree based on $idx_parent by Recursive call
      *
      * @param $idx_parent
      * @param string $fields
@@ -365,6 +340,24 @@ class PostData extends Entity {
         }
         return $rows;
     }
+
+
+    /**
+     *
+     * Returns an Array of all post data record of $idx_root
+     *
+     *  - It even includes the root post.
+     *
+     * @param $idx_root
+     * @param string $field
+     * @return array
+     */
+    private static function getThread($idx_root, $field='*')
+    {
+        return post_data()->rows("idx_root=$idx_root", $field);
+    }
+
+
 
     /**
      * Returns the list of a tree including the post data of input parameter idx.
@@ -401,5 +394,86 @@ class PostData extends Entity {
         return post_data()->result("MAX(order_list)", "idx_root=$idx_root");
     }
 
+
+    /**
+     *
+     * @return bool - same as deleteThreadIfAllDeleted()
+     *
+     * @see test_post_data_comment_delete()
+     */
+    public function markAsDelete() {
+        $this->set('title','');
+        $this->set('content','');
+        $this->set('content_stripped','');
+        $this->set('delete', true);
+        $this->save();
+        self::deleteFiles($this->get('idx'));
+        return self::deleteThreadIfAllDeleted($this->get('idx_root'));
+    }
+
+
+    /**
+     *
+     * Delete a post and its all comments ONLY IF all are marked as deleted.
+     *
+     * @param $idx_root
+     * @return bool
+     *      - TRUE if the post and its all comments are delete.
+     *      - FALSE otherwise.
+     *
+     */
+    private static function deleteThreadIfAllDeleted($idx_root)
+    {
+        $root = post_data($idx_root);
+        if ( empty($root->get('delete')) ) return FALSE;
+        $children = self::getThread($idx_root, 'delete');
+        foreach( $children as $comment ) {
+            if ( empty($comment['delete']) ) return FALSE;
+        }
+        self::forceDeleteThread($idx_root);
+        return TRUE;
+    }
+
+
+    /**
+     * Delete a post and its all comments Forcefully even if the post or its comments are not marked as deleted.
+     *
+     * @param $idx_root
+     */
+    private static function forceDeleteThread($idx_root)
+    {
+        $children = self::getThread($idx_root, 'idx');
+        foreach( $children as $child ) {
+            self::deletePostComplete($child['idx']);
+        }
+    }
+
+    private static function deletePostComplete($idx)
+    {
+        $data = post_data($idx);
+        if ( $data ) $data->delete();
+        self::deleteFiles($idx);
+    }
+
+
+    private static function deleteFiles($get)
+    {
+    }
+
+    /**
+     *
+     * Returns the value of PostConfig entity.
+     *
+     *
+     * @param $field
+     * @return array|null
+     *
+     * @code
+     * $this->assertTrue($data->config('id') == self::$id);
+     * @endcode
+     */
+    public function config($field) {
+        return post_config($this->get('idx_config'))->get($field);
+    }
 
 }

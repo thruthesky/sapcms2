@@ -326,11 +326,14 @@ class System {
      */
     public static function getErrorString() {
         $out = null;
-        foreach ( self::getError() as $code => $message ) {
-            $out .= "$code : $message" . PHP_EOL;
-        }
-        if ( $out ) {
-            $out = "ERROR" . PHP_EOL . $out;
+        $error = self::getError();
+        if ( $error ) {
+            foreach ( $error as $code => $message ) {
+                $out .= "$code : $message" . PHP_EOL;
+            }
+            if ( $out ) {
+                $out = "ERROR" . PHP_EOL . $out;
+            }
         }
         return $out;
     }

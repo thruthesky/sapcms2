@@ -1,6 +1,10 @@
 <?php
+/**
+ *
+ * @input $widget['post'] - Array of Post Data Entity Record of (1) the root post or (2) parent comment.
+ */
 
-$post = post_data()->getCurrent()->get();
+$post = $widget['post'];
 
 ?>
 
@@ -9,11 +13,12 @@ $post = post_data()->getCurrent()->get();
     <form name="comment" action="/post/comment/submit" method="post" enctype="multipart/form-data">
         <input type="hidden" name="idx_parent" value="<?php echo $post['idx'] ?>">
         <input type="hidden" name="fid" value="">
-        <textarea id="contentEditor<?php echo $post['idx'] ?>" name="content" onclick="loadReplyCKEditor('contentEditor<?php echo $post['idx'] ?>');" placeholder="Please, click here to reply a comment."></textarea>
-        <input class="show-on-click" type='file' name='files[]' multiple onchange="jQuery(this).parent().submit();">
-        <div class="uploaded-files" parent_id="{{ post.id.value }}"></div>
+        <?php echo html_hidden_post_variables(); ?>
+
+        <img class="file-upload-button" src="/module/post/img/camera.png">
+        <textarea name="content"></textarea>
+
+        <div class="uploaded-files"></div>
         <input class="show-on-click form-comment-add-submit" type="submit" value="UPLOAD COMMENT">
     </form>
 </div>
-
-
