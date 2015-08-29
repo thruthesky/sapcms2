@@ -13,6 +13,7 @@ class Install {
 
     private static $done_install_check = false;
     private static $check = false;
+    private static $installOptions = [];
 
     /**
      *
@@ -41,13 +42,14 @@ class Install {
 
         // $options[URL_SITE] = str_replace('install', '', $options[URL_SITE] );
 
-
         Install::initializeSystem($options);
-
     }
 
     public static function initializeSystem($options)
     {
+        self::setInstallOptions($options);
+
+
 
         if ( empty($options['database']) ) die('Input database type');
         if ( $options['database'] == 'sqlite' ) {
@@ -66,7 +68,6 @@ class Install {
         $database['database_password'] = $options['database_password'];
 
 
-
         Config::file(Config::getDatabasePath())
             ->data($database)
             ->saveFileConfig();
@@ -81,9 +82,8 @@ class Install {
             return;
         }
 
-
+        /**
         config()->createTable();
-
         config()
             ->set('admin', $options['admin_id'])
             ->set(URL_SITE, $options[URL_SITE]);
@@ -92,7 +92,12 @@ class Install {
         user()->create($options['admin_id'])
             ->setPassword($options['admin_password'])
             ->save();
+        */
 
+        /**
+         * RUN core module install
+         */
+        System::run_core_module_install();
     }
 
 
@@ -122,10 +127,17 @@ class Install {
         return OK;
     }
 
+
+    /**
+     *
+     * return TRUE if installed.
+     *
+     * @return bool
+     */
     public static function check()
     {
         if (  self::$done_install_check ) return self::$check;
-        //$config = System::getDatabaseConfiguration();
+
         $config = System::loadDatabaseConfiguration();
         if ( ! isset($config['database']) ) self::$check = false;
         if ( $config['database'] == 'mysql' ) {
@@ -232,6 +244,15 @@ class Install {
         else return ERROR_MODULE_NOT_INSTALLED;
 
         return OK;
+    }
+
+    private static function setInstallOptions($options)
+    {
+        self::$installOptions = $options;
+    }
+    public static function getInstallOptions()
+    {
+        return self::$installOptions;
     }
 
 }

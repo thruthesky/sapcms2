@@ -1,8 +1,8 @@
 <?php
 
-use sap\post\post;
-use sap\post\PostConfig;
-use sap\post\PostData;
+use sap\core\post\post;
+use sap\core\post\PostConfig;
+use sap\core\post\PostData;
 use sap\src\Route;
 
 /**

@@ -5,7 +5,7 @@ use sap\core\system\SystemController;
 
 class Module {
 
-    private static $core_modules = ['admin', 'config', 'front', 'install', 'system', 'user'];
+    private static $core_modules = ['admin', 'config', 'front', 'install', 'post', 'system', 'user'];
 
     private static $variables = [];
 
@@ -71,10 +71,14 @@ class Module {
             list($module, $class, $method) = explode("\\", $match);
         }
 
+
         if ( System::isEnabled($module) ) {
+
             $core = is_core_module($module) ? "core\\" : null;
             $name = "sap\\{$core}$module\\$class";
             System::log("Module::run() => $name::$method ()");
+
+
             return $name::$method(Route::getMatchVar());
         }
         else {

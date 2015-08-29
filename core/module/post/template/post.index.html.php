@@ -1,7 +1,8 @@
-<a class="ui-btn" href="/post/admin">Post Admin</a>
-
-
+<p>
+    No of Post Config : <?php echo post_config()->count(); ?>
+</p>
 <?php
+
 $configs = post_config()->rows();
 if ( $configs ) {
     echo "<table>";

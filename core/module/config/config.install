@@ -1,0 +1,8 @@
+<?php
+use sap\core\Install\Install;
+
+$options = Install::getInstallOptions();
+config()->createTable();
+config()
+    ->set('admin', $options['admin_id'])
+    ->set(URL_SITE, $options[URL_SITE]);

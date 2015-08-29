@@ -1,0 +1,9 @@
+<?php
+use sap\core\Install\Install;
+
+$options = Install::getInstallOptions();
+
+user()->createTable();
+user()->create($options['admin_id'])
+->setPassword($options['admin_password'])
+->save();

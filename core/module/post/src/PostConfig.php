@@ -1,6 +1,5 @@
 <?php
-namespace sap\post;
-
+namespace sap\core\post;
 
 use sap\src\Entity;
 

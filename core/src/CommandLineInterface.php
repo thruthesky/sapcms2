@@ -41,6 +41,7 @@ class CommandLineInterface {
      *
      */
     public static function Run() {
+
         System::log(__METHOD__);
         self::parseArguments();
         if ( empty(self::$cmd) ) {
@@ -51,8 +52,7 @@ class CommandLineInterface {
         }
         else if ( self::$cmd == '--install' ) {
 
-            //print_r(self::getArguments());
-            //di('hi');exit;
+
 
             System::install([
                 'database' => self::getArgument('--database'),

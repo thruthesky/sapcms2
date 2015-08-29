@@ -327,7 +327,10 @@ function widget($widget_name, $widget=null) {
     $path = "widget/$widget_name/$widget_name.php";
     if ( ! file_exists($path) ) {
         $module = Request::module();
-        $path = PATH_INSTALL . "/module/$module/widget/$widget_name/$widget_name.php";
+        if ( is_core_module($module) ) {
+            $path = PATH_INSTALL . "/core/module/$module/widget/$widget_name/$widget_name.php";
+        }
+        else $path = PATH_INSTALL . "/module/$module/widget/$widget_name/$widget_name.php";
     }
     include $path;
 }

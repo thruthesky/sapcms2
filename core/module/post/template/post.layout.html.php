@@ -3,5 +3,5 @@ add_css('post.component.css');
 extract($variables);
 ?>
 <div class="post">
-<?php include "post.layout.html.php"; ?>
+<?php include "$page.html.php"; ?>
 </div>

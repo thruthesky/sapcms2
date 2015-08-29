@@ -1,7 +1,5 @@
 <?php
-namespace sap\post;
-use sap\src\Database;
-use sap\src\Request;
+namespace sap\core\post;
 use sap\src\Response;
 
 class post {

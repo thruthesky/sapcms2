@@ -1,5 +1,5 @@
 <?php
-use sap\post\PostConfig;
+use sap\core\post\PostConfig;
 use sap\src\Request;
 
 include_once "core/etc/phpunit/test.php";
@@ -79,6 +79,7 @@ class PostDataTest extends PHPUnit_Framework_TestCase
         $data = post_data()->newPost($option);
         $this->assertTrue($config->countData()==1);
         $this->assertTrue($data->markAsDelete());
+        $config->delete();
     }
 
 
@@ -117,6 +118,8 @@ class PostDataTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue($comment2->markAsDelete());
         $this->assertTrue($config->countData()==0);
+
+        $config->delete();
     }
 
 

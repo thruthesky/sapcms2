@@ -1,5 +1,5 @@
 <?php
-use sap\post\PostConfig;
+use sap\core\post\PostConfig;
 use sap\src\Request;
 
 include_once "core/etc/phpunit/test.php";

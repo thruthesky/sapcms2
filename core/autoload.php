@@ -6,6 +6,7 @@ include PATH_INSTALL.'/core/etc/defines.php';
 include PATH_INSTALL.'/core/etc/helper-function.php';
 include PATH_INSTALL.'/core/etc/sapcms-library.php';
 require PATH_INSTALL.'/core/composer/vendor/autoload.php';
+
 spl_autoload_register( function( $class ) {
     $path = null;
     if ( strpos($class, 'sap') !== false ) {
@@ -40,4 +41,4 @@ spl_autoload_register( function( $class ) {
 	include $path;
     }
 } );
-include PATH_INSTALL . '/core/bootstrap.php';
+include PATH_INSTALL . '/core/kernel.php';

@@ -50,8 +50,9 @@ class Route {
      * @return null
      */
     public static function match($route) {
-        if ( isset(self::$routes[$route]) ) return self::$routes[$route];
 
+
+        if ( isset(self::$routes[$route]) ) return self::$routes[$route];
         $pos = strrpos($route, '/');
         if ( $pos > 0 ) {
             $relRoute = substr($route, 0, $pos) . '/*';
@@ -146,7 +147,6 @@ class Route {
 
     public static function run($route)
     {
-
         return Module::run($route);
     }
 

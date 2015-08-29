@@ -95,9 +95,6 @@ class System {
     }
 
 
-
-
-
     public static function isCommandLineInterface()
     {
         if ( self::$done_cli_check ) return self::$cli;
@@ -127,6 +124,7 @@ class System {
         else {
             self::load_core_module_files();
             if ( Install::check() ) {
+                include PATH_INSTALL . '/core/init.php';
                 self::load_module_files();
             }
         }
@@ -180,6 +178,7 @@ class System {
             hook('module_load_complete');
         }
     }
+
     private static function load_core_module_files()
     {
         foreach ( self::getCoreModules() as $module ) {
@@ -193,6 +192,23 @@ class System {
         }
         hook('core_module_load_complete');
     }
+
+
+    /**
+     * Run core module install scripts
+     */
+    public static function run_core_module_install()
+    {
+        foreach ( self::getCoreModules() as $module ) {
+            $path = "core/module/$module/$module.install";
+            if ( file_exists($path) ) {
+                include $path;
+            }
+        }
+    }
+
+
+
 
     public static function getCoreModules()
     {
@@ -227,22 +243,6 @@ class System {
     }
 
 
-    /**
-    public static function getDatabaseConfiguration()
-    {
-        if ( empty(self::$config_database) ) return FALSE;
-        else return self::$config_database;
-    }
-     * */
-
-
-    /**
-    public static function isInstalled($flag=null)
-    {
-        if ( $flag === null ) return self::$isInstalled;
-        else return self::$isInstalled = $flag;
-    }
-     * */
 
 
     /**
