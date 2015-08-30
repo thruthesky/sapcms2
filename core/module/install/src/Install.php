@@ -123,7 +123,7 @@ class Install {
     {
         if ( $error_code = File::createDir(PATH_CONFIG) ) return $error_code;
         if ( $error_code = File::createDir(PATH_UPLOAD) ) return $error_code;
-        if ( $error_code = File::createDir(PATH_THUMBNAIL) ) return $error_code;
+        if ( $error_code = File::createDir(PATH_CACHE) ) return $error_code;
         return OK;
     }
 
@@ -159,16 +159,25 @@ class Install {
     }
 
 
-
-
+    /**
+     *
+     * Enable 'core module' or 'user module'
+     *
+     * @Attention - It saves 'module name' on config meta table ONLY IF it enables 'user module'.
+     *
+     * @param $name
+     * @return int|mixed
+     */
     public static function enableModule($name)
     {
         if ( empty($name) ) return ERROR_MODULE_NAME_EMPTY;
 
         if ( config()->group('module')->value($name) ) return ERROR_MODULE_ALREADY_INSTALLED;
-        $path_module = PATH_MODULE . "/$name";
-        if ( ! is_dir($path_module) ) return ERROR_MODULE_NOT_EXISTS;
 
+        if ( is_core_module($name) ) $path_module = PATH_CORE_MODULE . "/$name";
+        else $path_module = PATH_MODULE . "/$name";
+
+        if ( ! is_dir($path_module) ) return ERROR_MODULE_NOT_EXISTS;
 
         // 1. include module script first
         $path = "$path_module/$name.module";
@@ -202,7 +211,11 @@ class Install {
         $variables = ['name'=>$name];
         hook('module_enable', $variables);
 
-        config()->group('module')->set($name, $name);
+
+        if ( ! is_core_module($name) ) {
+            config()->group('module')->set($name, $name);
+        }
+
         return OK;
     }
 

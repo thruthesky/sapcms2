@@ -1,0 +1,7 @@
+<?php
+define('DATA_TABLE', 'data_file');
+define('DATA_BLOCK_TABLE', 'data_block');
+
+include 'data.routing.php';
+include 'data.function.php';
+include 'data.hook.php';

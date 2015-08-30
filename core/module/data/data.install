@@ -1,0 +1,26 @@
+<?php
+entity(DATA_TABLE)
+    ->createTable()
+    ->add('module', 'varchar', 64)
+    ->add('type', 'varchar', 64)
+    ->add('idx_target', 'INT UNSIGNED DEFAULT 0')
+    ->add('idx_user', 'INT UNSIGNED DEFAULT 0')
+    ->add('finish', 'SMALLINT DEFAULT 0')
+    ->add('name', 'varchar')
+    ->add('name_saved', 'varchar')
+    ->add('form_name', 'varchar', 64)
+    ->add('mime', 'varchar', 64)
+    ->add('size', 'INT UNSIGNED DEFAULT 0')
+    ->unique('name_saved')
+    ->index('module,type,idx_target')
+    ->index('form_name')
+    ->index('idx_user');
+
+entity(DATA_BLOCK_TABLE)
+    ->createTable()
+    ->add('idx_user', 'INT UNSIGNED DEFAULT 0')
+    ->add('md5', 'varchar')
+    ->add('name', 'varchar')
+    ->add('mime', 'varchar')
+    ->add('size', 'INT UNSIGNED DEFAULT 0')
+    ->unique('md5');

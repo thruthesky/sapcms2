@@ -8,6 +8,12 @@ $theme = 'default';
 
 
 define('PATH_DATA', PATH_INSTALL. '/data');
+define('URL_PATH_DATA', 'data');
+define('PATH_CACHE', PATH_DATA. '/cache');
+define('URL_PATH_CACHE', URL_PATH_DATA . '/cache');
+define('PATH_UPLOAD', PATH_DATA . '/upload');
+define('URL_PATH_UPLOAD', URL_PATH_DATA . '/upload');
+
 define('PATH_DEBUG_LOG', PATH_DATA . '/debug.log');
 define('PATH_ERROR_LOG', PATH_DATA . '/error.log');
 
@@ -18,11 +24,10 @@ define('PATH_SQLITE_DATABASE', PATH_DATA . '/sapcms.sqlite');
 define('PATH_CONFIG', PATH_DATA . '/config');
 define('PATH_CONFIG_DATABASE', PATH_CONFIG . '/database.php');
 
+define('PATH_CORE_MODULE', PATH_INSTALL . '/core/module');
 define('PATH_MODULE', PATH_INSTALL . '/module');
 
 
-define('PATH_UPLOAD', PATH_DATA . '/upload');
-define('PATH_THUMBNAIL', PATH_DATA . '/thumbnail');
 
 define('URL_SITE', 'url_site');
 

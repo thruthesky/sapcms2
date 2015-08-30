@@ -1,0 +1,19 @@
+.ajax-file-upload-progress-bar {
+    position:relative;
+    background-color:#d3e8f4;
+    width:120px;
+}
+.ajax-file-upload-progress-bar .graph {
+    position: relative;
+    background-color: #66afe9;
+    top:0;
+    bottom:0;
+}
+
+.file-display {
+
+}
+.file-display img {
+    width:auto;
+    max-height: 6em;
+}

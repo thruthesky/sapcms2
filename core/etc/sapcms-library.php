@@ -32,8 +32,9 @@ function systeminfo() {
     return $info;
 }
 
-function template($filename=null) {
-    return Template::script($filename);
+// Alias of template::script()
+function template($filename=null, $module=null) {
+    return Template::script($filename, $module);
 }
 
 
@@ -769,3 +770,9 @@ function system_runtime() {
 }
 
 
+
+function error_get_last_message() {
+    $error = error_get_last();
+    if ( $error ) return "$error(type) $error[message]";
+    else return null;
+}
