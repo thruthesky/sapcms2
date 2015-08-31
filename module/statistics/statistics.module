@@ -3,7 +3,9 @@
 define('STATISTICS_DATA', 'statistics_data');
 define('STATISTICS_PAGE_ACCESS', 'statistics_page_access');
 
+
 include 'statistics.routing.php';
+include 'statistics.hook.php';
 
 
 
