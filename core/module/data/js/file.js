@@ -9,10 +9,31 @@ function onFileChange(obj) {
     $(obj).val('');
 }
 function fileDelete(idx) {
-
+    $.ajax("/file/delete?idx="+idx)
+        .done(function(re){
+            try {
+                var re = JSON.parse(re);
+                if ( re.error ) alert( re.message );
+                else {
+                    console.log("idx: " + idx + " deleted");
+                    $('.file[idx="'+re.idx+'"]').remove();
+                }
+            }
+            catch (e) {
+                alert(re);
+            }
+        })
+        .fail(function(){
+            console.log('failed to load');
+        });
 }
 $(function(){
-    fileDelete(55);
+
+    $('body').on("click",".file-display .delete", function(){
+        var idx = $(this).parent().attr('idx');
+        //console.log("why man call ? " + idx);
+        fileDelete(idx);
+    });
     $(".ajax-file-upload").submit(function(){
         if ( isUploadSubmit == false ) return true;
         var $this = $(this);
@@ -52,10 +73,6 @@ $(function(){
                 setFid(re);
 
             }
-        });
-        $('body').on("click",".file-display .delete", function(){
-            var idx = $(this).parent().attr('idx');
-            fileDelete(idx);
         });
         function fileDisplay(re) {
             var display = $this.find('[name="file_display"]').val();

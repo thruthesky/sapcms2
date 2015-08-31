@@ -15,7 +15,7 @@ class DataController
     public static function upload() {
         system_log(__METHOD__);
 
-        $uploads = self::multipleFileUploadInfo();
+        $uploads = Data::multipleFileUploadInfo();
         system_log($uploads);
 
         $re = [];
@@ -47,34 +47,20 @@ class DataController
         return Response::json($re);
     }
 
-
-
-    public static function multipleFileUploadInfo()
-    {
-        $re = [];
-        foreach ($_FILES as $k => $v) {
-            $f = array();
-            $f['form_name'] = $k;
-            if (is_array($v['name'])) {
-                for ($i = 0; $i < count($v['name']); $i++) {
-                    $f['name'] = $v['name'][$i];
-                    $f['type'] = $v['type'][$i];
-                    $f['tmp_name'] = $v['tmp_name'][$i];
-                    $f['error'] = $v['error'][$i];
-                    $f['size'] = $v['size'][$i];
-                    $re[] = $f;
-                }
-            }
-            else {
-                $f['name'] = $v['name'];
-                $f['type'] = $v['type'];
-                $f['tmp_name'] = $v['tmp_name'];
-                $f['error'] = $v['error'];
-                $f['size'] = $v['size'];
-                $re[] = $f;
-            }
+    public static function delete() {
+        $idx = request('idx');
+        $re = ['idx'=>$idx];
+        $data = data($idx);
+        if ( $data ) {
+            $re['error'] = data($idx)->deleteFile();
+            if ( $re['error'] ) $re['message'] = getErrorString();
         }
-        return $re;
+        else {
+            $re['error'] = -51001;
+            $re['message'] = "File does not exists.";
+        }
+
+        return Response::json($re);
     }
 
 

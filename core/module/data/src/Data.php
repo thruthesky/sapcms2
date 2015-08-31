@@ -101,6 +101,20 @@ class Data extends Entity
         }
     }
 
+    public function deleteFile() {
+        $path = $this->path();
+        if ( empty($path) ) return error(-51002, "Path is empty");
+        system_log(__METHOD__);
+        system_log("path:$path");
+        if ( unlink($path) ) {
+            $this->delete();
+            return OK;
+        }
+        else {
+            return error(-51000, "Failed on delete file");
+        }
+    }
+
 
     /**
      *
@@ -127,4 +141,33 @@ class Data extends Entity
         return $files;
     }
 
+
+
+    public static function multipleFileUploadInfo()
+    {
+        $re = [];
+        foreach ($_FILES as $k => $v) {
+            $f = array();
+            $f['form_name'] = $k;
+            if (is_array($v['name'])) {
+                for ($i = 0; $i < count($v['name']); $i++) {
+                    $f['name'] = $v['name'][$i];
+                    $f['type'] = $v['type'][$i];
+                    $f['tmp_name'] = $v['tmp_name'][$i];
+                    $f['error'] = $v['error'][$i];
+                    $f['size'] = $v['size'][$i];
+                    $re[] = $f;
+                }
+            }
+            else {
+                $f['name'] = $v['name'];
+                $f['type'] = $v['type'];
+                $f['tmp_name'] = $v['tmp_name'];
+                $f['error'] = $v['error'];
+                $f['size'] = $v['size'];
+                $re[] = $f;
+            }
+        }
+        return $re;
+    }
 }

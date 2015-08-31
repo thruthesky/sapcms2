@@ -7,3 +7,4 @@
  *
  */
 route('/file/upload', 'data\\DataController\\upload');
+route('/file/delete', 'data\\DataController\\delete');
