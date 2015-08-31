@@ -95,7 +95,7 @@ class bulk {
 		if( $limit = request('limit') ){
 			if( $page = request('page') ) $page = ( $page - 1 ) * $limit;
 			else $page = 0;
-			$cond = $cond." ORDER BY stamp_last_sent ASC LIMIT $page, $limit";
+			$cond = $cond." LIMIT $page, $limit";
 		}
 
         $bulk = entity(BULK)->load(request('idx'));
