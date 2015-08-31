@@ -36,9 +36,9 @@
 	Limit <input type='text' name='limit'>
 	Sort by 
 	<select name='date_by'>
-		<option value='day' <? if( $date_by == 'day' ) echo " selected"?>>Day</option>
-		<option value='week' <? if( $date_by == 'week' ) echo " selected"?>>Week</option>
-		<option value='month' <? if( $date_by == 'month' ) echo " selected"?>>Month</option>
+		<option value='day' <? if( $date_by == 'day' ) echo " selected"?> >Day</option>
+		<option value='week' <? if( $date_by == 'week' ) echo " selected"?> >Week</option>
+		<option value='month' <? if( $date_by == 'month' ) echo " selected"?> >Month</option>
 	</select>
 	<input type='submit' value="Submit">
 </form>
