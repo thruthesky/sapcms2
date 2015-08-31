@@ -1,0 +1,21 @@
+<?php
+
+define('STATISTICS_DATA', 'statistics_data');
+define('STATISTICS_PAGE_ACCESS', 'statistics_page_access');
+
+include 'statistics.routing.php';
+
+
+
+
+/*define('POST_DATA', 'post_data');
+
+if ( is_post_page() ) {
+    add_css('/core/module/post/css/post.base.css');
+    add_css('/core/module/post/css/post.layout.css');
+    add_css('/core/module/post/css/post.component.css');
+}
+if ( is_post_config_page() ) {
+    add_css('/core/module/post/css/post.config.css');
+}
+*/

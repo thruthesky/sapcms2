@@ -1,7 +1,7 @@
 <?php
 	$total_queue = entity(QUEUE)->count();
 	$total_success = entity(SMS_SUCCESS)->count();
-	$total_fail = entity(SMS_FAILURE)->count();;
+	$total_fail = entity(SMS_FAILURE)->count();
 ?>
 <h1>Overall</h1>
 <?php include template('smsgate.menu'); ?>
