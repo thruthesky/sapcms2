@@ -61,7 +61,7 @@
 			$date = date( "M d H:i:s", $start_range );
 			$end_date = date( "M d H:i:s", $end_range - 1 );
 			$q = "created > $start_range AND created < $end_range";			
-			$users = user()->query( $q );
+			$users = user()->rows( $q );
 			if( !empty( $users ) ) $user_count = count( $users );
 			else $user_count = 0;
 			
@@ -82,7 +82,7 @@
 	$today = strtotime( "today" );
 	$today_end = strtotime( date( "Y/m/d",$today)." 1 day" );
 	
-	$todays_user_created = user()->query( "created > $today AND created < $today_end" );
+	$todays_user_created = user()->rows( "created > $today AND created < $today_end" );
 	if( !empty( $todays_user_created ) ) $todays_user_created_count = count( $users );
 	else $todays_user_created_count = 0;
 ?>
