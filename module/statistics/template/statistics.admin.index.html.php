@@ -2,9 +2,6 @@
 // user, post, data
 
 	$total_users = user()->count();
-	$total_queue = entity(QUEUE)->count();
-	$total_success = entity(SMS_SUCCESS)->count();
-	$total_fail = entity(SMS_FAILURE)->count();
 ?>
 
 <div class='note'>
@@ -30,31 +27,7 @@
 			<td>Total Users</td>
 			<td>Total Users Description</td>
 			<td><?php echo $total_users?></td>
-			<td>More</td>
-		</tr>
-		<tr>
-			<td>Total SMSGate Queues</td>
-			<td>Total SMSGate Queues Description</td>
-			<td><?php echo $total_queue?></td>
-			<td>More</td>	
-		</tr>
-		<tr>
-			<td>Total SMSGate Success</td>
-			<td>Total SMSGate Success Description</td>
-			<td><?php echo $total_success?></td>
-			<td>More</td>	
-		</tr>
-		<tr>
-			<td>Total SMSGate Failures</td>
-			<td>Total SMSGate Failures Description</td>
-			<td><?php echo $total_fail?></td>
-			<td>More</td>	
-		</tr>
-		<tr>
-			<td>Total Page Accesses</td>
-			<td>Total Page Accesses Description</td>
-			<td>Should list all</td>
-			<td>More</td>	
+			<td><a href="/admin/statistics/user">More</a></td>
 		</tr>
 	</tbody>
 	

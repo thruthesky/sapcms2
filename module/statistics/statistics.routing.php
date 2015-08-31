@@ -5,3 +5,4 @@
 //route('/admin/post/config/edit', 'post\\post\\adminPostConfigEdit');
 
 route('/admin/statistics', 'statistics\\statistics\\index');
+route('/admin/statistics/user', 'statistics\\statistics\\user');
