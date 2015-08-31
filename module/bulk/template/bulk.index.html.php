@@ -66,7 +66,7 @@ $bulks = entity(BULK)->rows("limit $from, $no_item");
 	
 	$select_page_send = "<select name='page' data-inline='true'>";	
 	$select_page_send .= "<option value=''>Page</option>";	
-	for	( $i = 0; $i<30; $i++ ){
+	for	( $i = 1; $i<=30; $i++ ){
 		$select_page_send .= "<option value='".$i."'>".$i."</option>";
 	}
 	$select_page_send .= "</select>";
