@@ -14,8 +14,10 @@ class Data extends Entity
         parent::__construct(DATA_TABLE);
     }
 
+
     public function record($upload)
     {
+        $this->deleteUnfinishedFiles();
         return $this
             ->set('name', $upload['name'])
             ->set('name_saved', $upload['name_saved'])
@@ -47,11 +49,11 @@ class Data extends Entity
      */
     public function getPossibleFilenameToSave($name) {
         $name = self::makeSafeFilename($name);
-        if ( file_exists($this->path($name)) ) {
+        if ( is_file($this->path($name)) ) {
             $pi = pathinfo($name);
             for ( $i=1; $i<10000; $i++ ) {
                 $name = $pi['filename'] . "($i)." . $pi['extension'];
-                if ( ! file_exists($this->path($name)) ) break;
+                if ( ! is_file($this->path($name)) ) break;
             }
         }
         return $name;
@@ -69,8 +71,60 @@ class Data extends Entity
     }
 
 
-    public function path($name)
+    /**
+     *
+     * Return file path.
+     *
+     * @param null $name - if it is null, then it uses $this->name_saved
+     * @return string
+     */
+    public function path($name=null)
     {
+        if ( empty($name) ) $name = $this->get('name_saved');
         return PATH_UPLOAD . DIRECTORY_SEPARATOR . $name;
     }
+
+    private function deleteUnfinishedFiles()
+    {
+        $stamp = time() - INTERVAL_DELETE_UNFINISHED_FILE;
+        $files = $this->files("created<$stamp AND finish=0", DATA_TABLE);
+        foreach( $files as $file ) {
+            $path = $file->path();
+            system_log("delete: file: " . $file->get('idx') . " path:$path");
+            if ( unlink($path) ) {
+                $file->delete();
+            }
+            else {
+                // error
+                system_log("ERROR - FAILED ON DELETING FILE : $path");
+            }
+        }
+    }
+
+
+    /**
+     *
+     * Returns Array of file entities.
+     * @param $cond - Same as Database::row()
+     * @return array - Entities
+     *
+     * @code
+     *
+
+    $files = $this->files("created>$stamp AND finished=0", DATA_TABLE);
+    foreach( $files as $file ) {
+     *
+     * @endcode
+     */
+    public function files($cond) {
+        $idxes = $this->indexes($cond);
+        $files = [];
+        if ( $idxes ) {
+            foreach( $idxes as $idx ) {
+                $files[] = data()->load($idx);
+            }
+        }
+        return $files;
+    }
+
 }

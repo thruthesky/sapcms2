@@ -11,9 +11,40 @@
 }
 
 .file-display {
-
+    position:relative;
 }
+.file-display:after {
+    display:block;
+    content:'';
+    clear:both;
+}
+
+.file-display .file {
+    position:relative;
+    float:left;
+}
+
+.file-display .file .delete {
+    position:absolute;
+    top:3px;
+    right:3px;
+    padding:6px;
+    border-radius:2px;
+    box-sizing: border-box;
+    background-color:red;
+    color:white;
+    cursor: pointer;
+}
+
 .file-display img {
     width:auto;
     max-height: 6em;
+}
+
+.file-display .file.attachment {
+    padding:3px;
+    box-sizing: border-box;
+    max-width:5em;
+    background-color: #4677CE;
+    color:white;
 }

@@ -8,7 +8,11 @@ function onFileChange(obj) {
     isUploadSubmit = false;
     $(obj).val('');
 }
+function fileDelete(idx) {
+
+}
 $(function(){
+    fileDelete(55);
     $(".ajax-file-upload").submit(function(){
         if ( isUploadSubmit == false ) return true;
         var $this = $(this);
@@ -49,6 +53,10 @@ $(function(){
 
             }
         });
+        $('body').on("click",".file-display .delete", function(){
+            var idx = $(this).parent().attr('idx');
+            fileDelete(idx);
+        });
         function fileDisplay(re) {
             var display = $this.find('[name="file_display"]').val();
             if ( display ) {
@@ -60,8 +68,18 @@ $(function(){
                 }
                 for ( var i in re ) {
                     var file = re[i];
-                    var img = "<img src='"+file.url+"'>";
-                    $display.append(img);
+                    var markup = "<div idx='"+file.idx+"' class='file";
+                    if ( file.type.indexOf('image') != -1 ) {
+                        markup += " image'>";
+                        markup += "<img src='"+file.url+"'>";
+                    }
+                    else {
+                        markup += " attachment'>";
+                        markup += file.name;
+                    }
+                    markup += "<div class='delete' title='Delete this file'>X</div>";
+                    markup += "</div>";
+                    $display.append(markup);
                 }
             }
         }

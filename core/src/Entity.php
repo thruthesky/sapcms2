@@ -552,6 +552,21 @@ class Entity {
         else return FALSE;
     }
 
+    /**
+     * Returns ONLY 'idx' of self::rows() result.
+     * @param $cond
+     * @return array
+     */
+    public function indexes($cond) {
+        $rows = $this->rows($cond, 'idx');
+        $idxes = [];
+        if ( $rows ) {
+            foreach($rows as $row) $idxes[] = $row['idx'];
+        }
+        return $idxes;
+    }
+
+
     public function exec($q)
     {
         return Database::load()->exec($q);
