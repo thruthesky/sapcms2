@@ -2,3 +2,8 @@
 include 'user.hook.php';
 include 'user.routing.php';
 include 'user.function.php';
+
+
+if ( login() ) {
+    login()->set('last_access', time())->save();
+}

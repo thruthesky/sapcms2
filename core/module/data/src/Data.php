@@ -23,7 +23,7 @@ class Data extends Entity
             ->set('name_saved', $upload['name_saved'])
             ->set('form_name', $upload['form_name'])
             ->set('size', $upload['size'])
-            ->set('type', $upload['type'])
+            ->set('mime', $upload['type'])
             ->set('module', request('file_module'))
             ->set('type', request('file_type'))
             ->set('idx_target', request('file_idx_target', 0))
@@ -118,7 +118,7 @@ class Data extends Entity
 
     /**
      *
-     * Returns Array of file entities.
+     * Returns Array of file entities BASED ON Database::row() conditioin
      * @param $cond - Same as Database::row()
      * @return array - Entities
      *
@@ -169,5 +169,10 @@ class Data extends Entity
             }
         }
         return $re;
+    }
+
+
+    public function loadBy($module, $type, $idx_target) {
+        return $this->files("module='$module' AND type='$type' AND idx_target=$idx_target");
     }
 }

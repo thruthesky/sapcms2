@@ -215,6 +215,23 @@ class post {
             return Response::render([ 'template'=>'post.layout', 'page'=>'post.data.edit' ]);
         }
 
+        $fid = request('fid');
+        if ( $fid ) {
+            $idxes = explode(',', $fid);
+            foreach( $idxes as $idx ) {
+                if ( is_numeric($idx) ) {
+                    $file = data($idx);
+                    if ( $file ) {
+                        $file
+                            ->set('module', 'post')
+                            ->set('type', 'file')
+                            ->set('idx_target', $data->get('idx'))
+                            ->set('finish', 1)
+                            ->save();
+                    }
+                }
+            }
+        }
         return Response::redirect(self::urlPostView($data));
     }
 
