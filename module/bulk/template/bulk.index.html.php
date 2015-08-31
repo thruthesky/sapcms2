@@ -64,6 +64,13 @@ $bulks = entity(BULK)->rows("limit $from, $no_item");
 	$select_limit_send .= "<option value='10000'>10000</option>";
 	$select_limit_send .= "</select>";
 	
+	$select_page_send = "<select name='page' data-inline='true'>";	
+	$select_page_send .= "<option value=''>Page</option>";	
+	for	( $i = 1; $i<=30; $i++ ){
+		$select_page_send .= "<option value='".$i."'>".$i."</option>";
+	}
+	$select_page_send .= "</select>";
+	
     foreach( $bulks as $bulk ) {
         $no_sent = entity(SMS_SUCCESS)->result('COUNT(*)', "tag='$bulk[name]'");
         $no_queue = entity(SMS_QUEUE)->result('COUNT(*)', "tag='$bulk[name]'");
@@ -82,6 +89,7 @@ $bulks = entity(BULK)->rows("limit $from, $no_item");
             $select_category
             $select_last_send
 			$select_limit_send
+			$select_page_send
                 <input type='submit' value='SEND' data-inline='true'>
                 ( No. of SENT: $no_sent )
                 ( No. in Queue: $no_queue )

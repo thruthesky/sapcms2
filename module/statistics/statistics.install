@@ -1,0 +1,13 @@
+<?php
+	/*
+	user already has IP
+	user per page access table..?
+	*/
+/*	
+entity(STATISTICS_PAGE_ACCESS)
+	->createTable()
+	->add('ip', "varchar", 64)
+	->add('request_uri', 'varchar', 64)
+	->add('count', 'INT UNSIGNED DEFAULT 0')	
+	->unique('request_uri');
+*/

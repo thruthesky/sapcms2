@@ -90,9 +90,13 @@ class bulk {
         if ( $conds ) {
             $cond = implode(' AND ', $conds);
         }
-
+		
 		//temp added by benjamin for limit ( automatic stamp_last_sent to avoid getting the same date )...
-		if( $limit = request('limit') ) $cond = $cond." ORDER BY stamp_last_sent ASC LIMIT $limit";
+		if( $limit = request('limit') ){
+			if( $page = request('page') ) $page = ( $page - 1 ) * $limit;
+			else $page = 0;
+			$cond = $cond." LIMIT $page, $limit";
+		}
 
         $bulk = entity(BULK)->load(request('idx'));
         $tag = $bulk->get('name');

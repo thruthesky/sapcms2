@@ -425,7 +425,13 @@ class PostData extends Entity {
     private static function deleteThreadIfAllDeleted($idx_root)
     {
         $root = post_data($idx_root);
-        if ( empty($root->get('delete')) ) return FALSE;
+		/*
+		*old code... error: Can't use method return value in write context on line 431 in file C:\work\sapcms2\core\module\post\src\PostData.php
+		*php version problem?
+        *if ( empty($root->get('delete')) ) return FALSE;
+		*/
+		$root_delete = $root->get('delete');
+        if ( empty( $root_delete ) ) return FALSE;//modified by benjamin
         $children = self::getThread($idx_root, 'delete');
         foreach( $children as $comment ) {
             if ( empty($comment['delete']) ) return FALSE;
