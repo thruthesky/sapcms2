@@ -34,11 +34,11 @@
 
 <form>
 	Limit <input type='text' name='limit'>
-	Sort by 
+	Sort:
 	<select name='date_by'>
-		<option value='day' <?php if( $date_by == 'day' ) echo " selected" ?> >Day</option>
-		<option value='week' <?php if( $date_by == 'week' ) echo " selected" ?> >Week</option>
-		<option value='month' <?php if( $date_by == 'month' ) echo " selected" ?> >Month</option>
+		<option value='day' <?php if( $date_by == 'day' ) echo " selected" ?> >Daily</option>
+		<option value='week' <?php if( $date_by == 'week' ) echo " selected" ?> >Weekly</option>
+		<option value='month' <?php if( $date_by == 'month' ) echo " selected" ?> >Monthly</option>
 	</select>
 	<input type='submit' value="Submit">
 </form>
