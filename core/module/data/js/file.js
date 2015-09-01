@@ -37,6 +37,7 @@ $(function(){
     $(".ajax-file-upload").submit(function(){
         if ( isUploadSubmit == false ) return true;
         var $this = $(this);
+        console.log("form: "+ $this.find("[name='idx_parent']").val());
         var $progressBar = $this.find(".ajax-file-upload-progress-bar");
         var lastAction = $this.prop('action');
         $this.prop('action', '/file/upload');
@@ -66,40 +67,15 @@ $(function(){
                 catch ( e ) {
                     return alert( xhr.responseText );
                 }
-                //console.log(re);
 
-                fileDisplay(re);
+                console.log(re);
+
+                fileDisplay($this, re);
                 fileCallback(re);
                 setFid(re);
 
             }
         });
-        function fileDisplay(re) {
-            var display = $this.find('[name="file_display"]').val();
-            if ( display ) {
-                var name = file_upload_form_name.replace('[]', '');
-                var $display = $(".file-display." + name);
-                if ( $display.length == 0 ) {
-                    $this.find("[name='"+file_upload_form_name+"']").after("<div class='file-display "+name+"'></div>");
-                    $display = $(".file-display." + name);
-                }
-                for ( var i in re ) {
-                    var file = re[i];
-                    var markup = "<div idx='"+file.idx+"' class='file";
-                    if ( file.type.indexOf('image') != -1 ) {
-                        markup += " image'>";
-                        markup += "<img src='"+file.url+"'>";
-                    }
-                    else {
-                        markup += " attachment'>";
-                        markup += file.name;
-                    }
-                    markup += "<div class='delete' title='Delete this file'>X</div>";
-                    markup += "</div>";
-                    $display.append(markup);
-                }
-            }
-        }
         function fileCallback(re) {
             var callback = $this.find('[name="file_callback"]').val();
             if ( callback ) window[callback](re);
@@ -130,3 +106,45 @@ $(function(){
         return false;
     });
 });
+
+
+/**
+ *
+ * @param $this - the FORM object
+ * @param re - Object of file information array
+ *  0: Object
+ *      error: - if there is any error.
+ *      form_name:
+ *      idx: - is idx of file
+ *      name: - is the file name
+ *      type -
+ *      url -
+ *
+ */
+function fileDisplay($this, re) {
+    if ( typeof re == 'undefined' || ! re ) return;
+    var display = $this.find('[name="file_display"]').val();
+    if ( display ) {
+        var form_name = re[0].form_name;
+        var $display = $this.find(".file-display." + form_name);
+        if ( $display.length == 0 ) {
+            $this.find("[name^='"+form_name+"']").after("<div class='file-display "+form_name+"'></div>");
+            $display = $this.find(".file-display." + form_name);
+        }
+        for ( var i in re ) {
+            var file = re[i];
+            var markup = "<div idx='"+file.idx+"' class='file";
+            if ( file.mime.indexOf('image') != -1 ) {
+                markup += " image'>";
+                markup += "<img src='"+file.url+"'>";
+            }
+            else {
+                markup += " attachment'>";
+                markup += file.name;
+            }
+            markup += "<div class='delete' title='Delete this file'>X</div>";
+            markup += "</div>";
+            $display.append(markup);
+        }
+    }
+}

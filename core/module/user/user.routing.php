@@ -4,6 +4,9 @@ use sap\src\Route;
 Route::add('/user', 'user\\UserController\\profile');
 Route::add('/user/register', 'user\\UserController\\register');
 
+Route::add('/user/resign', 'user\\UserController\\resign');
+Route::add('/user/resign/submit', 'user\\UserController\\resignSubmit');
+
 
 Route::add('/admin/user/edit', 'user\\UserController\\adminUserEdit');
 

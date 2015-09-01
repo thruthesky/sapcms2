@@ -21,8 +21,8 @@ else {
     <?php include template('element/title'); ?>
     <?php include template('element/file', 'data'); ?>
     <?php include template('element/content'); ?>
-    <?php $file_upload_form_name='books[]'; include template('element/file', 'data'); ?>
     <input type="submit" value="UPDATE POST">
+    <a href="<?php echo url_go_back();?>">Cancel</a>
 </form>
 <script>
     CKEDITOR.replace( 'contentEditor', {

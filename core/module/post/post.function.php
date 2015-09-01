@@ -38,6 +38,12 @@ function is_post_config_page() {
     return segment(1) == 'config';
 }
 
+function is_post_edit_page() {
+    return segment(1) == 'edit';
+}
+
+
+
 
 function post_data($idx=null) {
     if ( $idx ) {
@@ -68,4 +74,20 @@ function url_post_comment_edit($idx) {
 }
 function url_post_delete($idx=0) {
     return post::urlPostDelete($idx);
+}
+
+
+function display_file($file) {
+    $imgs = [];
+    $files = [];
+    $url = $file->url();
+    $name = $file->get('name');
+    if ( is_image($name) ) {
+        $imgs[] = "<img src='$url'>";
+    }
+    else {
+        $files[] = "<a href='$url'>$name</a>";
+    }
+    array_walk($files, 'display');
+    array_walk($imgs, 'display');
 }

@@ -1,0 +1,12 @@
+<?php
+use sap\src\Module;
+define('ACCESS_TABLE', 'log_access');
+if ( Module::enabled('access') ) {
+    entity(ACCESS_TABLE)
+        ->set('idx_user', login('idx'))
+        ->set('url', get_current_url())
+        ->set('ip', ip())
+        ->set('referer', referer())
+        ->set('user_agent', user_agent())
+        ->save();
+}

@@ -8,16 +8,24 @@ use sap\src\Request;
 use sap\src\Response;
 use sap\src\Template;
 
-
-
-
-
-
-
 function di($obj) {
     echo "<pre>";
     print_r($obj);
     echo "</pre>";
+}
+
+/**
+ * Echo input $data
+ * @param $data
+ * @note Use this function on callback.
+ *      - since echo is not a function, it cannot be used as callback function.
+ * @code
+ * array_walk($files, 'display');
+ * array_walk($imgs, 'display');
+ * @endcode
+ */
+function display($data) {
+    echo $data;
 }
 
 function beautify($obj) {
@@ -115,6 +123,20 @@ function domain() {
 function user_agent() {
     return isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
 }
+
+/**
+ * @return null
+ * @code
+ * ->set('ip', ip())
+->set('referer', referer())
+->set('user_agent', user_agent())
+
+ * @endcode
+ */
+function referer() {
+    return isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : null;
+}
+
 
 // $hooks = [];
 /*
@@ -270,14 +292,9 @@ function add_javascript($filename=null, $base=null) {
 
 /**
  *
- * Returns current site address
- *
- *
+ * Returns current site address including Querys
  *
  * @return string
- *
- *  - it returns '/' on CLI.
- *
  *
  */
 function get_current_url()
@@ -292,9 +309,9 @@ function get_current_url()
     $host = isset($s['HTTP_X_FORWARDED_HOST']) ? $s['HTTP_X_FORWARDED_HOST'] : (isset($s['HTTP_HOST']) ? $s['HTTP_HOST'] : null);
     $host = isset($host) ? $host : $s['SERVER_NAME'] . $port;
     $uri = $protocol . '://' . $host . $s['REQUEST_URI'];
-    $segments = explode('?', $uri, 2);
-    $url = $segments[0];
-    return add_ending_slash($url);
+    //$segments = explode('?', $uri, 2);
+    //$url = $segments[0];
+    return $uri;
 }
 
 /**
@@ -570,13 +587,13 @@ function html_select($o) {
     if ( isset($o['class']) ) $re .= " class='$o[class]'";
     if ( isset($o['name']) ) $re .= " name='$o[name]'";
     $re .= ">";
-		
+
     foreach( $o['options'] as $key => $value ) {
-		//condition added by benjamin for selected
-		$selected = '';
-		if( isset( $o['selected']  ) ){
-			if( $o['selected'] == $key ) $selected = ' selected';			
-		}
+        //condition added by benjamin for selected
+        $selected = '';
+        if( isset( $o['selected']  ) ){
+            if( $o['selected'] == $key ) $selected = ' selected';
+        }
         $re .= "<option value='$key'$selected>$value</option>";
     }
     $re .= "</select>";
@@ -762,6 +779,10 @@ function jsBack($message, $header=true)
     return OK;
 }
 
+function url_go_back() {
+    return "javascript:history.go(-1);";
+}
+
 function system_runtime() {
     global $time_start_script;
     $time_end = microtime(true);
@@ -775,4 +796,49 @@ function error_get_last_message() {
     $error = error_get_last();
     if ( $error ) return "$error(type) $error[message]";
     else return null;
+}
+
+/**
+ * Tells whether the input file name is image
+ */
+function is_image($filename)
+{
+    $mime = get_mime_type($filename);
+    return strpos($mime, "image") !== false;
+}
+
+function get_mime_type($file)
+{
+    $mime_types = array(
+        "pdf" => "application/pdf",
+        "exe" => "application/octet-stream",
+        "zip" => "application/zip",
+        "docx" => "application/msword",
+        "doc" => "application/msword",
+        "xls" => "application/vnd.ms-excel",
+        "ppt" => "application/vnd.ms-powerpoint",
+        "gif" => "image/gif",
+        "png" => "image/png",
+        "jpeg" => "image/jpg",
+        "jpg" => "image/jpg",
+        "mp3" => "audio/mpeg",
+        "wav" => "audio/x-wav",
+        "mpeg" => "video/mpeg",
+        "mpg" => "video/mpeg",
+        "mpe" => "video/mpeg",
+        "mov" => "video/quicktime",
+        "avi" => "video/x-msvideo",
+        "3gp" => "video/3gpp",
+        "css" => "text/css",
+        "jsc" => "application/javascript",
+        "js" => "application/javascript",
+        "php" => "text/html",
+        "htm" => "text/html",
+        "html" => "text/html"
+    );
+    $arr = explode('.', $file);
+    $ext = end($arr);
+    $extension = strtolower($ext);
+    if ( isset($mime_types[$extension]) ) return $mime_types[$extension];
+    else return "application/octet-stream";
 }

@@ -3,7 +3,17 @@ use sap\core\Install\Install;
 
 $options = Install::getInstallOptions();
 
+
 user()->createTable();
 user()->create($options['admin_id'])
 ->setPassword($options['admin_password'])
 ->save();
+
+
+entity(USER_ACTIVITY_TABLE)
+    ->createTable()
+    ->add('idx_user', 'INT UNSIGNED DEFAULT 0')
+    ->add('action', 'varchar', 64)
+    ->index('idx_user,action')
+    ->index('action');
+

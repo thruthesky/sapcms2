@@ -18,7 +18,7 @@ if ( empty($comments) ) return;
         <div class="content">
             <?php widget('post_view_content', ['post'=>$comment]) ?>
         </div>
-        <section role="files"><?php widget('post_display_files')?></section>
+        <section role="files"><?php widget('post_display_files', ['idx'=>$comment['idx']])?></section>
 
         <?php widget('post_view_comment_form', ['post'=>$comment]); ?>
 

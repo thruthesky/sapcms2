@@ -1,3 +1,6 @@
+<a href="/user/resign">R E S I G N</a><br>
+
+
 <form method="post">
     <?php
     echo html_row([

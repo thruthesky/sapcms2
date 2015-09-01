@@ -8,7 +8,7 @@ add_javascript();
     <nav class=""><?php widget('post_view_menu', $variables)?></nav>
 
     <section class="content"><?php widget('post_view_content', ['post'=>post_data()->getCurrent()->getFields()])?></section>
-    <section role="files"><?php widget('post_display_files')?></section>
+    <section role="files"><?php widget('post_display_files', ['idx'=>post_data()->getCurrent()->get('idx')])?></section>
     <section class="comment-form"><?php widget('post_view_comment_form', ['post'=>post_data()->getCurrent()->get()])?></section>
     <section class="comment-list"><?php widget('post_view_comment_list')?></section>
 </div>

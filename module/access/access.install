@@ -1,0 +1,8 @@
+<?php
+entity(ACCESS_TABLE)->createTable()
+    ->add('idx_user', 'INT UNSIGNED DEFAULT 0')
+    ->add('idx_other', 'INT UNSIGNED DEFAULT 0')
+    ->add('url', 'varchar', 1024)
+    ->add('ip', 'varchar', 32)
+    ->add('referer', 'varchar', 1024)
+    ->add('user_agent', 'varchar', 512);

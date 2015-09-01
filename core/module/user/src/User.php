@@ -49,6 +49,10 @@ class User extends Entity {
             ->add('last_access', 'INT UNSIGNED DEFAULT 0')
             ->add('last_login', 'INT UNSIGNED DEFAULT 0')
             ->add('last_login_ip', 'varchar', 32)
+            ->add('block', 'INT UNSIGNED DEFAULT 0') // time of blocked until.
+            ->add('block_reason', 'varchar', 1024)
+            ->add('resign', 'INT UNSIGNED DEFAULT 0') // time of resigned
+            ->add('resign_reason', 'varchar', 1024)
             ->unique('id')
             ->index('domain')
             ->index('name')

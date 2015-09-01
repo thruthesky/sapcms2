@@ -15,23 +15,24 @@ class Data extends Entity
     }
 
 
-    public function record($upload)
+    public function record(&$upload)
     {
         $this->deleteUnfinishedFiles();
+        $upload['mime'] = $upload['type'];
+        $upload['type'] = request('file_type');
         return $this
             ->set('name', $upload['name'])
             ->set('name_saved', $upload['name_saved'])
             ->set('form_name', $upload['form_name'])
             ->set('size', $upload['size'])
-            ->set('mime', $upload['type'])
+            ->set('mime', $upload['mime'])
             ->set('module', request('file_module'))
-            ->set('type', request('file_type'))
+            ->set('type', $upload['type'])
             ->set('idx_target', request('file_idx_target', 0))
             ->set('idx_user', login('idx', 0))
             ->set('finish', request('file_finish', 0))
             ->save();
     }
-
 
     public function url()
     {
@@ -124,9 +125,9 @@ class Data extends Entity
      *
      * @code
      *
-
-    $files = $this->files("created>$stamp AND finished=0", DATA_TABLE);
-    foreach( $files as $file ) {
+     *
+     * $files = $this->files("created>$stamp AND finished=0", DATA_TABLE);
+     * foreach( $files as $file ) {
      *
      * @endcode
      */
@@ -172,7 +173,22 @@ class Data extends Entity
     }
 
 
-    public function loadBy($module, $type, $idx_target) {
-        return $this->files("module='$module' AND type='$type' AND idx_target=$idx_target");
+    /**
+     * @param $module
+     * @param $type
+     * @param $idx_target
+     * @param null $form_name
+     * @return array
+     *
+     * @code
+     *      $files = data()->loadBy('post', 'file', post_data()->getCurrent()->get('idx'));
+     *      $files = data()->loadBy('post', 'file', post_data()->getCurrent()->get('idx'), 'books');
+     * @endcode
+     *
+     */
+    public function loadBy($module, $type, $idx_target, $form_name=null) {
+        $cond = "module='$module' AND type='$type' AND idx_target=$idx_target";
+        if ( $form_name ) $cond .= " AND form_name='$form_name'";
+        return $this->files($cond);
     }
 }

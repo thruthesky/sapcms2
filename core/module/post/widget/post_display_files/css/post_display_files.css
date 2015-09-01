@@ -1,4 +1,12 @@
-.file-display {
-    min-height:1em;
-    background-color:blue;
+.display-files {
+    padding:.6em;
+    box-sizing: border-box;
+    background-color: #c3d2f4;
+}
+.display-files img {
+    max-width: 100%;
+}
+.display-files a {
+    display:inline-block;
+    padding:.4em 0;
 }

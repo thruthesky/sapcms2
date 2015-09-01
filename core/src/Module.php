@@ -94,6 +94,17 @@ class Module {
 
     }
 
+    /**
+     *
+     * Returns true if the module is enabled.
+     *
+     * @param $module
+     * @return bool
+     */
+    public static function enabled($module) {
+        return System::isEnabled($module);
+    }
+
 
     /**
      * @param $variables

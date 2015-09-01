@@ -10,14 +10,13 @@ $post = $widget['post'];
 
 
 <div class="reply">
-    <form name="comment" action="/post/comment/submit" method="post" enctype="multipart/form-data">
+    <form name="comment" class="ajax-file-upload" action="/post/comment/submit" method="post" enctype="multipart/form-data">
         <input type="hidden" name="idx_parent" value="<?php echo $post['idx'] ?>">
-        <input type="hidden" name="fid" value="">
+        <input type="hidden" name="file_display" value="1">
         <?php echo html_hidden_post_variables(); ?>
-
         <img class="file-upload-button" src="/core/module/post/img/camera.png">
+        <?php include template('element/file', 'data'); ?>
         <textarea name="content"></textarea>
-
         <div class="uploaded-files"></div>
         <input class="show-on-click form-comment-add-submit" type="submit" value="UPLOAD COMMENT">
     </form>

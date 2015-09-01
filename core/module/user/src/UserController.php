@@ -7,8 +7,7 @@ class UserController
 {
     public static function profile()
     {
-        if ( submit() ) {			
-			
+        if ( submit() ) {
             $options = request();
 			if( empty( $options['password'] ) ) unset( $options['password'] );
             self::updateUser($options);
@@ -233,6 +232,7 @@ class UserController
      *
      * @Attention Do not put options directly from FORM submit. Form could have invalid or un-wanted data.
      *
+     * @Attention This method must only be used to update self information.
      *
      *
      *
@@ -243,23 +243,41 @@ class UserController
      */
     private static function updateUser($options)
     {
-        if ( ! isset($options['id']) ) return error(-50150, "User id is not provided");
-
-        $user = user($options['id']);
+        $login = login();
         unset($options['id']);
         if ( isset($options['password']) ) {
-            $user->setPassword($options['password']);
+            $login->setPassword($options['password']);
             unset($options['password']);
         }
 
+        // @TODO list the fields.
         if ( $options ) {
             foreach( $options as $field => $value ) {
-                $user->set($field, $value);
+                $login->set($field, $value);
             }
         }
-        $user->save();
-        return $user;
+        $login->save();
+        entity(USER_ACTIVITY_TABLE)
+            ->set('idx_user', login('idx'))
+            ->set('action', 'updateUser')
+            ->save();
+        return $login;
     }
 
+
+    public static function resign() {
+        return Response::render(['template'=>'user.resign']);
+    }
+    public static function resignSubmit() {
+        login()
+            ->setPassword(md5(time()))
+            ->set('name', '')
+            ->set('mail', '')
+            ->set('last_name', '')
+            ->set('resign', time())
+            ->set('resign_reason', request('resign_reason'))
+            ->save();
+        return Response::redirect(sysconfig(URL_SITE));
+    }
 
 }
