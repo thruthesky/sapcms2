@@ -7,6 +7,12 @@
 			'block'=>'Blocked Users',
 			'resign'=>'Resigned Users',
 			];
+			
+	$text =	[
+			'day'=>'Daily',
+			'week'=>'Weekly',
+			'month'=>'Monthly',
+			];
 ?>
 <div>
 <?php
@@ -34,17 +40,17 @@ foreach( $list as $field => $value ){
 			foreach( $date_by as $k => $v ){
 			
 				$start_range = strtotime( date( "Y/m/d",$v) );	
-				$end_range = strtotime( date( "Y/m/d",$v)." +1 $k" );
+				$end_range = strtotime( date( "Y/m/d",$v)." +1 $k" );				
 				
-				$date = date( "M d H:i:s", $start_range );
-				$end_date = date( "M d H:i:s", $end_range - 1 );
+				$date = date( "M d", $start_range );
+				$end_date = date( "M d", $end_range - 1 );
 				$q = "$field > $start_range AND $field < $end_range";			
 				$users = user()->rows( $q );
 				if( !empty( $users ) ) $user_count = count( $users );
 				else $user_count = 0;
 			?>
 			<tr>
-				<td><span class='label'><?php echo $k ?></span></td>
+				<td><span class='label'><?php echo $text[$k] . " ( $date - $end_date ) "?></span></td>
 				<td><span class='count'><?php echo $user_count ?></span></td>
 			</tr>
 			<?php } ?>
