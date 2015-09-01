@@ -241,10 +241,11 @@ class UserController
      * @return $this|bool|User
      *
      */
+
     private static function updateUser($options)
     {
         $login = login();
-        unset($options['id']);
+        if( !empty( $options['id'] ) ) unset($options['id']);
         if ( isset($options['password']) ) {
             $login->setPassword($options['password']);
             unset($options['password']);
@@ -252,9 +253,7 @@ class UserController
 
         // @TODO list the fields.
         if ( $options ) {
-            foreach( $options as $field => $value ) {
-                $login->set($field, $value);
-            }
+			$login->setBasicFields( $options );
         }
         $login->save();
         entity(USER_ACTIVITY_TABLE)
@@ -271,9 +270,22 @@ class UserController
     public static function resignSubmit() {
         login()
             ->setPassword(md5(time()))
-            ->set('name', '')
-            ->set('mail', '')
+            ->set('name', '')            
+            ->set('middle_name', '')
             ->set('last_name', '')
+            ->set('nickname', '')
+			->set('mail', '')
+			->set('birth_year', 0)
+			->set('birth_month', 0)
+			->set('birth_day', 0)
+			->set('landline', '')
+			->set('mobile', '')
+			->set('address', '')
+			->set('country', '')
+			->set('province', '')			
+			->set('city', '')
+			->set('school', '')
+			->set('work', '')
             ->set('resign', time())
             ->set('resign_reason', request('resign_reason'))
             ->save();

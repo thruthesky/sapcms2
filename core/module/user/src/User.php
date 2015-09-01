@@ -154,7 +154,7 @@ class User extends Entity {
      *
      * @param $options
      */
-    public function setBasicFields($options) {		
+    public function setBasicFields($options) {			
         if ( isset($options['name']) ) $this->set('name', $options['name']);
         if ( isset($options['middle_name']) ) $this->set('middle_name', $options['middle_name']);
         if ( isset($options['last_name']) ) $this->set('last_name', $options['last_name']);
