@@ -48,6 +48,10 @@ foreach( $list as $field => $value ){
 				$users = user()->rows( $q );
 				if( !empty( $users ) ) $user_count = count( $users );
 				else $user_count = 0;
+				
+				$total_users = user()->rows( "$field > 0" );
+				if( !empty( $total_users ) ) $total_user_count = count( $users );
+				else $total_user_count = 0;
 			?>
 			<tr>
 				<td><span class='label'><?php echo $text[$k] . " ( $date - $end_date ) "?></span></td>
@@ -56,7 +60,7 @@ foreach( $list as $field => $value ){
 			<?php } ?>
 			<tr>
 				<td><span class='label'>Total</span></td>
-				<td><span class='count'>XX</span></td>
+				<td><span class='count'><?php echo $total_user_count ?></span></td>
 			</tr>
 		</tbody>	
 	</table>
