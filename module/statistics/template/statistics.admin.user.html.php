@@ -4,6 +4,7 @@
 	$list =	[
 			'created'=>'User Registers',
 			'changed'=>'User Updates',
+			'last_login'=>'User Logins',
 			'block'=>'Blocked Users',
 			'resign'=>'Resigned Users',
 			];
@@ -13,13 +14,18 @@
 			'week'=>'Weekly',
 			'month'=>'Monthly',
 			];
+	
+	$today = strtotime( "today" );
+	$this_week = date( "Y-m-d", strtotime( "this week") );//to remove H i s
+	$this_week = strtotime( $this_week );
+	$this_month = strtotime( date('Y-m-1') );
 ?>
 <div>
 <?php
 foreach( $list as $field => $value ){
 ?>
 	<h1><?php echo $value?></h1>
-	<table data-role="table" id="table-post-list" data-mode="columntoggle" class="ui-responsive table-stroke">
+	<table data-role="table" id="table-post-list" class="ui-responsive table-stroke">
 		<thead>
 			<tr>
 				<th>Label</th>
@@ -27,14 +33,11 @@ foreach( $list as $field => $value ){
 			</tr>
 		</thead>	
 		<tbody>
-			<?php 
-			
-			$this_week = date( "Y-m-d", strtotime( "this week") );
-			$this_week = strtotime( $this_week );
+			<?php 						
 			$date_by = 	[
-						'day'=>strtotime( "today" ),
-						'week'=>$this_week,
-						'month'=>strtotime( date('Y-m-1') ),
+						'day'=> $today,
+						'week'=> $this_week,
+						'month'=> $this_month,
 						];									
 			
 			foreach( $date_by as $k => $v ){
@@ -45,23 +48,26 @@ foreach( $list as $field => $value ){
 				$date = date( "M d", $start_range );
 				$end_date = date( "M d", $end_range - 1 );
 				$q = "$field > $start_range AND $field < $end_range";			
-				$users = user()->rows( $q );
-				if( !empty( $users ) ) $user_count = count( $users );
-				else $user_count = 0;
-				
-				$total_users = user()->rows( "$field > 0" );
-				if( !empty( $total_users ) ) $total_user_count = count( $users );
-				else $total_user_count = 0;
+				$user_count = user()->count( $q );								
+
+				$extra_label = '';
+				if( $k != 'day' ) $extra_label = " ( $date - $end_date )";
 			?>
 			<tr>
-				<td><span class='label'><?php echo $text[$k] . " ( $date - $end_date ) "?></span></td>
+				<td><span class='label'><?php echo $text[$k].$extra_label ?></span></td>
 				<td><span class='count'><?php echo $user_count ?></span></td>
 			</tr>
-			<?php } ?>
+			<?php } 
+			if( $field != 'changed' && $field != 'last_login' ){
+				$total_user_count = user()->count( "$field > 0" );
+			?>
 			<tr>
 				<td><span class='label'>Total</span></td>
 				<td><span class='count'><?php echo $total_user_count ?></span></td>
 			</tr>
+			<?php
+			}
+			?>
 		</tbody>	
 	</table>
 <?php

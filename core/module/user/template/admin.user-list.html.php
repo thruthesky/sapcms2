@@ -30,11 +30,12 @@ $rows = user()->rows("$cond limit $from, $no_item");
 <table data-role="table" id="table-module-list" data-mode="columntoggle" class="ui-responsive table-stroke">
     <thead>
     <tr>
-        <th data-priority="2">No.</th>
+        <th data-priority="5">No.</th>
         <th>ID</th>
         <th data-priority="1">Name</th>
-        <th data-priority="3">Email</th>
-        <th data-priority="1">Edit</th>
+        <th data-priority="4">Email</th>
+        <th data-priority="2">Edit</th>
+        <th data-priority="3">Block</th>
     </tr>
     </thead>
     <tbody>
@@ -46,6 +47,7 @@ $rows = user()->rows("$cond limit $from, $no_item");
         echo "<td>$user[name]</td>";
         echo "<td>$user[mail]</td>";
         echo "<td><a href='/admin/user/edit?idx=$user[idx]'>Edit</a></td>";
+        echo "<td><a href='/admin/user/block?idx=$user[idx]'>Block</a></td>";
         echo "</tr>";
     }
     ?>

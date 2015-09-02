@@ -108,8 +108,9 @@ class User extends Entity {
     {
         $user = user('id', $id);
         session_set('user-id', $id);
-        session_set('user-session-id', self::getUserSessionID($user));
+        session_set('user-session-id', self::getUserSessionID($user));		
         self::$idxLoginUser = $user->get('idx');
+		$user->set('last_login', time())->save();//added by benjamin
     }
     public static function logout() {
         self::$idxLoginUser = 0;

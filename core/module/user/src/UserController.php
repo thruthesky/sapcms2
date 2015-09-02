@@ -32,6 +32,13 @@ class UserController
         if ( submit() ) return self::adminUserEditSubmit();
         return self::adminUserEditTemplate();
     }
+	
+	//added by benjamin
+    public static function adminUserBlock()
+    {					
+        if ( submit() ) return self::adminUserBlockSubmit();
+        self::adminUserBlockTemplate();
+    }
 
 
     public static function createUser($options) {
@@ -197,6 +204,24 @@ class UserController
 		return Response::redirect( "/admin/user/edit?idx=" . request('idx') );
 	}
 
+	//added by benjamin
+	private static function adminUserBlockSubmit() {
+		$input = request();		
+		if( !empty( $input['idx'] ) ){
+			//if( empty( $input['block'] ) )  error(-70123, "Please put the date of when the user will be unblocked.");
+			$user = user( $input['idx'] );
+			
+			if( !empty( $input['block'] ) ) $user->set( 'block', strtotime( $input['block'] ) );
+			else error(-70101, "Please put the date of when the user will be unblocked. Block detail was not updated");
+			if( !empty( $input['block_reason'] ) ) $user->set( 'block_reason', $input['block_reason'] );
+			else error(-70102, "No block reason was added. Block Reason detail was not Updated");
+			
+			$user->save();			
+		}
+		
+		self::adminUserBlockTemplate();
+	}
+
     private static function userRegisterTemplate()
     {
 
@@ -216,6 +241,22 @@ class UserController
         $data = [];
         $data['input'] = Request::get();
         $data['template'] = 'admin.user.edit';
+
+        //added by benjamin
+        $idx = request('idx');
+        if( $idx ) $data['user'] = user( $idx )->get();
+        else {
+            error(-50123, "User idx is not provided.");
+        }	
+
+        return Response::renderSystemLayout($data);
+    }
+
+    private static function adminUserBlockTemplate() {
+
+        $data = [];
+        $data['input'] = Request::get();
+        $data['template'] = 'admin.user.block';
 
         //added by benjamin
         $idx = request('idx');
