@@ -5,7 +5,7 @@ use sap\core\system\SystemController;
 
 class Module {
 
-    private static $core_modules = ['admin', 'config', 'data', 'front', 'install', 'post', 'system', 'user'];
+    private static $core_modules = ['admin', 'config', 'data', 'front', 'install', 'message', 'post', 'system', 'user'];
 
     private static $variables = [];
 

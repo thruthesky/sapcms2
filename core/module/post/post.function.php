@@ -104,10 +104,30 @@ function is_post_admin() {
     return false;
 }
 
+/**
+ *
+ * Returns true if the post is login user's post.
+ *
+ * @param $idx
+ * @return bool
+ * @code
+ * $idx = request('idx');
+ * if ( is_my_post($idx) ) { ... }
+ *
+ * $data = post_data($idx);
+ * if ( ! is_my_post($data) ) return self::templateErrorNotYourPost();
+ * @endcode
+ */
 function is_my_post($idx) {
-    $post = post_data($idx);
+    if ( is_numeric($idx) ) $post = post_data($idx);
+    else if ( $idx instanceof PostData ) $post = $idx;
     if ( $post ) {
         return $post->get('idx_user') == my('idx');
     }
     return false;
+}
+
+
+function url_forum() {
+    return "/post";
 }

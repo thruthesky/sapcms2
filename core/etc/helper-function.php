@@ -170,22 +170,6 @@ function my($field=null) {
     return login($field);
 }
 
-/**
- *
- * Returns TRUE if the login user is admin.
- *
- * @return bool
- *
- *
- * @refer buildguide User
- */
-function admin() {
-    $admin_id = config()->value('admin');
-    return my('id') == $admin_id;
-}
-
-
-
 
 function system_log($msg) {
     System::log($msg);
@@ -218,3 +202,6 @@ function config($code=null, $value=null, $target=0) {
     }
     else return new Config();
 }
+
+
+

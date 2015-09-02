@@ -62,8 +62,6 @@ class User extends Entity {
     }
 
 
-
-
     /**
      * @param $id
      * @param $password
@@ -104,15 +102,22 @@ class User extends Entity {
         return OK;
     }
 
+
+    /**
+     * @param $id
+     */
     public static function login($id)
     {
         $user = user('id', $id);
         session_set('user-id', $id);
         session_set('user-session-id', self::getUserSessionID($user));		
         self::$idxLoginUser = $user->get('idx');
-		$user->set('last_login', time())->save();//added by benjamin
-		$user->set('last_login_ip', ip())->save();//added by benjamin
+		$user
+            ->set('last_login', time())
+            ->set('last_login_ip', ip())
+            ->save();//added by benjamin
     }
+
     public static function logout() {
         self::$idxLoginUser = 0;
         session_delete('user-id');

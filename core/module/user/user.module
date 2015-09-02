@@ -8,3 +8,7 @@ include 'user.function.php';
 if ( login() ) {
     login()->set('last_access', time())->save();
 }
+
+function url_user_profile() {
+    return "/user/profile";
+}

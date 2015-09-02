@@ -3,3 +3,23 @@ use sap\src\Route;
 Route::add('/admin/database/information', 'admin\\admin\\database_information');
 include 'admin.hook.php';
 
+
+
+/**
+ *
+ * Returns TRUE if the login user is admin.
+ *
+ * @return bool
+ *
+ *
+ * @refer buildguide User
+ */
+function admin() {
+    $admin_id = config()->value('admin');
+    return my('id') == $admin_id;
+}
+
+
+function url_admin_page() {
+    return "/admin";
+}

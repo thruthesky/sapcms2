@@ -23,6 +23,7 @@ class PostConfig extends Entity {
      * @return $this|bool
      */
     public function getCurrent() {
+
         if ( $id = request('id') ) {
             return $this->load('id', $id);
         }
@@ -42,7 +43,8 @@ class PostConfig extends Entity {
         else {
             $post = post_data()->getCurrent();
             if ( $post ) {
-                return $post->getConfig();
+                $config = $post->getConfig();
+                return $config;
             }
         }
 

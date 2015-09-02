@@ -842,3 +842,11 @@ function get_mime_type($file)
     if ( isset($mime_types[$extension]) ) return $mime_types[$extension];
     else return "application/octet-stream";
 }
+
+
+/**
+ * @return bool|mixed|null
+ */
+function url_site() {
+    return sysconfig(URL_SITE);
+}

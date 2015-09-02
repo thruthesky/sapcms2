@@ -107,7 +107,8 @@ class PostData extends Entity {
     }
 
     public function getConfig() {
-        return post_config($this->get('idx_config'));
+        $config = post_config($this->get('idx_config'));
+        return $config;
     }
 
     /**
@@ -151,6 +152,7 @@ class PostData extends Entity {
 
     /**
      *
+     * @Attention You must use this method to create a new post because it set 'idx_root' and others.
      *
      * @Attention It create a new post and sets to current data.
      * @Attention It does not check if the post_config exists or not. It must be checked earlier before this method call
@@ -168,6 +170,21 @@ class PostData extends Entity {
      * @endcode
      *
      * @example For order list example see - post/script/order-list.php
+     *
+     *
+     * @Attention it sets setCurrent() with newly created post.
+     *      This leads post_config()->getCurrent() work.
+     *
+     * @code
+     *
+    $data = post_data()->newPost([
+    'idx_config' => $config->idx,
+    'title'=>'hello',
+    'content' => 'This is content',
+    ]);
+    $this->assertTrue( post_config()->getCurrent() instanceof PostConfig);
+    $this->assertTrue( post_config()->getCurrent()->id == $id );
+     * @endcode
      *
      *
      */
@@ -415,6 +432,8 @@ class PostData extends Entity {
         $this->set('delete', true);
         $this->save();
         self::deleteFiles($this->get('idx'));
+
+
         return self::deleteThreadIfAllDeleted($this->get('idx_root'));
     }
 
@@ -431,18 +450,19 @@ class PostData extends Entity {
      */
     private static function deleteThreadIfAllDeleted($idx_root)
     {
+
         $root = post_data($idx_root);
-		/*
-		*old code... error: Can't use method return value in write context on line 431 in file C:\work\sapcms2\core\module\post\src\PostData.php
-		*php version problem?
-        *if ( empty($root->get('delete')) ) return FALSE;
-		*/
-		$root_delete = $root->get('delete');
-        if ( empty( $root_delete ) ) return FALSE;//modified by benjamin
+
+        if ( empty($root) ) return FALSE;
+        if ( ! $root->get('delete') ) return FALSE;
+
         $children = self::getThread($idx_root, 'delete');
-        foreach( $children as $comment ) {
-            if ( empty($comment['delete']) ) return FALSE;
+        if ( $children ) {
+            foreach( $children as $comment ) {
+                if ( ! $comment['delete'] ) return FALSE;
+            }
         }
+
         self::forceDeleteThread($idx_root);
         return TRUE;
     }
@@ -475,9 +495,21 @@ class PostData extends Entity {
     }
 
 
-    private static function deleteFiles($get)
+    /**
+     *
+     * @param $idx
+     *
+     */
+    private static function deleteFiles($idx)
     {
+        $files = data()->loadBy('post', 'file', $idx);
+        if ( $files ) {
+            foreach( $files as $file ) {
+                $file->deleteFile();
+            }
+        }
     }
+
 
     /**
      *
@@ -494,8 +526,6 @@ class PostData extends Entity {
     public function config($field) {
         return post_config($this->get('idx_config'))->get($field);
     }
-
-
 
     public function updateFormSubmitFiles() {
         $fid = request('fid');

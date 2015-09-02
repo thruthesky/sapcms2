@@ -77,15 +77,15 @@ for ( $i=1; $i<=10; $i++ ) {
 }
 
 $config = post_config()->set('id', "discussion")->set('name', 'Discussion')->save();
-post_data()
-    ->set('idx_config', $config->get('idx'))
-    ->set('title', "Welcome to Discussion Forum")
-    ->set('content', "This is Discussion forum.")
-    ->save();
+post_data()->newPost([
+    'idx_config'       => $config->idx,
+    'title'             => "Welcome to Discussion Forum",
+    'content'           => "This is Discussion forum."
+]);
 
 $config = post_config()->set('id', "qna")->set('name', 'Questions and Answers')->save();
-post_data()
-    ->set('idx_config', $config->get('idx'))
-    ->set('title', "Welcome to QnA Forum")
-    ->set('content', "This is Questions and Answers Forum.")
-    ->save();
+post_data()->newPost([
+    'idx_config'       => $config->idx,
+    'title'             => "Welcome to QnA Forum",
+    'content'           => "This is QnA forum."
+]);

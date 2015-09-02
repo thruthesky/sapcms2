@@ -82,6 +82,9 @@ class Data extends Entity
     public function path($name=null)
     {
         if ( empty($name) ) $name = $this->get('name_saved');
+        if ( empty($name) ) {
+            return null;
+        }
         return PATH_UPLOAD . DIRECTORY_SEPARATOR . $name;
     }
 
@@ -103,11 +106,14 @@ class Data extends Entity
     }
 
     public function deleteFile() {
-        $path = $this->path();
-        if ( empty($path) ) return error(-51002, "Path is empty");
         system_log(__METHOD__);
-        system_log("path:$path");
+        $path = $this->path();
+        if ( empty($path) ) {
+            system_log("path is empty");
+            return error(-51002, "Path is empty");
+        }
         if ( unlink($path) ) {
+            system_log("deleted. path:$path");
             $this->delete();
             return OK;
         }
@@ -115,7 +121,6 @@ class Data extends Entity
             return error(-51000, "Failed on delete file");
         }
     }
-
 
     /**
      *

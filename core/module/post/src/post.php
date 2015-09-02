@@ -539,8 +539,6 @@ class post {
     }
 
 
-
-
     public static function urlPostCommentEdit($idx)
     {
         $url = "/post/comment/edit?idx=$idx";
@@ -575,7 +573,6 @@ class post {
         if ( $add_vars ) $url .= self::getHttpVariablesAsRequest();
         return $url;
     }
-
 
     public static function getHttpVariables() {
         return [
@@ -699,6 +696,7 @@ class post {
     public static function postDataDelete($idx) {
         $data = post_data($idx);
         if ( empty($data) ) return self::errorPostNotExists();
+        if ( ! is_my_post($data) ) return self::templateErrorNotYourPost();
         $id_config = $data->config('id');
         if ( $data->markAsDelete() ) {
             return Response::redirect(self::urlPostList($id_config, false));
