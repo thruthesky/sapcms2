@@ -27,7 +27,13 @@
 			<td>Total Users</td>
 			<td>Total Users Description</td>
 			<td><?php echo $total_users?></td>
-			<td><a href="/admin/statistics/user">More</a></td>
+			<td>
+				<a href="/admin/statistics/user?list_type=registers">Registers</a><br>
+				<a href="/admin/statistics/user?list_type=updates">Updates</a><br>
+				<a href="/admin/statistics/user?list_type=logins">Logins</a><br>
+				<a href="/admin/statistics/user?list_type=blocks">Blocks</a><br>
+				<a href="/admin/statistics/user?list_type=resigns">Resigns</a><br>
+			</td>
 		</tr>
 	</tbody>
 	
