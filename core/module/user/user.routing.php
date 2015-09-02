@@ -9,6 +9,7 @@ Route::add('/user/resign/submit', 'user\\UserController\\resignSubmit');
 
 
 Route::add('/admin/user/edit', 'user\\UserController\\adminUserEdit');
+Route::add('/admin/user/block', 'user\\UserController\\adminUserBlock');
 
 
 Route::add('/user/profile', 'user\\UserController\\profile');

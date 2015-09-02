@@ -108,8 +108,10 @@ class User extends Entity {
     {
         $user = user('id', $id);
         session_set('user-id', $id);
-        session_set('user-session-id', self::getUserSessionID($user));
+        session_set('user-session-id', self::getUserSessionID($user));		
         self::$idxLoginUser = $user->get('idx');
+		$user->set('last_login', time())->save();//added by benjamin
+		$user->set('last_login_ip', ip())->save();//added by benjamin
     }
     public static function logout() {
         self::$idxLoginUser = 0;
@@ -154,7 +156,7 @@ class User extends Entity {
      *
      * @param $options
      */
-    public function setBasicFields($options) {		
+    public function setBasicFields($options) {			
         if ( isset($options['name']) ) $this->set('name', $options['name']);
         if ( isset($options['middle_name']) ) $this->set('middle_name', $options['middle_name']);
         if ( isset($options['last_name']) ) $this->set('last_name', $options['last_name']);

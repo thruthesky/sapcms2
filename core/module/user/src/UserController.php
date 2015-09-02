@@ -32,6 +32,13 @@ class UserController
         if ( submit() ) return self::adminUserEditSubmit();
         return self::adminUserEditTemplate();
     }
+	
+	//added by benjamin
+    public static function adminUserBlock()
+    {					
+        if ( submit() ) return self::adminUserBlockSubmit();
+        self::adminUserBlockTemplate();
+    }
 
 
     public static function createUser($options) {
@@ -197,6 +204,24 @@ class UserController
 		return Response::redirect( "/admin/user/edit?idx=" . request('idx') );
 	}
 
+	//added by benjamin
+	private static function adminUserBlockSubmit() {
+		$input = request();		
+		if( !empty( $input['idx'] ) ){
+			//if( empty( $input['block'] ) )  error(-70123, "Please put the date of when the user will be unblocked.");
+			$user = user( $input['idx'] );
+			
+			if( !empty( $input['block'] ) ) $user->set( 'block', strtotime( $input['block'] ) );
+			else error(-70101, "Please put the date of when the user will be unblocked. Block detail was not updated");
+			if( !empty( $input['block_reason'] ) ) $user->set( 'block_reason', $input['block_reason'] );
+			else error(-70102, "No block reason was added. Block Reason detail was not Updated");
+			
+			$user->save();			
+		}
+		
+		self::adminUserBlockTemplate();
+	}
+
     private static function userRegisterTemplate()
     {
 
@@ -227,6 +252,26 @@ class UserController
         return Response::renderSystemLayout($data);
     }
 
+    private static function adminUserBlockTemplate() {
+
+        $data = [];
+        $data['input'] = Request::get();
+        $data['template'] = 'admin.user.block';
+
+        //added by benjamin
+        $idx = request('idx');
+        if( $idx ){
+			$user = user( $idx )->get();
+			if( empty( $user ) )  error(-50200, "User Does not exist.");
+			else $data['user'] = $user;
+		}
+        else {
+            error(-50123, "User idx is not provided.");
+        }	
+
+        return Response::renderSystemLayout($data);
+    }
+
 
     /**
      *
@@ -241,10 +286,11 @@ class UserController
      * @return $this|bool|User
      *
      */
+
     private static function updateUser($options)
     {
         $login = login();
-        unset($options['id']);
+        if( !empty( $options['id'] ) ) unset($options['id']);
         if ( isset($options['password']) ) {
             $login->setPassword($options['password']);
             unset($options['password']);
@@ -252,9 +298,7 @@ class UserController
 
         // @TODO list the fields.
         if ( $options ) {
-            foreach( $options as $field => $value ) {
-                $login->set($field, $value);
-            }
+			$login->setBasicFields( $options );
         }
         $login->save();
         entity(USER_ACTIVITY_TABLE)
@@ -271,9 +315,22 @@ class UserController
     public static function resignSubmit() {
         login()
             ->setPassword(md5(time()))
-            ->set('name', '')
-            ->set('mail', '')
+            ->set('name', '')            
+            ->set('middle_name', '')
             ->set('last_name', '')
+            ->set('nickname', '')
+			->set('mail', '')
+			->set('birth_year', 0)
+			->set('birth_month', 0)
+			->set('birth_day', 0)
+			->set('landline', '')
+			->set('mobile', '')
+			->set('address', '')
+			->set('country', '')
+			->set('province', '')			
+			->set('city', '')
+			->set('school', '')
+			->set('work', '')
             ->set('resign', time())
             ->set('resign_reason', request('resign_reason'))
             ->save();
