@@ -16,7 +16,7 @@
 			'month'=>'Monthly',
 			];					
 	
-	if( !empty( $data['input']['show_by'] ) ){		
+	/*if( !empty( $data['input']['show_by'] ) ){		
 		$date_by =	[
 					$data['input']['show_by'] => $data['date_from'][ $data['input']['show_by'] ],
 					];
@@ -26,7 +26,9 @@
 					'week'=> $data['date_from']['week'],
 					'month'=> $data['date_from']['month'],
 					];	
-	}	
+	}	*/
+	$date_by = $data['date_by'];
+		
 ?>
 
 <form>
@@ -53,16 +55,20 @@ foreach( $list as $field => $value ){
 	<table data-role="table" id="table-post-list" class="ui-responsive table-stroke">
 		<thead>
 			<tr>
-				<th>Label</th>
-				<th>Value</th>					
+				<?php				
+				foreach( $date_by as $k => $v ){
+				?>	
+					<th><?php echo $text[$k] ?></th>					
+				<?php
+				}
+				?>
 			</tr>
 		</thead>	
 		<tbody>
+			<tr>
 			<?php				
 			foreach( $date_by as $k => $v ){
-			?>
-			<tr>
-				<td><?php echo $text[$k]?></td>
+			?>			
 				<td>
 			<?php
 				$curr_date = $v;
@@ -83,10 +89,10 @@ foreach( $list as $field => $value ){
 				}
 			?>
 				</td>
-			</tr>
 			<?php
 			}
 			?>
+			</tr>
 		</tbody>	
 	</table>
 <?php
