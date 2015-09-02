@@ -260,7 +260,11 @@ class UserController
 
         //added by benjamin
         $idx = request('idx');
-        if( $idx ) $data['user'] = user( $idx )->get();
+        if( $idx ){
+			$user = user( $idx )->get();
+			if( empty( $user ) )  error(-50200, "User Does not exist.");
+			else $data['user'] = $user;
+		}
         else {
             error(-50123, "User idx is not provided.");
         }	
