@@ -2,3 +2,22 @@ body {
     margin:0;
     padding:0;
 }
+
+#layout {
+    left:0;
+    right:0;
+    overflow:hidden;
+    min-height:40em;
+}
+
+
+#content-left {
+    display:none;
+}
+
+@media all and (min-width: 720px ) {
+    #content-left {
+        display:block;
+    }
+}
+

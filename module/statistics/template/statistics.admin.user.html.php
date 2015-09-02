@@ -22,9 +22,9 @@
 
 <form>
 	From
-	<input type='date' name='date_from' value='<?echo $data['date_from']?>'>
+	<input type='date' name='date_from' value='<?php echo $data['date_from']?>'>
 	To
-	<input type='date' name='date_to' value='<?echo $data['date_to']?>'>
+	<input type='date' name='date_to' value='<?php echo $data['date_to']?>'>
 	
 	Show by:
 	<select name='show_by'>

@@ -2,18 +2,15 @@
 add_css();
 ?>
 <ul id="main-menu">
-    <?php if ( admin() ) { ?>
-        <li><a href="<?php echo url_admin_page(); ?>" class="ui-btn ui-btn-icon-left ui-icon-user">Admin Page</a></li>
-    <?php } ?>
-    <li><a href="<?php echo url_site(); ?>"><img src="/theme/default/tmp/s.png"></a></li>
-    <li><a href="<?php echo url_site(); ?>"><img src="/theme/default/tmp/question.png"></a></li>
-    <li><a href="<?php echo url_site(); ?>"><img src="/theme/default/tmp/comment.png"></a></li>
-    <li><a href="<?php echo url_site(); ?>"><img src="/theme/default/tmp/anchor.png"></a></li>
-    <li><a href="<?php echo url_site(); ?>"><img src="/theme/default/tmp/news.png"></a></li>
-    <li><a href="<?php echo url_site(); ?>"><img src="/theme/default/tmp/jobs.png"></a></li>
-    <li><a href="<?php echo url_site(); ?>"><img src="/theme/default/tmp/greetings.png"></a></li>
-    <li><a href="<?php echo url_site(); ?>"><img src="/theme/default/tmp/menu.png"></a></li>
+    <li><a href="<?php echo url_site(); ?>"><span><img src="/theme/default/tmp/s.png"></span></a></li>
+    <li><a href="<?php echo url_site(); ?>"><span><img src="/theme/default/tmp/question.png"></span></a></li>
+    <li><a href="<?php echo url_site(); ?>"><span><img src="/theme/default/tmp/comment.png"></span></a></li>
+    <li><a href="<?php echo url_site(); ?>"><span><img src="/theme/default/tmp/anchor.png"></span></a></li>
+    <li><a href="<?php echo url_site(); ?>"><span><img src="/theme/default/tmp/news.png"></span></a></li>
+    <li><a href="<?php echo url_site(); ?>"><span><img src="/theme/default/tmp/jobs.png"></span></a></li>
+    <li><a href="<?php echo url_site(); ?>"><span><img src="/theme/default/tmp/greetings.png"></span></a></li>
+    <li><span class="show-panel"><img src="/theme/default/tmp/menu.png"></span></li>
 </ul>
 
-
 <?php include template('panel'); ?>
+

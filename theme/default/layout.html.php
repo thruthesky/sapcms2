@@ -12,10 +12,10 @@
 <body>
 <div id="layout">
     <div id="header"><?php include template('header'); ?></div>
-    <div class="ui-content">
+    <div id="content">
         <table cellpadding="0" cellspacing="0">
             <tr valign="top">
-                <td><?php include template('left'); ?></td>
+                <td id="content-left"><?php include template('left'); ?></td>
                 <td>
                     <?php widget('error') ?>
                     <?php include template(); ?>
@@ -23,10 +23,8 @@
             </tr>
         </table>
     </div>
-
     <div id="footer"><?php include template('footer'); ?></div>
 </div>
-
 <!--[if lt IE 9]>
 <script type='text/javascript' src='/core/etc/js/jquery-1.11.3/jquery-1.11.3.min.js'></script>
 <![endif]-->
