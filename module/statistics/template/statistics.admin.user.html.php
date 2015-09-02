@@ -20,11 +20,11 @@
 	$this_week = strtotime( $this_week );
 	$this_month = strtotime( date('Y-m-1') );
 ?>
-<div>
+<h1>User Statistics</h1>
 <?php
 foreach( $list as $field => $value ){
 ?>
-	<h1><?php echo $value?></h1>
+	<h2><?php echo $value?></h2>
 	<table data-role="table" id="table-post-list" class="ui-responsive table-stroke">
 		<thead>
 			<tr>
