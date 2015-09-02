@@ -140,13 +140,71 @@ class post {
 
 
 
-    public static function postEdit() {
-        if ( submit() ) return self::formSubmitForPost();
-        else return Response::render([
+    public static function postCreate($id) {
+        return Response::render([
             'template'=>'post.layout',
             'page'=>'post.data.edit',
         ]);
     }
+
+    public static function postCreateSubmit() {
+
+        if ( self::validateTitle() ) return self::templateEdit();
+        if ( self::validateConfig() ) return self::templateEdit();
+        if ( self::validateContent() ) return self::templateEdit();
+
+
+        $config = post_config()->getCurrent();
+        $options['idx_config'] = $config->get('idx');
+        $options['idx_user'] = login('idx');
+        $options['title'] = request('title');
+        $options['content'] = request('content');
+        $data = PostData::newPost($options);
+
+        if ( empty($data) ) return self::templateError(-50510, "Could not create a new post");
+
+        $data->updateFormSubmitFiles();
+        return Response::redirect(self::urlPostView($data));
+    }
+
+
+    /**
+     *
+     * @return mixed|null
+     *
+     */
+    public static function postEdit($idx) {
+        $post = post_data()->getCurrent();
+        if ( ! is_my_post($post->get('idx')) ) return self::templateErrorNotYourPost();
+        if ( $post ) {
+            return Response::render([
+                'template'=>'post.layout',
+                'page'=>'post.data.edit',
+            ]);
+        }
+        else return self::errorNoPostToEdit();
+    }
+
+    public static function postEditSubmit() {
+        $idx = request('idx');
+        if ( empty($idx) ) return self::templateError(-50510, "Could not create a new post");
+        if ( ! is_my_post($idx) ) return self::templateErrorNotYourPost();
+        if ( self::validateConfig() ) return self::templateEdit();
+        if ( self::validateContent() ) return self::templateEdit();
+
+
+
+        $options['idx'] = $idx;
+        $options['title'] = request('title');
+        $options['content'] = request('content');
+        $data = PostData::updatePost($options);
+        if ( empty($data) ) return self::templateError(-50510, "Could not create a new post");
+        $data->updateFormSubmitFiles();
+        return Response::redirect(self::urlPostView($data));
+
+
+    }
+
 
 
 
@@ -160,6 +218,7 @@ class post {
         if ( self::validateContent() ) return jsBack(getErrorString());
 
         $config = post_config()->getCurrent();
+        if ( empty($config) ) return self::templateError(-50505, "Wrong post configuration");
         $options['idx_config'] = $config->get('idx');
         $options['idx_user'] = login('idx');
         $options['title'] = request('title');
@@ -182,44 +241,6 @@ class post {
 
 
 
-    /*
-    public static function formSubmitForUpdate() {
-        $data = PostData::formSubmit();
-        $url = self::getViewUrl($data->get());
-        return Response::redirect($url);
-    }
-    */
-
-    public static function formSubmitForPost() {
-
-        if ( self::validateTitle() ) return Response::render([ 'template'=>'post.layout', 'page'=>'post.data.edit' ]);
-        if ( self::validateConfig() ) return Response::render([ 'template'=>'post.layout', 'page'=>'post.data.edit' ]);
-        if ( self::validateContent() ) return Response::render([ 'template'=>'post.layout', 'page'=>'post.data.edit' ]);
-
-        if ( $idx = request('idx') ) {
-            $options['idx'] = $idx;
-            $options['title'] = request('title');
-            $options['content'] = request('content');
-            $data = PostData::updatePost($options);
-        }
-        else {
-            $config = post_config()->getCurrent();
-            $options['idx_config'] = $config->get('idx');
-            $options['idx_user'] = login('idx');
-            $options['title'] = request('title');
-            $options['content'] = request('content');
-            $data = PostData::newPost($options);
-        }
-
-        if ( empty($data) ) {
-            setError(-50510, "Could not create a new post");
-            return Response::render([ 'template'=>'post.layout', 'page'=>'post.data.edit' ]);
-        }
-
-        $data->updateFormSubmitFiles();
-        return Response::redirect(self::urlPostView($data));
-    }
-
 
 
     public static function validateTitle() {
@@ -241,50 +262,6 @@ class post {
 
 
 
-    /**
-     *
-     *
-     * @Attention It only checks INPUT from Web browser FORM Submit. You may not use this method on your own code.
-     *
-     * @return int|mixed
-     */
-    /*
-    public static function validateEditSubmit() {
-        if ( self::isNewPostSubmit() ) {
-            return self::validateNewPost([
-                'id' => request('id'),
-                'title' => request('title'),
-                'content' => request('content'),
-            ]);
-        }
-        else if ( self::isNewComment() ) {
-            return self::validateNewComment([
-                'idx_parent' => request('idx_parent'),
-                'content' => request('content'),
-            ]);
-        }
-        else return setError(-50108, "Wrong form submit");
-    }
-    */
-
-    /*
-    public static function validateNewPost(array $options) {
-        $id = $options['id'];
-        $config = post_config($id);
-        if ( empty($config) ) {
-            return setError(-50104, "No configuration record found by '$id'.");
-        }
-        $title = $options['title'];
-        if ( empty($title) ) {
-            return setError(-50105, "Please input title");
-        }
-        $content = $options['content'];
-        if ( empty($content) ) {
-            return setError(-50106, "Please input content");
-        }
-        return OK;
-    }
-    */
 
     /**
      * @Attention USE this method to check if all the inputs are valid for creating new comment.
@@ -499,11 +476,16 @@ class post {
             return self::urlViewComment($post['idx']);
         }
         else {
-            $url = "/post/view?";
+            $url = "/post/view";
+            $ex = null;
+
             $qs = ['idx'=>$post['idx']];
-            if ( isset($post['title']) ) $qs['title'] = $post['title'];
-            $url .= http_build_query($qs);
-            $url .= self::getHttpVariablesAsRequest();
+            if ( $post['title'] ) $qs['title'] = $post['title'];
+
+            $ex .= http_build_query($qs);
+            $ex .= self::getHttpVariablesAsRequest();
+            if ( $ex ) $url .= "?$ex";
+
             return $url;
         }
     }
@@ -515,7 +497,12 @@ class post {
     public static function urlPostDelete($idx=0)
     {
         if ( empty($idx) ) $idx = post_data()->getCurrent()->get('idx');
-        return "/post/data/delete/" . $idx . "?" . self::getHttpVariablesAsRequest();
+        $url = "/post/data/delete/" . $idx;
+        $q = self::getHttpVariablesAsRequest();
+        if ( $q ) {
+            $url = $url . "?" . self::getHttpVariablesAsRequest();
+        }
+        return $url;
     }
 
 
@@ -534,22 +521,21 @@ class post {
 
     public static function urlPostEdit() {
         $data = post_data()->getCurrent();
-        // edit
         if ( $data ) {
-            $url = "/post/edit?idx=" . $data->get('idx');
+            $url = "/post/edit/" . $data->get('idx');
             $url .= self::getHttpVariablesAsRequest();
+            return $url;
         }
-        // new
-        else {
-            $config = post_config()->getCurrent();
-            if ( $config ) {
-                $url = "/post/edit?id=" . $config->get('id');
-            }
-            else {
-                // error. There is no hint to get config. no 'idx', nor 'idx_config', nor 'id'.
-            }
+        return null;
+    }
+
+
+    public static function urlPostCreate() {
+        $config = post_config()->getCurrent();
+        if ( $config ) {
+            return "/post/create/" . $config->get('id');
         }
-        return $url;
+        return null;
     }
 
 
@@ -610,29 +596,13 @@ class post {
         }
         return $markup;
     }
+
     public static function getHttpVariablesAsRequest() {
         $url = null;
         foreach( self::getHttpVariables() as $k ) {
             if ( $v = request($k) ) $url .= "&$k=$v";
         }
         return $url;
-        /*
-        if ( $page_no = request('page_no') ) {
-            $url .= "&page_no=$page_no";
-        }
-        if ( $q = request('q') ) {
-            $url .= "&q=$q";
-        }
-        if ( $qn = request('qn') ) {
-            $url .= "&qn=$qn";
-        }
-        if ( $qt = request('qt') ) {
-            $url .= "&qt=$qt";
-        }
-        if ( $qc = request('qc') ) {
-            $url .= "&qc=$qc";
-        }
-        */
     }
 
 
@@ -648,6 +618,36 @@ class post {
         ]);
     }
 
+
+    /**
+     * @return mixed|null
+     */
+    private static function templateErrorNotYourPost()
+    {
+        return self::templateError(-50554, "This is not your post. You cannot edit or delete this post.");
+    }
+
+    private static function errorNoPostToEdit()
+    {
+        error(-50555, "No post to edit. You have access post edit page but there is not post to edit.");
+        return self::templateEdit();
+    }
+
+    private static function templateEdit()
+    {
+        return Response::render([ 'template'=>'post.layout', 'page'=>'post.data.edit' ]);
+    }
+
+    private static function templateError($code, $message)
+    {
+        setError($code, $message);
+        return Response::render([ 'template'=>'post.layout', 'page'=>'post.error' ]);
+    }
+
+    private static function errorPostNotExists()
+    {
+        return self::templateError(-50564, "Post does not exists.");
+    }
 
     /**
      * @param $field
@@ -673,8 +673,12 @@ class post {
     public static function postCommentEditSubmit() {
         $idx = request('idx');
         if ( $idx ) {
-            $data = post_data($idx)->set('content', request('content'))->save();
-            return Response::redirect(post::urlPostView($data->get()));
+            if ( is_my_post($idx) ) {
+                $data = post_data($idx)->set('content', request('content'))->save();
+                $data->updateFormSubmitFiles();
+                return Response::redirect(post::urlPostView($data->get()));
+            }
+            else return self::templateErrorNotYourPost();
         }
         else {
             error(-50559, "Wrong idx");
@@ -683,8 +687,9 @@ class post {
                 'page' => 'post.comment.edit',
             ]);
         }
-
     }
+
+
 
 
     /**
@@ -693,10 +698,7 @@ class post {
      */
     public static function postDataDelete($idx) {
         $data = post_data($idx);
-        if ( empty($data) ) {
-            error(-50581, "Post does not exists");
-            return jsBack(getErrorString());
-        }
+        if ( empty($data) ) return self::errorPostNotExists();
         $id_config = $data->config('id');
         if ( $data->markAsDelete() ) {
             return Response::redirect(self::urlPostList($id_config, false));

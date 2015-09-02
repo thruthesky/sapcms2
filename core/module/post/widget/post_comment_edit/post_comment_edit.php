@@ -4,10 +4,11 @@ $data = post_data()->getCurrent();
 
 
 ?>
-<form action="/post/comment/edit/submit" method="post">
+<form class="ajax-file-upload" action="/post/comment/edit/submit" method="post" enctype="multipart/form-data">
     <input type="hidden" name="idx" value="<?php echo $data->idx; ?>">
-
+    <input type="hidden" name="file_display" value="1">
     <?php include template('element/hidden.variables'); ?>
+    <?php include template('element/file', 'data'); ?>
     <?php
     echo html_row([
         'class' => 'content',
@@ -19,6 +20,5 @@ $data = post_data()->getCurrent();
         ]),
     ]);
     ?>
-
     <input type="submit" value="UPDATE COMMENT">
 </form>

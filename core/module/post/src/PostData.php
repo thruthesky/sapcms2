@@ -93,6 +93,9 @@ class PostData extends Entity {
         if ( $idx = request('idx') ) {
             return $this->load($idx);
         }
+        else if ( segment(1) == 'edit' ) {
+            return $this->load(segment(2));
+        }
         else if ( self::$current ) {
             return self::$current;
         }
@@ -101,6 +104,10 @@ class PostData extends Entity {
 
     public static function setCurrent(PostData & $data) {
         self::$current = $data;
+    }
+
+    public function getConfig() {
+        return post_config($this->get('idx_config'));
     }
 
     /**
@@ -454,6 +461,12 @@ class PostData extends Entity {
         }
     }
 
+    /**
+     * Deletes a post or a comment completely.
+     *
+     * @param $idx
+     *
+     */
     private static function deletePostComplete($idx)
     {
         $data = post_data($idx);

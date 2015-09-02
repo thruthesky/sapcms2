@@ -1,19 +1,26 @@
 <?php
 $config = post_config()->getCurrent();
 $data = post_data()->getCurrent();
+
+// update
 if ( $data ) {
+    $action = "/post/edit/submit";
     $idx = $data->idx;
     $title = $data->get('title');
     $content = $data->get('content');
 }
+// edit
 else {
+    $action = "/post/create/submit";
     $idx = 0;
     $title = request('title');
     $content = request('content');
 }
+
 ?>
+<h2><?php echo $config->get('name')?></h2>
 <script src="/core/etc/editor/ckeditor/ckeditor.js"></script>
-<form class="ajax-file-upload" method="post" enctype="multipart/form-data">
+<form action="<?php echo $action ?>" class="ajax-file-upload" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?php echo $config->id; ?>">
     <input type="hidden" name="idx" value="<?php echo $idx; ?>">
     <input type="hidden" name="file_display" value="1">

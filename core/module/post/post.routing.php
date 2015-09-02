@@ -25,7 +25,12 @@ route('/post/config/edit', 'post\\post\\editPostConfig');
 
 route('/post/list', 'post\\post\\postList');
 
-route('/post/edit', 'post\\post\\postEdit');
+route('/post/create/*', 'post\\post\\postCreate');
+route('/post/create/submit', 'post\\post\\postCreateSubmit');
+
+route('/post/edit/*', 'post\\post\\postEdit');
+route('/post/edit/submit', 'post\\post\\postEditSubmit');
+
 route('/post/comment/submit', 'post\\post\\postCommentSubmit');
 route('/post/comment/edit', 'post\\post\\postCommentEdit');
 route('/post/comment/edit/submit', 'post\\post\\postCommentEditSubmit');

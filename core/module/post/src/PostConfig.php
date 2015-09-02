@@ -26,6 +26,28 @@ class PostConfig extends Entity {
         if ( $id = request('id') ) {
             return $this->load('id', $id);
         }
+        else if ( segment(1) == 'create' ) {
+            $id = segment(2);
+            return $this->load('id', $id);
+        }
+        /**
+         * When a new comment is to be created, request('idx_parent') will be available.
+         */
+        else if ( $idx = request('idx_parent') ) {
+            $post = post_data($idx);
+            if ( $post ) {
+                if ( $post->get('idx_config') ) return $this->load($post->get('idx_config'));
+            }
+        }
+        else {
+            $post = post_data()->getCurrent();
+            if ( $post ) {
+                return $post->getConfig();
+            }
+        }
+
+        /*
+         *
         else if ( $idx = request('idx') ) {
             if ( segment(0) == 'admin' ) {
                 return $this->load($idx);
@@ -37,12 +59,7 @@ class PostConfig extends Entity {
                 }
             }
         }
-        else if ( $idx = request('idx_parent') ) {
-            $post = post_data($idx);
-            if ( $post ) {
-                if ( $post->get('idx_config') ) return $this->load($post->get('idx_config'));
-            }
-        }
+        */
         return FALSE;
     }
 

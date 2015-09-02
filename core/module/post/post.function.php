@@ -39,7 +39,7 @@ function is_post_config_page() {
 }
 
 function is_post_edit_page() {
-    return segment(1) == 'edit';
+    return segment(1) == 'edit' || segment(2) == 'edit';
 }
 
 
@@ -59,6 +59,9 @@ function post() {
 function url_post_edit() {
     return post::urlPostEdit();
 }
+function url_post_create() {
+    return post::urlPostCreate();
+}
 function url_post_config() {
     return post::urlEditPostConfig();
 }
@@ -77,17 +80,34 @@ function url_post_delete($idx=0) {
 }
 
 
-function display_file($file) {
-    $imgs = [];
-    $files = [];
-    $url = $file->url();
-    $name = $file->get('name');
-    if ( is_image($name) ) {
-        $imgs[] = "<img src='$url'>";
+function display_files($files) {
+    if ( empty($files) ) return null;
+    $tag_imgs = [];
+    $tag_files = [];
+    foreach($files as $file) {
+        $url = $file->url();
+        $name = $file->get('name');
+        if ( is_image($name) ) {
+            $tag_imgs[] = "<div class='image'><img src='$url'></div>";
+        }
+        else {
+            $tag_files[] = "<div class='attachment'><a href='$url'>$name</a></div>";
+        }
     }
-    else {
-        $files[] = "<a href='$url'>$name</a>";
+    array_walk($tag_files, 'display');
+    array_walk($tag_imgs, 'display');
+}
+
+
+function is_post_admin() {
+    if ( admin() ) return true;
+    return false;
+}
+
+function is_my_post($idx) {
+    $post = post_data($idx);
+    if ( $post ) {
+        return $post->get('idx_user') == my('idx');
     }
-    array_walk($files, 'display');
-    array_walk($imgs, 'display');
+    return false;
 }

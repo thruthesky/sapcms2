@@ -22,6 +22,7 @@ for ( $i=1; $i<=10; $i++ ) {
     $db->add("varchar_$i", 'varchar');
 }
 
+
 entity(POST_DATA)
     ->createTable()
     ->add('idx_config', 'INT UNSIGNED DEFAULT 0')
@@ -75,3 +76,16 @@ for ( $i=1; $i<=10; $i++ ) {
     $db->add("text_$i", 'text');
 }
 
+$config = post_config()->set('id', "discussion")->set('name', 'Discussion')->save();
+post_data()
+    ->set('idx_config', $config->get('idx'))
+    ->set('title', "Welcome to Discussion Forum")
+    ->set('content', "This is Discussion forum.")
+    ->save();
+
+$config = post_config()->set('id', "qna")->set('name', 'Questions and Answers')->save();
+post_data()
+    ->set('idx_config', $config->get('idx'))
+    ->set('title', "Welcome to QnA Forum")
+    ->set('content', "This is Questions and Answers Forum.")
+    ->save();

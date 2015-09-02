@@ -14,11 +14,6 @@ $files = data()->loadBy('post', 'file', $idx);
 if ( empty($files) ) return;
 ?>
     <div class="display-files">
-        <?php foreach ( $files as $file ) { ?>
-            <div>
-                <?php display_file($file); ?>
-            </div>
-        <?php } ?>
+        <?php display_files($files); ?>
     </div>
-
 <?php

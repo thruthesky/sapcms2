@@ -17,7 +17,6 @@ $post = $widget['post'];
         <img class="file-upload-button" src="/core/module/post/img/camera.png">
         <?php include template('element/file', 'data'); ?>
         <textarea name="content"></textarea>
-        <div class="uploaded-files"></div>
         <input class="show-on-click form-comment-add-submit" type="submit" value="UPLOAD COMMENT">
     </form>
 </div>
