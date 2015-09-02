@@ -18,7 +18,10 @@ class Statistics {
 	public static function user() {
 		$data = [];
 		$input = request();
+				
 		if( !empty( $input ) ) $data['input'] = request();
+		if( empty( $input['list_type'] ) ) $data['list_type'] = 'registers';//default
+		else $data['list_type'] = $input['list_type'];
 		
 		//date_from and date_to will automatically be "TODAY" if empty
 		if( !empty( $input['date_from'] ) ){
@@ -45,6 +48,7 @@ class Statistics {
 		if( $date_from_stamp > $date_to_stamp ){
 			error(-80101, "[ date_from ] cannot be more than [ date_to ]");
 			$data['show_by'] = '';
+			$data['error'] = 1;
 			$data['date_by'] = [];
 		}
 		else{
@@ -83,11 +87,10 @@ class Statistics {
 				$data['date_to_stamp']['month'] = strtotime( date('Y-m-1',$date_to_stamp) );
 				$data['date_by']['month'] = $data['date_from_stamp']['month'];//revise code later...
 			}
-		}
-				
+		}				
         return Response::renderSystemLayout([
             'template'=>'statistics.layout',
-            'page'=>'statistics.admin.user',
+            'page'=>'statistics.admin.user.'.$data['list_type'],
             'data'=>$data,
         ]);
     }
