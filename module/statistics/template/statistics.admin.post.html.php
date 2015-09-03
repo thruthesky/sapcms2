@@ -59,7 +59,14 @@ if( empty( $data['error'] ) ){
 						if( !empty( $data['order_query'] ) ) $q .= " $data[order_query]";						
 						if( !empty( $data['limit'] ) ) $q .= " LIMIT $data[limit]";
 						$posts = entity(POST_DATA)->rows( $q );
-						$all_posts = count( $posts );												
+						$all_posts = count( $posts );
+						
+						/*
+						$q = "created > $start_range_stamp AND created < $end_range_stamp";
+						$q .= " GROUP BY idx_user";//idx_user or idx_config
+						$q .= " ORDER BY c DESC";
+						$posts = entity(POST_DATA)->rows( $q, "count(*) as c" );//array index will all be "c", must be idx_user or idx_config
+						*/
 				?>				
 				<div><?php echo $date." to ".$end_date." = ".$all_posts?></div>
 				<ol>
