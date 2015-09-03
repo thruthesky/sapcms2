@@ -2,6 +2,7 @@
 // user, post, data
 
 	$total_users = user()->count();
+	$total_posts = entity(POST_DATA)->count();
 ?>
 
 <div class='note'>
@@ -33,6 +34,16 @@
 				<a href="/admin/statistics/user?list_type=last_login">Logins</a><br>
 				<a href="/admin/statistics/user?list_type=block">Blocks</a><br>
 				<a href="/admin/statistics/user?list_type=resign">Resigns</a><br>
+			</td>
+		</tr>
+		<tr>
+			<td>Total Posts</td>
+			<td>Total Posts Description</td>
+			<td><?php echo $total_posts?></td>
+			<td>
+				<a href="/admin/statistics/post?list_type=created">Created Posts</a><br>
+				<a href="/admin/statistics/post?list_type=no_view">Most Views</a><br>
+				<a href="/admin/statistics/post?list_type=no_comment">Most Comments</a><br>
 			</td>
 		</tr>
 	</tbody>

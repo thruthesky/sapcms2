@@ -16,13 +16,87 @@ class Statistics {
     }
 	
 	public static function user() {
-		$data = [];
 		$input = request();
-				
+		
 		if( !empty( $input ) ) $data['input'] = request();
-		if( empty( $input['list_type'] ) ) $data['list_type'] = 'registers';//default
+		$data = self::dateRangeComputation();
+		
+		if( empty( $input['list_type'] ) ) $data['list_type'] = 'created';//default
 		else $data['list_type'] = $input['list_type'];
 		
+        self::adminUserStatisticsTemplate( $data );
+    }
+	
+	public static function post() {
+		$input = request();
+		
+		if( !empty( $input ) ) $data['input'] = request();
+		$data = self::dateRangeComputation();
+		
+		if( empty( $input['list_type'] ) ) $data['list_type'] = 'created';//default
+		else $data['list_type'] = $input['list_type'];
+		
+		if( $data['list_type'] == 'no_view' ) $data['order_query'] = "ORDER BY $data[list_type] DESC";
+		else if( $data['list_type'] == 'no_comment' ) $data['order_query'] = "ORDER BY $data[list_type] DESC";
+		
+		if( !empty( $input['limit'] ) ) $data['limit'] = $input['limit'];
+		else $data['limit'] = 10;
+		
+        self::adminPostStatisticsTemplate( $data );
+    }
+	
+	/*
+	*requires date_from and date_to ( both are should be string date format ) yyyy-mm-dd
+	*show_by is used to know when to show daily, weekly, and monthly ( default is ALL or '' )
+	*
+	*list_type is the type of list ( could be used as field name )
+	*date_from_stamp starting stamp for each category ( daily, weekly, monthly )
+	*date_to_stamp ending stamp for each category ( daily, weekly, monthly )
+	*
+	*This function generally returns date difference ( see difference index below )
+	*@returns ( if successful )
+	Array
+		(
+			[input] => Array
+				(
+					[list_type] => created
+					[date_from] => 2015-02-06
+					[date_to] => 2015-09-03
+					[show_by] => 
+				)
+
+			[date_from] => 2015-02-06
+			[date_to] => 2015-09-03
+			[show_by] => 
+			[difference] => Array
+				(
+					[day] => 209
+					[week] => 30
+					[month] => 7
+				)
+
+			[date_from_stamp] => Array
+				(
+					[day] => 1423152000
+					[week] => 1422806400
+					[month] => 1422720000
+				)
+
+			[date_to_stamp] => Array
+				(
+					[day] => 1441209600
+					[week] => 1440950400
+					[month] => 1441036800
+				)
+
+			[list_type] => created
+		)
+	*/
+	public static function dateRangeComputation(){
+		$data = [];
+		$input = request();
+		if( !empty( $input ) ) $data['input'] = request();
+	
 		//date_from and date_to will automatically be "TODAY" if empty
 		if( !empty( $input['date_from'] ) ){
 			$date_from_stamp = strtotime( $input['date_from'] );
@@ -72,31 +146,35 @@ class Statistics {
 			if( $data['show_by'] == '' || $data['show_by'] == 'day'  ){
 				$data['date_from_stamp']['day'] = $date_from_stamp;
 				$data['date_to_stamp']['day'] = $date_to_stamp;
-				$data['date_by']['day'] = $data['date_from_stamp']['day'];//revise code later...
 			}
 			if( $data['show_by'] == '' || $data['show_by'] == 'week'  ){
 				$data['date_from_stamp']['week'] = strtotime( "this week", $date_from_stamp );				
-				$data['date_to_stamp']['week'] = strtotime( "this week", $date_to_stamp );
-				$data['date_by']['week'] = $data['date_from_stamp']['week'];//revise code later...	
+				$data['date_to_stamp']['week'] = strtotime( "this week", $date_to_stamp );	
 			}
 			
 			if( $data['show_by'] == '' || $data['show_by'] == 'month'  ){
 				$data['date_from_stamp']['month'] = strtotime( date('Y-m-1',$date_from_stamp) );				
 				$data['date_to_stamp']['month'] = strtotime( date('Y-m-1',$date_to_stamp) );
-				$data['date_by']['month'] = $data['date_from_stamp']['month'];//revise code later...
 			}
-		}				
-        self::userRegisterTemplate( $data );
-    }
+		}	
+		return $data;
+	}
 	
-	
-	
-	private static function userRegisterTemplate( $data )
+	private static function adminUserStatisticsTemplate( $data )
     {
 
        return Response::renderSystemLayout([
             'template'=>'statistics.layout',
             'page'=>'statistics.admin.user',
+            'data'=>$data,
+        ]);
+    }
+	
+	private static function adminPostStatisticsTemplate( $data )
+    {
+       return Response::renderSystemLayout([
+            'template'=>'statistics.layout',
+            'page'=>'statistics.admin.post',
             'data'=>$data,
         ]);
     }

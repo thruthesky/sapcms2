@@ -6,3 +6,4 @@
 
 route('/admin/statistics', 'statistics\\statistics\\index');
 route('/admin/statistics/user', 'statistics\\statistics\\user');
+route('/admin/statistics/post', 'statistics\\statistics\\post');

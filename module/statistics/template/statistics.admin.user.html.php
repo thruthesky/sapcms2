@@ -31,7 +31,7 @@ if( empty( $data['error'] ) ){
 			<thead>
 				<tr>
 					<?php				
-					foreach( $data['date_by'] as $k => $v ){
+					foreach( $data['date_from_stamp'] as $k => $v ){
 					?>	
 						<th><?php echo $text[$k] ?></th>					
 					<?php
@@ -42,7 +42,7 @@ if( empty( $data['error'] ) ){
 			<tbody>
 				<tr>
 				<?php				
-				foreach( $data['date_by'] as $k => $v ){
+				foreach( $data['date_from_stamp'] as $k => $v ){
 				?>			
 					<td>
 				<?php
