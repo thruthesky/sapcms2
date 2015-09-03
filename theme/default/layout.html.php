@@ -1,6 +1,5 @@
 <!doctype html>
 <?php
-
 ?>
 <html>
 <head>
@@ -31,7 +30,6 @@
 <!--[if gte IE 9]><!-->
 <script type='text/javascript' src='/core/etc/js/jquery-2.1.4/jquery-2.1.4.min.js'></script>
 <!--<![endif]-->
-
 <?php add_javascript('default.js'); ?>
 <?php widget('timezone'); ?>
 </body>
