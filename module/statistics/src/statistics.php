@@ -30,8 +30,7 @@ class Statistics {
 		}
 		else {
 			$date_from_stamp = strtotime( "today" );
-			$data['date_from'] = date( "Y-m-d", $date_from_stamp );
-			//$data['input']['date_from'] = data['date_from'];//fix this default value
+			$data['date_from'] = date( "Y-m-d", $date_from_stamp );			
 		}
 		
 	
@@ -41,14 +40,13 @@ class Statistics {
 		}
 		else{
 			$date_to_stamp = strtotime( "today" );
-			$data['date_to'] = date( "Y-m-d", $date_to_stamp );
-			//$data['input']['date_to'] = data['date_to'];//fix this default value
+			$data['date_to'] = date( "Y-m-d", $date_to_stamp );			
 		}		
 		
 		if( $date_from_stamp > $date_to_stamp ){
 			error(-80101, "[ date_from ] cannot be more than [ date_to ]");
 			$data['show_by'] = '';
-			$data['error'] = 1;
+			$data['error'] = 1;//
 			$data['date_by'] = [];
 		}
 		else{
@@ -88,9 +86,17 @@ class Statistics {
 				$data['date_by']['month'] = $data['date_from_stamp']['month'];//revise code later...
 			}
 		}				
-        return Response::renderSystemLayout([
+        self::userRegisterTemplate( $data );
+    }
+	
+	
+	
+	private static function userRegisterTemplate( $data )
+    {
+
+       return Response::renderSystemLayout([
             'template'=>'statistics.layout',
-            'page'=>'statistics.admin.user.'.$data['list_type'],
+            'page'=>'statistics.admin.user',
             'data'=>$data,
         ]);
     }

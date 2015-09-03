@@ -1,111 +1,100 @@
 <?php
 	extract( $variables );
-
-	if( !empty( $data['input']['date_by'] ) ) $date_by = $data['input']['date_by'];
-	else $date_by = "day";
 	
-	//Limit will be plus/minus
-	if( !empty( $data['input']['limit'] ) ) $limit = $data['input']['limit'];
-	else $limit = 5;
-
-	//logins daily, weekly, monthly, yearly
-	//default is daily
-	if( $date_by == 'day' ) $start_date = strtotime( "today" );//start of the week is monday
-	else if( $date_by == 'week' ) $start_date = strtotime( "this monday", time() );//start of the week is monday
-	else if( $date_by == 'month' ) $start_date = strtotime(date('Y-m-1'));//
-	else{
-		//error
-		$date_by == 'day';//just default it to day for now
-	}
-
-	/*
-	$show_by = 	[
-				''=>'Show by',
-				'created'=>'User Created',				
-				'domain'=>'Domain',
-				'country'=>'Country',
-				'province'=>'Province',
-				'city'=>'City',
-				'last_login_stamp'=>'Last Login',
-				'last_login_ip'=>'Last Login IP'
-				];	
-	*/	
+	//all fields that will be queried
+	$list =	[
+			'created'=>'User Registers',
+			'changed'=>'User Updates',
+			'last_login'=>'User Logins',
+			'block'=>'Blocked Users',
+			'resign'=>'Resigned Users',
+			];
+	//just text
+	$text =	[
+			'day'=>'Daily',
+			'week'=>'Weekly',
+			'month'=>'Monthly',
+			];					
+	
+	/*if( !empty( $data['input']['show_by'] ) ){		
+		$date_by =	[
+					$data['input']['show_by'] => $data['date_from'][ $data['input']['show_by'] ],
+					];
+	}else{
+		$date_by = 	[
+					'day'=> $data['date_from']['day'],
+					'week'=> $data['date_from']['week'],
+					'month'=> $data['date_from']['month'],
+					];	
+	}	*/
+	$date_by = $data['date_by'];
+		
 ?>
 
 <form>
-	Limit <input type='text' name='limit'>
-	Sort:
-	<select name='date_by'>
-		<option value='day' <?php if( $date_by == 'day' ) echo " selected" ?> >Daily</option>
-		<option value='week' <?php if( $date_by == 'week' ) echo " selected" ?> >Weekly</option>
-		<option value='month' <?php if( $date_by == 'month' ) echo " selected" ?> >Monthly</option>
+	From
+	<input type='date' name='date_from' value='<?echo $data['input']['date_from']?>'>
+	To
+	<input type='date' name='date_to' value='<?echo $data['input']['date_to']?>'>
+	
+	Show by:
+	<select name='show_by'>
+		<option value="">ALL</option>
+		<?php foreach( $text as $key => $value ){ ?>
+			<option value='<?php echo $key?>' <?php if( $key == $data['input']['show_by'] ) echo " selected" ?>><?php echo $value?></option>
+		<?php } ?>
 	</select>
-	<input type='submit' value="Submit">
+	<input type='submit' value='submit'>
 </form>
 
-<h2>Order by [ <?php echo $date_by ?> ] - Limit [ +/-<?php echo $limit ?> ] - Listing by [ created ]</h2>
-<div><i>This can only be used with timestamps. Like updated, last access</i></div>
-<table data-role="table" id="table-post-list" data-mode="columntoggle" class="ui-responsive table-stroke">
-	<thead>
-		<tr>
-			<th>Date</th>
-			<th>Value</th>					
-		</tr>
-	</thead>	
-	<tbody>
-		<?php for( $i = -($limit); $i<=$limit; $i++ ){ 
-		
-			$start_range = strtotime( date( "Y/m/d",$start_date)." $i $date_by" );	
-			$end_range = strtotime( date( "Y/m/d",$start_date)." ".( $i + 1 )." $date_by" );
-			
-			$date = date( "M d H:i:s", $start_range );
-			$end_date = date( "M d H:i:s", $end_range - 1 );
-			$q = "created > $start_range AND created < $end_range";			
-			$users = user()->rows( $q );
-			if( !empty( $users ) ) $user_count = count( $users );
-			else $user_count = 0;
-			
-			if( $start_range == $start_date ) $current = " current";
-			else $current = null;
-		?>
-		<tr class='tr-class<?php echo $current ?>'>
-			<td><span class='date'><?php echo $date ?> to <?php echo $end_date ?></span></td>
-			<td><span class='count'><?php echo $user_count ?></span></td>
-		</tr>
-		<?php } ?>
-	</tbody>
-	
-</table>
-
+<h1>User Statistics</h1>
 <?php
-	$total_users = user()->count();
-	$today = strtotime( "today" );
-	$today_end = strtotime( date( "Y/m/d",$today)." 1 day" );
-	
-	$todays_user_created = user()->rows( "created > $today AND created < $today_end" );
-	if( !empty( $todays_user_created ) ) $todays_user_created_count = count( $users );
-	else $todays_user_created_count = 0;
+foreach( $list as $field => $value ){
 ?>
-<h2>Overall Display</h2>
-<table data-role="table" id="table-post-list" data-mode="columntoggle" class="ui-responsive table-stroke">
-	<thead>
-		<tr>
-			<th>Title</th>
-			<th>Value</th>					
-		</tr>
-	</thead>	
-	<tbody>
-		<tr>
-			<td><span class='date'>Online</td>
-			<td><span class='count'>Needs Last access for this one</span></td>
-		</tr>
-		<tr>
-			<td><span class='date'>Today's created</td>
-			<td><span class='count'><?php echo $todays_user_created_count ?></span></td>
-		</tr>
-		<tr>
-			<td><span class='date'>Total Users</td>
-			<td><span class='count'><?php echo $total_users ?></span></td>
-		</tr>
-	</tbody>
-</table>
+	<h2><?php echo $value?></h2>
+	<table data-role="table" id="table-post-list" class="ui-responsive table-stroke">
+		<thead>
+			<tr>
+				<?php				
+				foreach( $date_by as $k => $v ){
+				?>	
+					<th><?php echo $text[$k] ?></th>					
+				<?php
+				}
+				?>
+			</tr>
+		</thead>	
+		<tbody>
+			<tr>
+			<?php				
+			foreach( $date_by as $k => $v ){
+			?>			
+				<td>
+			<?php
+				$curr_date = $v;
+				for( $i = 0; $i <= $data['difference'][$k]; $i++ ){
+					//echo date( "r", $curr_date )."<br>";
+					$start_range_stamp = strtotime( date( "Y/m/d",$curr_date) );	
+					$end_range_stamp = strtotime( date( "Y/m/d",$curr_date)." +1 $k" );				
+					
+					$date = date( "M d", $start_range_stamp );
+					$end_date = date( "M d", $end_range_stamp - 1 );
+					$q = "$field > $start_range_stamp AND $field < $end_range_stamp";			
+					$user_count = user()->count( $q );
+			?>
+					<div><?php echo $date." to ".$end_date." : ".$user_count?></div>
+				
+			<?php
+					$curr_date = strtotime( date( "Y-m-d",$curr_date )." +1 $k" );									
+				}
+			?>
+				</td>
+			<?php
+			}
+			?>
+			</tr>
+		</tbody>	
+	</table>
+<?php
+}
+?>
