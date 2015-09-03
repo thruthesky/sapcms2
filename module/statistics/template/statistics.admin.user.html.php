@@ -5,7 +5,7 @@
 			'created'=>'User Registers',
 			'updates'=>'User Updates',
 			'logins'=>'User Logins',
-			'block'=>'Blocked Users',
+			'block'=>'How many users will still be BLOCKED on the said date',
 			'resign'=>'Resigned Users',
 			];
 			
@@ -62,6 +62,10 @@ if( empty( $data['error'] ) ){
 						else if( $data['list_type'] == 'logins' ){
 							$q = "created > $start_range_stamp AND created < $end_range_stamp AND action='login'";
 							$user_count = entity(USER_ACTIVITY_TABLE)->count( $q );
+						}
+						else if( $data['list_type'] == 'block' ) {
+							$q = "$data[list_type] > $start_range_stamp AND $data[list_type] <> 0";
+							$user_count = user()->count( $q );
 						}
 						else{						
 							$q = "$data[list_type] > $start_range_stamp AND $data[list_type] < $end_range_stamp";
