@@ -34,7 +34,7 @@
 			<td><?php echo $total_posts?> ( with comments )</td>
 			<td>				
 				<!--<a href="/admin/statistics/post?list_type=no_view">Most Views</a><br>-->
-				<a href="/admin/statistics/post?list_type=idx_root">Most Comments</a><br>
+				<a href="/admin/statistics/post?list_type=idx_root">Most Comments by root post</a><br>
 				<a href="/admin/statistics/post?list_type=idx_root&group_by=idx_user">Most Comments by user</a><br>
 				<a href="/admin/statistics/post?list_type=idx_root&group_by=idx_config">Most Comments by idx_config</a><br>
 				<a href="/admin/statistics/post?list_type=idx_user">Most User Posts</a><br>
