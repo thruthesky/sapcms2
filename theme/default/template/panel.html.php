@@ -12,6 +12,11 @@ add_javascript();
         <?php } else { ?>
             <li><a href="/user/register"><span>Register</span></a></li>
         <?php } ?>
+
+
+        <li><a href="/post/list?id=discussion"><span>Discussion</span></a></li>
+        <li><a href="/post/list?id=qna"><span>QnA</span></a></li>
+
         <li><a href="/user/setting"><span>Settings</span></a></li>
 
         <?php if ( admin() ) { ?>
