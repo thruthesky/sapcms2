@@ -115,7 +115,7 @@ class post {
         $config = post_config()->getCurrent()->get();
         return Response::render([
             'template'=>'post.layout',
-            'page'=>'post.data.list',
+            'page'=>'post.list',
             'config' => $config,
         ]);
     }
@@ -132,7 +132,7 @@ class post {
         $total_record = self::countPostData();
         return Response::render([
             'template'=>'post.layout',
-            'page'=>'post.data.search',
+            'page'=>'post.search',
             'posts' => $posts,
             'total_record' => $total_record,
         ]);
@@ -143,7 +143,7 @@ class post {
     public static function postCreate($id) {
         return Response::render([
             'template'=>'post.layout',
-            'page'=>'post.data.edit',
+            'page'=>'post.edit',
         ]);
     }
 
@@ -179,7 +179,7 @@ class post {
         if ( $post ) {
             return Response::render([
                 'template'=>'post.layout',
-                'page'=>'post.data.edit',
+                'page'=>'post.edit',
             ]);
         }
         else return self::errorNoPostToEdit();
@@ -431,17 +431,19 @@ class post {
     }
 
 
-    public static function viewPostData() {
+    public static function postView() {
         $data = [
             'template'=>'post.layout',
-            'page'=>'post.data.view',
+            'page'=>'post.view',
         ];
-        $post = PostData::preProcess(post_data(request('idx')));
-        if ( empty($post) ) {
+        $post_data = post_data(request('idx'));
+        if ( empty($post_data) ) {
             error(-50119, "Post does not exist.");
             $data['page'] = 'post.error';
         }
         else {
+            $post_data->set('no_view', $post_data->get('no_view') + 1)->save();
+            $post = PostData::preProcess($post_data);
             $config = post_config($post['idx_config']);
             $data['config'] = $config->getFields();
             $data['post'] = $post;
@@ -632,7 +634,7 @@ class post {
 
     private static function templateEdit()
     {
-        return Response::render([ 'template'=>'post.layout', 'page'=>'post.data.edit' ]);
+        return Response::render([ 'template'=>'post.layout', 'page'=>'post.edit' ]);
     }
 
     private static function templateError($code, $message)

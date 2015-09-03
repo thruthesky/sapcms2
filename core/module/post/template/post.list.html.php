@@ -8,6 +8,7 @@ $posts = post()->postListData();
             <th>NO</th>
             <th>TITLE</th>
             <th>Name</th>
+            <th>View</th>
             <th>Date</th>
         </tr>
         <?php foreach( $posts as $post ) { ?>
@@ -15,6 +16,7 @@ $posts = post()->postListData();
                 <td><?php echo $post['idx']?></td>
                 <td><?php widget('post_list_title', ['post'=>$post]); ?></td>
                 <td><?php echo $post['user']['name']?></td>
+                <td><?php echo $post['no_view'];?></td>
                 <td><?php echo date_short($post['created']);?></td>
             </tr>
         <?php } ?>

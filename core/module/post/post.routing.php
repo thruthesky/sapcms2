@@ -34,7 +34,7 @@ route('/post/edit/submit', 'post\\post\\postEditSubmit');
 route('/post/comment/submit', 'post\\post\\postCommentSubmit');
 route('/post/comment/edit', 'post\\post\\postCommentEdit');
 route('/post/comment/edit/submit', 'post\\post\\postCommentEditSubmit');
-route('/post/view', 'post\\post\\viewPostData');
+route('/post/view', 'post\\post\\postView');
 
 route('/post/data/delete/*', 'post\\post\\postDataDelete');
 
