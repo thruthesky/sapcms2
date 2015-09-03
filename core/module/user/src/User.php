@@ -104,7 +104,23 @@ class User extends Entity {
 
 
     /**
+     *
+     * Makes the user of input $id being logged in.
+     *
+     * @Attention This methods
+     *
+     *      (1) sets cookie information for login
+     *      (2) sets last login stamp
+     *      (3) sets last login ip
+     *      (4) logs for login activity.
+     *
      * @param $id
+     *
+     *
+     * @code
+     *      if ( ! login() ) User::login(Request::get('id'));
+     * @endcode
+     *
      */
     public static function login($id)
     {
@@ -115,7 +131,8 @@ class User extends Entity {
 		$user
             ->set('last_login', time())
             ->set('last_login_ip', ip())
-            ->save();//added by benjamin
+            ->save();
+        user_activity('login');
     }
 
     public static function logout() {

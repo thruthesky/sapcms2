@@ -41,6 +41,16 @@ class UserController
     }
 
 
+    /**
+     *
+     * Creates a user account.
+     *
+     * @note it does not depends on the input array. Not on the Form Submit.
+     * @note if you need to make the user logged in, use self::login() in other place.
+     *
+     * @param $options
+     * @return $this|bool|User
+     */
     public static function createUser($options) {
 
         $user = user();
@@ -52,64 +62,14 @@ class UserController
         $user->save();
         return $user;
 
-
     }
 
-	
+
     /**
      *
-     * @deperecated Do not use this function. Use createUser method.
-     * @return bool|string
+     * @Attention This depends on Form submit. Use User::login() to make the user login.
+     * @return int|mixed|null
      */
-    public static function userFormSubmit() {
-		if ( submit()) {
-
-			if ( self::validateRegisterFrom() == OK ) {
-
-
-
-				$idx = Request::get('idx');
-				if( $idx ){
-					//if admin...
-					$user = user( $idx );
-					$is_admin_edit = 'admin-edit';//temp just for redirect
-				}
-				else{
-					if ( login() ) {
-						$user = login();
-					}
-					else {
-						$user = user();
-						$user ->create(Request::get('id'))
-						->setPassword(Request::get('password'));
-					}
-				}
-				
-				if( $user ){					
-					$user->set('name', Request::get('name'))
-						->set('mail', Request::get('mail'));			
-					$user->save();
-				}
-				else{
-					//return invalid user ID
-				}
-				
-				if ( ! login() ) User::login(Request::get('id'));
-				
-				if( !empty( $is_admin_edit ) ) return $is_admin_edit;
-                return TRUE;
-			}
-			else {
-				$error = self::validateRegisterFrom();
-				//return $error;
-			}
-		}
-
-        return FALSE;
-    }
-
-
-
     public static function login()
     {
         if (submit()) {
@@ -188,6 +148,8 @@ class UserController
 
         $user = self::createUser($options);
         if ( empty($user) ) return self::userRegisterTemplate();
+
+        User::login($user->get('id'));
 
         return Response::redirect(config()->getUrlSite());
 
@@ -301,10 +263,7 @@ class UserController
 			$login->setBasicFields( $options );
         }
         $login->save();
-        entity(USER_ACTIVITY_TABLE)
-            ->set('idx_user', login('idx'))
-            ->set('action', 'updateUser')
-            ->save();
+        user_activity('updateUser');
         return $login;
     }
 

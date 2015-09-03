@@ -1,7 +1,7 @@
 <?php
 $posts = post()->postListData();
 ?>
-<?php widget('post_list_menu_default'); ?>
+<?php widget('post_list_menu'); ?>
 <div class="post list">
     <table>
         <tr>

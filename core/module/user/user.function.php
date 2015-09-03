@@ -13,3 +13,19 @@ function user($field=null, $value=null) {
         }
     }
 }
+
+
+/**
+ *
+ * @param $action
+ *
+ * @code
+ *      user_activity('updateUser');
+ * @endcode
+ */
+function user_activity($action) {
+    entity(USER_ACTIVITY_TABLE)
+        ->set('idx_user', login('idx'))
+        ->set('action', $action)
+        ->save();
+}
