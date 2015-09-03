@@ -4,8 +4,8 @@
 	$list =	[
 			'created'=>'User Registers',
 			'updates'=>'User Updates',
-			'last_login'=>'User Logins',
-			'block'=>'Blocked Users',
+			'logins'=>'User Logins',
+			'block'=>'How many users will still be BLOCKED on the said date',
 			'resign'=>'Resigned Users',
 			];
 			
@@ -59,12 +59,23 @@ if( empty( $data['error'] ) ){
 							$q = "created > $start_range_stamp AND created < $end_range_stamp AND action='updateUser'";
 							$user_count = entity(USER_ACTIVITY_TABLE)->count( $q );
 						}
+						else if( $data['list_type'] == 'logins' ){
+							$q = "created > $start_range_stamp AND created < $end_range_stamp AND action='login'";
+							$user_count = entity(USER_ACTIVITY_TABLE)->count( $q );
+						}
+						else if( $data['list_type'] == 'block' ) {
+							$q = "$data[list_type] > $start_range_stamp AND $data[list_type] <> 0";
+							$user_count = user()->count( $q );
+						}
 						else{						
 							$q = "$data[list_type] > $start_range_stamp AND $data[list_type] < $end_range_stamp";
 							$user_count = user()->count( $q );
 						}
+						
+						if( $k == 'day' ) $date_text = $date ." = ".$user_count;
+						else $date_text = $date." to ".$end_date." = ".$user_count;
 				?>
-						<div><?php echo $date." to ".$end_date." = ".$user_count?></div>
+						<div><?php echo $date_text ?></div>
 					
 				<?php
 						$curr_date = strtotime( date( "Y-m-d",$curr_date )." +1 $k" );									

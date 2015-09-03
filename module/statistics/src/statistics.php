@@ -36,11 +36,14 @@ class Statistics {
 		if( empty( $input['list_type'] ) ) $data['list_type'] = 'created';//default
 		else $data['list_type'] = $input['list_type'];
 		
-		if( $data['list_type'] == 'no_view' ) $data['order_query'] = "ORDER BY $data[list_type] DESC";
-		else if( $data['list_type'] == 'no_comment' ) $data['order_query'] = "ORDER BY $data[list_type] DESC";
+		if( $data['list_type'] == 'idx_root' ) $data['extra_query'] = " AND idx_parent > 0";
+		else if( $data['list_type'] == 'idx_user' ) $data['extra_query'] = " AND idx_parent = 0";
+		else if( $data['list_type'] == 'idx_config' ) $data['extra_query'] = " AND idx_parent = 0";
 		
 		if( !empty( $input['limit'] ) ) $data['limit'] = $input['limit'];
 		else $data['limit'] = 10;
+		
+		if( !empty( $input['group_by'] ) ) $data['group_by'] = $input['group_by'];		
 		
         self::adminPostStatisticsTemplate( $data );
     }
@@ -174,7 +177,7 @@ class Statistics {
     }
 	
 	private static function adminPostStatisticsTemplate( $data )
-    {
+    {			
        return Response::renderSystemLayout([
             'template'=>'statistics.layout',
             'page'=>'statistics.admin.post',
