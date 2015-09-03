@@ -16,7 +16,8 @@
     display:inline-block;
 }
 
-#main-menu li a {
+#main-menu li span {
     display:inline-block;
     padding:.4em;
+    cursor:pointer;
 }
