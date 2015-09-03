@@ -200,7 +200,7 @@ class PostData extends Entity {
         $data->set('content_stripped', strip_tags($options['content']));
         $data->set('ip', ip());				
         if ( ! isset($options['domain']) ) $data->set('domain', domain());		
-        if ( ! isset($options['user_agent']) ) $data->set('domain', user_agent());
+        if ( ! isset($options['user_agent']) ) $data->set('user_agent', user_agent());//edited by benjamin previously if ( ! isset($options['user_agent']) ) $data->set('domain', user_agent())
         $data->save();
         $idx = $data->get('idx');
 

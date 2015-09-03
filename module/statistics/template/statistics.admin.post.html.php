@@ -3,11 +3,9 @@
 		
 	//just for page title
 	$list =	[
-			'created'=>'Posts Created',
-			'no_view'=>'Most Views',
-			'no_comment'=>'Most Comments',
-			'block'=>'Blocked Users',
-			'resign'=>'Resigned Users',
+			'idx_root'=>'Most Comments',
+			'idx_user'=>'Most User Posts ( comments not counted )',
+			'idx_config'=>'Most Config Posts ( comments not counted )',
 			];
 			
 	//just text for date_by
@@ -18,6 +16,7 @@
 			];
 ?>
 
+<?php include template('statistics.admin.post.menu'); ?>
 <?php include template('statistics.admin.form'); ?>
 
 <?php
@@ -26,7 +25,13 @@ if( empty( $data['error'] ) ){
 	<h1>User Statistics</h1>
 	<?php
 	?>
-		<h2><?php echo $list[$data['list_type']] ?></h2>
+		<h2>
+			<?php
+				//just for title...
+				echo $list[$data['list_type']];
+				if( !empty($data['group_by'])  ) echo " grouped by ".$data['group_by'];
+			?>
+		</h2>
 		<table data-role="table" id="table-post-list" class="ui-responsive table-stroke">
 			<thead>
 				<tr>
@@ -42,38 +47,38 @@ if( empty( $data['error'] ) ){
 			<tbody>
 				<tr>
 				<?php				
+				if( empty( $data['group_by'] ) ) $group_by = $data['list_type'];
+				else $group_by = $data['group_by'];
+				
 				foreach( $data['date_from_stamp'] as $k => $v ){
 				?>			
 					<td>
 				<?php
 					$curr_date = $v;
 					for( $i = 0; $i <= $data['difference'][$k]; $i++ ){
-						//echo date( "r", $curr_date )."<br>";
 						$start_range_stamp = strtotime( date( "Y/m/d",$curr_date) );	
 						$end_range_stamp = strtotime( date( "Y/m/d",$curr_date)." +1 $k" );				
 						
 						$date = date( "M d", $start_range_stamp );
 						$end_date = date( "M d", $end_range_stamp - 1 );
-					
-						$q = "created > $start_range_stamp AND created < $end_range_stamp";
-						if( !empty( $data['order_query'] ) ) $q .= " $data[order_query]";						
-						if( !empty( $data['limit'] ) ) $q .= " LIMIT $data[limit]";
-						$posts = entity(POST_DATA)->rows( $q );
-						$all_posts = count( $posts );
 						
-						/*
-						$q = "created > $start_range_stamp AND created < $end_range_stamp";
-						$q .= " GROUP BY idx_user";//idx_user or idx_config
-						$q .= " ORDER BY c DESC";
-						$posts = entity(POST_DATA)->rows( $q, "count(*) as c" );//array index will all be "c", must be idx_user or idx_config
-						*/
+						$q = "created > $start_range_stamp AND created < $end_range_stamp";				
+						if( !empty( $data['extra_query'] ) ) $q .= " $data[extra_query]";						
+						$all_posts = entity(POST_DATA)->count( $q );
+						
+						$q .= " GROUP BY $group_by";
+						$q .= " ORDER BY c DESC";							
+						$posts = entity(POST_DATA)->rows( $q, "$group_by,count(*) as c" );
+						
+						if( $k == 'day' ) $date_text = $date ." ( ".$all_posts." )";
+						else $date_text = $date." to ".$end_date." ( ".$all_posts." )";
 				?>				
-				<div><?php echo $date." to ".$end_date." = ".$all_posts?></div>
+				<div><?php echo $date_text?></div>
 				<ol>
 				<?php
 					foreach( $posts as $p ){					
 				?>
-					<li>IDX [ <?php echo $p['idx']?> ] - <?php echo $data['list_type']?> [ <?php echo $p[ $data['list_type'] ]?> ] </li>
+					<li><?php echo $group_by ?> [ <?php echo $p[ $group_by ]?> ] - Count [ <?php echo $p[ 'c' ]?> ] </li>
 				<?php
 					}
 				?>
