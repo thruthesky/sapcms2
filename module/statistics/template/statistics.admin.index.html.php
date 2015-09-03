@@ -40,8 +40,7 @@
 			<td>Total Posts</td>
 			<td>Total Posts Description</td>
 			<td><?php echo $total_posts?></td>
-			<td>
-				<a href="/admin/statistics/post?list_type=created">Created Posts</a><br>
+			<td>				
 				<a href="/admin/statistics/post?list_type=no_view">Most Views</a><br>
 				<a href="/admin/statistics/post?list_type=no_comment">Most Comments</a><br>
 			</td>
