@@ -134,7 +134,8 @@ class Statistics {
 			$from_diff = date_create( $data['date_from'] );
 			$to_diff = date_create( $data['date_to'] );
 			$date_diff = date_diff( $from_diff, $to_diff );				
-			$week_diff    = ceil( ( $date_to_stamp - $date_from_stamp ) /604800 );
+			$week_diff    = ceil( ( strtotime( "this week", $date_to_stamp ) - strtotime( "this week", $date_from_stamp ) ) /604800 );//became complicated..
+			
 			$difference = [];			
 			$difference['day'] = $date_diff->days;
 			$difference['week'] = $week_diff;		
@@ -157,6 +158,8 @@ class Statistics {
 				$data['date_to_stamp']['month'] = strtotime( date('Y-m-1',$date_to_stamp) );
 			}
 		}	
+		
+		
 		return $data;
 	}
 	

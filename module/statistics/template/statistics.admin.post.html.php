@@ -33,7 +33,7 @@ if( empty( $data['error'] ) ){
 					<?php				
 					foreach( $data['date_from_stamp'] as $k => $v ){
 					?>	
-						<th><?php echo $text[$k] ?></th>					
+						<th><?php echo $text[$k] ?></th>
 					<?php
 					}
 					?>
@@ -61,18 +61,21 @@ if( empty( $data['error'] ) ){
 						$posts = entity(POST_DATA)->rows( $q );
 						$all_posts = count( $posts );												
 				?>				
-						<div><?php echo $date." to ".$end_date." = ".$all_posts?></div>
-					
+				<div><?php echo $date." to ".$end_date." = ".$all_posts?></div>
+				<ol>
 				<?php
 					foreach( $posts as $p ){					
 				?>
-					<div>IDX [ <?php echo $p['idx']?> ] - <?php echo $data['list_type']?> [ <?php echo $p[ $data['list_type'] ]?> ] </div>
+					<li>IDX [ <?php echo $p['idx']?> ] - <?php echo $data['list_type']?> [ <?php echo $p[ $data['list_type'] ]?> ] </li>
 				<?php
 					}
-				
+				?>
+				</ol>				
+				<?php
 						$curr_date = strtotime( date( "Y-m-d",$curr_date )." +1 $k" );									
 					}
 				?>
+				
 					</td>
 				<?php
 				}
