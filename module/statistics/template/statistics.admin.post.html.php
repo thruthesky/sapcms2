@@ -78,7 +78,7 @@ if( empty( $data['error'] ) ){
 				<?php
 		
 				$date_now = $start_stamp;
-				for( $i = 0; $i <= $data['difference']['day']; $i++ ){
+				for( $i = 0; $i <= $data['difference'][$data['show_by']]; $i++ ){
 					//echo date( "M d",$date_now )."<br>";
 					if( $data['date_guide'] == 'week' ) $date_index = "W".date( "W-Y", strtotime( "this week", $date_now ) );													
 					else $date_index = date( "$data[date_guide]",( $date_now ) );
