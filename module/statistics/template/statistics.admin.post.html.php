@@ -28,8 +28,8 @@ if( empty( $data['error'] ) ){
 			<div class='inner'>
 				<?php			
 				//getting max_total, graph interation
-				$start_stamp = $data['date_from_stamp']['day'];
-				$end_stamp = $data['date_to_stamp']['day'] + 86399;																
+				$start_stamp = $data['date_from_stamp'][$data['show_by']];
+				$end_stamp = $data['date_to_stamp'][$data['show_by']];
 				
 				$q = "created > $start_stamp AND created < $end_stamp";	
 				if( !empty( $data['extra_query'] ) ) $q .= " $data[extra_query]";

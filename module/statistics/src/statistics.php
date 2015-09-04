@@ -149,16 +149,18 @@ class Statistics {
 			//automatically show ALL if show_by is empty
 			if( $data['show_by'] == '' || $data['show_by'] == 'day'  ){
 				$data['date_from_stamp']['day'] = $date_from_stamp;
-				$data['date_to_stamp']['day'] = $date_to_stamp;
+				$data['date_to_stamp']['day'] = strtotime( date( "Y-m-d",$date_to_stamp )." +1 day" ) - 1;//needs more test				
 			}
 			if( $data['show_by'] == '' || $data['show_by'] == 'week'  ){
 				$data['date_from_stamp']['week'] = strtotime( "this week", $date_from_stamp );				
-				$data['date_to_stamp']['week'] = strtotime( "this week", $date_to_stamp );	
+				//$data['date_to_stamp']['week'] = strtotime( "this week", $date_to_stamp );				
+				$data['date_to_stamp']['week'] = strtotime( date( "Y-m-d",strtotime( "this week", $date_to_stamp ) )." +1 week" ) - 1;//needs more test
 			}
 			
 			if( $data['show_by'] == '' || $data['show_by'] == 'month'  ){
 				$data['date_from_stamp']['month'] = strtotime( date('Y-m-1',$date_from_stamp) );				
-				$data['date_to_stamp']['month'] = strtotime( date('Y-m-1',$date_to_stamp) );
+				//$data['date_to_stamp']['month'] = strtotime( date('Y-m-1',$date_to_stamp) );
+				$data['date_to_stamp']['month'] = strtotime( date( "Y-m-1",$date_to_stamp )." +1 month" ) - 1;//needs more test
 			}
 		}	
 		
