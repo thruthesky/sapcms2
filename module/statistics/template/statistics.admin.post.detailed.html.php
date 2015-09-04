@@ -130,12 +130,12 @@ if( empty( $data['error'] ) ){
 .graph-wrapper .inner{
 	position:relative;
 	height:500px;
-	margin-left:20px;
+	margin-left:30px;
 }
 
 .graph-wrapper .inner .num-label{
 	position:absolute;
-	left:-20px;
+	left:-30px;
 	width:100%;
 	border-bottom:1px solid #d5d5d5;
 	font-size:.7em;
@@ -145,8 +145,9 @@ if( empty( $data['error'] ) ){
 	position:absolute;
 	left:0;
 	bottom:-5px;
-	padding:0 5px;
+	width:23px;	
 	background-color:#f9f9f9;
+	text-align:center;
 }
 
 .graph-wrapper .inner .bar-wrapper{	
