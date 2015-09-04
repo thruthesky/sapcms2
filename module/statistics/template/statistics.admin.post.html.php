@@ -36,7 +36,9 @@ if( empty( $data['error'] ) ){
 				$q = "created > $start_stamp AND created < $end_stamp";	
 				if( !empty( $data['extra_query'] ) ) $q .= " $data[extra_query]";
 				$q .= $data['sql_group_by'];		
+								
 				$count_per_day = entity(POST_DATA)->rows( $q, "created,count(*)" );
+								
 				//di( date( "r", 1441263980 ) );
 				//di( $count_per_day );exit;	
 				$items = [];				
@@ -84,7 +86,7 @@ if( empty( $data['error'] ) ){
 					if( !empty( $items[ $date_index ] ) ) $count = $items[ $date_index ];
 					else $count = 0;
 					
-					$url = "?list_type=$data[list_type]&date_from=".date( "Y-m-d",$date_now )."&date_to=".date( "Y-m-d",$date_now );
+					$url = "?list_type=$data[list_type]&date_from=".date( "Y-m-d",$date_now )."&date_to=".date( "Y-m-d",$date_now )."&show_by=".$data['show_by'];
 						?>
 							<div class='bar-wrapper<?php if( $count > 0 ) echo " has-value"; ?>'>
 								<div class='bar' title='<?php echo $count; ?>' style='height:<?php echo ( $count/$max_total ) * 100; ?>%'>&nbsp;</div>
