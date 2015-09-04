@@ -40,8 +40,8 @@ class Statistics {
 		else if( $data['list_type'] == 'post' ) $data['extra_query'] = " AND idx_parent = 0";
 		//else if( $data['list_type'] == 'idx_config' ) $data['extra_query'] = " AND idx_parent = 0";
 		
-		if( !empty( $input['limit'] ) ) $data['limit'] = $input['limit'];
-		else $data['limit'] = 10;
+		/*if( !empty( $input['limit'] ) ) $data['limit'] = $input['limit'];
+		else $data['limit'] = 10;*/
 		
 		if( !empty( $input['group_by'] ) ) $data['group_by'] = $input['group_by'];		
 		
