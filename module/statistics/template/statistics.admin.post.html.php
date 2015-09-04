@@ -56,7 +56,7 @@ if( empty( $data['error'] ) ){
 					$max_total_iteration *= 10;
 					$temp_i = $temp_i/10;										
 				}
-				$max_total_iteration = 10000;
+				
 				$max_total = ceil( $highest/$max_total_iteration ) * $max_total_iteration;
 				if( empty( $max_total ) ) $max_total = 10;
 				
