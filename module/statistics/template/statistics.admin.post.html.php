@@ -1,4 +1,6 @@
 <?php
+	//echo strtotime( "2015/08/02" );exit;
+
 	extract( $variables );	
 		
 	//just for page title
@@ -54,7 +56,7 @@ if( empty( $data['error'] ) ){
 					$max_total_iteration *= 10;
 					$temp_i = $temp_i/10;										
 				}
-				
+				$max_total_iteration = 10000;
 				$max_total = ceil( $highest/$max_total_iteration ) * $max_total_iteration;
 				if( empty( $max_total ) ) $max_total = 10;
 				
@@ -76,7 +78,7 @@ if( empty( $data['error'] ) ){
 					
 					$url = "?list_type=$data[list_type]&date_from=".date( "Y-m-d",$date_now )."&date_to=".date( "Y-m-d",$date_now );
 						?>
-							<div class='bar-wrapper'>
+							<div class='bar-wrapper<?php if( $count > 0 ) echo " has-value"; ?>'>
 								<div class='bar' title='<?php echo $count; ?>' style='height:<?php echo ( $count/$max_total ) * 100; ?>%'>&nbsp;</div>
 								<div class='date'>	
 									<?php echo date( "M d",$date_now );?><br>
@@ -138,6 +140,10 @@ if( empty( $data['error'] ) ){
 	height:500px;
 	font-size:.7em;
 	text-align:center;
+}
+
+.graph-wrapper .inner .bar-wrapper.has-value .bar{	
+	min-height:1px;
 }
 
 .graph-wrapper .inner .bar-wrapper.label{	
