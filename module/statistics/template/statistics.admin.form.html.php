@@ -1,7 +1,9 @@
 <?			
 	//just text for date_by
 	$text =	[
-			'day'=>'daily',			
+			'day'=>'daily',	
+			'week'=>'Weekly',	
+			'month'=>'Monthly',			
 			];	
 ?>
 <form>
