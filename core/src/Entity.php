@@ -542,13 +542,18 @@ class Entity {
      *
      * @code
      *      $sms = entity(QUEUE)->query("idx > 2");
+     *      $data = data()->query("module='post'");
      * @endcode
+     *
+     * @WARNING this method return $this->load() as of Sept 3, 2015.
+     *
+     *      - It means, if child object has its own class, it uses the child class or it uses Entity class.
      *
      */
     public function query($cond=null)
     {
         $idx = Database::load()->result($this->table(), 'idx', $cond);
-        if ( $idx ) return entity($this->table())->load($idx);
+        if ( $idx ) return $this->load($idx);
         else return FALSE;
     }
 

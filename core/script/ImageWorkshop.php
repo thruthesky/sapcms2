@@ -1,5 +1,11 @@
 <?php
-
+/**
+ *
+ *
+ * http://phpimageworkshop.com/
+ * https://github.com/Sybio/ImageWorkshop
+ *
+ */
 use PHPImageWorkshop\ImageWorkshop;
 
 $layer = ImageWorkshop::initFromPath('c:/tmp/jaeho.jpg');

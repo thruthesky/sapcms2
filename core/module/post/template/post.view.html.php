@@ -20,6 +20,6 @@ add_javascript();
 
 <?php
     if ( post()->config('show_list_under_view') == 'Y' ) {
-        include template('post.data.list');
+        include template('post.list');
     }
 ?>

@@ -1,10 +1,12 @@
 #header {
     position:relative;
-    background-color:#2c3e50;
     color:white;
 }
 #header a {
     color:white;
+}
+#header-top {
+    background-color:#2c3e50;
 }
 #main-menu {
     list-style:none;
@@ -13,11 +15,54 @@
 }
 
 #main-menu li {
-    display:inline-block;
+    float:left;
+    width:12.5%;
 }
 
 #main-menu li span {
     display:inline-block;
-    padding:.4em;
+    padding:.6em;
     cursor:pointer;
+}
+
+#main-menu .logo {
+    display:inline-block;
+    padding:.5em;
+    cursor:pointer;
+}
+
+#header-bottom {
+
+}
+
+#header-search {
+    position:relative;
+    margin:0 6% .5em;
+    padding:.4em 1em;
+    box-sizing: border-box;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    background-color:#2c3e50;
+}
+#header-search img {
+    padding-top:.1em;
+}
+#header-search input {
+    width:100%;
+    margin-left:.4em;
+    padding-left:.4em;
+    box-sizing: border-box;
+    background-color:transparent;
+    border:0;
+    border-bottom:1px solid white;
+    color: white;
+}
+#header-search input:focus {
+    outline:none;
+}
+
+#header-search input::-webkit-input-placeholder{
+    color: white;
+    text-shadow: none;
+    -webkit-text-fill-color: initial;
 }
