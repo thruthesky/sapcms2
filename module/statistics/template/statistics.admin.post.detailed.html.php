@@ -7,14 +7,6 @@
 			'post'=>'Most User Posts ( comments not counted )',
 			//'idx_config'=>'Most Config Posts ( comments not counted )',
 			];
-			
-	//just text for date_by
-	$text =	[
-			'day'=>'Daily',
-			'week'=>'Weekly',
-			'month'=>'Monthly',
-			];
-			
 ?>
 
 <?php include template('statistics.admin.post.menu'); ?>
@@ -30,7 +22,7 @@ if( empty( $data['error'] ) ){
 			<?php
 				//just for title...
 				echo $list[$data['list_type']];
-				if( !empty($data['group_by'])  ) echo " grouped by ".$data['group_by'];
+				if( !empty($data['group_by'])  ) echo " grouped by <span class='page_highlight'>".$data['group_by']."</span>";
 			?>
 		</h2>
 		<div class='graph-wrapper'>
@@ -46,9 +38,9 @@ if( empty( $data['error'] ) ){
 
 				$q = "created > $start_stamp AND created < $end_stamp";	
 				if( !empty( $data['extra_query'] ) ) $q .= " $data[extra_query]";
-				$q .= " GROUP BY floor( created / 86400 ), $group_by";//can only be used for days...
+				$q .= " GROUP BY day( FROM_UNIXTIME( created ) ), month( FROM_UNIXTIME( created ) ), year( FROM_UNIXTIME( created ) )";//can only be used for days...
 
-				$count_per_day = entity(POST_DATA)->rows( $q, "floor( created/86400 ),$group_by,count(*)" );										
+				$count_per_day = entity(POST_DATA)->rows( $q, "created,$group_by,count(*)" );										
 			
 				//0=day,1=idx_parent,2=count
 				$items = [];			
@@ -56,7 +48,7 @@ if( empty( $data['error'] ) ){
 				if( !empty( $count_per_day ) ){
 					foreach( $count_per_day as $arr ){
 						$arr = array_values( $arr );
-						 $items[ date( "Y-m-d",( $arr[0] * 86400 ) ) ][$arr[1]] = $arr[2];					
+						 $items[ date( "Y-m-d", $arr[0] ) ][$arr[1]] = $arr[2];					
 						 if( $highest < $arr[2] ) $highest = $arr[2];
 					}
 				}
@@ -68,7 +60,7 @@ if( empty( $data['error'] ) ){
 				}
 				
 				$max_total = ceil( $highest/$max_total_iteration ) * $max_total_iteration;
-				if( empty( $max_total ) ) $max_total = 10;
+				if( empty( $max_total ) || $max_total < 10 ) $max_total = 10;
 				
 				$graph_interation = ceil( $max_total / 20 );
 				//for bar guide
@@ -86,12 +78,12 @@ if( empty( $data['error'] ) ){
 					//echo date( "M d",$date_now )."<br>";
 					if( !empty( $items[ date( "Y-m-d", $date_now ) ] ) ){
 						$collection = $items[ date( "Y-m-d", $date_now ) ];						
-						foreach( $collection as $k => $v ){
+						foreach( $collection as $k => $v ){							
 							?>
 								<div class='bar-wrapper'>
 									<div class='bar' title='<?php echo $v; ?>' style='height:<?php echo ( $v/$max_total ) * 100; ?>%'>&nbsp;</div>
 									<div class='date'>
-										<?php echo date( "M d",$date_now )."<br>".$k;?>
+										<?php echo date( "M d",$date_now )."<br><span class='page_highlight'>".$k."</span>";?>
 									</div>
 								</div>
 							<?php
@@ -123,12 +115,21 @@ if( empty( $data['error'] ) ){
 ?>
 
 <style>
-.graph-wrapper{
+.page_highlight{
+	font-weight:bold;
+	color:red
+}
+
+.graph-wrapper{	
 	position:relative;
+	height:500px;
+	padding:10px 0 42px 0;
+	overflow:hidden;
 }
 
 .graph-wrapper .inner{
 	position:relative;
+	height:500px;
 	margin-left:20px;
 }
 
@@ -141,12 +142,11 @@ if( empty( $data['error'] ) ){
 }
 
 .graph-wrapper .inner .num-label > div{
-	position: absolute;
-    left: 0;
-    bottom: -5px;
-    width: 30px;    
-    background-color: #f9f9f9;
-    text-align: center;
+	position:absolute;
+	left:0;
+	bottom:-5px;
+	padding:0 5px;
+	background-color:#f9f9f9;
 }
 
 .graph-wrapper .inner .bar-wrapper{	
@@ -169,8 +169,7 @@ if( empty( $data['error'] ) ){
 	bottom:0;
 	width: 85%;
     margin-right: 15%;
-	background-color:blue;
-	cursor:pointer;
+	background-color:blue;	
 }
 
 .graph-wrapper .inner .bar-wrapper .date{

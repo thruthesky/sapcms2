@@ -9,12 +9,6 @@
 			'resign'=>'Resigned Users',
 			];
 			
-	//just text for date_by
-	$text =	[
-			'day'=>'Daily',
-			'week'=>'Weekly',
-			'month'=>'Monthly',
-			];
 ?>
 
 <?php include template('statistics.admin.user.menu'); ?>
@@ -44,23 +38,23 @@ if( empty( $data['error'] ) ){
 				
 				if( $data['list_type'] == 'updates' ){
 					$q = "created > $start_stamp AND created < $end_stamp AND action='updateUser'";
-					$q .= " GROUP BY floor( created / 86400 )";
-					$count_per_day = entity(USER_ACTIVITY_TABLE)->rows( $q, "floor( created/86400 ),count(*)" );		
+					$q .= " GROUP BY day( FROM_UNIXTIME( created ) ), month( FROM_UNIXTIME( created ) ), year( FROM_UNIXTIME( created ) )";//can only be used for days...
+					$count_per_day = entity(USER_ACTIVITY_TABLE)->rows( $q, "created,count(*)" );		
 				}
 				else if( $data['list_type'] == 'logins' ){
 					$q = "created > $start_stamp AND created < $end_stamp AND action='login'";
-					$q .= " GROUP BY floor( created / 86400 )";
-					$count_per_day = entity(USER_ACTIVITY_TABLE)->rows( $q, "floor( created/86400 ),count(*)" );		
+					$q .= " GROUP BY day( FROM_UNIXTIME( created ) ), month( FROM_UNIXTIME( created ) ), year( FROM_UNIXTIME( created ) )";//can only be used for days...
+					$count_per_day = entity(USER_ACTIVITY_TABLE)->rows( $q, "created,count(*)" );		
 				}
 				else if( $data['list_type'] == 'block' ) {
 					$q = "$data[list_type] > $start_stamp AND $data[list_type] <> 0";
-					$q .= " GROUP BY floor( created / 86400 )";
-					$count_per_day = user()->rows( $q, "floor( created/86400 ),count(*)" );		
+					$q .= " GROUP BY day( FROM_UNIXTIME( created ) ), month( FROM_UNIXTIME( created ) ), year( FROM_UNIXTIME( created ) )";//can only be used for days...
+					$count_per_day = user()->rows( $q, "created,count(*)" );		
 				}
 				else{						
 					$q = "$data[list_type] > $start_stamp AND $data[list_type] < $end_stamp";
-					$q .= " GROUP BY floor( created / 86400 )";
-					$count_per_day = user()->rows( $q, "floor( created/86400 ),count(*)" );		
+					$q .= " GROUP BY day( FROM_UNIXTIME( created ) ), month( FROM_UNIXTIME( created ) ), year( FROM_UNIXTIME( created ) )";//can only be used for days...
+					$count_per_day = user()->rows( $q, "created,count(*)" );		
 				}									
 
 				$items = [];				
@@ -70,7 +64,7 @@ if( empty( $data['error'] ) ){
 				if( !empty( $count_per_day ) ){	
 					foreach( $count_per_day as $arr ){
 						$arr = array_values( $arr );
-						 $items[ date( "Y-m-d",( $arr[0] * 86400 ) ) ] = $arr[1];					
+						 $items[ date( "Y-m-d", $arr[0] ) ] = $arr[1];					
 						 if( $highest < $arr[1] ) $highest = $arr[1];
 					}
 				}				

@@ -1,3 +1,9 @@
+<?			
+	//just text for date_by
+	$text =	[
+			'day'=>'daily',			
+			];	
+?>
 <form>
 	<input type='hidden' name='list_type' value='<?php echo $data['list_type'] ?>'>
 	<?php if( !empty( $data['group_by'] ) ) {?>
@@ -15,10 +21,6 @@
 			<option value='<?php echo $key?>' <?php if( $key == $data['show_by'] ) echo " selected" ?>><?php echo $value?></option>
 		<?php } ?>
 	</select>
-	
-	<?php if( $page == 'statistics.admin.post' ){ ?>
-		<input type='text' name='limit' value='<?php echo $data['limit']?>'>
-	<?php } ?>
 	
 	<input type='submit' value='submit'>
 </form>
