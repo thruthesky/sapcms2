@@ -35,9 +35,10 @@ if( empty( $data['error'] ) ){
 				
 				$q = "created > $start_stamp AND created < $end_stamp";	
 				if( !empty( $data['extra_query'] ) ) $q .= " $data[extra_query]";
-				$q .= " GROUP BY day( FROM_UNIXTIME( created ) ), month( FROM_UNIXTIME( created ) ), year( FROM_UNIXTIME( created ) )";//can only be used for days...
-				$count_per_day = entity(POST_DATA)->rows( $q, "created,count(*)" );														
-								
+				$q .= $data['sql_group_by'];		
+				$count_per_day = entity(POST_DATA)->rows( $q, "created,count(*)" );
+				//di( date( "r", 1441263980 ) );
+				//di( $count_per_day );exit;	
 				$items = [];				
 				$highest = 0;		
 				
@@ -45,8 +46,12 @@ if( empty( $data['error'] ) ){
 				if( !empty( $count_per_day ) ){	
 					foreach( $count_per_day as $arr ){
 						$arr = array_values( $arr );
-						 $items[ date( "Y-m-d",( $arr[0] ) ) ] = $arr[1];					
-						 if( $highest < $arr[1] ) $highest = $arr[1];
+						//temp
+						if( $data['date_guide'] == 'week' ) $date_index = "W".date( "W-Y", strtotime( "this week", $arr[0] ) );													
+						else $date_index = date( "$data[date_guide]",( $arr[0] ) );
+						
+						$items[ $date_index ] = $arr[1];
+						if( $highest < $arr[1] ) $highest = $arr[1];
 					}
 				}								
 				
@@ -73,7 +78,10 @@ if( empty( $data['error'] ) ){
 				$date_now = $start_stamp;
 				for( $i = 0; $i <= $data['difference']['day']; $i++ ){
 					//echo date( "M d",$date_now )."<br>";
-					if( !empty( $items[ date( "Y-m-d", $date_now ) ] ) ) $count = $items[ date( "Y-m-d", $date_now ) ];
+					if( $data['date_guide'] == 'week' ) $date_index = "W".date( "W-Y", strtotime( "this week", $date_now ) );													
+					else $date_index = date( "$data[date_guide]",( $date_now ) );
+					
+					if( !empty( $items[ $date_index ] ) ) $count = $items[ $date_index ];
 					else $count = 0;
 					
 					$url = "?list_type=$data[list_type]&date_from=".date( "Y-m-d",$date_now )."&date_to=".date( "Y-m-d",$date_now );
@@ -91,7 +99,7 @@ if( empty( $data['error'] ) ){
 				?>			
 				
 				<?php 
-					$date_now = strtotime( date( "Y-m-d",$date_now )." +1 day" );	
+					$date_now = strtotime( date( "Y-m-d",$date_now )." +1 $data[show_by]" );	
 				}
 									
 				?>

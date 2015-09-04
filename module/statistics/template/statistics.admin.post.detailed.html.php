@@ -33,12 +33,12 @@ if( empty( $data['error'] ) ){
 				
 				
 				//getting max_total, graph interation
-				$start_stamp = $data['date_from_stamp']['day'];
-				$end_stamp = $data['date_to_stamp']['day'] + 86399;				
+				$start_stamp = $data['date_from_stamp'][$data['show_by']];
+				$end_stamp = $data['date_to_stamp'][$data['show_by']];			
 
 				$q = "created > $start_stamp AND created < $end_stamp";	
 				if( !empty( $data['extra_query'] ) ) $q .= " $data[extra_query]";
-				$q .= " GROUP BY day( FROM_UNIXTIME( created ) ), month( FROM_UNIXTIME( created ) ), year( FROM_UNIXTIME( created ) ),$group_by";//can only be used for days...
+				$q .= $data['sql_group_by'].",$group_by";
 
 				$count_per_day = entity(POST_DATA)->rows( $q, "created,$group_by,count(*)" );										
 			
@@ -48,10 +48,16 @@ if( empty( $data['error'] ) ){
 				if( !empty( $count_per_day ) ){
 					foreach( $count_per_day as $arr ){
 						$arr = array_values( $arr );
-						 $items[ date( "Y-m-d", $arr[0] ) ][$arr[1]] = $arr[2];					
-						 if( $highest < $arr[2] ) $highest = $arr[2];
+						
+						if( $data['date_guide'] == 'week' ) $date_index = "W".date( "W-Y", strtotime( "this week", $arr[0] ) );													
+						else $date_index = date( "$data[date_guide]",( $arr[0] ) );
+						
+						$items[ $date_index ][$arr[1]] = $arr[2];					
+						if( $highest < $arr[2] ) $highest = $arr[2];
 					}
 				}
+				//di( $items );
+				//exit;
 				$max_total_iteration = 1;
 				$temp_i = $highest;
 				while( $temp_i > 10 ){
@@ -73,11 +79,14 @@ if( empty( $data['error'] ) ){
 				<?php
 		
 				$date_now = $start_stamp;
-				for( $i = 0; $i <= $data['difference']['day']; $i++ ){
+				for( $i = 0; $i <= $data['difference'][$data['show_by']]; $i++ ){
 					$collection = "";
 					//echo date( "M d",$date_now )."<br>";
-					if( !empty( $items[ date( "Y-m-d", $date_now ) ] ) ){
-						$collection = $items[ date( "Y-m-d", $date_now ) ];						
+					if( $data['date_guide'] == 'week' ) $date_index = "W".date( "W-Y", strtotime( "this week", $date_now ) );													
+					else $date_index = date( "$data[date_guide]",( $date_now ) );
+					
+					if( !empty( $items[ $date_index ] ) ){
+						$collection = $items[ $date_index ];						
 						foreach( $collection as $k => $v ){							
 							?>
 								<div class='bar-wrapper'>
@@ -103,7 +112,7 @@ if( empty( $data['error'] ) ){
 				?>			
 				
 				<?php 
-					$date_now = strtotime( date( "Y-m-d",$date_now )." +1 day" );	
+					$date_now = strtotime( date( "Y-m-d",$date_now )." +1 $data[show_by]" );	
 				}
 									
 				?>
