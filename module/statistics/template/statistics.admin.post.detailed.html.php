@@ -1,6 +1,4 @@
 <?php
-	//echo strtotime( "2015/08/02" );exit;
-
 	extract( $variables );	
 		
 	//just for page title
@@ -24,39 +22,42 @@ if( empty( $data['error'] ) ){
 			<?php
 				//just for title...
 				echo $list[$data['list_type']];
+				if( !empty($data['group_by'])  ) echo " grouped by <span class='page_highlight'>".$data['group_by']."</span>";
 			?>
 		</h2>
 		<div class='graph-wrapper'>
 			<div class='inner'>
-				<?php			
+				<?php
+				if( empty( $data['group_by'] ) ) $group_by = $data['list_type'];
+				else $group_by = $data['group_by'];
+				
+				
 				//getting max_total, graph interation
 				$start_stamp = $data['date_from_stamp'][$data['show_by']];
-				$end_stamp = $data['date_to_stamp'][$data['show_by']];
-				
+				$end_stamp = $data['date_to_stamp'][$data['show_by']];			
+
 				$q = "created > $start_stamp AND created < $end_stamp";	
 				if( !empty( $data['extra_query'] ) ) $q .= " $data[extra_query]";
-				$q .= $data['sql_group_by'];		
-								
-				$count_per_day = entity(POST_DATA)->rows( $q, "created,count(*)" );
-								
-				//di( date( "r", 1441263980 ) );
-				//di( $count_per_day );exit;	
-				$items = [];				
-				$highest = 0;		
+				$q .= $data['sql_group_by'].",$group_by";
 				
-				//0=day,1=count
-				if( !empty( $count_per_day ) ){	
+				$count_per_day = entity(POST_DATA)->rows( $q, "created,$group_by,count(*)" );	
+
+				//0=day,1=idx_parent,2=count
+				$items = [];			
+				$highest = 0;	
+				if( !empty( $count_per_day ) ){
 					foreach( $count_per_day as $arr ){
 						$arr = array_values( $arr );
-						//temp
+						
 						if( $data['date_guide'] == 'week' ) $date_index = "W".date( "W-Y", strtotime( "this week", $arr[0] ) );													
 						else $date_index = date( "$data[date_guide]",( $arr[0] ) );
 						
-						$items[ $date_index ] = $arr[1];
-						if( $highest < $arr[1] ) $highest = $arr[1];
+						$items[ $date_index ][$arr[1]] = $arr[2];					
+						if( $highest < $arr[2] ) $highest = $arr[2];
 					}
-				}								
-				
+				}
+				//di( $items );
+				//exit;
 				$max_total_iteration = 1;
 				$temp_i = $highest;
 				while( $temp_i > 10 ){
@@ -65,7 +66,7 @@ if( empty( $data['error'] ) ){
 				}
 				
 				$max_total = ceil( $highest/$max_total_iteration ) * $max_total_iteration;
-				if( empty( $max_total ) ) $max_total = 10;
+				if( empty( $max_total ) || $max_total < 10 ) $max_total = 10;
 				
 				$graph_interation = ceil( $max_total / 20 );
 				//for bar guide
@@ -79,25 +80,35 @@ if( empty( $data['error'] ) ){
 		
 				$date_now = $start_stamp;
 				for( $i = 0; $i <= $data['difference'][$data['show_by']]; $i++ ){
+					$collection = "";
 					//echo date( "M d",$date_now )."<br>";
 					if( $data['date_guide'] == 'week' ) $date_index = "W".date( "W-Y", strtotime( "this week", $date_now ) );													
 					else $date_index = date( "$data[date_guide]",( $date_now ) );
 					
-					if( !empty( $items[ $date_index ] ) ) $count = $items[ $date_index ];
-					else $count = 0;
+					if( !empty( $items[ $date_index ] ) ){
+						$collection = $items[ $date_index ];						
+						foreach( $collection as $k => $v ){							
+							?>
+								<div class='bar-wrapper'>
+									<div class='bar' title='<?php echo $v; ?>' style='height:<?php echo ( $v/$max_total ) * 100; ?>%'>&nbsp;</div>
+									<div class='date'>
+										<?php echo date( "M d",$date_now )."<br><span class='page_highlight'>".$k."</span>";?>
+									</div>
+								</div>
+							<?php
+						}
+					}
 					
-					$url = "?list_type=$data[list_type]&date_from=".date( "Y-m-d",$date_now )."&date_to=".date( "Y-m-d",$date_now )."&show_by=".$data['show_by'];
+					if( empty( $collection ) ){						
 						?>
-							<div class='bar-wrapper<?php if( $count > 0 ) echo " has-value"; ?>'>
-								<div class='bar' title='<?php echo $count; ?>' style='height:<?php echo ( $count/$max_total ) * 100; ?>%'>&nbsp;</div>
-								<div class='date'>	
-									<?php echo date( "M d",$date_now );?><br>
-									<a href='<?php echo $url."&group_by=idx_user"; ?>' target='_blank'>U</a>
-									<a href='<?php echo $url."&group_by=idx_config"; ?>' target='_blank'>C</a>
+							<div class='bar-wrapper'>
+								<div class='bar' title='0' style='height:0'>&nbsp;</div>
+								<div class='date'>
+									<?php echo date( "M d",$date_now )."<br>&nbsp;";?>
 								</div>
 							</div>
 						<?php
-									
+					}
 				?>			
 				
 				<?php 
@@ -113,6 +124,11 @@ if( empty( $data['error'] ) ){
 ?>
 
 <style>
+.page_highlight{
+	font-weight:bold;
+	color:red
+}
+
 .graph-wrapper{	
 	position:relative;
 	height:500px;
@@ -123,12 +139,12 @@ if( empty( $data['error'] ) ){
 .graph-wrapper .inner{
 	position:relative;
 	height:500px;
-	margin-left:20px;
+	margin-left:30px;
 }
 
 .graph-wrapper .inner .num-label{
 	position:absolute;
-	left:-20px;
+	left:-30px;
 	width:100%;
 	border-bottom:1px solid #d5d5d5;
 	font-size:.7em;
@@ -138,8 +154,9 @@ if( empty( $data['error'] ) ){
 	position:absolute;
 	left:0;
 	bottom:-5px;
-	padding:0 5px;
+	width:23px;	
 	background-color:#f9f9f9;
+	text-align:center;
 }
 
 .graph-wrapper .inner .bar-wrapper{	
@@ -152,10 +169,6 @@ if( empty( $data['error'] ) ){
 	text-align:center;
 }
 
-.graph-wrapper .inner .bar-wrapper.has-value .bar{	
-	min-height:1px;
-}
-
 .graph-wrapper .inner .bar-wrapper.label{	
 	width:25px;
 }
@@ -166,8 +179,7 @@ if( empty( $data['error'] ) ){
 	bottom:0;
 	width: 85%;
     margin-right: 15%;
-	background-color:blue;
-	cursor:pointer;
+	background-color:blue;	
 }
 
 .graph-wrapper .inner .bar-wrapper .date{
@@ -175,6 +187,5 @@ if( empty( $data['error'] ) ){
 	left:0;
 	bottom:-42px;
 	width:80%;
-	z-index:1;
 }
 </style>

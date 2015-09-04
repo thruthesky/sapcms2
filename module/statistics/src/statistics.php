@@ -36,12 +36,12 @@ class Statistics {
 		if( empty( $input['list_type'] ) ) $data['list_type'] = 'created';//default
 		else $data['list_type'] = $input['list_type'];
 		
-		if( $data['list_type'] == 'idx_root' ) $data['extra_query'] = " AND idx_parent > 0";
-		else if( $data['list_type'] == 'idx_user' ) $data['extra_query'] = " AND idx_parent = 0";
-		else if( $data['list_type'] == 'idx_config' ) $data['extra_query'] = " AND idx_parent = 0";
+		if( $data['list_type'] == 'comment' ) $data['extra_query'] = " AND idx_parent > 0";
+		else if( $data['list_type'] == 'post' ) $data['extra_query'] = " AND idx_parent = 0";
+		//else if( $data['list_type'] == 'idx_config' ) $data['extra_query'] = " AND idx_parent = 0";
 		
-		if( !empty( $input['limit'] ) ) $data['limit'] = $input['limit'];
-		else $data['limit'] = 10;
+		/*if( !empty( $input['limit'] ) ) $data['limit'] = $input['limit'];
+		else $data['limit'] = 10;*/
 		
 		if( !empty( $input['group_by'] ) ) $data['group_by'] = $input['group_by'];		
 		
@@ -106,7 +106,8 @@ class Statistics {
 			$data['date_from'] = $input['date_from'];
 		}
 		else {
-			$date_from_stamp = strtotime( "today" );
+			//$date_from_stamp = strtotime( "today" );
+			$date_from_stamp = strtotime( "this week",strtotime( "today" ) );//by default show first day of the week
 			$data['date_from'] = date( "Y-m-d", $date_from_stamp );			
 		}
 		
@@ -116,7 +117,8 @@ class Statistics {
 			$data['date_to'] = $input['date_to'];
 		}
 		else{
-			$date_to_stamp = strtotime( "today" );
+			//$date_to_stamp = strtotime( "today" );
+			$date_to_stamp = strtotime( date( "Y-m-d", $date_from_stamp )." +1 week" ) - 1;//by default show last day of the week
 			$data['date_to'] = date( "Y-m-d", $date_to_stamp );			
 		}		
 		
@@ -128,7 +130,7 @@ class Statistics {
 		}
 		else{
 			if( empty( $input['show_by'] ) ){
-				$data['show_by'] = '';
+				$data['show_by'] = 'day';
 			}
 			else {
 				$data['show_by'] = $input['show_by']; 
@@ -149,16 +151,24 @@ class Statistics {
 			//automatically show ALL if show_by is empty
 			if( $data['show_by'] == '' || $data['show_by'] == 'day'  ){
 				$data['date_from_stamp']['day'] = $date_from_stamp;
-				$data['date_to_stamp']['day'] = $date_to_stamp;
+				$data['date_to_stamp']['day'] = strtotime( date( "Y-m-d",$date_to_stamp )." +1 day" ) - 1;//needs more test
+				$data['sql_group_by'] = " GROUP BY day( FROM_UNIXTIME( created ) )";
+				$data['date_guide'] = "Y-m-d";
 			}
 			if( $data['show_by'] == '' || $data['show_by'] == 'week'  ){
 				$data['date_from_stamp']['week'] = strtotime( "this week", $date_from_stamp );				
-				$data['date_to_stamp']['week'] = strtotime( "this week", $date_to_stamp );	
+				//$data['date_to_stamp']['week'] = strtotime( "this week", $date_to_stamp );				
+				$data['date_to_stamp']['week'] = strtotime( date( "Y-m-d",strtotime( "this week", $date_to_stamp ) )." +1 week" ) - 1;//needs more test
+				$data['sql_group_by'] = " GROUP BY week( FROM_UNIXTIME( created ) )";
+				$data['date_guide'] = "week";
 			}
 			
 			if( $data['show_by'] == '' || $data['show_by'] == 'month'  ){
 				$data['date_from_stamp']['month'] = strtotime( date('Y-m-1',$date_from_stamp) );				
-				$data['date_to_stamp']['month'] = strtotime( date('Y-m-1',$date_to_stamp) );
+				//$data['date_to_stamp']['month'] = strtotime( date('Y-m-1',$date_to_stamp) );
+				$data['date_to_stamp']['month'] = strtotime( date( "Y-m-1",$date_to_stamp )." +1 month" ) - 1;//needs more test
+				$data['sql_group_by'] = " GROUP BY month( FROM_UNIXTIME( created ) )";
+				$data['date_guide'] = "Y-m";
 			}
 		}	
 		
@@ -168,7 +178,6 @@ class Statistics {
 	
 	private static function adminUserStatisticsTemplate( $data )
     {
-
        return Response::renderSystemLayout([
             'template'=>'statistics.layout',
             'page'=>'statistics.admin.user',
@@ -178,9 +187,13 @@ class Statistics {
 	
 	private static function adminPostStatisticsTemplate( $data )
     {			
+	
+		if( empty( $data['group_by'] ) ) $page = 'statistics.admin.post';
+		else $page = 'statistics.admin.post.detailed';
+	
        return Response::renderSystemLayout([
             'template'=>'statistics.layout',
-            'page'=>'statistics.admin.post',
+            'page'=>$page,
             'data'=>$data,
         ]);
     }
