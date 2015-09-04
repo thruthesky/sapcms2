@@ -106,7 +106,8 @@ class Statistics {
 			$data['date_from'] = $input['date_from'];
 		}
 		else {
-			$date_from_stamp = strtotime( "today" );
+			//$date_from_stamp = strtotime( "today" );
+			$date_from_stamp = strtotime( "this week",strtotime( "today" ) );//by default show first day of the week
 			$data['date_from'] = date( "Y-m-d", $date_from_stamp );			
 		}
 		
@@ -116,7 +117,8 @@ class Statistics {
 			$data['date_to'] = $input['date_to'];
 		}
 		else{
-			$date_to_stamp = strtotime( "today" );
+			//$date_to_stamp = strtotime( "today" );
+			$date_to_stamp = strtotime( date( "Y-m-d", $date_from_stamp )." +1 week" ) - 1;//by default show last day of the week
 			$data['date_to'] = date( "Y-m-d", $date_to_stamp );			
 		}		
 		
