@@ -36,9 +36,9 @@ class Statistics {
 		if( empty( $input['list_type'] ) ) $data['list_type'] = 'created';//default
 		else $data['list_type'] = $input['list_type'];
 		
-		if( $data['list_type'] == 'idx_root' ) $data['extra_query'] = " AND idx_parent > 0";
-		else if( $data['list_type'] == 'idx_user' ) $data['extra_query'] = " AND idx_parent = 0";
-		else if( $data['list_type'] == 'idx_config' ) $data['extra_query'] = " AND idx_parent = 0";
+		if( $data['list_type'] == 'comment' ) $data['extra_query'] = " AND idx_parent > 0";
+		else if( $data['list_type'] == 'post' ) $data['extra_query'] = " AND idx_parent = 0";
+		//else if( $data['list_type'] == 'idx_config' ) $data['extra_query'] = " AND idx_parent = 0";
 		
 		if( !empty( $input['limit'] ) ) $data['limit'] = $input['limit'];
 		else $data['limit'] = 10;
@@ -128,7 +128,7 @@ class Statistics {
 		}
 		else{
 			if( empty( $input['show_by'] ) ){
-				$data['show_by'] = '';
+				$data['show_by'] = 'day';
 			}
 			else {
 				$data['show_by'] = $input['show_by']; 
@@ -168,7 +168,6 @@ class Statistics {
 	
 	private static function adminUserStatisticsTemplate( $data )
     {
-
        return Response::renderSystemLayout([
             'template'=>'statistics.layout',
             'page'=>'statistics.admin.user',
@@ -178,9 +177,13 @@ class Statistics {
 	
 	private static function adminPostStatisticsTemplate( $data )
     {			
+	
+		if( empty( $data['group_by'] ) ) $page = 'statistics.admin.post';
+		else $page = 'statistics.admin.post.detailed';
+	
        return Response::renderSystemLayout([
             'template'=>'statistics.layout',
-            'page'=>'statistics.admin.post',
+            'page'=>$page,
             'data'=>$data,
         ]);
     }

@@ -30,33 +30,44 @@ if( empty( $data['error'] ) ){
 			<?php
 				//just for title...
 				echo $list[$data['list_type']];
+				if( !empty($data['group_by'])  ) echo " grouped by ".$data['group_by'];
 			?>
 		</h2>
 		<div class='graph-wrapper'>
 			<div class='inner'>
-				<?php			
+				<?php
+				if( empty( $data['group_by'] ) ) $group_by = $data['list_type'];
+				else $group_by = $data['group_by'];
+				
+				
 				//getting max_total, graph interation
 				$start_stamp = $data['date_from_stamp']['day'];
 				$end_stamp = $data['date_to_stamp']['day'] + 86399;				
 
 				$q = "created > $start_stamp AND created < $end_stamp";	
 				if( !empty( $data['extra_query'] ) ) $q .= " $data[extra_query]";
-				$q .= " GROUP BY floor( created / 86400 )";//can only be used for days...
-				$count_per_day = entity(POST_DATA)->rows( $q, "floor( created/86400 ),count(*)" );										
-				
-				$items = [];				
-				$highest = 0;		
-				
-				//0=day,1=count
-				if( !empty( $count_per_day ) ){	
+				$q .= " GROUP BY floor( created / 86400 ), $group_by";//can only be used for days...
+
+				$count_per_day = entity(POST_DATA)->rows( $q, "floor( created/86400 ),$group_by,count(*)" );										
+			
+				//0=day,1=idx_parent,2=count
+				$items = [];			
+				$highest = 0;	
+				if( !empty( $count_per_day ) ){
 					foreach( $count_per_day as $arr ){
 						$arr = array_values( $arr );
-						 $items[ date( "Y-m-d",( $arr[0] * 86400 ) ) ] = $arr[1];					
-						 if( $highest < $arr[1] ) $highest = $arr[1];
+						 $items[ date( "Y-m-d",( $arr[0] * 86400 ) ) ][$arr[1]] = $arr[2];					
+						 if( $highest < $arr[2] ) $highest = $arr[2];
 					}
 				}
-				$max_total = ceil( $highest/10 ) * 10;
+				$max_total_iteration = 1;
+				$temp_i = $highest;
+				while( $temp_i > 10 ){
+					$max_total_iteration *= 10;
+					$temp_i = $temp_i/10;										
+				}
 				
+				$max_total = ceil( $highest/$max_total_iteration ) * $max_total_iteration;
 				if( empty( $max_total ) ) $max_total = 10;
 				
 				$graph_interation = ceil( $max_total / 20 );
@@ -71,18 +82,32 @@ if( empty( $data['error'] ) ){
 		
 				$date_now = $start_stamp;
 				for( $i = 0; $i <= $data['difference']['day']; $i++ ){
+					$collection = "";
 					//echo date( "M d",$date_now )."<br>";
-					if( !empty( $items[ date( "Y-m-d", $date_now ) ] ) ) $count = $items[ date( "Y-m-d", $date_now ) ];
-					else $count = 0;
+					if( !empty( $items[ date( "Y-m-d", $date_now ) ] ) ){
+						$collection = $items[ date( "Y-m-d", $date_now ) ];						
+						foreach( $collection as $k => $v ){
+							?>
+								<div class='bar-wrapper'>
+									<div class='bar' title='<?php echo $v; ?>' style='height:<?php echo ( $v/$max_total ) * 100; ?>%'>&nbsp;</div>
+									<div class='date'>
+										<?php echo date( "M d",$date_now )."<br>".$k;?>
+									</div>
+								</div>
+							<?php
+						}
+					}
+					
+					if( empty( $collection ) ){						
 						?>
 							<div class='bar-wrapper'>
-								<div class='bar' title='<?php echo $count; ?>' style='height:<?php echo ( $count/$max_total ) * 100; ?>%'>&nbsp;</div>
+								<div class='bar' title='0' style='height:0'>&nbsp;</div>
 								<div class='date'>
-									<?php echo date( "M d",$date_now );?>
+									<?php echo date( "M d",$date_now )."<br>&nbsp;";?>
 								</div>
 							</div>
 						<?php
-									
+					}
 				?>			
 				
 				<?php 
@@ -116,11 +141,12 @@ if( empty( $data['error'] ) ){
 }
 
 .graph-wrapper .inner .num-label > div{
-	position:absolute;
-	left:0;
-	bottom:-5px;
-	padding:0 5px;
-	background-color:#f9f9f9;
+	position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 30px;    
+    background-color: #f9f9f9;
+    text-align: center;
 }
 
 .graph-wrapper .inner .bar-wrapper{	
@@ -150,7 +176,7 @@ if( empty( $data['error'] ) ){
 .graph-wrapper .inner .bar-wrapper .date{
 	position:absolute;
 	left:0;
-	bottom:-32px;
+	bottom:-42px;
 	width:80%;
 }
 </style>
