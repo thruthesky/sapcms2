@@ -38,7 +38,7 @@ if( empty( $data['error'] ) ){
 
 				$q = "created > $start_stamp AND created < $end_stamp";	
 				if( !empty( $data['extra_query'] ) ) $q .= " $data[extra_query]";
-				$q .= " GROUP BY day( FROM_UNIXTIME( created ) ), month( FROM_UNIXTIME( created ) ), year( FROM_UNIXTIME( created ) )";//can only be used for days...
+				$q .= " GROUP BY day( FROM_UNIXTIME( created ) ), month( FROM_UNIXTIME( created ) ), year( FROM_UNIXTIME( created ) ),$group_by";//can only be used for days...
 
 				$count_per_day = entity(POST_DATA)->rows( $q, "created,$group_by,count(*)" );										
 			
