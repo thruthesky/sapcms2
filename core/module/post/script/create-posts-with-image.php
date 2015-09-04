@@ -1,5 +1,5 @@
 <?php
-$id = "test-forum-with-photo";
+$id = "test";
 if ( ! $config = post_config($id) ) {
     $config = post_config()->set('id', $id)->set('name', 'Test Forum With Photo')->save();
 }
@@ -36,19 +36,6 @@ As Yahoo Global News Anchor, Couric anchors live events and conducts groundbreak
 ];
 $post = post_data()->newPost($option);
 $data = $post->attachFile(PATH_INSTALL . "/tmp/woman.jpg");
-
-
-$option = [
-    'idx_config' => $config->get('idx'),
-    'title'=>"Fan Bingbing made $21 million last year: Who is she?",
-    'content' => "Forbes’ has released its list of the top paid actresses in 2015 and for the most part its pretty standard. Jennifer Lawrence, aka America’s sweetheart, came in first, followed by Scarlett Johansson and Melissa McCarthy. The fourth highest paid actress, however, is a surprise. Fan Bingbing, a 33 year-old Chinese actress, producer and singer, has earned $21 million pre-tax over the past 12 months.
-Americans might recognize Fan from her small role in X-Men: Days of Future Past, but for the most part her earnings come from China’s growing national film market. Fan is so successful in her home country that Barbie recently released a doll modeled after her in Shanghai.
-So who is Fan Bingbing and how did she make more money than Jennifer Aniston, Angelina Jolie and Meryl Streep last year?",
-];
-$post = post_data()->newPost($option);
-$data = $post->attachFile(PATH_INSTALL . "/tmp/fan1.jpg");
-$data = $post->attachFile(PATH_INSTALL . "/tmp/fan2.jpg");
-$data = $post->attachFile(PATH_INSTALL . "/tmp/fan3.jpg");
 
 
 
@@ -128,5 +115,35 @@ And who can really blame them? Most stars work hard to sculpt their tight, toned
 ];
 $post = post_data()->newPost($option);
 $data = $post->attachFile(PATH_INSTALL . "/tmp/girl.jpg");
+
+
+
+
+
+$option = [
+    'idx_config' => $config->get('idx'),
+    'title'=>"Three birds wants to fly.",
+    'content' => "Over the world, Over the sea, Over the mountain. Wild and risque fashion choices are a given at MTV’s Video Music Awards, and this year’s were no exception. Miley Cyrus, Nicki Minaj, Britney Spears, and others hit the red carpet showing plenty of skin (and in Miley’s case, not much else).
+And who can really blame them? Most stars work hard to sculpt their tight, toned physiques. So we rounded up some of the fittest celebs at this year’s VMAs — plus the insider scoop on the stars’ hot-body secrets. In no particular order…",
+];
+$post = post_data()->newPost($option);
+$data = $post->attachFile(PATH_INSTALL . "/tmp/b1.jpg");
+$data = $post->attachFile(PATH_INSTALL . "/tmp/b2.jpg");
+$data = $post->attachFile(PATH_INSTALL . "/tmp/b3.jpg");
+
+
+
+
+$option = [
+    'idx_config' => $config->get('idx'),
+    'title'=>"Fan Bingbing made $21 million last year: Who is she?",
+    'content' => "Forbes’ has released its list of the top paid actresses in 2015 and for the most part its pretty standard. Jennifer Lawrence, aka America’s sweetheart, came in first, followed by Scarlett Johansson and Melissa McCarthy. The fourth highest paid actress, however, is a surprise. Fan Bingbing, a 33 year-old Chinese actress, producer and singer, has earned $21 million pre-tax over the past 12 months.
+Americans might recognize Fan from her small role in X-Men: Days of Future Past, but for the most part her earnings come from China’s growing national film market. Fan is so successful in her home country that Barbie recently released a doll modeled after her in Shanghai.
+So who is Fan Bingbing and how did she make more money than Jennifer Aniston, Angelina Jolie and Meryl Streep last year?",
+];
+$post = post_data()->newPost($option);
+$data = $post->attachFile(PATH_INSTALL . "/tmp/fan1.jpg");
+$data = $post->attachFile(PATH_INSTALL . "/tmp/fan2.jpg");
+$data = $post->attachFile(PATH_INSTALL . "/tmp/fan3.jpg");
 
 

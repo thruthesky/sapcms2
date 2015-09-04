@@ -776,9 +776,33 @@ class post {
         }
         $conds[] = "mime LIKE 'image%'";
         $cond = implode(" AND ", $conds);
-        return data()->query("$cond ORDER BY idx_target DESC, created ASC");
-
+        return data()->query("$cond ORDER BY idx_target DESC, idx ASC");
     }
+
+    /**
+     *
+     * Returns Data Entity objects of the first uploaded image on each post.
+     *
+     * @param int $num - How many post you want to look for.
+     * @param null $config_name - Forum configuration idx
+     * @return array|bool
+     */
+    public function getImagesOfLatestPosts($num=10, $config_name=null) {
+        $conds = ["module='post'"];
+        if ( $config_name ) {
+            $config = post_config($config_name);
+            if ( empty($config) ) return FALSE;
+            $idx_config = $config->get('idx');
+            $conds[] = "type=$idx_config";
+        }
+        $conds[] = "mime LIKE 'image%'";
+        $cond = implode(" AND ", $conds);
+        return data()->files("$cond GROUP BY idx_target ORDER BY idx_target DESC, idx ASC LIMIT $num");
+    }
+
+
+
+
 
     /**
      *

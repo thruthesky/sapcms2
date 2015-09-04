@@ -3,22 +3,20 @@
 //$file = post()->data()->files();
 //$src = $file->url();
 
-$src = post()->getLatestPostImage()->urlThumbnail(400, 200);
+$src_top_banner = post()->getLatestPostImage()->urlThumbnail(400, 200);
+
+$items = null;
+$images = post()->getImagesOfLatestPosts(5, 'test');
+if ( $images ) {
+    foreach ( $images as $image ) {
+        $src = $image->urlThumbnail(180,180);
+        $items .= "<img src='$src'>";
+    }
+}
 
 ?>
 
-<img src="<?php echo $src?>" style="width:100%;">
-
-    <a href="/post">POST</a>
-    <br>
-
-    <?php echo date('r'); ?>
-
-
+<img src="<?php echo $src_top_banner ?>" style="width:100%;">
+<?php echo $items ?>
     <?php widget('login-box'); ?>
-
-    Number of users: <?php echo user_count() ?>
-
-    <?php echo beautify(systeminfo())?>
-
 
