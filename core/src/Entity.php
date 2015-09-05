@@ -235,6 +235,11 @@ class Entity {
      * @param $field - if $value is empty, it is "idx"
      * @param null $value
      * @return $this
+     *
+     * @code
+     *  entity($table)->which('gender', 'G')->set('gender', 'M')->save();
+     * @endcode
+     * @see test files.
      */
     public function which($field, $value=null) {
         $this->which = true;
@@ -555,6 +560,23 @@ class Entity {
         $idx = Database::load()->result($this->table(), 'idx', $cond);
         if ( $idx ) return $this->load($idx);
         else return FALSE;
+    }
+
+    /**
+     * Returns multiple entities of $cond
+     *      - the idea of this method is the same as query(). but this returns multiple entities.
+     * @param $cond
+     * @return array
+     */
+    public function queries($cond=null) {
+        $objects = [];
+        $rows = Database::load()->rows($this->table,$cond,'idx');
+        if ( $rows ) {
+            foreach($rows as $row) {
+                $objects[] = post_data($row['idx']);
+            }
+        }
+        return $objects;
     }
 
     /**

@@ -90,6 +90,10 @@ class Meta extends Entity {
      * @Attention it does not memory cache since load() is cached in parent object already.
      *
      *
+     * @code
+     * echo meta('x')->value('a') . PHP_EOL;
+     * @endcode
+     * @see test file
      *
      */
     final public function value($code)

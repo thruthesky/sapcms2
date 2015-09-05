@@ -13,7 +13,8 @@ add_css();
 $files = data()->loadBy('post', post_data($idx)->config('idx'), $idx);
 if ( empty($files) ) return;
 ?>
+<section role="files">
     <div class="display-files">
         <?php display_files($files); ?>
     </div>
-<?php
+</section>

@@ -89,3 +89,7 @@ post_data()->newPost([
     'title'             => "Welcome to QnA Forum",
     'content'           => "This is QnA forum."
 ]);
+
+
+post_vote_history()
+    ->createTable();

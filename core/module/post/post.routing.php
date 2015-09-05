@@ -41,3 +41,8 @@ route('/post/data/delete/*', 'post\\post\\postDataDelete');
 
 
 route('/post/search', 'post\\post\\searchPostData');
+
+
+
+route('/post/vote/good/*', 'post\\post\\voteGood');
+route('/post/vote/bad/*', 'post\\post\\voteBad');

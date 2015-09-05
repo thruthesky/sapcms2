@@ -74,9 +74,40 @@ class PostData extends Entity {
     private static function getTitleOrContent(array & $post)
     {
         if ( ! empty($post['title']) ) return $post['title'];
-        else if ( ! empty($post['content']) ) return strcut($post['content'], 128);
+        else if ( ! empty($post['content_stripped']) ) return strcut($post['content_stripped'], 128);
         else return null;
     }
+
+    /**
+     * Returns title of the post.
+     *  - if the title is empty, it returns part of content.
+     * @param int $length
+     * @return null|string
+     */
+    public function getTitle($length=256) {
+        $post = $this->get();
+        $title = self::getTitleOrContent($post);
+        if ( $title ) return strcut($title, $length);
+        else return null;
+    }
+
+
+    /**
+     * Returns beginning part of content as in HTML Tag stripped.
+     *
+     * @param int $length
+     * @return null|string
+     */
+    public function getDescription($length=256) {
+        $content = $this->get('content_stripped');
+        if ( ! empty($content) ) return strcut($content, $length);
+        else return null;
+    }
+
+    public function url() {
+        return url_post_view($this);
+    }
+
 
 
 
@@ -220,9 +251,14 @@ class PostData extends Entity {
         }
 
 
-        // set idx_root into the object(memory)
+
+
         $up = ['idx_root'=>$idx_root, 'depth'=>$depth];
+
+        // To only set a few fields. Not whole fields.
         post_data()->which($data->get('idx'))->set($up)->save();
+
+        // set idx_root into the object(memory)
         $data->set('idx_root', $idx_root);
 
 
@@ -260,6 +296,16 @@ class PostData extends Entity {
             }
             //system_log($up);
             post_data()->which($data->get('idx'))->set('order_list', $new_order_list)->save();
+        }
+
+
+        /**
+         * Sets no_comment on $idx_root
+         */
+        if ( $parent ) {
+            $no_comment = post_data()->countComment($idx_root);
+            post_data()->which($idx_root)->set('no_comment', $no_comment)->save();
+            post_data($idx_root)->set('no_comment', $no_comment)->save();
         }
 
         self::setCurrent($data);
@@ -628,6 +674,23 @@ class PostData extends Entity {
         if ($form_name) $conds[] = "form_name='$form_name'";
         $cond = implode(" AND ", $conds);
         return data()->files("$cond ORDER BY idx ASC");
+    }
+
+
+    /**
+     *
+     * Returns value of a post or comment.
+     *
+     * @note Use this methods if you do not want to load the whole record from database.
+     *
+     *      - It will only read a field.
+     *
+     * @param $idx
+     * @param $field
+     * @return mixed
+     */
+    public function field($idx, $field) {
+        return $this->result($field, "idx=$idx");
     }
 
 }

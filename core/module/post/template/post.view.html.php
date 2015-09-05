@@ -4,13 +4,13 @@ add_javascript();
 
 ?>
 <div class="view">
-    <h3 class='title'><?php widget('post_view_title', $variables)?></h3>
-    <nav class=""><?php widget('post_view_menu', $variables)?></nav>
-
-    <section class="content"><?php widget('post_view_content', ['post'=>post_data()->getCurrent()->getFields()])?></section>
-    <section role="files"><?php widget('post_display_files', ['idx'=>post_data()->getCurrent()->get('idx')])?></section>
-    <section class="comment-form"><?php widget('post_view_comment_form', ['post'=>post_data()->getCurrent()->get()])?></section>
-    <section class="comment-list"><?php widget('post_view_comment_list')?></section>
+    <?php widget('post_view_title', $variables)?>
+    <?php widget('post_view_menu', $variables)?>
+    <?php widget('post_view_vote', ['post'=>post_data()->getCurrent()->get()])?>
+    <?php widget('post_view_content', ['post'=>post_data()->getCurrent()->getFields()])?>
+    <?php widget('post_display_files', ['idx'=>post_data()->getCurrent()->get('idx')])?>
+    <?php widget('post_view_comment_form', ['post'=>post_data()->getCurrent()->get()])?>
+    <?php widget('post_view_comment_list')?>
 </div>
 <?php if ( $idx_comment = request('idx_comment') ) { ?>
     <script>

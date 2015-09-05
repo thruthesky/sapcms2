@@ -76,19 +76,20 @@ class DataController
         $path = PATH_UPLOAD . '/' . request('file');
         $x = request('x', 120);
         $y = request('y', 120);
-        $pos = request('pos', 'MT');
         $pi = pathinfo($path);
         $filename = "$pi[filename]-{$x}x$y.jpg";
         $new_path = PATH_CACHE . "/$filename";
         $type = get_mime_type($new_path);
 
+        if ( file_exists($new_path) ) {
 
-
-        Image::open($path)
-            //->cropResize($x, $y)
-            //->zoomCrop($x, $y, 0xffffff, 'top', 'center')
-            ->zoomCrop($x, $y, 'transparent', 'center', 'top')
-            ->save($new_path, 'jpg', 100);
+        }
+        else {
+            system_log("Creating new thumbnail: $path");
+            Image::open($path)
+                ->zoomCrop($x, $y, 'transparent', 'center', 'top')
+                ->save($new_path, 'jpg', 100);
+        }
 
 
         header("Content-Type: $type");

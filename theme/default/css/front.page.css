@@ -1,20 +1,40 @@
+/** Layout */
+.front-content .right {
+    display:none;
+    margin-left:.4em;
+}
+@media all and (min-width:360px) {
+    .front-content .right {
+        display:block;
+    }
+}
+
+
+
+/** Component */
+
 .front-top-banner img {
     width:100%;
 }
 
 .front-content {
-    margin:0 0.4em;
-    background-color:#f1f1f1;
+    margin-top:.2em;
+    padding:0 0.4em;
+    box-sizing: border-box;
+    background-color: #f1f1f1;
 }
-.front-text-with-thumbnail {
-    margin-right:0.4em;
+.text-with-thumbnail a {
+    color:#333333;
+    text-decoration:none;
 }
-.front-text-with-thumbnail h3 {
+.text-with-thumbnail h3 {
     margin:0;
     padding:0;
+    height:1.1em;
+    overflow:hidden;
     font-size:1em;
 }
-.front-text-with-thumbnail .content {
+.text-with-thumbnail .content {
     padding:0.3em 0.4em;
     box-sizing: border-box;
     height:45px;
@@ -22,13 +42,106 @@
     background-color:white;
     font-size:0.9em;
 }
-.front-text-with-thumbnail .title {
-    font-size:1em;
+.text-with-thumbnail .comment {
+    margin-top:.2em;
+    height:1.1em;
+    overflow: hidden;
 }
 
-.front-text-with-thumbnail .thumbnail {
+
+.text-with-thumbnail .thumbnail {
     border-top-left-radius: 2px;
     border-bottom-left-radius: 2px;
     width:45px;
     height:45px;
+}
+
+
+.front-content .right .thumbnail-list {
+
+}
+
+.front-content .right .thumbnail-list img {
+    margin-bottom:.3em;
+    height:96px;
+    border-radius:2px;
+}
+
+
+.front-content .text-list a {
+    color: #c94236;
+    text-decoration: none;
+}
+.front-content .text-list .row {
+    margin-top:.4em;
+    padding:0.3em 0.4em;
+    box-sizing: border-box;
+    height:45px;
+    overflow: hidden;
+    background-color:white;
+    font-size:0.9em;
+}
+.front-content .text-list .row h3 {
+    margin:0;
+    padding:0;
+    height:1.1em;
+    overflow:hidden;
+    font-size:1em;
+}
+.front-content .text-list .comment {
+    margin-top:.2em;
+    height:1.1em;
+    overflow: hidden;
+}
+
+/** text-photo */
+.front-content .text-photo a {
+    color:#333333;
+    text-decoration:none;
+}
+.front-content .text-photo .row {
+    margin-top:.54em;
+}
+.front-content .text-photo .photo img {
+    width:100%;
+}
+.front-content .text-photo .text {
+    padding:.2em;
+    box-sizing: border-box;
+    background-color:white;
+}
+.front-content .text-photo h3 {
+    margin:0;
+    padding:0;
+    font-size:1em;
+}
+.front-content .text-photo hr {
+    margin:.2em 0;
+    padding:0;
+    border:0;
+    border-bottom:1px solid #a7a7a7;
+}
+
+.front-content .text-photo .description {
+    font-size:0.9em;
+    color:#0a74bb;
+}
+.front-content .text-photo .buttons {
+    margin-top:.4em;
+    font-size:.8em;
+}
+
+.front-content .text-photo .button {
+    padding-top:.2em;
+}
+.front-content .text-photo .button img {
+    vertical-align:-4px;
+}
+
+.front-content .text-photo .button img.eye {
+    vertical-align:-2px;
+}
+
+.front-content .text-photo .button.more {
+    padding-top:0;
 }

@@ -445,7 +445,8 @@ class post {
             $data['page'] = 'post.error';
         }
         else {
-            $post_data->set('no_view', $post_data->get('no_view') + 1)->save();
+            //$post_data->set('no_view', $post_data->get('no_view') + 1)->save();
+            post_data()->which($post_data->get('idx'))->set('no_view', $post_data->get('no_view') + 1)->save();
             $post = PostData::preProcess($post_data);
             $config = post_config($post['idx_config']);
             $data['config'] = $config->getFields();
@@ -751,6 +752,34 @@ class post {
         return data();
     }
 
+
+    /**
+     *
+     * @param null $config_name
+     * @param int $from
+     * @param int $number
+     * @return array
+     *
+     * @code
+     *      $posts = post()->getLatestPost('test', 2, 4);
+     * @endcode
+     *
+     */
+    public function getLatestPost($config_name=null,$from=0, $number=1) {
+        $cond = null;
+        if ( $config_name ) {
+            $config = post_config($config_name);
+            if ( empty($config) ) {
+                // error
+            }
+            else {
+                $cond = "idx_config=" . $config->get('idx') . ' AND ';
+            }
+        }
+        $cond .= " idx_parent=0 ORDER BY idx DESC LIMIT $from, $number";
+        return post_data()->queries($cond);
+    }
+
     /**
      *
      * Returns a File Entity Object of a Forum of $config_name which is on a post that is newly posted with image.
@@ -776,7 +805,7 @@ class post {
         }
         $conds[] = "mime LIKE 'image%'";
         $cond = implode(" AND ", $conds);
-        return data()->query("$cond GROUP BY idx_target ORDER BY idx_target DESC, idx ASC LIMIT $from, 1");
+        return data()->query("$cond GROUP BY idx_target ORDER BY created DESC, idx_target DESC, idx ASC LIMIT $from, 1");
     }
 
     /**
@@ -788,7 +817,7 @@ class post {
      * @param null $config_name - Forum configuration idx
      * @return array|bool
      */
-    public function getImagesOfLatestPosts($from=0, $to=5, $config_name=null) {
+    public function getLatestPostImages($from=0, $to=5, $config_name=null) {
         $conds = ["module='post'"];
         if ( $config_name ) {
             $config = post_config($config_name);
@@ -798,7 +827,7 @@ class post {
         }
         $conds[] = "mime LIKE 'image%'";
         $cond = implode(" AND ", $conds);
-        return data()->files("$cond GROUP BY idx_target ORDER BY idx_target DESC, idx ASC LIMIT $from, $to");
+        return data()->files("$cond GROUP BY idx_target ORDER BY created DESC, idx_target DESC, idx ASC LIMIT $from, $to");
     }
 
 
@@ -821,5 +850,19 @@ class post {
         if ( empty($config) ) return null;
         else return $config->get($field);
     }
+
+
+    public static function voteGood($idx) {
+        $re = post_vote_history()->voteGood($idx);
+        if ( isError($re) ) $re = getLastError();
+        return Response::json($re);
+    }
+
+    public static function voteBad($idx) {
+        $re = post_vote_history()->voteBad($idx);
+        if ( isError($re) ) $re = getLastError();
+        return Response::json($re);
+    }
+
 }
 
