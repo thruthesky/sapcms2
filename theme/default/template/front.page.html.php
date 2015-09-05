@@ -4,7 +4,7 @@ add_css();
 //$file = post()->data()->files();
 //$src = $file->url();
 
-$src_top_banner = post()->getLatestPostImage()->urlThumbnail(400, 200);
+$src_top_banner = post()->getLatestPostImage(2)->urlThumbnail(400, 200);
 
 $items = null;
 $images = post()->getImagesOfLatestPosts(1, 6, 'test');
@@ -22,7 +22,9 @@ if ( $images ) {
 <div class="front-content">
     <table width="100%" cellpadding="0" cellspacing="0">
         <tr valign="top">
-            <td width="99%">abc</td>
+            <td width="99%">
+                <?php include template('front.text-with-thumbnail') ?>
+            </td>
             <td width="1%"><?php echo $items ?></td>
         </tr>
     </table>

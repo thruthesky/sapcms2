@@ -756,16 +756,16 @@ class post {
      * Returns a File Entity Object of a Forum of $config_name which is on a post that is newly posted with image.
      *
      *
+     * @param int $from - From what number of post in DESC order.
      * @param $config_name - is the forum. it's options. if it's empty, it searches for whole forum.
      * @return bool|\sap\src\Entity
-     *
      * @code
      *  $src = post()->getLatestPostImage('qna')->url();
      *  $src = post()->getLatestPostImage()->url();
+     *  $src_top_banner = post()->getLatestPostImage(2)->urlThumbnail(400, 200);
      * @endcode
-     *
      */
-    public function getLatestPostImage($config_name=null)
+    public function getLatestPostImage($from=0, $config_name=null)
     {
         $conds = ["module='post'"];
         if ( $config_name ) {
@@ -776,7 +776,7 @@ class post {
         }
         $conds[] = "mime LIKE 'image%'";
         $cond = implode(" AND ", $conds);
-        return data()->query("$cond ORDER BY idx_target DESC, idx ASC");
+        return data()->query("$cond GROUP BY idx_target ORDER BY idx_target DESC, idx ASC LIMIT $from, 1");
     }
 
     /**

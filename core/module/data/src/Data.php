@@ -88,8 +88,8 @@ class Data extends Entity
         return sysconfig(URL_SITE) . URL_PATH_UPLOAD . '/' . $this->get('name_saved');
     }
 
-    public function urlThumbnail($x=160, $y=160, $pos='MT') {
-        return sysconfig(URL_SITE) . 'image/thumbnail?file=' . $this->get('name_saved') . "&x={$x}&y=$y&pos=$pos";
+    public function urlThumbnail($x=160, $y=160) {
+        return sysconfig(URL_SITE) . 'image/thumbnail?file=' . $this->get('name_saved') . "&x={$x}&y=$y";
     }
 
 

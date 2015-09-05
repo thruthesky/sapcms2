@@ -78,22 +78,11 @@ class DataController
         $y = request('y', 120);
         $pos = request('pos', 'MT');
         $pi = pathinfo($path);
-        $filename = "$pi[filename]-$pos-{$x}x$y.jpg";
+        $filename = "$pi[filename]-{$x}x$y.jpg";
         $new_path = PATH_CACHE . "/$filename";
         $type = get_mime_type($new_path);
 
 
-        /*
-        $layer = ImageWorkshop::initFromPath($path);
-        $layer->cropInPixel($x, $y, 0, 0, $pos);
-        $layer->save(PATH_CACHE, $filename);
-        */
-        /*
-        $image = Image::make($path);
-        $image
-            ->resize($x, $y)
-            ->save(PATH_CACHE . '/' . $filename, 100);
-        */
 
         Image::open($path)
             //->cropResize($x, $y)
