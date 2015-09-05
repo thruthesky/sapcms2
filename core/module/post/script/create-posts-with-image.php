@@ -132,6 +132,16 @@ $data = $post->attachFile(PATH_INSTALL . "/tmp/b2.jpg");
 $data = $post->attachFile(PATH_INSTALL . "/tmp/b3.jpg");
 
 
+$option = [
+    'idx_config' => $config->get('idx'),
+    'title'=>"We know Sofia Vergara is married with children with Ed O'Neill on Modern Family",
+    'content' => "but it looks like now she's getting Married... With Children. Wearing a giant red wig, major, brightly colored makeup",
+];
+$post = post_data()->newPost($option);
+$data = $post->attachFile(PATH_INSTALL . "/tmp/w2.png");
+
+
+
 
 
 $option = [

@@ -783,11 +783,12 @@ class post {
      *
      * Returns Data Entity objects of the first uploaded image on each post.
      *
-     * @param int $num - How many post you want to look for.
+     * @param int $from - From where you want to get.
+     * @param int $to - How many post you want to look for.
      * @param null $config_name - Forum configuration idx
      * @return array|bool
      */
-    public function getImagesOfLatestPosts($num=10, $config_name=null) {
+    public function getImagesOfLatestPosts($from=0, $to=5, $config_name=null) {
         $conds = ["module='post'"];
         if ( $config_name ) {
             $config = post_config($config_name);
@@ -797,7 +798,7 @@ class post {
         }
         $conds[] = "mime LIKE 'image%'";
         $cond = implode(" AND ", $conds);
-        return data()->files("$cond GROUP BY idx_target ORDER BY idx_target DESC, idx ASC LIMIT $num");
+        return data()->files("$cond GROUP BY idx_target ORDER BY idx_target DESC, idx ASC LIMIT $from, $to");
     }
 
 

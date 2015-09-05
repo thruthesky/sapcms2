@@ -1,6 +1,6 @@
 <?php
 namespace sap\core\data;
-use PHPImageWorkshop\ImageWorkshop;
+use Gregwar\Image\Image;
 use sap\src\Response;
 
 class DataController
@@ -77,14 +77,31 @@ class DataController
         $x = request('x', 120);
         $y = request('y', 120);
         $pos = request('pos', 'MT');
+        $pi = pathinfo($path);
+        $filename = "$pi[filename]-$pos-{$x}x$y.jpg";
+        $new_path = PATH_CACHE . "/$filename";
+        $type = get_mime_type($new_path);
 
+
+        /*
         $layer = ImageWorkshop::initFromPath($path);
         $layer->cropInPixel($x, $y, 0, 0, $pos);
-        $pi = pathinfo($path);
-        $type = get_mime_type($path);
-        $filename = "$pi[filename]-$pos-{$x}x$y.$pi[extension]";
         $layer->save(PATH_CACHE, $filename);
-        $new_path = PATH_CACHE . "/$filename";
+        */
+        /*
+        $image = Image::make($path);
+        $image
+            ->resize($x, $y)
+            ->save(PATH_CACHE . '/' . $filename, 100);
+        */
+
+        Image::open($path)
+            //->cropResize($x, $y)
+            //->zoomCrop($x, $y, 0xffffff, 'top', 'center')
+            ->zoomCrop($x, $y, 'transparent', 'center', 'top')
+            ->save($new_path, 'jpg', 100);
+
+
         header("Content-Type: $type");
         header("Content-Length: " . filesize($new_path));
         $fp = fopen($new_path, 'rb');
