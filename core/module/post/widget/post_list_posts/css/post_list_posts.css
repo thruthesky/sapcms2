@@ -1,0 +1,56 @@
+.post .list .row a {
+    font-size:1em;
+    text-decoration:none;
+    display:block;
+    margin-top:.4em;
+    padding:.7em;
+    box-sizing: border-box;
+    background-color:#eeeeee;
+    height:2.4em;
+    overflow:hidden;
+}
+
+
+.post .list .no,
+.post .list .name,
+.post .list .view,
+.post .list .date
+{
+    display:none;
+}
+
+.post .list .date {
+    min-width:6.4em;
+    text-align:center;
+}
+.post .list .name {
+    width:7em;
+    text-align:center;
+}
+
+
+/** title */
+.post .list .row .title a > span {
+    display:block;
+    height:1em;
+    overflow: hidden;
+}
+
+@media all and (min-width: 400px) {
+    .post .list .date {
+        display:table-cell;
+    }
+}
+
+@media all and (min-width: 640px) {
+    .post .list .view,
+    .post .list .name
+    {
+        display:table-cell;
+    }
+}
+@media all and (min-width: 800px) {
+    .post .list .no {
+        display:table-cell;
+    }
+}

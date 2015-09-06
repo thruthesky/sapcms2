@@ -1,0 +1,22 @@
+.post-list-search-box {
+    margin:1em 0 0;
+    padding:1em;
+    box-sizing: border-box;
+    background-color: #e0ebf7;
+}
+
+.post-list-search-box .text {
+    margin-bottom:.6em;
+}
+
+
+@media all and (min-width: 540px) {
+    .post-list-search-box .text {
+        margin-bottom:0;
+    }
+    .post-list-search-box .text,
+    .post-list-search-box .input
+    {
+        display:inline;
+    }
+}

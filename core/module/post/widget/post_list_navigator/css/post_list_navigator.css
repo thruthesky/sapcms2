@@ -1,11 +1,17 @@
+nav.navigation-bar {
+    text-align:center;
+}
 nav.navigation-bar a {
     display:inline-block;
-    margin:0 1px;
+    margin:.4em .1em 0;
     padding:4px 6px;
     background-color: #d3e8f4;
     border-radius: 2px;
+    text-decoration: none;
+    color:#393939;
 }
 nav.navigation-bar .selected {
     background-color:grey;
     color:white;
+    cursor:default;
 }

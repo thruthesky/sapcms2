@@ -28,7 +28,7 @@ if ( empty($posts) ) return;
                                 <td>
                                     <div class="button">
                                         <img class='heart' src="/theme/default/tmp/heart.png">
-                                        21
+                                        <?php echo $post->no_vote_good?>
                                     </div>
                                 </td>
                                 <td>

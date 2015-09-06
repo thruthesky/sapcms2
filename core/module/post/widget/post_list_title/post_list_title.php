@@ -5,11 +5,11 @@
 $post = &$widget['post'];
 ?>
 <?php if ( $post['delete'] ) { ?>
-    <a class='deleted' href="<?php echo $post['url']?>">
+    <span class='deleted'>
         This post is deleted.
-    </a>
+    </span>
 <?php } else { ?>
-    <a href="<?php echo $post['url']?>"><?php echo $post['title']?></a>
+    <?php echo strcut($post['title'], 128, '...')?>
 <?php } ?>
 
 

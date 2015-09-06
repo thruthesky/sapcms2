@@ -74,8 +74,8 @@ function url_post_create() {
 function url_post_config() {
     return post::urlEditPostConfig();
 }
-function url_post_list() {
-    return post::urlPostList();
+function url_post_list($id=null) {
+    return post::urlPostList($id);
 }
 
 function url_post_view($post) {

@@ -11,20 +11,7 @@ class Meta extends Entity {
     }
 
 
-    /**
-     * @param null $table
-     * @return $this|null - If $work_table is null, then it returns a string with table name.
-     *
-     * - If $create_table is null, then it returns a string with table name.
-     *
-     * - If $create_table is not null, then it returns $this.
-     */
-    /*
-    final public function table($table=null) {
-        if ( $table === null ) return $this->table;
-        return new Entity($table);
-    }
-    */
+
 
     final public function createTable() {
         parent::createTable()
@@ -99,10 +86,10 @@ class Meta extends Entity {
     final public function value($code)
     {
         $code = $this->getGroupCode() . $code;
-
         if ( $this->load('code', $code) ) return $this->get('value');
         else return FALSE;
     }
+
 
 
     /**
@@ -216,6 +203,12 @@ class Meta extends Entity {
     private function getGroupCode()
     {
         return $this->group_code;
+    }
+
+
+
+    public function __get($field) {
+        return $this->value($field);
     }
 
 }

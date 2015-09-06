@@ -1,7 +1,39 @@
+.clearfix:after {
+    display:block;
+    content:'';
+    clear:both;
+}
+
+
 .post .content .deleted {
     padding:0.4em;
     background-color: #f3f4f2;
     color:grey;
     font-weight: bold;
     font-size:120%;
+}
+
+
+.post .buttons {
+    margin:.2em 0;
+    padding:.1em .6em;
+    box-sizing: border-box;
+    border-radius:2px;
+    background-color: #f7f7f7;
+}
+.post .buttons a {
+    display:block;
+    float:left;
+    margin:.2em;
+    padding:.2em .4em;
+    box-sizing: border-box;
+    border-radius:2px;
+    background-color:#d7e2d7;
+    text-decoration: none;
+    color:#316ac5;
+}
+
+
+.post .buttons.right a {
+    float:right;
 }

@@ -470,7 +470,7 @@ class post {
     return Response::redirect(post::getViewUrl($data->get()));
      * @endcode
      */
-    public static function urlPostView($post)
+    public static function urlPostView($post, $length_title=64)
     {
         if ( empty($post) ) {
             return error(-50591, "post is empty");
@@ -486,7 +486,10 @@ class post {
             $ex = null;
 
             $qs = ['idx'=>$post['idx']];
-            if ( $post['title'] ) $qs['title'] = $post['title'];
+            if ( $length_title ) {
+                if ( $post['title'] ) $qs['title'] = strcut($post['title'], $length_title);
+            }
+
 
             $ex .= http_build_query($qs);
             $ex .= self::getHttpVariablesAsRequest();

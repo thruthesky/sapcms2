@@ -136,24 +136,29 @@ class Entity {
     }
 
 
-
     /**
+     *
+     *
+     *
      * @param null $field
-     * @return array|null
+     * @param null $default - is the value that will be return when the field is not defined.
      *
-     *  - if $field has a field name, then it returns the value of the field.
+     * @return array|null - if $field has a field name, then it returns the value of the field.
      *
-     *  - if $field is null, then it returns the whole field array.
+     * - if $field has a field name, then it returns the value of the field.
      *
-     * @TODO add parameter for default value.
+     * - if $field is null, then it returns the whole field array.
+     * @note $default is added on Sept 6, 2015.
+     *
      */
-    final public function get($field=null)
+    public function get($field=null, $default=null)
     {
+        system_log(__METHOD__);
         if ( $field ) {
-            return isset($this->fields[$field]) ? $this->fields[$field] : null;
+            return isset($this->fields[$field]) ? $this->fields[$field] : $default;
         }
         else {
-            return $this->fields;
+            return $this->getFields();
         }
     }
 
@@ -162,7 +167,7 @@ class Entity {
      * @return array|null
      */
     final public function getFields() {
-        return $this->get();
+        return $this->fields;
     }
 
     /**

@@ -1,0 +1,10 @@
+#footer {
+    margin:1em 0;
+}
+#footer .copyright {
+    padding:1em;
+    box-sizing: border-box;
+    background-color:#dfdfdf;
+    font-size:.9em;
+    text-align:center;
+}
