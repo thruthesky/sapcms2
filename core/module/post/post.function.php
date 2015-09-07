@@ -3,6 +3,7 @@
 use sap\core\post\post;
 use sap\core\post\PostConfig;
 use sap\core\post\PostData;
+use sap\core\post\PostVoteHistory;
 use sap\src\Route;
 
 /**
@@ -31,6 +32,26 @@ function post_config($field=null, $value=null) {
 
 
 
+function post_data($idx=null) {
+    if ( $idx ) {
+        return post_data()->load('idx', $idx);
+    }
+    return new PostData();
+}
+
+function post() {
+    return new post();
+}
+
+
+function post_vote_history() {
+    return new PostVoteHistory();
+}
+
+
+
+
+
 function is_post_page() {
     return segment(0) == 'post';
 }
@@ -44,18 +65,6 @@ function is_post_edit_page() {
 
 
 
-
-function post_data($idx=null) {
-    if ( $idx ) {
-        return post_data()->load('idx', $idx);
-    }
-    return new PostData();
-}
-
-function post() {
-    return new post();
-}
-
 function url_post_edit() {
     return post::urlPostEdit();
 }
@@ -65,8 +74,12 @@ function url_post_create() {
 function url_post_config() {
     return post::urlEditPostConfig();
 }
-function url_post_list() {
-    return post::urlPostList();
+function url_post_list($id=null) {
+    return post::urlPostList($id);
+}
+
+function url_post_view($post) {
+    return post::urlPostView($post);
 }
 
 function html_hidden_post_variables() {

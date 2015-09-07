@@ -8,7 +8,7 @@ $post = $widget['post'];
 
 ?>
 
-
+<section class="comment-form">
 <div class="reply">
     <form name="comment" class="ajax-file-upload" action="/post/comment/submit" method="post" enctype="multipart/form-data">
         <input type="hidden" name="idx_parent" value="<?php echo $post['idx'] ?>">
@@ -20,3 +20,4 @@ $post = $widget['post'];
         <input class="show-on-click form-comment-add-submit" type="submit" value="UPLOAD COMMENT">
     </form>
 </div>
+</section>

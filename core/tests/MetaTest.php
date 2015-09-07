@@ -32,8 +32,23 @@ class MetaTest extends PHPUnit_Framework_TestCase {
         $this->assertFalse( Database::load()->tableExists('user_meta') );
     }
 
+
+    public function test_meta_get() {
+        $test = new Meta('test');
+        $test->createTable();
+        $test->set('a', 'A');
+        $this->assertTrue($test->value('a') == 'A');
+        $test->a = 'Apple';
+        $this->assertTrue($test->value('a') == 'Apple');
+        $this->assertTrue($test->a == 'Apple');
+        $test->b = 'Banana';
+        $this->assertTrue($test->value('b') == 'Banana');
+        $this->assertTrue($test->b == 'Banana');
+        $test->dropTable();
+    }
+
     public function test_meta_action() {
-        $meta = new Meta('test');
+        $meta = new Meta('test_action');
 
         $meta->createTable();
 
@@ -41,7 +56,10 @@ class MetaTest extends PHPUnit_Framework_TestCase {
             ->set('a','A')
             ->set('b', 'B')
             ->set('c', 'C');
+
         $this->assertTrue( $meta->getEntity('a') instanceof Entity );
+        $this->assertTrue( $meta->getEntity('a') instanceof Meta );
+
         $this->assertTrue( $meta->value('a') == 'A' );
 
         $meta->load('code', 'a')->delete();

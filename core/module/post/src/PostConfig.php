@@ -40,6 +40,10 @@ class PostConfig extends Entity {
                 if ( $post->get('idx_config') ) return $this->load($post->get('idx_config'));
             }
         }
+        else if ( segment(0) == 'admin' && segment(3) == 'edit' ) {
+            $idx = request('idx');
+            return $this->load($idx);
+        }
         else {
             $post = post_data()->getCurrent();
             if ( $post ) {
@@ -48,20 +52,8 @@ class PostConfig extends Entity {
             }
         }
 
-        /*
-         *
-        else if ( $idx = request('idx') ) {
-            if ( segment(0) == 'admin' ) {
-                return $this->load($idx);
-            }
-            else {
-                $post = post_data($idx);
-                if ( $post ) {
-                    if ( $post->get('idx_config') ) return $this->load($post->get('idx_config'));
-                }
-            }
-        }
-        */
+
+
         return FALSE;
     }
 
@@ -84,8 +76,8 @@ class PostConfig extends Entity {
         if ( $re ) return $re;
 
         switch ( $field ) {
-            case NO_ITEM : return sysconfig(NO_ITEM);
-            case NO_PAGE : return sysconfig(NO_PAGE);
+            case NO_ITEM : return post::globalConfig(NO_ITEM);
+            case NO_PAGE : return post::globalConfig(NO_PAGE);
             default: return null;
         }
     }

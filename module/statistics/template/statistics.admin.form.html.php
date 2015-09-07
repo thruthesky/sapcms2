@@ -1,4 +1,4 @@
-<?			
+<?php
 	//just text for date_by
 	$text =	[
 			'day'=>'daily',	

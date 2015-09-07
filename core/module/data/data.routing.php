@@ -8,3 +8,4 @@
  */
 route('/file/upload', 'data\\DataController\\upload');
 route('/file/delete', 'data\\DataController\\delete');
+route('/image/thumbnail', 'data\\DataController\\thumbnail');

@@ -73,6 +73,16 @@ function error($code, $array_kvs=[]) {
 }
 
 /**
+ * Return TRUE if the input $re is an error code.
+ * @param $re
+ * @return bool
+ */
+function isError($re) {
+    if ( is_numeric($re) && $re < 0 ) return true;
+    else return false;
+}
+
+/**
  * @deprecated use setError();
  * @param $code
  * @param $message
@@ -103,6 +113,37 @@ function setError($code, $message) {
 function getError() {
     return System::getError();
 }
+
+/**
+ * Returns ASSOC-array of last system error.
+ *      - ['error'] = error code
+ *      - ['message'] = message
+ *
+ * @note do not be confused with error_get_last() which is managed by PHP error system.
+ * @note use this to get only last message. or to return it to browser in JSON, etc...
+ *
+ * @short
+ *
+ * When error codes are made like below,
+error(-1, "test");
+error(-2, "test two");
+error(-50942, "Please, login first before you are going to vote.");
+ *
+ * This method returns ['error'=>50942, 'message'=>'Please, login first before you are going to vote.'];
+ *
+ */
+function getLastError() {
+    $re = [];
+    $error = getError();
+    if ( $error ) {
+        end($error);
+        list($k,$v) = each($error);
+        $re['error'] = $k;
+        $re['message'] = $v;
+    }
+    return $re;
+}
+
 /**
  * alias of system::getError();
  * @return mixed
@@ -171,9 +212,22 @@ function get_error_message($code) {
     return isset($error_message[$code]) ? $error_message[$code] : $code;
 }
 
+
+/**
+ *
+ *
+ *
+ * @return mixed
+ *
+ *
+ */
 function get_last_included_file() {
     $arr = get_included_files();
     return array_pop($arr);
+    /*
+    $arr = debug_backtrace (DEBUG_BACKTRACE_IGNORE_ARGS, 1);
+    return $arr[0]['file'];
+    */
 }
 
 function get_sapcms_path($path) {

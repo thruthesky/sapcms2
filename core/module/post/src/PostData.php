@@ -51,8 +51,10 @@ class PostData extends Entity {
      * @return array
      */
     public static function pre(array & $post) {
+        if ( !isset($post['idx_root']) || empty($post['idx_root']) ) {
+            return error(-50571, "The post has a wrong data. This may be an error.");
+        }
         $post['title'] = self::getTitleOrContent($post);
-
         if ( $post['idx_parent'] ) $post['url'] = post::urlViewComment($post['idx']);
         else $post['url'] = post::urlPostView($post);
         if ( $post['idx_user'] ) {
@@ -72,9 +74,40 @@ class PostData extends Entity {
     private static function getTitleOrContent(array & $post)
     {
         if ( ! empty($post['title']) ) return $post['title'];
-        else if ( ! empty($post['content']) ) return strcut($post['content'], 128);
+        else if ( ! empty($post['content_stripped']) ) return strcut($post['content_stripped'], 128);
         else return null;
     }
+
+    /**
+     * Returns title of the post.
+     *  - if the title is empty, it returns part of content.
+     * @param int $length
+     * @return null|string
+     */
+    public function getTitle($length=256) {
+        $post = $this->get();
+        $title = self::getTitleOrContent($post);
+        if ( $title ) return strcut($title, $length);
+        else return null;
+    }
+
+
+    /**
+     * Returns beginning part of content as in HTML Tag stripped.
+     *
+     * @param int $length
+     * @return null|string
+     */
+    public function getDescription($length=256) {
+        $content = $this->get('content_stripped');
+        if ( ! empty($content) ) return strcut($content, $length);
+        else return null;
+    }
+
+    public function url() {
+        return url_post_view($this);
+    }
+
 
 
 
@@ -218,9 +251,14 @@ class PostData extends Entity {
         }
 
 
-        // set idx_root into the object(memory)
+
+
         $up = ['idx_root'=>$idx_root, 'depth'=>$depth];
+
+        // To only set a few fields. Not whole fields.
         post_data()->which($data->get('idx'))->set($up)->save();
+
+        // set idx_root into the object(memory)
         $data->set('idx_root', $idx_root);
 
 
@@ -258,6 +296,16 @@ class PostData extends Entity {
             }
             //system_log($up);
             post_data()->which($data->get('idx'))->set('order_list', $new_order_list)->save();
+        }
+
+
+        /**
+         * Sets no_comment on $idx_root
+         */
+        if ( $parent ) {
+            $no_comment = post_data()->countComment($idx_root);
+            post_data()->which($idx_root)->set('no_comment', $no_comment)->save();
+            post_data($idx_root)->set('no_comment', $no_comment)->save();
         }
 
         self::setCurrent($data);
@@ -539,7 +587,7 @@ class PostData extends Entity {
                 if ( $file ) {
                     $file
                         ->set('module', 'post')
-                        ->set('type', 'file')
+                        ->set('type', $this->get('idx_config'))
                         ->set('idx_target', $this->get('idx'))
                         ->set('finish', 1)
                         ->save();
@@ -547,4 +595,102 @@ class PostData extends Entity {
             }
         }
     }
+
+
+    /**
+     *
+     * Attaches a file to a post.
+     *
+     * @param $path
+     * @param string $form_name
+     * @return $this|bool
+     * @code
+     *    $post = post_data()->newPost($option);
+     *    $data = $post->attachFile("tmp/wedding.png");
+     * @endcode
+     */
+    public function attachFile($path, $form_name='files') {
+        return data()->saveFile([
+            'path'          => $path,
+            'module'        => 'post',
+            'type'          =>  $this->get('idx_config'),
+            'idx_target'    => $this->get('idx'),
+            'idx_user'      => $this->get('idx_user'),
+            'form_name'     => $form_name,
+            'finish'        => 1,
+        ]);
+    }
+
+
+    /**
+     *
+     * Returns Data Entity object of the first uploaded image of the  post.
+     *
+     *
+     *
+     * @param null $form_name
+     * @return bool|Entity
+     *
+     *      - FALSE if there is no image.
+     *
+     * @code
+     * di(post_data(1208)->getImage());
+     * @endcode
+     */
+    public function getImage($form_name=null) {
+        $conds = ["module='post'","idx_target=".$this->get('idx')];
+        if ($form_name) $conds[] = "form_name='$form_name'";
+        $conds[] = "mime LIKE 'image%'";
+        $cond = implode(" AND ", $conds);
+        return data()->query("$cond ORDER BY idx ASC");
+    }
+
+    /**
+     * Returns uploaded images of the post.
+     * @param null $form_name
+     * @return array
+     * @code
+     * di(post_data(1208)->getImages());
+     * @endcode
+     */
+    public function getImages($form_name=null) {
+        $conds = ["module='post'","idx_target=".$this->get('idx')];
+        if ($form_name) $conds[] = "form_name='$form_name'";
+        $conds[] = "mime LIKE 'image%'";
+        $cond = implode(" AND ", $conds);
+        return data()->files("$cond ORDER BY idx ASC");
+    }
+
+    /**
+     * Returns all files of the post.
+     * @param $form_name
+     * @return array
+     * @code
+     * di(post_data(1208)->getFiles());
+     * @endcode
+     */
+    public function getFiles($form_name=null) {
+        $conds = ["module='post'","idx_target=".$this->get('idx')];
+        if ($form_name) $conds[] = "form_name='$form_name'";
+        $cond = implode(" AND ", $conds);
+        return data()->files("$cond ORDER BY idx ASC");
+    }
+
+
+    /**
+     *
+     * Returns value of a post or comment.
+     *
+     * @note Use this methods if you do not want to load the whole record from database.
+     *
+     *      - It will only read a field.
+     *
+     * @param $idx
+     * @param $field
+     * @return mixed
+     */
+    public function field($idx, $field) {
+        return $this->result($field, "idx=$idx");
+    }
+
 }

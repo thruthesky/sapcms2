@@ -136,24 +136,29 @@ class Entity {
     }
 
 
-
     /**
+     *
+     *
+     *
      * @param null $field
-     * @return array|null
+     * @param null $default - is the value that will be return when the field is not defined.
      *
-     *  - if $field has a field name, then it returns the value of the field.
+     * @return array|null - if $field has a field name, then it returns the value of the field.
      *
-     *  - if $field is null, then it returns the whole field array.
+     * - if $field has a field name, then it returns the value of the field.
      *
-     * @TODO add parameter for default value.
+     * - if $field is null, then it returns the whole field array.
+     * @note $default is added on Sept 6, 2015.
+     *
      */
-    final public function get($field=null)
+    public function get($field=null, $default=null)
     {
+        system_log(__METHOD__);
         if ( $field ) {
-            return isset($this->fields[$field]) ? $this->fields[$field] : null;
+            return isset($this->fields[$field]) ? $this->fields[$field] : $default;
         }
         else {
-            return $this->fields;
+            return $this->getFields();
         }
     }
 
@@ -162,7 +167,7 @@ class Entity {
      * @return array|null
      */
     final public function getFields() {
-        return $this->get();
+        return $this->fields;
     }
 
     /**
@@ -235,6 +240,11 @@ class Entity {
      * @param $field - if $value is empty, it is "idx"
      * @param null $value
      * @return $this
+     *
+     * @code
+     *  entity($table)->which('gender', 'G')->set('gender', 'M')->save();
+     * @endcode
+     * @see test files.
      */
     public function which($field, $value=null) {
         $this->which = true;
@@ -542,14 +552,36 @@ class Entity {
      *
      * @code
      *      $sms = entity(QUEUE)->query("idx > 2");
+     *      $data = data()->query("module='post'");
      * @endcode
+     *
+     * @WARNING this method return $this->load() as of Sept 3, 2015.
+     *
+     *      - It means, if child object has its own class, it uses the child class or it uses Entity class.
      *
      */
     public function query($cond=null)
     {
         $idx = Database::load()->result($this->table(), 'idx', $cond);
-        if ( $idx ) return entity($this->table())->load($idx);
+        if ( $idx ) return $this->load($idx);
         else return FALSE;
+    }
+
+    /**
+     * Returns multiple entities of $cond
+     *      - the idea of this method is the same as query(). but this returns multiple entities.
+     * @param $cond
+     * @return array
+     */
+    public function queries($cond=null) {
+        $objects = [];
+        $rows = Database::load()->rows($this->table,$cond,'idx');
+        if ( $rows ) {
+            foreach($rows as $row) {
+                $objects[] = post_data($row['idx']);
+            }
+        }
+        return $objects;
     }
 
     /**

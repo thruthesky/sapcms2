@@ -20,12 +20,17 @@ class post {
     }
 	
     public static function adminPostConfigEdit() {
-        if ( ! $config = post_config()->getCurrent() ) error(-60400, "Could not find configuration");
-        return Response::renderSystemLayout([
+        $data = [
             'template' => 'post.layout',
-            'page' => 'post.adminPostConfigEdit',
-            'post_config' => $config->get(),
-        ]);
+            'page' => 'post.adminPostConfigEdit'
+        ];
+
+        $config = post_config()->getCurrent();
+
+        if ( empty($config) ) error(-60400, "Could not find configuration");
+        else $data['post_config'] = $config->get();
+
+        return Response::renderSystemLayout($data);
     }
 
     /**
@@ -112,7 +117,7 @@ class post {
      * @return mixed|null
      */
     public static function postList() {
-        $config = post_config()->getCurrent()->get();
+        $config = post()->getCurrentConfig();
         return Response::render([
             'template'=>'post.layout',
             'page'=>'post.list',
@@ -175,20 +180,18 @@ class post {
      */
     public static function postEdit($idx) {
         $post = post_data()->getCurrent();
-        if ( ! is_my_post($post->get('idx')) ) return self::templateErrorNotYourPost();
-        if ( $post ) {
-            return Response::render([
-                'template'=>'post.layout',
-                'page'=>'post.edit',
-            ]);
-        }
-        else return self::errorNoPostToEdit();
+        if ( empty($post) ) return self::errorNoPostToEdit();
+        if ( ! is_post_admin() && ! is_my_post($post->get('idx')) ) return self::templateErrorNotYourPost();
+        return Response::render([
+            'template'=>'post.layout',
+            'page'=>'post.edit',
+        ]);
     }
 
     public static function postEditSubmit() {
         $idx = request('idx');
         if ( empty($idx) ) return self::templateError(-50510, "Could not create a new post");
-        if ( ! is_my_post($idx) ) return self::templateErrorNotYourPost();
+        if ( ! is_post_admin() && ! is_my_post($idx) ) return self::templateErrorNotYourPost();
         if ( self::validateConfig() ) return self::templateEdit();
         if ( self::validateContent() ) return self::templateEdit();
 
@@ -321,14 +324,14 @@ class post {
             if ( $config ) {
                 $no_item = $config->get('no_item_per_page');
             }
-            if ( empty($no_item) ) $no_item = sysconfig(NO_ITEM);
+            if ( empty($no_item) ) $no_item = self::globalConfig(NO_ITEM);
             $limit_from = (page_no() - 1 ) * $no_item;
         }
         if ( isset($options['limit_to']) ) $limit_to = $options['limit_to'];
         else {
             $config = self::getOptionConfig($options);
             if ( $config ) $limit_to = $config->get('no_item_per_page');
-            if ( empty($limit_to) ) $limit_to = sysconfig(NO_ITEM);
+            if ( empty($limit_to) ) $limit_to = self::globalConfig(NO_ITEM);
         }
         $re = "LIMIT $limit_from, $limit_to";
 
@@ -442,7 +445,8 @@ class post {
             $data['page'] = 'post.error';
         }
         else {
-            $post_data->set('no_view', $post_data->get('no_view') + 1)->save();
+            //$post_data->set('no_view', $post_data->get('no_view') + 1)->save();
+            post_data()->which($post_data->get('idx'))->set('no_view', $post_data->get('no_view') + 1)->save();
             $post = PostData::preProcess($post_data);
             $config = post_config($post['idx_config']);
             $data['config'] = $config->getFields();
@@ -466,7 +470,7 @@ class post {
     return Response::redirect(post::getViewUrl($data->get()));
      * @endcode
      */
-    public static function urlPostView($post)
+    public static function urlPostView($post, $length_title=64)
     {
         if ( empty($post) ) {
             return error(-50591, "post is empty");
@@ -482,7 +486,10 @@ class post {
             $ex = null;
 
             $qs = ['idx'=>$post['idx']];
-            if ( $post['title'] ) $qs['title'] = $post['title'];
+            if ( $length_title ) {
+                if ( $post['title'] ) $qs['title'] = strcut($post['title'], $length_title);
+            }
+
 
             $ex .= http_build_query($qs);
             $ex .= self::getHttpVariablesAsRequest();
@@ -552,7 +559,7 @@ class post {
      * @return string
      */
     public static function urlEditPostConfig() {
-        $url = "/admin/post/config/edit?idx=" . post_config()->getCurrent()->get('idx');
+        $url = "/admin/post/config/edit?idx=" . post()->getCurrentConfig('idx');
         return $url;
     }
 
@@ -649,17 +656,51 @@ class post {
     }
 
     /**
+     *
+     * Returns global configuration data.
+     *
+     * @note Use this method if there is no default value on the forum configuration
+     *
+     * @param $field
+     * @return bool|mixed|null
+     */
+    public static function globalConfig($field)
+    {
+        return sysconfig($field);
+    }
+
+    /**
+     *
+     * Returns the value of input configuration field of the Current forum.
      * @param $field
      * @return mixed
      *
+     * @Attention if the value of the configuration is equal to '===' FALSE, then it looks up for the system ( or global ) configuration value.
+     *
      * @code
-     * $no_item = post()->config(NO_ITEM);
-    $no_page = post()->config(NO_PAGE);
+     *    $no_item = post()->config(NO_ITEM);
+     *    $no_page = post()->config(NO_PAGE);
      * @endcode
      */
     public function config($field) {
-        return post_config()->getCurrent()->config($field);
+        $data = post_data()->getCurrent();
+        if ( empty($data) ) {
+            $re = FALSE;
+        }
+        else $re = $data->config($field);
+
+        if ( empty($re) ) {
+            switch( $field ) {
+                case NO_ITEM : return self::globalConfig(NO_ITEM);
+                case NO_PAGE : return self::globalConfig(NO_PAGE);
+                default: return FALSE;
+            }
+        }
+        else return $re;
+
     }
+
+
 
 
     public static function postCommentEdit() {
@@ -706,6 +747,124 @@ class post {
         else {
             return Response::redirect(self::urlPostView($data));
         }
+    }
+
+
+
+    public function data() {
+        return data();
+    }
+
+
+    /**
+     *
+     * @param null $config_name
+     * @param int $from
+     * @param int $number
+     * @return array
+     *
+     * @code
+     *      $posts = post()->getLatestPost('test', 2, 4);
+     * @endcode
+     *
+     */
+    public function getLatestPost($config_name=null,$from=0, $number=1) {
+        $cond = null;
+        if ( $config_name ) {
+            $config = post_config($config_name);
+            if ( empty($config) ) {
+                // error
+            }
+            else {
+                $cond = "idx_config=" . $config->get('idx') . ' AND ';
+            }
+        }
+        $cond .= " idx_parent=0 ORDER BY idx DESC LIMIT $from, $number";
+        return post_data()->queries($cond);
+    }
+
+    /**
+     *
+     * Returns a File Entity Object of a Forum of $config_name which is on a post that is newly posted with image.
+     *
+     *
+     * @param int $from - From what number of post in DESC order.
+     * @param $config_name - is the forum. it's options. if it's empty, it searches for whole forum.
+     * @return bool|\sap\src\Entity
+     * @code
+     *  $src = post()->getLatestPostImage('qna')->url();
+     *  $src = post()->getLatestPostImage()->url();
+     *  $src_top_banner = post()->getLatestPostImage(2)->urlThumbnail(400, 200);
+     * @endcode
+     */
+    public function getLatestPostImage($from=0, $config_name=null)
+    {
+        $conds = ["module='post'"];
+        if ( $config_name ) {
+            $config = post_config($config_name);
+            if ( empty($config) ) return FALSE;
+            $idx_config = $config->get('idx');
+            $conds[] = "type=$idx_config";
+        }
+        $conds[] = "mime LIKE 'image%'";
+        $cond = implode(" AND ", $conds);
+        return data()->query("$cond GROUP BY idx_target ORDER BY created DESC, idx_target DESC, idx ASC LIMIT $from, 1");
+    }
+
+    /**
+     *
+     * Returns Data Entity objects of the first uploaded image on each post.
+     *
+     * @param int $from - From where you want to get.
+     * @param int $to - How many post you want to look for.
+     * @param null $config_name - Forum configuration idx
+     * @return array|bool
+     */
+    public function getLatestPostImages($from=0, $to=5, $config_name=null) {
+        $conds = ["module='post'"];
+        if ( $config_name ) {
+            $config = post_config($config_name);
+            if ( empty($config) ) return FALSE;
+            $idx_config = $config->get('idx');
+            $conds[] = "type=$idx_config";
+        }
+        $conds[] = "mime LIKE 'image%'";
+        $cond = implode(" AND ", $conds);
+        return data()->files("$cond GROUP BY idx_target ORDER BY created DESC, idx_target DESC, idx ASC LIMIT $from, $to");
+    }
+
+
+
+
+
+    /**
+     *
+     * Returns the value of current forum's configuration.
+     *
+     * @note it is a safe and short way of using "post_config()->getCurrent()->get('id');"
+     *
+     * @param $field
+     *
+     * @return bool
+     */
+    public function getCurrentConfig($field=null)
+    {
+        $config = post_config()->getCurrent();
+        if ( empty($config) ) return null;
+        else return $config->get($field);
+    }
+
+
+    public static function voteGood($idx) {
+        $re = post_vote_history()->voteGood($idx);
+        if ( isError($re) ) $re = getLastError();
+        return Response::json($re);
+    }
+
+    public static function voteBad($idx) {
+        $re = post_vote_history()->voteBad($idx);
+        if ( isError($re) ) $re = getLastError();
+        return Response::json($re);
     }
 
 }

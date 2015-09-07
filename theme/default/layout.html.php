@@ -13,7 +13,7 @@
 <div id="layout">
     <div id="header"><?php include template('header'); ?></div>
     <div id="content">
-        <table cellpadding="0" cellspacing="0">
+        <table cellpadding="0" cellspacing="0" width="100%">
             <tr valign="top">
                 <td id="content-left"><?php include template('left'); ?></td>
                 <td>

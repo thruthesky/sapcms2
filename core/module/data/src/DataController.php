@@ -1,5 +1,6 @@
 <?php
 namespace sap\core\data;
+use Gregwar\Image\Image;
 use sap\src\Response;
 
 class DataController
@@ -33,6 +34,12 @@ class DataController
                 }
                 else {
                     $upload['name_saved'] = $name;
+                    $upload['mime'] = $upload['type'];
+                    $upload['type'] = request('file_type');
+                    $upload['module'] = request('file_module');
+                    $upload['idx_target'] = request('file_idx_target', 0);
+                    $upload['idx_user'] = login('idx');
+                    $upload['finish'] = request('file_finish', 0);
                     $data = data()->record($upload);
                     $upload['idx'] = $data->get('idx');
                     $upload['url'] = $data->url();
@@ -64,4 +71,31 @@ class DataController
     }
 
 
+
+    public static function thumbnail() {
+        $path = PATH_UPLOAD . '/' . request('file');
+        $x = request('x', 120);
+        $y = request('y', 120);
+        $pi = pathinfo($path);
+        $filename = "$pi[filename]-{$x}x$y.jpg";
+        $new_path = PATH_CACHE . "/$filename";
+        $type = get_mime_type($new_path);
+
+        if ( file_exists($new_path) ) {
+
+        }
+        else {
+            system_log("Creating new thumbnail: $path");
+            Image::open($path)
+                ->zoomCrop($x, $y, 'transparent', 'center', 'top')
+                ->save($new_path, 'jpg', 100);
+        }
+
+
+        header("Content-Type: $type");
+        header("Content-Length: " . filesize($new_path));
+        $fp = fopen($new_path, 'rb');
+        fpassthru($fp);
+        exit;
+    }
 }

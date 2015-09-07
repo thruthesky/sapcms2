@@ -15,29 +15,83 @@ class Data extends Entity
     }
 
 
+    /**
+     * @param array $options
+     *
+     *      - $options['path'] - is the file path to add
+     *      - $options['idx_target'] - is the target object
+     *      - $option['idx_user'] - is the user.
+     *      - $options['module'] - is the module
+     *      - $options['type'] - is the type
+     *      - $options['finish'] -
+     *      - $option['form_name'] - is the form input box variable name
+     *      - Others are automatically set.
+     *
+     * @Attention Call this method with full option values.
+     * name, name_saved, form_name, size, mime, module, type, idx_target, idx_user, finish
+     * @return $this|bool
+     */
+    public function saveFile(array $options) {
+        $pi = pathinfo($options['path']);
+        $filename = $pi['basename'];
+        $name = data()->getPossibleFilenameToSave($filename);
+        //system_log("name:$name");
+        $path = PATH_UPLOAD . DIRECTORY_SEPARATOR . $name;
+        //system_log("path to save: $path");
+        if ( copy($options['path'], $path) ) {
+            $options['mime'] = get_mime_type($path);
+            $options['size'] = filesize($path);
+            $options['name'] = $filename;
+            $options['name_saved'] = $name;
+            return data()->record($options);
+        }
+        else {
+            //system_log("ERROR: move_uploaded_file($options[path], $path)");
+            return FALSE;
+        }
+    }
+    /**
+     *
+     * @param $upload
+     * @return $this
+     * @code
+     * $upload['name_saved'] = $name;
+    $upload['mime'] = $upload['type'];
+    $upload['type'] = request('file_type');
+    $upload['module'] = request('file_module');
+    $upload['idx_target'] = request('file_idx_target', 0);
+    $upload['idx_user'] = login('idx');
+    $upload['finish'] = request('file_finish', 0);
+    $data = data()->record($upload);
+     * @endcode
+     *
+     */
     public function record(&$upload)
     {
         $this->deleteUnfinishedFiles();
-        $upload['mime'] = $upload['type'];
-        $upload['type'] = request('file_type');
-        return $this
-            ->set('name', $upload['name'])
-            ->set('name_saved', $upload['name_saved'])
-            ->set('form_name', $upload['form_name'])
-            ->set('size', $upload['size'])
-            ->set('mime', $upload['mime'])
-            ->set('module', request('file_module'))
-            ->set('type', $upload['type'])
-            ->set('idx_target', request('file_idx_target', 0))
-            ->set('idx_user', login('idx', 0))
-            ->set('finish', request('file_finish', 0))
-            ->save();
+        if ( isset($upload['name']) ) $this->set('name', $upload['name']);
+        if ( isset($upload['name_saved']) ) $this->set('name_saved', $upload['name_saved']);
+        if ( isset($upload['form_name']) ) $this->set('form_name', $upload['form_name']);
+        if ( isset($upload['size']) ) $this->set('size', $upload['size']);
+        if ( isset($upload['mime']) ) $this->set('mime', $upload['mime']);
+        if ( isset($upload['module']) ) $this->set('module', $upload['module']);
+        if ( isset($upload['type']) ) $this->set('type', $upload['type']);
+        if ( isset($upload['idx_target']) ) $this->set('idx_target', $upload['idx_target']);
+        if ( isset($upload['idx_user']) ) $this->set('idx_user', $upload['idx_user']);
+        if ( isset($upload['finish']) ) $this->set('finish', $upload['finish']);
+
+        return $this->save();
     }
 
     public function url()
     {
         return sysconfig(URL_SITE) . URL_PATH_UPLOAD . '/' . $this->get('name_saved');
     }
+
+    public function urlThumbnail($x=160, $y=160) {
+        return sysconfig(URL_SITE) . 'image/thumbnail?file=' . $this->get('name_saved') . "&x={$x}&y=$y";
+    }
+
 
     /**
      *
@@ -196,4 +250,6 @@ class Data extends Entity
         if ( $form_name ) $cond .= " AND form_name='$form_name'";
         return $this->files($cond);
     }
+
+
 }

@@ -3,6 +3,7 @@ $(function(){
     $( "body" ).click(function( event ) {
         var $obj = $(event.target);
         if ( $obj.prop('class') == 'show-panel' || $obj.parent().prop('class') == 'show-panel') {
+
         }
         else closePanel();
     });

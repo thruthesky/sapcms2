@@ -1,12 +1,23 @@
 <?php
+use sap\src\Entity;
 use sap\src\Meta;
 meta('x')->createTable();
 meta('x')->set('a', 'b');
 meta('x')->set('c', 'cherry', 3);
+$m = meta('x')->load('code', 'a');
 
-echo meta('x')->load('code', 'a')->get('value') . PHP_EOL;
+echo $m->get('value') . PHP_EOL;
+echo $m->a . PHP_EOL;
+$m->a = 'Black Berry';
 echo meta('x')->value('a') . PHP_EOL;
 echo meta('x')->getEntity('a')->get('value') .  PHP_EOL;
+
+$x = meta('x')->getEntity('a');
+
+if ( meta('x')->getEntity('a') instanceof Entity ) echo "OK\n";
+else echo "ERROR\n";
+
+
 
 meta('x')->group('user')->group('jaeho')->set('name', 'JaeHo Song');
 meta('x')->group('user')->group('jaeho')->set('age', '41');

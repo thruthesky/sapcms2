@@ -1,0 +1,6 @@
+nav.vote > div {
+    margin:.1em 0;
+    padding:1em;
+    background-color:#99aaff;
+    cursor:pointer;
+}
