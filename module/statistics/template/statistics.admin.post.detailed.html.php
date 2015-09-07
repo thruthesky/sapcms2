@@ -104,7 +104,11 @@ if( empty( $data['error'] ) ){
 							if( $data['group_by'] == 'idx_config' ){
 								$post_config = entity( POST_CONFIG )->load( $k )->fields;
 								$title = "Count [ $v ]<br>IDX [ $post_config[idx] ]<br>ID [ $post_config[id] ]<br>Name [ $post_config[name] ]";
-							}							
+							}
+							else if( $data['group_by'] == 'idx_user' ){
+								$user = user()->load( $k )->fields;
+								$title = "Count [ $v ]<br>IDX [ $user[idx] ]<br>ID [ $user[id] ]<br>Name [ $user[name] ]";
+							}
 														
 							?>
 								<div class='bar-wrapper has-value' style='width:<?php echo $custom_bar_width; ?>%'>
