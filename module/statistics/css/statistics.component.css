@@ -1,3 +1,122 @@
 table .tr-class.current{
 	font-weight:bold;
 }
+
+
+/*graph*/
+.graph-wrapper{	
+	position:relative;
+	height:500px;
+	padding:10px 0 42px 0;
+	overflow:hidden;
+}
+
+.graph-wrapper > .inner{
+	position:relative;
+	height:500px;
+	margin-left:20px;
+}
+
+.graph-wrapper > .inner .num-label{
+	position:absolute;
+	left:-20px;
+	width:150%;
+	border-bottom:1px solid #d5d5d5;
+	font-size:.7em;
+}
+
+.graph-wrapper > .inner .num-label > div{
+	position:absolute;
+	left:0;
+	bottom:-5px;
+	padding:0 5px;
+	background-color:#f9f9f9;
+}
+
+.graph-wrapper > .inner .bar-wrapper{	
+	position:relative;
+	display:inline-block;	
+	float:left;
+	max-width:2%;
+	height:500px;
+	font-size:.7em;
+	text-align:center;	
+}
+
+.graph-wrapper > .inner .bar-wrapper.label{	
+	width:25px;
+}
+
+.graph-wrapper > .inner .bar-wrapper .bar{
+	position:absolute;
+	left:0;
+	bottom:0;
+	/*width: 85%;
+    margin-right: 15%;*/
+	min-height:1px;
+	width:100%;
+	cursor:pointer;	
+}
+
+.graph-wrapper > .inner .bar-wrapper.has-value .bar > .inner{
+	height:100%;		
+	background-color:blue;
+}
+
+.graph-wrapper > .inner .bar-wrapper .bar > .inner{
+	min-height:1px;
+	margin-right:1px;
+	background-color:red;
+}
+
+.graph-wrapper > .inner .bar-wrapper .custom_title{
+	display:none;
+	position:absolute;
+	/*left:30px;*/
+	min-width:70px;
+	padding:5px 20px 5px 5px;
+	border:1px solid #777;
+	background-color:#fff;	
+	z-index:1;	
+	text-align:left;
+	white-space:nowrap;
+}
+
+.graph-wrapper > .inner .bar-wrapper .custom_title .close{
+	position:absolute;
+	right:3px;
+	top:3px;
+	cursor:pointer;
+	color:blue;
+}
+
+.graph-wrapper > .inner .bar-wrapper .custom_title .close:hover{
+	color:red;
+}
+
+.graph-wrapper > .inner .bar-wrapper .custom_title.is-active{
+	display:block;
+}
+
+.graph-wrapper > .inner .bar-wrapper .triangle.outer {
+	position:absolute;
+	top:5px;
+	width: 0; 
+	height: 0; 
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent; 
+	
+	/*border-right:5px solid #777;*/
+}
+
+.graph-wrapper > .inner .bar-wrapper .triangle.inner {
+	position:absolute;
+	top:5px;
+	width: 0; 
+	height: 0; 
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent; 
+	
+	/*border-right:5px solid #fff;*/
+}
+/*eo graph*/

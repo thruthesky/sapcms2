@@ -64,6 +64,8 @@ if( empty( $data['error'] ) ){
 					$temp_i = $temp_i/10;										
 				}
 				
+				$custom_bar_width = 100 / ( $data['difference'][$data['show_by']] + 1 );
+				
 				$max_total = ceil( $highest/$max_total_iteration ) * $max_total_iteration;
 				if( empty( $max_total ) ) $max_total = 10;
 				
@@ -73,12 +75,11 @@ if( empty( $data['error'] ) ){
 					<div class='num-label' style='bottom:<?php echo ( $i2/$max_total * 100 ) ?>%'>
 						<div><?php echo $i2 ?></div>
 					</div>
-				<?php } ?>
-			
-				<?php
+				<?php }
 		
 				$date_now = $start_stamp;
-				for( $i = 0; $i <= $data['difference'][$data['show_by']]; $i++ ){
+				for( $i = 0; $i <= $data['difference'][$data['show_by']]; $i++ ){									
+				
 					//echo date( "M d",$date_now )."<br>";
 					if( $data['date_guide'] == 'week' ) $date_index = "W".date( "W-Y", strtotime( "this week", $date_now ) );													
 					else $date_index = date( "$data[date_guide]",( $date_now ) );
@@ -87,19 +88,25 @@ if( empty( $data['error'] ) ){
 					else $count = 0;
 					
 					$url = "?list_type=$data[list_type]&date_from=".date( "Y-m-d",$date_now )."&date_to=".date( "Y-m-d",$date_now )."&show_by=".$data['show_by'];
+					$title = date( "M d, Y",$date_now )." - Total [ $count ] ";					
 						?>
-							<div class='bar-wrapper<?php if( $count > 0 ) echo " has-value"; ?>'>
-								<div class='bar' title='<?php echo $count; ?>' style='height:<?php echo ( $count/$max_total ) * 100; ?>%'>&nbsp;</div>
-								<div class='date'>	
-									<?php echo date( "M d",$date_now );?><br>
-									<a href='<?php echo $url."&group_by=idx_user"; ?>' target='_blank'>U</a>
-									<a href='<?php echo $url."&group_by=idx_config"; ?>' target='_blank'>C</a>
+							<div class='bar-wrapper<?php if( $count > 0 ) echo " has-value"; ?>' style='width:<?php echo $custom_bar_width; ?>%'>
+								<div class='bar' title='<?php echo $title; ?>' style='height:<?php echo ( $count/$max_total ) * 100; ?>%'>
+									<div class='inner'>
+									</div>
 								</div>
-							</div>
-						<?php
-									
-				?>			
-				
+								
+								
+								<div class='custom_title'>	
+									<span class='close'>[x]</span>
+									<div class='triangle outer'></div>
+									<div class='triangle inner'></div>
+									<?php echo $title; ?><br>
+									Sort By: 
+									<a href='<?php echo $url."&group_by=idx_user"; ?>' target='_blank'>User IDX</a>
+									<a href='<?php echo $url."&group_by=idx_config"; ?>' target='_blank'>Config IDX</a>
+								</div>
+							</div>				
 				<?php 
 					$date_now = strtotime( date( "Y-m-d",$date_now )." +1 $data[show_by]" );	
 				}
@@ -111,70 +118,3 @@ if( empty( $data['error'] ) ){
 <?php
 }
 ?>
-
-<style>
-.graph-wrapper{	
-	position:relative;
-	height:500px;
-	padding:10px 0 42px 0;
-	overflow:hidden;
-}
-
-.graph-wrapper .inner{
-	position:relative;
-	height:500px;
-	margin-left:20px;
-}
-
-.graph-wrapper .inner .num-label{
-	position:absolute;
-	left:-20px;
-	width:100%;
-	border-bottom:1px solid #d5d5d5;
-	font-size:.7em;
-}
-
-.graph-wrapper .inner .num-label > div{
-	position:absolute;
-	left:0;
-	bottom:-5px;
-	padding:0 5px;
-	background-color:#f9f9f9;
-}
-
-.graph-wrapper .inner .bar-wrapper{	
-	position:relative;
-	display:inline-block;	
-	float:left;
-	width:2%;
-	height:500px;
-	font-size:.7em;
-	text-align:center;
-}
-
-.graph-wrapper .inner .bar-wrapper.has-value .bar{	
-	min-height:1px;
-}
-
-.graph-wrapper .inner .bar-wrapper.label{	
-	width:25px;
-}
-
-.graph-wrapper .inner .bar-wrapper .bar{
-	position:absolute;
-	left:0;
-	bottom:0;
-	width: 85%;
-    margin-right: 15%;
-	background-color:blue;
-	cursor:pointer;
-}
-
-.graph-wrapper .inner .bar-wrapper .date{
-	position:absolute;
-	left:0;
-	bottom:-42px;
-	width:80%;
-	z-index:1;
-}
-</style>
