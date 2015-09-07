@@ -31,6 +31,11 @@ if( empty( $data['error'] ) ){
 				if( empty( $data['group_by'] ) ) $group_by = $data['list_type'];
 				else $group_by = $data['group_by'];
 				
+				$color_range = [];
+				for( $ci = 0; $ci <= 2; $ci++ ){
+					$color_range[] = range(0,255);
+					shuffle( $color_range[$ci] );
+				}
 				
 				//getting max_total, graph interation
 				$start_stamp = $data['date_from_stamp'][$data['show_by']];
@@ -45,6 +50,8 @@ if( empty( $data['error'] ) ){
 				//0=day,1=idx_parent,2=count
 				$items = [];			
 				$highest = 0;	
+				//need to rework this......
+				$detailed_items = 0;
 				if( !empty( $count_per_day ) ){
 					foreach( $count_per_day as $arr ){
 						$arr = array_values( $arr );
@@ -52,11 +59,13 @@ if( empty( $data['error'] ) ){
 						if( $data['date_guide'] == 'week' ) $date_index = "W".date( "W-Y", strtotime( "this week", $arr[0] ) );													
 						else $date_index = date( "$data[date_guide]",( $arr[0] ) );
 						
+						if( !empty( $items[ $date_index ] ) ) $detailed_items++;
+						
 						$items[ $date_index ][$arr[1]] = $arr[2];					
 						if( $highest < $arr[2] ) $highest = $arr[2];
 					}
 				}
-
+				
 				$max_total_iteration = 1;
 				$temp_i = $highest;
 				while( $temp_i > 10 ){
@@ -64,7 +73,7 @@ if( empty( $data['error'] ) ){
 					$temp_i = $temp_i/10;										
 				}
 				
-				$custom_bar_width = 100 / ( $data['difference'][$data['show_by']] + 1 );
+				$custom_bar_width = 100 / ( $data['difference'][$data['show_by']] + 1 + $detailed_items );
 				
 				$max_total = ceil( $highest/$max_total_iteration ) * $max_total_iteration;
 				if( empty( $max_total ) || $max_total < 10 ) $max_total = 10;
@@ -81,6 +90,7 @@ if( empty( $data['error'] ) ){
 		
 				$date_now = $start_stamp;
 				$i = 0;
+				$color_i = 0;
 				while( $i <= $data['difference'][$data['show_by']] ){
 					$collection = "";
 					//echo date( "M d",$date_now )."<br>";
@@ -97,9 +107,9 @@ if( empty( $data['error'] ) ){
 							}							
 														
 							?>
-								<div class='bar-wrapper has-value <?php echo $i; ?>' style='width:<?php echo $custom_bar_width; ?>%'>
+								<div class='bar-wrapper has-value' style='width:<?php echo $custom_bar_width; ?>%'>
 									<div class='bar' title='<?php echo str_replace( "<br>", " - ", $title ); ?>' style='height:<?php echo ( $v/$max_total ) * 100; ?>%'>
-										<div class='inner'></div>
+										<div class='inner' style='background-color:rgba(<?php echo $color_range[0][$color_i]?>,<?php echo $color_range[1][$color_i]?>,<?php echo $color_range[2][$color_i]?>,1);'></div>
 									</div>
 									<div class='custom_title'>
 										<span class='close'>[x]</span>
@@ -112,12 +122,11 @@ if( empty( $data['error'] ) ){
 									</div>
 								</div>
 							<?php
-							$i++;
 						}
 					}					
 					else{
 						?>
-							<div class='bar-wrapper <?php echo $i; ?>' style='width:<?php echo $custom_bar_width; ?>%'>
+							<div class='bar-wrapper' style='width:<?php echo $custom_bar_width; ?>%'>
 								<div class='bar' title='0'>
 									<div class='inner'></div>
 								</div>
@@ -129,12 +138,14 @@ if( empty( $data['error'] ) ){
 								</div>
 							</div>
 						<?php
-						$i++;
 					}
 				?>			
 				
 				<?php 
-					$date_now = strtotime( date( "Y-m-d",$date_now )." +1 $data[show_by]" );	
+					$date_now = strtotime( date( "Y-m-d",$date_now )." +1 $data[show_by]" );
+					$i++;
+					if( $color_i > 255 ) $color_i = 1;
+					else $color_i++;
 				}
 									
 				?>
