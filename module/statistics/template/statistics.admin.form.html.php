@@ -3,8 +3,10 @@
 	$text =	[
 			'day'=>'daily',	
 			//'week'=>'Weekly',	
-			//'month'=>'Monthly',			
+			'month'=>'Monthly',			
 			];	
+	if( $data['show_by'] == 'month' ) $input_date_type = 'month';
+	else $input_date_type = 'date';
 ?>
 <form>
 	<input type='hidden' name='list_type' value='<?php echo $data['list_type'] ?>'>
@@ -12,9 +14,9 @@
 		<input type='hidden' name='group_by' value='<?php echo $data['group_by'] ?>'>
 	<?php } ?>
 	From
-	<input type='date' name='date_from' value='<?php echo $data['date_from']?>'>
+	<input type='<?php echo $input_date_type; ?>' name='date_from' value='<?php echo $data['date_from']?>'>
 	To
-	<input type='date' name='date_to' value='<?php echo $data['date_to']?>'>
+	<input type='<?php echo $input_date_type; ?>' name='date_to' value='<?php echo $data['date_to']?>'>
 	
 	Show by:
 	<select name='show_by'>

@@ -56,14 +56,15 @@ if( empty( $data['error'] ) ){
 						if( $highest < $arr[2] ) $highest = $arr[2];
 					}
 				}
-				//di( $items );
-				//exit;
+
 				$max_total_iteration = 1;
 				$temp_i = $highest;
 				while( $temp_i > 10 ){
 					$max_total_iteration *= 10;
 					$temp_i = $temp_i/10;										
 				}
+				
+				$custom_bar_width = 100 / ( $data['difference'][$data['show_by']] + 1 );
 				
 				$max_total = ceil( $highest/$max_total_iteration ) * $max_total_iteration;
 				if( empty( $max_total ) || $max_total < 10 ) $max_total = 10;
@@ -79,7 +80,8 @@ if( empty( $data['error'] ) ){
 				<?php
 		
 				$date_now = $start_stamp;
-				for( $i = 0; $i <= $data['difference'][$data['show_by']]; $i++ ){
+				$i = 0;
+				while( $i <= $data['difference'][$data['show_by']] ){
 					$collection = "";
 					//echo date( "M d",$date_now )."<br>";
 					if( $data['date_guide'] == 'week' ) $date_index = "W".date( "W-Y", strtotime( "this week", $date_now ) );													
@@ -87,27 +89,47 @@ if( empty( $data['error'] ) ){
 					
 					if( !empty( $items[ $date_index ] ) ){
 						$collection = $items[ $date_index ];						
-						foreach( $collection as $k => $v ){							
+						foreach( $collection as $k => $v ){
+							$title = "";
+							if( $data['group_by'] == 'idx_config' ){
+								$post_config = entity( POST_CONFIG )->load( $k )->fields;
+								$title = "Count [ $v ]<br>IDX [ $post_config[idx] ]<br>ID [ $post_config[id] ]<br>Name [ $post_config[name] ]";
+							}							
+														
 							?>
-								<div class='bar-wrapper'>
-									<div class='bar' title='<?php echo $v; ?>' style='height:<?php echo ( $v/$max_total ) * 100; ?>%'>&nbsp;</div>
-									<div class='date'>
-										<?php echo date( "M d",$date_now )."<br><span class='page_highlight'>".$k."</span>";?>
+								<div class='bar-wrapper has-value <?php echo $i; ?>' style='width:<?php echo $custom_bar_width; ?>%'>
+									<div class='bar' title='<?php echo str_replace( "<br>", " - ", $title ); ?>' style='height:<?php echo ( $v/$max_total ) * 100; ?>%'>
+										<div class='inner'></div>
+									</div>
+									<div class='custom_title'>
+										<span class='close'>[x]</span>
+										<div class='triangle outer'></div>
+										<div class='triangle inner'></div>
+										<?php echo date( "M d, Y",$date_now ); ?>
+										<div>
+											<?php echo $title; ?>
+										</div>
 									</div>
 								</div>
 							<?php
+							$i++;
 						}
-					}
-					
-					if( empty( $collection ) ){						
+					}					
+					else{
 						?>
-							<div class='bar-wrapper'>
-								<div class='bar' title='0' style='height:0'>&nbsp;</div>
-								<div class='date'>
-									<?php echo date( "M d",$date_now )."<br>&nbsp;";?>
+							<div class='bar-wrapper <?php echo $i; ?>' style='width:<?php echo $custom_bar_width; ?>%'>
+								<div class='bar' title='0'>
+									<div class='inner'></div>
+								</div>
+								<div class='custom_title'>
+									<span class='close'>[x]</span>
+									<div class='triangle outer'></div>
+									<div class='triangle inner'></div>
+									<?php echo date( "M d",$date_now )."<br>No Items";?>
 								</div>
 							</div>
 						<?php
+						$i++;
 					}
 				?>			
 				
@@ -122,70 +144,3 @@ if( empty( $data['error'] ) ){
 <?php
 }
 ?>
-
-<style>
-.page_highlight{
-	font-weight:bold;
-	color:red
-}
-
-.graph-wrapper{	
-	position:relative;
-	height:500px;
-	padding:10px 0 42px 0;
-	overflow:hidden;
-}
-
-.graph-wrapper .inner{
-	position:relative;
-	height:500px;
-	margin-left:30px;
-}
-
-.graph-wrapper .inner .num-label{
-	position:absolute;
-	left:-30px;
-	width:100%;
-	border-bottom:1px solid #d5d5d5;
-	font-size:.7em;
-}
-
-.graph-wrapper .inner .num-label > div{
-	position:absolute;
-	left:0;
-	bottom:-5px;
-	width:23px;	
-	background-color:#f9f9f9;
-	text-align:center;
-}
-
-.graph-wrapper .inner .bar-wrapper{	
-	position:relative;
-	display:inline-block;	
-	float:left;
-	width:2%;
-	height:500px;
-	font-size:.7em;
-	text-align:center;
-}
-
-.graph-wrapper .inner .bar-wrapper.label{	
-	width:25px;
-}
-
-.graph-wrapper .inner .bar-wrapper .bar{
-	position:absolute;
-	left:0;
-	bottom:0;
-	width: 85%;
-    margin-right: 15%;
-	background-color:blue;	
-}
-
-.graph-wrapper .inner .bar-wrapper .date{
-	position:absolute;
-	left:0;
-	bottom:-42px;
-	width:80%;
-}
-</style>

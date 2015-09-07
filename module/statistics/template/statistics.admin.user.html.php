@@ -68,8 +68,19 @@ if( empty( $data['error'] ) ){
 						 if( $highest < $arr[1] ) $highest = $arr[1];
 					}
 				}				
+								
+				$max_total_iteration = 1;
+				$temp_i = $highest;
+				while( $temp_i > 10 ){
+					$max_total_iteration *= 10;
+					$temp_i = $temp_i/10;										
+				}
 				
-				$max_total = ceil( $highest/10 ) * 10;				
+				$custom_bar_width = 100 / ( $data['difference'][$data['show_by']] + 1 );
+				
+				$max_total = ceil( $highest/$max_total_iteration ) * $max_total_iteration;
+				if( empty( $max_total ) || $max_total < 10 ) $max_total = 10;
+				
 				if( empty( $max_total ) ) $max_total = 10;
 				
 				$graph_interation = ceil( $max_total / 20 );
@@ -87,11 +98,18 @@ if( empty( $data['error'] ) ){
 					//echo date( "M d",$date_now )."<br>";
 					if( !empty( $items[ date( "Y-m-d", $date_now ) ] ) ) $count = $items[ date( "Y-m-d", $date_now ) ];
 					else $count = 0;
+					
+					$title = date( "M d, Y",$date_now )." - Total [ $count ] ";
 						?>
-							<div class='bar-wrapper'>
-								<div class='bar' title='<?php echo $count; ?>' style='height:<?php echo ( $count/$max_total ) * 100; ?>%'>&nbsp;</div>
-								<div class='date'>
-									<?php echo date( "M d",$date_now );?>
+							<div class='bar-wrapper<?php if( $count > 0 ) echo " has-value"; ?>' style='width:<?php echo $custom_bar_width; ?>%'>
+								<div class='bar' title='<?php echo $title; ?>' style='height:<?php echo ( $count/$max_total ) * 100; ?>%'>
+									<div class='inner'></div>
+								</div>
+								<div class='custom_title'>	
+									<span class='close'>[x]</span>
+									<div class='triangle outer'></div>
+									<div class='triangle inner'></div>
+									<?php echo $title; ?>
 								</div>
 							</div>
 						<?php
@@ -109,61 +127,3 @@ if( empty( $data['error'] ) ){
 <?php
 }
 ?>
-
-<style>
-.graph-wrapper{
-	position:relative;
-}
-
-.graph-wrapper .inner{
-	position:relative;
-	margin-left:20px;
-}
-
-.graph-wrapper .inner .num-label{
-	position:absolute;
-	left:-20px;
-	width:100%;
-	border-bottom:1px solid #d5d5d5;
-	font-size:.7em;
-}
-
-.graph-wrapper .inner .num-label > div{
-	position:absolute;
-	left:0;
-	bottom:-5px;
-	padding:0 5px;
-	background-color:#f9f9f9;
-}
-
-.graph-wrapper .inner .bar-wrapper{	
-	position:relative;
-	display:inline-block;	
-	float:left;
-	width:2%;
-	height:500px;
-	font-size:.7em;
-	text-align:center;
-}
-
-.graph-wrapper .inner .bar-wrapper.label{	
-	width:25px;
-}
-
-.graph-wrapper .inner .bar-wrapper .bar{
-	position:absolute;
-	left:0;
-	bottom:0;
-	width: 85%;
-    margin-right: 15%;
-	background-color:blue;
-	cursor:pointer;
-}
-
-.graph-wrapper .inner .bar-wrapper .date{
-	position:absolute;
-	left:0;
-	bottom:-32px;
-	width:80%;
-}
-</style>
