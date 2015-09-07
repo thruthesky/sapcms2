@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <?php
 ?>
 <html>
@@ -11,8 +11,8 @@
 </head>
 <body>
 <div id="layout">
-    <div id="header"><?php include template('header'); ?></div>
-    <div id="content">
+    <div id="layout-header"><?php include template('header'); ?></div>
+    <div id="layout-content">
         <table cellpadding="0" cellspacing="0" width="100%">
             <tr valign="top">
                 <td id="content-left"><?php include template('left'); ?></td>
@@ -23,7 +23,7 @@
             </tr>
         </table>
     </div>
-    <div id="footer"><?php include template('footer'); ?></div>
+    <div id="layout-footer"><?php include template('footer'); ?></div>
 </div>
 <!--[if lt IE 9]>
 <script type='text/javascript' src='/core/etc/js/jquery-1.11.3/jquery-1.11.3.min.js'></script>

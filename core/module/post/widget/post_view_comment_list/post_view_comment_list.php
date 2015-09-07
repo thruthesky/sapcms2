@@ -1,5 +1,6 @@
 <?php
 add_css();
+add_javascript();
 $comments = post_data()->getComments();
 if ( empty($comments) ) return;
 ?>
@@ -19,8 +20,10 @@ if ( empty($comments) ) return;
             <div class="content">
                 <?php widget('post_view_content', ['post'=>$comment]) ?>
             </div>
-            <section role="files"><?php widget('post_display_files', ['idx'=>$comment['idx']])?></section>
-
+            <?php widget('post_display_files', ['idx'=>$comment['idx']])?>
+            <div class="reply-button">
+                [Reply...]
+                </div>
             <?php widget('post_view_comment_form', ['post'=>$comment]); ?>
 
         </div>

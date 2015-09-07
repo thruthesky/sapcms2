@@ -15,12 +15,14 @@
 
 
 .post .buttons {
-    margin:.2em 0;
-    padding:.1em .6em;
-    box-sizing: border-box;
-    border-radius:2px;
-    background-color: #f7f7f7;
 }
+
+.post .buttons:after {
+    display:block;
+    content:'';
+    clear:both;
+}
+
 .post .buttons a {
     display:block;
     float:left;

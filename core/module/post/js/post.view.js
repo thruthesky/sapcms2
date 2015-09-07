@@ -9,9 +9,6 @@ $(function(){
     }
 
 
-    $("form[name='comment'] textarea").click(function(){
-        $(this).parent().find(".show-on-click").show();
-    });
 
 
 

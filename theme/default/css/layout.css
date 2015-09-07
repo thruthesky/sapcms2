@@ -10,7 +10,6 @@ body {
     min-height:40em;
 }
 
-
 #content-left {
     display:none;
 }
@@ -20,4 +19,13 @@ body {
         display:block;
     }
 }
+@media all and (min-width: 980px ) {
+    #layout-header,
+    #layout-content {
+        margin:0 auto;
+        width:960px;
+        overflow:hidden;
+    }
+}
+
 

@@ -1,7 +1,7 @@
-#footer {
+#layout-footer {
     margin:1em 0;
 }
-#footer .copyright {
+#layout-footer .copyright {
     padding:1em;
     box-sizing: border-box;
     background-color:#dfdfdf;

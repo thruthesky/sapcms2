@@ -9,7 +9,8 @@
  *
  */
 $idx = & $widget['idx'];
-add_css();
+add_css(null, __FILE__);
+add_javascript(null, __FILE__);
 $files = data()->loadBy('post', post_data($idx)->config('idx'), $idx);
 if ( empty($files) ) return;
 ?>

@@ -3,8 +3,14 @@
     box-sizing: border-box;
     background-color: #c3d2f4;
 }
+.display-files .images .image {
+    float:left;
+    padding:.2em;
+    box-sizing: border-box;
+}
 .display-files img {
-    max-width: 100%;
+    width:auto;
+    max-height:128px;
 }
 .display-files a {
     display:inline-block;

@@ -74,8 +74,8 @@ function url_post_create() {
 function url_post_config() {
     return post::urlEditPostConfig();
 }
-function url_post_list($id=null) {
-    return post::urlPostList($id);
+function url_post_list($id=null, $add_vars=true) {
+    return post::urlPostList($id,$add_vars);
 }
 
 function url_post_view($post) {
@@ -107,8 +107,13 @@ function display_files($files) {
             $tag_files[] = "<div class='attachment'><a href='$url'>$name</a></div>";
         }
     }
+
+    echo "<div class='attachments'>";
     array_walk($tag_files, 'display');
+    echo "</div>";
+    echo "<div class='images clearfix'>";
     array_walk($tag_imgs, 'display');
+    echo "</div>";
 }
 
 

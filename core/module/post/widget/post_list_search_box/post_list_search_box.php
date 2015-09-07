@@ -15,11 +15,11 @@ else {
 
         <div class="text">
             <input type="checkbox" id="qn" name="qn" value="y"<?php echo request('qn') == 'y' ? ' checked=1' : '' ?>>
-            <label for="qn">User ID</label>
+            <label for="qn" class="user-id">User ID</label>
             <input type="checkbox" id='qt' name="qt" value="y"<?php echo request('qt') == 'y' ? ' checked=1' : '' ?>>
-            <label for="qt"><span class="title">Title</label>
+            <label for="qt" class="title">Title</label>
             <input type="checkbox" id='qc' name="qc" value="y"<?php echo request('qc') == 'y' ? ' checked=1' : '' ?>>
-            <label for="qc"><span class="title">Content</label>
+            <label for="qc" class="content">Content</label>
         </div>
 
         <div class="input">

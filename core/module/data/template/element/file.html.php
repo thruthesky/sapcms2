@@ -33,9 +33,10 @@ echo html_row([
 ?>
 
 
+
 <?php
 if ( is_post_edit_page() && $post = post_data()->getCurrent() ) {
-    $files = data()->loadBy('post', 'file', $post->idx);
+    $files = data()->loadBy('post', $post->idx_config, $post->idx);
     if ( $files ) {
         $uploaded = [];
         foreach( $files as $file ) {
