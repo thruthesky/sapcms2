@@ -18,6 +18,7 @@
 	$text =	[			
 			'idx_user'=>'User',
 			'idx_config'=>'Forum',
+			'idx'=>'IDX',
 			];	
 ?>
 

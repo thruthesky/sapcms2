@@ -80,8 +80,7 @@ class Statistics {
 					if( !empty( $entity ) ) $data['extra_title_text'] = "<br>Searching by Forum IDX [ ".$entity->fields['idx']." ] - ID [ ".$entity->fields['id']." ]";
 				}				
 				if( empty( $entity ) ) $data['error'] = "Invalid information [ $data[group_by_value] ]";
-			}
-			else $data['group_by_value'] = null;
+			}			
 		}
 		
 		if( empty( $data['error']) ){

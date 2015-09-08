@@ -44,7 +44,7 @@ table .tr-class.current{
 	position:relative;
 	display:inline-block;	
 	float:left;
-	max-width:2%;
+	max-width:10%;
 	height:250px;
 	font-size:.7em;
 	text-align:center;

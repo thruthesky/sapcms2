@@ -15,7 +15,9 @@
 ?>
 <form>
 	<input type='hidden' name='list_type' value='<?php echo $data['list_type'] ?>'>
-	<?php if( !empty( $data['group_by'] ) ) {?>
+	<?php if( !empty( $data['group_by'] ) ) {
+		if( empty( $data['group_by_value'] ) ) $data['group_by_value'] = null;
+	?>
 		<input type='hidden' name='group_by' value='<?php echo $data['group_by'] ?>'>
 		Input <?php echo $group_by_label ?> IDX or <?php echo $group_by_label ?> ID <span class='note important'>*Required</span>
 		<input type='text' name='group_by_value' value='<?php echo $data['group_by_value'] ?>'>
