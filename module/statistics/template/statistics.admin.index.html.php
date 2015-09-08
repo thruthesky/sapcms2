@@ -36,10 +36,10 @@
 				<!--<a href="/admin/statistics/post?list_type=no_view">Most Views</a><br>-->
 				<a href="/admin/statistics/post?list_type=comment">Most Comments by date</a><br>
 				<a href="/admin/statistics/post?list_type=comment&group_by=idx_user">Most Comments by user</a><br>
-				<a href="/admin/statistics/post?list_type=comment&group_by=idx_config">Most Comments by idx_config</a><br>
-				<a href="/admin/statistics/post?list_type=post">Most User Posts</a><br>
-				<a href="/admin/statistics/post?list_type=post&group_by=idx_user">Most User Posts by user</a><br>
-				<a href="/admin/statistics/post?list_type=post&group_by=idx_config">Most Config Posts by idx_config</a><br>
+				<a href="/admin/statistics/post?list_type=comment&group_by=idx_config">Most Comments by Forum</a><br>
+				<a href="/admin/statistics/post?list_type=post">Most Posts</a><br>
+				<a href="/admin/statistics/post?list_type=post&group_by=idx_user">Most Posts by user</a><br>
+				<a href="/admin/statistics/post?list_type=post&group_by=idx_config">Most Posts by Forum</a><br>
 			</td>
 		</tr>
 	</tbody>

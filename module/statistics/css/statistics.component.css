@@ -2,6 +2,13 @@ table .tr-class.current{
 	font-weight:bold;
 }
 
+.note{
+	font-size:.7em;
+}
+
+.note.important{
+	color:red;
+}
 
 /*graph*/
 .graph-wrapper{	
@@ -14,12 +21,12 @@ table .tr-class.current{
 .graph-wrapper > .inner{
 	position:relative;
 	height:250px;
-	margin-left:20px;
+	margin-left:40px;
 }
 
 .graph-wrapper > .inner .num-label{
 	position:absolute;
-	left:-20px;
+	left:-40px;
 	width:150%;
 	border-bottom:1px solid #d5d5d5;
 	font-size:.7em;
