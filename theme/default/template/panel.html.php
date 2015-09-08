@@ -2,6 +2,7 @@
 add_css();
 add_javascript();
 ?>
+
 <div id="panel-menu" style="display: none;">
     <ul>
         <li><a href="<?php echo url_forum()?>"><span>Forums</span></a></li>

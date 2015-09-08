@@ -7,8 +7,12 @@ $(function(){
         }
         else closePanel();
     });
-    $(".show-panel").click(openPanel);
+    $(".show-panel").click(togglePanel);
     $(".close-panel").click(closePanel);
+    function togglePanel() {
+        if ( $menu.css('display') == 'none' ) openPanel();
+        else closePanel();
+    }
     function closePanel() {
         $menu.hide();
     }

@@ -13,9 +13,10 @@
 <div id="layout">
     <div id="layout-header"><?php include template('header'); ?></div>
     <div id="layout-content">
+        <?php include template('panel'); ?>
         <table cellpadding="0" cellspacing="0" width="100%">
             <tr valign="top">
-                <td id="content-left"><?php include template('left'); ?></td>
+                <td id="layout-left"><?php include template('left'); ?></td>
                 <td>
                     <?php widget('error') ?>
                     <?php include template(); ?>

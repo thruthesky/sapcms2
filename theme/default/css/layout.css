@@ -10,20 +10,27 @@ body {
     min-height:40em;
 }
 
-#content-left {
+#layout-content {
+    position:relative
+}
+
+#layout-left {
     display:none;
 }
 
 @media all and (min-width: 720px ) {
-    #content-left {
+    #layout-left {
         display:block;
     }
 }
-@media all and (min-width: 980px ) {
-    #layout-header,
+@media all and (min-width: 1024px ) {
+    #layout-header {
+        margin:0 auto;
+        max-width:1000px;
+    }
     #layout-content {
         margin:0 auto;
-        width:960px;
+        width:1000px;
         overflow:hidden;
     }
 }

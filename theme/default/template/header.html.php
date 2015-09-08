@@ -25,4 +25,3 @@ add_css();
         </form>
     </div>
 </div>
-<?php include template('panel'); ?>
