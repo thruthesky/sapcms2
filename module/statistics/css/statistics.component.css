@@ -2,6 +2,13 @@ table .tr-class.current{
 	font-weight:bold;
 }
 
+.note{
+	font-size:.7em;
+}
+
+.note.important{
+	color:red;
+}
 
 /*graph*/
 .graph-wrapper{	
