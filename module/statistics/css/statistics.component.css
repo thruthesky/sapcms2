@@ -6,14 +6,14 @@ table .tr-class.current{
 /*graph*/
 .graph-wrapper{	
 	position:relative;
-	height:500px;
+	height:250px;
 	padding:10px 0 42px 0;
 	overflow:hidden;
 }
 
 .graph-wrapper > .inner{
 	position:relative;
-	height:500px;
+	height:250px;
 	margin-left:20px;
 }
 
@@ -38,7 +38,7 @@ table .tr-class.current{
 	display:inline-block;	
 	float:left;
 	max-width:2%;
-	height:500px;
+	height:250px;
 	font-size:.7em;
 	text-align:center;
 	cursor:pointer;	
@@ -68,7 +68,7 @@ table .tr-class.current{
 	position:absolute;
 	left:0;
 	bottom:0;
-	min-height:5px;
+	min-height:1px;
 	width:100%;	
 }
 
@@ -79,7 +79,7 @@ table .tr-class.current{
 }
 
 .graph-wrapper > .inner .bar-wrapper .bar > .inner{
-	min-height:5px;
+	min-height:1px;
 	margin-right:1px;
 	background-color:red;
 }
