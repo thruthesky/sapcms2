@@ -70,10 +70,14 @@ class Statistics {
 				if( $data['group_by'] == 'idx_user' ){
 					if( is_numeric( $data['group_by_value'] ) ) $entity = user()->load( $data['group_by_value'] );					
 					else $entity = user()->load( 'id',$data['group_by_value'] );
+					
+					if( !empty( $entity ) ) $data['extra_title_text'] = "<br>Searching by User IDX [ ".$entity->fields['idx']." ] - ID [ ".$entity->fields['id']." ]";
 				}
 				else if( $data['group_by'] == 'idx_config' ){					
 					if( is_numeric( $data['group_by_value'] ) ) $entity = entity( POST_CONFIG )->load( $data['group_by_value'] );						
 					else $entity = entity( POST_CONFIG )->load( 'id',$data['group_by_value'] );
+					
+					if( !empty( $entity ) ) $data['extra_title_text'] = "<br>Searching by Forum IDX [ ".$entity->fields['idx']." ] - ID [ ".$entity->fields['id']." ]";
 				}				
 				if( empty( $entity ) ) $data['error'] = "Invalid information [ $data[group_by_value] ]";
 			}

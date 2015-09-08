@@ -11,8 +11,17 @@
 					'updates'=>'User Updates',
 					'logins'=>'User Logins',
 					'block'=>'How many users will still be BLOCKED on the said date',
-					'resign'=>'Resigned Users',
-					];	
+					'resign'=>'Resigned Users',					
+					];
+					
+	//just text for keys
+	$text =	[
+			'day'=>'daily',	
+			'week'=>'Weekly',	
+			'month'=>'Monthly',
+			'idx_user'=>'User',
+			'idx_forum'=>'Forum',
+			];	
 ?>
 
 <?php include template("statistics.admin.$data[menu].menu"); ?>
@@ -20,7 +29,8 @@
 <h1>
 	<?php 
 		echo $list_type[ $data['list_type'] ]; 
-		if( !empty( $data['group_by'] ) ) echo " Grouped by ".$data['group_by'];
+		if( !empty( $data['group_by'] ) ) echo " Grouped by ".$text[ $data['group_by'] ];
+		if( !empty( $data['extra_title_text'] ) ) echo $data['extra_title_text'];
 	?>
 </h1>
 

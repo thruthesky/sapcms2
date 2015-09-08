@@ -1,11 +1,4 @@
-<?php
-	//just text for date_by
-	$text =	[
-			'day'=>'daily',	
-			'week'=>'Weekly',	
-			'month'=>'Monthly',			
-			];	
-			
+<?php		
 	if( $data['show_by'] == 'day' ) $input_date_type = 'date';
 	else $input_date_type = $data['show_by'];
 	if( !empty( $data['group_by'] ) ){
