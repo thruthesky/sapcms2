@@ -52,9 +52,10 @@ class Statistics {
 	
 	public static function post() {
 		$input = request();
+				
 		
 		if( !empty( $input ) ) $data['input'] = request();
-		$data = self::dateRangeComputation();
+		$data = self::dateRangeComputation();		
 		
 		if( empty( $input['list_type'] ) ) $data['list_type'] = 'created';//default
 		else $data['list_type'] = $input['list_type'];
@@ -62,11 +63,32 @@ class Statistics {
 		if( $data['list_type'] == 'comment' ) $data['extra_query'] = " AND idx_parent > 0";
 		else if( $data['list_type'] == 'post' ) $data['extra_query'] = " AND idx_parent = 0";
 		
-		if( !empty( $input['group_by'] ) ) $data['group_by'] = $input['group_by'];	
+		if( !empty( $input['group_by'] ) ){
+			$data['group_by'] = $input['group_by'];	
+			if( !empty( $input['group_by_value'] ) ){
+				$data['group_by_value'] = $input['group_by_value'];
+				if( $data['group_by'] == 'idx_user' ){
+					if( is_numeric( $data['group_by_value'] ) ) $entity = user()->load( $data['group_by_value'] );					
+					else $entity = user()->load( 'id',$data['group_by_value'] );
+				}
+				else if( $data['group_by'] == 'idx_config' ){					
+					if( is_numeric( $data['group_by_value'] ) ) $entity = entity( POST_CONFIG )->load( $data['group_by_value'] );						
+					else $entity = entity( POST_CONFIG )->load( 'id',$data['group_by_value'] );
+				}				
+				if( empty( $entity ) ) $data['error'] = "Invalid information [ $data[group_by_value] ]";
+			}
+			else $data['group_by_value'] = null;
+		}
 		
-		
-		$items = self::doQuery( POST_DATA, $data );		
-		$data = array_merge( $items, $data );
+		if( empty( $data['error']) ){
+			if( !empty( $entity ) ){
+				$entity = $entity->fields;
+				$data['extra_query'] .= " AND $data[group_by] = $entity[idx]";
+			}
+			
+			$items = self::doQuery( POST_DATA, $data );		
+			$data = array_merge( $items, $data );
+		}			
 		
         self::adminPostStatisticsTemplate( $data );
     }
@@ -237,19 +259,19 @@ class Statistics {
 			}
 		}
 		
-		$max_total_iteration = 1;
+		/*$max_total_iteration = 1;
 		$temp_i = $highest;
 		while( $temp_i > 10 ){
 			$max_total_iteration *= 10;
 			$temp_i = $temp_i/10;										
-		}
+		}*/
 		
 		$data['custom_bar_width'] = 100 / ( $data['difference'][$data['show_by']] + 1 + $detailed_items );//+$detailed_items
 		
-		$data['max_total'] = ceil( $highest/$max_total_iteration ) * $max_total_iteration;
+		$data['max_total'] = $highest;
 		if( empty( $data['max_total'] ) || $data['max_total'] < 10 ) $data['max_total'] = 10;		
 		
-		$data['graph_interation'] = ceil( $data['max_total'] / 20 );		
+		$data['graph_interation'] = ceil( $data['max_total'] / 10 );		
 		
 		$overall_statistics = [];
 		$date_now = $start_stamp;
@@ -302,7 +324,7 @@ class Statistics {
 	
 	private static function adminUserStatisticsTemplate( $data )
     {
-		$page = 'statistics.admin.graph';
+		$page = 'statistics.admin.page';
 		$data['menu'] = 'user';//temp
 		return Response::renderSystemLayout([
 			'template'=>'statistics.layout',
@@ -313,7 +335,7 @@ class Statistics {
 	
 	private static function adminPostStatisticsTemplate( $data )
     {			
-		$page = 'statistics.admin.graph';
+		$page = 'statistics.admin.page';
 		$data['menu'] = 'post';//temp
 		return Response::renderSystemLayout([
 			'template'=>'statistics.layout',
