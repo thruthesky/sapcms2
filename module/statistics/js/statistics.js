@@ -9,6 +9,10 @@ var $graph_mouseleave_timeout;
 var $old_index;
 
 function show_graph_commands( e ){
+	//just temporary 
+	if( $( e.target ).hasClass("custom_title") ) return;
+	if( $( e.target ).parent().hasClass("custom_title") ) return;
+
 	$this = $(this);
 	if( $this.find(".custom_title.is-active").hasClass("is-active") ){
 		console.log($this.prop('class'));
