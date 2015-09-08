@@ -2,11 +2,12 @@
 	//just text for date_by
 	$text =	[
 			'day'=>'daily',	
-			//'week'=>'Weekly',	
+			'week'=>'Weekly',	
 			'month'=>'Monthly',			
 			];	
-	if( $data['show_by'] == 'month' ) $input_date_type = 'month';
-	else $input_date_type = 'date';
+			
+	if( $data['show_by'] == 'day' ) $input_date_type = 'date';
+	else $input_date_type = $data['show_by'];
 ?>
 <form>
 	<input type='hidden' name='list_type' value='<?php echo $data['list_type'] ?>'>

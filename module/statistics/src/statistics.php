@@ -175,15 +175,15 @@ class Statistics {
 				$data['sql_group_by'] = " GROUP BY day( FROM_UNIXTIME( created ) )";
 				$data['date_guide'] = "Y-m-d";
 			}
-			/*
+			
 			if( $data['show_by'] == '' || $data['show_by'] == 'week'  ){
 				$data['date_from_stamp']['week'] = strtotime( "this week", $date_from_stamp );				
 				$data['date_to_stamp']['week'] = strtotime( "this week", $date_to_stamp );				
 				$data['date_to_stamp']['week'] = strtotime( date( "Y-m-d",strtotime( "this week", $date_to_stamp ) )." +1 week" ) - 1;//needs more test
 				$data['sql_group_by'] = " GROUP BY week( FROM_UNIXTIME( created ) )";
-				$data['date_guide'] = "W_Y";
+				$data['date_guide'] = "Y-\WW";
 			}
-			*/
+			
 			if( $data['show_by'] == '' || $data['show_by'] == 'month'  ){
 				$data['date_from_stamp']['month'] = strtotime( date('Y-m-1',$date_from_stamp) );				
 				$data['date_to_stamp']['month'] = strtotime( date('Y-m-1',$date_to_stamp) );
@@ -257,10 +257,16 @@ class Statistics {
 		for( $i = 0; $i <= $data['difference'][$data['show_by']]; $i ++){
 			$date_index = date( "$data[date_guide]",( $date_now ) );									
 			
+			
 			if( !empty( $items[ $date_index ] ) ){
 				$collection = $items[ $date_index ];				
 				foreach( $collection as $k => $v ){					
 					if( $data['show_by'] == 'month' ) $title = "Month of ".date( "M, Y",$date_now )."<br>";
+					else if( $data['show_by'] == 'week' ) {										
+						$start_week = date( "M d D, Y",strtotime( $date_index ) );									
+						$end_week = date( "M d D, Y",strtotime( "this sunday",strtotime( $date_index ) ) );
+						$title = "Week of ".date( "W, Y",$date_now )."<br>$start_week ~ $end_week<br>";
+					}
 					else $title = date( "M d, Y",$date_now )."<br>";
 				
 					$stats = [];										
@@ -275,6 +281,7 @@ class Statistics {
 			}
 			else {
 				if( $data['show_by'] == 'month' ) $title = "Month of ".date( "M, Y",$date_now )."<br>";
+				else if( $data['show_by'] == 'week' ) $title = "Week of ".date( "W, Y",$date_now )."<br>";
 				else $title = date( "M d, Y",$date_now )."<br>";
 			
 				$stats = [];

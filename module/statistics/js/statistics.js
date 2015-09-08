@@ -46,14 +46,10 @@ function hide_graph_commands(){
 }
 
 function change_date_type(){
-	$this = $(this);		
-	if( $this.val() == 'month' ){
-		$("input[type='date']").val('');
-		$("input[type='date']").prop('type','month');
-	}
-	else if( $this.val() == 'day' ){
-		$("input[type='month']").val('');
-		$("input[type='month']").prop('type','date');
-	}
+	$this = $(this);
+	$("input[name='date_from']").val('');
+	$("input[name='date_to']").val('');
 	
+	$("input[name='date_from']").prop('type',$this.val());
+	$("input[name='date_to']").prop('type',$this.val());
 }
