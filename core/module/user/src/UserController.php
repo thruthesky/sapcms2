@@ -22,7 +22,6 @@ class UserController
     public static function register()
     {
         if ( submit() ) return self::registerFormSubmit();
-
         return self::userRegisterTemplate();
     }
 	
@@ -141,7 +140,15 @@ class UserController
     {
         if ( self::validateRegisterFrom() ) return self::userRegisterTemplate();
 
-        $options['id'] = request('id');
+        $id = request('id');
+        if ( user_exists($id) ) {
+            error(-20102, "User ID is in use. Please choose another.");
+            return self::userRegisterTemplate();
+        }
+
+
+
+        $options['id'] = $id;
         $options['password'] = request('password');
         $options['name'] = request('name');
         $options['mail'] = request('mail');

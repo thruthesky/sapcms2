@@ -1,3 +1,4 @@
+<form  method="post">
 <?php
 	if( !empty( $variables['user'] ) ){
 		echo "<h1>Admin Edit mode</h1>";
@@ -54,3 +55,10 @@
     'text' => html_input(['type'=>'email', 'name'=>'mail', 'value'=>$mail, 'placeholder'=>'Input Email']),
 ]);
 ?>
+    <?php
+    if( empty( $user ) ) $submit_text = "REGISTER";
+    else $submit_text = "UDPATE";
+    ?>
+    <input type="submit" value="<?php echo $submit_text ?>">
+    <a href="/" class="ui-btn ui-icon-action">CANCEL</a>
+</form>
