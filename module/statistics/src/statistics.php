@@ -162,7 +162,7 @@ class Statistics {
 			$difference['week'] = $week_diff;	
 
 			if( date("m",$date_to_stamp) < date ("m",$date_from_stamp ) ) $month_to = date ("m",$date_to_stamp ) + 12;
-			else $month_to = date ("m",$date_from_stamp );
+			else $month_to = date ("m",$date_to_stamp );
 			
 			$difference['month'] = ( $date_diff->y * 12 ) + ( $month_to - date ("m",$date_from_stamp ) );
 
