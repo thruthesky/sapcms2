@@ -69,7 +69,12 @@ if( empty( $data['error'] ) ){
 							$title .= "Count [ $count ]<br>IDX [ 0 ]<br>ID [ test ]<br>Name [ script_test ]";
 						}
 						else{
-							$user = entity( $data['table'] )->load( $idx )->fields;
+							
+							$user = entity( $data['table']  )->load( $idx )->fields;
+							if( $data['table'] == USER_ACTIVITY_TABLE ){
+								$user = user()->load( $user['idx_user'] )->fields;
+							}
+							
 							$title .= "IDX [ $user[idx] ]<br>ID [ $user[id] ]<br>Name [ $user[name] ]";
 						}
 					}

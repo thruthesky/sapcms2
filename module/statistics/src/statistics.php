@@ -159,9 +159,13 @@ class Statistics {
 			
 			$difference = [];			
 			$difference['day'] = $date_diff->days;
-			$difference['week'] = $week_diff;		
-			$difference['month'] = ( $date_diff->y * 12 ) + ( date("m",$date_to_stamp) - date ("m",$date_from_stamp ) );
+			$difference['week'] = $week_diff;	
+
+			if( date("m",$date_to_stamp) < date ("m",$date_from_stamp ) ) $month_to = date ("m",$date_to_stamp ) + 12;
+			else $month_to = date ("m",$date_from_stamp );
 			
+			$difference['month'] = ( $date_diff->y * 12 ) + ( $month_to - date ("m",$date_from_stamp ) );
+
 			$data['difference'] = $difference;	
 			
 			//automatically show ALL if show_by is empty
@@ -221,6 +225,7 @@ class Statistics {
 		exit;*/
 		$detailed_items = 0;
 		$highest = 0;
+		
 		if( !empty( $count_per_day ) ){	
 			foreach( $count_per_day as $arr ){
 				$arr = array_values( $arr );
@@ -248,6 +253,7 @@ class Statistics {
 		
 		$overall_statistics = [];
 		$date_now = $start_stamp;
+		
 		for( $i = 0; $i <= $data['difference'][$data['show_by']]; $i ++){
 			$date_index = date( "$data[date_guide]",( $date_now ) );									
 			
@@ -279,6 +285,7 @@ class Statistics {
 			$date_now = strtotime( date( "Y-m-d",$date_now )." +1 $data[show_by]" );
 		}		
 		$data['overall_statistics'] = $overall_statistics;		
+
 		return $data;
 	}
 	
