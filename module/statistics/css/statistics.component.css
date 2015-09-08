@@ -68,9 +68,7 @@ table .tr-class.current{
 	position:absolute;
 	left:0;
 	bottom:0;
-	/*width: 85%;
-    margin-right: 15%;*/
-	min-height:1px;
+	min-height:5px;
 	width:100%;	
 }
 
@@ -81,7 +79,7 @@ table .tr-class.current{
 }
 
 .graph-wrapper > .inner .bar-wrapper .bar > .inner{
-	min-height:1px;
+	min-height:5px;
 	margin-right:1px;
 	background-color:red;
 }
@@ -101,14 +99,7 @@ table .tr-class.current{
 	z-index:1;	
 	text-align:left;
 	white-space:nowrap;
-}
-
-.graph-wrapper > .inner .bar-wrapper .custom_title .close{
-	position:absolute;
-	right:3px;
-	top:3px;
-	cursor:pointer;
-	color:blue;
+	cursor:default;
 }
 
 .graph-wrapper > .inner .bar-wrapper .custom_title .close:hover{
