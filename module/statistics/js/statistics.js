@@ -1,8 +1,6 @@
 $ = jQuery;
 $(function(){
-	$("body").on("click",".graph-wrapper .bar-wrapper .bar", show_graph_commands);	
-	$("body").on("click",".graph-wrapper .bar-wrapper .custom_title .close", hide_graph_commands);	
-	
+	$("body").on("click",".graph-wrapper .bar-wrapper", show_graph_commands);	
 	$("body").on("change","select[name='show_by']", change_date_type);	
 });
 
@@ -10,9 +8,24 @@ var $graph_mouseenter_timeout;
 var $graph_mouseleave_timeout;
 var $old_index;
 
-function show_graph_commands( e ){	
-	$this = $(this).parent();	
-	$(".graph-wrapper .bar-wrapper .custom_title.is-active").removeClass("is-active");
+function show_graph_commands( e ){
+	//just temporary 
+	if( $( e.target ).hasClass("custom_title") ) return;
+	if( $( e.target ).parent().hasClass("custom_title") ) return;
+
+	$this = $(this);
+	if( $this.find(".custom_title.is-active").hasClass("is-active") ){
+		console.log($this.prop('class'));
+		$this.removeClass('is-active');
+		$this.find(".custom_title.is-active").removeClass("is-active");
+		return;
+	}
+	else{
+		$(".graph-wrapper .bar-wrapper.is-active").find(".custom_title.is-active").removeClass("is-active");
+		$(".graph-wrapper .bar-wrapper.is-active").removeClass("is-active");		
+	}
+	
+	$this.addClass("is-active");	
 	
 	/*for left of right position*/
 	x = e.pageX;
@@ -46,9 +59,10 @@ function hide_graph_commands(){
 }
 
 function change_date_type(){
-	$this = $(this);	
-	$("input[type='date']").val('');
-	if( $this.val() == 'month' ){
-		$("input[type='date']").prop('type','month');
-	}
+	$this = $(this);
+	$("input[name='date_from']").val('');
+	$("input[name='date_to']").val('');
+	
+	$("input[name='date_from']").prop('type',$this.val());
+	$("input[name='date_to']").prop('type',$this.val());
 }
