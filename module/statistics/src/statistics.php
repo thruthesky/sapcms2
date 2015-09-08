@@ -281,7 +281,11 @@ class Statistics {
 			}
 			else {
 				if( $data['show_by'] == 'month' ) $title = "Month of ".date( "M, Y",$date_now )."<br>";
-				else if( $data['show_by'] == 'week' ) $title = "Week of ".date( "W, Y",$date_now )."<br>";
+				else if( $data['show_by'] == 'week' ) {										
+					$start_week = date( "M d D, Y",strtotime( $date_index ) );									
+					$end_week = date( "M d D, Y",strtotime( "this sunday",strtotime( $date_index ) ) );
+					$title = "Week of ".date( "W, Y",$date_now )."<br>$start_week ~ $end_week<br>";
+				}
 				else $title = date( "M d, Y",$date_now )."<br>";
 			
 				$stats = [];
