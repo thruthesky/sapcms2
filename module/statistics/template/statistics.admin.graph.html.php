@@ -47,16 +47,53 @@ if( empty( $data['error'] ) ){
 			if( !empty( $collection['count'] ) ){
 				$title = $collection['title'];
 				$idx = $collection['idx'];
-				$count = $collection['count'];				
+				$count = $collection['count'];
+
+				if( !empty( $data['group_by'] ) ){
+					if( $data['group_by'] == 'idx_config' ){
+						$post_config = entity( POST_CONFIG )->load( $idx )->fields;
+						$title .= "Count [ $count ]<br>IDX [ $post_config[idx] ]<br>ID [ $post_config[id] ]<br>Name [ $post_config[name] ]";
+					}
+					else if( $data['group_by'] == 'idx_user' ){														
+						if( $idx == 0 ){//happens when you use create posts script
+							$title .= "Count [ $count ]<br>IDX [ 0 ]<br>ID [ test ]<br>Name [ script_test ]";
+						}
+						else{
+							$user = user()->load( $idx )->fields;
+							$title .= "Count [ $count ]<br>IDX [ $user[idx] ]<br>ID [ $user[id] ]<br>Name [ $user[name] ]";
+						}
+					}
+					//when using this condition, the table should always be the same as the idx value
+					else if( $data['group_by'] == 'idx' ){	
+						if( $idx == 0 ){//happens when you use create posts script
+							$title .= "Count [ $count ]<br>IDX [ 0 ]<br>ID [ test ]<br>Name [ script_test ]";
+						}
+						else{
+							$user = entity( $data['table'] )->load( $idx )->fields;
+							$title .= "IDX [ $user[idx] ]<br>ID [ $user[id] ]<br>Name [ $user[name] ]";
+						}
+					}
+				}
+				else{
+					$title .= "Count [ $count ]";
+				}
 				
 				
 				$inner_inline_style = " style='background-color:rgba(".$color_range[0][$color_i].",".$color_range[1][$color_i].",".$color_range[2][$color_i].",1)";
-				if( !empty( $collection['border_code'] ) ) {
-						$border_color = 255 - $collection['border_code'];
-						$inner_inline_style .= ";border-bottom:5px solid;border-color:rgba(".$color_range[0][$border_color].",".$color_range[1][$border_color].",".$color_range[2][$border_color].",1)";
-					}
+				if( !empty( $collection['border_code'] ) || $collection['border_code'] == 0 ) {
+					$border_color = 255 - $collection['border_code'];
+					$inner_inline_style .= ";border-bottom:5px solid;border-color:rgba(".$color_range[0][$border_color].",".$color_range[1][$border_color].",".$color_range[2][$border_color].",1)";
+				}
 				$inner_inline_style .= ";'";
-
+				
+				
+				$url = "?list_type=$data[list_type]&date_from=".$collection['date']."&date_to=".$collection['date']."&show_by=".$data['show_by'];
+				if( $data['menu'] == 'post' && empty( $data['group_by'] ) ){								
+					$title .= "<br><a href='$url&group_by=idx_user' target='_blank'>User IDX</a> <a href='$url&group_by=idx_config' target='_blank'>Config IDX</a>";						
+				}
+				else if( $data['menu'] == 'user' && empty( $data['group_by'] ) ){
+					$title .= "<br><a href='$url&group_by=idx' target='_blank'>List all users who registers for this day</a>";
+				}
 			}
 			else{
 				$title = $collection['title'];
@@ -74,7 +111,9 @@ if( empty( $data['error'] ) ){
 						<span class='close'>[x]</span>
 						<div class='triangle outer'></div>
 						<div class='triangle inner'></div>																				
-						<?php echo $title; ?>										
+						<?php
+							echo $title;
+						?>
 					</div>
 				</div>
 			<?php

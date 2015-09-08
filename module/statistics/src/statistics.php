@@ -34,14 +34,15 @@ class Statistics {
 		}
 		/*
 		else if( $data['list_type'] == 'block' ) {
-			$q = "$data[list_type] > $start_stamp AND $data[list_type] <> 0";
-			$q .= " GROUP BY $data[show_by]( FROM_UNIXTIME( created ) ), month( FROM_UNIXTIME( created ) ), year( FROM_UNIXTIME( created ) )";//can only be used for days...
-			$count_per_day = user()->rows( $q, "created,count(*)" );		
+			$q = "$data[list_type] > $start_stamp AND $data[list_type] <> 0";			
+			$table = "user";		
 		}
 		*/
 		else{									
 			$table = "user";
-		}	
+		}					
+		
+		if( !empty( $input['group_by'] ) ) $data['group_by'] = $input['group_by'];
 		
 		$items = self::doQuery( $table, $data );
 		$data = array_merge( $items, $data );
@@ -61,7 +62,7 @@ class Statistics {
 		if( $data['list_type'] == 'comment' ) $data['extra_query'] = " AND idx_parent > 0";
 		else if( $data['list_type'] == 'post' ) $data['extra_query'] = " AND idx_parent = 0";
 		
-		if( !empty( $input['group_by'] ) ) $data['group_by'] = $input['group_by'];		
+		if( !empty( $input['group_by'] ) ) $data['group_by'] = $input['group_by'];	
 		
 		
 		$items = self::doQuery( POST_DATA, $data );		
@@ -193,10 +194,15 @@ class Statistics {
 	}
 	
 	public static function doQuery( $table, $data ){
+		$data['table'] = $table;
+	
 		$start_stamp = $data['date_from_stamp'][$data['show_by']];
 		$end_stamp = $data['date_to_stamp'][$data['show_by']];
 		
-		$q = "created > $start_stamp AND created < $end_stamp";	
+		//TEMP SOLUTION ONLY
+		if( $data['list_type'] == 'block' ) $q = "block > $start_stamp AND block <> 0";
+		else $q = "created > $start_stamp AND created < $end_stamp";	
+		
 		if( !empty( $data['extra_query'] ) ) $q .= " $data[extra_query]";		
 	
 		if( empty( $data['group_by'] ) ) {
@@ -209,7 +215,10 @@ class Statistics {
 			$select = "created,$data[group_by],count(*)";
 		}
 		$count_per_day = entity($table)->rows( $q, $select );
-		
+		/*di( $q );
+		di( $select );
+		di( $count_per_day );
+		exit;*/
 		$detailed_items = 0;
 		$highest = 0;
 		if( !empty( $count_per_day ) ){	
@@ -248,31 +257,10 @@ class Statistics {
 					if( $data['show_by'] == 'month' ) $title = "Month of ".date( "M, Y",$date_now )."<br>";
 					else $title = date( "M d, Y",$date_now )."<br>";
 				
-					$stats = [];					
-					if( !empty( $data['group_by'] ) ){
-						if( $data['group_by'] == 'idx_config' ){
-							$post_config = entity( POST_CONFIG )->load( $k )->fields;
-							$title .= "Count [ $v ]<br>IDX [ $post_config[idx] ]<br>ID [ $post_config[id] ]<br>Name [ $post_config[name] ]";
-						}
-						else if( $data['group_by'] == 'idx_user' ){														
-							if( $k == 0 ){//happens when you use create posts script
-								$title .= "Count [ $v ]<br>IDX [ 0 ]<br>ID [ test ]<br>Name [ script_test ]";
-							}
-							else{
-								$user = user()->load( $k )->fields;
-								$title .= "Count [ $v ]<br>IDX [ $user[idx] ]<br>ID [ $user[id] ]<br>Name [ $user[name] ]";
-							}
-						}
-					}
-					else{
-						$title .= "Count [ $v ]";
-						if( $table == POST_DATA ){
-							$url = "?list_type=$data[list_type]&date_from=".$date_index."&date_to=".$date_index."&show_by=".$data['show_by'];
-							$title .= "<br><a href='$url&group_by=idx_user' target='_blank'>User IDX</a> <a href='$url&group_by=idx_config' target='_blank'>Config IDX</a>";						
-						}						
-					}
+					$stats = [];										
 					
 					$stats['title'] = $title;
+					$stats['date'] = $date_index;
 					$stats['idx'] = $k;
 					$stats['count'] = $v;
 					$stats['border_code'] = $i;
@@ -284,7 +272,8 @@ class Statistics {
 				else $title = date( "M d, Y",$date_now )."<br>";
 			
 				$stats = [];
-				$stats['title'] = $title;				
+				$stats['title'] = $title;
+				$stats['date'] = $date_index;				
 				$overall_statistics[] = $stats;
 			}
 			$date_now = strtotime( date( "Y-m-d",$date_now )." +1 $data[show_by]" );
