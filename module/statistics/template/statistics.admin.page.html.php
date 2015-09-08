@@ -20,7 +20,7 @@
 			'week'=>'Weekly',	
 			'month'=>'Monthly',
 			'idx_user'=>'User',
-			'idx_forum'=>'Forum',
+			'idx_config'=>'Forum',
 			];	
 ?>
 
