@@ -40,7 +40,24 @@ table .tr-class.current{
 	max-width:2%;
 	height:500px;
 	font-size:.7em;
-	text-align:center;	
+	text-align:center;
+	cursor:pointer;	
+	box-sizing:border-box;
+}
+
+.graph-wrapper > .inner .bar-wrapper .highlight{	
+	display:none;
+	position:absolute;
+	left:0;
+	bottom:0;
+	height:100%;
+	width:100%;
+	background-color:#d5d5d5;
+}
+
+.graph-wrapper > .inner .bar-wrapper.is-active .highlight{	
+	display:block;
+	opacity:.7;
 }
 
 .graph-wrapper > .inner .bar-wrapper.label{	
@@ -54,8 +71,7 @@ table .tr-class.current{
 	/*width: 85%;
     margin-right: 15%;*/
 	min-height:1px;
-	width:100%;
-	cursor:pointer;	
+	width:100%;	
 }
 
 .graph-wrapper > .inner .bar-wrapper.has-value .bar > .inner{
@@ -68,6 +84,10 @@ table .tr-class.current{
 	min-height:1px;
 	margin-right:1px;
 	background-color:red;
+}
+
+.graph-wrapper > .inner .bar-wrapper.is-active .bar > .inner{
+	margin-right:0;
 }
 
 .graph-wrapper > .inner .bar-wrapper .custom_title{

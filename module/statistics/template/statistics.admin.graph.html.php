@@ -112,8 +112,10 @@ if( empty( $data['error'] ) ){
 					<div class='bar' title='<?php echo strip_tags( str_replace( "<br>", " - ", $title ) ); ?>' style='height:<?php echo ( $count/$data['max_total'] ) * 100; ?>%'>
 						<div class='inner'<?php echo $inner_inline_style; ?>></div>
 					</div>
-					<div class='custom_title'>
-						<span class='close'>[x]</span>
+					<div class='highlight'>
+					
+					</div>
+					<div class='custom_title'>						
 						<div class='triangle outer'></div>
 						<div class='triangle inner'></div>																				
 						<?php
