@@ -46,9 +46,14 @@ function hide_graph_commands(){
 }
 
 function change_date_type(){
-	$this = $(this);	
-	$("input[type='date']").val('');
+	$this = $(this);		
 	if( $this.val() == 'month' ){
+		$("input[type='date']").val('');
 		$("input[type='date']").prop('type','month');
 	}
+	else if( $this.val() == 'day' ){
+		$("input[type='month']").val('');
+		$("input[type='month']").prop('type','date');
+	}
+	
 }

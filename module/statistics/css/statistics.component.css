@@ -61,6 +61,7 @@ table .tr-class.current{
 .graph-wrapper > .inner .bar-wrapper.has-value .bar > .inner{
 	height:100%;		
 	background-color:blue;
+	box-sizing:border-box;
 }
 
 .graph-wrapper > .inner .bar-wrapper .bar > .inner{

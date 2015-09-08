@@ -4,19 +4,27 @@
 	extract( $variables );	
 		
 	//just for page title
-	$list =	[
-			'comment'=>'Most Comments',
-			'post'=>'Most User Posts ( comments not counted )',
-			//'idx_config'=>'Most Config Posts ( comments not counted )',
-			];
+	$list_type =	[
+					'comment'=>'Most Comments',
+					'post'=>'Most User Posts ( comments not counted )',
+					'created'=>'User Registers',
+					'updates'=>'User Updates',
+					'logins'=>'User Logins',
+					'block'=>'How many users will still be BLOCKED on the said date',
+					'resign'=>'Resigned Users',
+					];
 ?>
 
 <?php include template("statistics.admin.$data[menu].menu"); ?>
-<?php include template("statistics.admin.form"); ?>
 
-<?php
-	
-?>
+<h1>
+	<?php 
+		echo $list_type[ $data['list_type'] ]; 
+		if( !empty( $data['group_by'] ) ) echo " Grouped by ".$data['group_by'];
+	?>
+</h1>
+
+<?php include template("statistics.admin.form"); ?>
 
 <div class='graph-wrapper'>
 			<div class='inner'>
@@ -39,24 +47,28 @@ if( empty( $data['error'] ) ){
 			if( !empty( $collection['count'] ) ){
 				$title = $collection['title'];
 				$idx = $collection['idx'];
-				$count = $collection['count'];
+				$count = $collection['count'];				
 				
-				$color_code = " style='background-color:rgba(".$color_range[0][$color_i].",".$color_range[1][$color_i].",".$color_range[2][$color_i].",1)'";
+				
+				$inner_inline_style = " style='background-color:rgba(".$color_range[0][$color_i].",".$color_range[1][$color_i].",".$color_range[2][$color_i].",1)";
+				if( !empty( $collection['border_code'] ) ) {
+						$border_color = 255 - $collection['border_code'];
+						$inner_inline_style .= ";border-bottom:5px solid;border-color:rgba(".$color_range[0][$border_color].",".$color_range[1][$border_color].",".$color_range[2][$border_color].",1)";
+					}
+				$inner_inline_style .= ";'";
+
 			}
 			else{
 				$title = $collection['title'];
 				$idx = "";
 				$count = 0;
-				$color_code = null;
+				$inner_inline_style = null;
 			}
-			/*if( !empty( $collection['title'] ) ) $title = $collection['title'];
-			if( !empty( $collection['idx'] ) ) $idx = $collection['idx'];
-			if( !empty( $collection['count'] ) ) $count = $collection['count'];*/
 			
 			?>
 				<div class='bar-wrapper<?php if( $count > 0 ) echo ' has-value'?>' style='width:<?php echo $data['custom_bar_width']; ?>%'>
 					<div class='bar' title='<?php echo strip_tags( str_replace( "<br>", " - ", $title ) ); ?>' style='height:<?php echo ( $count/$data['max_total'] ) * 100; ?>%'>
-						<div class='inner'<?php echo $color_code; ?>></div>
+						<div class='inner'<?php echo $inner_inline_style; ?>></div>
 					</div>
 					<div class='custom_title'>
 						<span class='close'>[x]</span>

@@ -235,8 +235,7 @@ class Statistics {
 		$data['max_total'] = ceil( $highest/$max_total_iteration ) * $max_total_iteration;
 		if( empty( $data['max_total'] ) || $data['max_total'] < 10 ) $data['max_total'] = 10;		
 		
-		$data['graph_interation'] = ceil( $data['max_total'] / 20 );
-		
+		$data['graph_interation'] = ceil( $data['max_total'] / 20 );		
 		
 		$overall_statistics = [];
 		$date_now = $start_stamp;
@@ -244,9 +243,8 @@ class Statistics {
 			$date_index = date( "$data[date_guide]",( $date_now ) );									
 			
 			if( !empty( $items[ $date_index ] ) ){
-				$collection = $items[ $date_index ];
-				
-				foreach( $collection as $k => $v ){
+				$collection = $items[ $date_index ];				
+				foreach( $collection as $k => $v ){					
 					if( $data['show_by'] == 'month' ) $title = "Month of ".date( "M, Y",$date_now )."<br>";
 					else $title = date( "M d, Y",$date_now )."<br>";
 				
@@ -256,9 +254,14 @@ class Statistics {
 							$post_config = entity( POST_CONFIG )->load( $k )->fields;
 							$title .= "Count [ $v ]<br>IDX [ $post_config[idx] ]<br>ID [ $post_config[id] ]<br>Name [ $post_config[name] ]";
 						}
-						else if( $data['group_by'] == 'idx_user' ){
-							$user = user()->load( $k )->fields;
-							$title .= "Count [ $v ]<br>IDX [ $user[idx] ]<br>ID [ $user[id] ]<br>Name [ $user[name] ]";
+						else if( $data['group_by'] == 'idx_user' ){														
+							if( $k == 0 ){//happens when you use create posts script
+								$title .= "Count [ $v ]<br>IDX [ 0 ]<br>ID [ test ]<br>Name [ script_test ]";
+							}
+							else{
+								$user = user()->load( $k )->fields;
+								$title .= "Count [ $v ]<br>IDX [ $user[idx] ]<br>ID [ $user[id] ]<br>Name [ $user[name] ]";
+							}
 						}
 					}
 					else{
@@ -272,6 +275,7 @@ class Statistics {
 					$stats['title'] = $title;
 					$stats['idx'] = $k;
 					$stats['count'] = $v;
+					$stats['border_code'] = $i;
 					$overall_statistics[] = $stats;
 				}
 			}
@@ -280,13 +284,12 @@ class Statistics {
 				else $title = date( "M d, Y",$date_now )."<br>";
 			
 				$stats = [];
-				$stats['title'] = $title;
+				$stats['title'] = $title;				
 				$overall_statistics[] = $stats;
 			}
 			$date_now = strtotime( date( "Y-m-d",$date_now )." +1 $data[show_by]" );
 		}		
-		$data['overall_statistics'] = $overall_statistics;
-
+		$data['overall_statistics'] = $overall_statistics;		
 		return $data;
 	}
 	
