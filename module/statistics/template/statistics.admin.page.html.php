@@ -15,10 +15,7 @@
 					];
 					
 	//just text for keys
-	$text =	[
-			'day'=>'daily',	
-			'week'=>'Weekly',	
-			'month'=>'Monthly',
+	$text =	[			
 			'idx_user'=>'User',
 			'idx_config'=>'Forum',
 			];	

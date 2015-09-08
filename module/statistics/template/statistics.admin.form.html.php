@@ -1,4 +1,10 @@
-<?php		
+<?php
+	$date_label = 	[
+				'day'=>'daily',	
+				'week'=>'Weekly',	
+				'month'=>'Monthly',
+				];
+
 	if( $data['show_by'] == 'day' ) $input_date_type = 'date';
 	else $input_date_type = $data['show_by'];
 	if( !empty( $data['group_by'] ) ){
@@ -22,7 +28,7 @@
 	Show by:
 	<select name='show_by'>
 		<!--<option value="">ALL</option>-->
-		<?php foreach( $text as $key => $value ){ ?>
+		<?php foreach( $date_label as $key => $value ){ ?>
 			<option value='<?php echo $key?>' <?php if( $key == $data['show_by'] ) echo " selected" ?>><?php echo $value?></option>
 		<?php } ?>
 	</select>
