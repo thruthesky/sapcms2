@@ -264,9 +264,10 @@ class Statistics {
 		
 		$data['custom_bar_width'] = 100 / ( $data['difference'][$data['show_by']] + 1 + $detailed_items );//+$detailed_items
 		
-		$data['max_total'] = ceil( $highest /100 ) * 100;
+		if( $highest <= 10 ) $data['max_total'] = 10;
+		else $data['max_total'] = ceil( $highest /100 ) * 100;
 		
-		if( empty( $data['max_total'] ) || $data['max_total'] < 10 ) $data['max_total'] = 10;		
+		//if( empty( $data['max_total'] ) || $data['max_total'] < 10 ) $data['max_total'] = 10;		
 		
 		$data['graph_interation'] = ceil( $data['max_total'] / 10 );		
 		
