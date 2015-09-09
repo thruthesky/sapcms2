@@ -218,6 +218,13 @@ class smsgate {
 
         //$sms = entity(QUEUE)->query("ORDER BY priority DESC, stamp_next_send ASC, idx ASC");
         //current time() should be less than stamp_next_send
+		$current_time = date( "Hi", time() );
+		
+		if( $current_time < 700 || $current_time > 2200 ){
+			$re['error'] = -410;
+            $re['message'] = 'Only send Messages between 7am to 10 pm. Time now is [ '.date( "H:i", time() ).' ] - stop sending message for now...';
+		}
+		
         $sms = entity(QUEUE)->query("stamp_next_send <= '".time()."' ORDER BY priority DESC, stamp_next_send ASC, idx ASC");
 
         if ( $sms ) {
