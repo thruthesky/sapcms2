@@ -20,7 +20,19 @@
 	?>
 		<input type='hidden' name='group_by' value='<?php echo $data['group_by'] ?>'>
 		Input <?php echo $group_by_label ?> IDX or <?php echo $group_by_label ?> ID <span class='note important'>*Required</span>
-		<input type='text' name='group_by_value' value='<?php echo $data['group_by_value'] ?>'>
+		<?php if( $data['group_by'] == 'idx_config'){
+			$post_configs = entity( POST_CONFIG )->rows();		
+			
+		?>
+			<select name='group_by_value'>
+				<option value=""></option>
+				<?php foreach( $post_configs as $pc ){?>
+					<option value='<?php echo $pc['idx']?>' <?php if( $data['group_by_value'] == $pc['idx'] ) echo " selected" ?>><?php echo $pc['id']?></option>
+				<?php }?>
+			</select>
+		<?php }else{?>
+			<input type='text' name='group_by_value' value='<?php echo $data['group_by_value'] ?>'>
+		<?php }?>
 	<?php } ?>
 	From
 	<input type='<?php echo $input_date_type; ?>' name='date_from' value='<?php echo $data['date_from']?>'>

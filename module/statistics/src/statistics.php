@@ -64,7 +64,10 @@ class Statistics {
 		else if( $data['list_type'] == 'post' ) $data['extra_query'] = " AND idx_parent = 0";
 		
 		if( !empty( $input['group_by'] ) ){
-			$data['group_by'] = $input['group_by'];	
+			$data['group_by'] = $input['group_by'];
+			if( empty( $input['show_all'] ) && isset( $input['group_by_value'] ) ){
+				if( $input['group_by_value'] == '' ) $data['error'] = 'ID cannot be blank.';
+			}
 			if( !empty( $input['group_by_value'] ) ){
 				$data['group_by_value'] = $input['group_by_value'];
 				if( $data['group_by'] == 'idx_user' ){
@@ -73,14 +76,14 @@ class Statistics {
 					
 					if( !empty( $entity ) ) $data['extra_title_text'] = "<br>Searching by User IDX [ ".$entity->fields['idx']." ] - ID [ ".$entity->fields['id']." ]";
 				}
-				else if( $data['group_by'] == 'idx_config' ){					
+				else if( $data['group_by'] == 'idx_config' ){
 					if( is_numeric( $data['group_by_value'] ) ) $entity = entity( POST_CONFIG )->load( $data['group_by_value'] );						
 					else $entity = entity( POST_CONFIG )->load( 'id',$data['group_by_value'] );
 					
 					if( !empty( $entity ) ) $data['extra_title_text'] = "<br>Searching by Forum IDX [ ".$entity->fields['idx']." ] - ID [ ".$entity->fields['id']." ]";
 				}				
 				if( empty( $entity ) ) $data['error'] = "Invalid information [ $data[group_by_value] ]";
-			}			
+			}
 		}
 		
 		if( empty( $data['error']) ){
@@ -244,10 +247,7 @@ class Statistics {
 			$select = "created,$data[group_by],count(*)";
 		}
 		$count_per_day = entity($table)->rows( $q, $select );
-		/*di( $q );
-		di( $select );
-		di( $count_per_day );
-		exit;*/
+
 		$detailed_items = 0;
 		$highest = 0;
 		
@@ -262,16 +262,10 @@ class Statistics {
 			}
 		}
 		
-		/*$max_total_iteration = 1;
-		$temp_i = $highest;
-		while( $temp_i > 10 ){
-			$max_total_iteration *= 10;
-			$temp_i = $temp_i/10;										
-		}*/
-		
 		$data['custom_bar_width'] = 100 / ( $data['difference'][$data['show_by']] + 1 + $detailed_items );//+$detailed_items
 		
-		$data['max_total'] = $highest;
+		$data['max_total'] = ceil( $highest /100 ) * 100;
+		
 		if( empty( $data['max_total'] ) || $data['max_total'] < 10 ) $data['max_total'] = 10;		
 		
 		$data['graph_interation'] = ceil( $data['max_total'] / 10 );		
