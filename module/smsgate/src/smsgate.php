@@ -215,9 +215,7 @@ class smsgate {
      */
     public static function sender_load_sms_from_queue() {
         $re = [];
-
-        //$sms = entity(QUEUE)->query("ORDER BY priority DESC, stamp_next_send ASC, idx ASC");
-        //current time() should be less than stamp_next_send
+		
 		$current_time = date( "Hi", time() );
 		
 		if( $current_time < 700 || $current_time > 2200 ){
@@ -226,6 +224,8 @@ class smsgate {
 			
 		}
 		else{
+			//$sms = entity(QUEUE)->query("ORDER BY priority DESC, stamp_next_send ASC, idx ASC");
+			//current time() should be less than stamp_next_send		
 			$sms = entity(QUEUE)->query("stamp_next_send <= '".time()."' ORDER BY priority DESC, stamp_next_send ASC, idx ASC");
 
 			if ( $sms ) {
