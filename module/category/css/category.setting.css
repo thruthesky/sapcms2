@@ -1,0 +1,14 @@
+.category-setting th, .category-setting td{
+	padding:5px 10px;
+}
+
+.category-setting .admin-button{
+	display: inline-block;
+    padding: 5px 10px;
+    border-radius: 2px;
+    background-color: #003366;
+    color: #ffffff;
+    box-sizing: border-box;
+	text-decoration:none;
+    cursor: pointer;
+}
