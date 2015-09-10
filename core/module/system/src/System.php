@@ -78,10 +78,12 @@ class System {
         phpinfo();
     }
 
+    /*
     public static function runModule($route=null)
     {
         return Module::run($route);
     }
+    */
 
     public static function loadModuleClass($module, $class) {
         return System::get()
@@ -122,7 +124,6 @@ class System {
     {
         $re = null;
 
-
         if ( System::isCommandLineInterface() && CommandLineInterface::getCommand() == '--uninstall' )  {
 
         }
@@ -133,8 +134,8 @@ class System {
                 self::load_module_files();
             }
         }
-        hook('system_begin');
 
+        hook('system_begin');
 
 
         /**
@@ -167,6 +168,7 @@ class System {
 
         $install = config()->group('module')->gets();
 
+
         if ( $install ) {
             foreach( $install as $code => $module ) {
                 self::addModuleLoaded($module);
@@ -178,6 +180,7 @@ class System {
                  *      just like when you include a module file here and you include it again on enabling/disabling the module.
                  */
                 include_once $path;
+
                 hook('after_module_load', $variables);
             }
             hook('module_load_complete');

@@ -25,6 +25,7 @@ class ThemeTest extends PHPUnit_Framework_TestCase {
         parse_str($_SERVER['REQUEST_URI'], $_GET);
         Request::reset();
         Route::load()->reset();
+        sys()->setTheme('default');
         $this->assertTrue(Theme::script() == "theme/default/template/front.page.html.php");
 
     }

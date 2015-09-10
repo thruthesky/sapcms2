@@ -41,13 +41,13 @@ class RouteTest extends PHPUnit_Framework_TestCase {
 
     public function test_routing() {
         Route::add('/install/check', "install\\install\\check");
-        $this->assertTrue( Route::run('/install/check') == true );
+        $this->assertTrue( Module::run('/install/check') == true );
 
         $route = "/config/path/database";
         Route::add($route, "config\\config\\getDatabasePath");
-        $this->assertTrue( Config::getDatabasePath() == Route::run($route) );
         $this->assertTrue( Config::getDatabasePath() == Module::run($route) );
-        $this->assertTrue( Config::getDatabasePath() == System::runModule($route) );
+        $this->assertTrue( Config::getDatabasePath() == Module::run($route) );
+        $this->assertTrue( Config::getDatabasePath() == Module::run($route) );
     }
 
     public function test_routing_variable() {

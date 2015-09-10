@@ -6,6 +6,7 @@ use sap\core\system\System;
 use sap\core\user\User;
 use sap\src\Database;
 use sap\src\File;
+use sap\src\Module;
 use sap\src\Request;
 use sap\src\Response;
 
@@ -152,7 +153,8 @@ class Install {
     public static function runInstall()
     {
         if ( Request::isModule('install') ) {
-            System::runModule();
+            //System::runModule();
+            Module::run();
         }
         else Response::redirect(ROUTE_INSTALL);
         return OK;

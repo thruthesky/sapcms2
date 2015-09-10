@@ -26,7 +26,7 @@ echo $route->module . "\n";
 
 
 Route::add('/install/check', "Install\\Install\\check");
-$re = Route::run('/install/check');
+$re = Module::run('/install/check');
 
 
 
@@ -37,7 +37,7 @@ echo Config::getDatabasePath() . "\n";
 
 $route = "/config/path/database";
 Route::add($route, "Config\\Config\\getDatabasePath");
-$path = Route::run($route);
+$path = Module::run($route);
 print_r($path);
 
 

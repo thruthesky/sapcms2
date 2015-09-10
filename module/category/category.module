@@ -1,0 +1,6 @@
+<?php
+define('CATEGORY_META', 'category');
+
+include 'category.function.php';
+include 'category.hook.php';
+include 'category.routing.php';

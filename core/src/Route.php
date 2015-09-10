@@ -46,13 +46,26 @@ class Route {
     }
 
     /**
+     * Returns all routes.
+     * @return array
+     * @code
+     *  di(route()->all());exit;
+     * @endcode
+     */
+    public static function all() {
+        return self::$routes;
+    }
+
+
+    /**
      * @param $route
      * @return null
      */
     public static function match($route) {
 
-
-        if ( isset(self::$routes[$route]) ) return self::$routes[$route];
+        if ( isset(self::$routes[$route]) ) {
+            return self::$routes[$route];
+        }
         $pos = strrpos($route, '/');
         if ( $pos > 0 ) {
             $relRoute = substr($route, 0, $pos) . '/*';
@@ -61,7 +74,6 @@ class Route {
                 return self::$routes[$relRoute];
             }
         }
-
         return null;
     }
 
@@ -105,6 +117,7 @@ class Route {
         }
         if ( $route ) {
             $this->request_uri = $route;
+
             if ( $match = self::match( $this->request_uri ) ) {
                 $this->segment = explode('\\', $match);
             }
@@ -112,6 +125,7 @@ class Route {
                 $this->request_uri = trim($this->request_uri, '/');
                 $this->segment = explode('/', $this->request_uri);
             }
+
             $this->module = ! empty( $this->segment[0] ) ? $this->segment[0] : DEFAULT_MODULE;
             $this->class = isset( $this->segment[1] ) ? $this->segment[1] : $this->module;
             $this->method = isset( $this->segment[2] ) ? $this->segment[2] : DEFAULT_CONTROLLER;
@@ -143,10 +157,12 @@ class Route {
         }
     }
 
+    /**
     public static function run($route)
     {
         return Module::run($route);
     }
+     * */
 
 
 

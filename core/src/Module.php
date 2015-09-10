@@ -75,7 +75,6 @@ class Module {
             list($module, $class, $method) = explode("\\", $match);
         }
 
-
         if ( System::isEnabled($module) ) {
 
             $core = is_core_module($module) ? "core\\" : null;
