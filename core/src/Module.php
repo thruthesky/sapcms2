@@ -4,11 +4,8 @@ use sap\core\system\System;
 use sap\core\system\SystemController;
 
 class Module {
-
-    private static $core_modules = ['admin', 'config', 'data', 'front', 'install', 'message', 'post', 'system', 'user'];
-
+    private static $core_modules = ['admin', 'config', 'data', 'front', 'install', 'message', 'post', 'system', 'theme', 'user'];
     private static $variables = [];
-
 
     /**
      *
@@ -113,6 +110,10 @@ class Module {
     {
         self::$variables = $variables;
     }
+
+    /**
+     * @return array
+     */
     public static function getVariables()
     {
         return self::$variables;

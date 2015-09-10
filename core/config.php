@@ -4,7 +4,7 @@ define('DEFAULT_MODULE','front');
 define('DEFAULT_CONTROLLER','page');
 
 define('DEVELOPMENT_MODE', true);
-$theme = 'default';
+
 
 
 define('PATH_DATA', PATH_INSTALL. '/data');

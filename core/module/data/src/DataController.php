@@ -40,14 +40,30 @@ class DataController
                     $upload['idx_target'] = request('file_idx_target', 0);
                     $upload['idx_user'] = login('idx');
                     $upload['finish'] = request('file_finish', 0);
+                    if ( request('file_unique') ) {
+                        $files = data()->loadBy($upload['module'], $upload['type'], $upload['idx_target']);
+                        foreach( $files as $file ) {
+                            $file->deleteFile();
+                        }
+                    }
                     $data = data()->record($upload);
                     $upload['idx'] = $data->get('idx');
                     $upload['url'] = $data->url();
+                    $upload['urlThumbnail'] = $data->urlThumbnail(request('file_image_thumbnail_width',160), request('file_image_thumbnail_height', 160));
                 }
             }
             else {
+                if ( $upload['error'] == UPLOAD_ERR_INI_SIZE ) $upload['message'] = "The uploaded file exceeds the upload_max_filesize directive in php.ini";
+                else if ( $upload['error'] == UPLOAD_ERR_FORM_SIZE ) $upload['message'] = "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.";
+                else if ( $upload['error'] == UPLOAD_ERR_PARTIAL ) $upload['message'] = " The uploaded file was only partially uploaded.";
+                else if ( $upload['error'] == UPLOAD_ERR_NO_FILE ) $upload['message'] = " No file was uploaded.";
+                else if ( $upload['error'] == UPLOAD_ERR_NO_TMP_DIR ) $upload['message'] = "Missing a temporary folder.";
+                else if ( $upload['error'] == UPLOAD_ERR_CANT_WRITE ) $upload['message'] = "Failed to write file to disk.";
+                else if ( $upload['error'] == UPLOAD_ERR_EXTENSION ) $upload['message'] = "A PHP extension stopped the file upload. PHP does not provide a way to ascertain which extension caused the file upload to stop; examining the list of loaded extensions with phpinfo() may help.";
+                else {
+                    $upload['message'] = error_get_last_message();
+                }
                 system_log("ERROR: $upload[name]");
-                $upload['message'] = error_get_last_message();
             }
             $re[] = $upload;
         }

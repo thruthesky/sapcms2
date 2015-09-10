@@ -21,7 +21,9 @@ if ( ! isset($set_fid) ) {
     echo '<input type="hidden" name="fid" value="">';
 }
 
-$text = "<input type='file' name='$form_name' multiple onchange='onFileChange(this);'>";
+if ( isset($form_upload_single_file) && $form_upload_single_file == true ) $multiple = "";
+else $multiple = "multiple";
+$text = "<input type='file' name='$form_name' $multiple onchange='onFileChange(this);'>";
 ?>
 <div class="ajax-file-upload-progress-bar"></div>
 <?php

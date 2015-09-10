@@ -79,7 +79,6 @@ class Data extends Entity
         if ( isset($upload['idx_target']) ) $this->set('idx_target', $upload['idx_target']);
         if ( isset($upload['idx_user']) ) $this->set('idx_user', $upload['idx_user']);
         if ( isset($upload['finish']) ) $this->set('finish', $upload['finish']);
-
         return $this->save();
     }
 
@@ -142,6 +141,7 @@ class Data extends Entity
         return PATH_UPLOAD . DIRECTORY_SEPARATOR . $name;
     }
 
+
     private function deleteUnfinishedFiles()
     {
         $stamp = time() - INTERVAL_DELETE_UNFINISHED_FILE;
@@ -159,6 +159,12 @@ class Data extends Entity
         }
     }
 
+
+    /**
+     * Deletes the file and table record of the Object.
+     *
+     * @return int|mixed
+     */
     public function deleteFile() {
         system_log(__METHOD__);
         $path = $this->path();

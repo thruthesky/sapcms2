@@ -1,0 +1,8 @@
+<?php
+use sap\core\theme\ThemeConfig;
+
+define('THEME_CONFIG', 'theme_config');
+
+include 'theme.function.php';
+include 'theme.hook.php';
+include 'theme.routing.php';

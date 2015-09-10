@@ -48,7 +48,7 @@ $(function(){
                 showProgressBar();
             },
             uploadProgress: function(event, position, total, percentComplete) {
-                console.log("while uploadProgress:" + percentComplete + '%');
+                //console.log("while uploadProgress:" + percentComplete + '%');
                 setProgressBar( percentComplete + '%');
             },
             success: function() {
@@ -133,18 +133,23 @@ function fileDisplay($this, re) {
         }
         for ( var i in re ) {
             var file = re[i];
-            var markup = "<div idx='"+file.idx+"' class='file";
-            if ( file.mime.indexOf('image') != -1 ) {
-                markup += " image'>";
-                markup += "<img src='"+file.url+"'>";
+            if ( file.error ) {
+                alert(file.message);
             }
             else {
-                markup += " attachment'>";
-                markup += file.name;
+                var markup = "<div idx='"+file.idx+"' class='file";
+                if ( file.mime.indexOf('image') != -1 ) {
+                    markup += " image'>";
+                    markup += "<img src='"+file.url+"'>";
+                }
+                else {
+                    markup += " attachment'>";
+                    markup += file.name;
+                }
+                markup += "<div class='delete' title='Delete this file'>X</div>";
+                markup += "</div>";
+                $display.append(markup);
             }
-            markup += "<div class='delete' title='Delete this file'>X</div>";
-            markup += "</div>";
-            $display.append(markup);
         }
     }
 }

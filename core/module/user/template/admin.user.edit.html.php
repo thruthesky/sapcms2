@@ -69,21 +69,21 @@ extract( module()->getVariables() );
     <?php echo html_row(
         [
             'caption'=>'Year',
-            'text'=> html_select(['name'=>'birth_year', 'selected'=>$user['birth_year'], 'options'=>Date::years()]),
+            'text'=> html_select(['name'=>'birth_year', 'default'=>$user['birth_year'], 'options'=>Date::years()]),
         ]
     ); ?>
 	
     <?php echo html_row(
         [
             'caption'=>'Month',
-            'text'=> html_select(['name'=>'birth_month', 'selected'=>$user['birth_month'], 'options'=>Date::months()]),
+            'text'=> html_select(['name'=>'birth_month', 'default'=>$user['birth_month'], 'options'=>Date::months()]),
         ]
     ); ?>
 	
     <?php echo html_row(
         [
             'caption'=>'Day',
-            'text'=> html_select(['name'=>'birth_day', 'selected'=>$user['birth_day'], 'options'=>Date::days()]),
+            'text'=> html_select(['name'=>'birth_day', 'default'=>$user['birth_day'], 'options'=>Date::days()]),
         ]
     ); ?>
 	

@@ -27,7 +27,12 @@ class System {
     private $path = null;
     private $filename =null;
     public $script = null;
+    private $theme = null;
 
+
+    public function __construct() {
+        $this->theme = 'default';
+    }
 
 
     public static function admin_page() {
@@ -440,4 +445,10 @@ class System {
     }
 
 
+    public function setTheme($theme) {
+        $this->theme = $theme;
+    }
+    public function getTheme() {
+        return $this->theme;
+    }
 }

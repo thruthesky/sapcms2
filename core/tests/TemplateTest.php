@@ -18,9 +18,6 @@ class TemplateTest extends PHPUnit_Framework_TestCase {
         $path = Template::script();
         $this->assertTrue($path == "module/def/template/def.page.html.php");
 
-
-
-
     }
 }
 

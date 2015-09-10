@@ -48,7 +48,7 @@ function template($filename=null, $module=null) {
 
 function theme_layout()
 {
-    global $theme;
+    $theme = sys()->getTheme();
     return "theme/$theme/layout.html.php";
 }
 
@@ -635,6 +635,18 @@ function html_hidden($o) {
     return html_input($o);
 }
 
+/**
+ *
+ * @param $o
+ *
+ *      - id
+ *      - class
+ *      - name
+ *      - options is an associative array
+ *      - default - is the default value to select or to show.
+ *
+ * @return string
+ */
 function html_select($o) {
     $re = "<select";
     if ( isset($o['id']) ) $re .= " id='$o[id]'";
@@ -644,9 +656,10 @@ function html_select($o) {
 
     foreach( $o['options'] as $key => $value ) {
         //condition added by benjamin for selected
-        $selected = '';
-        if( isset( $o['selected']  ) ){
-            if( $o['selected'] == $key ) $selected = ' selected';
+
+        $selected = null;
+        if( isset( $o['default']  ) ) {
+            if( $o['default'] == $key ) $selected = ' selected=1';
         }
         $re .= "<option value='$key'$selected>$value</option>";
     }

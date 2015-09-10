@@ -15,8 +15,10 @@ register_hook('admin_menu', function(&$variable=[]){
 function hook_admin_menu_admin(&$variable=[]){
     echo "
       <li data-role='list-divider'>System Information &amp; Settings</li>
+
       <li><a href='/admin/setting/url'>URL Settings</a></li>
       <li><a href='/admin/setting/timezone'>Timezone Settings</a></li>
+
       <li><a href='#'>Log Settings</a></li>
       <li><a href='/admin/database/information'>Database information</a></li>
 

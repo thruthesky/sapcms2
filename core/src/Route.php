@@ -97,14 +97,12 @@ class Route {
     public function reset()
     {
         $route = Request::get( HTTP_VAR_ROUTE );
-
         if ( empty($route) ) {
             if ( isset($_SERVER['REQUEST_URI']) ) {
                 $arr = explode('?', $_SERVER['REQUEST_URI'], 2);
                 $route = $arr[0];
             }
         }
-
         if ( $route ) {
             $this->request_uri = $route;
             if ( $match = self::match( $this->request_uri ) ) {
@@ -117,9 +115,9 @@ class Route {
             $this->module = ! empty( $this->segment[0] ) ? $this->segment[0] : DEFAULT_MODULE;
             $this->class = isset( $this->segment[1] ) ? $this->segment[1] : $this->module;
             $this->method = isset( $this->segment[2] ) ? $this->segment[2] : DEFAULT_CONTROLLER;
+            system_log($this->module);
         }
         return $this;
-
     }
 
 

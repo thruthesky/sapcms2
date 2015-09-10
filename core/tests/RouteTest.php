@@ -17,6 +17,7 @@ class RouteTest extends PHPUnit_Framework_TestCase {
     {
         $_SERVER['REQUEST_URI'] = "/module/class/method";
         $route = Route::load();
+        $route = Route::load()->reset();
         $this->assertTrue($route->module == 'module');
         $this->assertTrue($route->class == 'class');
         $this->assertTrue($route->method == 'method');
