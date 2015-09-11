@@ -1,7 +1,6 @@
 <?php
 add_css();
 add_javascript();
-
 ?>
 <div class="view">
     <?php widget('post_view_title', $variables)?>
@@ -17,7 +16,6 @@ add_javascript();
         var idx_comment = '<?php echo $idx_comment?>';
     </script>
 <?php } ?>
-
 <?php
     if ( post()->config('show_list_under_view') == 'Y' ) {
         include template('post.list');

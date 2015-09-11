@@ -1,0 +1,26 @@
+<?php
+
+use sap\core\widget\Widget;
+use sap\src\Request;
+
+/**
+ *
+ *
+ *
+ * @param null $widget_name
+ * @param null $widget
+ * @return Widget
+ */
+function widget($widget_name=null, $widget=null) {
+    if ( $widget_name === null ) return new Widget();
+    $path = "widget/$widget_name/$widget_name.php";
+    if ( ! file_exists($path) ) {
+        $module = Request::module();
+        if ( is_core_module($module) ) {
+            $path = PATH_INSTALL . "/core/module/$module/widget/$widget_name/$widget_name.php";
+        }
+        else $path = PATH_INSTALL . "/module/$module/widget/$widget_name/$widget_name.php";
+    }
+    include $path;
+    return OK;
+}

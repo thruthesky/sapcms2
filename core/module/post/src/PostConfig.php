@@ -59,6 +59,24 @@ class PostConfig extends Entity {
 
 
     /**
+     * @param $widget
+     * @return array|null|string
+     *
+     * @code
+     * $name = post_config()->getCurrent()->getWidget('list');
+     * widget($name, $variables);
+     * @endcode
+     */
+    public function getWidget($widget) {
+        $config = $this->getCurrent();
+        $name = $config->get("widget_$widget");
+        if ( empty($name) ) return "post_list";
+        else return $name;
+    }
+
+
+
+    /**
      *
      * @param $field
      * @return array|bool|mixed|null
