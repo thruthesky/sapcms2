@@ -1,6 +1,9 @@
 <?php include template('post.admin.menu'); 
 extract( module()->getVariables() );
 
+
+
+
 if( !empty( $post_config ) ){
 ?>
 <form action="/admin/post/config/edit_submit" method="post">
@@ -23,7 +26,17 @@ if( !empty( $post_config ) ){
     <input type="text" name="<?php echo NO_PAGE?>" value="<?php echo $post_config[NO_PAGE]; ?>">
 	
     Widget List
-    <input type="text" name="widget_list" value="<?php echo $post_config['widget_list']; ?>">
+    <?php
+
+    $s = html_select([
+        'name' => 'widget_list',
+        'default' => $post_config['widget_list'],
+        'options' => $variables['widget_list']
+    ]);
+
+    echo $s;
+
+    ?>
 
     Show List Widget Under View
     <input type="radio" id="show_list_under_view_yes" name="show_list_under_view" value="Y" <?php if ( $post_config['show_list_under_view'] == 'Y' ) echo "checked=1"; ?>>

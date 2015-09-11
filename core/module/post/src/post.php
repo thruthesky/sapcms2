@@ -27,8 +27,13 @@ class post {
 
         $config = post_config()->getCurrent();
 
-        if ( empty($config) ) error(-60400, "Could not find configuration");
-        else $data['post_config'] = $config->get();
+        if ( empty($config) ) {
+            error(-60400, "Could not find configuration");
+        }
+        else {
+            $data['post_config'] = $config->get();
+            $data['widget_list'] = self::loadWidget('post_list');
+        }
 
         return Response::renderSystemLayout($data);
     }
@@ -867,5 +872,39 @@ class post {
         return Response::json($re);
     }
 
+    /**
+     *
+     *
+     * @param $type
+     * @return array
+     * Array
+     *    (
+     *    [widget/post_list_simple/post_list_simple.php] => Simple Post List
+     *    [core/module/post/widget/post_list/post_list.php] => Basic Post List
+     *    )
+     *
+     *
+     * @code
+     *      $data['widget_list'] = self::loadWidget('post_list');
+     * @endcode
+     *
+     *
+     *
+     */
+    public static function loadWidget($type) {
+        $ret = [];
+        widget()->loadParseIni();
+        $ini = widget()->loadParseIni("core/module/post/widget/*");
+        if ( isset($ini[$type]) ) {
+            foreach( $ini[$type] as $data ) {
+                $name = $data['info']['name'];
+                $pi = pathinfo($data['path']);
+                $folder = str_replace(".ini", "", $pi['filename']);
+                $ret[$folder] = $name;
+            }
+            return $ret;
+        }
+        else return [];
+    }
 }
 
