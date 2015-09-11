@@ -23,11 +23,10 @@ class CategoryController {
 		$idx = request('idx');
 		if( empty( $idx ) ) self::categoryCreate();
 		else {
-			if( request('action') == 'delete' ) self::categoryDelete();
-			else self::categoryUpdate();
+			self::categoryUpdate();
 		}
 		return Response::render(['template'=>'category.setting',]);
-    }
+    }	
 	
 	public static function categoryCreate(){
 		$name = request('name');
@@ -44,7 +43,7 @@ class CategoryController {
 			return Response::redirect('/admin/category/setting');
 		}
 	}
-
+	
 	public static function categoryUpdate(){
 		$idx = request('idx');
 		$name = request('name');
@@ -55,7 +54,36 @@ class CategoryController {
 	}
 	
 	public static function categoryDelete(){
-		$idx = request('idx');		
-		category($idx)->delete();
+		$idx = request('idx');	
+		$category = category($idx);
+		if( empty( $category ) ){
+			error(-101,"Incorrect category IDX");
+			return Response::render(['template'=>'category.setting']);
+		}
+		else{
+			$children = Category::loadAllChildren( $idx );
+			if( empty( $children ) ){
+				self::categoryDeleteSubmit();
+			}
+			else{
+				$data = [];
+				$data['parent'] = category($idx)->fields;
+				$data['children'] = $children;
+				return Response::render(['template'=>'category.setting.delete.confirm','data'=>$data]);
+			}
+		}
+	}
+	
+	public static function categoryDeleteSubmit(){
+		$idx = request('idx');
+		$children = Category::loadAllChildren( $idx );
+		
+		if( !empty( $children ) ){
+			foreach( $children as $c ){
+				category()->load( $c['idx'] )->delete();
+			}
+		}
+		category()->load( $idx )->delete();
+		return Response::render(['template'=>'category.setting']);
 	}
 }
