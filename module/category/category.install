@@ -1,3 +1,10 @@
 <?php
+//category()->createTable();
+category()
+    ->createTable()
+    ->add('idx_parent', 'INT UNSIGNED DEFAULT 0')
+    ->add('name', 'varchar', 64)
+    ->index('idx_parent')
+    ->index('name');
 
-category()->createTable();
+

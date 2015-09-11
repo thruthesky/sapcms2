@@ -11,8 +11,11 @@ class Meta extends Entity {
     }
 
 
-
-
+    /**
+     *
+     * @return $this
+     *
+     */
     final public function createTable() {
         parent::createTable()
             ->add('idx_target', 'INT')

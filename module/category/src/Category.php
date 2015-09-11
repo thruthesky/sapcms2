@@ -1,11 +1,12 @@
 <?php
-namespace sap\Category;
+namespace sap\category;
 
-use sap\src\Meta;
 
-class Category extends Meta {
+use sap\src\Entity;
+
+class Category extends Entity {
     public function __construct() {
-        parent::__construct(CATEGORY_META);
+		parent::__construct(CATEGORY_TABLE);
     }
 	
 	/*
