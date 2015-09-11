@@ -9,8 +9,10 @@ extract( $variables );
 $name = "";
 $description = "";
 $idx_parent = "";
+
 ?>
 <div class='category-setting'>
+	<h1>Create Root Category</h1>
 	<form action="/admin/category/setting/submit" method="post">
 
 		<?php
