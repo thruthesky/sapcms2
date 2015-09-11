@@ -5,10 +5,10 @@ if( !empty( $categories ) ){
 		<thead>
 		<tr>
 			<th data-priority="3">IDX</th>   
-			<th>Name</th>			    
+			<th>Code/Name</th>			    
 			<th data-priority="4">Parent</th>    
 			<th data-priority="5">Depth</th>        			
-			<th data-priority="2">Description</th>			
+			<th data-priority="2">Value/Description</th>			
 			<th data-priority="6">Children</th>
 			<th data-priority="1">Action</th>        
 		</tr>
