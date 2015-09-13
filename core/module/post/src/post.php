@@ -1,5 +1,6 @@
 <?php
 namespace sap\core\post;
+use sap\core\data\Data;
 use sap\src\Response;
 
 class post {
@@ -33,6 +34,9 @@ class post {
         else {
             $data['post_config'] = $config->get();
             $data['widget_list'] = self::loadWidget('post_list');
+            $data['widget_view'] = self::loadWidget('post_view');
+            $data['widget_edit'] = self::loadWidget('post_edit');
+            $data['widget_comment_edit'] = self::loadWidget('post_comment_edit');
         }
 
         return Response::renderSystemLayout($data);
@@ -129,13 +133,16 @@ class post {
             'config' => $config,
         ]);
     }
-    public static function postListData() {
-        return self::searchPostDataCondition(['comment'=>false]);
-    }
-    public static function postListDataCount() {
-        return self::countPostData(['comment'=>false]);
+
+    public static function postListData(array $options=[]) {
+        $options['comment'] = false;
+        return self::searchPostDataCondition($options);
     }
 
+    public static function postListDataCount(array $options=[]) {
+        $options['comment'] = false;
+        return self::countPostData($options);
+    }
 
     public static function searchPostData() {
         $posts = self::searchPostDataCondition();
@@ -146,6 +153,11 @@ class post {
             'posts' => $posts,
             'total_record' => $total_record,
         ]);
+    }
+
+    public static function postListWithComment(array $options=[]) {
+        $options['comment'] = false;
+        return self::searchPostDataCondition($options);
     }
 
 
@@ -795,7 +807,7 @@ class post {
      *
      * @param int $from - From what number of post in DESC order.
      * @param $config_name - is the forum. it's options. if it's empty, it searches for whole forum.
-     * @return bool|\sap\src\Entity
+     * @return bool|Data
      * @code
      *  $src = post()->getLatestPostImage('qna')->url();
      *  $src = post()->getLatestPostImage()->url();

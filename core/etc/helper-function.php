@@ -79,11 +79,14 @@ function sysconfig($code) {
             if ( $value = config(URL_SITE) ) {
                 return add_ending_slash($value);
             }
-            else return '/';
+            else return sys()->getConfig('url_site');
         default :
             return $value = config()->value($code);
     }
 }
+
+
+
 
 
 function submit() {

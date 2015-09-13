@@ -24,6 +24,7 @@ class System {
     private static $module_loaded = [];
     private static $cli = false;
     private static $done_cli_check = false;
+    public static $config = [];
     private $path = null;
     private $filename =null;
     public $script = null;
@@ -32,7 +33,36 @@ class System {
 
     public function __construct() {
         $this->theme = 'default';
+        self::$config['url_site'] = '/';
     }
+
+
+    /**
+     *
+     * getConfig() and setConfig() are pair functions to save and get System Configuration.
+     *
+     * @note It only saves in memory.
+     *
+     * @param $code
+     * @param $value
+     *
+     * @code
+     *      sys()->setConfig(URL_SITE, 'http://work.org:8080/' );
+     *      $top_banner = post()->getLatestPostImage();
+     *      if ( empty($top_banner) ) return;
+     *      $src_top_banner = $top_banner->urlThumbnail(400, 200);
+     * @endcode
+     *
+     */
+    public static function setConfig($code, $value) {
+        self::$config[$code] = $value;
+    }
+    public static function getConfig($code) {
+        if ( isset(self::$config[$code]) ) return self::$config[$code];
+        else return null;
+    }
+
+
 
 
     public static function admin_page() {
@@ -158,7 +188,6 @@ class System {
                 $re = Module::run();
             }
         }
-
         hook('system_end');
         return $re;
     }

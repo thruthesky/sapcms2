@@ -112,6 +112,11 @@ class Module {
 
     /**
      * @return array
+     *
+     * @code
+     * $variables = Module::getVariables();
+     * module()->getVariables()
+     * @endcode
      */
     public static function getVariables()
     {
