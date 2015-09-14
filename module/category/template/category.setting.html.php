@@ -25,7 +25,7 @@ $name = "";
 					'text' => html_input(["name" => "name", 'value'=>$name]),
 				]);		
 		?>
-		<input type="submit">
+		<input class='admin-button' type="submit">
 
 	</form>
 	
