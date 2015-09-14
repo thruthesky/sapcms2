@@ -5,6 +5,7 @@
 .category-setting .admin-button{
 	display: inline-block;
     padding: 5px 10px;
+	border:0;
     border-radius: 2px;
     background-color: #003366;
     color: #ffffff;
@@ -12,3 +13,9 @@
 	text-decoration:none;
     cursor: pointer;
 }
+
+/*add-child-form*/
+.category-setting .add-child-form{
+	margin:5px 0 0 0;
+}
+/*add-child-form*/
