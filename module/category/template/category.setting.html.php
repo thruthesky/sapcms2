@@ -1,12 +1,12 @@
 <script src='/module/appdev/js/jquery/jquery-2.1.4.min.js'></script>
-<?
+<?php
 add_javascript("category.js");
 use sap\src\HTML;
 use sap\category\Category;
 
 extract( $variables );
 $name = "";
-$idx_parent = "";
+
 
 ?>
 <div class='category-setting'>
