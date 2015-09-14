@@ -1,14 +1,15 @@
 <?php
+add_css('category.default.css');
+
 if( !empty( $categories ) ){
 ?>
 	<table data-role="table" id="table-module-list" data-mode="columntoggle" class="ui-responsive table-stroke table-list default">
 		<thead>
 		<tr>
 			<th data-priority="3">IDX</th>   
-			<th>Code/Name</th>			    
+			<th>Name</th>			    
 			<th data-priority="4">Parent</th>    
-			<th data-priority="5">Depth</th>        			
-			<th data-priority="2">Value/Description</th>			
+			<th data-priority="5">Depth</th>        					
 			<th data-priority="6">Children</th>
 			<th data-priority="1">Action</th>        
 		</tr>
@@ -28,16 +29,17 @@ if( !empty( $categories ) ){
 			
 			echo "<tr>";			
 			echo "<td><div$auto_margin>$c[idx]</div></td>";
-			echo "<td>$c[code]</td>";
-			echo "<td>$c[idx_target]</td>"; 
-			echo "<td>$depth</td>"; 						 
-			echo "<td>$c[value]</td>";    				 
+			echo "<td>$c[name]</td>";
+			echo "<td>$c[idx_parent]</td>"; 
+			echo "<td>$depth</td>"; 						 				 
 			echo "<td>$c[no_of_children]</td>";        
 			echo "
-					<td idx='$c[idx]' description='$c[value]'>
-						<a class='admin-button default' href='/admin/category/setting?idx=$c[idx]'>Edit</a> 
-						<a class='admin-button default' href='/admin/category/setting/delete?idx=$c[idx]'>Delete</a> 
-						<span class='admin-button default add-child'>Add Child</span>
+					<td idx='$c[idx]' description='$c[name]'>
+						<a class='admin-button default' href='/admin/category/setting?idx=$c[idx]'>Edit</a>";
+			?>
+			<a class='admin-button default' onclick="return confirmCategoryDelete('<?php echo $c['name']; ?>')" href='/admin/category/setting/delete?idx=<?php echo $c['idx']; ?>'>Delete</a> 
+			<?php
+			echo "<span class='admin-button default add-child'>Add Child</span>
 					</td>";
 			echo "</tr>";
 		}

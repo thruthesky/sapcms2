@@ -17,7 +17,7 @@ class Category extends Entity {
 	}
 	
 	public static function loadAllChildren($parent_id, $depth = 0) {//$delete temporary
-		$children = category()->rows( "idx_target = '$parent_id'" );
+		$children = category()->rows( "idx_parent = '$parent_id'" );
 		$rows = [];
 		foreach( $children as $c ){	
 			$item = [];

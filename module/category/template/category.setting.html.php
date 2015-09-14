@@ -1,13 +1,11 @@
 <script src='/module/appdev/js/jquery/jquery-2.1.4.min.js'></script>
 <?
-add_css();
 add_javascript("category.js");
 use sap\src\HTML;
 use sap\category\Category;
 
 extract( $variables );
 $name = "";
-$description = "";
 $idx_parent = "";
 
 ?>
@@ -19,20 +17,12 @@ $idx_parent = "";
 			if( !empty( $data['category'] ) ) {
 				$category = $data['category']->fields;
 				echo html_hidden([ "name" => "idx","value"=>$category['idx'] ]);
-				echo html_hidden([ "name" => "name","value"=>$category['code'] ]);
-				$description = $category['value'];
-				
-				echo "Name<div>$category[code]</div>";
+				$name = $category['name'];
 			}
-			else{
-				echo html_row([
-						'caption' => 'Name',
-						'text' => html_input(["name" => "name", 'value'=>$name]),
-					]);		
-			}
+			
 			echo html_row([
-					'caption' => 'Description',
-					'text' => html_input(["name" => "description", 'value'=>$description]),
+					'caption' => 'Name',
+					'text' => html_input(["name" => "name", 'value'=>$name]),
 				]);		
 		?>
 		<input type="submit">
@@ -42,7 +32,9 @@ $idx_parent = "";
 	<?php
 		$categories = [];
 		
-		$root_categories = category()->rows("idx_target = 0");		
+		$root_categories = category()->rows("idx_parent = 0");		
+		
+		
 		foreach( $root_categories as $c ){
 			$root = [];			
 			$children = Category::loadAllChildren( $c['idx'] );

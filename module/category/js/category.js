@@ -17,8 +17,11 @@ function categoryAddChild(){
 function getChildForm( parent_idx, description ){	
 	return	"<form class='add-child-form' action='/admin/category/setting/submit' method='post'>" +
 			"<input type='hidden' name='idx_parent' value='" + parent_idx + "'>" +
-			"<input type='text' name='name' placeholder='Input name'>" +
-			"<input type='text' name='description' placeholder='Input description'>" +
+			"<input type='text' name='name' placeholder='Input name'>" +			
 			"<input type='submit'>" +
 			"</form>";
+}
+
+function confirmCategoryDelete( e ){
+    return confirm( "Are you sure you want to delete - "+e+"?" );
 }
