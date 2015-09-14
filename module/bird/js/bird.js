@@ -53,15 +53,18 @@ function initPanel() {
         return $('#panel-menu');
     }
     var $body = $('body');
-    $body.click(function( event ) {
+
+    $body.on('click', '*', function( event ) {
+        //console.log('body click');
         var $obj = $(event.target);
+        //console.log( "target object: " + $obj.prop('class'));
         if ( $obj.prop('class') == 'show-panel' || $obj.parent().prop('class') == 'show-panel') {
 
         }
         else closePanel();
     });
     $body.on('click', ".show-panel", togglePanel);
-    $(".close-panel").click(closePanel);
+    $body.on('click', ".close-panel", closePanel);
     function togglePanel() {
         if ( getMenu().css('display') == 'none' ) openPanel();
         else closePanel();
