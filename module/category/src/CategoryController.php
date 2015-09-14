@@ -59,7 +59,7 @@ class CategoryController {
 		$idx = request('idx');	
 		$category = category($idx);
 		if( empty( $category ) ){
-			error(-101,"Incorrect category IDX");
+			error(-101,"Incorrect or missing category IDX");
 			return Response::render(['template'=>'category.setting']);
 		}
 		else{
