@@ -38,19 +38,21 @@ class CategoryController {
 		}
 		else {
 			$idx_parent = request('idx_parent');
-			if( empty( $idx_parent ) ) $idx_parent = 0;
-			category()->set($name, $description, $idx_parent);
+			if( empty( $idx_parent ) ) $idx_parent = 0;			
+			category()->set('idx_parent', $idx_parent)->set('name', $name)->save();
+			//category()->set($name, $description, $idx_parent);
 			return Response::redirect('/admin/category/setting');
 		}
 	}
 	
 	public static function categoryUpdate(){
-		$idx = request('idx');
-		$name = request('name');
-		$description = request('description');
-		$c = category()
-				->set($name,$description)
-				->save();
+		$idx = request('idx');		
+		$name = request('name');				
+		
+		category()
+			->load( $idx )			
+			->set('name', $name)
+			->save();
 	}
 	
 	public static function categoryDelete(){
