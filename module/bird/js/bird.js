@@ -4,6 +4,8 @@
  */
 
 var url_page_create = 'http://sapcms2.org/bird/';
+var currentPageID = 'local-page';
+var prevPageID = 'local-page';
 
 function callback_offline() {
     // setPageContentOffline();
@@ -22,7 +24,7 @@ $(function() {
     //setTimeout(callback_offline, 2000);
     //setTimeout(callback_online, 4000);
     initialize();
-    //loadPage('front_page');
+    loadPage('front_page');
 });
 
 function initialize() {
@@ -32,12 +34,13 @@ function initialize() {
 function initMenu() {
     var $body = $('body');
     $body.on('click', ".link", function() {
-
         var $this = $(this);
         var route = $this.attr('route');
-        if ( $this.attr('rel') ) {
+        console.log('route:' + route)
+        var url;
+        if ( url = $this.attr('url') ) {
             console.log('rel local');
-            location.href='index.html';
+            location.href=url;
         }
         else if ( route == 'postList' ) {
             loadPage( route, $this.attr('post_id'));
@@ -53,7 +56,6 @@ function initPanel() {
         return $('#panel-menu');
     }
     var $body = $('body');
-
     $body.on('click', '*', function( event ) {
         //console.log('body click');
         var $obj = $(event.target);
@@ -71,6 +73,7 @@ function initPanel() {
     }
     function closePanel() {
         var $menu = getMenu();
+        if ( getMenu().css('display') == 'none' ) return;
         $menu.animate(
             {
                 'right': -$menu.width()
@@ -121,9 +124,16 @@ function getCurrentPageContent() {
     return getCurrentPage().find('.ui-content');
 }
 
-function showPage(id) {
-    $.mobile.pageContainer.pagecontainer("change", '#' + id );
+function showPage(id, html) {
+    prevPageID = currentPageID;
+    currentPageID = id;
+    $('#' + prevPageID).remove();
+    $('body').append(html);
+    console.log("prevPageID:" + prevPageID);
+    console.log("currentPageID:" + currentPageID);
+    hideLoader();
 }
+
 
 /**
  *
@@ -134,16 +144,23 @@ function showPage(id) {
  * @param post_id
  */
 function loadPage(route, post_id) {
+
+    console.log("loadPage( "+route+", "+post_id+" )");
+
+    if ( currentPageID == route ) {
+        console.log("Trying to open same page? ... It loads anyway.");
+    }
+
     var url = url_page_create + route;
     if ( post_id ) url += '/' + post_id;
-    console.log(url);
+    console.log("open: " + url);
+    showLoader();
     $.ajax(url)
         .done(function(html) {
-            $('body').append(html);
-            $('#' + route).trigger('pagecreate');
-            showPage(route);
+            showPage(route, html);
         })
         .fail(function() {
             console.log("loading " + url + " ... failed...!");
         });
 }
+

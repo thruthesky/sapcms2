@@ -1,6 +1,5 @@
 <?php
 namespace sap\bird;
-use sap\mobilepost\MobilePost;
 use sap\src\Response;
 
 class Bird {
@@ -16,6 +15,18 @@ class Bird {
         ob_start();
         include template('page.panel');
         return ob_get_clean();
+    }
+
+
+    public static function login() {
+        $page = self::createPage([
+            'id' => 'login',
+            'header' => self::pageHeader(),
+            'panel' => self::pagePanel(),
+            'content' => self::pageContentLogin(),
+            'footer' => self::pageFooter(),
+        ]);
+        echo $page;
     }
 
 
@@ -51,16 +62,21 @@ class Bird {
         return ob_get_clean();
     }
 
+    public static function pageContentLogin() {
+        ob_start();
+        include template('page.login');
+        return ob_get_clean();
+    }
+
     /**
      * @param $post_id
      */
     public static function postList($post_id) {
-        $postList = MobilePost::postList($post_id);
         $page = self::createPage([
             'id' => 'postList',
             'header' => self::pageHeader(),
             'panel' => self::pagePanel(),
-            'content' => $postList,
+            'content' => self::pageContentPostList($post_id),
             'footer' => self::pageFooter(),
         ]);
         echo $page;
@@ -82,6 +98,14 @@ $options[content]
     </div>
 </div>
 EOH;
+    }
+
+    private static function pageContentPostList($post_id)
+    {
+        ob_start();
+        $posts = MobilePost::postList($post_id);
+        include template('page.postList');
+        return ob_get_clean();
     }
 
 }

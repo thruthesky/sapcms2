@@ -17,7 +17,7 @@ if ( $images ) {
 }
 ?>
 <div class="front-top-banner">
-    <a href="<?php //echo $top->url()?>"><img src="<?php echo $src_top_banner ?>"></a>
+    <span><img src="<?php echo $src_top_banner ?>"></span>
 </div>
 <div class="front-content">
     <table width="100%" cellpadding="0" cellspacing="0">
@@ -31,6 +31,5 @@ if ( $images ) {
         </tr>
     </table>
 </div>
-<?php widget('login-box'); ?>
 
 
