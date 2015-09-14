@@ -21,3 +21,7 @@ function getChildForm( parent_idx, description ){
 			"<input type='submit'>" +
 			"</form>";
 }
+
+function confirmCategoryDelete( e ){
+    return confirm( "Are you sure you want to delete - "+e+"?" );
+}

@@ -35,9 +35,11 @@ if( !empty( $categories ) ){
 			echo "<td>$c[no_of_children]</td>";        
 			echo "
 					<td idx='$c[idx]' description='$c[name]'>
-						<a class='admin-button default' href='/admin/category/setting?idx=$c[idx]'>Edit</a> 
-						<a class='admin-button default' href='/admin/category/setting/delete?idx=$c[idx]'>Delete</a> 
-						<span class='admin-button default add-child'>Add Child</span>
+						<a class='admin-button default' href='/admin/category/setting?idx=$c[idx]'>Edit</a>";
+			?>
+			<a class='admin-button default' onclick="return confirmCategoryDelete('<?php echo $c['name']; ?>')" href='/admin/category/setting/delete?idx=<?php echo $c['idx']; ?>'>Delete</a> 
+			<?php
+			echo "<span class='admin-button default add-child'>Add Child</span>
 					</td>";
 			echo "</tr>";
 		}
