@@ -34,17 +34,16 @@ function initMenu() {
     $body.on('click', ".link", function() {
 
         var $this = $(this);
-        var id = $this.prop('id');
+        var route = $this.attr('route');
         if ( $this.attr('rel') ) {
             console.log('rel local');
-            //showPage(id);
             location.href='index.html';
         }
-        else if ( id == 'postList' ) {
-            loadPage( id, $this.attr('post_id'));
+        else if ( route == 'postList' ) {
+            loadPage( route, $this.attr('post_id'));
         }
         else {
-            loadPage(id);
+            loadPage(route);
         }
     });
 }
@@ -125,20 +124,21 @@ function showPage(id) {
 
 /**
  *
- * @param id
  *
  * setPage('offline');
  *
+ * @param route
+ * @param post_id
  */
-function loadPage(id, post_id) {
-    var url = url_page_create + id;
+function loadPage(route, post_id) {
+    var url = url_page_create + route;
     if ( post_id ) url += '/' + post_id;
     console.log(url);
     $.ajax(url)
         .done(function(html) {
             $('body').append(html);
-            $('#' + id).trigger('pagecreate');
-            showPage(id);
+            $('#' + route).trigger('pagecreate');
+            showPage(route);
         })
         .fail(function() {
             console.log("loading " + url + " ... failed...!");
