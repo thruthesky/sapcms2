@@ -1,5 +1,5 @@
 <?php
-
+di( $variables );exit;
 ?>
 
 <?php widget('post_list_search_box'); ?>

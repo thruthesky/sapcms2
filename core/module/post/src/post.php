@@ -155,9 +155,20 @@ class post {
         ]);
     }
 
+    /**
+     * Returns with full comment.
+     * @param array $options
+     * @return array
+     */
     public static function postListWithComment(array $options=[]) {
         $options['comment'] = false;
-        return self::searchPostDataCondition($options);
+        $posts = self::searchPostDataCondition($options);
+        if ( $posts ) {
+            foreach( $posts as &$post ) {
+                $post['comments'] = post_data()->getComments($post['idx']);
+            }
+        }
+        return $posts;
     }
 
 
@@ -235,15 +246,19 @@ class post {
      * @return int
      */
     public static function postCommentSubmit() {
-        if ( self::validateContent() ) return jsBack(getErrorString());
 
+
+        if ( self::validateContent() ) {
+            return jsBack(getErrorString());
+        }
         $config = post_config()->getCurrent();
-        if ( empty($config) ) return self::templateError(-50505, "Wrong post configuration");
+        if ( empty($config) ) {
+            return self::templateError(-50505, "Wrong post configuration");
+        }
         $options['idx_config'] = $config->get('idx');
         $options['idx_user'] = login('idx');
         $options['title'] = request('title');
         $options['content'] = request('content');
-
         $options['idx_root'] = post_data(request('idx_parent'))->get('idx_root');
         $options['idx_parent'] = request('idx_parent');
         $data = PostData::newPost($options);
@@ -258,9 +273,6 @@ class post {
             return Response::redirect($url);
         }
     }
-
-
-
 
 
     public static function validateTitle() {

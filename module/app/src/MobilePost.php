@@ -1,5 +1,5 @@
 <?php
-namespace sap\bird;
+namespace sap\app;
 class MobilePost {
     public static function postList($post_id) {
         $posts = post()->postListWithComment(['id' => $post_id]);

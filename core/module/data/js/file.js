@@ -1,5 +1,5 @@
 var isUploadSubmit = false;
-var file_upload_form_name = null; // last upload file box
+var file_upload_form_name = null; // last upload form file name
 function onFileChange(obj) {
     file_upload_form_name = $(obj).prop('name');
     var $form = $(obj).parents("form");
@@ -29,12 +29,13 @@ function fileDelete(idx) {
 }
 $(function(){
 
+
     $('body').on("click",".file-display .delete", function(){
         var idx = $(this).parent().attr('idx');
         //console.log("why man call ? " + idx);
         fileDelete(idx);
     });
-    $(".ajax-file-upload").submit(function(){
+    $("body").on('submit', '.ajax-file-upload', function(){
         if ( isUploadSubmit == false ) return true;
         var $this = $(this);
         console.log("form: "+ $this.find("[name='idx_parent']").val());
