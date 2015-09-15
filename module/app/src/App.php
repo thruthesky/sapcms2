@@ -1,8 +1,8 @@
 <?php
-namespace sap\bird;
+namespace sap\app;
 use sap\src\Response;
 
-class Bird {
+class App {
 
     public static function pageHeader() {
         ob_start();

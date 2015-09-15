@@ -13,6 +13,8 @@
 
 var url_load_sms = url_server + '/smsgate/sender/load';
 var url_report_result = url_server + '/smsgate/sender/result';
+
+
 /**
  *
  * Next SMS will be sent within this seconds ( after sending one )

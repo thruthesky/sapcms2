@@ -155,9 +155,20 @@ class post {
         ]);
     }
 
+    /**
+     * Returns with full comment.
+     * @param array $options
+     * @return array
+     */
     public static function postListWithComment(array $options=[]) {
         $options['comment'] = false;
-        return self::searchPostDataCondition($options);
+        $posts = self::searchPostDataCondition($options);
+        if ( $posts ) {
+            foreach( $posts as &$post ) {
+                $post['comments'] = post_data()->getComments($post['idx']);
+            }
+        }
+        return $posts;
     }
 
 
@@ -235,10 +246,19 @@ class post {
      * @return int
      */
     public static function postCommentSubmit() {
-        if ( self::validateContent() ) return jsBack(getErrorString());
+
+        $ajaxCall = request('ajax');
+
+        if ( self::validateContent() ) {
+            if ( $ajaxCall ) return Response::json(['error' => getErrorString()]);
+            else return jsBack(getErrorString());
+        }
 
         $config = post_config()->getCurrent();
-        if ( empty($config) ) return self::templateError(-50505, "Wrong post configuration");
+        if ( empty($config) ) {
+            if ( $ajaxCall ) return Response::json(['error' => "Wrong post configuration"]);
+            else return self::templateError(-50505, "Wrong post configuration");
+        }
         $options['idx_config'] = $config->get('idx');
         $options['idx_user'] = login('idx');
         $options['title'] = request('title');
@@ -250,11 +270,13 @@ class post {
 
         if ( empty($data) ) {
             setError(-50551, "Could not create a comment");
-            return jsBack(getErrorString());
+            if ( $ajaxCall ) return Response::json(['error' => getErrorString()]);
+            else return jsBack(getErrorString());
         }
         else {
             $data->updateFormSubmitFiles();
             $url = self::urlViewComment($data->idx);
+            if ( $ajaxCall ) return Response::json(post_data()->preProcess($data));
             return Response::redirect($url);
         }
     }

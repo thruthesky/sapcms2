@@ -1,0 +1,113 @@
+.post-list {
+    margin:.2em;
+}
+
+.post-list .post {
+    margin:1em 0;
+    padding:.6em;
+    box-sizing: border-box;
+    background-color:#dfdfdf;
+}
+
+.post .title {
+    font-size:1.2em;
+}
+
+.post .content {
+
+}
+
+.post .comment {
+    margin:1em 0;
+    padding:1em;
+    box-sizing: border-box;
+    background-color:#f1f1f1;
+}
+
+
+
+/** FILE UPLOAD */
+.ajax-file-upload-progress-bar {
+    position:relative;
+    background-color:#d3e8f4;
+    max-width:120px;
+}
+.ajax-file-upload-progress-bar .graph {
+    position: relative;
+    background-color: #66afe9;
+    top:0;
+    bottom:0;
+}
+
+.file-display {
+    position:relative;
+}
+.file-display:after {
+    display:block;
+    content:'';
+    clear:both;
+}
+
+.file-display .file {
+    position:relative;
+    float:left;
+}
+
+.file-display .file .delete {
+    position:absolute;
+    top:3px;
+    right:3px;
+    padding:6px;
+    border-radius:2px;
+    box-sizing: border-box;
+    background-color:red;
+    color:white;
+    cursor: pointer;
+}
+
+.file-display img {
+    width:auto;
+    max-height: 6em;
+}
+
+.file-display .file.attachment {
+    padding:3px;
+    box-sizing: border-box;
+    max-width:5em;
+    background-color: #4677CE;
+    color:white;
+}
+
+
+/************ COMMENT */
+.comment-form textarea {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    width:100%;
+    height:25px;
+}
+
+
+.comment-form form {
+    position:relative;
+}
+
+.file-upload {
+
+}
+
+.file-upload-button {
+    position:absolute;
+}
+
+.file-upload .caption {
+    display:none;
+}
+
+.file-upload input[type='file'] {
+    opacity:0.5;
+    width:40px;
+    height:28px;
+    overflow: hidden;
+}
