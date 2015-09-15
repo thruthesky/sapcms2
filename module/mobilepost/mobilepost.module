@@ -1,5 +1,0 @@
-<?php
-
-include 'mobilepost.routing.php';
-include 'mobilepost.function.php';
-include 'mobilepost.hook.php';

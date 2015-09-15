@@ -1,0 +1,17 @@
+.post-list {
+    margin:.2em;
+}
+
+.post-list .post {
+    margin:1em 0;
+    padding:.6em;
+    box-sizing: border-box;
+    background-color:#dfdfdf;
+}
+
+.post .title {
+    font-size:1.2em;
+}
+.post .content {
+
+}
