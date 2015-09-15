@@ -1,5 +1,6 @@
 <?php
 namespace sap\app;
+use sap\core\post\PostData;
 use sap\src\Response;
 
 class App {
@@ -108,4 +109,32 @@ EOH;
         return ob_get_clean();
     }
 
+
+    public static function postCommentSubmit() {
+
+        $content = request('content');
+
+        // if ( empty($content) ) return Response::json(['error'=>'Content is empty']);
+
+        $config = post_config()->getCurrent();
+        if ( empty($config) ) return Response::json(['error'=>'Wrong post configuration']);
+
+        $options['idx_config'] = $config->get('idx');
+        $options['idx_user'] = login('idx');
+        $options['content'] = request('content');
+        $options['idx_root'] = post_data(request('idx_parent'))->get('idx_root');
+        $options['idx_parent'] = request('idx_parent');
+        $data = PostData::newPost($options);
+
+        if ( empty($data) ) return Response::json(['error'=>'Could not create a comment']);
+        else {
+            $data->updateFormSubmitFiles();
+            $comment = post_data($data->get('idx'))->getFields();
+            $post['comments'] = [ $comment ];
+            ob_start();
+            include template('page.postList.comments');
+            $data = ob_get_clean();
+            echo $data;
+        }
+    }
 }

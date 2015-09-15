@@ -247,42 +247,32 @@ class post {
      */
     public static function postCommentSubmit() {
 
-        $ajaxCall = request('ajax');
 
         if ( self::validateContent() ) {
-            if ( $ajaxCall ) return Response::json(['error' => getErrorString()]);
-            else return jsBack(getErrorString());
+            return jsBack(getErrorString());
         }
-
         $config = post_config()->getCurrent();
         if ( empty($config) ) {
-            if ( $ajaxCall ) return Response::json(['error' => "Wrong post configuration"]);
-            else return self::templateError(-50505, "Wrong post configuration");
+            return self::templateError(-50505, "Wrong post configuration");
         }
         $options['idx_config'] = $config->get('idx');
         $options['idx_user'] = login('idx');
         $options['title'] = request('title');
         $options['content'] = request('content');
-
         $options['idx_root'] = post_data(request('idx_parent'))->get('idx_root');
         $options['idx_parent'] = request('idx_parent');
         $data = PostData::newPost($options);
 
         if ( empty($data) ) {
             setError(-50551, "Could not create a comment");
-            if ( $ajaxCall ) return Response::json(['error' => getErrorString()]);
-            else return jsBack(getErrorString());
+            return jsBack(getErrorString());
         }
         else {
             $data->updateFormSubmitFiles();
             $url = self::urlViewComment($data->idx);
-            if ( $ajaxCall ) return Response::json(post_data()->preProcess($data));
             return Response::redirect($url);
         }
     }
-
-
-
 
 
     public static function validateTitle() {

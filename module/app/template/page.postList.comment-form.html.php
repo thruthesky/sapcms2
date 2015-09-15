@@ -1,9 +1,11 @@
 <?php
+if ( isset($comment) ) $post = $comment;
 if ( $post['idx_parent'] ) $display = 'none';
 else $display='block';
 global $no_comment_form;
 if ( isset($no_comment_form) ) $no_comment_form ++;
 else $no_comment_form = 0;
+
 ?>
 <form name="comment" no='<?php echo $no_comment_form; ?>' class="ajax-file-upload" method="post" enctype="multipart/form-data">
     <input type="hidden" name="idx_parent" value="<?php echo $post['idx'] ?>">

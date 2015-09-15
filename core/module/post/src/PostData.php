@@ -310,7 +310,7 @@ class PostData extends Entity {
         if ( $parent ) {
             $no_comment = post_data()->countComment($idx_root);
             post_data()->which($idx_root)->set('no_comment', $no_comment)->save();
-            post_data($idx_root)->set('no_comment', $no_comment)->save();
+            //post_data($idx_root)->set('no_comment', $no_comment)->save();
         }
 
         self::setCurrent($data);

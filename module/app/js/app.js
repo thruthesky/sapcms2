@@ -4,7 +4,7 @@
  */
 
 var url_server_app = url_server + '/app/';
-var url_server_post_comment_submit = url_server + '/post/comment/submit';
+var url_server_post_comment_submit = url_server + '/app/post/comment/submit';
 var currentPageID = 'local-page';
 var prevPageID = 'local-page';
 
@@ -327,6 +327,9 @@ function fileDisplay($this, re) {
 
 /****** COMMENT FORM */
 $(function(){
+    $("body").on("click", ".comment-reply-button", function(){
+        $(this).parent().find('.comment-form').show();
+    });
     $(".comment-form-content").keydown(function(e) {
         if ( e.which == 13 ) {
             var $this = $(this);
@@ -356,14 +359,12 @@ function ajaxCommentSubmit($this) {
         },
         complete: function(xhr) {
             console.log("post comment submit completed!!");
-            var re;
-            try {
-                re = JSON.parse(xhr.responseText);
-            }
-            catch ( e ) {
-                return alert( xhr.responseText );
-            }
-            console.log(re);
+            var re = xhr.responseText;
+            //console.log(re);
+            //var idx = $this.parents('.comment').attr('idx');
+            //console.log(idx);
+            $parent = $this.parents('.comment');
+            $parent.next().html(re);
         }
     });
 }
