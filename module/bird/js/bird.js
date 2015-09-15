@@ -48,7 +48,7 @@ function initMenu() {
     });
 }
 
-function initPanel() {
+function initPanel() {	
     function getMenu() {
         return $('#panel-menu');
     }
@@ -65,7 +65,7 @@ function initPanel() {
     });
     $body.on('click', ".show-panel", togglePanel);
     $body.on('click', ".close-panel", closePanel);
-    function togglePanel() {
+    function togglePanel() {		
         if ( getMenu().css('display') == 'none' ) openPanel();
         else closePanel();
     }
