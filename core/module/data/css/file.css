@@ -20,6 +20,7 @@
 }
 
 .file-display .file {
+	position:relative;/*added by benjamin for delete*/
     float:left;
 }
 

@@ -58,7 +58,7 @@ class smsgate {
         if ( isset($data['error_number'][0]) ) {
             return $data['error_number'][0];
         }
-        else return ['error'=>0];
+        else return ['error'=>0,'message'=>$message,'number'=>$number];
     }
 
 

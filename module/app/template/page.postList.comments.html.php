@@ -3,11 +3,11 @@ if ( ! isset($post['comments']) ) return;
 $comments = &$post['comments'];
 foreach ( $comments as $comment ) {
     $depth = $comment['depth'];
-    if ( $depth > 5 ) $padding = 6;
-    else $padding = 12;
-    $indent = ( $depth - 1 ) * $padding;
+    if ( $depth > 5 )  $indent = ( 3 * 12 ) + ( $depth - 4 ) * 6;
+    else  $indent = ( $depth - 1 ) * 12;//$padding = 12;
+    //$indent = ( $depth - 1 ) * $padding;
     ?>
-    <div id="comment<?php echo $comment['idx']?>" class="comment" idx="<?php echo $comment['idx']?>" style="margin-left:<?php echo $indent; ?>px">
+    <div id="comment<?php echo $comment['idx']?>" class="comment" idx="<?php echo $comment['idx']?>" depth='<?php echo $depth; ?>' style="margin-left:<?php echo $indent; ?>px">
         <nav class="menu">
             글번호 : <?php echo $comment['idx']?>
             <a href="<?php echo url_post_comment_edit($comment['idx'])?>">수정</a>
