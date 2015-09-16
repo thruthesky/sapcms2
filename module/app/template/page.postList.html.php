@@ -10,7 +10,13 @@
         </div>
         <div class="content">
             <?php echo $post['content']; ?>
-        </div>
+        </div>		
+		<div class="display-files">
+			<?php 			
+			$files = data()->loadBy('post', post_data($post['idx'])->config('idx'), $post['idx']);
+			if( !empty( $files ) ) display_files($files);
+			?>
+		</div>
         <div class="comment-form">
             <?php include template('page.postList.comment-form') ?>
         </div>

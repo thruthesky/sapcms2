@@ -102,7 +102,7 @@ EOH;
     }
 
     private static function pageContentPostList($post_id)
-    {
+    {		
         ob_start();
         $posts = MobilePost::postList($post_id);
         include template('page.postList');
@@ -116,11 +116,11 @@ EOH;
 
         // if ( empty($content) ) return Response::json(['error'=>'Content is empty']);
 
-        $config = post_config()->getCurrent();
+		$config = post_config()->getCurrent();
         if ( empty($config) ) return Response::json(['error'=>'Wrong post configuration']);
 
         $options['idx_config'] = $config->get('idx');
-        $options['idx_user'] = login('idx');
+		$options['idx_user'] = login('idx');
         $options['content'] = request('content');
         $options['idx_root'] = post_data(request('idx_parent'))->get('idx_root');
         $options['idx_parent'] = request('idx_parent');

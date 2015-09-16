@@ -115,7 +115,7 @@
 
 /*** POST VIEW */
 
-.comment .display-files img {
+.post .display-files img,.comment .display-files img {
     width:100%;
 }
 

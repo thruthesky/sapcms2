@@ -5,7 +5,7 @@ if ( empty($posts) ) return;
 <div class="text-photo">
     <?php
     foreach ( $posts as $post ) {
-        $src = $post->getImage()->urlThumbnail(400,140);
+        $src = $post->getImage()->urlThumbnail(400,140);		
         ?>
         <a href="<?php echo $post->url()?>">
             <div class="row">

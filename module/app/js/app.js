@@ -2,7 +2,6 @@
  *
  *
  */
-
 var url_server_app = url_server + '/app/';
 var url_server_post_comment_submit = url_server + '/app/post/comment/submit';
 var currentPageID = 'local-page';
@@ -212,7 +211,7 @@ $(function(){
         console.log("form: "+ $this.find("[name='idx_parent']").val());
         var $progressBar = $this.find(".ajax-file-upload-progress-bar");
         var lastAction = $this.prop('action');
-        $this.prop('action', '/file/upload');
+        $this.prop('action', url_server+'/file/upload');
         $this.ajaxSubmit({
             beforeSend: function() {
                 console.log("bseforeSend:");
@@ -363,8 +362,15 @@ function ajaxCommentSubmit($this) {
             //console.log(re);
             //var idx = $this.parents('.comment').attr('idx');
             //console.log(idx);
-            $parent = $this.parents('.comment');
-            $parent.next().html(re);
+			$comment_depth = $(re).attr('depth');
+			if( $comment_depth > 1 ){
+				$parent = $this.parents('.comment');
+				$parent.after( $(re) );//.html(re);
+			}
+			else {
+				$parent = $this.parents('.post');
+				$parent.append( $(re) );
+			}
         }
     });
 }
