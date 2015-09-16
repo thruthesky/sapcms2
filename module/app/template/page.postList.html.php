@@ -14,14 +14,16 @@
 		<div class="display-files">
 			<?php 			
 			$files = data()->loadBy('post', post_data($post['idx'])->config('idx'), $post['idx']);
-			if( !empty( $files ) ) display_files($files);
+			if( !empty( $files ) ) display_files($files);			
 			?>
 		</div>
         <div class="comment-form">
-            <?php include template('page.postList.comment-form') ?>
+            <?php  include template('page.postList.comment-form') ?>
         </div>
         <div class="comments">
-            <?php include template('page.postList.comments'); ?>
+            <?php 
+			if( !empty( $set_fid ) ) unset( $set_fid );
+			include template('page.postList.comments'); ?>
         </div>
     </div>
 <?php } ?>

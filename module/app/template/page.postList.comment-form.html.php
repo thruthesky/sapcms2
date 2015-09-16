@@ -15,9 +15,9 @@ else $no_comment_form = 0;
     <table width="100%" cellpadding="0" cellspacing="0">
         <tr valign="top">
             <td width="40">
-                <img class="file-upload-button" src="/core/module/post/img/camera.png">
-				<input type="hidden" name="fid" value="">
-                <?php include template('element/file', 'data'); ?>
+                <img class="file-upload-button" src="/core/module/post/img/camera.png">				
+                <?php 
+				include template('element/file', 'data'); ?>
             </td>
             <td width="99%">
                 <textarea class='comment-form-content' name="content"></textarea>

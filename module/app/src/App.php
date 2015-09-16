@@ -122,6 +122,7 @@ EOH;
 
         $options['idx_config'] = $config->get('idx');
 		$options['idx_user'] = login('idx');
+		//$options['idx_user'] = 1;//using for test
         $options['content'] = request('content');
         $options['idx_root'] = post_data(request('idx_parent'))->get('idx_root');
         $options['idx_parent'] = request('idx_parent');

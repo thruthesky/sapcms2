@@ -368,9 +368,14 @@ function ajaxCommentSubmit($this) {
 				$parent.after( $(re) );//.html(re);
 			}
 			else {
-				$parent = $this.parents('.post');
-				$parent.append( $(re) );
+				$parent = $this.parents('.post').find('.comments');
+				$parent.prepend( $(re) );
 			}
+			
+			//reset the comment box
+			$this.find(".comment-form-content").val("");
+			$this.find("input[name='fid']").val("");
+			$this.find(".file-display.files").html("");
         }
     });
 }
