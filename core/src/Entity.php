@@ -153,7 +153,6 @@ class Entity {
      */
     public function get($field=null, $default=null)
     {
-        system_log(__METHOD__);
         if ( $field ) {
             return isset($this->fields[$field]) ? $this->fields[$field] : $default;
         }

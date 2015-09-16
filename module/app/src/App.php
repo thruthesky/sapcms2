@@ -90,7 +90,7 @@ class App {
     <div class="header" data-role="header">
         $options[header]
     </div>
-    <div class="ui-content content">
+    <div class="content">
 $options[panel]
 $options[content]
             </div>
@@ -136,5 +136,9 @@ EOH;
             $data = ob_get_clean();
             echo $data;
         }
+    }
+
+    public static function loginSubmit() {
+        Response::json(['error'=>0]);
     }
 }

@@ -26,14 +26,15 @@ $(function() {
     //setTimeout(callback_online, 4000);
     initialize();
     //loadPage('front_page');
-
-    loadPage('postList', 'test');
+    //loadPage('postList', 'test');
+    loadPage('login');
 });
 
 function initialize() {
     initMenu();
     initPanel();
 }
+
 function initMenu() {
     var $body = $('body');
     $body.on('click', ".link", function() {
@@ -368,3 +369,27 @@ function ajaxCommentSubmit($this) {
         }
     });
 }
+
+
+
+/** LOGIN */
+$(function(){
+    $("body").on('submit', "form.login", function(){
+        var $this = $(this);
+        var id = $this.find('[name="id"]').val();
+        var password = $this.find('[name="password"]').val();
+        var url = url_server_app + "loginSubmit?id=" + id + "&password=" + password;
+        console.log("login url: " + url);
+        $.ajax(url)
+            .done(function(re){
+                console.log(re);
+            })
+            .fail(function(){
+
+            });
+        return false;
+    });
+});
+
+
+
