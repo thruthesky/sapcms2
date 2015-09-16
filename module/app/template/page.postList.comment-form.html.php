@@ -7,7 +7,7 @@ if ( isset($no_comment_form) ) $no_comment_form ++;
 else $no_comment_form = 0;
 
 ?>
-<form name="comment" no='<?php echo $no_comment_form; ?>' class="ajax-file-upload" method="post" enctype="multipart/form-data">
+<form name="comment" no='<?php echo $no_comment_form; ?>' class="ajax-file-upload" method="post" enctype="multipart/form-data">    
     <input type="hidden" name="idx_parent" value="<?php echo $post['idx'] ?>">
     <input type="hidden" name="file_display" value="1">
     <input type="hidden" name="ajax" value="1">
@@ -16,6 +16,7 @@ else $no_comment_form = 0;
         <tr valign="top">
             <td width="40">
                 <img class="file-upload-button" src="/core/module/post/img/camera.png">
+				<input type="hidden" name="fid" value="">
                 <?php include template('element/file', 'data'); ?>
             </td>
             <td width="99%">
