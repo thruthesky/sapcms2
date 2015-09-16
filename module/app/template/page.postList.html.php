@@ -18,11 +18,11 @@
 			?>
 		</div>
         <div class="comment-form">
-            <?php  include template('page.postList.comment-form') ?>
+            <?php  include template('page.postList.comment-form');?>
         </div>
         <div class="comments">
             <?php 
-			if( !empty( $set_fid ) ) unset( $set_fid );
+			if( !empty( $set_fid ) ) unset( $set_fid );//what is set_fid in file.html.php for...?
 			include template('page.postList.comments'); ?>
         </div>
     </div>
