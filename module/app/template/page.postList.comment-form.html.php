@@ -15,7 +15,7 @@ else $no_comment_form = 0;
     <table width="100%" cellpadding="0" cellspacing="0">
         <tr valign="top">
             <td width="40">
-                <img class="file-upload-button" src="/core/module/post/img/camera.png">				
+                <img class="file-upload-button" src="<?php echo sysconfig(URL_SITE)?>/core/module/post/img/camera.png">				
                 <?php
                 if( isset($set_fid) ) unset( $set_fid );
 				include template('element/file', 'data');

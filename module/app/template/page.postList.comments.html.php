@@ -13,15 +13,18 @@ foreach ( $comments as $comment ) {
             <a href="<?php echo url_post_comment_edit($comment['idx'])?>">수정</a>
             <a href="<?php echo url_post_delete($comment['idx'])?>">삭제</a>
         </nav>
-        <?/*
-        <?php widget('post_view_vote', ['post'=>$comment])?>
+        <?php/*
+*/?>
+        <?php
+/*<?php widget('post_view_vote', ['post'=>$comment])?>
 */?>
 
         <div class="content">
             <?php include template('page.postList.comment.content') ?>
         </div>
 
-        <?/*
+        <?php
+/*
         <?php widget('post_display_files', ['idx'=>$comment['idx']])?>
 */?>
         <?php
