@@ -9,7 +9,7 @@ class UserController
     {
         if ( submit() ) {
             $options = request();
-			if( empty( $options['password'] ) ) unset( $options['password'] );
+            if( empty( $options['password'] ) ) unset( $options['password'] );
             self::updateUser($options);
         }
         Response::render(['template' => 'user.profile']);
@@ -24,17 +24,17 @@ class UserController
         if ( submit() ) return self::registerFormSubmit();
         return self::userRegisterTemplate();
     }
-	
-	//added by benjamin
+
+    //added by benjamin
     public static function adminUserEdit()
-    {					
+    {
         if ( submit() ) return self::adminUserEditSubmit();
         return self::adminUserEditTemplate();
     }
-	
-	//added by benjamin
+
+    //added by benjamin
     public static function adminUserBlock()
-    {					
+    {
         if ( submit() ) return self::adminUserBlockSubmit();
         self::adminUserBlockTemplate();
     }
@@ -72,8 +72,7 @@ class UserController
     public static function login()
     {
         if (submit()) {
-
-		$re = User::checkIDPassword(Request::get('id'), Request::get('password'));
+            $re = User::checkIDPassword(Request::get('id'), Request::get('password'));
             if ( $re ) {
                 User::login(Request::get('id'));
                 return Response::redirect(ROUTE_ROOT);
@@ -105,7 +104,6 @@ class UserController
         if ( login('idx') ) {
             return error(-50809, "You already logged in");
         }
-
 
         $id = request('id');
         $pw = request('password');
@@ -146,8 +144,6 @@ class UserController
             return self::userRegisterTemplate();
         }
 
-
-
         $options['id'] = $id;
         $options['password'] = request('password');
         $options['name'] = request('name');
@@ -161,35 +157,35 @@ class UserController
         return Response::redirect(config()->getUrlSite());
 
     }
-	
-	//added by benjamin
-	private static function adminUserEditSubmit() {
+
+    //added by benjamin
+    private static function adminUserEditSubmit() {
         $user = user( request('idx') );
 
         if ( $password = request('password') ) $user->setPassword($password);
         if ( $domain = request('domain') ) $user->set('domain', $domain);
         $user->setBasicFields(request());
         $user->save();
-		return Response::redirect( "/admin/user/edit?idx=" . request('idx') );
-	}
+        return Response::redirect( "/admin/user/edit?idx=" . request('idx') );
+    }
 
-	//added by benjamin
-	private static function adminUserBlockSubmit() {
-		$input = request();		
-		if( !empty( $input['idx'] ) ){
-			//if( empty( $input['block'] ) )  error(-70123, "Please put the date of when the user will be unblocked.");
-			$user = user( $input['idx'] );
-			
-			if( !empty( $input['block'] ) ) $user->set( 'block', strtotime( $input['block'] ) );
-			else error(-70101, "Please put the date of when the user will be unblocked. Block detail was not updated");
-			if( !empty( $input['block_reason'] ) ) $user->set( 'block_reason', $input['block_reason'] );
-			else error(-70102, "No block reason was added. Block Reason detail was not Updated");
-			
-			$user->save();			
-		}
-		
-		self::adminUserBlockTemplate();
-	}
+    //added by benjamin
+    private static function adminUserBlockSubmit() {
+        $input = request();
+        if( !empty( $input['idx'] ) ){
+            //if( empty( $input['block'] ) )  error(-70123, "Please put the date of when the user will be unblocked.");
+            $user = user( $input['idx'] );
+
+            if( !empty( $input['block'] ) ) $user->set( 'block', strtotime( $input['block'] ) );
+            else error(-70101, "Please put the date of when the user will be unblocked. Block detail was not updated");
+            if( !empty( $input['block_reason'] ) ) $user->set( 'block_reason', $input['block_reason'] );
+            else error(-70102, "No block reason was added. Block Reason detail was not Updated");
+
+            $user->save();
+        }
+
+        self::adminUserBlockTemplate();
+    }
 
     private static function userRegisterTemplate()
     {
@@ -197,10 +193,10 @@ class UserController
         $data = [];
         $data['input'] = Request::get();
         $data['template'] = 'user.register';
-		
-		//added by benjamin
-		$idx = request('idx');
-		if( $idx ) $data['user'] = user( $idx );
+
+        //added by benjamin
+        $idx = request('idx');
+        if( $idx ) $data['user'] = user( $idx );
 
         return Response::render($data);
     }
@@ -216,7 +212,7 @@ class UserController
         if( $idx ) $data['user'] = user( $idx )->get();
         else {
             error(-50123, "User idx is not provided.");
-        }	
+        }
 
         return Response::renderSystemLayout($data);
     }
@@ -230,13 +226,13 @@ class UserController
         //added by benjamin
         $idx = request('idx');
         if( $idx ){
-			$user = user( $idx )->get();
-			if( empty( $user ) )  error(-50200, "User Does not exist.");
-			else $data['user'] = $user;
-		}
+            $user = user( $idx )->get();
+            if( empty( $user ) )  error(-50200, "User Does not exist.");
+            else $data['user'] = $user;
+        }
         else {
             error(-50123, "User idx is not provided.");
-        }	
+        }
 
         return Response::renderSystemLayout($data);
     }
@@ -267,7 +263,7 @@ class UserController
 
         // @TODO list the fields.
         if ( $options ) {
-			$login->setBasicFields( $options );
+            $login->setBasicFields( $options );
         }
         $login->save();
         user_activity('updateUser');
@@ -281,22 +277,22 @@ class UserController
     public static function resignSubmit() {
         login()
             ->setPassword(md5(time()))
-            ->set('name', '')            
+            ->set('name', '')
             ->set('middle_name', '')
             ->set('last_name', '')
             ->set('nickname', '')
-			->set('mail', '')
-			->set('birth_year', 0)
-			->set('birth_month', 0)
-			->set('birth_day', 0)
-			->set('landline', '')
-			->set('mobile', '')
-			->set('address', '')
-			->set('country', '')
-			->set('province', '')			
-			->set('city', '')
-			->set('school', '')
-			->set('work', '')
+            ->set('mail', '')
+            ->set('birth_year', 0)
+            ->set('birth_month', 0)
+            ->set('birth_day', 0)
+            ->set('landline', '')
+            ->set('mobile', '')
+            ->set('address', '')
+            ->set('country', '')
+            ->set('province', '')
+            ->set('city', '')
+            ->set('school', '')
+            ->set('work', '')
             ->set('resign', time())
             ->set('resign_reason', request('resign_reason'))
             ->save();

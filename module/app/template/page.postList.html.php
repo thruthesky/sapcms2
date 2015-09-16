@@ -21,8 +21,7 @@
             <?php  include template('page.postList.comment-form');?>
         </div>
         <div class="comments">
-            <?php 
-			if( !empty( $set_fid ) ) unset( $set_fid );//what is set_fid in file.html.php for...?
+            <?php
 			include template('page.postList.comments'); ?>
         </div>
     </div>

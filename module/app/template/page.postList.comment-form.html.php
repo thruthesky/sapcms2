@@ -16,8 +16,10 @@ else $no_comment_form = 0;
         <tr valign="top">
             <td width="40">
                 <img class="file-upload-button" src="/core/module/post/img/camera.png">				
-                <?php 
-				include template('element/file', 'data'); ?>
+                <?php
+                if( isset($set_fid) ) unset( $set_fid );
+				include template('element/file', 'data');
+                ?>
             </td>
             <td width="99%">
                 <textarea class='comment-form-content' name="content"></textarea>

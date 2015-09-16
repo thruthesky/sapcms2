@@ -1,6 +1,7 @@
 <?php
 namespace sap\app;
 use sap\core\post\PostData;
+use sap\core\user\User;
 use sap\src\Response;
 
 class App {
@@ -141,6 +142,13 @@ EOH;
     }
 
     public static function loginSubmit() {
-        Response::json(['error'=>0]);
+        $re = User::checkIDPassword(request('id'), request('password'));
+        if ( $re ) {
+            User::login(request('id'));
+            Response::json(['error'=>0]);
+        }
+        else {
+            Response::json(['error'=>-1]);
+        }
     }
 }
