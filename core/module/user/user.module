@@ -1,5 +1,5 @@
 <?php
-use sap\core\Install\Install;
+use sap\core\install\Install;
 
 define('USER_ACTIVITY_TABLE', 'user_activity');
 include 'user.hook.php';
