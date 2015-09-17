@@ -4,7 +4,7 @@ add_javascript();
 ?>
 <div id="panel-menu" style="display: none;">
     <ul>
-        <li><a href="<?php echo url_forum()?>"><span>Forums</span></a></li>
+        <li><span class="link" route="postList" post_id="qna">Forums</span></li>
         <?php if ( login() ) { ?>
             <li><a href="<?php echo url_user_profile()?>"><span>Profile Update</span></a></li>
             <li><a href="<?php echo url_message()?>"><span>Message</span></a></li>

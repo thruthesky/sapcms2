@@ -73,6 +73,9 @@ function initPanel() {
         return $('#panel-menu');
     }
     var $body = $('body');
+
+    /**
+     * @note It is very difficult when it comes to finger touch.
     $body.on('click', '*', function( event ) {
         //console.log('body click');
         var $obj = $(event.target);
@@ -82,11 +85,21 @@ function initPanel() {
         }
         else closePanel();
     });
-    $body.on('click', ".show-panel", togglePanel);
+    */
+
+    //$body.on('click', ".show-panel", togglePanel);
+
+    $body.on('click', ".show-panel", openPanel);
     $body.on('click', ".close-panel", closePanel);
+    /*
     function togglePanel() {
         if ( getMenu().css('display') == 'none' ) openPanel();
         else closePanel();
+    }
+    */
+
+    function isPanelOpen() {
+        return getMenu().css('display') != 'none';
     }
     function closePanel() {
         var $menu = getMenu();
@@ -101,6 +114,7 @@ function initPanel() {
         );
     }
     function openPanel() {
+        if ( isPanelOpen() ) return;
         var $menu = getMenu();
         $menu.css({
             'right': 0 - $menu.width()
