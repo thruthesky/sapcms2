@@ -33,7 +33,7 @@ function display_province($location, $my_province) {
     }
 }
 function display_city($location, $my_province, $my_city=null) {	
-	if( empty( $my_province ) ) return;
+	if( empty( $my_province ) ) return;//added by benjamin because it causes me undefined index error if no province is set
     $cities = $location[$my_province];
     foreach( $cities as $p ) {
         $ps[$p] = $p;
