@@ -1,5 +1,6 @@
 <?php
 namespace sap\core\post;
+use sap\core\data\Data;
 use sap\src\Response;
 
 class post {
@@ -27,8 +28,16 @@ class post {
 
         $config = post_config()->getCurrent();
 
-        if ( empty($config) ) error(-60400, "Could not find configuration");
-        else $data['post_config'] = $config->get();
+        if ( empty($config) ) {
+            error(-60400, "Could not find configuration");
+        }
+        else {
+            $data['post_config'] = $config->get();
+            $data['widget_list'] = self::loadWidget('post_list');
+            $data['widget_view'] = self::loadWidget('post_view');
+            $data['widget_edit'] = self::loadWidget('post_edit');
+            $data['widget_comment_edit'] = self::loadWidget('post_comment_edit');
+        }
 
         return Response::renderSystemLayout($data);
     }
@@ -124,13 +133,16 @@ class post {
             'config' => $config,
         ]);
     }
-    public static function postListData() {
-        return self::searchPostDataCondition(['comment'=>false]);
-    }
-    public static function postListDataCount() {
-        return self::countPostData(['comment'=>false]);
+
+    public static function postListData(array $options=[]) {
+        $options['comment'] = false;
+        return self::searchPostDataCondition($options);
     }
 
+    public static function postListDataCount(array $options=[]) {
+        $options['comment'] = false;
+        return self::countPostData($options);
+    }
 
     public static function searchPostData() {
         $posts = self::searchPostDataCondition();
@@ -141,6 +153,22 @@ class post {
             'posts' => $posts,
             'total_record' => $total_record,
         ]);
+    }
+
+    /**
+     * Returns with full comment.
+     * @param array $options
+     * @return array
+     */
+    public static function postListWithComment(array $options=[]) {
+        $options['comment'] = false;
+        $posts = self::searchPostDataCondition($options);
+        if ( $posts ) {
+            foreach( $posts as &$post ) {
+                $post['comments'] = post_data()->getComments($post['idx']);
+            }
+        }
+        return $posts;
     }
 
 
@@ -218,15 +246,19 @@ class post {
      * @return int
      */
     public static function postCommentSubmit() {
-        if ( self::validateContent() ) return jsBack(getErrorString());
 
+
+        if ( self::validateContent() ) {
+            return jsBack(getErrorString());
+        }
         $config = post_config()->getCurrent();
-        if ( empty($config) ) return self::templateError(-50505, "Wrong post configuration");
+        if ( empty($config) ) {
+            return self::templateError(-50505, "Wrong post configuration");
+        }
         $options['idx_config'] = $config->get('idx');
         $options['idx_user'] = login('idx');
         $options['title'] = request('title');
         $options['content'] = request('content');
-
         $options['idx_root'] = post_data(request('idx_parent'))->get('idx_root');
         $options['idx_parent'] = request('idx_parent');
         $data = PostData::newPost($options);
@@ -241,9 +273,6 @@ class post {
             return Response::redirect($url);
         }
     }
-
-
-
 
 
     public static function validateTitle() {
@@ -790,7 +819,7 @@ class post {
      *
      * @param int $from - From what number of post in DESC order.
      * @param $config_name - is the forum. it's options. if it's empty, it searches for whole forum.
-     * @return bool|\sap\src\Entity
+     * @return bool|Data
      * @code
      *  $src = post()->getLatestPostImage('qna')->url();
      *  $src = post()->getLatestPostImage()->url();
@@ -867,5 +896,39 @@ class post {
         return Response::json($re);
     }
 
+    /**
+     *
+     *
+     * @param $type
+     * @return array
+     * Array
+     *    (
+     *    [widget/post_list_simple/post_list_simple.php] => Simple Post List
+     *    [core/module/post/widget/post_list/post_list.php] => Basic Post List
+     *    )
+     *
+     *
+     * @code
+     *      $data['widget_list'] = self::loadWidget('post_list');
+     * @endcode
+     *
+     *
+     *
+     */
+    public static function loadWidget($type) {
+        $ret = [];
+        widget()->loadParseIni();
+        $ini = widget()->loadParseIni("core/module/post/widget/*");
+        if ( isset($ini[$type]) ) {
+            foreach( $ini[$type] as $data ) {
+                $name = $data['info']['name'];
+                $pi = pathinfo($data['path']);
+                $folder = str_replace(".ini", "", $pi['filename']);
+                $ret[$folder] = $name;
+            }
+            return $ret;
+        }
+        else return [];
+    }
 }
 

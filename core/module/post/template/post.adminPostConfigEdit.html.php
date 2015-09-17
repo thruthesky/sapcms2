@@ -1,6 +1,9 @@
 <?php include template('post.admin.menu'); 
 extract( module()->getVariables() );
 
+
+
+
 if( !empty( $post_config ) ){
 ?>
 <form action="/admin/post/config/edit_submit" method="post">
@@ -23,7 +26,13 @@ if( !empty( $post_config ) ){
     <input type="text" name="<?php echo NO_PAGE?>" value="<?php echo $post_config[NO_PAGE]; ?>">
 	
     Widget List
-    <input type="text" name="widget_list" value="<?php echo $post_config['widget_list']; ?>">
+    <?php
+    echo html_select([
+        'name' => 'widget_list',
+        'default' => $post_config['widget_list'],
+        'options' => $variables['widget_list']
+    ]);
+    ?>
 
     Show List Widget Under View
     <input type="radio" id="show_list_under_view_yes" name="show_list_under_view" value="Y" <?php if ( $post_config['show_list_under_view'] == 'Y' ) echo "checked=1"; ?>>
@@ -31,19 +40,41 @@ if( !empty( $post_config ) ){
     <input type="radio" id="show_list_under_view_no" name="show_list_under_view" value="N" <?php if ( $post_config['show_list_under_view'] != 'Y' ) echo "checked=1"; ?>>
     <label for="show_list_under_view_no">No</label>
 
-
-
     Widget View
-    <input type="text" name="widget_view" value="<?php echo $post_config['widget_view']; ?>">
-	
+    <?php
+    echo html_select([
+        'name' => 'widget_view',
+        'default' => $post_config['widget_view'],
+        'options' => $variables['widget_view']
+    ]);
+    ?>
+
     Widget Edit
-    <input type="text" name="widget_edit" value="<?php echo $post_config['widget_edit']; ?>">
-	
+    <?php
+    echo html_select([
+        'name' => 'widget_edit',
+        'default' => $post_config['widget_edit'],
+        'options' => $variables['widget_edit']
+    ]);
+    ?>
+
     Widget Comment
-    <input type="text" name="widget_comment" value="<?php echo $post_config['widget_comment']; ?>">
-	
+
+    <?php
+    echo html_select([
+        'name' => 'widget_comment',
+        'default' => $post_config['widget_comment'],
+        'options' => $variables['widget_comment_edit']
+    ]);
+    ?>
+
+
+    <?php
+    /*
     Widget Search
     <input type="text" name="widget_search_box" value="<?php echo $post_config['widget_search_box']; ?>">
+    */
+    ?>
 
     <input type="submit" value="UPDATE">
 </form>

@@ -20,7 +20,7 @@ class PostConfig extends Entity {
      *          -- if it's not in admin page, then the 'idx' is post_data.idx
      *      - Lastly, it looks for request('idx_parent')
      *
-     * @return $this|bool
+     * @return PostConfig|bool
      */
     public function getCurrent() {
 
@@ -56,6 +56,24 @@ class PostConfig extends Entity {
 
         return FALSE;
     }
+
+
+    /**
+     * @param $widget
+     * @return array|null|string
+     *
+     * @code
+     * $name = post_config()->getCurrent()->getWidget('list');
+     * widget($name, $variables);
+     * @endcode
+     */
+    public function getWidget($widget) {
+        $config = $this->getCurrent();
+        $name = $config->get("widget_$widget");
+        if ( empty($name) ) return "post_" . $widget;
+        else return $name;
+    }
+
 
 
     /**

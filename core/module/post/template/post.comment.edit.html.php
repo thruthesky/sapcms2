@@ -1,2 +1,3 @@
 <?php
-widget('post_comment_edit');
+$name = post_config()->getCurrent()->getWidget('comment_edit');
+widget($name);

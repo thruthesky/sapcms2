@@ -13,8 +13,8 @@ class PostVoteHistory extends Meta
     public function voteGood($idx)
     {
         if ( ! login() ) return error(-50941, "Please, login first before you are going to vote.");
-		$vote_done = $this->voteDone($idx);//error Can't use method return value in write context
-        if ( ! empty( $vote_done ) ) return error(-50945, "You have voted already on this post.");
+		$voteDone = $this->voteDone($idx);//added by benjamin because it is causing return function error on my PHP version 5.4.17
+        if ( ! empty( $voteDone ) ) return error(-50945, "You have voted already on this post.");
         $no = $this->voteSaveGood($idx);
         return ['idx'=>$idx, 'no'=>$no, 'type'=>'good'];
     }
@@ -22,8 +22,8 @@ class PostVoteHistory extends Meta
     public function voteBad($idx)
     {
         if ( ! login() ) return error(-50942, "Please, login first before you are going to vote.");
-		$vote_done = $this->voteDone($idx);//error Can't use method return value in write context
-        if ( ! empty( $vote_done ) ) return error(-50945, "You have voted already on this post.");
+        $voteDone = $this->voteDone($idx);//added by benjamin because it is causing return function error on my PHP version 5.4.17
+        if ( ! empty( $voteDone ) ) return error(-50945, "You have voted already on this post.");
         $no = $this->voteSaveBad($idx);
         return ['idx'=>$idx, 'no'=>$no, 'type'=>'bad'];
     }
