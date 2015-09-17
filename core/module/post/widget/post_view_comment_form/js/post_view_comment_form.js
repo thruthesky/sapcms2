@@ -11,7 +11,8 @@ $(function(){
         console.log('done:' + doneShowOnClick[no]);
 
         $this.find(".show-on-click").show();
-        $this.find('textarea').css('height', '60');
+        $this.find('textarea').css('height', '35');
+        $this.find('.file-upload-button').css('padding', '11px 8px');
     });
 
     $(".comment-form-content").keydown(function(e) {
