@@ -9,6 +9,5 @@ include 'app.routing.php';
 
 $url_site = 'http://'.domain().'/';
 header("Access-Control-Allow-Origin: *");
-//header('Access-Control-Allow-Credentials: true');
 sys()->setConfig(URL_SITE, $url_site);
 

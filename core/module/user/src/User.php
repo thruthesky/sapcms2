@@ -128,9 +128,12 @@ class User extends Entity {
     {
         $user = user('id', $id);
         session_set('user-id', $id);
-        session_set('user-session-id', self::getUserSessionID($user));		
+        $session_id = self::getUserSessionID($user);
+        session_set('user-session-id', $session_id);
         self::$idxLoginUser = $user->get('idx');
-		$user
+		user()
+            ->which($user->get('idx'))
+            ->set('session_id', $session_id)
             ->set('last_login', time())
             ->set('last_login_ip', ip())
             ->save();
@@ -143,6 +146,10 @@ class User extends Entity {
         session_delete('user-session-id');
     }
 
+    /**
+     * @param Entity $user
+     * @return string
+     */
     public static function getUserSessionID(Entity &$user)
     {
         $str = $user->get('idx');
@@ -153,20 +160,35 @@ class User extends Entity {
 
     /**
      * Returns login user Entity
+     *
+     * @note $idxLoginUser is being used when there is no session information. like below...
+     *      - when it is logged by script.
+     *      - when the user is being used by session_id
+     *
+     * @IMPORTANT This method is the one which must be used for all the use of User Identification.
+     *
+     *
+     * @cycle
+     *          1. check if $idxLoginUser has value.
+     *          2. check if user-id and user-session-id has value.
+     *          3. check if request('session_login') has value.
+     *
      * @return $this|bool
      */
     public function getCurrent() {
         if ( self::$idxLoginUser ) {
             return $this->load(self::$idxLoginUser);
         }
-
         $id = session_get('user-id');
         $session_id = session_get('user-session-id');
-        if ( empty($id) || empty($session_id) ) return FALSE;
-        //$user = user('id', $id);
-
-        if ( ! $this->load('id', $id) ) return FALSE;
-        if ( $session_id == User::getUserSessionID($this) ) return $this;
+        if ( $id && $session_id ) {
+            if ( empty($id) || empty($session_id) ) return FALSE;
+            if ( ! $this->load('id', $id) ) return FALSE;
+            if ( $session_id == User::getUserSessionID($this) ) return $this;
+        }
+        else if ( $session_login = request('session_login') ) {
+            return $this->load('session_id', $session_login);
+        }
         else return FALSE;
     }
 

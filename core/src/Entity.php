@@ -177,7 +177,7 @@ class Entity {
      *
      * @param $field
      * @param $value
-     * @return $this
+     * @return Entity|$this
      *
      *
      * @code

@@ -135,8 +135,11 @@ class App {
         $re = User::checkIDPassword(request('id'), request('password'));
         if ( $re ) {
             User::login(request('id'));
-            self::frontPage();
-            //Response::json(['error'=>0]);
+            $user = user(request('id'));
+            $session_id = $user->get('session_id');
+            //self::frontPage();
+            sys()->log("session_id:$session_id");
+            Response::json(['error'=>0, 'session_id'=>$session_id]);
         }
         else {
             Response::json(['error'=>-1]);

@@ -23,7 +23,8 @@ function callback_deviceReady() {
 
 $(function() {
 
-    console.log("session_id:" + getSessionId());
+    $session_id = getSessionId();
+    console.log("session_id:" + $session_id);
 
     //setTimeout(callback_offline, 2000);
     //setTimeout(callback_online, 4000);
@@ -32,6 +33,10 @@ $(function() {
     //loadPage('postList', 'test');
     //loadPage('login');
 });
+
+function moveToFrontPage() {
+    loadPage('front_page');
+}
 
 function initialize() {
     initMenu();
@@ -55,6 +60,11 @@ function initMenu() {
         else {
             loadPage(route);
         }
+    });
+    $body.on('click', '#panel-menu .logout', function(){
+        setSessionId('');
+        moveToFrontPage();
+        alert('로그아웃을 하였습니다.');
     });
 }
 
@@ -159,7 +169,10 @@ function loadPage(route, post_id) {
     if ( post_id ) url += '/' + post_id;
     console.log("open: " + url);
     showLoader();
-    $.ajax(url)
+    $.ajax({
+        'url': url,
+        'data' : { 'session_login': $session_id }
+    })
         .done(function(html) {
             showPage(route, html);
         })
@@ -400,10 +413,15 @@ $(function(){
                 //console.log(re);
                 try {
                     var re = $.parseJSON(responseData);
+                    console.log(re);
                     if ( re.error ) alert("로그인 실패. 아이디와 비밀번호를 확인해 주세요.");
+                    else {
+                        setSessionId(re.session_id);
+                        moveToFrontPage();
+                    }
                 }
                 catch (e) {
-                    showPage('front_page', responseData);
+                    alert(responseData);
                 }
             })
             .fail(function(){
@@ -416,17 +434,13 @@ $(function(){
 
 
 /** Session ID */
-function randomString(length, chars) {
-    var result = '';
-    for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
-    return result;
-}
 function getSessionId() {
     $session_id = sessionStorage.getItem("session_id");
-    if ( $session_id == null ) {
-        $session_id = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
-        sessionStorage.setItem("session_id",$session_id);
-    }
     return $session_id;
+}
+
+function setSessionId($sid) {
+    $session_id = $sid;
+    sessionStorage.setItem("session_id", $sid);
 }
 /** EO Session ID */

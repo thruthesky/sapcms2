@@ -28,40 +28,64 @@
     </fieldset>
     <fieldset class="mysql-information" style="display:none;">
         <legend>MySQL Information</legend>
-        <?php form_input([
+        <?php echo html_input([
             'name'=>'database_host',
             'label'=>'Database Host',
-            'placeholder'=>''
+            'placeholder'=>'Database Host'
         ])?>
-        <?php form_input([
-            'name'=>'database_name',
-            'label'=>'Database Name',
-            'placeholder'=>''
-        ])?>
-        <?php form_input([
-            'name'=>'database_username',
-            'label'=>'Database Username',
-            'placeholder'=>''
-        ])?>
-        <?php form_input([
-            'name'=>'database_password',
-            'label'=>'Database Password',
-            'placeholder'=>''
-        ])?>
+        <?php echo
+        html_row([
+            'caption' => 'Database Name',
+            'text' => html_input([
+                'name'=>'database_name',
+                'label'=>'Database Name',
+                'placeholder'=>'Database Name'
+            ])
+        ])
+        ?>
+        <?php echo
+        html_row([
+            'caption' => 'Database Username',
+            'text' => html_input([
+                'name'=>'database_username',
+                'label'=>'Database Username',
+                'placeholder'=>'Database Username'
+            ])
+        ])
+        ?>
+        <?php echo
+        html_row([
+            'caption' => 'Database Password',
+            'text' => html_input([
+                'name'=>'database_password',
+                'label'=>'Database Password',
+                'placeholder'=>'Database Password'
+            ])
+        ])
+        ?>
     </fieldset>
 
     <fieldset class="admin-information">
-
-        <?php form_input([
-            'name'=>'admin_id',
-            'label'=>'Site Admin ID',
-            'placeholder'=>''
-        ])?>
-        <?php form_input([
-            'name'=>'admin_password',
-            'label'=>'Site Admin Password',
-            'placeholder'=>''
-        ])?>
+        <?php echo
+        html_row([
+            'caption' => 'Admin ID',
+            'text' =>
+                html_input([
+                    'name'=>'admin_id',
+                    'label'=>'Site Admin ID',
+                    'placeholder'=>'Admin ID'
+                ])
+        ]);?>
+        <?php echo
+        html_row([
+            'caption' => 'Password',
+            'text' => html_input([
+                'name'=>'admin_password',
+                'label'=>'Site Admin Password',
+                'placeholder'=>'Admin Password'
+            ])
+        ]);
+        ?>
     </fieldset>
     <input type="submit" value="SUBMIT">
 </form>
@@ -77,7 +101,6 @@
 <!--<![endif]-->
 <script>
     $( document ).on( "mobileinit", function() {
-        //$.mobile.defaultPageTransition = 'slide';
         $.mobile.ajaxEnabled = false;
     });
 </script>

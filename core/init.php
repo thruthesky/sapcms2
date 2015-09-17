@@ -10,6 +10,7 @@
 // https://docs.google.com/document/d/1w92umk-qjkvge1W5nWkYcX2yAm2ZwDdJTD9XsIQBp70/edit#heading=h.kyl1c0jki1ek
 use sap\core\theme\Theme;
 
+
 if ( $timezone = session_get(USER_TIMEZONE_1) ) {
     date_default_timezone_set($timezone);
 }
@@ -22,3 +23,6 @@ else  if ( $timezone = config(USER_TIMEZONE_3) ) {
 
 
 sys()->setTheme(Theme::getTheme(domain()));
+
+
+sys()->log("System init url: " . get_current_domain_url());

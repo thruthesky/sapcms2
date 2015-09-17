@@ -169,6 +169,7 @@ function login($field=null) {
     }
     else return FALSE;
 }
+
 function my($field=null) {
     return login($field);
 }

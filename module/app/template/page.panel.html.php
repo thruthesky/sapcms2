@@ -8,7 +8,7 @@ add_javascript();
         <?php if ( login() ) { ?>
             <li><a href="<?php echo url_user_profile()?>"><span>Profile Update</span></a></li>
             <li><a href="<?php echo url_message()?>"><span>Message</span></a></li>
-            <li><span class="link logout" route="logout">Logout</span></li>
+            <li><span class="logout">Logout</span></li>
         <?php } else { ?>
             <li><span class="link" route="login">Login</span></li>
             <li><span>Register</span></li>

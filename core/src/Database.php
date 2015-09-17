@@ -93,6 +93,9 @@ class Database extends \PDO {
         else {
             echo"\n" .  __METHOD__ . '<hr>';
             echo "\nERROR: " . get_error_message(ERROR_SYSTEM_NOT_INSTALLED);
+            echo "<pre>";
+            debug_print_backtrace();
+            echo "</pre>";
             exit;
         }
     }

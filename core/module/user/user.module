@@ -1,12 +1,16 @@
 <?php
+use sap\core\Install\Install;
+
 define('USER_ACTIVITY_TABLE', 'user_activity');
 include 'user.hook.php';
 include 'user.routing.php';
 include 'user.function.php';
 
 
-if ( login() ) {
-    login()->set('last_access', time())->save();
+if ( Install::check() ) {
+    if ( $idx = login('idx') ) {
+        user()->which($idx)->set('last_access', time())->save();
+    }
 }
 
 function url_user_profile() {
