@@ -62,6 +62,7 @@ function initMenu() {
         }
     });
     $body.on('click', '#panel-menu .logout', function(){
+        loadPage('logout');
         setSessionId('');
         moveToFrontPage();
         alert('로그아웃을 하였습니다.');

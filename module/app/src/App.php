@@ -147,6 +147,6 @@ class App {
     }
     public static function logout() {
         User::logout();
-        self::frontPage();
+        //self::frontPage();
     }
 }
