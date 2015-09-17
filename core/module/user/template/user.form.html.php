@@ -1,5 +1,6 @@
 <form  method="post">
 <?php
+
 	if( !empty( $variables['user'] ) ){
 		echo "<h1>Admin Edit mode</h1>";
 		echo html_hidden(['name'=>'idx', 'value'=>$variables['user']->get('idx')]);		

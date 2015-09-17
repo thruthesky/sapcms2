@@ -1,6 +1,43 @@
-nav.vote > div {
-    margin:.1em 0;
-    padding:1em;
-    background-color:#99aaff;
-    cursor:pointer;
+/*default*/
+nav.vote{	
+	margin-bottom:10px;
+	color:#696969;
 }
+
+nav.vote > div {	
+	padding:8px 0;	
+	box-sizing:border-box; 
+	text-align:center;
+	cursor:pointer;
+}
+/*default*/
+
+/*comment*/
+.comment .vote-wrapper{	
+	display:inline-block;
+	color:#2c8ac8;	
+}
+
+.comment .vote-wrapper .label {
+	display:none;
+}
+
+.comment nav.vote{
+	border:0;
+}
+
+.comment nav.vote > div {	
+	width:auto;
+	padding:0;
+	margin:0;
+	border:0;
+}
+
+.comment nav.vote > div.reply-button {	
+	display:inline-block;
+}
+
+.comment nav.vote > div.do-comment {	
+	display:none;
+}
+/*comment*/

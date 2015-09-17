@@ -1,0 +1,24 @@
+.user-command.comment-command > *{
+	display:inline-block;
+	padding:0 7px 5px 0;
+	margin:0 2px 0 0;
+	background:url("/core/module/post/widget/post_view_comment_commands/img/blue_dot.png");
+	background-repeat:no-repeat;
+	background-position:100% 48%;
+	font-size:.8em;
+	color:#2c8ac8;	
+	cursor:pointer;
+	box-sizing:border-box;
+}
+
+.user-command.comment-command > *:last-child{
+	padding-right:0;
+	margin-right:0;
+	background:none;
+	cursor:default;
+}
+
+.user-command.comment-command a{
+	color:#2c8ac8;
+	text-decoration:none;
+}

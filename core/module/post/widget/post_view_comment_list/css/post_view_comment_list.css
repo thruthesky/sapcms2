@@ -1,62 +1,65 @@
 .post .comment-list .comment {
-    margin: 1em 0;
-    box-sizing: border-box;
-    background-color:#eeeeee;
+	position:relative;
+	padding:0 10px;
+    margin: 1em 0;    
+	border-bottom:1px solid #d7d7d7;
+    background-color:#fff;		
+	box-sizing: border-box;
 }
 
 .post .comment-list .comment[depth='2'] {
-    margin-left:3em;
+    padding-left:3em;
 }
 .post .comment-list .comment[depth='3'] {
-    margin-left:5.5em;
+    padding-left:5.5em;
 }
 .post .comment-list .comment[depth='4'] {
-    margin-left:7.5em;
+    padding-left:7.5em;
 }
 .post .comment-list .comment[depth='5'] {
-    margin-left:9em;
+    padding-left:9em;
 }
 .post .comment-list .comment[depth='6'] {
-    margin-left:10.4em;
+    padding-left:10.4em;
 }
 .post .comment-list .comment[depth='7'] {
-    margin-left:11.3em;
+    padding-left:11.3em;
 }
 .post .comment-list .comment[depth='8'] {
-    margin-left:12.2em;
+    padding-left:12.2em;
 }
 .post .comment-list .comment[depth='9'] {
-    margin-left:13.1em;
+    padding-left:13.1em;
 }
 .post .comment-list .comment[depth='10'] {
-    margin-left:14em;
+    padding-left:14em;
 }
 .post .comment-list .comment[depth='11'] {
-    margin-left:14.9em;
+    padding-left:14.9em;
 }
 .post .comment-list .comment[depth='12'] {
-    margin-left:15.8em;
+    padding-left:15.8em;
 }
 .post .comment-list .comment[depth='13'] {
-    margin-left:16.7em;
+    padding-left:16.7em;
 }
 .post .comment-list .comment[depth='14'] {
-    margin-left:17.6em;
+    padding-left:17.6em;
 }
 .post .comment-list .comment[depth='15'] {
-    margin-left:18.5em;
+    padding-left:18.5em;
 }
 .post .comment-list .comment[depth='16'] {
-    margin-left:19.4em;
+    padding-left:19.4em;
 }
 .post .comment-list .comment[depth='17'] {
-    margin-left:20.3em;
+    padding-left:20.3em;
 }
 .post .comment-list .comment[depth='18'] {
-    margin-left:21.2em;
+    padding-left:21.2em;
 }
 .post .comment-list .comment[depth='19'] {
-    margin-left:22.1em;
+    padding-left:22.1em;
 }
 .post .comment-list .comment[depth='20'],
 .post .comment-list .comment[depth='21'],
@@ -74,5 +77,24 @@
 .post .comment-list .comment[depth='33'],
 .post .comment-list .comment[depth='34']
 {
-    margin-left:23.0em;
+    padding-left:23.0em;
 }
+
+.post .comment-list .comment .menu {
+	position:absolute;
+	top:0;
+	right:10px;	
+}
+
+.post .comment-list .comment .menu > .delete {
+	display:inline-block;
+	width:8px;
+	height:8px;
+	background:url("/core/module/post/widget/post_view_comment_list/img/delete.png");	
+}
+
+
+.post .comment-list .comment .name{
+	font-weight:bold;	
+}
+

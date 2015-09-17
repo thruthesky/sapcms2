@@ -1,5 +1,7 @@
 $(function(){
     $(".reply-button").click(function(){
-        $(this).next().show();
-    });
+        $(this).parents(".comment").find('.comment-form').show();
+        $(this).parents(".comment").find('.comment-form textarea').click();
+        $(this).parents(".comment").find('.comment-form textarea').focus();
+    });	
 });

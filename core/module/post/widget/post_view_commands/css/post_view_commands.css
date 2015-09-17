@@ -1,0 +1,35 @@
+.user-command.post-command{
+	margin-bottom:10px;
+	border-bottom:1px solid #a4a4a4;
+	font-size:.8em;
+}
+
+.user-command.post-command > *{
+	display:inline-block;	
+	color:#696969;
+	padding:0 0 0 15px;
+	margin:0 5px;
+	cursor:pointer;
+}
+
+.user-command.post-command > nav.vote{
+	background:url("/core/module/post/widget/post_view_commands/img/like.png");
+	background-repeat:no-repeat;
+	background-position:0 48%;
+}
+
+.user-command.post-command > .do-comment{
+	background:url("/core/module/post/widget/post_view_commands/img/comment.png");
+	background-repeat:no-repeat;
+	background-position:0 48%;
+}
+
+.user-command.post-command > .do-share{
+	background:url("/core/module/post/widget/post_view_commands/img/share.png");
+	background-repeat:no-repeat;
+	background-position:0 48%;
+}
+
+.user-command.post-command .vote{
+	
+}

@@ -14,7 +14,7 @@ function display_province_city($location, $my_province, $my_city) {
     display_province($location, $my_province);
     display_city($location, $my_province, $my_city);
 }
-function display_province($location, $my_province) {
+function display_province($location, $my_province) {	
     if ( $my_province ) {
         $province = array_keys($location);
         foreach( $province as $p ) {
@@ -32,7 +32,8 @@ function display_province($location, $my_province) {
         ]);
     }
 }
-function display_city($location, $my_province, $my_city=null) {
+function display_city($location, $my_province, $my_city=null) {	
+	if( empty( $my_province ) ) return;
     $cities = $location[$my_province];
     foreach( $cities as $p ) {
         $ps[$p] = $p;
