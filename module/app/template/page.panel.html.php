@@ -6,8 +6,8 @@ add_javascript();
     <ul>
         <li><span class="link" route="postList" post_id="qna">Forums</span></li>
         <?php if ( login() ) { ?>
-            <li><a href="<?php echo url_user_profile()?>"><span>Profile Update</span></a></li>
-            <li><a href="<?php echo url_message()?>"><span>Message</span></a></li>
+            <li><span class="link" route="login">Profile Update</span></li>
+            <li><span class="link" route="login">Message</span></li>
             <li><span class="logout">Logout</span></li>
         <?php } else { ?>
             <li><span class="link" route="login">Login</span></li>
