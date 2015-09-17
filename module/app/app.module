@@ -1,18 +1,14 @@
 <?php
 use sap\src\Module;
-use sap\src\Route;
 
 if ( ! Module::enabled('app') ) {
     return;
 }
 
-Route::add('/app/front_page', 'app\\App\\frontPage');
-Route::add('/app/offline', 'app\\App\\offline');
-Route::add('/app/postList/*', 'app\\App\\postList');
-Route::add('/app/login', 'app\\App\\login');
-Route::add('/app/loginSubmit', 'app\\App\\loginSubmit');
-Route::add('/app/post/comment/submit', 'app\\App\\postCommentSubmit');
+include 'app.routing.php';
 
-header('Access-Control-Allow-Origin: *');
-sys()->setConfig(URL_SITE, 'http://'.domain().'/');
+$url_site = 'http://'.domain().'/';
+header("Access-Control-Allow-Origin: *");
+//header('Access-Control-Allow-Credentials: true');
+sys()->setConfig(URL_SITE, $url_site);
 

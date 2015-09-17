@@ -86,20 +86,10 @@ class App {
 
     private static function createPage(array $options)
     {
-        return <<< EOH
-<div class="page" id="$options[id]">
-    <div class="header" data-role="header">
-        $options[header]
-    </div>
-    <div class="content">
-$options[panel]
-$options[content]
-            </div>
-    <div class="footer" data-role="footer">
-        $options[footer]
-    </div>
-</div>
-EOH;
+
+        ob_start();
+        include template('page');
+        return ob_get_clean();
     }
 
     private static function pageContentPostList($post_id)
@@ -145,10 +135,15 @@ EOH;
         $re = User::checkIDPassword(request('id'), request('password'));
         if ( $re ) {
             User::login(request('id'));
-            Response::json(['error'=>0]);
+            self::frontPage();
+            //Response::json(['error'=>0]);
         }
         else {
             Response::json(['error'=>-1]);
         }
+    }
+    public static function logout() {
+        User::logout();
+        self::frontPage();
     }
 }

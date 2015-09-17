@@ -1,0 +1,14 @@
+.page {
+    position:relative;
+}
+
+.page > .header {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+}
+
+.page > .content {
+    margin-top:52px;
+}

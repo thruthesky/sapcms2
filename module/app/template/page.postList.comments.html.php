@@ -13,8 +13,7 @@ foreach ( $comments as $comment ) {
             <a href="<?php echo url_post_comment_edit($comment['idx'])?>">수정</a>
             <a href="<?php echo url_post_delete($comment['idx'])?>">삭제</a>
         </nav>
-        <?php/*
-*/?>
+
         <?php
 /*<?php widget('post_view_vote', ['post'=>$comment])?>
 */?>

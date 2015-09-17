@@ -28,6 +28,7 @@ class User extends Entity {
     {
         parent::createTable()
             ->add('id', 'varchar', 32)
+            ->add('session_id', 'varchar', 32)
             ->add('password', 'char', 32)
             ->add('domain', 'varchar', 64)
             ->add('name', 'varchar', 32) // first name
@@ -54,6 +55,7 @@ class User extends Entity {
             ->add('resign', 'INT UNSIGNED DEFAULT 0') // time of resigned
             ->add('resign_reason', 'varchar', 1024)
             ->unique('id')
+            ->unique('session_id')
             ->index('domain')
             ->index('name')
             ->index('nickname')

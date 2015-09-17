@@ -6,7 +6,7 @@ var url_server_app = url_server + '/app/';
 var url_server_post_comment_submit = url_server + '/app/post/comment/submit';
 var currentPageID = 'local-page';
 var prevPageID = 'local-page';
-
+var $session_id = null;
 function callback_offline() {
     // setPageContentOffline();
     showOfflineMessage();
@@ -20,13 +20,17 @@ function callback_deviceReady() {
     console.log('callback_deviceReady');
 }
 
+
 $(function() {
+
+    console.log("session_id:" + getSessionId());
+
     //setTimeout(callback_offline, 2000);
     //setTimeout(callback_online, 4000);
     initialize();
-    //loadPage('front_page');
+    loadPage('front_page');
     //loadPage('postList', 'test');
-    loadPage('login');
+    //loadPage('login');
 });
 
 function initialize() {
@@ -392,11 +396,18 @@ $(function(){
         var url = url_server_app + "loginSubmit?id=" + id + "&password=" + password;
         console.log("login url: " + url);
         $.ajax(url)
-            .done(function(re){
-                console.log(re);
+            .done(function(responseData){
+                //console.log(re);
+                try {
+                    var re = $.parseJSON(responseData);
+                    if ( re.error ) alert("로그인 실패. 아이디와 비밀번호를 확인해 주세요.");
+                }
+                catch (e) {
+                    showPage('front_page', responseData);
+                }
             })
             .fail(function(){
-
+                //
             });
         return false;
     });
@@ -404,3 +415,18 @@ $(function(){
 
 
 
+/** Session ID */
+function randomString(length, chars) {
+    var result = '';
+    for (var i = length; i > 0; --i) result += chars[Math.round(Math.random() * (chars.length - 1))];
+    return result;
+}
+function getSessionId() {
+    $session_id = sessionStorage.getItem("session_id");
+    if ( $session_id == null ) {
+        $session_id = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+        sessionStorage.setItem("session_id",$session_id);
+    }
+    return $session_id;
+}
+/** EO Session ID */
