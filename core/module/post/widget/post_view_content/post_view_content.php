@@ -1,5 +1,4 @@
 <?php
-add_css();
 /**
  * @input array $widget['post'] is the Array of post or comment.
  */

@@ -1,37 +1,16 @@
 .display-files {
-	margin-bottom:5px;
+    padding:.6em;
     box-sizing: border-box;
+    background-color: #c3d2f4;
 }
-.display-files .images .image {	
+.display-files .images .image {
     float:left;
-	width:49.5%;
-	margin-bottom:5px;
+    padding:.2em;
     box-sizing: border-box;
 }
-
-.display-files .images .image:nth-child(even) {	
-    margin-left:.5%;
-}
-
-.display-files .images .image:nth-child(odd) {	
-    margin-right:.5%;
-}
-
-.display-files[file_count='1'] .images .image {	
-	float:none;
-    width:100%;
-	margin:0;
-}
-
 .display-files img {
-	display:block;
-    /*width:auto;
-	max-width:100%;*/
-	width:100%;
-	padding:5px;
-	border:1px solid #cfcfcf;
-	box-sizing: border-box;
-    /*max-height:128px;*/
+    width:auto;
+    max-height:128px;
 }
 .display-files a {
     display:inline-block;

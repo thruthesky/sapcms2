@@ -8,7 +8,7 @@ $data = post_data()->getCurrent();
     <input type="hidden" name="idx" value="<?php echo $data->idx; ?>">
     <input type="hidden" name="file_display" value="1">
     <?php include template('element/hidden.variables'); ?>
-    <?php widget('post_edit_upload_files', ['form_name'=>'files[]']); ?>
+    <?php include template('element/file', 'data'); ?>
     <?php
     echo html_row([
         'class' => 'content',

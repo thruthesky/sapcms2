@@ -15,6 +15,7 @@
 
 }
 
+
 .file-upload-button {
     position:absolute;
 }
@@ -24,18 +25,8 @@
 }
 
 .file-upload input[type='file'] {
-    opacity:0;
+    opacity:0.5;
     width:40px;
     height:28px;
     overflow: hidden;
-}
-
-.file-upload-button{
-	display:block;
-	height:14px;
-	width:19px;	
-	padding:6px 8px;
-	margin:0 0 0 5px;
-	border-radius:2px;
-	background-color:#95a5a6;
 }

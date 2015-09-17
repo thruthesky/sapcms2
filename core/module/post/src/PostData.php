@@ -46,12 +46,11 @@ class PostData extends Entity {
     }
 
     /**
-     * Pre-process A post.
-     * @Warning Do not use this method directly. Use preProcess or multiPreProcess
+     * Pre-process A post
      * @param array $post
      * @return array
      */
-    private static function pre(array & $post) {
+    public static function pre(array & $post) {
         if ( !isset($post['idx_root']) || empty($post['idx_root']) ) {
             return error(-50571, "The post has a wrong data. This may be an error.");
         }
@@ -154,10 +153,6 @@ class PostData extends Entity {
      *      - is the original post whose idx_parent is 0
      *      - If it is set to 0, then it returns the comments of current post.
      * @return mixed
-     *
-     * @code To get current post's comment
-     *      $comments = post_data()->getComments();
-     * @endcode
      *
      */
     public function getComments($idx=0, $field='*') {
@@ -310,7 +305,7 @@ class PostData extends Entity {
         if ( $parent ) {
             $no_comment = post_data()->countComment($idx_root);
             post_data()->which($idx_root)->set('no_comment', $no_comment)->save();
-            //post_data($idx_root)->set('no_comment', $no_comment)->save();
+            post_data($idx_root)->set('no_comment', $no_comment)->save();
         }
 
         self::setCurrent($data);

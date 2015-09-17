@@ -1,7 +1,8 @@
-.post  h3.title {
-    margin:0 0 10px 0;
-    padding:0;
-    box-sizing: border-box;    
+.post .view h3.title {
+    margin:0;
+    padding:.6em .8em;
+    box-sizing: border-box;
+    background-color: #ecf2ff;
     color:#292929;
-    font-size:1em;
+    font-size:1.1em;
 }

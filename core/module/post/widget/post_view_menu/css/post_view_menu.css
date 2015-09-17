@@ -1,26 +1,5 @@
-.post .menu{
-    position:absolute;
-	right:10px;
-	top:10px;
-}
-
-.post .menu > a{
-	display:inline-block;
-    width:16px;
-	height:16px;
-	margin-right:5px;
-}
-
-.post .menu > a:last-child{	
-	margin-right:0;
-}
-
-.post .menu > a.delete{
-    background:url("/core/module/post/widget/post_view_menu/img/delete.png");
-	background-repeat:no-repeat;
-}
-
-.post .menu > a.edit{
-    background:url("/core/module/post/widget/post_view_menu/img/edit.png");	
-	background-repeat:no-repeat;
+.post .view .menu {
+    padding:1em;
+    box-sizing: border-box;
+    background-color: #ebebeb;
 }

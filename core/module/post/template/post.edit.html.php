@@ -1,3 +1,2 @@
 <?php
-$name = post_config()->getCurrent()->getWidget('edit');
-widget($name);
+widget('post_edit');
