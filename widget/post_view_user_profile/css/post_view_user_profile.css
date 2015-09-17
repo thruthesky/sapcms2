@@ -1,0 +1,12 @@
+.user-profile{
+	margin-bottom:10px;
+}
+
+.user-profile .info{
+	font-size:.8em;
+}
+
+.user-profile .info .name{
+	font-size:1.3em;
+	font-weight:bold;	
+}
