@@ -116,3 +116,6 @@
     text-shadow: none;
     font-weight: normal;
 }
+#panel-menu li:last-child span {
+    border-bottom:0;
+}

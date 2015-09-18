@@ -22,7 +22,6 @@ function callback_deviceReady() {
 
 
 $(function() {
-    addCsses();
     $session_id = getSessionId();
     console.log("session_id:" + $session_id);
 
@@ -34,36 +33,6 @@ $(function() {
     //loadPage('login');
 });
 
-function addCsses() {
-    var d = new Date();
-    var stamp = d.getDate() + d.getHours() + d.getMinutes();
-    var tag = "?stamp=" + stamp;
-    $("<link/>", {
-        rel: "stylesheet",
-        type: "text/css",
-        href: url_server + "/module/app/css/base.css" + tag
-    }).appendTo("head");
-    $("<link/>", {
-        rel: "stylesheet",
-        type: "text/css",
-        href: url_server + "/module/app/css/layout.css" + tag
-    }).appendTo("head");
-    $("<link/>", {
-        rel: "stylesheet",
-        type: "text/css",
-        href: url_server + "/module/app/css/component.css" + tag
-    }).appendTo("head");
-    $("<link/>", {
-        rel: "stylesheet",
-        type: "text/css",
-        href: url_server + "/module/app/css/component.post.css" + tag
-    }).appendTo("head");
-    $("<link/>", {
-        rel: "stylesheet",
-        type: "text/css",
-        href: url_server + "/module/app/css/sonub.css" + tag
-    }).appendTo("head");
-}
 
 
 
