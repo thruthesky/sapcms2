@@ -1,6 +1,6 @@
 
 function showLoader() {
-    var src = 'http://sapcms2.org//theme/default/tmp/s.png';
+    var src = 'http://sapcms2.org/theme/default/tmp/s.png';
     var $body = $('body');
     var $document = $(window);
     $body.append("<div class='loader'><img src='"+src+"'> 소너브 로딩중입니다.</div>");
@@ -22,6 +22,6 @@ function showLoader() {
 function hideLoader() {
     setTimeout(function(){
         $('.loader').remove();
-    }, 400);
+    }, 800);
     console.log("hide loader");
 }

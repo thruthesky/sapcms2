@@ -6,4 +6,5 @@ Route::add('/app/postList/*', 'app\\App\\postList');
 Route::add('/app/login', 'app\\App\\login');
 Route::add('/app/loginSubmit', 'app\\App\\loginSubmit');
 Route::add('/app/logout', 'app\\App\\logout');
+Route::add('/app/profile', 'app\\App\\profile');
 Route::add('/app/post/comment/submit', 'app\\App\\postCommentSubmit');

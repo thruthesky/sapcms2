@@ -149,4 +149,24 @@ class App {
         User::logout();
         //self::frontPage();
     }
+
+
+    public static function profile() {
+        $page = self::createPage([
+            'id' => 'postList',
+            'header' => self::pageHeader(),
+            'panel' => self::pagePanel(),
+            'content' => self::pageProfile(),
+            'footer' => self::pageFooter(),
+        ]);
+        echo $page;
+    }
+
+    private static function pageProfile()
+    {
+        ob_start();
+        include template('page.profile');
+        return ob_get_clean();
+    }
+
 }
