@@ -30,7 +30,7 @@ if( !empty( $primary_photo ) ) $primary_photo = $primary_photo[0]->urlThumbnail(
                 </td>
                 <td width="40">
                     <img class="file-upload-button" src="<?php echo sysconfig(URL_SITE)?>module/app/img/camera_white_temp.png">
-                    <?php include template('element/file', 'data'); ?>
+                    <?php unset( $set_fid );  include template('element/file', 'data'); ?>
                 </td>
                 <td width="55">
                     <input class="form-comment-add-submit" type="submit" value="POST">

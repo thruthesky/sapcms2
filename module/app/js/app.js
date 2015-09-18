@@ -22,7 +22,6 @@ function callback_deviceReady() {
 
 
 $(function() {
-
     $session_id = getSessionId();
     console.log("session_id:" + $session_id);
 
@@ -33,6 +32,10 @@ $(function() {
     //loadPage('postList', 'test');
     //loadPage('login');
 });
+
+
+
+
 
 function moveToFrontPage() {
     loadPage('front_page');
