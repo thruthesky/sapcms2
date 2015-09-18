@@ -362,10 +362,22 @@ function fileDisplay($this, re) {
 
 /****** COMMENT FORM */
 $(function(){
-    $("body").on("click", ".comment-reply-button", function(){
-        $(this).parent().find('.comment-form').show();
+    $("body").on("click","form[name='comment']", function(){
+        var $this = $(this);
+        
+        $this.find('textarea').css('height', '35');
+        $this.find('.file-upload-button').css('padding', '11px 8px');
     });
-    $(".comment-form-content").keydown(function(e) {
+
+    $("body").on("click", ".comment-reply-button", function(){
+        $(this).parents(".comment").find('.comment-form').show();
+        $(this).parents(".comment").find('.comment-form textarea').focus();
+    });
+	
+	
+	var countEnter = [];
+    $("body").on("keydown",".comment-form-content, .post-form-content",function(e) {
+		console.log("KEYDOWN");
         if ( e.which == 13 ) {
             var $this = $(this);
             var no = $this.parents('form').attr('no');
@@ -450,7 +462,6 @@ $(function(){
 });
 
 
-
 /** Session ID */
 function getSessionId() {
     $session_id = sessionStorage.getItem("session_id");
@@ -462,3 +473,44 @@ function setSessionId($sid) {
     sessionStorage.setItem("session_id", $sid);
 }
 /** EO Session ID */
+
+
+/*VOTE*/
+
+$(function(){
+	$("body").on("click", ".vote > div", function() {
+
+	var $this = $(this);
+	var $vote = $this.parent();
+	var url = url_server + "/post/vote/" + $this.prop('class') + "/" + $vote.attr('idx');
+	console.log("vote url: " + url);
+	$.ajax(url)
+		.done(function(data){
+			var re = JSON.parse(data);
+			console.log(re);
+			if ( re.error ) {
+				alert(re.message);
+			}
+			else {
+				$(".vote[idx='"+re.idx+"'] ." + re.type + ' .no').text(re.no);
+			}
+		})
+		.fail(function(data){
+			console.log(re);
+		});
+	});
+});
+/*EO VOTE*/
+
+/* COMMANDS */
+$(function(){	
+	$("body").on("click",".user-command.post-command .do-comment", focusCommentCursor );
+});
+
+function focusCommentCursor(){
+	$this = $(this);
+	$this.parents(".post").find(".comment-form-content").click();
+	$this.parents(".post").find(".comment-form-content").focus();
+}
+/* EO COMMANDS */
+

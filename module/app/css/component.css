@@ -116,6 +116,17 @@
     text-shadow: none;
     font-weight: normal;
 }
+
+.clearfix:after {
+    display:block;
+    content:'';
+    clear:both;
+}
+
+.show-on-click{
+	display:none;
+}
+
 #panel-menu li:last-child span {
     border-bottom:0;
 }
