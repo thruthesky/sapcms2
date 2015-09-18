@@ -124,3 +124,15 @@
 
 
 
+
+
+
+.clearfix:after {
+    display:block;
+    content:'';
+    clear:both;
+}
+
+.show-on-click{
+	display:none;
+}
