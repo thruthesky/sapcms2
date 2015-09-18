@@ -4,16 +4,18 @@ $comments = &$post['comments'];
 foreach ( $comments as $comment ) {
 	$idx_user = $comment['idx_user'];
 	if( $idx_user == 0 ) $idx_user = 1;	
-
+	
     $depth = $comment['depth'];
+	/*
     if ( $depth > 5 )  $indent = ( 3 * 12 ) + ( $depth - 4 ) * 6;
     else  $indent = ( $depth - 1 ) * 12;//$padding = 12;
     //$indent = ( $depth - 1 ) * $padding;
+	*/
 	$date = date("d M Y",$comment['created']);
 	
 	$edit_url = url_post_comment_edit($comment['idx']);
     ?>
-    <div id="comment<?php echo $comment['idx']?>" class="comment" idx="<?php echo $comment['idx']?>" depth='<?php echo $depth; ?>' style="margin-left:<?php echo $indent; ?>px">
+    <div id="comment<?php echo $comment['idx']?>" class="comment" idx="<?php echo $comment['idx']?>" depth='<?php echo $depth; ?>'>
         <?php
 /*<?php widget('post_view_vote', ['post'=>$comment])?>
 */?>
