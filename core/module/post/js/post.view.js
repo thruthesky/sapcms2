@@ -7,10 +7,5 @@ $(function(){
             document.getElementById('comment' + idx_comment).scrollIntoView();
         }, 250);
     }
-
-
-
-
-
 });
 
