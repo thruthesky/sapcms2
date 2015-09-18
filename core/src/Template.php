@@ -1,6 +1,6 @@
 <?php
 namespace sap\src;
-use sap\core\Theme\Theme;
+use sap\core\theme\Theme;
 
 class Template {
 
