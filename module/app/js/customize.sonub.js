@@ -1,4 +1,9 @@
-
+function callback_getMessageTitle() {
+    return '소너브';
+}
+function callback_getMessageButton() {
+    return '오케이';
+}
 function showLoader() {
     var src = 'http://sapcms2.org/theme/default/tmp/s.png';
     var $body = $('body');

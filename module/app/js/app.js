@@ -22,9 +22,9 @@ function callback_deviceReady() {
 
 
 $(function() {
+    appStarted = true;
     $session_id = getSessionId();
     console.log("session_id:" + $session_id);
-
     //setTimeout(callback_offline, 2000);
     //setTimeout(callback_online, 4000);
     initialize();
