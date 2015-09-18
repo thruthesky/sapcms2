@@ -2,8 +2,15 @@
 $user_idx = login('idx');
 if( !empty( $user_idx ) ) $primary_photo = data()->loadBy('user', 'primary_photo', $user_idx );
 if( !empty( $primary_photo ) ) $primary_photo = $primary_photo[0]->urlThumbnail(140,140);
+
 ?>
 <form action='/post/create/submit' class="ajax-file-upload post-form" method="post" enctype="multipart/form-data">  
+	<?php 
+	$post_id = request( 'post_id' );
+	if( !empty( $post_id ) ) echo "<input type='hidden' name='id' value ='$post_id'/>";
+	echo "<input type='hidden' name='idx_parent' value ='0'/>";
+	?>
+	<input type="hidden" name="file_display" value="1">
 	<?php echo html_hidden_post_variables(); ?>
     <table width="100%" cellpadding="0" cellspacing="0">
             <tr valign="top">

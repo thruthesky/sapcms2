@@ -41,7 +41,7 @@ foreach ( $comments as $comment ) {
 				Reply
 				<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/blue_dot.png'/>
 			</div>  
-			<nav class="vote" idx="<?php echo $post['idx']?>">				
+			<nav class="vote" idx="<?php echo $comment['idx']?>">				
 				<div class="good">
 					<?php 					
 					if( $comment['no_vote_good'] > 0 ) echo $comment['no_vote_good']; ?>

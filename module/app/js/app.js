@@ -3,6 +3,7 @@
  *
  */
 var url_server_app = url_server + '/app/';
+var url_server_post_submit = url_server + '/app/post/submit';
 var url_server_post_comment_submit = url_server + '/app/post/comment/submit';
 var currentPageID = 'local-page';
 var prevPageID = 'local-page';
@@ -184,12 +185,13 @@ function loadPage(route, post_id) {
         console.log("Trying to open same page? ... It loads anyway.");
     }
     var url = url_server_app + route;
+	
     if ( post_id ) url += '/' + post_id;
     console.log("open: " + url);
     showLoader();
     $.ajax({
         'url': url,
-        'data' : { 'session_login': $session_id }
+        'data' : { 'session_login': $session_id, 'post_id': post_id }
     })
         .done(function(html) {
             showPage(route, html);
@@ -249,6 +251,7 @@ $(function(){
         var lastAction = $this.prop('action');
         $this.prop('action', url_server+'/file/upload');
         $this.ajaxSubmit({
+			data : { 'session_login': $session_id },
             beforeSend: function() {
                 console.log("bseforeSend:");
                 showProgressBar();
@@ -398,36 +401,59 @@ $(function(){
 /****** COMMENT UPLOAD */
 function ajaxCommentSubmit($this) {
     // alert($this.find('[name="content"]').val());
-    $this.prop('action', url_server_post_comment_submit);
+	var upload_type;
+	if( $this.hasClass('post-form') ){
+		upload_type = 'post';
+		$this.prop('action', url_server_post_submit);
+	}
+    else {
+		upload_type = 'comment'
+		$this.prop('action', url_server_post_comment_submit);
+	}
+	
     $this.ajaxSubmit({
         type: 'post',
+		data : { 'session_login': $session_id },
         success: function() {
             console.log("post success:");
         },
         complete: function(xhr) {
             console.log("post comment submit completed!!");
             var re = xhr.responseText;
-            //console.log(re);
+            console.log("re:");
+            console.log(re);
             //var idx = $this.parents('.comment').attr('idx');
             //console.log(idx);
-			$comment_depth = $(re).attr('depth');
-			if( $comment_depth > 1 ){
-				$parent = $this.parents('.comment');
-				$parent.after( $(re) );//.html(re);
-			}
-			else {
-				$parent = $this.parents('.post').find('.comments');
-				$parent.prepend( $(re) );
-			}
-			
-			//reset the comment box
-			$this.find(".comment-form-content").val("");
-			$this.find("input[name='fid']").val("");
-			$this.find(".file-display.files").html("");
+			if( upload_type == 'comment' ) comment_html_ajax( re, $this );
+			else if( upload_type = 'post' ) post_html_ajax( re, $this );
         }
     });
 }
 
+function post_html_ajax( re, $this ){
+	$this.after( $(re) );
+	//reset the comment box
+	$this.find(".post-form-content").val("");
+	$this.find("input[name='fid']").val("");
+	$this.find(".file-display.files").html("");
+}
+
+function comment_html_ajax( re, $this ){
+	/*$comment_depth = $(re).attr('depth');
+	if( $comment_depth > 1 ){		
+		$parent = $this.parents('.post').find(".comments");
+		$parent.prepend( $(re) );//.html(re);
+	}
+	else {*/
+		$parent = $this.parents('.post').find('.comments');
+		$parent.prepend( $(re) );
+	//}
+	
+	//reset the comment box
+	$this.find(".comment-form-content").val("");
+	$this.find("input[name='fid']").val("");
+	$this.find(".file-display.files").html("");
+}
 
 
 /** LOGIN */

@@ -96,18 +96,13 @@ class App {
     {
         ob_start();
         $posts = MobilePost::postList($post_id);
+        include template('page.postList.postForm');
         include template('page.postList');
         return ob_get_clean();
     }
 
 
     public static function postCommentSubmit() {
-
-        $content = request('content');
-
-        // if ( empty($content) ) return Response::json(['error'=>'Content is empty']);
-
-		//$config = post_config()->getCurrent();
 		$config = post_config()->getCurrent();
         if ( empty($config) ) return Response::json(['error'=>'Wrong post configuration']);
 
@@ -130,6 +125,30 @@ class App {
             echo $data;
         }
     }
+	
+	  public static function postSubmit(){
+		$config = post_config()->getCurrent();
+        if ( empty($config) ) return Response::json(['error'=>'Wrong post configuration']);
+
+        $options['idx_config'] = $config->get('idx');
+		$options['idx_user'] = login('idx');
+		//$options['idx_user'] = 1;//using for test
+        $options['content'] = request('content');
+        $options['idx_root'] = post_data(request('idx_parent'))->get('idx_root');
+        $options['idx_parent'] = request('idx_parent');
+		
+		$data = PostData::newPost($options);
+
+        if ( empty($data) ) return Response::json(['error'=>'Could not create a comment']);
+        else {
+            $data->updateFormSubmitFiles();
+            $posts[] = post_data($data->get('idx'))->getFields();			
+            ob_start();
+            include template('page.postList');
+            $data = ob_get_clean();
+            echo $data;
+        }
+	  }
 
     public static function loginSubmit() {
         $re = User::checkIDPassword(request('id'), request('password'));

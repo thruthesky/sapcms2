@@ -1,4 +1,3 @@
-<?php  include template('page.postList.postForm');?>
 <?php
 //limit temp
 function display_files_thumbnail( $files, $height, $width, $limit = 0 ) {
@@ -30,6 +29,7 @@ function display_files_thumbnail( $files, $height, $width, $limit = 0 ) {
 
 <div class="post-list">
 <?php foreach ( $posts as $post ) { 
+
 	$url_edit = url_post_edit($post['idx']);//"#";
 	$url_delete = "#";
 	$url_report = "#";
@@ -53,9 +53,8 @@ function display_files_thumbnail( $files, $height, $width, $limit = 0 ) {
 	$human_timing = "XX hours ago";
 		
 	$files = data()->loadBy('post', post_data($post['idx'])->config('idx'), $post['idx']);
-
-	if ( empty($files) ) return;
 	$total_files = count( $files );
+	//if ( empty($files) ) $total_files = 0;
 ?>
     <div class="post">
         <?php //echo $post['idx']; ?>
