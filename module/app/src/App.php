@@ -188,4 +188,9 @@ class App {
         return ob_get_clean();
     }
 
+
+    public static function upload() {
+        Response::json(['error'=>0]);
+    }
+
 }
