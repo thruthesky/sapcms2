@@ -67,6 +67,8 @@ class DataController
             }
             $re[] = $upload;
         }
+        sys()->log("return to client:");
+        sys()->log($re);
         return Response::json($re);
     }
 
