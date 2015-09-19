@@ -29,7 +29,7 @@ $(function() {
     //setTimeout(callback_offline, 2000);
     //setTimeout(callback_online, 4000);
     initialize();
-    loadPage('front_page');
+    //loadPage('front_page');
     //loadPage('postList', 'test');
     //loadPage('login');
 });

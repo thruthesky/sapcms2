@@ -174,8 +174,17 @@ class User extends Entity {
      *          3. check if request('session_login') has value.
      *
      * @return $this|bool
+     *
+     * @hook it generates 'user_getCurrent' hook.
+     *      if it returns other than 'null', then it uses the returns value of the hook.
+     *      so, if define 'user_getCurrent', you can return 'null', 'FALSE', 'User Entity'
+     *      if hook does not return anything, this 'getCurrent()' will run its own code.
+     *      if hook returns FALSE, user information will not be returned.
+     *
      */
     public function getCurrent() {
+        $re = hook('user_getCurrent');
+        if ( $re !== null ) return $re;
         if ( self::$idxLoginUser ) {
             return $this->load(self::$idxLoginUser);
         }

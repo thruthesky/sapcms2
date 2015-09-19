@@ -166,7 +166,7 @@ class System {
         }
 
 
-        hook('system_begin');
+        hook('system_run_begin');
 
 
         /**
@@ -189,7 +189,7 @@ class System {
                 $re = Module::run();
             }
         }
-        hook('system_end');
+        hook('system_run_end');
         return $re;
     }
 

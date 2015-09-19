@@ -27,3 +27,4 @@ else {
     ini_set('display_errors', 0);
 }
 
+System::log("System kernel: " . get_current_url());
