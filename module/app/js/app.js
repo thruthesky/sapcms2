@@ -32,6 +32,13 @@ $(function() {
     //loadPage('front_page');
     //loadPage('postList', 'test');
     //loadPage('login');
+    //loadPage('profile');
+    loadPage('postList', 'test');
+
+    var $body = $('body');
+    $body.on('click', ".take-user-primary-photo", cameraUserPrimaryPhoto);
+    $body.on('click', "#postList .file-upload-button", cameraPostFile);
+
 });
 
 
@@ -163,7 +170,8 @@ function getCurrentPageContent() {
 function showPage(id, html) {
     prevPageID = currentPageID;
     currentPageID = id;
-    $('#' + prevPageID).remove();
+    //$('#' + prevPageID).remove();
+    $(".page").remove();
     $('body').append(html);
     console.log("prevPageID:" + prevPageID);
     console.log("currentPageID:" + currentPageID);
@@ -505,7 +513,6 @@ function setSessionId($sid) {
 
 $(function(){
 	$("body").on("click", ".vote > div", function() {
-
 	var $this = $(this);
 	var $vote = $this.parent();
 	var url = url_server + "/post/vote/" + $this.prop('class') + "/" + $vote.attr('idx');
@@ -521,7 +528,7 @@ $(function(){
 				$(".vote[idx='"+re.idx+"'] ." + re.type + ' .no').text(re.no);
 			}
 		})
-		.fail(function(data){
+		.fail(function(data) {
 			console.log(re);
 		});
 	});
@@ -540,3 +547,161 @@ function focusCommentCursor(){
 }
 /* EO COMMANDS */
 
+
+
+/** M e s s a g e */
+function message(msg) {
+    navigator.notification.alert(
+        msg,  // message
+        alertDismissed,         // callback
+        getMessageTitle(),            // title
+        getMessageButton()                  // buttonName
+    );
+}
+function getMessageTitle() {
+    if ( typeof callback_getMessageTitle == 'function'  ) return callback_getMessageTitle();
+    else return '제목';
+}
+function getMessageButton() {
+    if ( typeof callback_getMessageButton == 'function'  ) return callback_getMessageButton();
+    else return '확인';
+}
+/* EO Message */
+
+
+/** C a m e r a */
+
+var photoOptions = {};
+
+function setPhotoSelector(selector, add) {
+    photoOptions.selector = selector;
+    photoOptions.add = add;
+}
+function setFileInfo(module, type, idx_target, finish, unique, image_thumbnail_width, image_thumbnail_height) {
+    photoOptions.module = module;
+    photoOptions.type = type;
+    photoOptions.idx_target = idx_target;
+    photoOptions.finish = finish;
+    photoOptions.unique = unique;
+    photoOptions.image_thumbnail_width = image_thumbnail_width;
+    photoOptions.image_thumbnail_height = image_thumbnail_height;
+}
+
+function onCameraConfirm(no) {
+    var type = 0;
+    if ( no == 1 ) {
+        type = Camera.PictureSourceType.CAMERA;
+    }
+    else if ( no == 2 ) {
+        type = Camera.PictureSourceType.PHOTOLIBRARY;
+    }
+    else return;
+    setTimeout(function() {
+        navigator.camera.getPicture( cameraSuccess, cameraError, {
+            'quality' : 100,
+            'sourceType' : type,
+            'destinationType': Camera.DestinationType.FILE_URI
+        } );
+    },  0);
+}
+
+
+
+
+function clearCache() {
+    navigator.camera.cleanup();
+}
+var retries = 0;
+function cameraSuccess(fileURI) {
+
+    var win = function (r) {
+        console.log("Code = " + r.responseCode);
+        console.log("Response = " + r.response);
+        console.log("Sent = " + r.bytesSent);
+
+        //alert(r.responseCode);
+        var data = r.response;
+        //alert(data);
+
+        clearCache();
+        retries = 0;
+        var re = JSON.parse(data);
+        //alert(re);
+        for ( var i in re ) {
+            var file = re[i];
+            if ( file.error ) {
+                alert(file.message);
+            }
+            //alert(file.urlThumbnail);
+            if ( photoOptions.add ) $(photoOptions.selector).append("<img src='"+file.urlThumbnail+"'>");
+            else $(photoOptions.selector).html("<img src='"+file.urlThumbnail+"'>");
+        }
+        //message('성공');
+    };
+
+    var fail = function (error) {
+        if (retries == 0) {
+            retries ++;
+            setTimeout(function() {
+                cameraSuccess(fileURI);
+            }, 1000);
+        } else {
+            retries = 0;
+            clearCache();
+            message('실패! 업로드하지 못하였습니다.');
+            console.log("An error has occurred: Code = " + error.code);
+            console.log("upload error source " + error.source);
+            console.log("upload error target " + error.target);
+        }
+    };
+
+    var options = new FileUploadOptions();
+    options.fileKey = "file";
+    options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
+    options.mimeType = "image/jpeg";
+    options.params = {
+        'file_module': photoOptions.module,
+        'file_type': photoOptions.type,
+        'file_idx_target': photoOptions.idx_target,
+        'file_finish': photoOptions.finish,
+        'file_unique': photoOptions.unique,
+        'file_image_thumbnail_width': photoOptions.image_thumbnail_width,
+        'file_image_thumbnail_height':  photoOptions.image_thumbnail_height
+    };
+    console.log(options);
+    var ft = new FileTransfer();
+    var url = url_server + '/file/upload';
+    console.log(url);
+    ft.upload(fileURI, encodeURI(url), win, fail, options);
+}
+
+function cameraError(msg) {
+    message(msg);
+}
+
+function takePhotoUpload() {
+    navigator.notification.confirm(
+        '사진을 찍으시겠습니까? 갤러리에서 선택하시겠습니까?', // message
+        onCameraConfirm,            // callback to invoke with index of button pressed
+        '사진 올리기',           // title
+        ['사진 찍기','사전 선택', '취소']     // buttonLabels
+    );
+}
+/* EO Camera */
+
+
+
+/** User primary photo */
+function cameraUserPrimaryPhoto() {
+    setPhotoSelector('.user-primary-photo', false);
+    setFileInfo('user', 'primary_photo', 0, 1, 1, 140, 140);
+    takePhotoUpload();
+}
+/** Post file uplod */
+function cameraPostFile() {
+    var $this = $(this);
+    var idx = $this.parents('form').find('[name="idx_parent"]').val();
+    setPhotoSelector('.file-display', true);
+    setFileInfo('post', 'files', idx, 0, 0, 140, 140);
+    takePhotoUpload();
+}

@@ -1,5 +1,6 @@
 <?php
 namespace sap\core\user;
+use sap\core\data\Data;
 use sap\src\Entity;
 define('USER_TABLE', 'user');
 
@@ -228,6 +229,25 @@ class User extends Entity {
         if ( isset($options['city']) ) $this->set('city', $options['city']);
         if ( isset($options['school']) ) $this->set('school', $options['school']);
         if ( isset($options['work']) ) $this->set('work', $options['work']);
+    }
+
+
+    /**
+     * Returns User's primary photo Data Entity
+     *
+     * @return bool|Data
+     */
+    public function getPrimaryPhoto() {
+        $idx = $this->get('idx');
+        if ( $idx ) {
+            $files = data()->loadBy('user', 'primary_photo', 0, $idx);
+            if ( $files ) {
+                $file = current($files);
+                return $file;
+            }
+            else return FALSE;
+        }
+        else return FALSE;
     }
 
 }

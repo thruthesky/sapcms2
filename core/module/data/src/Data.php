@@ -106,7 +106,8 @@ class Data extends Entity
         if ( is_file($this->path($name)) ) {
             $pi = pathinfo($name);
             for ( $i=1; $i<10000; $i++ ) {
-                $name = $pi['filename'] . "($i)." . $pi['extension'];
+                if ( $pi['extension'] ) $name = $pi['filename'] . "($i)." . $pi['extension'];
+                else $name = $pi['filename'];
                 if ( ! is_file($this->path($name)) ) break;
             }
         }
@@ -241,21 +242,21 @@ class Data extends Entity
     /**
      * @param $module
      * @param $type
-     * @param $idx_target
+     * @param int $idx_target
+     * @param int $idx_user
      * @param null $form_name
      * @return array
-     *
      * @code
      *      $files = data()->loadBy('post', 'file', post_data()->getCurrent()->get('idx'));
      *      $files = data()->loadBy('post', 'file', post_data()->getCurrent()->get('idx'), 'books');
      * @endcode
-     *
      */
-    public function loadBy($module, $type, $idx_target, $form_name=null) {
-        $cond = "module='$module' AND type='$type' AND idx_target=$idx_target";
+    public function loadBy($module, $type, $idx_target=0, $idx_user=0, $form_name=null) {
+        $cond = "module='$module' AND type='$type'";
+        if ( $idx_target ) $cond .= " AND idx_target=$idx_target";
+        if ( $idx_user ) $cond .= " AND idx_user=$idx_user";
         if ( $form_name ) $cond .= " AND form_name='$form_name'";
         return $this->files($cond);
     }
-
 
 }

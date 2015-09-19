@@ -14,6 +14,7 @@ entity(DATA_TABLE)
     ->unique('name_saved')
     ->index('module,idx_target')
     ->index('module,type,idx_target')
+    ->index('module,type,idx_user')
     ->index('module,type,mime')
     ->index('form_name')
     ->index('idx_user');

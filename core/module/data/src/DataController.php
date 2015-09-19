@@ -14,10 +14,12 @@ class DataController
      *      ['message'] - Error message
      */
     public static function upload() {
-        system_log(__METHOD__);
+        sys()->log(__METHOD__);
 
         $uploads = Data::multipleFileUploadInfo();
-        system_log($uploads);
+
+        sys()->log("uploaded files:");
+        sys()->log($uploads);
 
         $re = [];
         foreach( $uploads as $upload ) {
@@ -63,7 +65,7 @@ class DataController
                 else {
                     $upload['message'] = error_get_last_message();
                 }
-                system_log("ERROR: $upload[name]");
+                sys()->log("ERROR: $upload[name]");
             }
             $re[] = $upload;
         }
@@ -84,7 +86,6 @@ class DataController
             $re['error'] = -51001;
             $re['message'] = "File does not exists.";
         }
-
         return Response::json($re);
     }
 
