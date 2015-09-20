@@ -410,7 +410,10 @@ class post {
         // post config
         $config = self::getOptionConfig($options);
         if ( $config )  {
-            $and[] = "idx_config=".$config->get('idx');
+            $idx = $config->get('idx');
+            if ( $idx ) {
+                $and[] = "idx_config=$idx";
+            }
         }
 
         if ( isset($options['comment']) ) {

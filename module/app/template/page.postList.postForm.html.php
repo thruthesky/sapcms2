@@ -1,5 +1,5 @@
 <?php
-$url_primary_photo = login() ? login()->getPrimaryPhoto()->urlThumbnail(80,80) : null;
+$url_primary_photo = login() ? login()->getPrimaryPhotoUrlThumbnail(80,80) : null;
 ?>
 <form action='/post/create/submit' class="ajax-file-upload post-form" method="post" enctype="multipart/form-data">  
 	<?php 
@@ -28,7 +28,7 @@ $url_primary_photo = login() ? login()->getPrimaryPhoto()->urlThumbnail(80,80) :
 					&nbsp;
 				</td>
 				<td>
-					<img class="file-upload-button" src="<?php echo sysconfig(URL_SITE)?>module/app/img/camera_white_temp.png">
+					<img class="post-file-upload-button" src="<?php echo sysconfig(URL_SITE)?>module/app/img/camera_white_temp.png">
 				</td>
 				<td width="10%">
 					<input class="form-comment-add-submit" type="submit" value="POST">

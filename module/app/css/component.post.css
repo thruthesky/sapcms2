@@ -190,7 +190,7 @@ body{
 
 }
 
-.file-upload-button {
+.post-file-upload-button {
     position:absolute;
 }
 
@@ -421,7 +421,7 @@ body{
 
 	}
 
-	.file-upload-button {
+	.post-file-upload-button {
 		position:absolute;
 		display:block;
 		height:14px;
@@ -432,7 +432,7 @@ body{
 		background-color:#95a5a6;
 	}
 	
-	form.post-form .file-upload-button {
+	form.post-form .post-file-upload-button {
 		width:16px;
 		height:12px;
 		padding:6px 8px;
@@ -553,3 +553,12 @@ body{
 	/* EO Comment Commands */
 /*E O N E W*/
 
+
+
+.no-more-content {
+	margin:1em 0 8em;
+	padding:2em;
+	background-color:#dfdfdf;
+	font-size:1.4em;
+	text-align:center;
+}

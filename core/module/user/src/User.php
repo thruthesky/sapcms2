@@ -124,6 +124,8 @@ class User extends Entity {
      *      if ( ! login() ) User::login(Request::get('id'));
      * @endcode
      *
+     * @return string - returns session_id
+     *
      */
     public static function login($id)
     {
@@ -139,6 +141,7 @@ class User extends Entity {
             ->set('last_login_ip', ip())
             ->save();
         user_activity('login');
+        return $session_id;
     }
 
     public static function logout() {
@@ -248,6 +251,44 @@ class User extends Entity {
             else return FALSE;
         }
         else return FALSE;
+    }
+
+    /**
+     * @param int $w
+     * @param int $h
+     * @return null|string
+     */
+    public function getPrimaryPhotoUrlThumbnail($w=80, $h=80) {
+        $url_primary_photo = null;
+        if ( login() ) {
+            $file = login()->getPrimaryPhoto();
+            if ( $file ) {
+                $url_primary_photo = $file->urlThumbnail($w,$h);
+            }
+        }
+        return $url_primary_photo;
+    }
+
+
+    /**
+     *
+     * Creates a user account.
+     *
+     * @note it does not depends on the input array. Not on the Form Submit.
+     * @note if you need to make the user logged in, use self::login() in other place.
+     *
+     * @param $options
+     * @return $this|bool|User
+     */
+    public static function createUser($options) {
+        $user = user();
+        $user ->create($options['id']);
+        if ( isset($options['password']) ) $user->setPassword($options['password']);
+        if ( isset($options['domain']) ) $user->set('domain', $options['domain']);
+        else $user->set('domain', domain());
+        $user->setBasicFields($options);
+        $user->save();
+        return $user;
     }
 
 }

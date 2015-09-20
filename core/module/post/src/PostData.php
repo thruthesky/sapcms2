@@ -580,9 +580,17 @@ class PostData extends Entity {
         return post_config($this->get('idx_config'))->get($field);
     }
 
+
+    /**
+     *
+     */
     public function updateFormSubmitFiles() {
         $fid = request('fid');
         if ( empty($fid) ) return;
+
+        sys()->log(__METHOD__);
+        sys()->log("fid: $fid");
+
         $idxes = explode(',', $fid);
         if ( empty($idxes) ) return;
 

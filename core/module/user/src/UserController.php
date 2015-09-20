@@ -40,28 +40,6 @@ class UserController
     }
 
 
-    /**
-     *
-     * Creates a user account.
-     *
-     * @note it does not depends on the input array. Not on the Form Submit.
-     * @note if you need to make the user logged in, use self::login() in other place.
-     *
-     * @param $options
-     * @return $this|bool|User
-     */
-    public static function createUser($options) {
-
-        $user = user();
-        $user ->create($options['id']);
-        if ( isset($options['password']) ) $user->setPassword($options['password']);
-        if ( isset($options['domain']) ) $user->set('domain', $options['domain']);
-        else $user->set('domain', domain());
-        $user->setBasicFields($options);
-        $user->save();
-        return $user;
-
-    }
 
 
     /**
@@ -143,19 +121,16 @@ class UserController
             error(-20102, "User ID is in use. Please choose another.");
             return self::userRegisterTemplate();
         }
-
         $options['id'] = $id;
         $options['password'] = request('password');
         $options['name'] = request('name');
         $options['mail'] = request('mail');
-
-        $user = self::createUser($options);
+        $user = User::createUser($options);
         if ( empty($user) ) return self::userRegisterTemplate();
 
         User::login($user->get('id'));
 
         return Response::redirect(config()->getUrlSite());
-
     }
 
     //added by benjamin

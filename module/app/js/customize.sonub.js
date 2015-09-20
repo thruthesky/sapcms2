@@ -1,8 +1,14 @@
-function callback_getMessageTitle() {
+function text_messageTitle() {
     return '소너브';
 }
-function callback_getMessageButton() {
+function text_messageButton() {
     return '오케이';
+}
+function text_noMoreContent() {
+    return '더 이상 글이 없습니다.';
+}
+function text_updateProfile() {
+    return "회원 정보가 업데이트 되었습니다.";
 }
 function showLoader() {
     var src = 'http://sapcms2.org/theme/default/tmp/s.png';

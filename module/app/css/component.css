@@ -139,3 +139,12 @@
     width:140px;
     height:140px;
 }
+
+
+
+
+/** Endless Page Loader */
+.loader-endless-page {
+    margin:1em 0 5em;
+    text-align:center;
+}

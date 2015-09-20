@@ -1,12 +1,13 @@
-<div class="page" id="<?php echo $options['id']?>">
+<?php
+$route = segment(1);
+$post_id = segment(2);
+?>
+<div class="page" id="<?php echo $options['id']?>" user_id="<?php echo login('id')?>" route="<?php echo $route?>" post_id="<?php echo $post_id?>">
     <div class="header" data-role="header">
         <?php echo $options['header']?>
     </div>
     <?php echo $options['panel']?>
     <div class="content">
-        <?php if ( login() ) { ?>
-            Welcome, <?php echo login('id')?>
-        <?php } ?>
         <?php echo $options['content']?>
     </div>
     <div class="footer" data-role="footer">

@@ -6,8 +6,8 @@ global $no_comment_form;
 if ( isset($no_comment_form) ) $no_comment_form ++;
 else $no_comment_form = 0;
 
+$url_primary_photo = login() ? login()->getPrimaryPhotoUrlThumbnail(80,80) : null;
 
-$url_primary_photo = login() ? login()->getPrimaryPhoto()->urlThumbnail(80,80) : null;
 ?>
 <form name="comment" no='<?php echo $no_comment_form; ?>' class="ajax-file-upload" method="post" enctype="multipart/form-data">    
     <input type="hidden" name="idx_parent" value="<?php echo $post['idx'] ?>">
@@ -25,7 +25,8 @@ $url_primary_photo = login() ? login()->getPrimaryPhoto()->urlThumbnail(80,80) :
                     <textarea class='comment-form-content' name="content"></textarea>                
                 </td>
                 <td width="40">
-                    <img class="file-upload-button" src="<?php echo sysconfig(URL_SITE)?>module/app/img/camera_white_temp.png">
+                    <img class="post-file-upload-button" src="<?php echo sysconfig(URL_SITE)?>module/app/img/camera_white_temp.png">
+                    <input type="hidden" name="fid" value="">
                 </td>
                 <td width="55">
                     <input class="form-comment-add-submit" type="submit" value="POST">

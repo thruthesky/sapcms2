@@ -26,30 +26,35 @@ $(function() {
     appStarted = true;
     $session_id = getSessionId();
     console.log("session_id:" + $session_id);
+
+    initializeEvent();
+    initializeMenu();
+
     //setTimeout(callback_offline, 2000);
     //setTimeout(callback_online, 4000);
-    initialize();
     //loadPage('front_page');
+    loadPage('register');
     //loadPage('postList', 'test');
     //loadPage('login');
     //loadPage('profile');
-    loadPage('postList', 'test');
+    //loadPage('postList', 'test');
 
-    var $body = $('body');
-    $body.on('click', ".take-user-primary-photo", cameraUserPrimaryPhoto);
-    $body.on('click', "#postList .file-upload-button", cameraPostFile);
-
+    //scrollListener();
 });
-
-
-
-
 
 function moveToFrontPage() {
     loadPage('front_page');
 }
 
-function initialize() {
+function initializeEvent() {
+    var $body = $('body');
+    $body.on('click', ".take-user-primary-photo", cameraUserPrimaryPhoto);
+    $body.on('click', ".post-file-upload-button", cameraPostFile);
+    $body.on('submit', "form[name='register']", registerSubmit);
+    $body.on('submit', "form[name='profileUpdate']", profileUpdateSubmit);
+}
+
+function initializeMenu() {
     initMenu();
     initPanel();
 }
@@ -59,7 +64,7 @@ function initMenu() {
     $body.on('click', ".link", function() {
         var $this = $(this);
         var route = $this.attr('route');
-        console.log('route:' + route)
+        console.log('route:' + route);
         var url;
         if ( url = $this.attr('url') ) {
             console.log('rel local');
@@ -138,6 +143,62 @@ function initPanel() {
     }
 }
 
+
+
+function registerSubmit(event) {
+    var $form = $(this);
+    var url = url_server_app + "registerSubmit";
+    $.ajax({
+        type: 'get',
+        url: url,
+        data: $form.serialize()
+    }).done(function(data){
+        console.log(data);
+        try {
+            var re = JSON.parse(data);
+            if ( re.error ) return message(re.error);
+            else {
+                setSessionId(re.session_id);
+                moveToFrontPage();
+            }
+        }
+        catch (e) {
+            console.log(data);
+        }
+    }).fail(function(data){
+        alert(data);
+    });
+    event.preventDefault();
+    return false;
+}
+
+function profileUpdateSubmit() {
+    var $form = $(this);
+    var url = url_server_app + "profileUpdateSubmit";
+    $.ajax({
+        type: 'get',
+        url: url,
+        data: $form.serialize()
+    }).done(function(data){
+        try {
+            var re = JSON.parse(data);
+            if ( re.error != 0 ) return message(re.error);
+            else {
+                message(textUpdateProfile());
+            }
+        }
+        catch (e) {
+            alert(data);
+        }
+
+    }).fail(function(data){
+        console.log('error');
+        console.log(data);
+    });
+    event.preventDefault();
+    return false;
+}
+
 function showOfflineMessage() {
     var content = "<div class='offline'>오프라인. 인터넷에 연결 해 주세요.</div>";
     getCurrentPageContent().prepend(content);
@@ -146,10 +207,6 @@ function hideOfflineMessage() {
     $('.offline').remove();
 }
 
-function setPageContent(content) {
-    console.log(content);
-    $('#' + currentPageID + ' .ui-content').html(content);
-}
 
 /**
  *
@@ -173,8 +230,12 @@ function showPage(id, html) {
     //$('#' + prevPageID).remove();
     $(".page").remove();
     $('body').append(html);
+    $(window).scrollTop(0);
+    beginEndLessPage();
+    /*
     console.log("prevPageID:" + prevPageID);
     console.log("currentPageID:" + currentPageID);
+    */
     hideLoader();
 }
 
@@ -193,7 +254,6 @@ function loadPage(route, post_id) {
         console.log("Trying to open same page? ... It loads anyway.");
     }
     var url = url_server_app + route;
-	
     if ( post_id ) url += '/' + post_id;
     console.log("open: " + url);
     showLoader();
@@ -224,9 +284,9 @@ function onFileChange(obj) {
 }
 function fileDelete(idx) {
     $.ajax("/file/delete?idx="+idx)
-        .done(function(re){
+        .done(function(data){
             try {
-                var re = JSON.parse(re);
+                var re = JSON.parse(data);
                 if ( re.error ) alert( re.message );
                 else {
                     console.log("idx: " + idx + " deleted");
@@ -234,7 +294,7 @@ function fileDelete(idx) {
                 }
             }
             catch (e) {
-                alert(re);
+                alert(data);
             }
         })
         .fail(function(){
@@ -377,7 +437,7 @@ $(function(){
         var $this = $(this);
         
         $this.find('textarea').css('height', '35');
-        $this.find('.file-upload-button').css('padding', '11px 8px');
+        $this.find('.post-file-upload-button').css('padding', '11px 8px');
     });
 
     $("body").on("click", ".comment-reply-button", function(){
@@ -551,20 +611,29 @@ function focusCommentCursor(){
 
 /** M e s s a g e */
 function message(msg) {
+
     navigator.notification.alert(
         msg,  // message
-        alertDismissed,         // callback
+        null,         // callback
         getMessageTitle(),            // title
         getMessageButton()                  // buttonName
     );
 }
 function getMessageTitle() {
-    if ( typeof callback_getMessageTitle == 'function'  ) return callback_getMessageTitle();
+    if ( typeof text_messageTitle == 'function'  ) return text_messageTitle();
     else return '제목';
 }
 function getMessageButton() {
-    if ( typeof callback_getMessageButton == 'function'  ) return callback_getMessageButton();
+    if ( typeof text_messageButton == 'function'  ) return text_messageButton();
     else return '확인';
+}
+function getNoMoreContent() {
+    if ( typeof text_noMoreContent == 'function'  ) return text_noMoreContent();
+    else return 'No more content';
+}
+function textUpdateProfile() {
+    if ( typeof text_updateProfile == 'function'  ) return text_updateProfile();
+    else return 'Profile has been updated';
 }
 /* EO Message */
 
@@ -577,7 +646,7 @@ function setPhotoSelector(selector, add) {
     photoOptions.selector = selector;
     photoOptions.add = add;
 }
-function setFileInfo(module, type, idx_target, finish, unique, image_thumbnail_width, image_thumbnail_height) {
+function setFileInfo(module, type, idx_target, finish, unique, image_thumbnail_width, image_thumbnail_height, callback) {
     photoOptions.module = module;
     photoOptions.type = type;
     photoOptions.idx_target = idx_target;
@@ -585,6 +654,7 @@ function setFileInfo(module, type, idx_target, finish, unique, image_thumbnail_w
     photoOptions.unique = unique;
     photoOptions.image_thumbnail_width = image_thumbnail_width;
     photoOptions.image_thumbnail_height = image_thumbnail_height;
+    photoOptions.callback = callback;
 }
 
 function onCameraConfirm(no) {
@@ -613,30 +683,25 @@ function clearCache() {
 }
 var retries = 0;
 function cameraSuccess(fileURI) {
-
     var win = function (r) {
         console.log("Code = " + r.responseCode);
         console.log("Response = " + r.response);
         console.log("Sent = " + r.bytesSent);
-
-        //alert(r.responseCode);
         var data = r.response;
-        //alert(data);
 
         clearCache();
         retries = 0;
         var re = JSON.parse(data);
-        //alert(re);
         for ( var i in re ) {
             var file = re[i];
             if ( file.error ) {
                 alert(file.message);
             }
-            //alert(file.urlThumbnail);
             if ( photoOptions.add ) $(photoOptions.selector).append("<img src='"+file.urlThumbnail+"'>");
             else $(photoOptions.selector).html("<img src='"+file.urlThumbnail+"'>");
+
+            if ( typeof photoOptions.callback == 'function' ) photoOptions.callback(file);
         }
-        //message('성공');
     };
 
     var fail = function (error) {
@@ -699,9 +764,102 @@ function cameraUserPrimaryPhoto() {
 }
 /** Post file uplod */
 function cameraPostFile() {
+    //alert('hi');
     var $this = $(this);
-    var idx = $this.parents('form').find('[name="idx_parent"]').val();
-    setPhotoSelector('.file-display', true);
-    setFileInfo('post', 'files', idx, 0, 0, 140, 140);
+    var $form = $this.parents('form');
+    var idx = $form.find('[name="idx_parent"]').val();
+    var no = $form.attr('no');
+    var selector = 'form[no="'+no+'"] .file-display';
+    console.log(selector);
+    setPhotoSelector(selector, true);
+    setFileInfo('post', 'files', idx, 0, 0, 140, 140, callback_post_file_upload);
     takePhotoUpload();
+}
+function callback_post_file_upload(file) {
+    var $display = $(photoOptions.selector);
+    var $form = $display.parents('form');
+    var $fid = $form.find("[name='fid']");
+    var val = $fid.val() + ',' + file.idx;
+    $fid.val(val);
+}
+
+/** Endless Scroll */
+/**
+ *
+ *
+ */
+var iScrollCont = 0;
+var bEndLessInLoading = false;
+var bNoMoreContent = false;
+var iTimerEndless = 0;
+function beginEndLessPage() {
+    endEndLessPage();
+    var $page = $(".page");
+    if ( $page.attr('route') == 'postList' || $page.attr('route') == 'front_page' ) {
+        scrollListenerForEndLessPage(callback_endless, 150, 250);
+        showEndlessPageLoader();
+    }
+}
+function endEndLessPage() {
+    clearEndlessPage();
+    clearInterval(iTimerEndless);
+}
+function scrollListenerForEndLessPage(callback, distance, interval) {
+    var $window = $(window),
+        $document = $(document);
+    var checkScrollPosition = function() {
+        if ( bEndLessInLoading ) return;
+        var top = $document.height() - $window.height() - distance;
+        if ($window.scrollTop() >= top) {
+            iScrollCont++;
+            console.log("count:" + iScrollCont);
+            callback(iScrollCont);
+        }
+    };
+    iTimerEndless = setInterval(checkScrollPosition, interval);
+}
+function callback_endless(no) {
+    if ( hasNoMoreContent() ) return;
+//    showEndlessPageLoader();
+    bEndLessInLoading = true;
+    var post_id = $(".page").attr('post_id');
+    $.ajax(url_server_app + 'postListMore/' + post_id + '?page_no=' + no + "&session_login=" + $session_id )
+        .done(function(html){
+            if ( html == '' ) {
+                setNoMoreContent();
+                hideEndlessPageLoader();
+                endEndLessPage();
+            }
+            else {
+                $(".page").append(html);
+                hideEndlessPageLoader();
+                showEndlessPageLoader();
+            }
+            bEndLessInLoading = false;
+        })
+        .fail(function(){
+            alert('error on postListMore');
+            bEndLessInLoading = false;
+            hideEndlessPageLoader();
+        });
+}
+function showEndlessPageLoader() {
+    var src = url_server + '/module/app/img/loader5.gif';
+    $('.page').append("<div class='loader-endless-page'><img src='"+src+"'></div>")
+}
+function hideEndlessPageLoader() {
+    $('.loader-endless-page').remove();
+}
+function clearEndlessPage() {
+    if ( $('.page').attr('post_id') ) iScrollCont = 1;
+    else iScrollCont = 0;
+    bNoMoreContent = false;
+}
+function setNoMoreContent() {
+    bNoMoreContent = true;
+    var text = getNoMoreContent();
+    $(".page").append("<div class='no-more-content'>"+text+"</div>");
+}
+function hasNoMoreContent() {
+    return bNoMoreContent;
 }
