@@ -1,30 +1,6 @@
 <?php
 //limit temp
-function display_files_thumbnail( $files, $height, $width, $limit = 0 ) {
-	if ( empty($files) ) return null;	
-    $tag_imgs = [];
-    $tag_files = [];
-    //foreach($files as $file) {
-	if( $limit == 0 ) $limit = count( $files );	
-	for( $i = 0; $i < $limit; $i ++ ){
-		$file = $files[$i];		
-        $url = $file->urlThumbnail( $width, $height );
-        $name = $file->get('name');
-        if ( is_image($name) ) {
-            $tag_imgs[] = "<div class='image'><img src='$url'></div>";
-        }
-        else {
-            $tag_files[] = "<div class='attachment'><a href='$url'>$name</a></div>";
-        }
-    }
-
-    echo "<div class='attachments'>";
-    array_walk($tag_files, 'display');
-    echo "</div>";
-    echo "<div class='images clearfix'>";
-    array_walk($tag_imgs, 'display');
-    echo "</div>";
-}
+use sap\app\App;
 ?>
 
 <div class="post-list">
@@ -49,7 +25,7 @@ function display_files_thumbnail( $files, $height, $width, $limit = 0 ) {
 	$post_primary_photo = data()->loadBy('user', 'primary_photo', $idx_user);
 	
 	if( !empty( $post_primary_photo ) ) $post_primary_photo = $post_primary_photo[0]->urlThumbnail(140,140);
-	
+	else $post_primary_photo = sysconfig(URL_SITE)."module/app/img/no_primary_photo.png";
 	$human_timing = "XX hours ago";
 		
 	$files = data()->loadBy('post', post_data($post['idx'])->config('idx'), $post['idx']);
@@ -60,12 +36,12 @@ function display_files_thumbnail( $files, $height, $width, $limit = 0 ) {
         <?php //echo $post['idx']; ?>
 		<nav class="menu">
 			<?php if( $idx_user == login('idx') ){?>
-			<a class='edit' href="<?php echo $url_edit ?>">
+			<span class='edit is-post' idx='<?php echo $post['idx']; ?>'">
 				<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/edit_post.png'/>
-			</a>
-			<a class='delete' href="<?php echo $url_delete ?>" onclick="return confirmDeletePost('<?php echo "Post IDX [ ".$post['idx']." ]"; ?>')">
+			</span>
+			<span class='delete' idx='<?php echo $post['idx']; ?>'>
 				<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/delete_post.png'/>
-			</a>
+			</span>
 			<?php }else{ ?>
 				<a class='report' href="<?php echo $url_report ?>">
 					<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/report.png'/>
@@ -91,31 +67,38 @@ function display_files_thumbnail( $files, $height, $width, $limit = 0 ) {
 					</td>
 				</tr>
 			</table>
-		</section>        
-        <div class="content">
-            <?php echo $post['content']; ?>
-        </div>	
-			
-		<section role="files">
-			<div class="display-files" file_count='<?php echo $total_files; ?>'>
-				<?php 
-				if( $total_files > 1 ) display_files_thumbnail( $files, 200, 200 );
-				else display_files($files); 
-				?>
-			</div>
+		</section>  
+		
+		<section class="content">
+			<?php if ( $post['delete'] ) { ?>
+				<div class="deleted">
+					This post is deleted.
+				</div>
+			<?php } else { ?>
+				<?php echo $post['content'] ?>
+				<section role="files">
+					<div class="display-files" file_count='<?php echo $total_files; ?>'>
+						<?php 
+						if( $total_files > 1 ) echo App::display_files_thumbnail( $files, 200, 200 );
+						else display_files($files); 
+						?>
+					</div>
+				</section>
+			<?php } ?>
 		</section>
 		
 		<nav class='user-command post-command'>
 			<nav class="vote" idx="<?php echo $post['idx']?>">
 				<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/like.png'/>
 				<div class="good">
-					<?php if( $post['no_vote_good'] > 0 ) echo $post['no_vote_good']; ?>
+					<span class='no'><?php if( $post['no_vote_good'] > 0 ) echo $post['no_vote_good']; ?></span> 
 					Like<?php echo $post['no_vote_good'] <= 1 ? "" : "s"?>
 				</div>
 			</nav>
 			<div class="do-comment">
 				<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/comment.png'/>
-				   Comment
+				   <?php if( $post['no_vote_good'] > 0 ) echo $post['no_comment']; ?>
+				   Comment<?php echo $post['no_comment'] <= 1 ? "" : "s"?>
 			</div>
 			<div class="do-share">
 				<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/share.png'/>
@@ -124,11 +107,12 @@ function display_files_thumbnail( $files, $height, $width, $limit = 0 ) {
 		</nav>
 		
         <div class="comment-form">
-            <?php  include template('page.postList.comment-form');?>
+            <?php 
+			unset( $comment );
+			include template('page.postList.comment-form');?>
         </div>
         <div class="comments">
-            <?php
-			include template('page.postList.comments'); ?>
+            <?php include template('page.postList.comments'); ?>
         </div>
     </div>
 <?php } ?>

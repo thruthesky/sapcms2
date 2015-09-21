@@ -16,6 +16,11 @@ foreach ( $comments as $comment ) {
 	$edit_url = url_post_comment_edit($comment['idx']);
     ?>
     <div id="comment<?php echo $comment['idx']?>" class="comment" idx="<?php echo $comment['idx']?>" depth='<?php echo $depth; ?>'>
+		<div class='menu'>
+			<span class='delete' idx='<?php echo $comment['idx']; ?>'>
+				<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/delete_comment.png'/>
+			</span>
+		</div>
         <?php
 /*<?php widget('post_view_vote', ['post'=>$comment])?>
 */?>
@@ -43,15 +48,14 @@ foreach ( $comments as $comment ) {
 			</div>  
 			<nav class="vote" idx="<?php echo $comment['idx']?>">				
 				<div class="good">
-					<?php 					
-					if( $comment['no_vote_good'] > 0 ) echo $comment['no_vote_good']; ?>
+					<span class='no'><?php if( $comment['no_vote_good'] > 0 ) echo $comment['no_vote_good']; ?></span> 
 					Like<?php echo $comment['no_vote_good'] <= 1 ? "" : "s"?>
 				</div>
 				<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/blue_dot.png'/>
 			</nav>
 			<?php if( $idx_user == login('idx') ){ ?>
 			<div class="edit">
-				<a href="<?php echo url_post_comment_edit($comment['idx'])?>">Edit</a>
+				<span class='edit is-comment' idx='<?php echo $comment['idx']; ?>'>Edit</span>
 				<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/blue_dot.png'/>
 			</div>
 			<?php }else{ ?>

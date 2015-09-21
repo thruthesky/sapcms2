@@ -5,6 +5,8 @@
 var url_server_app = url_server + '/app/';
 var url_server_post_submit = url_server + '/app/post/submit';
 var url_server_post_comment_submit = url_server + '/app/post/comment/submit';
+var url_server_post_edit_submit = url_server + '/app/post/edit/submit';
+var url_server_post_edit_comment_submit = url_server + '/app/post/edit/comment/submit';
 var currentPageID = 'local-page';
 var prevPageID = 'local-page';
 var $session_id = null;
@@ -470,7 +472,15 @@ $(function(){
 function ajaxCommentSubmit($this) {
     // alert($this.find('[name="content"]').val());
 	var upload_type;
-	if( $this.hasClass('post-form') ){
+	if( $this.hasClass('comment-edit') ){
+		upload_type = 'comment_edit';
+		$this.prop('action', url_server_post_edit_comment_submit);		
+	}
+	else if( $this.hasClass('edit') ){
+		upload_type = 'post_edit';
+		$this.prop('action', url_server_post_edit_submit);		
+	}
+	else if( $this.hasClass('post-form') ){
 		upload_type = 'post';
 		$this.prop('action', url_server_post_submit);
 	}
@@ -492,7 +502,9 @@ function ajaxCommentSubmit($this) {
             console.log(re);
             //var idx = $this.parents('.comment').attr('idx');
             //console.log(idx);
-			if( upload_type == 'comment' ) comment_html_ajax( re, $this );
+			if( upload_type == 'comment_edit' ) post_edit_comment_html_ajax( re, $this );
+			else if( upload_type == 'post_edit' ) post_edit_html_ajax( re, $this );
+			else if( upload_type == 'comment' ) comment_html_ajax( re, $this );
 			else if( upload_type = 'post' ) post_html_ajax( re, $this );
         }
     });
@@ -519,12 +531,103 @@ function comment_html_ajax( re, $this ){
 	
 	//reset the comment box
 	//console.log( $this.attr("class") );
-	$this.parent().hide();
+	if( $(re).attr('depth') > 1 ) $this.parent().hide();
 	$this.find(".comment-form-content").val("");
 	$this.find("input[name='fid']").val("");
 	$this.find(".file-display.files").html("");
 }
 
+/*delete*/
+$(function(){
+	$("body").on( "click", "span.delete", ajaxPostDelete );
+});
+
+function ajaxPostDelete(){
+	$this = $(this)
+	idx = $this.attr("idx");
+	url = url_server + "/app/delete?idx=" + idx + "&session_login=" + $session_id;
+	$.ajax(url)
+            .done(function(re){
+                //console.log(re);
+                try {
+					$html = $(re).find(".post").html();
+					if( ! $html ) $this.parents(".post").remove();
+					else $this.parents(".post").html( $html );			
+                }
+                catch (e) {
+					alert( "Error! [ code here ] [ message here ]" );
+                }
+            })
+            .fail(function(){
+                alert( "Fail! [ code here ] [ message here ]" );
+            });
+}
+/*eo delete*/
+
+/*edit*/
+$(function(){
+	$("body").on( "click", "span.edit.is-post", ajaxPostGetEditForm );
+	$("body").on( "click", "span.edit.is-comment", ajaxPostGetCommentEditForm );
+	//$("body").on( "click", "span.edit", ajaxPostEditSubmit );
+});
+
+function ajaxPostGetEditForm(){
+	$this = $(this)
+	idx = $this.attr("idx");
+	url = url_server + "/app/getPostEditForm?idx=" + idx + "&session_login=" + $session_id;
+	
+	$.ajax(url)
+            .done(function(re){
+                //console.log(re);
+                try {
+					if( $this.parents(".post").find("form.ajax-file-upload.post-form").length ) return;
+					$this.parents(".post").find(".content:first").hide();
+					$this.parents(".post").find(".content:first").after( re );
+					$this.parents(".post").find("textarea:first").select();
+                }
+                catch (e) {
+					alert( "Error! [ code here ] [ message here ]" );
+                }
+            })
+            .fail(function(){
+                alert( "Fail! [ code here ] [ message here ]" );
+            });
+}
+
+function ajaxPostGetCommentEditForm(){	
+	$this = $(this)
+	idx = $this.attr("idx");
+	url = url_server + "/app/getPostCommentEditForm?idx=" + idx + "&session_login=" + $session_id;
+	console.log( url );
+	$.ajax(url)
+            .done(function(re){
+                try {
+					if( $this.parents(".comment").find("form.ajax-file-upload").length ) return;
+					$this.parents(".comment").find(".content").hide();					
+					$this.parents(".comment").find(".content").after( re );					
+					$this.parents(".comment").find("textarea:first").select();
+                }
+                catch (e) {
+					alert( "Error! [ code here ] [ message here ]" );
+                }
+            })
+            .fail(function(){
+                alert( "Fail! [ code here ] [ message here ]" );
+            });
+}
+
+function post_edit_html_ajax( re, $this ){
+	$this.parents(".post").find(".content:first").html( re ).show();
+	$this.parents(".post").find(".edit-files").remove();
+	$this.remove();
+}
+
+function post_edit_comment_html_ajax( re, $this ){
+	$this.parents(".comment").find(".content:first").html( re ).show();
+	$this.parents(".comment").find(".edit-files").remove();
+	$this.remove();
+}
+/*eo edit*/
 
 /** LOGIN */
 $(function(){
@@ -577,7 +680,7 @@ $(function(){
 	$("body").on("click", ".vote > div", function() {
 	var $this = $(this);
 	var $vote = $this.parent();
-	var url = url_server + "/post/vote/" + $this.prop('class') + "/" + $vote.attr('idx');
+	var url = url_server + "/post/vote/" + $this.prop('class') + "/" + $vote.attr('idx') + "?session_login=" + $session_id;
 	console.log("vote url: " + url);
 	$.ajax(url)
 		.done(function(data){
@@ -596,6 +699,31 @@ $(function(){
 	});
 });
 /*EO VOTE*/
+
+/*edit file-delete*/
+$(function(){
+	$("body").on("click",".edit-files .delete",editFileDelete);
+});
+
+function editFileDelete(){
+	$this = $(this);
+	idx = $this.parent().attr("idx");
+	url = url_server + "/file/delete?idx="+idx+"&session_login="+$session_id;
+	console.log( url );
+	$.ajax( url )
+        .done(function(re){
+            try {
+                $this.parent().remove();
+            }
+            catch (e) {
+                
+            }
+        })
+        .fail(function(){
+            console.log('failed to load');
+        });
+}
+/*EO edit file-delete*/
 
 /* COMMANDS */
 $(function(){	
