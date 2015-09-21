@@ -439,17 +439,19 @@ function post_html_ajax( re, $this ){
 }
 
 function comment_html_ajax( re, $this ){
-	/*$comment_depth = $(re).attr('depth');
+	$comment_depth = $(re).attr('depth');
 	if( $comment_depth > 1 ){		
-		$parent = $this.parents('.post').find(".comments");
-		$parent.prepend( $(re) );//.html(re);
+		$parent = $this.parents('.comment');
+		$parent.after( $(re) );//.html(re);
 	}
-	else {*/
+	else {
 		$parent = $this.parents('.post').find('.comments');
 		$parent.prepend( $(re) );
-	//}
+	}
 	
 	//reset the comment box
+	//console.log( $this.attr("class") );
+	$this.parent().hide();
 	$this.find(".comment-form-content").val("");
 	$this.find("input[name='fid']").val("");
 	$this.find(".file-display.files").html("");
