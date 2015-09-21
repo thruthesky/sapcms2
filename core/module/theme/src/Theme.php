@@ -33,6 +33,8 @@ class Theme {
      */
     public static function getTheme($domain)
     {
+        $re = hook("theme_getTheme");
+        if ( $re !== null ) return $re;
         $theme = theme_config($domain);
         if ( $theme ) return $theme->get('value');
         $theme = theme_config()->query("code LIKE '%$domain%'");

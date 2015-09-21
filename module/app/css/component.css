@@ -130,3 +130,21 @@
 #panel-menu li:last-child span {
     border-bottom:0;
 }
+
+/** User Primary Photo */
+.user-primary-photo {
+
+}
+.user-primary-photo img {
+    width:140px;
+    height:140px;
+}
+
+
+
+
+/** Endless Page Loader */
+.loader-endless-page {
+    margin:1em 0 5em;
+    text-align:center;
+}

@@ -201,8 +201,9 @@ function call_hooks($hook, &$args=[]) {
 function hook($hook_name, &$variables=[]) {
     foreach( System::getModuleLoaded() as $module ) {
         $func = "hook_{$hook_name}_$module";
-        if ( function_exists($func) ) $func($variables);
+        if ( function_exists($func) ) return $func($variables);
     }
+    return null;
 }
 
 

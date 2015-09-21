@@ -84,9 +84,18 @@ class App {
         echo $page;
     }
 
+    public static function postListMore($post_id) {
+        $posts = MobilePost::postList($post_id);
+        if ( $posts ) {
+            include template('page.postList');
+        }
+        else {
+            echo '';
+        }
+    }
+
     private static function createPage(array $options)
     {
-
         ob_start();
         include template('page');
         return ob_get_clean();
@@ -116,6 +125,8 @@ class App {
 
         if ( empty($data) ) return Response::json(['error'=>'Could not create a comment']);
         else {
+            $fid = request('fid');
+            sys()->log("fid: $fid");
             $data->updateFormSubmitFiles();
             $comment = post_data($data->get('idx'))->getFields();
             $post['comments'] = [ $comment ];
@@ -125,6 +136,8 @@ class App {
             echo $data;
         }
     }
+
+
 	
 	  public static function postSubmit(){
 		$config = post_config()->getCurrent();
@@ -187,5 +200,55 @@ class App {
         include template('page.profile');
         return ob_get_clean();
     }
+    private static function pageRegister()
+    {
+        ob_start();
+        include template('page.register');
+        return ob_get_clean();
+    }
 
+
+    public static function upload() {
+        Response::json(['error'=>0]);
+    }
+
+
+    /**
+     *
+     */
+    public static function register() {
+        $page = self::createPage([
+            'id' => 'postList',
+            'header' => self::pageHeader(),
+            'panel' => self::pagePanel(),
+            'content' => self::pageRegister(),
+            'footer' => self::pageFooter(),
+        ]);
+        echo $page;
+    }
+
+    public static function registerSubmit() {
+        $id = request('id');
+        if ( user_exists($id) ) return Response::json(['error'=>"User ID is in use. Please choose another."]);
+        $options['id'] = $id;
+        $options['password'] = request('password');
+        $options['name'] = request('name');
+        $options['mail'] = request('mail');
+        $user = User::createUser($options);
+        if ( empty($user) ) return Response::json(['error'=>"Failed on creating a user"]);
+        $session_id = User::login($user->get('id')); // make session id
+        return Response::json(['error'=>0, 'session_id'=>$session_id]);
+    }
+    public static function profileUpdateSubmit() {
+        //$login = login();
+        //$login->save();
+        $idx = login('idx');
+        if ( empty($idx) ) return Response::json(['error'=>'Please login first']);
+        user()
+            ->which($idx)
+            ->set('name', request('name'))
+            ->set('mail', request('mail'))
+            ->save();
+        Response::json(['error'=>0]);
+    }
 }

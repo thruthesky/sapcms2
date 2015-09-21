@@ -25,4 +25,3 @@ else  if ( $timezone = config(USER_TIMEZONE_3) ) {
 sys()->setTheme(Theme::getTheme(domain()));
 
 
-sys()->log("System init url: " . get_current_domain_url());

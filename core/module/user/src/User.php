@@ -1,5 +1,6 @@
 <?php
 namespace sap\core\user;
+use sap\core\data\Data;
 use sap\src\Entity;
 define('USER_TABLE', 'user');
 
@@ -123,6 +124,8 @@ class User extends Entity {
      *      if ( ! login() ) User::login(Request::get('id'));
      * @endcode
      *
+     * @return string - returns session_id
+     *
      */
     public static function login($id)
     {
@@ -138,6 +141,7 @@ class User extends Entity {
             ->set('last_login_ip', ip())
             ->save();
         user_activity('login');
+        return $session_id;
     }
 
     public static function logout() {
@@ -174,8 +178,17 @@ class User extends Entity {
      *          3. check if request('session_login') has value.
      *
      * @return $this|bool
+     *
+     * @hook it generates 'user_getCurrent' hook.
+     *      if it returns other than 'null', then it uses the returns value of the hook.
+     *      so, if define 'user_getCurrent', you can return 'null', 'FALSE', 'User Entity'
+     *      if hook does not return anything, this 'getCurrent()' will run its own code.
+     *      if hook returns FALSE, user information will not be returned.
+     *
      */
     public function getCurrent() {
+        $re = hook('user_getCurrent');
+        if ( $re !== null ) return $re;
         if ( self::$idxLoginUser ) {
             return $this->load(self::$idxLoginUser);
         }
@@ -219,6 +232,63 @@ class User extends Entity {
         if ( isset($options['city']) ) $this->set('city', $options['city']);
         if ( isset($options['school']) ) $this->set('school', $options['school']);
         if ( isset($options['work']) ) $this->set('work', $options['work']);
+    }
+
+
+    /**
+     * Returns User's primary photo Data Entity
+     *
+     * @return bool|Data
+     */
+    public function getPrimaryPhoto() {
+        $idx = $this->get('idx');
+        if ( $idx ) {
+            $files = data()->loadBy('user', 'primary_photo', 0, $idx);
+            if ( $files ) {
+                $file = current($files);
+                return $file;
+            }
+            else return FALSE;
+        }
+        else return FALSE;
+    }
+
+    /**
+     * @param int $w
+     * @param int $h
+     * @return null|string
+     */
+    public function getPrimaryPhotoUrlThumbnail($w=80, $h=80) {
+        $url_primary_photo = null;
+        if ( login() ) {
+            $file = login()->getPrimaryPhoto();
+            if ( $file ) {
+                $url_primary_photo = $file->urlThumbnail($w,$h);
+            }
+        }
+        return $url_primary_photo;
+    }
+
+
+    /**
+     *
+     * Creates a user account.
+     *
+     * @note it does not depends on the input array. Not on the Form Submit.
+     * @note if you need to make the user logged in, use self::login() in other place.
+     *
+     * @param $options
+     * @return $this|bool|User
+     */
+    public static function createUser($options) {
+        $user = user();
+        $user ->create($options['id']);
+        if ( isset($options['password']) ) $user->setPassword($options['password']);
+        if ( isset($options['domain']) ) $user->set('domain', $options['domain']);
+        else $user->set('domain', domain());
+        $user->setBasicFields($options);
+        $user->save();
+        return $user;
     }
 
 }
