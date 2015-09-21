@@ -580,7 +580,7 @@ function ajaxPostGetEditForm(){
             .done(function(re){
                 //console.log(re);
                 try {
-					if( $this.parents(".post").find("form.ajax-file-upload.post-form").length ) return;
+					if( $this.parents(".post").find("form.ajax-file-upload.post-form.edit").length ) return;
 					$this.parents(".post").find(".content:first").hide();
 					$this.parents(".post").find(".content:first").after( re );
 					$this.parents(".post").find("textarea:first").select();
@@ -601,8 +601,8 @@ function ajaxPostGetCommentEditForm(){
 	console.log( url );
 	$.ajax(url)
             .done(function(re){
-                try {
-					if( $this.parents(".comment").find("form.ajax-file-upload").length ) return;
+                try {					
+					if( $this.parents(".comment").find("form.ajax-file-upload.comment-edit").length ) return;
 					$this.parents(".comment").find(".content").hide();					
 					$this.parents(".comment").find(".content").after( re );					
 					$this.parents(".comment").find("textarea:first").select();

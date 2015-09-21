@@ -28,7 +28,7 @@ use sap\app\App;
 	else $post_primary_photo = sysconfig(URL_SITE)."module/app/img/no_primary_photo.png";
 	$human_timing = "XX hours ago";
 		
-	$files = data()->loadBy('post', post_data($post['idx'])->config('idx'), $post['idx']);
+	$files = data()->loadBy('post', post_data($post['idx'])->config('idx'), $post['idx']);	
 	$total_files = count( $files );
 	//if ( empty($files) ) $total_files = 0;
 ?>
@@ -79,7 +79,7 @@ use sap\app\App;
 				<section role="files">
 					<div class="display-files" file_count='<?php echo $total_files; ?>'>
 						<?php 
-						if( $total_files > 1 ) echo App::display_files_thumbnail( $files, 200, 200 );
+						if( $total_files > 1 ) App::display_files_thumbnail( $files, 200, 200 );
 						else display_files($files); 
 						?>
 					</div>

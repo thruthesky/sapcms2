@@ -173,6 +173,7 @@ class App {
 		else{
 			$post
 			->set( 'content',$content )
+			//temp
 			->set( 'int_1', 0 )
 			->set( 'int_2', 0 )
 			->set( 'int_3', 0 )
@@ -184,7 +185,17 @@ class App {
 			->set( 'int_9', 0 )
 			->set( 'int_10', 0 )
 			->save();
+						
 			echo $content;
+			
+			$files = data()->loadBy('post', post_data($post->fields['idx'])->config('idx'), $post->fields['idx']);	
+			$total_files = count( $files );
+			if( !empty( $files ) ){
+			echo "<section role='files'><div class='display-files' file_count='$total_files'>";
+				if( $total_files > 1 ) App::display_files_thumbnail( $files, 200, 200 );
+				else display_files($files); 					
+			echo "</div></section>";
+			}
 		}
 	}
 	
@@ -198,6 +209,7 @@ class App {
 		else{
 			$post
 			->set( 'content',$content )
+			//temp
 			->set( 'int_1', 0 )
 			->set( 'int_2', 0 )
 			->set( 'int_3', 0 )
