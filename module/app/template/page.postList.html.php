@@ -89,22 +89,26 @@ use sap\app\App;
 		</section>
 		
 		<nav class='user-command post-command'>
-			<nav class="vote" idx="<?php echo $post['idx']?>">
-				<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/like.png'/>
-				<div class="good">
-					<span class='no'><?php if( $post['no_vote_good'] > 0 ) echo $post['no_vote_good']; ?></span> 
-					Like<?php echo $post['no_vote_good'] <= 1 ? "" : "s"?>
+			<?php if ( ! $post['delete'] ) { ?>
+				<nav class="vote" idx="<?php echo $post['idx']?>">
+					<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/like.png'/>
+					<div class="good">
+						<span class='no'><?php if( $post['no_vote_good'] > 0 ) echo $post['no_vote_good']; ?></span> 
+						Like<?php echo $post['no_vote_good'] <= 1 ? "" : "s"?>
+					</div>
+				</nav>
+				<div class="do-comment">
+					<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/comment.png'/>
+					   <?php if( $post['no_vote_good'] > 0 ) echo $post['no_comment']; ?>
+					   Comment<?php echo $post['no_comment'] <= 1 ? "" : "s"?>
 				</div>
-			</nav>
-			<div class="do-comment">
-				<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/comment.png'/>
-				   <?php if( $post['no_vote_good'] > 0 ) echo $post['no_comment']; ?>
-				   Comment<?php echo $post['no_comment'] <= 1 ? "" : "s"?>
-			</div>
-			<div class="do-share">
-				<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/share.png'/>
-			   Share
-			</div>
+				<div class="do-share">
+					<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/share.png'/>
+				   Share
+				</div>
+			<?php } else {?>
+				<div class='deleted'>[ Commands are disabled ]</div>
+			<?}?>
 		</nav>
 		
         <div class="comment-form">

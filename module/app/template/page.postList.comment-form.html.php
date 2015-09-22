@@ -14,8 +14,12 @@ $url_primary_photo = login() ? login()->getPrimaryPhotoUrlThumbnail(80,80) : nul
 if( !empty( $edit_mode ) ) {
 	$class=' comment-edit';
 	$no_comment_form = $no;
+	$buttons_width = '105';
 }
-else $class = '';
+else{
+	$class = '';
+	$buttons_width = '55';
+}
 ?>
 <form name="comment" no='<?php echo $no_comment_form; ?>' class="ajax-file-upload<?php echo $class; ?>" method="post" enctype="multipart/form-data">
 	<?php if( empty( $edit_mode ) ){ ?>
@@ -43,8 +47,13 @@ else $class = '';
                     <img class="post-file-upload-button" src="<?php echo sysconfig(URL_SITE)?>module/app/img/camera_white_temp.png">
                     <input type="hidden" name="fid" value="">
                 </td>
-                <td width="55">
-                    <input class="form-comment-add-submit" type="submit" value="POST">
+                <td width="<?php echo $buttons_width; ?>">
+					<div style='width:<?php echo $buttons_width; ?>px'>
+						<input class="form-comment-add-submit" type="submit" value="POST">
+						<?php if( !empty( $edit_mode ) ) {?>
+							<div class='post-cancel' type='comment'>Cancel</div>
+						<?php }?>
+					</div>
                 </td>
             </tr>
         </table>

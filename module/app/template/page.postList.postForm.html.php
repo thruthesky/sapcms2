@@ -4,8 +4,12 @@ $url_primary_photo = login() ? login()->getPrimaryPhotoUrlThumbnail(80,80) : nul
 if( !empty( $edit_mode ) ){
 	$class=' edit';
 	$no_comment_form = $no;
+	$buttons_width = '105';
 }
-else $class = '';
+else {
+	$class = '';
+	$buttons_width = '55';
+}
 
 if( empty( $no_comment_form ) ) $no_comment_form = 0;
 ?>
@@ -41,7 +45,12 @@ if( empty( $no_comment_form ) ) $no_comment_form = 0;
 					&nbsp;
 				</td>
 				<td width="10%">
-					<input class="form-comment-add-submit" type="submit" value="POST">
+					<div style='width:<?php echo $buttons_width; ?>px'>
+						<input class="form-comment-add-submit" type="submit" value="POST">
+						<?php if( !empty( $edit_mode ) ) {?>
+							<div class='post-cancel' type='comment'>Cancel</div>
+						<?php }?>
+					</div>
 				</td>
 			</tr>
 		</table>

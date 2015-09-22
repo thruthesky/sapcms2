@@ -31,16 +31,22 @@ $total_files = count( $files );
 ?>
 
         <div class="content">
-            <?php include template('page.postList.comment.content') ?>
-			<div class='content-margin'></div>
-			<section role="files">
-				<div class="display-files" file_count='<?php echo $total_files; ?>'>
-					<?php 
-					if( $total_files > 1 ) App::display_files_thumbnail( $files, 200, 200 );
-					else display_files($files); 
-					?>
+			<?php if ( $comment['delete'] ) { ?>
+				<div class="deleted">
+					This post is deleted.
 				</div>
-			</section>
+			<?php } else { ?>
+				<?php include template('page.postList.comment.content') ?>
+				<div class='content-margin'></div>
+				<section role="files">
+					<div class="display-files" file_count='<?php echo $total_files; ?>'>
+						<?php 
+						if( $total_files > 1 ) App::display_files_thumbnail( $files, 200, 200 );
+						else display_files($files); 
+						?>
+					</div>
+				</section>
+			<?php }?>
         </div>
 
         <?php
@@ -48,33 +54,36 @@ $total_files = count( $files );
         <?php widget('post_display_files', ['idx'=>$comment['idx']])?>
 */?>      
 
-
        <nav class='user-command comment-command'>
-			<div class="comment-reply-button">
-				Reply
-				<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/blue_dot.png'/>
-			</div>  
-			<nav class="vote" idx="<?php echo $comment['idx']?>">				
-				<div class="good">
-					<span class='no'><?php if( $comment['no_vote_good'] > 0 ) echo $comment['no_vote_good']; ?></span> 
-					Like<?php echo $comment['no_vote_good'] <= 1 ? "" : "s"?>
-				</div>
-				<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/blue_dot.png'/>
-			</nav>
-			<?php if( $idx_user == login('idx') ){ ?>
-			<div class="edit">
-				<span class='edit is-comment' idx='<?php echo $comment['idx']; ?>'>Edit</span>
-				<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/blue_dot.png'/>
-			</div>
-			<?php }else{ ?>
+			<?php if ( ! $comment['delete'] ) { ?>
+				<div class="comment-reply-button">
+					Reply
+					<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/blue_dot.png'/>
+				</div>  
+				<nav class="vote" idx="<?php echo $comment['idx']?>">				
+					<div class="good">
+						<span class='no'><?php if( $comment['no_vote_good'] > 0 ) echo $comment['no_vote_good']; ?></span> 
+						Like<?php echo $comment['no_vote_good'] <= 1 ? "" : "s"?>
+					</div>
+					<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/blue_dot.png'/>
+				</nav>
+				<?php if( $idx_user == login('idx') ){ ?>
 				<div class="edit">
-					<a href="#">Report</a>
+					<span class='edit is-comment' idx='<?php echo $comment['idx']; ?>'>Edit</span>
 					<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/blue_dot.png'/>
 				</div>
-			<?php }?>
-			<div class="date">
-			   <?php echo $date?>
-			</div>	
+				<?php }else{ ?>
+					<div class="edit">
+						<a href="#">Report</a>
+						<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/blue_dot.png'/>
+					</div>
+				<?php }?>
+				<div class="date">
+				   <?php echo $date?>
+				</div>	
+			<?php } else {?>
+				<div class='deleted'>[ Commands are disabled ]</div>
+			<?}?>
 		</nav>
         <div class="comment-form" style="display:none;">
             <?php include template('page.postList.comment-form') ?>

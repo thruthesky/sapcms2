@@ -568,8 +568,18 @@ function ajaxPostDelete(){
 $(function(){
 	$("body").on( "click", "span.edit.is-post", ajaxPostGetEditForm );
 	$("body").on( "click", "span.edit.is-comment", ajaxPostGetCommentEditForm );
+	$("body").on( "click", ".post-cancel", cancelEdit );
 	//$("body").on( "click", "span.edit", ajaxPostEditSubmit );
 });
+
+function cancelEdit(){
+	$this = $(this);
+	if( $this.attr('type') == 'comment' ) $parent = $this.parents("div.comment");
+	else $parent = $this.parents(".post");
+
+	$parent.find( ".ajax-file-upload:first" ).remove();
+	$parent.find( ".content" ).show();
+}
 
 function ajaxPostGetEditForm(){
 	$this = $(this)
@@ -581,7 +591,7 @@ function ajaxPostGetEditForm(){
                 //console.log(re);
                 try {					
 					if( $this.parents(".post").find("form.ajax-file-upload.post-form.edit").length ) return;					
-					autoscroll = $this.parents(".post").offset().top - 100;
+					autoscroll = $this.parents(".post").offset().top - 150;
 					$("body,html").animate({scrollTop:autoscroll}, '500', 'swing', function() {});
 					$this.parents(".post").find(".content:first").hide();
 					$this.parents(".post").find(".content:first").after( re );
@@ -607,10 +617,10 @@ function ajaxPostGetCommentEditForm(){
             .done(function(re){
                 try {					
 					if( $this.parents(".comment").find("form.ajax-file-upload.comment-edit").length ) return;
-					autoscroll = $this.parents(".comment").offset().top - 100;
+					autoscroll = $this.parents(".comment").offset().top - 150;
 					$("body,html").animate({scrollTop:autoscroll}, '500', 'swing', function() {});
 					
-					$this.parents(".comment").find(".content").hide();					
+					$this.parents(".comment").find(".content").hide();
 					$this.parents(".comment").find(".content").after( re );					
 					$this.parents(".comment").find("textarea:first").select();
 					getEditDisplayFiles( idx, no );
@@ -876,8 +886,12 @@ function cameraSuccess(fileURI) {
             if ( file.error ) {
                 alert(file.message);
             }
-			
-			html = "<div idx='" + file.idx + "' class='file image'><img src='"+file.urlThumbnail+"'><div class='delete' title='Delete this file'>X</div></div>";
+			if( photoOptions.type != 'primary_photo' ) delete_button = "<div class='delete' title='Delete this file'>X</div>";
+			else {
+				$("form[name='profileUpdate'] img").remove();
+				delete_button = '';
+			}
+			html = "<div idx='" + file.idx + "' class='file image'><img src='"+file.urlThumbnail+"'>" + delete_button + "</div>";
             if ( photoOptions.add ) $(photoOptions.selector).append(html);
             else $(photoOptions.selector).html(html);
 
