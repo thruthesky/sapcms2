@@ -471,6 +471,7 @@ $(function(){
 /****** COMMENT UPLOAD */
 function ajaxCommentSubmit($this) {
     // alert($this.find('[name="content"]').val());
+	if( !$session_id ) return alert("Please Login First!");
 	var upload_type;
 	if( $this.hasClass('comment-edit') ){
 		upload_type = 'comment_edit';

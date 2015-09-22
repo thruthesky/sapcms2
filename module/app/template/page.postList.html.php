@@ -26,7 +26,7 @@ use sap\app\App;
 	
 	if( !empty( $post_primary_photo ) ) $post_primary_photo = $post_primary_photo[0]->urlThumbnail(140,140);
 	else $post_primary_photo = sysconfig(URL_SITE)."module/app/img/no_primary_photo.png";
-	$human_timing = "XX hours ago";
+	$human_timing = App::humanTiming( $post['created'] )." ago";
 		
 	$files = data()->loadBy('post', post_data($post['idx'])->config('idx'), $post['idx']);	
 	$total_files = count( $files );

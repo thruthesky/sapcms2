@@ -423,4 +423,53 @@ class App {
 		array_walk($tag_imgs, 'display');
 		echo "</div>";
 	}
+	
+	public static function humanTiming( $stamp )
+	{
+		$period = NULL;
+		$secsago   =   time() - $stamp;
+		
+		if ($secsago < 60) {
+			$w1 = "second";
+			$w2 = "seconds";
+			$period = $secsago == 1 ? '1 ' . $w1    : $secsago . " " . $w2 ;
+		}
+		else if ($secsago < 3600) {
+			$w1 = "minute";
+			$w2 = "minutes";
+			$period    =   round($secsago/60);
+			$period    =   $period == 1 ? '1 ' . $w1 : $period . " " . $w2;
+		}
+		else if ($secsago < 86400) {
+			$w1 = "hour";
+			$w2 = "hours";
+			$period    =   round($secsago/3600);
+			$period    =   $period == 1 ? '1 ' . $w1   : $period . " " .  $w1;
+		}
+		else if ($secsago < 604800) {
+			$w1 = "day";
+			$w2 = "days";
+			$period    =   round($secsago/86400);
+			$period    =   $period == 1 ? '1 '. $w1    : $period . " " . $w2;
+		}
+		else if ($secsago < 2419200) {
+			$w1 = "week";
+			$w2 = "weeks";
+			$period    =   round($secsago/604800);
+			$period    =   $period == 1 ? '1 ' . $w1   : $period . " " . $w2;
+		}
+		else if ($secsago < 29030400) {
+			$w1 = "month";
+			$w2 = "months";
+			$period    =   round($secsago/2419200);
+			$period    =   $period == 1 ? '1 ' . $w1   : $period . " " . $w2;
+		}
+		else {
+			$w1 = "year";
+			$w2 = "years";
+			$period    =   round($secsago/29030400);
+			$period    =   $period == 1 ? '1 ' . $w1   : $period . " " . $w2;
+		} 
+		return $period;
+	}
 }
