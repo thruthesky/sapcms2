@@ -162,7 +162,148 @@ class App {
             echo $data;
         }
 	  }
+	  
+	public static function PostEditSubmit(){
+		$idx = request('idx');
+		$content = request('content');
+		$post = post_data($idx);
+		$user = login();		
+        if ( empty($post) ) echo "ERROR -50564 Post does not exist";//$re = ['error'=>-50564, 'message'=>"Post does not exists."];
+		else if ( $post->fields['idx_user'] != $user->fields['idx'] ) echo "ERROR -50554 This is not your post. You cannot edit or delete this post";//$re = ['error'=>-50554, 'message'=>"This is not your post. You cannot edit or delete this post."];
+		else{
+			$post
+			->set( 'content',$content )
+			//temp
+			->set( 'int_1', 0 )
+			->set( 'int_2', 0 )
+			->set( 'int_3', 0 )
+			->set( 'int_4', 0 )
+			->set( 'int_5', 0 )
+			->set( 'int_6', 0 )
+			->set( 'int_7', 0 )
+			->set( 'int_8', 0 )
+			->set( 'int_9', 0 )
+			->set( 'int_10', 0 )
+			->save();
+						
+			echo $content;
+			
+			$files = data()->loadBy('post', post_data($post->fields['idx'])->config('idx'), $post->fields['idx']);	
+			$total_files = count( $files );
+			if( !empty( $files ) ){
+			echo "<section role='files'><div class='display-files' file_count='$total_files'>";
+				if( $total_files > 1 ) App::display_files_thumbnail( $files, 200, 200 );
+				else display_files($files); 					
+			echo "</div></section>";
+			}
+		}
+	}
+	
+	public static function PostEditCommentSubmit(){
+		$idx = request('idx');
+		$content = request('content');
+		$post = post_data($idx);
+		$user = login();		
+        if ( empty($post) ) echo "ERROR -50564 Post does not exist";//$re = ['error'=>-50564, 'message'=>"Post does not exists."];
+		else if ( $post->fields['idx_user'] != $user->fields['idx'] ) echo "ERROR -50554 This is not your post. You cannot edit or delete this post";//$re = ['error'=>-50554, 'message'=>"This is not your post. You cannot edit or delete this post."];
+		else{
+			$post
+			->set( 'content',$content )
+			//temp
+			->set( 'int_1', 0 )
+			->set( 'int_2', 0 )
+			->set( 'int_3', 0 )
+			->set( 'int_4', 0 )
+			->set( 'int_5', 0 )
+			->set( 'int_6', 0 )
+			->set( 'int_7', 0 )
+			->set( 'int_8', 0 )
+			->set( 'int_9', 0 )
+			->set( 'int_10', 0 )
+			->save();
+			echo $content;
+			
+			$files = data()->loadBy('post', post_data($post->fields['idx'])->config('idx'), $post->fields['idx']);	
+			$total_files = count( $files );
+			if( !empty( $files ) ){
+			echo "<section role='files'><div class='display-files' file_count='$total_files'>";
+				if( $total_files > 1 ) App::display_files_thumbnail( $files, 200, 200 );
+				else display_files($files); 					
+			echo "</div></section>";
+			}
+		}
+	}
 
+    public static function postDelete() {
+		$idx = request('idx');
+		$post = post_data($idx);
+		$user = login();		
+        if ( empty($post) ) echo "ERROR -50564 Post does not exist";//$re = ['error'=>-50564, 'message'=>"Post does not exists."];
+		else if ( $post->fields['idx_user'] != $user->fields['idx'] ) echo "ERROR -50554 This is not your post. You cannot edit or delete this post";//$re = ['error'=>-50554, 'message'=>"This is not your post. You cannot edit or delete this post."];
+		else{
+			$post->markAsDelete();
+			$posts = [];			
+			//$item = [];
+			$post_root = post_data()->load( $post->fields['idx_root'] );
+			if( !empty( $post_root ) ){
+				$item = $post_root->fields;
+				$item['comments'] = post_data()->getComments($post_root->fields['idx']);
+				$posts[] = $item;
+			}
+			ob_start();
+            include template('page.postList');
+            $data = ob_get_clean();
+            echo $data;
+		}
+    }
+
+    public static function getPostEditForm() {
+		$idx = request('idx');
+		$no = request('no');
+		$post = post_data($idx)->fields;	
+		$edit_mode = true;		
+		ob_start();
+		include template('page.postList.postForm');
+		$data = ob_get_clean();
+		
+		echo $data;
+    }
+	
+    public static function getPostCommentEditForm() {
+		$idx = request('idx');
+		$no = request('no');
+		$comment_edit = post_data($idx)->fields;	
+		$edit_mode = true;
+		ob_start();		
+		include template('page.postList.comment-form');		
+		$data = ob_get_clean();
+		
+		echo "<div class='comment-form'>";
+		echo $data;
+		echo "</div>";
+    }
+	
+	/*getPostFiles*/
+	public static function getPostFiles(){
+		$idx = request('idx');
+		$no = request('no');
+		
+		$files = data()->loadBy('post', post_data($idx)->config('idx'), $idx);
+		$total_files = count( $files );
+		
+		if( !empty( $files ) ){
+			foreach( $files as $f ){
+				$file = $f->fields;
+				$url = $f->urlThumbnail( 100, 100 );
+				//$url = $f->url();
+				echo "<div idx='".$file['idx']."' class='file image'>";
+				echo "<img src='".$url."'>";
+				echo "<div class='delete' title='Delete this file'>X</div></div>";
+			}
+		}
+	}
+	/*eo getPostFiles*/
+	
     public static function loginSubmit() {
         $re = User::checkIDPassword(request('id'), request('password'));
         if ( $re ) {
@@ -251,4 +392,84 @@ class App {
             ->save();
         Response::json(['error'=>0]);
     }
+	
+	
+	
+	
+	
+	
+	public static function display_files_thumbnail( $files, $height, $width, $limit = 0 ) {
+		if ( empty($files) ) return null;	
+		$tag_imgs = [];
+		$tag_files = [];
+		//foreach($files as $file) {
+		if( $limit == 0 ) $limit = count( $files );	
+		for( $i = 0; $i < $limit; $i ++ ){
+			$file = $files[$i];		
+			$url = $file->urlThumbnail( $width, $height );
+			$name = $file->get('name');
+			if ( is_image($name) ) {
+				$tag_imgs[] = "<div class='image'><img src='$url'></div>";
+			}
+			else {
+				$tag_files[] = "<div class='attachment'><a href='$url'>$name</a></div>";
+			}
+		}
+		
+		echo "<div class='attachments'>";
+		array_walk($tag_files, 'display');
+		echo "</div>";
+		echo "<div class='images clearfix'>";
+		array_walk($tag_imgs, 'display');
+		echo "</div>";
+	}
+	
+	public static function humanTiming( $stamp )
+	{
+		$period = NULL;
+		$secsago   =   time() - $stamp;
+		
+		if ($secsago < 60) {
+			$w1 = "second";
+			$w2 = "seconds";
+			$period = $secsago == 1 ? '1 ' . $w1    : $secsago . " " . $w2 ;
+		}
+		else if ($secsago < 3600) {
+			$w1 = "minute";
+			$w2 = "minutes";
+			$period    =   round($secsago/60);
+			$period    =   $period == 1 ? '1 ' . $w1 : $period . " " . $w2;
+		}
+		else if ($secsago < 86400) {
+			$w1 = "hour";
+			$w2 = "hours";
+			$period    =   round($secsago/3600);
+			$period    =   $period == 1 ? '1 ' . $w1   : $period . " " .  $w1;
+		}
+		else if ($secsago < 604800) {
+			$w1 = "day";
+			$w2 = "days";
+			$period    =   round($secsago/86400);
+			$period    =   $period == 1 ? '1 '. $w1    : $period . " " . $w2;
+		}
+		else if ($secsago < 2419200) {
+			$w1 = "week";
+			$w2 = "weeks";
+			$period    =   round($secsago/604800);
+			$period    =   $period == 1 ? '1 ' . $w1   : $period . " " . $w2;
+		}
+		else if ($secsago < 29030400) {
+			$w1 = "month";
+			$w2 = "months";
+			$period    =   round($secsago/2419200);
+			$period    =   $period == 1 ? '1 ' . $w1   : $period . " " . $w2;
+		}
+		else {
+			$w1 = "year";
+			$w2 = "years";
+			$period    =   round($secsago/29030400);
+			$period    =   $period == 1 ? '1 ' . $w1   : $period . " " . $w2;
+		} 
+		return $period;
+	}
 }
