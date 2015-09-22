@@ -76,6 +76,7 @@ use sap\app\App;
 				</div>
 			<?php } else { ?>
 				<?php echo $post['content'] ?>
+				<div class='content-margin'></div>
 				<section role="files">
 					<div class="display-files" file_count='<?php echo $total_files; ?>'>
 						<?php 

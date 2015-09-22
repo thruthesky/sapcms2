@@ -222,6 +222,15 @@ class App {
 			->set( 'int_10', 0 )
 			->save();
 			echo $content;
+			
+			$files = data()->loadBy('post', post_data($post->fields['idx'])->config('idx'), $post->fields['idx']);	
+			$total_files = count( $files );
+			if( !empty( $files ) ){
+			echo "<section role='files'><div class='display-files' file_count='$total_files'>";
+				if( $total_files > 1 ) App::display_files_thumbnail( $files, 200, 200 );
+				else display_files($files); 					
+			echo "</div></section>";
+			}
 		}
 	}
 
@@ -250,35 +259,19 @@ class App {
 
     public static function getPostEditForm() {
 		$idx = request('idx');
+		$no = request('no');
 		$post = post_data($idx)->fields;	
-		$edit_mode = true;
+		$edit_mode = true;		
 		ob_start();
 		include template('page.postList.postForm');
 		$data = ob_get_clean();
 		
 		echo $data;
-		
-		$files = data()->loadBy('post', post_data($post['idx'])->config('idx'), $post['idx']);
-		$total_files = count( $files );
-		
-		if( !empty( $files ) ){
-			echo "<div class='edit-files' file_count='$total_files'>";
-							
-			foreach( $files as $f ){
-				$file = $f->fields;
-				$url = $f->urlThumbnail( 100, 100 );
-				//$url = $f->url();
-				echo "<div idx='".$file['idx']."' class='file image'>";
-				echo "<img src='".$url."'>";
-				echo "<div class='delete' title='Delete this file'>X</div></div>";
-			}
-							
-			echo "</div>";
-		}
     }
 	
     public static function getPostCommentEditForm() {
 		$idx = request('idx');
+		$no = request('no');
 		$comment_edit = post_data($idx)->fields;	
 		$edit_mode = true;
 		ob_start();		
@@ -287,13 +280,18 @@ class App {
 		
 		echo "<div class='comment-form'>";
 		echo $data;
+		echo "</div>";
+    }
+	
+	/*getPostFiles*/
+	public static function getPostFiles(){
+		$idx = request('idx');
+		$no = request('no');
 		
-		$files = data()->loadBy('post', post_data($comment_edit['idx'])->config('idx'), $comment_edit['idx']);
+		$files = data()->loadBy('post', post_data($idx)->config('idx'), $idx);
 		$total_files = count( $files );
 		
 		if( !empty( $files ) ){
-			echo "<div class='edit-files' file_count='$total_files'>";
-							
 			foreach( $files as $f ){
 				$file = $f->fields;
 				$url = $f->urlThumbnail( 100, 100 );
@@ -302,12 +300,9 @@ class App {
 				echo "<img src='".$url."'>";
 				echo "<div class='delete' title='Delete this file'>X</div></div>";
 			}
-							
-			echo "</div>";
 		}
-		
-		echo "</div>";
-    }
+	}
+	/*eo getPostFiles*/
 	
     public static function loginSubmit() {
         $re = User::checkIDPassword(request('id'), request('password'));

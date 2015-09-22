@@ -21,3 +21,5 @@ Route::add('/app/getPostCommentEditForm', 'app\\App\\getPostCommentEditForm');
 Route::add('/app/post/edit/submit', 'app\\App\\PostEditSubmit');
 Route::add('/app/post/edit/comment/submit', 'app\\App\\PostEditCommentSubmit');
 
+Route::add('/app/post/getPostFiles', 'app\\App\\getPostFiles');
+

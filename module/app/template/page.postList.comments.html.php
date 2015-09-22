@@ -1,4 +1,6 @@
 <?php
+use sap\app\App;
+
 if ( ! isset($post['comments']) ) return;
 $comments = &$post['comments'];
 foreach ( $comments as $comment ) {
@@ -23,22 +25,28 @@ foreach ( $comments as $comment ) {
 		</div>
         <?php
 /*<?php widget('post_view_vote', ['post'=>$comment])?>
-*/?>
+*/
+$files = data()->loadBy('post', $comment['idx_config'], $comment['idx']);
+$total_files = count( $files );
+?>
 
         <div class="content">
             <?php include template('page.postList.comment.content') ?>
+			<div class='content-margin'></div>
+			<section role="files">
+				<div class="display-files" file_count='<?php echo $total_files; ?>'>
+					<?php 
+					if( $total_files > 1 ) App::display_files_thumbnail( $files, 200, 200 );
+					else display_files($files); 
+					?>
+				</div>
+			</section>
         </div>
 
         <?php
 /*
         <?php widget('post_display_files', ['idx'=>$comment['idx']])?>
-*/?>
-        <?php
-        $files = data()->loadBy('post', $comment['idx_config'], $comment['idx']);
-        ?>
-        <div class="display-files">
-            <?php display_files($files); ?>
-        </div>
+*/?>      
 
 
        <nav class='user-command comment-command'>

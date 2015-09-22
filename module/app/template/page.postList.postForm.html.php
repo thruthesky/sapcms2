@@ -1,15 +1,20 @@
 <?php
 $url_primary_photo = login() ? login()->getPrimaryPhotoUrlThumbnail(80,80) : null;
 
-if( !empty( $edit_mode ) ) $class=' edit';
+if( !empty( $edit_mode ) ){
+	$class=' edit';
+	$no_comment_form = $no;
+}
 else $class = '';
+
+if( empty( $no_comment_form ) ) $no_comment_form = 0;
 ?>
-<form action='' class="ajax-file-upload post-form<?php echo $class; ?>" method="post" enctype="multipart/form-data">  
+<form action='' no='post-<?php echo $no_comment_form ?>' class="ajax-file-upload post-form<?php echo $class; ?>" method="post" enctype="multipart/form-data">  
 	<?php 
 	$post_id = request( 'post_id' );
 	if( !empty( $post_id ) ) echo "<input type='hidden' name='id' value ='$post_id'/>";
 	echo "<input type='hidden' name='idx_parent' value ='0'/>";
-	
+	echo "<input type='hidden' name='fid' value =''/>";
 	if( !empty( $post['idx'] ) ) echo "<input type='hidden' name='idx' value='$post[idx]' />";
 	?>
 	<?php echo html_hidden_post_variables(); ?>

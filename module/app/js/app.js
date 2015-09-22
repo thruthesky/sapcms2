@@ -174,7 +174,7 @@ function registerSubmit(event) {
     return false;
 }
 
-function profileUpdateSubmit() {
+function profileUpdateSubmit() {	
     var $form = $(this);
     var url = url_server_app + "profileUpdateSubmit";
     $.ajax({
@@ -186,7 +186,7 @@ function profileUpdateSubmit() {
             var re = JSON.parse(data);
             if ( re.error != 0 ) return message(re.error);
             else {
-                message(textUpdateProfile());
+                message(textUpdateProfile());				
             }
         }
         catch (e) {
@@ -310,7 +310,7 @@ $(function(){
         //console.log("why man call ? " + idx);
         fileDelete(idx);
     });
-    $body.on('submit', '.ajax-file-upload', function(){
+    $body.on('submit', '.ajax-file-upload', function(){		
         var $this = $(this);
         if ( isUploadSubmit == false ) {
             ajaxCommentSubmit($this);
@@ -347,8 +347,7 @@ $(function(){
                     return alert( xhr.responseText );
                 }
 
-                console.log(re);
-
+                console.log(re);				
                 fileDisplay($this, re);
                 fileCallback(re);
                 setFid(re);
@@ -400,7 +399,8 @@ $(function(){
  *      url -
  *
  */
-function fileDisplay($this, re) {
+ 
+function fileDisplay($this, re) {	
     if ( typeof re == 'undefined' || ! re ) return;
     var display = $this.find('[name="file_display"]').val();
     if ( display ) {
@@ -546,9 +546,9 @@ function ajaxPostDelete(){
 	$this = $(this)
 	idx = $this.attr("idx");
 	url = url_server + "/app/delete?idx=" + idx + "&session_login=" + $session_id;
+	console.log( url );
 	$.ajax(url)
-            .done(function(re){
-                //console.log(re);
+            .done(function(re){                
                 try {
 					$html = $(re).find(".post").html();
 					if( ! $html ) $this.parents(".post").remove();
@@ -574,16 +574,19 @@ $(function(){
 function ajaxPostGetEditForm(){
 	$this = $(this)
 	idx = $this.attr("idx");
-	url = url_server + "/app/getPostEditForm?idx=" + idx + "&session_login=" + $session_id;
-	
+	no = $(".ajax-file-upload.post-form").length;
+	url = url_server + "/app/getPostEditForm?idx=" + idx + "&session_login=" + $session_id + "&no=" + no;
 	$.ajax(url)
             .done(function(re){
                 //console.log(re);
-                try {
-					if( $this.parents(".post").find("form.ajax-file-upload.post-form.edit").length ) return;
+                try {					
+					if( $this.parents(".post").find("form.ajax-file-upload.post-form.edit").length ) return;					
+					autoscroll = $this.parents(".post").offset().top - 100;
+					$("body,html").animate({scrollTop:autoscroll}, '500', 'swing', function() {});
 					$this.parents(".post").find(".content:first").hide();
 					$this.parents(".post").find(".content:first").after( re );
-					$this.parents(".post").find("textarea:first").select();
+					$this.parents(".post").find("textarea:first").select();															
+					getEditDisplayFiles( idx, "post-" + no );
                 }
                 catch (e) {
 					alert( "Error! [ code here ] [ message here ]" );
@@ -597,15 +600,20 @@ function ajaxPostGetEditForm(){
 function ajaxPostGetCommentEditForm(){	
 	$this = $(this)
 	idx = $this.attr("idx");
-	url = url_server + "/app/getPostCommentEditForm?idx=" + idx + "&session_login=" + $session_id;
+	no = $(".ajax-file-upload").length - $(".ajax-file-upload.post-form").length;	
+	url = url_server + "/app/getPostCommentEditForm?idx=" + idx + "&session_login=" + $session_id + "&no=" + no;
 	console.log( url );
 	$.ajax(url)
             .done(function(re){
                 try {					
 					if( $this.parents(".comment").find("form.ajax-file-upload.comment-edit").length ) return;
+					autoscroll = $this.parents(".comment").offset().top - 100;
+					$("body,html").animate({scrollTop:autoscroll}, '500', 'swing', function() {});
+					
 					$this.parents(".comment").find(".content").hide();					
 					$this.parents(".comment").find(".content").after( re );					
 					$this.parents(".comment").find("textarea:first").select();
+					getEditDisplayFiles( idx, no );
                 }
                 catch (e) {
 					alert( "Error! [ code here ] [ message here ]" );
@@ -627,6 +635,47 @@ function post_edit_comment_html_ajax( re, $this ){
 	$this.parents(".comment").find(".edit-files").remove();
 	$this.remove();
 }
+
+function getEditDisplayFiles( idx, no ){
+	url = url_server + "/app/post/getPostFiles?idx=" + idx + "&session_login=" + $session_id + "&no=" + no;	
+	$.ajax(url)
+            .done(function(re){
+                console.log(re);
+                try {					
+					console.log( ".ajax-file-upload[no='" + no + "']" );
+					console.log( $(".ajax-file-upload[no='" + no + "']").length );
+					$(".ajax-file-upload[no='" + no + "'] .file-display:first").append( re );
+                }
+                catch (e) {
+					alert( "Error! [ code here ] [ message here ]" );
+                }
+            })
+            .fail(function(){
+                alert( "Fail! [ code here ] [ message here ]" );
+            });
+}
+
+/*file.js override*/
+function fileDelete(idx) {
+	$.ajax( url_server + "/file/delete?idx="+idx )
+        .done(function(re){
+            try {
+                var re = JSON.parse(re);
+                if ( re.error ) alert( re.message );
+                else {
+                    console.log("idx: " + idx + " deleted");
+                    $('.file[idx="'+re.idx+'"]').remove();
+                }
+            }
+            catch (e) {
+                alert(re);
+            }
+        })
+        .fail(function(){
+            console.log('failed to load');
+        });
+}
+/*file.js override*/
 /*eo edit*/
 
 /** LOGIN */
@@ -827,8 +876,10 @@ function cameraSuccess(fileURI) {
             if ( file.error ) {
                 alert(file.message);
             }
-            if ( photoOptions.add ) $(photoOptions.selector).append("<img src='"+file.urlThumbnail+"'>");
-            else $(photoOptions.selector).html("<img src='"+file.urlThumbnail+"'>");
+			
+			html = "<div idx='" + file.idx + "' class='file image'><img src='"+file.urlThumbnail+"'><div class='delete' title='Delete this file'>X</div></div>";
+            if ( photoOptions.add ) $(photoOptions.selector).append(html);
+            else $(photoOptions.selector).html(html);
 
             if ( typeof photoOptions.callback == 'function' ) photoOptions.callback(file);
         }
@@ -898,18 +949,27 @@ function cameraPostFile() {
     var $this = $(this);
     var $form = $this.parents('form');
     var idx = $form.find('[name="idx_parent"]').val();
+	
     var no = $form.attr('no');
     var selector = 'form[no="'+no+'"] .file-display';
-    console.log(selector);
+    console.log(selector);	
     setPhotoSelector(selector, true);
-    setFileInfo('post', 'files', idx, 0, 0, 140, 140, callback_post_file_upload);
+	//temp added by benjamin for edit compatibility by benjamin
+	if( idx == 0  || typeof( idx ) == 'undefined' ){
+		idx = $form.find('[name="idx"]').val();
+		//function setFileInfo(module, type, idx_target, finish, unique, image_thumbnail_width, image_thumbnail_height, callback) 
+		setFileInfo('post', 3, idx, 1, 0, 140, 140, callback_post_file_upload);
+	}
+	else{
+		setFileInfo('post', 'files', idx, 0, 0, 140, 140, callback_post_file_upload);
+	}
     takePhotoUpload();
 }
-function callback_post_file_upload(file) {
+function callback_post_file_upload(file) {	
     var $display = $(photoOptions.selector);
     var $form = $display.parents('form');
     var $fid = $form.find("[name='fid']");
-    var val = $fid.val() + ',' + file.idx;
+    var val = $fid.val() + ',' + file.idx;	
     $fid.val(val);
 }
 

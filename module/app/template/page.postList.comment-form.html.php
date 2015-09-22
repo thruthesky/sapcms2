@@ -11,7 +11,10 @@ else $no_comment_form = 0;
 
 $url_primary_photo = login() ? login()->getPrimaryPhotoUrlThumbnail(80,80) : null;
 
-if( !empty( $edit_mode ) ) $class=' comment-edit';
+if( !empty( $edit_mode ) ) {
+	$class=' comment-edit';
+	$no_comment_form = $no;
+}
 else $class = '';
 ?>
 <form name="comment" no='<?php echo $no_comment_form; ?>' class="ajax-file-upload<?php echo $class; ?>" method="post" enctype="multipart/form-data">
@@ -19,7 +22,9 @@ else $class = '';
 		<input type="hidden" name="idx_parent" value="<?php echo $post['idx'] ?>">
 	<?php } ?>
 	<?php
-		if( !empty( $comment_edit['idx'] ) ) echo "<input type='hidden' name='idx' value='$comment_edit[idx]' />";
+		if( !empty( $comment_edit['idx'] ) ){
+			echo "<input type='hidden' name='idx' value='$comment_edit[idx]' />";
+		}
 	?>
     <?php echo html_hidden_post_variables(); ?>
     <table width="100%" cellpadding="0" cellspacing="0">
