@@ -36,10 +36,10 @@ use sap\app\App;
         <?php //echo $post['idx']; ?>
 		<nav class="menu">
 			<?php if( $idx_user == login('idx') ){?>
-			<span class='edit is-post' idx='<?php echo $post['idx']; ?>'">
-				<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/edit_post.png'/>
+			<span class='edit is-post' idx='<?php echo $post['idx']; ?>'>
+				<img src="<?php echo sysconfig(URL_SITE) ?>module/app/img/edit_post.png"/>
 			</span>
-			<span class='delete' idx='<?php echo $post['idx']; ?>'>
+			<span class="delete" idx="<?php echo $post['idx']; ?>">
 				<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/delete_post.png'/>
 			</span>
 			<?php }else{ ?>

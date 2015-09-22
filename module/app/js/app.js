@@ -470,8 +470,7 @@ $(function(){
 
 /****** COMMENT UPLOAD */
 function ajaxCommentSubmit($this) {
-    // alert($this.find('[name="content"]').val());
-	if( !$session_id ) return alert("Please Login First!");
+    
 	var upload_type;
 	if( $this.hasClass('comment-edit') ){
 		upload_type = 'comment_edit';
@@ -498,15 +497,11 @@ function ajaxCommentSubmit($this) {
         },
         complete: function(xhr) {
             console.log("post comment submit completed!!");
-            var re = xhr.responseText;
-            console.log("re:");
-            console.log(re);
-            //var idx = $this.parents('.comment').attr('idx');
-            //console.log(idx);
+            var re = xhr.responseText;            
 			if( upload_type == 'comment_edit' ) post_edit_comment_html_ajax( re, $this );
 			else if( upload_type == 'post_edit' ) post_edit_html_ajax( re, $this );
 			else if( upload_type == 'comment' ) comment_html_ajax( re, $this );
-			else if( upload_type = 'post' ) post_html_ajax( re, $this );
+			else if( upload_type = 'post' ) post_html_ajax( re, $this );						
         }
     });
 }
@@ -544,6 +539,11 @@ $(function(){
 });
 
 function ajaxPostDelete(){
+	re = confirm( "Are you sure you want to delete this post?" );
+	if( !re ){
+		return false;
+	}
+
 	$this = $(this)
 	idx = $this.attr("idx");
 	url = url_server + "/app/delete?idx=" + idx + "&session_login=" + $session_id;
