@@ -296,7 +296,7 @@ body{
 
 	
 	.post-cancel{
-		padding: 12px 3px;
+		padding: 12px 4px;
 		margin:0;
 	    font-size: .7em; 		
 		cursor:pointer;
@@ -441,6 +441,14 @@ body{
 	
 	.comment-form .post-file-upload-button {
 		margin:0 0 0 5px;
+	}
+	
+	.comment-form .comment-edit .post-file-upload-button {
+		margin:0;
+	}
+	
+	.comment-form .comment-edit .buttons{
+		text-align:right;
 	}
 	
 	form.post-form .post-file-upload-button {

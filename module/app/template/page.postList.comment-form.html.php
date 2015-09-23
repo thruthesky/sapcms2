@@ -40,21 +40,40 @@ else{
 						<div class='primary-photo comment-photo temp'><img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/no_primary_photo.png'/></div>
 					<?php }?>
                 </td>
-				<td width="90%">
+				<td width="99%">
                     <textarea class='comment-form-content' name="content"><?php if( !empty( $comment_edit['content'] ) ) echo $comment_edit['content']; ?></textarea>                
                 </td>
-                <td width="40">
-                    <img class="post-file-upload-button" src="<?php echo sysconfig(URL_SITE)?>module/app/img/camera_white_temp.png">
-                    <input type="hidden" name="fid" value="">
-                </td>
-                <td width="<?php echo $buttons_width; ?>">
-					<div style='width:<?php echo $buttons_width; ?>px'>
-						<input class="form-comment-add-submit" type="submit" value="POST">
-						<?php if( !empty( $edit_mode ) ) {?>
-							<div class='post-cancel' type='comment'>Cancel</div>
-						<?php }?>
-					</div>
-                </td>
+				<?php if( empty( $edit_mode ) ) {?>
+					<td width="40">
+						<img class="post-file-upload-button" src="<?php echo sysconfig(URL_SITE)?>module/app/img/camera_white_temp.png">
+						<input type="hidden" name="fid" value="">
+					</td>
+					<td width="<?php echo $buttons_width; ?>">
+						<div style='width:<?php echo $buttons_width; ?>px'>
+							<input class="form-comment-add-submit" type="submit" value="POST">
+							<?php if( !empty( $edit_mode ) ) {?>
+								<div class='post-cancel' type='comment'>Cancel</div>
+							<?php }?>
+						</div>
+					</td>
+				<?php } else {?>
+					<table width="100%" cellpadding="0" cellspacing="0">
+						<tr>
+							<td width="40">
+								<img class="post-file-upload-button" src="<?php echo sysconfig(URL_SITE)?>module/app/img/camera_white_temp.png">
+								<input type="hidden" name="fid" value="">
+							</td>
+							<td width="99%">
+								<div class='buttons'>
+									<input class="form-comment-add-submit" type="submit" value="POST">
+									<?php if( !empty( $edit_mode ) ) {?>
+										<div class='post-cancel' type='comment'>Cancel</div>
+									<?php }?>
+								</div>
+							</td>
+						</tr>
+					</table>
+				<?php }?>
             </tr>
         </table>
         <div class='file-display files'></div>

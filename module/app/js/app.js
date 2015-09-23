@@ -607,7 +607,7 @@ function ajaxPostGetEditForm(){
 					$("body,html").animate({scrollTop:autoscroll}, '500', 'swing', function() {});
 					$this.parents(".post").find(".content:first").hide();
 					$this.parents(".post").find(".content:first").after( re );
-					$this.parents(".post").find("textarea:first").select();															
+					$this.parents(".post").find("textarea:first").select().height("100px");	
 					getEditDisplayFiles( idx, "post-" + no );
                 }
                 catch (e) {
@@ -634,7 +634,7 @@ function ajaxPostGetCommentEditForm(){
 					
 					$this.parents(".comment").find(".content").hide();
 					$this.parents(".comment").find(".content").after( re );					
-					$this.parents(".comment").find("textarea:first").select();
+					$this.parents(".comment").find("textarea:first").select().height("100px");
 					getEditDisplayFiles( idx, no );
                 }
                 catch (e) {
