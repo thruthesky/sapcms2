@@ -971,7 +971,6 @@ function cameraUserPrimaryPhoto() {
 }
 /** Post file uplod */
 function cameraPostFile() {
-    //alert('hi');
     var $this = $(this);
     var $form = $this.parents('form');
     var idx = $form.find('[name="idx_parent"]').val();
