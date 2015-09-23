@@ -82,7 +82,9 @@ function initMenu() {
     $body.on('click', '#panel-menu .logout', function(){
         loadPage('logout');
         setSessionId('');
-        moveToFrontPage();
+		setTimeout( function(){
+			moveToFrontPage();
+		},10);
         alert('로그아웃을 하였습니다.');
     });
 }
@@ -263,7 +265,7 @@ function loadPage(route, post_id) {
         'url': url,
         'data' : { 'session_login': $session_id, 'post_id': post_id }
     })
-        .done(function(html) {
+        .done(function(html) {			
             showPage(route, html);
         })
         .fail(function() {
