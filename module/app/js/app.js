@@ -466,6 +466,11 @@ $(function(){
             }
         }
     });
+	
+	$("body").on("click",".post-form-content", function(){
+		$this = $(this);
+		$this.height("100px");
+	});
 });
 
 /****** COMMENT UPLOAD */
