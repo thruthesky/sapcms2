@@ -605,6 +605,18 @@ body{
 		margin-bottom:10px;
 	}
 	/*eo temp...?*/
+	
+	/*see-more*/
+	.content .see-more{
+		color:#c0392b;
+		font-weight:bold;
+		cursor:pointer;
+	}
+	
+	.content .all-text{
+		display:none;
+	}
+	/*eo see-more*/
 		
 /*E O N E W*/
 

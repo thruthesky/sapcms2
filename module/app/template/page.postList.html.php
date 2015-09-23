@@ -74,7 +74,15 @@ use sap\app\App;
 					This post is deleted.
 				</div>
 			<?php } else { ?>
-				<?php echo $post['content'] ?>
+				<?php
+				if( strlen( $post['content'] ) >= 150 ){
+					echo "<span class='text-preview'>".substr( $post['content'], 0, 150 )."</span> <span class='see-more'>...See More</span><div class='all-text'>".$post['content']."</div>";
+				}
+				else{
+					$post['content'] ;
+				}
+				
+				?>
 				<div class='content-margin'></div>
 				<section role="files">
 					<div class="display-files" file_count='<?php echo $total_files; ?>'>

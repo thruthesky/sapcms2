@@ -1078,3 +1078,14 @@ function setNoMoreContent() {
 function hasNoMoreContent() {
     return bNoMoreContent;
 }
+
+$(function(){
+	$("body").on("click",".see-more",showAllContent);
+});
+
+function showAllContent(){
+	$this = $(this);
+	$this.hide();
+	$this.parent().find(".text-preview").hide();
+	$this.parent().find(".all-text").show();
+}
