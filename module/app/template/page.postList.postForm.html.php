@@ -4,11 +4,11 @@ $url_primary_photo = login() ? login()->getPrimaryPhotoUrlThumbnail(80,80) : nul
 if( !empty( $edit_mode ) ){
 	$class=' edit';
 	$no_comment_form = $no;
-	$buttons_width = '105';
+	$buttons_width = '95';
 }
 else {
 	$class = '';
-	$buttons_width = '55';
+	$buttons_width = '45';
 }
 
 if( empty( $no_comment_form ) ) $no_comment_form = 0;
@@ -24,7 +24,7 @@ if( empty( $no_comment_form ) ) $no_comment_form = 0;
 	<?php echo html_hidden_post_variables(); ?>
     <table width="100%" cellpadding="0" cellspacing="0">
             <tr valign="top">
-				<td width="45">                    
+				<td class='td-primary-photo' width="45">                    
 					<?php if( !empty( $url_primary_photo ) ){?>
 						<div class='primary-photo comment-photo'><img src='<?php echo $url_primary_photo; ?>'/></div>
 					<?php } else {?>
@@ -48,7 +48,7 @@ if( empty( $no_comment_form ) ) $no_comment_form = 0;
 					<div style='width:<?php echo $buttons_width; ?>px'>
 						<input class="form-comment-add-submit" type="submit" value="POST">
 						<?php if( !empty( $edit_mode ) ) {?>
-							<div class='post-cancel' type='comment'>Cancel</div>
+							<div class='post-cancel' type='post'>Cancel</div>
 						<?php }?>
 					</div>
 				</td>

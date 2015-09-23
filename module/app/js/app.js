@@ -588,7 +588,7 @@ function cancelEdit(){
 	$this = $(this);
 	if( $this.attr('type') == 'comment' ) $parent = $this.parents("div.comment");
 	else $parent = $this.parents(".post");
-
+	console.log( $this.attr('type') );
 	$parent.find( ".ajax-file-upload:first" ).remove();
 	$parent.find( ".content" ).show();
 }

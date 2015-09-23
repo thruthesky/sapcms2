@@ -257,11 +257,23 @@
    color: #fff;  
 }
 
-.register-wrapper form[name='register'] input[type='submit'], .profile-wrapper form[name='profileUpdate'] input[type='submit']{
+.register-wrapper form[name='register'] input[type='submit']{
 	width:62%;
 	padding:7px 0;	
 	background-color:#34495e;
 	border:1px solid #fff;
+	border-radius:2px;
+	font-size:1.1em;	
+	color:#fff;
+	box-sizing:border-box;
+	cursor:pointer;
+}
+
+.profile-wrapper form[name='profileUpdate'] input[type='submit']{
+	width:62%;
+	padding:7px 0;	
+	background-color:#34495e;
+	border:0;
 	border-radius:2px;
 	font-size:1.1em;	
 	color:#fff;

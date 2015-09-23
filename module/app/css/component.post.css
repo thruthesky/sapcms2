@@ -278,7 +278,7 @@ body{
 		display:inline-block;
 		width:45px!important;
 		height:35px;
-		margin:0 5px;
+		margin:0 0 0 5px;
 		padding:10px 1px;
 		border-radius:2px;
 		border:0;
@@ -289,14 +289,16 @@ body{
 		box-sizing:border-box;
 	}		
 	
-	form.post-form input[type='submit'], form.post-form .post-cancel{
-		height:24px;
-		padding:4px 0;
-		margin:0 0 0 5px;
+	form.post-form input[type='submit']{
+		padding: 10px 0;
+		margin: 0 0 0 0;
 	}
+
 	
 	.post-cancel{
-		margin:0 0 0 -3px;
+		padding: 12px 3px;
+		margin:0;
+	    font-size: .7em; 		
 		cursor:pointer;
 	}
 	
@@ -444,7 +446,7 @@ body{
 	form.post-form .post-file-upload-button {
 		width: 17px;
 		height: 12px;
-		padding: 6px 9px;
+		padding: 12px 9px 11px 9px;
 	}
 	
 	form.post-form .row.file-upload{		
@@ -595,7 +597,7 @@ body{
 		margin-right:30px;
 	}
 	
-	.ajax-file-upload.comment-edit .primary-photo{ 
+	.ajax-file-upload.comment-edit .primary-photo, .ajax-file-upload.edit .td-primary-photo{ 
 		display:none;
 	}
 	/*eo ajax-file-upload*/
