@@ -106,7 +106,7 @@ use sap\app\App;
 				</nav>
 				<div class="do-comment">
 					<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/comment.png'/>
-					   <?php if( $post['no_vote_good'] > 0 ) echo $post['no_comment']; ?>
+					   <?php if( $post['no_comment'] > 0 ) echo $post['no_comment']; ?>
 					   Comment<?php echo $post['no_comment'] <= 1 ? "" : "s"?>
 				</div>
 				<div class="do-share">
