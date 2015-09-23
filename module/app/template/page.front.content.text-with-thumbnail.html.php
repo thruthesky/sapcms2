@@ -6,6 +6,8 @@ $fhm = post_data($image_fhm->idx_target);
 $image_news = post()->getLatestPostImage(8);
 $src_news = $image_news->urlThumbnail(45, 45);
 $news = post_data($image_news->idx_target);
+
+if( empty( $news ) ) return;
 ?>
 <div class="text-with-thumbnail">
     <a href="<?php echo $fhm->url()?>">
