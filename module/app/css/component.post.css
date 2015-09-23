@@ -592,7 +592,11 @@ body{
 	
 	/*ajax-file-upload*/
 	.ajax-file-upload.comment-edit{ 
-		margin-right:50px;
+		margin-right:30px;
+	}
+	
+	.ajax-file-upload.comment-edit .primary-photo{ 
+		display:none;
 	}
 	/*eo ajax-file-upload*/
 	

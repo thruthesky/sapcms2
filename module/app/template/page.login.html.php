@@ -1,13 +1,22 @@
 <div class="login-box">
+	<div class='logo'>		
+		<img src='<?php echo sysconfig(URL_SITE)?>/module/app/img/white_logo_sonub.png?'/>
+	</div>
     <form class="login">
-        <div>
+        <div class='input-wrapper user'>
+			<div class='sprite user'></div>
             <input type="text" name="id" value="" placeholder="User ID">
         </div>
-        <div>
+        <div class='input-wrapper password'>
+			<div class='sprite password'></div>
             <input type="password" name="password" value="" placeholder="Password">
         </div>
-        <div>
-            <input type="submit">
+        <div class='input-wrapper'>
+            <input type="submit" value="Log In">
         </div>
+		<div class='input-wrapper'>
+			<span class="link register" route="register">Create an Account</span>
+		</div>
+		<div class='forgot-password'>Forgot Password?</div>
     </form>
 </div>

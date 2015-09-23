@@ -22,8 +22,7 @@ use sap\app\App;
 
 	$date = date( "M d, Y", $post['created'] );
 
-	$post_primary_photo = data()->loadBy('user', 'primary_photo', $idx_user);
-	
+	$post_primary_photo = data()->loadBy('user', 'primary_photo', 0, $idx_user);
 	if( !empty( $post_primary_photo ) ) $post_primary_photo = $post_primary_photo[0]->urlThumbnail(140,140);
 	else $post_primary_photo = sysconfig(URL_SITE)."module/app/img/no_primary_photo.png";
 	$human_timing = App::humanTiming( $post['created'] )." ago";

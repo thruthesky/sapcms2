@@ -112,6 +112,9 @@ class App {
 
 
     public static function postCommentSubmit() {
+		$user = login();
+		if( empty( $user ) ) return Response::json(['error'=>'1001','message'=>'Please Login First!']);
+		
 		$config = post_config()->getCurrent();
         if ( empty($config) ) return Response::json(['error'=>'Wrong post configuration']);
 
@@ -140,6 +143,9 @@ class App {
 
 	
 	  public static function postSubmit(){
+		$user = login();
+		if( empty( $user ) ) return Response::json(['error'=>'1001','message'=>'Please Login First!']);
+	  
 		$config = post_config()->getCurrent();
         if ( empty($config) ) return Response::json(['error'=>'Wrong post configuration']);
 
@@ -342,7 +348,7 @@ class App {
         return ob_get_clean();
     }
     private static function pageRegister()
-    {
+    {				
         ob_start();
         include template('page.register');
         return ob_get_clean();

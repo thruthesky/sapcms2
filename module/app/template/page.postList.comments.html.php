@@ -7,12 +7,13 @@ foreach ( $comments as $comment ) {
 	$idx_user = $comment['idx_user'];
 	if( $idx_user == 0 ) $idx_user = 1;	
 	
+	$post_primary_photo = data()->loadBy('user', 'primary_photo', 0, $idx_user);
+	
+	if( !empty( $post_primary_photo ) ) $post_primary_photo = $post_primary_photo[0]->urlThumbnail(140,140);
+	else $post_primary_photo = sysconfig(URL_SITE)."module/app/img/no_primary_photo.png";
+	
     $depth = $comment['depth'];
-	/*
-    if ( $depth > 5 )  $indent = ( 3 * 12 ) + ( $depth - 4 ) * 6;
-    else  $indent = ( $depth - 1 ) * 12;//$padding = 12;
-    //$indent = ( $depth - 1 ) * $padding;
-	*/
+	
 	$date = date("d M Y",$comment['created']);
 	
 	$edit_url = url_post_comment_edit($comment['idx']);
@@ -29,7 +30,14 @@ foreach ( $comments as $comment ) {
 $files = data()->loadBy('post', $comment['idx_config'], $comment['idx']);
 $total_files = count( $files );
 ?>
-
+<table cellpadding=0 cellspacing=0 width='100%'>
+	<tr valign='top'>
+	<td>
+		<div class="primary-photo comment-photo temp">
+			<img src="<?php echo $post_primary_photo; ?>">
+		</div>
+	</td>
+	<td width='99%'>
         <div class="content">
 			<?php if ( $comment['delete'] ) { ?>
 				<div class="deleted">
@@ -88,6 +96,9 @@ $total_files = count( $files );
         <div class="comment-form" style="display:none;">
             <?php include template('page.postList.comment-form') ?>
         </div>
-
-    </div>
+				</td>
+			</tr>
+		</table>
+	</div>
 <?php } ?>
+		

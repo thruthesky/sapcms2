@@ -68,14 +68,14 @@ function initMenu() {
         var route = $this.attr('route');
         console.log('route:' + route);
         var url;
-        if ( url = $this.attr('url') ) {
+        if ( url = $this.attr('url') ) {			
             console.log('rel local');
             location.href=url;
         }
-        else if ( route == 'postList' ) {
+        else if ( route == 'postList' ) {		
             loadPage( route, $this.attr('post_id'));
         }
-        else {
+        else {			
             loadPage(route);
         }
     });
@@ -495,13 +495,24 @@ function ajaxCommentSubmit($this) {
         success: function() {
             console.log("post success:");
         },
-        complete: function(xhr) {
-            console.log("post comment submit completed!!");
-            var re = xhr.responseText;            
-			if( upload_type == 'comment_edit' ) post_edit_comment_html_ajax( re, $this );
-			else if( upload_type == 'post_edit' ) post_edit_html_ajax( re, $this );
-			else if( upload_type == 'comment' ) comment_html_ajax( re, $this );
-			else if( upload_type = 'post' ) post_html_ajax( re, $this );						
+        complete: function(xhr) {            
+			var re = xhr.responseText;
+				try{
+					var error = jQuery.parseJSON(re)
+				}
+				catch(e){
+				
+				}
+			if ( error ) {
+				alert(error.message);
+			}
+			else{
+				console.log("post comment submit completed!!");
+				if( upload_type == 'comment_edit' ) post_edit_comment_html_ajax( re, $this );
+				else if( upload_type == 'post_edit' ) post_edit_html_ajax( re, $this );
+				else if( upload_type == 'comment' ) comment_html_ajax( re, $this );
+				else if( upload_type = 'post' ) post_html_ajax( re, $this );
+			}
         }
     });
 }

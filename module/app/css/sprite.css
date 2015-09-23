@@ -1,0 +1,64 @@
+.sprite{
+	background:url('http://192.168.0.225/module/app/img/sprite.png');
+	overflow:hidden;
+}
+
+.sprite.logo{
+	width:31px;
+	height:31px;
+	margin-top:5px;
+}
+
+.sprite.ask{
+	width:19px;
+	height:27px;
+	background-position: -33px 0;
+}
+
+.sprite.forum{
+	width:33px;
+	height:27px;
+	background-position: -54px 0;
+}
+
+.sprite.news{
+	width:25px;
+	height:27px;
+	background-position: -87px 0;
+}
+
+.sprite.market{
+	width:34px;
+	height:27px;
+	background-position: -117px 0;
+}
+
+.sprite.jobs{
+	width:28px;
+	height:27px;
+	background-position: -151px 0;
+}
+
+.sprite.my_page{
+	width:28px;
+	height:27px;
+	background-position: -216px 0;
+}
+
+.sprite.menu{
+	width:35px;
+	height:27px;
+	background-position: -180px 0;
+}
+
+.sprite.user{
+	width:37px;
+	height:35px;
+	background-position: 0 -32px;
+}
+
+.sprite.password{
+	width:37px;
+	height:35px;
+	background-position: -38px -32px;
+}

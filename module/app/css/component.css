@@ -17,8 +17,10 @@
 
 
 #page-header {
-    background-color:#2c3e50;
+	height:66px;
+    background-color:#2c3e50;	
     color:white;
+	box-sizing:border-box;
 }
 #page-header a {
     color:white;
@@ -38,15 +40,22 @@
 
 #main-menu li {
     float:left;
-    width:12.5%;
+    width:16.66%;
+	padding: 10px 0 10px 0;
     overflow:hidden;
+	text-align:center;
 }
 
 #main-menu li span {
     display:inline-block;
-    padding:.6em;
+    padding:0;
     box-sizing: border-box;
     cursor:pointer;
+}
+
+#main-menu li .label {    
+	font-size:.8em;
+	white-space:nowrap;
 }
 
 #main-menu .logo {
@@ -54,6 +63,20 @@
     padding:.5em;
     box-sizing: border-box;
     cursor:pointer;
+}
+
+#main-menu li.market  {
+	display:none;
+}
+
+#main-menu li.jobs  {
+	display:none;
+}
+
+#main-menu .my_page img {
+	display:block;
+    width:100%;
+	border-radius:100%;
 }
 
 #header-search {
@@ -147,4 +170,191 @@
 .loader-endless-page {
     margin:1em 0 5em;
     text-align:center;
+}
+
+
+
+
+
+
+
+
+
+
+/*.page[route='register'] and profile*/
+.page[route='register'], .page[route='login'], .page[route='profile']{
+	background-color:#2c3e50;
+}
+
+.page[route='register'] .header #page-header, .page[route='login'] .header #page-header, .page[route='profile'] .header #page-header{
+	background-color:#34495e;
+}
+
+.register-wrapper, .profile-wrapper{	
+	text-align:center;
+	color:#fff;
+}
+
+.register-wrapper .logo{
+	padding:25px 0 40px 0;
+}
+
+.profile-wrapper .take-user-primary-photo{
+	display:inline-block;
+	width: 50%;
+    padding: 7px 0;
+	margin: 10px 0 10px 0;
+    background-color: #34495e;
+    border: 1px solid #fff;
+    border-radius: 2px;
+    font-size: 1.1em;
+    color: #fff;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.register-wrapper form[name='register'] .row .caption, .profile-wrapper form[name='profileUpdate'] .row .caption{
+	display:none;
+}
+
+.register-wrapper form[name='register'] .row .text > *, .profile-wrapper form[name='profileUpdate'] .row .text > *{
+	height:26px;
+	width:62%;
+	padding:6px 10px;
+	margin:0;
+	border:0;
+	border-bottom:1px solid #fff;
+	background-color:transparent;
+	font-size:1em;
+	color:#fff;
+	box-sizing:border-box;
+}
+
+.register-wrapper form[name='register'] .row, .profile-wrapper form[name='profileUpdate'] .row{
+	margin:0 0 15px 0;
+}
+
+.register-wrapper form[name='register'] .row:nth-child(4){
+	margin-bottom:30px;
+}
+
+.register-wrapper form[name='register'] .row .text ::-webkit-input-placeholder {
+   color: #fff;
+}
+
+.register-wrapper form[name='register'] .row .text :-moz-placeholder { /* Firefox 18- */
+   color: #fff;  
+}
+
+.register-wrapper form[name='register'] .row .text ::-moz-placeholder {  /* Firefox 19+ */
+   color: #fff;  
+}
+
+.register-wrapper form[name='register'] .row .text :-ms-input-placeholder {  
+   color: #fff;  
+}
+
+.register-wrapper form[name='register'] input[type='submit'], .profile-wrapper form[name='profileUpdate'] input[type='submit']{
+	width:62%;
+	padding:7px 0;	
+	background-color:#34495e;
+	border:1px solid #fff;
+	border-radius:2px;
+	font-size:1.1em;	
+	color:#fff;
+	box-sizing:border-box;
+	cursor:pointer;
+}
+/*eo .page[route='register']*/
+
+/*login-box*/
+.login-box .logo{
+	padding:37px 0 30px 0;
+	text-align:center;
+}
+
+.login-box .input-wrapper{
+	position:relative;
+	width:70%;
+	margin:auto;
+	overflow:hidden;
+}
+
+.login-box .input-wrapper.user{
+	margin-bottom:5px;
+	border-top-left-radius:2px;
+	border-top-right-radius:2px;
+}
+
+.login-box .input-wrapper.password{
+	margin-bottom:15px;
+	border-bottom-left-radius:2px;
+	border-bottom-right-radius:2px;
+}
+
+.login-box .sprite{	
+	position:absolute;
+	left:0;
+	top:0;
+	background-color:#e2e2e2;
+}
+
+.login-box input{	
+	height:35px;
+	width:100%;
+	padding:10px;
+	border:0;
+	box-sizing:border-box;
+}
+
+.login-box input[type='text'], .login-box input[type='password']{	
+	padding-left:40px;
+}
+
+.login-box input[type='submit'], .login-box .register{
+	display:inline-block;
+	width:100%;
+	height:34px;
+	padding:9px 0;
+	border-radius:2px;
+	background-color:#297fb8;
+	font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+	box-sizing:border-box;
+	text-align:center;
+}
+
+.login-box input[type='submit']{
+	margin-bottom:10px;
+}
+
+.login-box .register{
+	background-color:#fff;
+	color:#297fb8;
+	text-decoration:none;
+}
+
+.login-box .forgot-password{
+	padding:0 10px;
+	margin:55px 0 0 0;
+	font-size:.8em;
+	color:#fff;
+	text-align:right;
+}
+
+/*eo login-box*/
+
+@media screen and (min-width: 400px) {
+	#main-menu li {
+		width:12.5%;
+	}
+
+    #main-menu li.market  {
+        display:inline-block;
+    }
+	
+    #main-menu li.jobs  {
+        display:inline-block;
+    }
 }
