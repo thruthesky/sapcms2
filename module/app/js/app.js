@@ -543,6 +543,9 @@ function comment_html_ajax( re, $this ){
 		$parent.prepend( $(re) );
 	}
 	
+	$comment_num = $this.parents('.post').find(".do-comment .no").html();
+	$this.parents('.post').find(".do-comment .no").html( parseInt( $comment_num ) + 1 );	
+	
 	//reset the comment box
 	//console.log( $this.attr("class") );
 	if( $(re).attr('depth') > 1 ) $this.parent().hide();
