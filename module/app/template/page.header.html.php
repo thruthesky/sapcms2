@@ -1,9 +1,13 @@
 <?php
 $url_site = url_site();
 $idx_user = login('idx');
+$post_primary_photo = null;
 
-if( !empty( $idx_user ) ) $post_primary_photo = "<img class='header-primary-photo' src='".data()->loadBy('user', 'primary_photo', 0, $idx_user)[0]->urlThumbnail(40,40)."'/>";
-else $post_primary_photo = null;
+if( !empty( $idx_user ) ){
+	$user_photo = data()->loadBy('user', 'primary_photo', 0, $idx_user);	
+	if( !empty( $user_photo ) ) $post_primary_photo = "<img class='header-primary-photo' src='".$user_photo[0]->urlThumbnail(40,40)."'/>";
+}
+
 ?>
 <div id="page-header">
     <ul id="main-menu">
