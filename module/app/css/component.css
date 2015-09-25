@@ -44,6 +44,7 @@
 	padding: 10px 0 10px 0;
     overflow:hidden;
 	text-align:center;
+	cursor:pointer;
 }
 
 #main-menu li span {
@@ -114,6 +115,7 @@
 /** PANEL */
 #panel-menu {
     position:fixed;
+	top:66px;/*should change if header height changes*/
     z-index:999;
     display:none;
 	border:1px solid #fff;
@@ -174,9 +176,6 @@
     margin:1em 0 5em;
     text-align:center;
 }
-
-
-
 
 
 
@@ -362,7 +361,7 @@
 
 @media screen and (min-width: 400px) {
 	#main-menu li {
-		width:12.5%;
+		width:12.5%;		
 	}
 
     #main-menu li.market  {

@@ -112,6 +112,16 @@ function initPanel() {
 
     $body.on('click', ".show-panel", openPanel);
     $body.on('click', ".close-panel", closePanel);
+		
+	/*added by benjamin*/
+	$("body").on("click",".page .content",function(){
+		var $this = $(this);
+		if( getMenu().css('display') == 'block' ){
+			closePanel();
+		}
+	});
+	
+	
     /*
     function togglePanel() {
         if ( getMenu().css('display') == 'none' ) openPanel();
@@ -135,7 +145,7 @@ function initPanel() {
         );
     }
     function openPanel() {
-        if ( isPanelOpen() ) return;
+        if ( isPanelOpen() ) return closePanel();
         var $menu = getMenu();
         $menu.css({
             'right': 0 - $menu.width()
@@ -467,12 +477,7 @@ $(function(){
                 //console.log("height:"+$this.height());
             }
         }
-    });
-	
-	$("body").on("click",".post-form-content", function(){
-		$this = $(this);
-		$this.height("100px");
-	});
+    });		
 });
 
 /****** COMMENT UPLOAD */
@@ -595,7 +600,7 @@ $(function(){
 });
 
 function cancelEdit(){
-	$this = $(this);
+	var $this = $(this);
 	if( $this.attr('type') == 'comment' ) $parent = $this.parents("div.comment");
 	else $parent = $this.parents(".post");
 	console.log( $this.attr('type') );
@@ -630,15 +635,17 @@ function ajaxPostGetEditForm(){
 }
 
 function ajaxPostGetCommentEditForm(){	
-	$this = $(this)
+	var $this = $(this);
 	idx = $this.attr("idx");
 	no = $(".ajax-file-upload").length - $(".ajax-file-upload.post-form").length;	
 	url = url_server + "/app/getPostCommentEditForm?idx=" + idx + "&session_login=" + $session_id + "&no=" + no;
 	console.log( url );
 	$.ajax(url)
             .done(function(re){
-                try {					
+                try {			
 					if( $this.parents(".comment").find("form.ajax-file-upload.comment-edit").length ) return;
+					console.log( $this.attr("class") );
+					console.log( $this.parents(".comment").length );
 					autoscroll = $this.parents(".comment").offset().top - 150;
 					$("body,html").animate({scrollTop:autoscroll}, '500', 'swing', function() {});
 					
@@ -648,7 +655,8 @@ function ajaxPostGetCommentEditForm(){
 					getEditDisplayFiles( idx, no );
                 }
                 catch (e) {
-					alert( "Error! [ code here ] [ message here ]" );
+					alert( e );
+					//alert( "Error! [ code here ] [ message here ]" );
                 }
             })
             .fail(function(){
@@ -787,7 +795,7 @@ $(function(){
 });
 
 function editFileDelete(){
-	$this = $(this);
+	var $this = $(this);
 	idx = $this.parent().attr("idx");
 	url = url_server + "/file/delete?idx="+idx+"&session_login="+$session_id;
 	console.log( url );
@@ -812,7 +820,7 @@ $(function(){
 });
 
 function focusCommentCursor(){
-	$this = $(this);
+	var $this = $(this);
 	$this.parents(".post").find(".comment-form-content").click();
 	$this.parents(".post").find(".comment-form-content").focus();
 }
@@ -897,7 +905,7 @@ function cameraSuccess(fileURI) {
     var win = function (r) {
         console.log("Code = " + r.responseCode);
         console.log("Response = " + r.response);
-        console.log("Sent = " + r.bytesSent);
+        console.log("Sent = " + r.bytesSent);		
         var data = r.response;
 
         clearCache();
@@ -906,18 +914,20 @@ function cameraSuccess(fileURI) {
         for ( var i in re ) {
             var file = re[i];
             if ( file.error ) {
-                alert(file.message);
+                alert(file.message);				
             }
-			if( photoOptions.type != 'primary_photo' ) delete_button = "<div class='delete' title='Delete this file'>X</div>";
 			else {
-				$("form[name='profileUpdate'] img").remove();
-				delete_button = '';
-			}
-			html = "<div idx='" + file.idx + "' class='file image'><img src='"+file.urlThumbnail+"'>" + delete_button + "</div>";
-            if ( photoOptions.add ) $(photoOptions.selector).append(html);
-            else $(photoOptions.selector).html(html);
+				if( photoOptions.type != 'primary_photo' ) delete_button = "<div class='delete' title='Delete this file'>X</div>";
+				else {
+					$("form[name='profileUpdate'] img").remove();
+					delete_button = '';
+				}
+				html = "<div idx='" + file.idx + "' class='file image'><img src='"+file.urlThumbnail+"'>" + delete_button + "</div>";
+				if ( photoOptions.add ) $(photoOptions.selector).append(html);
+				else $(photoOptions.selector).html(html);
 
-            if ( typeof photoOptions.callback == 'function' ) photoOptions.callback(file);
+				if ( typeof photoOptions.callback == 'function' ) photoOptions.callback(file);
+			}
         }
     };
 
@@ -1094,7 +1104,7 @@ $(function(){
 });
 
 function showAllContent(){
-	$this = $(this);
+	var $this = $(this);
 	$this.hide();
 	$this.parent().find(".text-preview").hide();
 	$this.parent().find(".all-text").show();
