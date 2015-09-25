@@ -450,8 +450,8 @@ $(function(){
     $("body").on("click","form[name='comment']", function(){
         var $this = $(this);
         
-        $this.find('textarea').css('height', '35');
-        $this.find('.post-file-upload-button').css('padding', '11px 8px');
+        /*$this.find('textarea').css('height', '35');
+        $this.find('.post-file-upload-button').css('padding', '11px 8px');*/
     });
 
     $("body").on("click", ".comment-reply-button", function(){
