@@ -7,4 +7,11 @@ class Message extends Entity {
         parent::__construct(MESSAGE_TABLE);
     }
 
+    public function send() {
+        return $this->create();
+    }
+
+
+    
+
 }
