@@ -39,8 +39,8 @@
 	background-position: -151px 0;
 }
 
-.sprite.my_page{
-	width:28px;
+.sprite.my_page, .sprite.profile{
+	width:27px;
 	height:27px;
 	background-position: -216px 0;
 }

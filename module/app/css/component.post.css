@@ -150,25 +150,39 @@ body{
 .file-display .file {
     position:relative;
     float:left;
-	padding:2px;
+	width:25%;
+	margin-bottom:5px;
+	/*padding:0 5px 0 0;*/
 	box-sizing:border-box;
 }
 
-.file-display .file .delete {
-    position:absolute;
-    top:3px;
-    right:3px;
-    padding:3px 6px;
-    border-radius:2px;
+.file-display .file:nth-child(4n+1) { padding:0 7.5px 0 0;}
+.file-display .file:nth-child(4n+2){ padding:0 5px 0 2.5px ;}
+.file-display .file:nth-child(4n+3){ padding:0 2.5px 0 5px;}
+.file-display .file:nth-child(4n+4) { padding:0 0 0 7.5px;}
+/*
+.file-display .file:nth-child(odd) {
+	padding:0 5px 0 0;	
+}
+
+.file-display .file:nth-child(even) {
+	padding:0 0 0 5px;
+}
+*/
+.file-display .file .delete {        
+    padding: 2px 9px 3px 10px;    
     box-sizing: border-box;
-    background-color:red;
-    color:white;
+    background-color: red;
+    font-size: 1.1em;
+    color: white;
     cursor: pointer;
+	text-align:center;
 }
 
 .file-display img {
-    width:auto;
-    max-height: 6em;
+	display:block;
+    width:100%;
+    /*max-height: 6em;*/
 }
 
 .file-display .file.attachment {
@@ -179,7 +193,9 @@ body{
     color:white;
 }
 
-
+form .file-display{
+	margin-top:10px;
+}
 /************ COMMENT */
 .comment-form textarea {
     margin:0;
@@ -192,6 +208,10 @@ body{
 
 .comment-form form {
     position:relative;
+}
+
+.comment-form form .buttons{
+    text-align:right;
 }
 
 .file-upload {
@@ -268,16 +288,20 @@ body{
 
 	textarea.post-form-content,.comment-form textarea.comment-form-content{
 		width:100%;
-		height:35px;
+		height:45px;
 		border:1px solid #70b7ff;		
 		resize:none;
 		box-sizing:border-box;
 	}	
 	
+	textarea.post-form-content{
+		height:100px;
+	}
+	
 	form.post-form input[type='submit'],.comment-form input[type='submit'],.post-cancel{
 		display:inline-block;
 		width:45px!important;
-		height:35px;
+		height:45px;
 		margin:0 0 0 5px;
 		padding:10px 1px;
 		border-radius:2px;
@@ -296,7 +320,7 @@ body{
 
 	
 	.post-cancel{
-		padding: 12px 4px;
+		padding: 17px 4px;
 		margin:0;
 	    font-size: .7em; 		
 		cursor:pointer;
@@ -309,8 +333,8 @@ body{
 	}
 
 	.primary-photo.comment-photo{
-		width:35px;
-		height:35px;
+		width:45px;
+		height:45px;
 		margin:0 10px 0 0;	
 	}
 
@@ -433,28 +457,28 @@ body{
 		display:block;
 		height:14px;
 		width:19px;
-		padding:11px 8px;
+		padding: 15px 13px 14px 13px;
 		/*margin:0 0 0 5px;*/
 		border-radius:2px;
 		background-color:#95a5a6;
 	}
 	
 	.comment-form .post-file-upload-button {
-		margin:0 0 0 5px;
+		/*margin:0 0 0 5px;*/
+	}
+	
+	.comment-form .comment-edit .td-primary-photo{
+		display:none;
 	}
 	
 	.comment-form .comment-edit .post-file-upload-button {
 		margin:0;
 	}
 	
-	.comment-form .comment-edit .buttons{
-		text-align:right;
-	}
-	
 	form.post-form .post-file-upload-button {
 		width: 17px;
 		height: 12px;
-		padding: 12px 9px 11px 9px;
+		padding: 17px 17px 16px 16px;
 	}
 	
 	form.post-form .row.file-upload{		
@@ -575,30 +599,6 @@ body{
 		text-decoration:none;
 	}
 	/* EO Comment Commands */
-	
-	/*edit-files*/
-	.edit-files > div {
-		display:inline-block;
-		position:relative;		
-		width:25%;
-	}
-	
-	.edit-files > div > img{
-		width:100%;
-	}
-	
-	.edit-files > div > .delete {
-		position:absolute;
-		right:3px;
-		top:3px;
-		padding:3px 5px;
-		border-radius:2px;
-		background-color:red;
-		font-size:.8em;
-		color:#fff;	
-		cursor:pointer;
-	}
-	/*EO edit-files*/
 	
 	/*ajax-file-upload*/
 	.ajax-file-upload.comment-edit{ 

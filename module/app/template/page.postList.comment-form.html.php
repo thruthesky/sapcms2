@@ -33,7 +33,7 @@ else{
     <?php echo html_hidden_post_variables(); ?>
     <table width="100%" cellpadding="0" cellspacing="0">
             <tr valign="top">
-				<td width="45">                    
+				<td class='td-primary-photo' width="45">                    
 					<?php if( !empty( $url_primary_photo ) ){?>
 						<div class='primary-photo comment-photo'><img src='<?php echo $url_primary_photo; ?>'/></div>
 					<?php } else {?>
@@ -43,20 +43,9 @@ else{
 				<td width="99%">
                     <textarea class='comment-form-content' name="content"><?php if( !empty( $comment_edit['content'] ) ) echo $comment_edit['content']; ?></textarea>                
                 </td>
-				<?php if( empty( $edit_mode ) ) {?>
-					<td width="40">
-						<img class="post-file-upload-button" src="<?php echo sysconfig(URL_SITE)?>module/app/img/camera_white_temp.png">
-						<input type="hidden" name="fid" value="">
-					</td>
-					<td width="<?php echo $buttons_width; ?>">
-						<div style='width:<?php echo $buttons_width; ?>px'>
-							<input class="form-comment-add-submit" type="submit" value="POST">
-							<?php if( !empty( $edit_mode ) ) {?>
-								<div class='post-cancel' type='comment'>Cancel</div>
-							<?php }?>
-						</div>
-					</td>
-				<?php } else {?>
+			</tr>
+			<tr>
+				<td colspan='2'>
 					<table width="100%" cellpadding="0" cellspacing="0">
 						<tr>
 							<td width="40">
@@ -73,7 +62,7 @@ else{
 							</td>
 						</tr>
 					</table>
-				<?php }?>
+				</td>
             </tr>
         </table>
         <div class='file-display files'></div>
