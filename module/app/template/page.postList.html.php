@@ -79,7 +79,7 @@ use sap\app\App;
 					echo "<span class='text-preview'>".substr( $post['content'], 0, 150 )."</span> <span class='see-more'>...See More</span><div class='all-text'>".$post['content']."</div>";
 				}
 				else{
-					$post['content'] ;
+					echo $post['content'];
 				}
 				
 				?>

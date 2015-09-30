@@ -222,6 +222,10 @@ form .file-display{
     /*position:absolute;*/
 }
 
+.edit .show-on-click, .comment-edit .show-on-click{
+    display:block;
+}
+
 .file-upload .caption {
     display:none;
 }
@@ -292,17 +296,13 @@ form .file-display{
 		border:1px solid #70b7ff;		
 		resize:none;
 		box-sizing:border-box;
-	}	
+	}		
 	
-	textarea.post-form-content{
-		height:100px;
-	}
-	
-	form.post-form input[type='submit'],.comment-form input[type='submit'],.post-cancel{
+	form.post-form input[type='submit'],.comment-form input[type='submit'],.post-cancel{		
 		display:inline-block;
 		width:45px!important;
 		height:45px;
-		margin:0 0 0 5px;
+		margin:0 0 0 0;
 		padding:10px 1px;
 		border-radius:2px;
 		border:0;
@@ -311,6 +311,7 @@ form .file-display{
 		font-weight:bold;
 		color:#fff;	
 		box-sizing:border-box;
+		cursor:pointer;
 	}		
 	
 	form.post-form input[type='submit']{
@@ -471,23 +472,19 @@ form .file-display{
 		display:none;
 	}
 	
-	.comment-form .comment-edit .post-file-upload-button {
-		margin:0;
-	}
-	
-	form.post-form .post-file-upload-button {
+	form .post-file-upload-button {
+		float:left;
+		display:inline-block;
 		width: 17px;
 		height: 12px;
-		padding: 17px 17px 16px 16px;
+		padding: 17px 14px 16px 14px;
+		margin-right:5px;
+		cursor:pointer;
 	}
 	
 	form.post-form .row.file-upload{		
 		height:24px;
 		width:36px;
-	}
-	
-	form.post-form .buttons{
-		text-align:right;
 	}
 
 	.file-upload .caption {

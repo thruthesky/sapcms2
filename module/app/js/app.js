@@ -35,8 +35,8 @@ $(function() {
 
     //setTimeout(callback_offline, 2000);
     //setTimeout(callback_online, 4000);
-    //loadPage('front_page');
-    loadPage('register');
+    loadPage('front_page');
+    //loadPage('register');
     //loadPage('postList', 'test');
     //loadPage('login');
     //loadPage('profile');
@@ -146,16 +146,80 @@ function initPanel() {
         );
     }
     function openPanel() {
-        if ( isPanelOpen() ) return closePanel();
+        if ( isPanelOpen() ) return closePanel();		
         var $menu = getMenu();
+		
+		$menu.css('position','fixed').css('top',$('#page-header').height());
+		
         $menu.css({
             'right': 0 - $menu.width()
         });
         $menu.show();
         $menu.animate({
             'right': 0
-        });
+        });;
     }
+	/*
+	var old_scroll = $(window).scrollTop();
+	$(window).scroll(function(){
+		if ( isPanelOpen() ) check_panel_position();
+		//console.log("scroll");
+		old_scroll = $(window).scrollTop();
+	});
+	
+	function check_panel_position(){
+		var $menu = getMenu();
+		
+		menu_height = $menu.height();
+		window_height = $(window).height();
+		
+		if( $menu.css("position") == 'absolute' ){
+			//current_top = $menu.css("top");
+			//current_top = current_top.replace("px","");
+			
+			if( old_scroll < $(window).scrollTop() ){
+				console.log( "SCROLLED DOWN" );
+				//console.log( $menu.offset().top );
+				//console.log( "Window scroll top " + $(window).scrollTop() );
+				//console.log( "Window height " + $(window).height() );
+				window_total_top = $(window).height() + $(window).scrollTop();
+				menu_total_top = $menu.height() + $menu.offset().top;
+				console.log( $menu.offset().top );
+				console.log("compare here " + menu_total_top + " - " + window_total_top );
+				if( window_total_top > menu_total_top ){
+					$menu.css('position','fixed').css('top', -( menu_height - window_height ));
+				}
+			}
+			else{
+				console.log( "SCROLLED UP" );
+			}
+		}
+		else if( $menu.css("position") == 'fixed' ){
+			current_top = $menu.css("top");
+			current_top = current_top.replace("px","");
+			
+			if( old_scroll < $(window).scrollTop() ){
+				console.log( "SCROLLED DOWN" );												
+				if( current_top < 0 ) {
+					console.log("LESS");
+					return;
+				}
+			}
+			else{
+				console.log( "SCROLLED UP" );						
+				if( current_top > 0 ) {
+					console.log("MORE");
+					return;
+				}
+			}	
+		
+			if( menu_height + $('#page-header').height() > window_height ){				
+				$menu.css('position','absolute').css('top',$(window).scrollTop());
+			}
+		
+		}
+	}
+	*/
 }
 
 
@@ -460,6 +524,11 @@ $(function(){
         $(this).parents(".comment").find('.comment-form textarea').focus();
     });
 	
+	$("body").on("click", ".post-form-content, .comment-form-content", function(){
+		$this = $(this);
+		$this.height('100px');
+		$this.parents('form').find(".show-on-click").show();
+	});
 	
 	var countEnter = [];
     $("body").on("keydown",".comment-form-content, .post-form-content",function(e) {
