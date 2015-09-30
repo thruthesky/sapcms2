@@ -1,10 +1,14 @@
 <?php
 //limit temp
 use sap\app\App;
+
+if( !empty( $view_post ) ) $class = ' view';
+else $class = null;
 ?>
 
-<div class="post-list">
-<?php foreach ( $posts as $post ) { 
+<div class="post-list<?php echo $class; ?>">
+<?php 
+foreach ( $posts as $post ) { 
 
 	$url_edit = url_post_edit($post['idx']);//"#";
 	$url_delete = "#";

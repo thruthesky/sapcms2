@@ -6,9 +6,9 @@ if ( empty($posts) ) return;
     <?php
     foreach ( $posts as $post ) {
 		$post_image = $post->getImage();
-		if( !empty( $post_image ) ) $src = $post->getImage()->urlThumbnail(400,140);		
-        ?>
-        <a href="<?php echo $post->url()?>">
+		if( !empty( $post_image ) ) $src = $post->getImage()->urlThumbnail(400,140);	
+        ?>        
+        <div class='link' route='view_post' idx='<?php echo $post->idx?>''>
             <div class="row">
                 <div class="photo">
                     <img src="<?php echo $src?>">
@@ -48,6 +48,6 @@ if ( empty($posts) ) return;
                     </div>
                 </div>
             </div>
-        </a>
+        </div>
     <?php } ?>
 </div>

@@ -8,7 +8,11 @@
     background-color:#cdcdcd;
 }
 .footer {
-    background-color:#cdcdcd;
+	padding:10px;
+	margin-top:20px;
+    background-color:#34495e;
+	color:#fff;
+	text-align:center;
 }
 
 
@@ -123,7 +127,7 @@
     background-color:white;
     color:white;
 	box-sizing:border-box;
-	z-index:0;
+	z-index:1;
 }
 #panel-menu ul {
     list-style: none;
@@ -214,6 +218,10 @@
     color: #fff;
     box-sizing: border-box;
     cursor: pointer;
+}
+
+.register-wrapper form[name='register'] input:focus{
+	outline:0;
 }
 
 .register-wrapper form[name='register'] .row .caption, .profile-wrapper form[name='profileUpdate'] .row .caption{
@@ -307,15 +315,20 @@
 	border-bottom-right-radius:2px;
 }
 
-.login-box .sprite{	
+.login-box .bg-wrapper{
 	position:absolute;
 	left:0;
 	top:0;
+	padding:5px;
 	background-color:#e2e2e2;
 }
 
+.login-box .sprite{	
+	
+}
+
 .login-box input{	
-	height:35px;
+	height:45px;
 	width:100%;
 	padding:10px;
 	border:0;
@@ -323,21 +336,21 @@
 }
 
 .login-box input[type='text'], .login-box input[type='password']{	
-	padding-left:40px;
+	padding-left:55px;
 }
 
 .login-box input[type='submit'], .login-box .register{
-	display:inline-block;
-	width:100%;
-	height:34px;
-	padding:9px 0;
-	border-radius:2px;
-	background-color:#297fb8;
-	font-size: 1em;
+	display: inline-block;
+    width: 100%;
+    height: 40px;
+    padding: 11px 0;
+    border-radius: 2px;
+    background-color: #297fb8;
+    font-size: 1.1em;
     font-weight: bold;
     color: #fff;
-	box-sizing:border-box;
-	text-align:center;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 .login-box input[type='submit']{

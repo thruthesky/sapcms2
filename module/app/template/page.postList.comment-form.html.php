@@ -41,7 +41,7 @@ else{
 				<?php }?>
 			</td>
 			<td width="99%">
-				<textarea class='comment-form-content' name="content"><?php if( !empty( $comment_edit['content'] ) ) echo $comment_edit['content']; ?></textarea>                
+				<textarea class='comment-form-content' name="content" placeholder='Add a comment.'><?php if( !empty( $comment_edit['content'] ) ) echo $comment_edit['content']; ?></textarea>                
 			</td>
 		</tr>					
 	</table>
