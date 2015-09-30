@@ -226,62 +226,59 @@ class smsgate {
      *
      */
     public static function sender_load_sms_from_queue() {
-        $re = [];
-		
-		$current_time = date( "Hi", time() );
-		
-		if( $current_time < 700 || $current_time > 2200 ){
-			$re['error'] = -410;
-            $re['message'] = 'Only send Messages between 7am to 10 pm. Time now is [ '.date( "H:i", time() ).' ] - stop sending message for now...';
-			
-		}
-		else{
-			//$sms = entity(QUEUE)->query("ORDER BY priority DESC, stamp_next_send ASC, idx ASC");
-			//current time() should be less than stamp_next_send		
+			$re = [];		
 			$sms = entity(QUEUE)->query("stamp_next_send <= '".time()."' ORDER BY priority DESC, stamp_next_send ASC, idx ASC");
 
 			if ( $sms ) {
-				$sms_tries = $sms->get('no_send_try');
-				$idx = $sms->get('idx');
-				$number = $sms->get('number');
-
-				if( $sms_tries < 8 ){//including 0 will be a  total of 9 tries...
-					$count = entity(QUEUE)->count();
-					$re = [
-						'error' => 0,
-						'idx' => $idx,
-						'number' => $number,
-						'message' => self::getMessage($sms->get('idx_message')),
-						'total_record' => $count
-					];
-					$sms
-						//->set('stamp_next_send', time() + 60 * 10)
-						->set('stamp_next_send', time() + self::$send_delay[ $sms_tries ] )
-						->set('no_send_try', $sms_tries + 1)
-						->set('sender', request('sender'))
-						->save();
-				}
-				else {
+				$current_time = date( "Hi", time() );
+				//UTC time of 1400 ~ 2300 with priority of <= 0 will not receive messages...
+				if( ( $current_time < 2300 && $sms->get('priority') <= 0 ) && ( $current_time > 1400 && $sms->get('priority') <= 0 ) ){
 					$re['error'] = -410;
-					$re['message'] = 'Reached the max send attempts for number [ '.$number.'. ] Moving sms_data idx [ '.$idx.' ] to sms_fail';
-					entity(SMS_FAILURE)
-						->set('number', $sms->get('number'))
-						->set('priority', $sms->get('priority'))
-						->set('no_send_try', $sms->get('no_send_try'))
-						->set('no_fail', $sms->get('no_fail'))
-						->set('sender', $sms->get('sender'))
-						->set('message', $sms->get('message'))
-						->set('reason', $re['message'])
-						->set('tag', $sms->get('tag'))
-						->save();
-					$sms->delete();
+					$re['message'] = 'Only send Messages between 7am to 10 pm. Time now is [ '.date( "H:i", time() ).' ] - stop sending message for now [ Except for messages with priority of > 0 ]...';				
+				}
+				else{
+					$sms_tries = $sms->get('no_send_try');
+					$idx = $sms->get('idx');
+					$number = $sms->get('number');
+
+					if( $sms_tries < 8 ){//including 0 will be a  total of 9 tries...
+						$count = entity(QUEUE)->count();
+						$re = [
+							'error' => 0,
+							'idx' => $idx,
+							'number' => $number,
+							'message' => self::getMessage($sms->get('idx_message')),
+							'total_record' => $count
+						];
+						$sms
+							//->set('stamp_next_send', time() + 60 * 10)
+							->set('stamp_next_send', time() + self::$send_delay[ $sms_tries ] )
+							->set('no_send_try', $sms_tries + 1)
+							->set('sender', request('sender'))
+							->save();
+					}
+					else {
+						$re['error'] = -410;
+						$re['message'] = 'Reached the max send attempts for number [ '.$number.'. ] Moving sms_data idx [ '.$idx.' ] to sms_fail';
+						entity(SMS_FAILURE)
+							->set('number', $sms->get('number'))
+							->set('priority', $sms->get('priority'))
+							->set('no_send_try', $sms->get('no_send_try'))
+							->set('no_fail', $sms->get('no_fail'))
+							->set('sender', $sms->get('sender'))
+							->set('idx_message', $sms->get('idx_message'))
+							->set('reason', $re['message'])
+							->set('tag', $sms->get('tag'))
+							->save();
+						$sms->delete();
+					}
 				}
 			}
 			else {
 				$re['error'] = -409;
 				$re['message'] = 'No more data';
 			}
-		}
+		
         Response::json($re);
     }
 

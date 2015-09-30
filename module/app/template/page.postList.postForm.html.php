@@ -4,11 +4,11 @@ $url_primary_photo = login() ? login()->getPrimaryPhotoUrlThumbnail(80,80) : nul
 if( !empty( $edit_mode ) ){
 	$class=' edit';
 	$no_comment_form = $no;
-	$buttons_width = '95';
+	$buttons_width = '145';
 }
 else {
 	$class = '';
-	$buttons_width = '45';
+	$buttons_width = '95';
 }
 
 if( empty( $no_comment_form ) ) $no_comment_form = 0;
@@ -36,16 +36,14 @@ if( empty( $no_comment_form ) ) $no_comment_form = 0;
                 </td>                
             </tr>
         </table>
-		<table width="100%" cellpadding="0" cellspacing="0">
-			<tr valign='top'>				
-				<td>
-					<img class="post-file-upload-button" src="<?php echo sysconfig(URL_SITE)?>module/app/img/camera_white_temp.png">
-				</td>
-				<td width='90%'>
+		<table class='show-on-click' width="100%" cellpadding="0" cellspacing="0">
+			<tr valign='top'>								
+				<td width='99%'>
 					&nbsp;
 				</td>
-				<td width="10%">
+				<td width="1%">
 					<div style='width:<?php echo $buttons_width; ?>px'>
+						<img class="post-file-upload-button" src="<?php echo sysconfig(URL_SITE)?>module/app/img/camera_white_temp.png">
 						<input class="form-comment-add-submit" type="submit" value="POST">
 						<?php if( !empty( $edit_mode ) ) {?>
 							<div class='post-cancel' type='post'>Cancel</div>
