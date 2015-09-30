@@ -23,3 +23,5 @@ Route::add('/app/post/edit/comment/submit', 'app\\App\\PostEditCommentSubmit');
 
 Route::add('/app/post/getPostFiles', 'app\\App\\getPostFiles');
 
+Route::add('/app/view_post/*', 'app\\App\\viewPost');
+

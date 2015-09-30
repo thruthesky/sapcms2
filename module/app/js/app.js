@@ -66,14 +66,18 @@ function initMenu() {
     $body.on('click', ".link", function() {
         var $this = $(this);
         var route = $this.attr('route');
+
         console.log('route:' + route);
         var url;
         if ( url = $this.attr('url') ) {			
             console.log('rel local');
             location.href=url;
         }
-        else if ( route == 'postList' ) {		
+        else if ( route == 'postList' ) {
             loadPage( route, $this.attr('post_id'));
+        }
+        else if ( route == 'view_post' ) {			
+            loadPage( route, $this.attr('idx'));
         }
         else {			
             loadPage(route);
@@ -302,10 +306,10 @@ function getCurrentPageContent() {
     return getCurrentPage().find('.ui-content');
 }
 
-function showPage(id, html) {
+function showPage(id, html) {	
     prevPageID = currentPageID;
     currentPageID = id;
-    //$('#' + prevPageID).remove();
+    //$('#' + prevPageID).remove();	
     $(".page").remove();
     $('body').append(html);
     $(window).scrollTop(0);
@@ -335,9 +339,15 @@ function loadPage(route, post_id) {
     if ( post_id ) url += '/' + post_id;
     console.log("open: " + url);
     showLoader();
+	
+	var data = {};
+	data.session_login = $session_id;
+	if( route == 'view_post' ) data.idx = post_id;
+	else data.post_id = post_id;
+	
     $.ajax({
         'url': url,
-        'data' : { 'session_login': $session_id, 'post_id': post_id }
+        'data' : data
     })
         .done(function(html) {			
             showPage(route, html);

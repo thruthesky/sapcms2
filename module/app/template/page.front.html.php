@@ -1,7 +1,12 @@
 <?php
 add_css();
 $top_banner = post()->getLatestPostImage();
+
 if ( empty($top_banner) ) return;
+$top_post = post_data()->load( $top_banner->idx_target );
+$top_idx = null;
+if( !empty( $top_post ) ) $top_idx = $top_post->idx;
+
 $src_top_banner = $top_banner->urlThumbnail(400, 200);
 $top = post_data($top_banner->idx_target);
 if ( empty($top) ) return;
@@ -12,12 +17,17 @@ $images = post()->getLatestPostImages(1, 6, 'test');
 if ( $images ) {
     foreach ( $images as $image ) {
         $src = $image->urlThumbnail(120,120);
-        $items .= "<img src='$src'>";
+		
+		$post = post_data()->load( $image->idx_target );
+		$idx = null;
+		if( !empty( $post ) ) $idx = $post->idx;		
+		
+        $items .= "<img class='link' route='view_post' idx='$idx' src='$src'>";
     }
 }
 ?>
 <div class="front-top-banner">
-    <span><img src="<?php echo $src_top_banner ?>"></span>
+    <span class='link' route='view_post' idx='<?php echo $top_idx; ?>'><img src="<?php echo $src_top_banner ?>"></span>
 </div>
 <div class="front-content">
     <table width="100%" cellpadding="0" cellspacing="0">

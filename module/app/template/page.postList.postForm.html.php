@@ -32,7 +32,7 @@ if( empty( $no_comment_form ) ) $no_comment_form = 0;
 					<?php }?>
                 </td>
 				<td width="99%">
-                    <textarea class='post-form-content' name="content"><?php if( !empty( $post['content'] ) ) echo $post['content']; ?></textarea>
+                    <textarea class='post-form-content' name="content" placeholder="Write a post."><?php if( !empty( $post['content'] ) ) echo $post['content']; ?></textarea>
                 </td>                
             </tr>
         </table>

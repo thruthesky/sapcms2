@@ -1,9 +1,14 @@
 body{
 	background-color:#f7f7f7;
+	line-height:100%;
 }
 
 .post-list {
     margin:.2em 10px;
+}
+
+.post-list.view {
+	
 }
 
 .post-list .post {
@@ -293,10 +298,15 @@ form .file-display{
 	textarea.post-form-content,.comment-form textarea.comment-form-content{
 		width:100%;
 		height:45px;
+		padding:5px 10px;
 		border:1px solid #70b7ff;		
 		resize:none;
 		box-sizing:border-box;
 	}		
+	
+	textarea.post-form-content{
+		height:100px;
+	}
 	
 	form.post-form input[type='submit'],.comment-form input[type='submit'],.post-cancel{		
 		display:inline-block;

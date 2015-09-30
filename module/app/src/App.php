@@ -33,7 +33,8 @@ class App {
 
 
     public static function pageFooter() {
-        return "<h1>필고닷컴</h1>";
+        return "All Rights Reserved © 2015";
+        //return "필고닷컴";
     }
 
     public static function frontPage() {
@@ -44,7 +45,24 @@ class App {
             'content' => self::pageContentFront(),
             'footer' => self::pageFooter(),
         ]);
-        echo $page;
+        echo $page;		
+    }
+	
+	/*
+	requires class='link', route='view_post', and idx = '$post_idx';
+	//sample
+	<div class='link' route='view_post' idx='$idx'>
+	*/	
+    public static function viewPost() {	
+		$view_item = self::pageContentPostView( request('idx') );				
+        $page = self::createPage([
+            'id' => 'postList',
+            'header' => self::pageHeader(),
+            'panel' => self::pagePanel(),
+            'content' => $view_item,
+            'footer' => self::pageFooter(),
+        ]);
+        echo $page;	
     }
 
     public static function offline() {
@@ -108,6 +126,24 @@ class App {
         include template('page.postList.postForm');
         include template('page.postList');
         return ob_get_clean();
+    }
+	
+    private static function pageContentPostView($idx)
+    {
+		$view_post = post_data()->load( $idx );
+		$post_config_id = post_config()->load( $view_post->idx_config );
+		if( !empty( $post_config_id ) ) $post_config_id = $post_config_id->id;
+		
+		if( !empty( $view_post ) ){
+			$posts[] = $view_post->fields;
+			ob_start();			
+			include template('page.postList');
+			echo self::pageContentPostList($post_config_id);
+			return ob_get_clean();
+		}
+		else{
+			return null;
+		}
     }
 
 
