@@ -25,6 +25,7 @@ if ( ! entity(BULK)->tableExists() ) {
         ->createTable()
         ->add('name', 'varchar', '64')
         ->add('message', 'varchar')
+        ->add('number', 'varchar','32')
         ->unique('name');
 }
 
