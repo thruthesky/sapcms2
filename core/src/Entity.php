@@ -23,6 +23,7 @@ class Entity {
      *
      * @return string - If $work_table is null, then it returns a string with table name.
      *
+     * @Warning DO NOT USE $this->table !! Use $this->table()
      */
     final public function table() {
         return DATABASE_PREFIX . $this->table;
@@ -574,7 +575,7 @@ class Entity {
      */
     public function queries($cond=null) {
         $objects = [];
-        $rows = Database::load()->rows($this->table,$cond,'idx');
+        $rows = Database::load()->rows($this->table(),$cond,'idx');
         if ( $rows ) {
             foreach($rows as $row) {
                 $objects[] = post_data($row['idx']);
