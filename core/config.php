@@ -19,6 +19,7 @@ define('PATH_ERROR_LOG', PATH_DATA . '/error.log');
 
 
 define('PATH_SQLITE_DATABASE', PATH_DATA . '/sapcms.sqlite');
+define('DATABASE_PREFIX', 's2_');
 
 
 define('PATH_CONFIG', PATH_DATA . '/config');
@@ -41,3 +42,5 @@ define('DEFAULT_TIMEZONE', "UTC");
 
 
 date_default_timezone_set(DEFAULT_TIMEZONE);
+
+

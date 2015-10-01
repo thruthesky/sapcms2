@@ -132,6 +132,8 @@ class Database extends \PDO {
 
 
 
+
+
     public function createTable($table) {
         $this->table($table);
         if ( $this->type == 'mysql' ) {
@@ -191,7 +193,14 @@ class Database extends \PDO {
         }
         catch (\PDOException $e)
         {
-            die($e->getMessage());
+            if ( DEVELOPMENT_MODE ) echo "SQL: $q<hr>";
+            echo  $e->getMessage() . "<hr>" ;
+            if ( DEVELOPMENT_MODE ) {
+                echo "<pre>";
+                debug_print_backtrace();
+                echo "</pre>";
+            }
+            exit;
         }
     }
     public function runQuery($q) {
@@ -202,7 +211,14 @@ class Database extends \PDO {
         }
         catch (\PDOException $e)
         {
-            die($e->getMessage());
+            if ( DEVELOPMENT_MODE ) echo "SQL: $q<hr>";
+            echo  $e->getMessage() . "<hr>" ;
+            if ( DEVELOPMENT_MODE ) {
+                echo "<pre>";
+                debug_print_backtrace();
+                echo "</pre>";
+            }
+            exit;
         }
     }
 
