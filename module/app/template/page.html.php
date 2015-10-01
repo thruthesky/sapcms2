@@ -10,7 +10,9 @@ $post_id = segment(2);
     <div class="content">		
         <?php echo $options['content']?>
     </div>
+	<?php /*
     <div class="footer" data-role="footer">
-        <?php echo $options['footer']?>
+         $options['footer']
     </div>
+	*/ ?>
 </div>

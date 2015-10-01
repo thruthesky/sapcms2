@@ -9,8 +9,8 @@ if( !empty( $top_post ) ) $top_idx = $top_post->idx;
 
 $src_top_banner = $top_banner->urlThumbnail(400, 200);
 $top = post_data($top_banner->idx_target);
-if ( empty($top) ) return;
 
+if ( empty($top) ) return;
 
 $items = null;
 $images = post()->getLatestPostImages(1, 6, 'test');

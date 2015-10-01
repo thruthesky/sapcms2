@@ -84,7 +84,7 @@ class App {
     }
 
     public static function pageContentFront() {
-        ob_start();
+        ob_start();		
         include template('page.front');
         return ob_get_clean();
     }

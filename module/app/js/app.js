@@ -1255,37 +1255,16 @@ function adjustModalImage(){
 	var window_width = $(window).width();
 	var window_height = $(window).height();	
 	$selector.load(function(){
-			var image_width = $selector.width();
-			var image_height = $selector.height();
-			
-			if( image_height > image_width ){
-				if( window_height < image_height ){
-					$selector.css('height',window_height-40);
-					image_width = $selector.width();
-					image_height = $selector.height();
-				}
-				else if( window_width < image_width ){
-					$selector.css('width','100%');
-					image_width = $selector.width();
-					image_height = $selector.height();
-				}
-			}
-			else{
-				if( window_height < image_height ){
-					$selector.css('height',window_height-40);
-					image_width = $selector.width();
-					image_height = $selector.height();
-				}
-				else if( window_width < image_width ){
-					$selector.css('width','100%');
-					image_width = $selector.width();
-					image_height = $selector.height();
-				}
-			}
-			
-			var margin_top = window_height/2 - image_height/2 ;	
-			console.log( image_height );
-			$selector.parent().css('margin-top',margin_top);//only works for single parent with image
+		$selector.css('width','100%');
+		if( $selector.height() > $selector.width() ) {
+			$selector.css('width','initial').css('height',$(window).height()-40);
+		}
+		if( $selector.width() > $(window).width() ){
+			$selector.css('width','100%').css('height',$(window).width()-20);
+		}
+		
+		var margin_top = window_height/2 - $selector.height()/2 ;	
+		$selector.parent().css('margin-top',margin_top);//compatible for $(".modal_widow > .modal_image > img")
 	});
 }
 

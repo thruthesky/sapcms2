@@ -15,7 +15,7 @@ if( !empty( $idx_user ) ){
 ?>
 <div id="page-header">
     <ul id="main-menu">
-        <li class='link logo' route="front_page"><span class="sprite logo"></span></li>
+        <li class='link logo' route="front_page"><span class="sprite logo"></span><div class='label'>Home</div></li>
         <li class='link sub-menu ask' route="postList" post_id="test"><span class="sprite ask"></span><div class='label'>Ask</div></li>
         <li class='link sub-menu forum' route="postList" post_id="qna"><span class="sprite forum"></span><div class='label'>Forum</div></li>
         <li class='link sub-menu news' route="login"><span class="sprite news"></span><div class='label'>News</div></li>
