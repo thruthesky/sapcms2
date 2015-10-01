@@ -25,7 +25,7 @@ class Entity {
      *
      */
     final public function table() {
-        return $this->table;
+        return DATABASE_PREFIX . $this->table;
     }
 
 

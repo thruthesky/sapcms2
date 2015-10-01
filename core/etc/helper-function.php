@@ -209,3 +209,14 @@ function config($code=null, $value=null, $target=0) {
 
 
 
+
+
+function db() {
+    return Database::load();
+}
+
+
+function db_table_full_name($table) {
+    return DATABASE_PREFIX . $table;
+}
+

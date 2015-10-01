@@ -4,14 +4,13 @@ use sap\core\data\Data;
 use sap\src\Response;
 
 class post {
+
     public static function index() {
         return Response::renderSystemLayout([
             'template'=>'post.layout',
             'page'=>'post.index',
         ]);
     }
-
-
 
     public static function configCreate() {
         return Response::renderSystemLayout([

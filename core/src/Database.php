@@ -132,6 +132,8 @@ class Database extends \PDO {
 
 
 
+
+
     public function createTable($table) {
         $this->table($table);
         if ( $this->type == 'mysql' ) {

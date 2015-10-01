@@ -12,6 +12,16 @@ class App {
         return ob_get_clean();
     }
 
+    public static function pageFooter() {
+
+        ob_start();
+        include template('page.footer');
+        return ob_get_clean();
+
+        //return "All Rights Reserved © 2015";
+        //return "필고닷컴";
+    }
+
 
     public static function pagePanel() {
         ob_start();
@@ -32,10 +42,6 @@ class App {
     }
 
 
-    public static function pageFooter() {
-        return "All Rights Reserved © 2015";
-        //return "필고닷컴";
-    }
 
     public static function frontPage() {
         $page = self::createPage([
