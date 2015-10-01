@@ -9,9 +9,10 @@ $news = post_data($image_news->idx_target);
 
 if( empty( $news ) ) return;
 if( empty( $fhm ) ) return;
+
 ?>
 <div class="text-with-thumbnail">
-    <a href="<?php echo $fhm->url()?>">
+    <div class='link' route='view_post' idx='<?php echo $fhm->idx?>''>
         <table width="100%" cellspacing="0" cellpadding="0">
             <tr>
                 <td width="5%"><img class='thumbnail' src="<?php echo $src_fhm?>"></td>
@@ -24,9 +25,9 @@ if( empty( $fhm ) ) return;
                 <td width="2%"><img src="<?php echo url_site();?>/theme/default/tmp/fhm.png"</td>
             </tr>
         </table>
-    </a>
+    </div>
 
-    <a href="<?php echo $news->url()?>">
+    <div class='link' route='view_post' idx='<?php echo $news->idx?>''>
         <table width="100%" cellspacing="0" cellpadding="0">
             <tr>
                 <td width="5%"><img class='thumbnail' src="<?php echo $src_news?>"></td>
@@ -39,5 +40,5 @@ if( empty( $fhm ) ) return;
                 <td width="2%"><img src="<?php echo url_site();?>/theme/default/tmp/news2.png"</td>
             </tr>
         </table>
-    </a>
+    </div>
 </div>

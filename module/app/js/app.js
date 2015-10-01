@@ -529,15 +529,20 @@ $(function(){
     });
 
     $("body").on("click", ".comment-reply-button", function(){
-        $(this).parents(".comment").find('.comment-form').show();
-        $(this).parents(".comment").find('.comment-form textarea').focus();
+		//$session_id
+		$selector = $(this);		
+		checkLoginUser( comment_reply_button, $selector );			
     });
 	
-	$("body").on("click", ".post-form-content, .comment-form-content", function(){
-		$this = $(this);
-		$this.height('100px');
-		$this.parents('form').find(".show-on-click").show();
+	$("body").on("click", ".post-form-content, .comment-form-content", function(){			
+		$this = $(this);		
+		checkLoginUser( showCompleteForm, $this );
 	});
+	
+	function showCompleteForm( $selector ){
+		$selector.height('100px');
+		$selector.parents('form').find(".show-on-click").show();
+	}
 	
 	var countEnter = [];
     $("body").on("keydown",".comment-form-content, .post-form-content",function(e) {
@@ -558,6 +563,30 @@ $(function(){
         }
     });		
 });
+function comment_reply_button( $selector ){
+	$selector.parents(".comment").find('.comment-form').show();
+	$selector.parents(".comment").find('.comment-form textarea').focus();
+}
+/*Check if logged in from server side*/
+function checkLoginUser( callback_function, $selector ){
+	url = url_server_app + "loginCheck?session_login="+$session_id;
+
+	$.ajax(url)
+		.done(function(data){
+			var re = JSON.parse(data);
+			console.log(re);
+			if ( re.error != 0 ) {
+				alert( re.message );				
+			}
+			else {				
+				callback_function( $selector );
+			}
+		})
+		.fail(function(data) {
+			console.log(re);
+		});
+}
+/*------------------------------------*/
 
 /****** COMMENT UPLOAD */
 function ajaxCommentSubmit($this) {
@@ -1188,3 +1217,32 @@ function showAllContent(){
 	$this.parent().find(".text-preview").hide();
 	$this.parent().find(".all-text").show();
 }
+
+/*pop up image*/
+$(function(){
+	$("body").on("click",".display-files .image img", modal_window_image);
+});
+
+
+function modal_window_image( type ){
+	var url = url_server_app + "modalWindow?type="+type;
+	appendModalWindowToBody();
+	return;
+	console.log( url );	
+	return;
+	$.ajax({
+        'url': url,
+        'data' : data
+    })
+        .done(function(html) {			
+            showPage(route, html);
+        })
+        .fail(function() {
+            console.log("loading " + url + " ... failed...!");
+        });
+}
+
+function appendModalWindowToBody(){
+	$("body").append("<div class='modal_window'><div class='inner'></div></div>");
+}
+/*eo pop up image*/

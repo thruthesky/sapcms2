@@ -54,7 +54,8 @@ class App {
 	<div class='link' route='view_post' idx='$idx'>
 	*/	
     public static function viewPost() {	
-		$view_item = self::pageContentPostView( request('idx') );				
+		$view_idx = request('idx');
+		$view_item = self::pageContentPostView( $view_idx );
         $page = self::createPage([
             'id' => 'postList',
             'header' => self::pageHeader(),
@@ -119,8 +120,9 @@ class App {
         return ob_get_clean();
     }
 
-    private static function pageContentPostList($post_id)
+    private static function pageContentPostList($post_id,$view_idx = null)
     {
+		if( !empty( $view_idx ) ) $skip_idx = $view_idx;
         ob_start();
         $posts = MobilePost::postList($post_id);
         include template('page.postList.postForm');
@@ -128,21 +130,26 @@ class App {
         return ob_get_clean();
     }
 	
-    private static function pageContentPostView($idx)
-    {
-		$view_post = post_data()->load( $idx );
-		$post_config_id = post_config()->load( $view_post->idx_config );
-		if( !empty( $post_config_id ) ) $post_config_id = $post_config_id->id;
-		
+    private static function pageContentPostView($view_idx)
+    {		
+		$view_post = post_data()->load( $view_idx );
 		if( !empty( $view_post ) ){
-			$posts[] = $view_post->fields;
-			ob_start();			
-			include template('page.postList');
-			echo self::pageContentPostList($post_config_id);
-			return ob_get_clean();
+			$post_config_id = post_config()->load( $view_post->idx_config );
+			if( !empty( $post_config_id ) ) $post_config_id = $post_config_id->id;
+			
+			if( !empty( $view_post ) ){
+				$posts[] = $view_post->fields;
+				ob_start();			
+				include template('page.postList');
+				echo self::pageContentPostList($post_config_id,$view_idx);
+				return ob_get_clean();
+			}
+			else{
+				return null;
+			}
 		}
 		else{
-			return null;
+			return "Incorrect IDX";
 		}
     }
 
@@ -451,7 +458,7 @@ class App {
 			$url = $file->urlThumbnail( $width, $height );
 			$name = $file->get('name');
 			if ( is_image($name) ) {
-				$tag_imgs[] = "<div class='image'><img src='$url'></div>";
+				$tag_imgs[] = "<div class='image' idx='".$file->idx."'><img src='$url'></div>";
 			}
 			else {
 				$tag_files[] = "<div class='attachment'><a href='$url'>$name</a></div>";
@@ -513,5 +520,11 @@ class App {
 			$period    =   $period == 1 ? '1 ' . $w1   : $period . " " . $w2;
 		} 
 		return $period;
+	}
+	
+	public static function loginCheck(){
+		$user = login();
+		if( empty( $user ) ) return Response::json(['error'=>'1001','message'=>'Please Login First!']);
+		return Response::json(['error'=>'0','message'=>'No error']);
 	}
 }

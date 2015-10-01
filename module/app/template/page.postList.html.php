@@ -9,10 +9,11 @@ else $class = null;
 <div class="post-list<?php echo $class; ?>">
 <?php 
 foreach ( $posts as $post ) { 
-
-	$url_edit = url_post_edit($post['idx']);//"#";
-	$url_delete = "#";
-	$url_report = "#";
+	if( !empty( $skip_idx ) ){
+		if( $skip_idx == $post['idx'] ) continue;
+	}
+	
+	$url_report = '#';
 	
 	$idx_user = $post['idx_user'];
 	if( $idx_user == 0 ) $idx_user = 1;

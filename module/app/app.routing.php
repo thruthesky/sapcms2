@@ -25,3 +25,5 @@ Route::add('/app/post/getPostFiles', 'app\\App\\getPostFiles');
 
 Route::add('/app/view_post/*', 'app\\App\\viewPost');
 
+Route::add('/app/loginCheck', 'app\\App\\loginCheck');
+
