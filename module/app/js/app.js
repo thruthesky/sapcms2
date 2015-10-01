@@ -1221,29 +1221,86 @@ function showAllContent(){
 
 /*pop up image*/
 $(function(){
-	$("body").on("click",".display-files .image img", modal_window_image);
+	$("body").on("click",".display-files .image", modal_window_image)
+	$("body").on("click",".modal_window", remove_modal_window);
 });
 
 
-function modal_window_image( type ){
-	var url = url_server_app + "modalWindow?type="+type;
+function modal_window_image(){
 	appendModalWindowToBody();
-	return;
-	console.log( url );	
-	return;
+	console.log( "add modal" );
+	data = {};
+	data.action = 'modalImage';
+	data.idx = $(this).attr('idx');
+	ajax_get_modal_window_data( data );
+}
+
+function ajax_get_modal_window_data( data ){
+	var url = url_server_app + "modalWindow";
 	$.ajax({
         'url': url,
         'data' : data
     })
-        .done(function(html) {			
-            showPage(route, html);
-        })
-        .fail(function() {
-            console.log("loading " + url + " ... failed...!");
-        });
+	.done(function(html) {			
+		$('.modal_window').append(html);
+			adjustModalImage();
+	})
+	.fail(function() {
+	  
+	});
+}
+
+function adjustModalImage(){
+	var $selector = $('.modal_window img');
+	var window_width = $(window).width();
+	var window_height = $(window).height();	
+	$selector.load(function(){
+			var image_width = $selector.width();
+			var image_height = $selector.height();
+			
+			if( image_height > image_width ){
+				if( window_height < image_height ){
+					$selector.css('height',window_height-40);
+					image_width = $selector.width();
+					image_height = $selector.height();
+				}
+				else if( window_width < image_width ){
+					$selector.css('width','100%');
+					image_width = $selector.width();
+					image_height = $selector.height();
+				}
+			}
+			else{
+				if( window_height < image_height ){
+					$selector.css('height',window_height-40);
+					image_width = $selector.width();
+					image_height = $selector.height();
+				}
+				else if( window_width < image_width ){
+					$selector.css('width','100%');
+					image_width = $selector.width();
+					image_height = $selector.height();
+				}
+			}
+			
+			var margin_top = window_height/2 - image_height/2 ;	
+			console.log( image_height );
+			$selector.parent().css('margin-top',margin_top);//only works for single parent with image
+	});
 }
 
 function appendModalWindowToBody(){
-	$("body").append("<div class='modal_window'><div class='inner'></div></div>");
+	$("body").append("<div class='modal_window'></div>");
+	$("body").css('overflow','hidden');
+}
+
+function remove_modal_window( e ){
+	console.log( "remove modal" );
+	var target_class = $(e.target).attr('class');
+	console.log( target_class );
+	if( target_class == 'modal_window' || target_class == 'modal_image' ){
+		$('.modal_window').remove();
+		$("body").css('overflow','initial');
+	}
 }
 /*eo pop up image*/

@@ -381,10 +381,17 @@
     top: 0;
     height: 100%;
     width: 100%;
-    background-color: #000;
-    z-index: 9999999;
-    opacity: .5;
+	padding:10px;
+    background-color: rgba(0,0,0,.5);
+    z-index: 9999999;    
+	box-sizing:border-box;
+	text-align:center;
 }
+
+.modal_window img{
+	box-sizing:border-box;	
+}
+
 /*eo modal_window*/
 
 @media screen and (min-width: 400px) {

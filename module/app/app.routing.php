@@ -27,3 +27,5 @@ Route::add('/app/view_post/*', 'app\\App\\viewPost');
 
 Route::add('/app/loginCheck', 'app\\App\\loginCheck');
 
+Route::add('/app/modalWindow', 'app\\App\\modalWindow');
+

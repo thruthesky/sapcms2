@@ -479,6 +479,24 @@ class App {
 		echo "</div>";
 	}
 	
+	public static function modalWindow(){
+		$action = request('action');
+		self::$action();		
+	}
+	
+	public static function modalImage(){
+		$file = data()->load( request('idx') );
+		$post_idx = $file->target_idx;
+		$url = $file->url();
+		
+		
+		echo "
+			<div class='modal_image'>
+				<img src='".$url."'/>
+			</div>
+			";
+	}
+	
 	public static function humanTiming( $stamp )
 	{
 		$period = NULL;
