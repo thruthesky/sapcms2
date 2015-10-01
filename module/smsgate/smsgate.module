@@ -67,5 +67,6 @@ function get_province_city($place) {
 
 function get_location_province() {
     $db = Database::load();
-    return $db->rows(LOCATION, "group by province", "province, sum(`count`) as cnt");
+	
+    return $db->rows( db_table_full_name(LOCATION), "group by province", "province, sum(`count`) as cnt");
 }
