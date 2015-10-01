@@ -114,7 +114,7 @@ class smsgate {
 			$created = time();
 			$priority = request('priority', 0);
 			$idx = self::getMessageIdx();
-			$q .= "INSERT INTO " . SMS_QUEUE . " (created, idx_message, number, priority, tag) VALUES ($created ,$idx, '$adjust_number', $priority, '$tag');";
+			$q .= "INSERT INTO " . db_table_full_name(SMS_QUEUE) . " (created, idx_message, number, priority, tag) VALUES ($created ,$idx, '$adjust_number', $priority, '$tag');";
 			$number_info = [];
 			$number_info['message'] = "Successfully added to queue: ";
 			$number_info['number'] = $adjust_number;
