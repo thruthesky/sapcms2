@@ -6,5 +6,6 @@ entity(MESSAGE_TABLE)
     ->add('idx_to', 'INT')
     ->add('title', 'varchar')
     ->add('content', 'TEXT')
+	->add('checked', 'INT UNSIGNED DEFAULT 0')
     ->index('idx_from')
-    ->index('idx_to');
+    ->index('idx_to');	

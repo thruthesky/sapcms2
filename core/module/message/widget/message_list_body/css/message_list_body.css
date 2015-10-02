@@ -1,0 +1,52 @@
+.message-list-body {
+	padding:10px;
+	background-color:#fff;
+}
+
+.message-list-body .send-message{	
+	text-align:right;
+}
+
+.message-list-body .send-message a{	
+	display:inline-block;
+	padding:5px 10px;
+	background-color:#d5d5d5;
+	text-decoration:none;
+}
+
+.message-list-body .row{
+	padding:5px 10px;
+	margin-bottom:10px;
+	border-bottom:1px solid #ebeaea;	
+}
+
+.message-list-body .row.unread{
+	font-weight:bold;
+}
+
+.message-list-body .row .content{
+	padding:5px 10px;
+}
+
+.message-list-body .row .show-on-click{
+	display:none;
+}
+
+/*display-files*/
+.message-list-body .row .images:after{
+	content:'';
+	clear:both;
+}
+
+.message-list-body .row .images .image{
+	display:inline-block;
+	float:left;
+	width:25%;
+}
+
+.message-list-body .row .images .image img{
+	width:100%;
+	padding:2%;
+	box-sizing:border-box;
+}
+/*eo display-files*/
