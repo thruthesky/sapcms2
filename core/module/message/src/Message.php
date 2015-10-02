@@ -13,14 +13,18 @@ class Message extends Entity {
     }
 
     public static function messageCreate() {
-		di( User()->load(1) );
-		exit;
 		Response::render();
     }
 
     public static function send() {
+		$user_to = User()->load( 'id',request('user_id_to') );
+		if( !empty( $user_to ) ) $idx_to = $user_to->idx;
+		else{
+			//error
+		}
+		//if not error
 		message()->set('idx_from',request('idx_from'))
-		->set('idx_to',request('to'))
+		->set('idx_to',$idx_to)
         ->set('title', request('title'))
         ->set('content', request('content'))
 		->save();
