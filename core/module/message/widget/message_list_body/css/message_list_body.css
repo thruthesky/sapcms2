@@ -32,6 +32,15 @@
 	background-color:#f7f7f7;
 }
 
+.message-list-body .row .profile-photo{
+	float:left;
+	margin-right:10px;
+}
+
+.message-list-body .row .title{
+	margin-bottom:10px;
+}
+
 .message-list-body .row .content{
 	padding:5px 10px;
 }
