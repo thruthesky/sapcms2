@@ -1,0 +1,10 @@
+<?php
+
+site()
+    ->createTable()
+    ->add('idx_user', 'INT UNSIGNED DEFAULT 0')
+    ->add('name', 'varchar', 64)
+    ->add('description', 'varchar', 1024)
+    ->index('idx_user')
+    ->index('name');
+

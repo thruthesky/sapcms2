@@ -198,10 +198,25 @@ function call_hooks($hook, &$args=[]) {
 */
 
 
+/***
+ *
+ * @IMPORTANT - it returns the returned value from the hook function.
+ *
+ *
+ *
+ *
+ *
+ * @param $hook_name
+ * @param array $variables
+ * @return null
+ */
 function hook($hook_name, &$variables=[]) {
     foreach( System::getModuleLoaded() as $module ) {
         $func = "hook_{$hook_name}_$module";
-        if ( function_exists($func) ) return $func($variables);
+        if ( function_exists($func) ) {
+            $re = $func($variables);
+            if ( $re ) return $re;
+        }
     }
     return null;
 }

@@ -44,7 +44,6 @@ class Entity {
         $db->add('changed', 'INT UNSIGNED DEFAULT 0');
         $db->addIndex($table, 'created');
         $db->addIndex($table, 'changed');
-
         return $db;
     }
 
