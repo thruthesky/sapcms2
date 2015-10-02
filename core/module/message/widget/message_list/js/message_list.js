@@ -3,9 +3,9 @@ $(function(){
 });
 
 function show_message(){	
-	$this = $(this);			
+	$this = $(this);				
 	$this.find('.show-on-click').slideDown();
-	
+	$this.addClass('is-open');
 	if( $this.hasClass('sent') ) return;
 	
 	if( $this.hasClass('unread') ){
@@ -18,9 +18,9 @@ function show_message(){
 			'data' : { 'idx': idx }
 		})
 			.done(function(data) {			
-				var re = JSON.parse(data);	
-				
-				if( re.error == 0 ){					
+				var re = JSON.parse(data);							
+				if( re.error == 0 ){
+					
 				}
 				else{
 					alert( re.message );

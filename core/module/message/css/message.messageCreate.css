@@ -2,3 +2,15 @@
 	padding:10px;
 	background-color:#fff;
 }
+
+.message-create input,.message-create textarea{
+	padding:5px 10px;
+	width:100%;
+	box-sizing:border-box;
+	margin-bottom:5px;
+}
+
+.message-create textarea{
+	height:100px;
+	resize:none;
+}

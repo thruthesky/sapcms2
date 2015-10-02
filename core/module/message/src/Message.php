@@ -38,8 +38,10 @@ class Message extends Entity {
 		Response::render($data);
 	}	    
 	
-    public static function messageCreate() {
+    public static function messageCreate( $options = [] ) {
 		$data['input'] = request();
+		$data['options'] = $options;
+		$data['template'] = 'message.messageCreate';
 		Response::render( $data );
     }
 
@@ -73,7 +75,7 @@ class Message extends Entity {
 				$message = "Invalid user id [ $user_id_to ]";
 			}
 		}
-		if( $code != 0 ) self::collection( [ 'code'=>$code, 'message'=>$message ] );
+		if( $code != 0 ) self::messageCreate( [ 'code'=>$code, 'message'=>$message ] );
 		else return Response::redirect('/message?show=sent');
     }	
 	
