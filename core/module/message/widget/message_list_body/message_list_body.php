@@ -35,9 +35,11 @@ $messages = $widget['messages'];
 					if( $total_files > 1 ) display_files_thumbnail( $files, 200, 200 );
 					else display_files( $files );
 				}
+				if( $widget['show'] == 'inbox' ){
 			?>
 			<div class='reply'><a href='/message/create?send_id=<?php echo $user->id ?>'>Reply</a></div>
 			<div class='delete'><a href='/message/delete?idx=<?php echo $message['idx'] ?>&show=<?php echo $widget['show']; ?>' onClick='return deleteMessage();'>Delete</a></div>
+				<?php } ?>
 		</div>		
 	</div>
 	<?php } ?>
