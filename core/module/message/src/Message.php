@@ -85,7 +85,11 @@ class Message extends Entity {
 		$message = '';
 		if( !empty( $idx ) ){
 			$message = message()->load( $idx );
-			if( !empty( $message ) ){
+			if( $message->idx_to != login('idx') ){
+				$code = -10002;
+				$message = "CYou are not the one who received this message. Message not deleted";
+			}
+			else if( !empty( $message ) ){
 				$message->delete();				
 				$message = "Succesfully deleted idx [ $idx ].";
 			}
