@@ -85,7 +85,7 @@ class Message extends Entity {
 			$message = message()->load( $idx );
 			if( !empty( $message ) ){
 				$message->delete();				
-				$message = 'Succesfully deleted idx [ $idx ].';
+				$message = "Succesfully deleted idx [ $idx ].";
 			}
 			else{
 				$code = -10001;
@@ -100,10 +100,13 @@ class Message extends Entity {
 		self::collection( [ 'code'=>$code, 'message'=>$message ] );
 	}
 	
-	 public static function markAsRead() {
+	 public static function markAsRead() {		
 		$idx = request('idx');
 		if( empty( $idx ) ) return null;
 		$message = message()->load( $idx );
+		
+		if( $message->idx_to != login('idx') ) return Response::json(['error'=>'0','message'=>'Not your post, do not mark as read.']);
+		
 		if( !empty( $message ) ) $message->set( 'checked', time() )->save();
 		else return Response::json(['error'=>'-2001','message'=>'Invalid message IDX!']);
 		

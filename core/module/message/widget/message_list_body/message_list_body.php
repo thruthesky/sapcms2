@@ -37,7 +37,7 @@ $messages = $widget['messages'];
 				}
 			?>
 			<div class='reply'><a href='/message/create?send_id=<?php echo $user->id ?>'>Reply</a></div>
-			<div class='delete'><a href='/message/delete?idx=<?php echo $message['idx'] ?>'>Delete</a></div>
+			<div class='delete'><a href='/message/delete?idx=<?php echo $message['idx'] ?>' onClick='return deleteMessage();'>Delete</a></div>
 		</div>
 		<div class='date'><?php echo $date ?></div>		
 	</div>

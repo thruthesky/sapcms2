@@ -12,15 +12,15 @@ function show_message(){
 		$this.removeClass('unread');		
 		
 		idx = $this.attr('idx');
-		url = '/message/markAsRead?idx='+idx;
+		url = '/message/markAsRead?idx='+idx;		
 		$.ajax({
 			'url': url,
 			'data' : { 'idx': idx }
 		})
 			.done(function(data) {			
 				var re = JSON.parse(data);	
-				if( re.error == 0 ){
 				
+				if( re.error == 0 ){					
 				}
 				else{
 					alert( re.message );
@@ -30,4 +30,8 @@ function show_message(){
 				
 			});
 	}
+}
+
+function deleteMessage(){
+	return confirm( "Delete this message?" );
 }
