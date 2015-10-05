@@ -5,6 +5,7 @@
 
 .message-list-body .send-message{	
 	text-align:right;
+	margin-bottom:10px;
 }
 
 .message-list-body .send-message a{	

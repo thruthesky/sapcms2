@@ -23,7 +23,7 @@ class Message extends Entity {
 		
 		if( empty( $page ) ) $page = 1;
 		if( empty( $limit ) ) $limit = 10;
-		if( empty( $paging ) ) $paging = 10;	
+		if( empty( $paging ) ) $paging = 5;	
 		if( empty( $show ) ) $show = 'inbox';				
 		if( !empty( $keyword ) ) $q .= " AND ( title LIKE '%$keyword%' OR content LIKE '%$keyword%' )";
 		if( !empty( $extra ) ) $q .= ' AND checked = 0';
