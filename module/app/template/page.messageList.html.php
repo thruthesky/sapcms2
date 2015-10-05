@@ -4,7 +4,6 @@ if( !empty( $messages ) ){
 ?>
 
 <?php //widget( 'message_error_handling', $data['options'] ); ?>
-<form name='check-box-list' action=''>
 <?php foreach( $messages as $message ){ 
 	if( $data['show'] == 'inbox' ) $user = User()->load( $message['idx_from'] );
 	else if( $data['show'] == 'sent' ) $user = User()->load( $message['idx_to'] );
@@ -28,8 +27,7 @@ if( !empty( $messages ) ){
 			<tr>
 				<td>
 					<div class='checkbox-wrapper'>
-						<div class='sprite check_box'></div>
-						<input type='checkbox' class='idxs' name='idxs[]' value='<?php echo $message['idx']; ?>'/>
+						<div class='sprite check_box'></div>						
 					</div>
 				</td>
 				<td width='50'>
@@ -62,7 +60,6 @@ if( !empty( $messages ) ){
 		</div>	
 	</div>
 	<?php } ?>
-</form>
 <?php
 }
 ?>
