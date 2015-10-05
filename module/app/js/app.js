@@ -7,6 +7,7 @@ var url_server_post_submit = url_server + '/app/post/submit';
 var url_server_post_comment_submit = url_server + '/app/post/comment/submit';
 var url_server_post_edit_submit = url_server + '/app/post/edit/submit';
 var url_server_post_edit_comment_submit = url_server + '/app/post/edit/comment/submit';
+var url_server_message_submit = url_server + '/app/message/submit';
 var currentPageID = 'local-page';
 var prevPageID = 'local-page';
 var $session_id = null;
@@ -79,6 +80,11 @@ function initMenu() {
         }
         else if ( route == 'view_post' ) {			
             loadPage( route, $this.attr('idx'));
+        }
+        else if ( route == 'message' ) {
+			default_url = $this.attr("default_url")	
+			if( !default_url ) default_url = "";
+            loadPage( route, default_url);
         }
         else {			
             loadPage(route);
@@ -337,13 +343,15 @@ function loadPage(route, post_id) {
         console.log("Trying to open same page? ... It loads anyway.");
     }
     var url = url_server_app + route;
-    if ( post_id ) url += '/' + post_id;
+	if( route == 'message' ) url += post_id;
+    else if ( post_id ) url += '/' + post_id;
     console.log("open: " + url);
     showLoader();
 	
 	var data = {};
 	data.session_login = $session_id;
 	if( route == 'view_post' ) data.idx = post_id;
+	else if( route == 'message' ) data.default_url = post_id;
 	else data.post_id = post_id;
 	
     $.ajax({
@@ -605,6 +613,10 @@ function ajaxCommentSubmit($this) {
 		upload_type = 'post';
 		$this.prop('action', url_server_post_submit);
 	}
+    else if ( $this.hasClass('message-form') ){
+		upload_type = 'message';
+		$this.prop('action', url_server_message_submit);
+	}
     else {
 		upload_type = 'comment'
 		$this.prop('action', url_server_post_comment_submit);
@@ -624,15 +636,17 @@ function ajaxCommentSubmit($this) {
 				catch(e){
 				
 				}
-			if ( error ) {
+			if ( error && error.code != 0 ) {
 				alert(error.message);
 			}
 			else{
 				console.log("post comment submit completed!!");
+
 				if( upload_type == 'comment_edit' ) post_edit_comment_html_ajax( re, $this );
 				else if( upload_type == 'post_edit' ) post_edit_html_ajax( re, $this );
 				else if( upload_type == 'comment' ) comment_html_ajax( re, $this );
-				else if( upload_type = 'post' ) post_html_ajax( re, $this );
+				else if( upload_type == 'post' ) post_html_ajax( re, $this );
+				else if( upload_type == 'message' ) message_send_ajax( re, $this );
 			}
         }
     });
@@ -1143,6 +1157,11 @@ function beginEndLessPage() {
         scrollListenerForEndLessPage(callback_endless, 150, 250);
         showEndlessPageLoader();
     }
+	else if( $page.attr('route') == 'message' ){
+		iScrollCont++;
+		scrollListenerForEndLessPage(callback_endless_message, 150, 250);
+        showEndlessPageLoader();
+	}
 }
 function endEndLessPage() {
     clearEndlessPage();
@@ -1283,3 +1302,114 @@ function remove_modal_window( e ){
 	}
 }
 /*eo pop up image*/
+
+
+
+/*message*/
+
+var message_keyword;
+var message_show;
+var message_extra;
+$(function(){
+	$("body").on( "click",".message-list-body .row .info-table", show_message );
+	$("body").on( "submit",".message-search", message_search );
+	$("body").on( "click",".message-search .sprite.check_box", message_checkbox );
+});
+
+function show_message(){	
+	$this = $(this).parent();
+	
+	if( $this.hasClass( 'is-active' ) ){
+		$this.find('.show-on-click').slideUp();
+		$this.removeClass('is-active');
+		return;
+	}
+	
+	if( $(".row.is-active").length ){
+		$(".row.is-active").find('.show-on-click').slideUp();
+		$(".row.is-active").removeClass('is-active');
+	}
+	
+	$this.addClass('is-active');
+	//$this.find('.title').hide();;
+	$this.find('.show-on-click').slideDown();
+	$this.addClass('is-open');
+	if( $this.hasClass('sent') ) return;
+	
+	if( $this.hasClass('unread') ){
+		$this.removeClass('unread');		
+		
+		idx = $this.attr('idx');
+		url = url_server_app + 'message/markAsRead';
+
+		$.ajax({
+			'url': url,
+			'data' : { 'idx': idx, 'session_login' : $session_id }
+		})
+			.done(function(data) {			
+				var re = JSON.parse(data);							
+				if( re.error == 0 ){
+					console.log( re );
+				}
+				else{
+					alert( re.message );
+				}
+			})
+			.fail(function() {
+				
+			});
+	}
+}
+
+function deleteMessage(){
+	return confirm( "Delete this message?" );
+}
+
+function callback_endless_message(no) {
+    if ( hasNoMoreContent() ) return;
+    bEndLessInLoading = true;
+	url = url_server_app + 'messageMore?page=' + no + "&session_login=" + $session_id;
+	if ( message_keyword ) url = url + "&keyword="+message_keyword;
+	if ( message_show ) url = url + "&show="+message_show;
+	if ( message_extra ) url = url + "&extra="+message_extra;
+    $.ajax( url )
+        .done(function(html){
+            if ( html == '' ) {
+                setNoMoreContent();
+                hideEndlessPageLoader();
+                endEndLessPage();
+            }
+            else {
+                $(".message-list-body").append(html);
+                hideEndlessPageLoader();
+                showEndlessPageLoader();
+            }
+            bEndLessInLoading = false;
+        })
+        .fail(function(){
+            alert('error on postListMore');
+            bEndLessInLoading = false;
+            hideEndlessPageLoader();
+        });
+}
+
+function message_send_ajax( re, $this ){
+	re = jQuery.parseJSON(re)
+	$this.find('[name]').val('');
+	alert( re.message );
+}
+
+function message_search(){
+	$this = $(this);
+	message_keyword = $this.find("[name='keyword']").val();
+	message_show = $this.find("[name='show']").val();
+	message_extra = $this.find("[name='extra']").val();
+	qs = "?"+$this.serialize()+"&session_login="+$session_id;
+	loadPage('message', qs );
+	return false;
+}
+
+function message_checkbox(){
+	$this = $(this);
+}
+/*eo message*/

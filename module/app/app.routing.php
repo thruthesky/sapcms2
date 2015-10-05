@@ -29,3 +29,10 @@ Route::add('/app/loginCheck', 'app\\App\\loginCheck');
 
 Route::add('/app/modalWindow', 'app\\App\\modalWindow');
 
+
+
+Route::add('/app/message', 'app\\App\\messageList');
+Route::add('/app/messageMore', 'app\\App\\messageMore');
+Route::add('/app/messageCreate', 'app\\App\\messageCreate');
+Route::add('/app/message/submit', 'app\\App\\messageCreateSubmit');
+Route::add('/app/message/markAsRead', 'app\\App\\markAsRead');

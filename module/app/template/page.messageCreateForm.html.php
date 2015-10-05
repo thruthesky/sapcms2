@@ -1,0 +1,31 @@
+<?php
+if( empty( $message_number ) ) $message_number = 0;
+?>
+<div class='message-write-wrapper'>
+	<form action='' no='reply-<?php echo $message_number ?>' class="ajax-file-upload message-form" method="post" enctype="multipart/form-data">  
+		<?php 		
+		echo "<input type='hidden' name='fid' value =''/>";
+		?>
+		<?php 
+			echo html_hidden_post_variables(); 
+			if( !empty( $reply ) ){
+		?>
+			<input type='hidden' name='user_id_to' value ='<?php echo $user->id; ?>'/>
+		<?php } else{ ?>
+			<div class='message-id-wrapper'>
+				<span class='label'>To:</span>
+				<input type='text' class='message-id' name='user_id_to' placeholder="User">
+			</div>
+		<?php } ?>
+			<textarea class='message-content' name="content" placeholder="Write a post."><?php if( !empty( $post['content'] ) ) echo $post['content']; ?></textarea>
+	 
+			<div class='buttons'>
+				<img class="post-file-upload-button" src="<?php echo sysconfig(URL_SITE)?>module/app/img/camera_white_temp.png">
+				<input class="form-comment-add-submit" type="submit" value="Send">
+			</div>
+			<div class='file-display files'></div>
+	</form>
+	<?php
+	$message_number++;
+	?>
+</div>

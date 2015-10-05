@@ -4,6 +4,8 @@ use sap\core\post\PostData;
 use sap\core\user\User;
 use sap\src\Response;
 
+use sap\core\message\Message;
+
 class App {
 
     public static function pageHeader() {
@@ -551,4 +553,66 @@ class App {
 		if( empty( $user ) ) return Response::json(['error'=>'1001','message'=>'Please Login First!']);
 		return Response::json(['error'=>'0','message'=>'No error']);
 	}
+	
+	
+	/*message*/
+	public static function messageList(){
+		$page = self::createPage([
+            'id' => 'messageList',
+            'header' => self::pageHeader(),
+            'panel' => self::pagePanel(),
+            'content' => self::pageMessageList(),
+            'footer' => self::pageFooter(),
+        ]);
+        echo $page;
+	}
+	
+	public static function messageCreate(){
+		$page = self::createPage([
+            'id' => 'messageList',
+            'header' => self::pageHeader(),
+            'panel' => self::pagePanel(),
+            'content' => self::pageMessageCreate(),
+            'footer' => self::pageFooter(),
+        ]);
+        echo $page;
+	}
+	
+	public static function pageMessageList(){
+		$data = Message::getCollection();
+
+		ob_start();		
+        include template('page.messageMenu');
+        include template('page.messageSearch');
+		echo "<div class='message-list-body'>";
+		
+		echo "<div class='link sprite new_message' route='messageCreate'></div>";
+		
+		include template('page.messageList');  
+		echo "</div>";
+        return ob_get_clean();
+	}
+	
+	public static function messageMore(){
+		$data = Message::getCollection();		
+        include template('page.messageList');        
+	}
+	
+	public static function pageMessageCreate(){
+		ob_start();
+		include template('page.messageMenu');
+		include template('page.messageCreateForm');
+        return ob_get_clean();
+	}
+	
+	public static function messageCreateSubmit(){
+		$data = Message::messageSubmit();
+		return Response::json( $data );
+		//di( $data );
+	}
+	
+	public static function markAsRead(){
+		Message::markAsRead();
+	}
+	/*eo message*/
 }
