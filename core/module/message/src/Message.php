@@ -17,24 +17,42 @@ class Message extends Entity {
 		$show = request('show');
 		$keyword = request('keyword');
 		$extra = request('extra');
+		$page = request('page');
+		$limit = request('limit');
 		$q = '';
 		
-		if( empty( $show ) ) $show = 'inbox';			
+		if( empty( $page ) ) $page = 1;
+		if( empty( $limit ) ) $limit = 10;
+		if( empty( $paging ) ) $paging = 10;	
+		if( empty( $show ) ) $show = 'inbox';				
+		if( !empty( $keyword ) ) $q .= " AND ( title LIKE '%$keyword%' OR content LIKE '%$keyword%' )";
+		if( !empty( $extra ) ) $q .= ' AND checked = 0';
 		
 		if( $show == 'inbox' ) $q = "idx_to = ".login('idx');
 		else if( $show == 'sent' ) $q = "idx_from = ".login('idx');
 		
-		if( !empty( $keyword ) ) $q .= " AND ( title LIKE '%$keyword%' OR content LIKE '%$keyword%' )";
-		if( !empty( $extra ) ) $q .= ' AND checked = 0';	
-		
 		$q .= " ORDER BY created DESC";
+		$total_messages = message()->count( $q );
 		
+		$q .= " LIMIT ".( $page * $limit - $limit ).", $limit";
+		
+		$max_pages = ceil( $total_messages/ $limit );
+		
+		$data['page_start'] = floor( $page / $paging ) * $paging + 1;
+		$data['page_end'] = ceil( $page / $paging ) * $paging;
+		if( $data['page_end'] > $max_pages ) $data['page_end'] = $max_pages;
+		$data['max_pages'] = $max_pages;
+		$data['paging'] = $paging;
 		$data['show'] = $show;
 		$data['extra'] = $extra;
 		$data['keyword'] = $keyword;
+		$data['default_url'] = "/message?show=$show&extra=$extra";
+		if( $limit != 10 ) $data['default_url'] .= "&limit=$limit";
+		$data['total_messages'] = $total_messages;
 		$data['messages'] = message()->rows( $q );
 		$data['template'] = 'message.list';
 		$data['options'] = $options;
+		
 		Response::render($data);
 	}	    
 	
