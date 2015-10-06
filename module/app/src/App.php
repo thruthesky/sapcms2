@@ -437,6 +437,9 @@ class App {
     public static function registerSubmit() {
         $id = request('id');
         if ( user_exists($id) ) return Response::json(['error'=>"User ID is in use. Please choose another."]);
+		if ( request('password') != request('confirm_password') ) return Response::json(['error'=>"Passwords does not match."]);
+		
+		
         $options['id'] = $id;
         $options['password'] = request('password');
         $options['name'] = request('name');

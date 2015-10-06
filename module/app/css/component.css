@@ -203,8 +203,17 @@
 	color:#fff;
 }
 
-.register-wrapper .logo{
-	padding:25px 0 40px 0;
+.register-wrapper > .logo{
+	padding:25px 0 14px 0;
+}
+
+.register-wrapper > .logo.take-user-primary-photo img{
+	border-radius:100%;
+}
+
+.register-wrapper > .label{
+	font-size: 1.1em;
+	margin-bottom:25px;
 }
 
 .profile-wrapper .take-user-primary-photo{
@@ -231,45 +240,103 @@
 	outline:0;
 }
 
+.register-wrapper form[name='register'] .row{
+	width:62%;
+	margin:0 auto 3px auto;
+	overflow:hidden;	
+}
+
 .register-wrapper form[name='register'] .row .caption, .profile-wrapper form[name='profileUpdate'] .row .caption{
 	display:none;
 }
 
 .register-wrapper form[name='register'] .row .text > *, .profile-wrapper form[name='profileUpdate'] .row .text > *{
-	height:26px;
-	width:62%;
-	padding:6px 10px;
+	height:35px;
+	width:100%;
+	padding:10px 10px 10px 42px;
 	margin:0;
 	border:0;
 	border-bottom:1px solid #fff;
-	background-color:transparent;
-	font-size:1em;
-	color:#fff;
+	/*background-color:transparent;*/
+	font-size:.9em;
+	color:#444;
 	box-sizing:border-box;
 }
 
-.register-wrapper form[name='register'] .row, .profile-wrapper form[name='profileUpdate'] .row{
+.register-wrapper form[name='register'] .row .text{
+	position:relative;	
+}
+
+.register-wrapper form[name='register'] .row .text:before{
+	position: absolute;
+    left: 0;
+    top: 0;
+	width:37px;
+	height:35px;
+    background-color: #e2e2e2;	
+	overflow:hidden;
+	box-sizing:border-box;
+}
+
+.register-wrapper form[name='register'] .row.id{
+	border-top-left-radius:3px;
+	border-top-right-radius:3px;
+}
+
+.register-wrapper form[name='register'] .row.id.profile .text{
+	height: 35px;
+    background-color: #fff;
+    padding: 9px 0 9px 42px;
+    box-sizing: border-box;
+	font-size:.9em;
+	color:#444;
+	text-align:left;
+}
+
+.register-wrapper form[name='register'] .row.mail{
+	margin-bottom:20px;
+	border-bottom-left-radius:3px;
+	border-bottom-right-radius:3px;	
+}
+ 
+.register-wrapper form[name='register'] .row.id .text:before{
+	content:url("/module/app/img/user.png");
+}
+.register-wrapper form[name='register'] .row.password .text:before{
+	content:url("/module/app/img/password.png");
+}
+.register-wrapper form[name='register'] .row.confirm_password .text:before{
+	padding-left:3px;
+	content:url("/module/app/img/confirm_password.png");
+}
+.register-wrapper form[name='register'] .row.name .text:before{
+	content:url("/module/app/img/name.png");
+}
+.register-wrapper form[name='register'] .row.mobile .text:before{
+	content:url("/module/app/img/mobile.png");
+}
+.register-wrapper form[name='register'] .row.mail .text:before{
+	content:url("/module/app/img/mail.png");
+}
+
+.profile-wrapper form[name='profileUpdate'] .row{
 	margin:0 0 15px 0;
 }
 
-.register-wrapper form[name='register'] .row:nth-child(5){
-	margin-bottom:30px;
-}
-
 .register-wrapper form[name='register'] .row .text ::-webkit-input-placeholder {
-   color: #fff;
+   color: #939494;
 }
 
 .register-wrapper form[name='register'] .row .text :-moz-placeholder { /* Firefox 18- */
-   color: #fff;  
+   color: #939494;  
 }
 
 .register-wrapper form[name='register'] .row .text ::-moz-placeholder {  /* Firefox 19+ */
-   color: #fff;  
+   color: #939494;  
 }
 
 .register-wrapper form[name='register'] .row .text :-ms-input-placeholder {  
-   color: #fff;  
+   color: #939494;  
 }
 
 .register-wrapper form[name='register'] input[type='submit']{

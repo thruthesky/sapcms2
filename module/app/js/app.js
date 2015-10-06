@@ -54,8 +54,8 @@ function initializeEvent() {
     var $body = $('body');
     $body.on('click', ".take-user-primary-photo", cameraUserPrimaryPhoto);
     $body.on('click', ".post-file-upload-button", cameraPostFile);
-    $body.on('submit', "form[name='register']", registerSubmit);
-    $body.on('submit', "form[name='profileUpdate']", profileUpdateSubmit);
+    $body.on('submit', "form.register", registerSubmit);
+    $body.on('submit', "form.profileUpdate", profileUpdateSubmit);
 }
 
 function initializeMenu() {
