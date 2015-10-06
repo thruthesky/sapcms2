@@ -441,6 +441,7 @@ class App {
         $options['password'] = request('password');
         $options['name'] = request('name');
         $options['mail'] = request('mail');
+        $options['mobile'] = request('mobile');
         $user = User::createUser($options);
         if ( empty($user) ) return Response::json(['error'=>"Failed on creating a user"]);
         $session_id = User::login($user->get('id')); // make session id
@@ -455,6 +456,7 @@ class App {
             ->which($idx)
             ->set('name', request('name'))
             ->set('mail', request('mail'))
+            ->set('mobile', request('mobile'))
             ->save();
         Response::json(['error'=>0]);
     }

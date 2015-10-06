@@ -5,10 +5,9 @@
 		<input type="hidden" name="session_login" value="<?php echo login('session_id')?>">
 		<?php
 		$photo = login()->getPrimaryPhoto();
-		if ( $photo ) {
-			$url = $photo->urlThumbnail(140, 140);
-			echo "<img src='$url'>";
-		}
+		if ( $photo ) $url = $photo->urlThumbnail(140, 140);
+		else if( empty( $url ) ) $url = sysconfig(URL_SITE)."module/app/img/register_logo.png";
+		echo "<img src='$url'>";
 		?>
 		<?php
 		echo html_row([
@@ -30,6 +29,15 @@
 				'type' => 'email',
 				'placeholder' => 'Email',
 				'value' => login('mail')
+			])
+		]);
+		echo html_row([
+			'caption' => 'mobile',
+			'text' => html_input([
+				'name' => 'mobile',
+				'type' => 'text',
+				'placeholder' => 'mobile',
+				'value' => login('mobile')
 			])
 		]);
 		?>

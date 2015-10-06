@@ -26,6 +26,14 @@
 			])
 		]);
 		echo html_row([
+			'caption' => 'mobile',
+			'text' => html_input([
+				'name' => 'mobile',
+				'type' => 'text',
+				'placeholder' => 'mobile',
+			])
+		]);
+		echo html_row([
 			'caption' => 'Email',
 			'text' => html_input([
 				'name' => 'mail',

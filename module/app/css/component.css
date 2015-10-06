@@ -221,6 +221,12 @@
     cursor: pointer;
 }
 
+.profile-wrapper img{
+	width:100%;
+	max-width:140px;
+	margin:0 0 10px 0;
+}
+
 .register-wrapper form[name='register'] input:focus{
 	outline:0;
 }
@@ -246,7 +252,7 @@
 	margin:0 0 15px 0;
 }
 
-.register-wrapper form[name='register'] .row:nth-child(4){
+.register-wrapper form[name='register'] .row:nth-child(5){
 	margin-bottom:30px;
 }
 
