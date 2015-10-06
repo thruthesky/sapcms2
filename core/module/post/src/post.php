@@ -281,6 +281,9 @@ class post {
     }
     public static function validateContent() {
         $title = request('content');
+		$fid = request('fid');
+		//added by benjamin
+		if( !empty( $fid ) ) return OK;
         if ( empty($title) ) return setError(-50105, "Please input content");
         else return OK;
     }
