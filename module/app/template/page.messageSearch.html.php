@@ -9,18 +9,22 @@ if( !empty( $data['keyword'] ) ) $keyword = $data['keyword'];
 else $keyword = null;
 ?>
 <div class='message-search-wrapper'>
+	<form class='checkbox-form'>
+		<input type='hidden' name='idx' value="">
+	</form>
+	<input type='hidden' name='idx' value="">
 	<form class='message-search'>
 		<input type='hidden' name='show' value='<?php echo $show ?>'/>
 		<input type='hidden' name='extra' value='<?php echo $extra ?>'/>
 		<table>
 			<tr>
-				<td>
-					<div class='sprite check_box'></div>
+				<td class='remove-on-expand'>
+					<div class='sprite check_box'></div>					
 				</td>
-				<td>
+				<td class='remove-on-expand'>
 					<div class='sprite delete'></div>
-				</td>
-				<td>
+				</td>				
+				<td class='remove-on-expand'>
 					<div class='mark-as-read'>Mark as Read</div>
 				</td>
 				<td width='99%'>

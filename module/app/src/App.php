@@ -195,6 +195,15 @@ class App {
 	
 	  public static function postSubmit(){
 		$user = login();
+		
+		//check for post content
+		$content = trim(request('content'));
+		if( empty( $content ) ){
+			$fid = request('fid');
+			if( empty( $fid ) ) return Response::json(['error'=>'1010','message'=>'Content cannot be empty!']);
+		}
+		//check for post content
+		
 		if( empty( $user ) ) return Response::json(['error'=>'1001','message'=>'Please Login First!']);
 	  
 		$config = post_config()->getCurrent();
@@ -353,9 +362,9 @@ class App {
 				$file = $f->fields;
 				$url = $f->urlThumbnail( 100, 100 );
 				//$url = $f->url();
-				echo "<div idx='".$file['idx']."' class='file image'>";
-				echo "<img src='".$url."'>";
-				echo "<div class='delete' title='Delete this file'>X</div></div>";
+				echo "<div idx='".$file['idx']."' class='file image delete'>";
+				echo "<img src='".$url."'></div>";
+				//echo "<div class='delete' title='Delete this file'>X</div>";
 			}
 		}
 	}
@@ -606,6 +615,14 @@ class App {
 	}
 	
 	public static function messageCreateSubmit(){
+		//check for message content
+		$content = trim(request('content'));
+		if( empty( $content ) ){
+			$fid = request('fid');
+			if( empty( $fid ) ) return Response::json(['error'=>'1010','message'=>'Content cannot be empty!']);
+		}
+		//check for message content
+	
 		$data = Message::messageSubmit();
 		return Response::json( $data );
 		//di( $data );
@@ -613,6 +630,14 @@ class App {
 	
 	public static function markAsRead(){
 		Message::markAsRead();
+	}
+	
+	public static function messageDelete(){
+		$idxs = request('idx');
+		$data = Message::deleteConfirm( $idxs );
+		$data['action'] = 'delete';
+	
+		return Response::json( $data );
 	}
 	/*eo message*/
 }

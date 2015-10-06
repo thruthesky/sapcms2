@@ -401,7 +401,10 @@ function fileDelete(idx) {
 $(function(){
     var $body = $('body');
     $body.on("click",".file-display .delete", function(){
-        var idx = $(this).parent().attr('idx');
+        //var idx = $(this).parent().attr('idx');
+		re = confirm( "Are you sure you want to delete this image?" );
+		if( !re ) return;
+		var idx = $(this).attr('idx');
         //console.log("why man call ? " + idx);
         fileDelete(idx);
     });
@@ -511,7 +514,7 @@ function fileDisplay($this, re) {
                 alert(file.message);
             }
             else {
-                var markup = "<div idx='"+file.idx+"' class='file";
+                var markup = "<div idx='"+file.idx+"' class='file delete";
                 if ( file.mime.indexOf('image') != -1 ) {
                     markup += " image'>";
                     markup += "<img src='"+file.url+"'>";
@@ -520,7 +523,7 @@ function fileDisplay($this, re) {
                     markup += " attachment'>";
                     markup += file.name;
                 }
-                markup += "<div class='delete' title='Delete this file'>X</div>";
+               // markup += "<div class='delete' title='Delete this file'>X</div>";
                 markup += "</div>";
                 $display.append(markup);
             }
@@ -1040,12 +1043,12 @@ function cameraSuccess(fileURI) {
                 alert(file.message);				
             }
 			else {
-				if( photoOptions.type != 'primary_photo' ) delete_button = "<div class='delete' title='Delete this file'>X</div>";
+				/*if( photoOptions.type != 'primary_photo' ) delete_button = "<div class='delete' title='Delete this file'>X</div>";
 				else {
 					$("form[name='profileUpdate'] img").remove();
 					delete_button = '';
-				}
-				html = "<div idx='" + file.idx + "' class='file image'><img src='"+file.urlThumbnail+"'>" + delete_button + "</div>";
+				}*/
+				html = "<div idx='" + file.idx + "' class='file image delete'><img src='"+file.urlThumbnail+"'>" + delete_button + "</div>";
 				if ( photoOptions.add ) $(photoOptions.selector).append(html);
 				else $(photoOptions.selector).html(html);
 
@@ -1244,7 +1247,6 @@ $(function(){
 	$("body").on("click",".modal_window", remove_modal_window);
 });
 
-
 function modal_window_image(){
 	appendModalWindowToBody();
 	console.log( "add modal" );
@@ -1290,6 +1292,12 @@ function adjustModalImage(){
 function appendModalWindowToBody(){
 	$("body").append("<div class='modal_window'></div>");
 	$("body").css('overflow','hidden');
+	document.ontouchmove = function(e){ e.preventDefault(); }//disable mobile scrolling
+}
+
+function appendModalWindowLoader(){
+	html = "<div class='loader'><img src='" + url_server + "/module/app/img/loader8.gif" + "'></div>";	
+	$('.modal_window').append(html);
 }
 
 function remove_modal_window( e ){
@@ -1299,6 +1307,7 @@ function remove_modal_window( e ){
 	if( target_class == 'modal_window' || target_class == 'modal_image' ){
 		$('.modal_window').remove();
 		$("body").css('overflow','initial');
+		document.ontouchmove = function(e){}//remove the disabled mobile scrolling
 	}
 }
 /*eo pop up image*/
@@ -1306,19 +1315,37 @@ function remove_modal_window( e ){
 
 
 /*message*/
-
-var message_keyword;
-var message_show;
-var message_extra;
 $(function(){
-	$("body").on( "click",".message-list-body .row .info-table", show_message );
 	$("body").on( "submit",".message-search", message_search );
-	$("body").on( "click",".message-search .sprite.check_box", message_checkbox );
+	$("body").on( "submit",".checkbox-form", message_checkbox_submit );
+
+	$("body").on( "click",".message-list-body .row .info-table", show_message );	
+	$("body").on( "click",".message-search .sprite.delete", message_delete );
+	$("body").on( "click",".message-search .mark-as-read", message_markAsRead );
+	
+	$("body").on( "click",".message-search .sprite.check_box", message_checkbox_multiple );
+	$("body").on( "click",".row .sprite.check_box", message_checkbox );
+
+	//requires https://github.com/driftyco/ionic-plugin-keyboard
+	window.addEventListener('native.keyboardshow', keyboardShowHandler);	
+	window.addEventListener('native.keyboardhide', keyboardHideHandler);
 });
 
-function show_message(){	
+function keyboardShowHandler(){
+	$selector = $("#messageList .link.sprite.new_message");
+	if( $selector.length ) $selector.hide();
+}
+
+function keyboardHideHandler(){
+	$selector = $("#messageList .link.sprite.new_message");
+	if( $selector.length ) $selector.show();
+}
+
+function show_message( e ){	
 	$this = $(this).parent();
-	
+	if( $(e.target).hasClass("check_box") ) return;
+	if( $(e.target).hasClass("primary-photo") ) return;
+	if( $(e.target).hasClass("name") ) return;
 	if( $this.hasClass( 'is-active' ) ){
 		$this.find('.show-on-click').slideUp();
 		$this.removeClass('is-active');
@@ -1361,17 +1388,39 @@ function show_message(){
 	}
 }
 
-function deleteMessage(){
-	return confirm( "Delete this message?" );
+function message_delete(){
+	showLoader();	
+	re = confirm( "Delete this message?" );
+	if( !re ) return;
+	url = url_server_app + "message/delete";
+	$form = $("form.checkbox-form");
+	$form.prop("action",url);
+	$form.submit();
+}
+
+function message_markAsRead (){
+	showLoader();
+	url = url_server_app + "message/markAsRead";
+	$form = $("form.checkbox-form");
+	$form.prop("action",url);
+	$form.submit();
 }
 
 function callback_endless_message(no) {
     if ( hasNoMoreContent() ) return;
     bEndLessInLoading = true;
 	url = url_server_app + 'messageMore?page=' + no + "&session_login=" + $session_id;
+
+	message_keyword = $("form.message-search").find("[name='keyword']").val();
+	message_show = $("form.message-search").find("[name='show']").val();
+	message_extra = $("form.message-search").find("[name='extra']").val();
+	
 	if ( message_keyword ) url = url + "&keyword="+message_keyword;
 	if ( message_show ) url = url + "&show="+message_show;
 	if ( message_extra ) url = url + "&extra="+message_extra;
+	
+	console.log( url );
+	message_is_loading = true;
     $.ajax( url )
         .done(function(html){
             if ( html == '' ) {
@@ -1401,15 +1450,98 @@ function message_send_ajax( re, $this ){
 
 function message_search(){
 	$this = $(this);
-	message_keyword = $this.find("[name='keyword']").val();
-	message_show = $this.find("[name='show']").val();
-	message_extra = $this.find("[name='extra']").val();
+	//$keyword_selector = $(".message-search-wrapper input[name='keyword']");
+	if( $this.hasClass('expanded') ){
+		//$this.removeClass('expanded');
+	}
+	else{
+		$this.addClass('expanded');
+		$("input[name='keyword']").animate({width:'100%'},500);
+		$this.find("input[name='keyword']").click();
+		$this.find("input[name='keyword']").focus();		
+		return false;
+	}	
 	qs = "?"+$this.serialize()+"&session_login="+$session_id;
 	loadPage('message', qs );
 	return false;
 }
 
+function message_checkbox_submit(){	
+	$this = $(this);		
+	$this.ajaxSubmit({
+        type: 'get',
+		data : { 'session_login': $session_id },
+        success: function() {
+            console.log("post success:");
+        },
+        complete: function(xhr) {            
+			var re = xhr.responseText;
+			try{
+				var re = jQuery.parseJSON(re)
+			}
+			catch(e){
+			
+			}
+			if( re ){
+				//if ( error.error != 0  )  alert( error.message );
+				//else alert( error.message );
+				//alert( error.message );
+				console.log( re );
+				
+				if( re.action == 'markAsRead' ) $(".sprite.check_box.is-active").parents(".row").removeClass("unread");
+				else if( re.action == 'delete' ) $(".sprite.check_box.is-active").parents(".row").remove();
+				else alert("unknown action!");
+				var qs = "?";
+				
+				message_keyword = $("form.message-search").find("[name='keyword']").val();
+				message_show = $("form.message-search").find("[name='show']").val();
+				message_extra = $("form.message-search").find("[name='extra']").val();
+				
+				if ( message_keyword ) qs = qs + "&keyword="+message_keyword;
+				if ( message_show ) qs = qs + "&show="+message_show;
+				if ( message_extra ) qs = qs + "&extra="+message_extra;
+				console.log( qs );
+				loadPage('message', qs );
+				
+				$(".sprite.check_box.is-active").removeClass('is-active');
+			}
+			else{
+				console.log( "Nothing Happened" );
+			}
+			hideLoader();
+		}
+	});
+	return false;
+}
+
+function message_checkbox_multiple(){
+	$this = $(this);
+	checkbox_behavior( $this );
+	$(".row .sprite.check_box").each(function(){
+		$this = $(this);
+		checkbox_behavior( $this );
+	});
+}
+
 function message_checkbox(){
 	$this = $(this);
+	checkbox_behavior( $this );
+}
+
+function checkbox_behavior( $this ){
+	if( $this.hasClass("is-active") ) $this.removeClass("is-active");
+	else $this.addClass("is-active");
+	
+	idx = $this.parents(".row").attr("idx");
+	
+	if( ! idx ) return;
+	
+	$selector = $("form.checkbox-form input[name='idx']");
+	current_idx = $selector.val();
+
+	if( current_idx.indexOf( idx ) != -1 ) current_idx = current_idx.replace( "," + idx, "" );
+	else current_idx = current_idx + "," + idx;	
+	
+	$selector.val( current_idx );
 }
 /*eo message*/

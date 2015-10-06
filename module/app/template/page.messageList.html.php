@@ -10,7 +10,7 @@ if( !empty( $messages ) ){
 
 	$post_primary_photo = null;
 	$user_photo = data()->loadBy('user', 'primary_photo', 0, $user->idx);	
-	if( !empty( $user_photo ) ) $post_primary_photo = "<img class='header-primary-photo' src='".$user_photo[0]->urlThumbnail(40,40)."'/>";
+	if( !empty( $user_photo ) ) $post_primary_photo = "<img class='primary-photo' src='".$user_photo[0]->urlThumbnail(40,40)."'/>";
 	
 	$date = date('m-d-y',$message['created']);
 	
