@@ -19,18 +19,15 @@ foreach ( $posts as $post ) {
 	if( $idx_user == 0 ) $idx_user = 1;
 	$user = user()->load( $idx_user )->fields;
 	$id = $user['id'];
-	
-	if( empty( $user['country'] ) ) $location = "No Location";
-	else $location = $user['country'];
-	
-	$fans = "XX fans";
 
 	$date = date( "M d, Y", $post['created'] );
 
 	$post_primary_photo = data()->loadBy('user', 'primary_photo', 0, $idx_user);
 	if( !empty( $post_primary_photo ) ) $post_primary_photo = $post_primary_photo[0]->urlThumbnail(140,140);
 	else $post_primary_photo = sysconfig(URL_SITE)."module/app/img/no_primary_photo.png";
-	$human_timing = App::humanTiming( $post['created'] )." ago";
+	//$human_timing = App::humanTiming( $post['created'] )." ago";
+	
+	$time = date('H:i a',$post['created']);
 		
 	$files = data()->loadBy('post', post_data($post['idx'])->config('idx'), $post['idx']);	
 	$total_files = count( $files );
@@ -65,8 +62,7 @@ foreach ( $posts as $post ) {
 					<td>
 						<div class='info'>
 							<div class='name'><?php echo $id; ?></div>
-							<div class='date'><?php echo $date; ?> | <?php echo $human_timing; ?></div>
-							<div class='location'><?php echo $location; ?> | <?php echo $fans; ?></div>
+							<div class='date'><?php echo $date; ?> | <?php echo $time; ?></div>
 						</div>
 					</td>
 				</tr>
