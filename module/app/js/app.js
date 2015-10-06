@@ -1483,27 +1483,30 @@ function message_checkbox_submit(){
 			
 			}
 			if( re ){
-				//if ( error.error != 0  )  alert( error.message );
-				//else alert( error.message );
-				//alert( error.message );
 				console.log( re );
-				
-				if( re.action == 'markAsRead' ) $(".sprite.check_box.is-active").parents(".row").removeClass("unread");
-				else if( re.action == 'delete' ) $(".sprite.check_box.is-active").parents(".row").remove();
-				else alert("unknown action!");
-				var qs = "?";
-				
-				message_keyword = $("form.message-search").find("[name='keyword']").val();
-				message_show = $("form.message-search").find("[name='show']").val();
-				message_extra = $("form.message-search").find("[name='extra']").val();
-				
-				if ( message_keyword ) qs = qs + "&keyword="+message_keyword;
-				if ( message_show ) qs = qs + "&show="+message_show;
-				if ( message_extra ) qs = qs + "&extra="+message_extra;
-				console.log( qs );
-				loadPage('message', qs );
-				
-				$(".sprite.check_box.is-active").removeClass('is-active');
+				if ( re.code != 0  )  alert( re.message );
+				else{
+					//else alert( error.message );
+					//alert( error.message );
+					console.log( re );
+					
+					if( re.action == 'markAsRead' ) $(".sprite.check_box.is-active").parents(".row").removeClass("unread");
+					else if( re.action == 'delete' ) $(".sprite.check_box.is-active").parents(".row").remove();
+					else alert("unknown action!");
+					var qs = "?";
+					
+					message_keyword = $("form.message-search").find("[name='keyword']").val();
+					message_show = $("form.message-search").find("[name='show']").val();
+					message_extra = $("form.message-search").find("[name='extra']").val();
+					
+					if ( message_keyword ) qs = qs + "&keyword="+message_keyword;
+					if ( message_show ) qs = qs + "&show="+message_show;
+					if ( message_extra ) qs = qs + "&extra="+message_extra;
+					console.log( qs );
+					loadPage('message', qs );
+					
+					$(".sprite.check_box.is-active").removeClass('is-active');
+				}
 			}
 			else{
 				console.log( "Nothing Happened" );
