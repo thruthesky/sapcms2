@@ -1548,3 +1548,42 @@ function checkbox_behavior( $this ){
 	$selector.val( current_idx );
 }
 /*eo message*/
+
+
+
+
+/*user profile*/
+$(function(){
+	$("body").on("click",".popup-user-profile", getPopupUserProfile );
+});
+
+function getPopupUserProfile( e ){	
+	$this = $(this);
+	
+	url = url_server_app + "getPopupUserProfile";
+	idx = $this.attr("idx");
+	if( $(".popup-profile").length ){
+		$(".popup-profile").remove();
+		return;
+	}
+	
+	//if( $(".popup-profile[idx='" + idx + "']").length ) 
+	
+	position_x = $this.offset().left;
+	position_y = $this.offset().top + 30;
+	popup_width = $(window).width() - 120;
+	if( !idx ) return alert("Mising user IDX!");
+	$.ajax({
+        'url': url,
+        'data' : { 'session_login':$session_id, 'idx':idx }
+    })
+	.done(function(html) {			
+		$("body").append(html);
+		$(".popup-profile").css("top",position_y).css("left",position_x).css("width",popup_width+'px');
+		//$(html).css("color","red");
+	})
+	.fail(function() {
+		
+	});
+}
+/*eo user profile*/

@@ -480,3 +480,34 @@
         display:inline-block;
     }
 }
+
+/*user profile*/
+.popup-profile{
+	position:absolute;
+	padding:10px;
+	background-color:#fff;
+	border: 1px solid #d5d5d5;
+}
+
+.popup-profile .table-user-info{
+	margin-bottom:10px;
+}
+
+.popup-profile .primary-photo{
+	width:100px;
+	padding-right:10px;
+}
+
+.popup-profile .primary-photo img{
+	width:100%;
+}
+
+.popup-profile .message-write-wrapper{
+	padding:0;
+	margin:0;
+}
+
+.popup-profile .message-write-wrapper textarea.message-content{
+	height:45px;
+}
+/*eo user profile*/

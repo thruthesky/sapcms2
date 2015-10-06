@@ -331,26 +331,26 @@ form .file-display{
 	}
 
 	
-	.post-cancel{
+	#postList .post-cancel{
 		padding: 15px 4px;
 		margin:0;
 	    font-size: .7em; 		
 		cursor:pointer;
 	}
 	
-	.primary-photo{
+	#postList .primary-photo{
 		width:50px;
 		height:50px;
 		margin:0 10px 0 0;
 	}
 
-	.primary-photo.comment-photo{
+	#postList .primary-photo.comment-photo{
 		width:45px;
 		height:45px;
 		margin:0 10px 0 0;	
 	}
 
-	.primary-photo img{
+	#postList .primary-photo img{
 		width:100%;
 	}
 	/*EO V I E W*/

@@ -645,4 +645,24 @@ class App {
 		return Response::json( $data );
 	}
 	/*eo message*/
+	
+	/*PopupUserProfile*/
+	public static function getPopupUserProfile(){
+		$idx = request('idx');
+		$my_idx = login('idx');
+		$user = User()->load( $idx );
+		$reply = true;
+		
+		
+		
+		ob_start();
+		echo "<div class='popup-profile' user_id='$idx'>";
+		include template('page.userInformation');
+		if( !empty( $my_idx ) ){
+			include template('page.messageCreateForm');
+		}
+		echo "</div>";
+		echo ob_get_clean();
+	}
+	/*eo PopupUserProfile*/
 }

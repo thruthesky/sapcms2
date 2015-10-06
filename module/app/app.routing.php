@@ -37,3 +37,6 @@ Route::add('/app/messageCreate', 'app\\App\\messageCreate');
 Route::add('/app/message/submit', 'app\\App\\messageCreateSubmit');
 Route::add('/app/message/markAsRead', 'app\\App\\markAsRead');
 Route::add('/app/message/delete', 'app\\App\\messageDelete');
+
+
+Route::add('/app/getPopupUserProfile', 'app\\App\\getPopupUserProfile');

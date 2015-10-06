@@ -19,7 +19,7 @@ html, body, .page {
     padding-top:66px;
 }
 
-@media screen and (min-height: 480px){
+@media screen and (min-height: 600px){
 	html, body, .page {
 		height:100%;	
 	}
