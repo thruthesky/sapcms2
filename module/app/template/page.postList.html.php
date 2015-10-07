@@ -13,8 +13,6 @@ foreach ( $posts as $post ) {
 		if( $skip_idx == $post['idx'] ) continue;
 	}
 	
-	$url_report = '#';
-	
 	$idx_user = $post['idx_user'];
 	if( $idx_user == 0 ) $idx_user = 1;
 	$user = user()->load( $idx_user )->fields;
@@ -44,22 +42,18 @@ foreach ( $posts as $post ) {
 				<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/delete_post.png'/>
 			</span>
 			<?php }else{ ?>
-				<a class='report' href="<?php echo $url_report ?>">
+				<span class='report' idx='<?php echo $post['idx']; ?>'>
 					<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/report.png'/>
-				</a>
+				</span>
 			<?php }?>
 		</nav>
 		<section class="user-profile">
 			<table cellpadding=0 cellspacing=0 width='100%'>
-				<tr>
-					<td width='60'>
-						<?php if( !empty( $post_primary_photo ) ){?>
-							<div class='primary-photo'><img src='<?php echo $post_primary_photo; ?>'/></div>
-						<?php } else {?>
-							<div class='primary-photo temp'></div>
-						<?php }?>
-					</td>
+				<tr>					 
 					<td>
+						<div class='primary-photo popup-user-profile' idx='<?php echo $post['idx_user']; ?>' profile_target='post-<?php echo $post['idx']; ?>'><img src='<?php echo $post_primary_photo; ?>'/></div>
+					</td>
+					<td width='99%'>
 						<div class='info'>
 							<div class='name popup-user-profile' idx='<?php echo $post['idx_user'] ?>' profile_target='post-<?php echo $post['idx'] ?>'><?php echo $id; ?></div>
 							<div class='date'><?php echo $date; ?> | <?php echo $time; ?></div>

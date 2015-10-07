@@ -5,6 +5,8 @@
 	
 	//$date = date("y-m-d",$user['created']);
 	$date =  date("y-m-d",$user->created);
+	
+	//post_data()->count("idx_user=".$user->idx);
 ?>
 <table class='table-user-info' cellpadding=0 cellspacing=0 width='100%'>
 	<tr valign='top'>
@@ -15,9 +17,26 @@
 		</td>
 		<td width='99%'>
 			<div class='info'>
-				<div class='id'><?php echo $user->id; ?></div>
 				<div class='name'><?php echo $user->name; ?></div>
-				<div class='name'><?php echo $date; ?></div>			
+				<div class='id'>(<?php echo $user->id; ?>)</div>
+				<table class='table-listing' cellpadding=0 cellspacing=0 width='100%'>
+					<tr>
+						<td>
+							<span class='label'>Post: </span>
+							<span class='value'>XX</span>
+						</td>
+						<td>
+							<span class='label'>Level: </span>
+							<span class='value'>XX</span>
+						</td>
+					</tr>
+					<tr>
+						<td colspan=2>
+							<span class='label'>Join Date: </span>
+							<span class='value'>XX</span>
+						</td>
+					</tr>
+				</table>
 			</div>
 		</td>
 	</tr>

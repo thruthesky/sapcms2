@@ -9,8 +9,13 @@ if( !empty( $messages ) ){
 	else if( $data['show'] == 'sent' ) $user = User()->load( $message['idx_to'] );
 
 	$post_primary_photo = null;
-	$user_photo = data()->loadBy('user', 'primary_photo', 0, $user->idx);	
-	if( !empty( $user_photo ) ) $post_primary_photo = "<img class='primary-photo' src='".$user_photo[0]->urlThumbnail(40,40)."'/>";
+	$user_photo = data()->loadBy('user', 'primary_photo', 0, $user->idx);
+	
+	if( !empty( $user_photo ) ) $url = $user_photo[0]->urlThumbnail(40,40);
+	else $url = sysconfig(URL_SITE)."module/app/img/no_primary_photo.png";
+	
+	$post_primary_photo = "<img class='primary-photo' src='".$url."'/>";	
+
 	
 	$date = date('m-d-y',$message['created']);
 	

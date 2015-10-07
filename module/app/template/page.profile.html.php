@@ -5,7 +5,7 @@
 	if ( $photo ) $url = $photo->urlThumbnail(140, 140);
 	else if( empty( $url ) ) $url = sysconfig(URL_SITE)."module/app/img/register_logo.png";		
 	?>
-	<div class='logo take-user-primary-photo'>
+	<div class='logo user-primary-photo take-user-primary-photo'>
 		<img src='<?php echo $url; ?>'>
 	</div>
 	

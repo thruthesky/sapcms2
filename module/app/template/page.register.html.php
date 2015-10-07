@@ -22,14 +22,6 @@
 			])
 		]);
 		echo html_row([
-			'caption' => 'Password',
-			'class' => 'confirm_password',
-			'text' => html_password([
-				'name' => 'confirm_password',				
-				'placeholder' => 'Confirm Password',
-			])
-		]);
-		echo html_row([
 			'caption' => 'Name',
 			'class' => 'name',
 			'text' => html_input([

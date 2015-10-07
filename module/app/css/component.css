@@ -251,9 +251,9 @@
 }
 
 .register-wrapper form[name='register'] .row .text > *, .profile-wrapper form[name='profileUpdate'] .row .text > *{
-	height:35px;
+	height:45px;
 	width:100%;
-	padding:10px 10px 10px 42px;
+	padding:14px 10px 14px 52px;
 	margin:0;
 	border:0;
 	border-bottom:1px solid #fff;
@@ -271,11 +271,12 @@
 	position: absolute;
     left: 0;
     top: 0;
-	width:37px;
-	height:35px;
-    background-color: #e2e2e2;	
-	overflow:hidden;
-	box-sizing:border-box;
+    width: 47px;
+    height: 45px;
+    padding: 5px;
+    background-color: #e2e2e2;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 .register-wrapper form[name='register'] .row.id{
@@ -286,7 +287,7 @@
 .register-wrapper form[name='register'] .row.id.profile .text{
 	height: 35px;
     background-color: #fff;
-    padding: 9px 0 9px 42px;
+    padding: 9px 0 9px 52px;
     box-sizing: border-box;
 	font-size:.9em;
 	color:#444;
@@ -484,9 +485,25 @@
 /*user profile*/
 .popup-profile{
 	position:absolute;
-	padding:10px;
+	padding:10px 10px 0 10px;
 	background-color:#fff;
 	border: 1px solid #d5d5d5;
+}
+
+.popup-profile .triangle{
+	position:absolute;
+	left:10px;
+	top:-7px;
+	width: 0; 
+	height: 0; 
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-bottom: 7px solid #a4a4a4;
+}
+
+.popup-profile .triangle.inner{	
+	top:-6px;	
+	border-bottom: 7px solid #fff;
 }
 
 .popup-profile .table-user-info{
@@ -494,11 +511,12 @@
 }
 
 .popup-profile .primary-photo{
-	width:100px;
+	width:80px;
 	padding-right:10px;
 }
 
 .popup-profile .primary-photo img{
+	display:block;
 	width:100%;
 }
 
@@ -509,5 +527,28 @@
 
 .popup-profile .message-write-wrapper textarea.message-content{
 	height:45px;
+	border:1px solid #c7c7c7;
+	border-radius:0;
+	background-color:#fff;
+}
+
+.popup-profile .info .name{
+	margin-bottom:7px;
+	font-size:1.1em;
+	font-weight:bold
+}
+
+.popup-profile .info .id{
+	margin-bottom:15px;
+	font-size:1.1em;	
+}
+
+.popup-profile .info .table-listing{
+	font-size:.8em;
+}
+
+.popup-profile .info .table-listing .label{
+	font-weight:bold;
+	color:#ab1212;	
 }
 /*eo user profile*/

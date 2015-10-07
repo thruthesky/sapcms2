@@ -18,9 +18,3 @@ html, body, .page {
 .page > .content {
     padding-top:66px;
 }
-
-@media screen and (min-height: 600px){
-	html, body, .page {
-		height:100%;	
-	}
-}

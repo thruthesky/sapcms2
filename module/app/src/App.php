@@ -437,8 +437,6 @@ class App {
     public static function registerSubmit() {
         $id = request('id');
         if ( user_exists($id) ) return Response::json(['error'=>"User ID is in use. Please choose another."]);
-		if ( request('password') != request('confirm_password') ) return Response::json(['error'=>"Passwords does not match."]);
-		
 		
         $options['id'] = $id;
         $options['password'] = request('password');
@@ -657,13 +655,60 @@ class App {
 		
 		
 		ob_start();
-		echo "<div class='popup-profile' user_id='$idx' profile_target='$profile_target'>";
+		echo "<div class='popup-profile remove-on-body-click' user_id='$idx' profile_target='$profile_target'>";
+		echo "<div class='triangle outer'></div><div class='triangle inner'></div>";
 		include template('page.userInformation');
 		if( !empty( $my_idx ) ){
+			$show_on_click_class = " show-on-click";
 			include template('page.messageCreateForm');
 		}
 		echo "</div>";
 		echo ob_get_clean();
 	}
 	/*eo PopupUserProfile*/
+	
+	/*postReport*/
+	public static function getReportForm(){
+		$idx = request('idx');
+		$my_idx = login('idx');
+		if( empty( $my_idx ) ) return Response::json(['error'=>'1001','message'=>'Please Login First!']);
+		$html =	"<form class='reportForm remove-on-body-click' action=''>".		
+				"<input type='hidden' name='idx' value='".$idx."'>".
+				"<table celpadding=0 cellspacing=0 width='100%'><tr>".
+				"<td width='99%'><textarea name='reason' placeholder='Reason for reporting'></textarea></td>".
+				"<td><input type='submit' value='Report'></td>".
+				"</tr></table>".
+				"</form>";
+				
+		return Response::json(['error'=>'0','html'=>$html]);
+	}
+	
+	public static function postReport(){
+		$idx = request('idx');
+		$reason = request('reason');
+		$my_idx = login('idx');
+		$post = post_data()->load( $idx );
+		if( empty( $my_idx ) ) return Response::json(['error'=>'1001','message'=>'Please Login First!']);
+		if( empty( $post ) ) return Response::json(['error'=>'6000','message'=>'Invalid Post ID!']);
+		if( empty( $reason ) ) return Response::json(['error'=>'6010','message'=>'Reason Cannot be empty!']);
+		
+		
+		$post
+			->set( 'report', 'Y' )
+			->set( 'reason', $reason )
+			->set( 'int_1', 0 )
+			->set( 'int_2', 0 )
+			->set( 'int_3', 0 )
+			->set( 'int_4', 0 )
+			->set( 'int_5', 0 )
+			->set( 'int_6', 0 )
+			->set( 'int_7', 0 )
+			->set( 'int_8', 0 )
+			->set( 'int_9', 0 )
+			->set( 'int_10', 0 )
+			->save();
+			
+		echo "Successfully reported this post!";
+	}
+	/*eo postReport*/
 }
