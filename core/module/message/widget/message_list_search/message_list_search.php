@@ -1,12 +1,12 @@
 <?php
 add_css();
-if( !empty( $widget['show'] ) ) $show = $widget['show'];
+if( !empty( $data['show'] ) ) $show = $data['show'];
 else $show =null;
 
-if( !empty( $widget['extra'] ) ) $extra = $widget['extra'];
+if( !empty( $data['extra'] ) ) $extra = $data['extra'];
 else $extra =null;
 
-if( !empty( $widget['keyword'] ) ) $keyword = $widget['keyword'];
+if( !empty( $data['keyword'] ) ) $keyword = $data['keyword'];
 else $keyword = null;
 ?>
 <form class='message-search'>

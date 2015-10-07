@@ -25,7 +25,7 @@ for( $i=0; $i<1000; $i++ ){
 	$title = $idx_from." to ".$idx_to." num [ $i ]";
 	$content = "$i.) This is a fake message... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae eros nec nunc dignissim hendrerit vitae quis justo. Nulla fringilla at sem ut porta. Etiam commodo aliquam ligula, cursus imperdiet dolor consectetur at. Pellentesque augue nunc, bibendum a fringilla vel, congue vel sapien. Donec mollis quis ex ut semper. Donec luctus blandit lobortis. Donec nulla quam, interdum in dolor at, blandit facilisis ante. Nunc nec ante a sem vehicula egestas a et magna. Ut scelerisque tempus vulputate. Pellentesque leo neque, vestibulum nec massa in, molestie dapibus felis. Sed sed accumsan purus. Donec id malesuada nisl. Integer mattis nibh interdum vestibulum euismod. Interdum et malesuada fames ac ante ipsum primis in faucibus.";
 	
-	message()->set('idx_from',$idx_to)
+	message()->set('idx_from',$idx_from)
 			->set('idx_to',$idx_to)
 			->set('title', $title)
 			->set('content', $content)
