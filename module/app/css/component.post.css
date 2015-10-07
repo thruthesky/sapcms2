@@ -341,19 +341,19 @@ form .file-display{
 		cursor:pointer;
 	}
 	
-	#postList .primary-photo{
+	#postList .primary-photo, .post .primary-photo{
 		width:50px;
 		height:50px;
 		margin:0 10px 0 0;
 	}
 
-	#postList .primary-photo.comment-photo{
+	#postList .primary-photo.comment-photo, .post .primary-photo.comment-photo{
 		width:45px;
 		height:45px;
 		margin:0 10px 0 0;	
 	}
 
-	#postList .primary-photo img{
+	#postList .primary-photo img, .post .primary-photo img{
 		width:100%;
 	}
 	/*EO V I E W*/

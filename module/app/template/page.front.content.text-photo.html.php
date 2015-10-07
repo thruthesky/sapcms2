@@ -1,14 +1,15 @@
 <?php
-$posts = post()->getLatestPost('test', 9, 2);
-if ( empty($posts) ) return;
+$posts = post()->getLatestPostImages(9, 2, 'test');
 ?>
 <div class="text-photo">
     <?php
     foreach ( $posts as $post ) {
+		$post = post_data()->load($post->idx_target);
 		$post_image = $post->getImage();
-		if( !empty( $post_image ) ) $src = $post->getImage()->urlThumbnail(400,140);	
+		if( !empty( $post_image ) ) $src = $post->getImage()->urlThumbnail(400,140);
+		else $src = null;
         ?>        
-        <div class='link' route='view_post' idx='<?php echo $post->idx?>''>
+        <div class='link' route='view_post' idx='<?php echo $post->idx?>'>
             <div class="row">
                 <div class="photo">
                     <img src="<?php echo $src?>">
