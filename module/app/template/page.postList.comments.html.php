@@ -34,12 +34,12 @@ $total_files = count( $files );
 <table cellpadding=0 cellspacing=0 width='100%'>
 	<tr valign='top'>
 	<td>
-		<div class="primary-photo comment-photo temp popup-user-profile" idx='<?php echo $comment['idx_user']; ?>' profile_target='comment-<?php echo $post['idx']; ?>'>
+		<div class="primary-photo comment-photo temp popup-user-profile" idx='<?php echo $comment['idx_user']; ?>' profile_target='comment-<?php echo $comment['idx']; ?>'>
 			<img src="<?php echo $post_primary_photo; ?>">
 		</div>
 	</td>
 	<td width='99%'>		
-		<div class='name popup-user-profile' idx='<?php echo $comment['idx_user']; ?>' profile_target='comment-<?php echo $post['idx']; ?>'><?php echo $user['name']; ?></div>
+		<div class='name popup-user-profile' idx='<?php echo $comment['idx_user']; ?>' profile_target='comment-<?php echo $comment['idx']; ?>'><?php echo $user['name']; ?></div>
         <div class="content">
 			<?php if ( $comment['delete'] ) { ?>
 				<div class="deleted">
