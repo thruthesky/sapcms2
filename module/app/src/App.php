@@ -649,7 +649,10 @@ class App {
 		$idx = request('idx');
 		$profile_target = request('profile_target');
 		$my_idx = login('idx');
+		if( $idx == 0 ) $idx = 1;//temporary
 		$user = User()->load( $idx );
+		
+		if( empty( $user ) ) return Response::json(['error'=>'-1002','message'=>'Invalid User ID!']);
 		$reply = true;
 		
 		
@@ -671,7 +674,7 @@ class App {
 	public static function getReportForm(){
 		$idx = request('idx');
 		$my_idx = login('idx');
-		if( empty( $my_idx ) ) return Response::json(['error'=>'1001','message'=>'Please Login First!']);
+		if( empty( $my_idx ) ) return Response::json(['error'=>'-1001','message'=>'Please Login First!']);
 		$html =	"<form class='reportForm remove-on-body-click' action=''>".		
 				"<input type='hidden' name='idx' value='".$idx."'>".
 				"<table celpadding=0 cellspacing=0 width='100%'><tr>".
@@ -688,9 +691,9 @@ class App {
 		$reason = request('reason');
 		$my_idx = login('idx');
 		$post = post_data()->load( $idx );
-		if( empty( $my_idx ) ) return Response::json(['error'=>'1001','message'=>'Please Login First!']);
-		if( empty( $post ) ) return Response::json(['error'=>'6000','message'=>'Invalid Post ID!']);
-		if( empty( $reason ) ) return Response::json(['error'=>'6010','message'=>'Reason Cannot be empty!']);
+		if( empty( $my_idx ) ) return Response::json(['error'=>'-1001','message'=>'Please Login First!']);
+		if( empty( $post ) ) return Response::json(['error'=>'-6000','message'=>'Invalid Post ID!']);
+		if( empty( $reason ) ) return Response::json(['error'=>'-6010','message'=>'Reason Cannot be empty!']);
 		
 		
 		$post

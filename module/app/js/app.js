@@ -1580,10 +1580,21 @@ function getPopupUserProfile( e ){
         'url': url,
         'data' : { 'session_login':$session_id, 'idx':idx, 'profile_target':profile_target }
     })
-	.done(function(html) {			
-		$("body").append(html);
-		$(".popup-profile").css("top",position_y).css("left",position_x).css("width",popup_width+'px');
-		//$(html).css("color","red");
+	.done(function(html) {
+			try{
+				var re = jQuery.parseJSON(html)
+			}
+			catch(e){
+			
+			}
+			if( re ){
+				alert( re.message );
+			}
+			else{
+				$("body").append(html);
+				$(".popup-profile").css("top",position_y).css("left",position_x).css("width",popup_width+'px');
+				//$(html).css("color","red");
+			}
 	})
 	.fail(function() {
 		
