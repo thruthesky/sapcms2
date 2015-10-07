@@ -10,7 +10,7 @@ function text_noMoreContent() {
 function text_updateProfile() {
     return "회원 정보가 업데이트 되었습니다.";
 }
-function showLoader() {
+function callback_showLoader() {
     var src = 'http://sapcms2.org/theme/default/tmp/s.png';
     var $body = $('body');
     var $document = $(window);
@@ -27,7 +27,6 @@ function showLoader() {
         'left' : (body_width / 2 - loader_width / 2) - 20,
         'top' :  (body_height / 2 - loader_height / 2) - 20
     });
-
     console.log("show loader");
 }
 function hideLoader() {

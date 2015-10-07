@@ -24,6 +24,7 @@ else {
     <input type="hidden" name="id" value="<?php echo $config->id; ?>">
     <input type="hidden" name="idx" value="<?php echo $idx; ?>">
     <input type="hidden" name="file_display" value="1">
+    <input type="hidden" name="content_type" value="H">
     <?php include template('element/hidden.variables'); ?>
     <?php include template('element/title'); ?>
     <?php widget('post_edit_upload_files', ['form_name'=>'files[]']); ?>

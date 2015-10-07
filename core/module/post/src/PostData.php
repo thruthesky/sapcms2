@@ -62,6 +62,13 @@ class PostData extends Entity {
             $post['user'] = user($post['idx_user'])->getFields();
         }
         else $post['user'] = FALSE;
+
+        if ( $post['content_type'] == 'H' ) {
+
+        }
+        else {
+            $post['content'] = nl2br($post['content']);
+        }
         return $post;
     }
 

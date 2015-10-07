@@ -21,7 +21,8 @@ body {
 
 @media all and (min-width: 720px ) {
     #layout-left {
-        display:block;
+        display:table-cell;
+        width:220px;
     }
 }
 @media all and (min-width: 1024px ) {

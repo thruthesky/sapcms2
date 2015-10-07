@@ -1036,16 +1036,19 @@ function cameraSuccess(fileURI) {
 
         clearCache();
         retries = 0;
-        var re = JSON.parse(data);		
+        var re = JSON.parse(data);
         for ( var i in re ) {
             var file = re[i];
             if ( file.error ) {
                 alert(file.message);				
             }
 			else {
-				if( photoOptions.type == 'primary_photo' ) $(photoOptions.selector).find("img").remove();
-				
-				html = "<div idx='" + file.idx + "' class='file image delete'><img src='"+file.urlThumbnail+"'></div>";				
+				/*if( photoOptions.type != 'primary_photo' ) delete_button = "<div class='delete' title='Delete this file'>X</div>";
+				else {
+					$("form[name='profileUpdate'] img").remove();
+					delete_button = '';
+				}*/
+				html = "<div idx='" + file.idx + "' class='file image delete'><img src='"+file.urlThumbnail+"'>" + delete_button + "</div>";
 				if ( photoOptions.add ) $(photoOptions.selector).append(html);
 				else $(photoOptions.selector).html(html);
 
@@ -1108,7 +1111,7 @@ function takePhotoUpload() {
 
 /** User primary photo */
 function cameraUserPrimaryPhoto() {
-    setPhotoSelector('.user-primary-photo', true);
+    setPhotoSelector('.user-primary-photo', false);
     setFileInfo('user', 'primary_photo', 0, 1, 1, 140, 140);
     takePhotoUpload();
 }
@@ -1552,20 +1555,10 @@ function checkbox_behavior( $this ){
 /*user profile*/
 $(function(){
 	$("body").on("click",".popup-user-profile", getPopupUserProfile );
-	//only works for popup-profile
-	$("body").on("click",".popup-profile .message-write-wrapper .message-content", popupUserProfileShowButtons );
 });
 
-
-function popupUserProfileShowButtons(){	
-	$this = $(this);
-	$this.parents(".popup-profile").find(".show-on-click").show();	
-}
-
 function getPopupUserProfile( e ){	
-	var $this = $(this);
-	
-	if( $(".reportForm").length ) $(".reportForm").remove();
+	$this = $(this);
 	
 	url = url_server_app + "getPopupUserProfile";
 	idx = $this.attr("idx");
@@ -1580,7 +1573,7 @@ function getPopupUserProfile( e ){
 	//if( $(".popup-profile[idx='" + idx + "']").length ) 
 	
 	position_x = $this.offset().left;
-	position_y = $this.offset().top + 22;
+	position_y = $this.offset().top + 30;
 	popup_width = $(window).width() - 120;
 	if( !idx ) return alert("Mising user IDX!");
 	$.ajax({
@@ -1597,113 +1590,3 @@ function getPopupUserProfile( e ){
 	});
 }
 /*eo user profile*/
-
-/*report*/
-$(function(){
-	$("body").on("click",".post .report", postReport );
-	$("body").on("submit",".reportForm", postReportSubmit );
-});
-
-function postReport(){
-	if( $(".popup-profile").length ) $(".popup-profile").remove();
-
-	var $this = $(this);
-	idx = $this.attr('idx');
-	parentSelector = '.post';
-	if( $this.parents( parentSelector ).find(".reportForm").length ){
-		$this.parents( parentSelector ).find(".reportForm").remove();
-		return;
-	}
-	
-	$( parentSelector ).find(".reportForm").remove();
-	
-	getReportForm( $this, parentSelector, idx );
-}
-
-
-//needs the post IDX and only works for post
-function getReportForm( $this, parentSelector, idx ){
-	url = url_server_app + "getReportForm";
-
-	$.ajax({
-        'url': url,
-        'data' : { 'session_login':$session_id, 'idx':idx }
-    })
-	.done(function(re) {			
-			var re = jQuery.parseJSON(re)			
-			if( re.error == 0 ){
-				$this.parents( parentSelector ).append( re.html );
-			}
-			else{
-				alert( re.message );
-			}
-	})
-	.fail(function() {
-		
-	});
-
-	/*
-	action = url_server_app + "postReport";
-	html =	"<form class='reportForm remove-on-body-click' action='" + action + "'>" +			
-			"<input type='hidden' name='idx' value='" + idx + "'>" +
-			"<table celpadding=0 cellspacing=0 width='100%'><tr>" +
-			"<td width='99%'><textarea name='reason' placeholder='Reason for reporting'></textarea></td>" +
-			"<td><input type='submit' value='Report'></td>" +
-			"</tr></table>" +
-			"</form>";
-	*/
-	
-}
-
-function postReportSubmit(){
-	var $this = $(this);
-	action = url_server_app + "postReport";
-	$this.prop('action',action);
-	$this.ajaxSubmit({
-        type: 'post',
-		data : { 'session_login': $session_id },
-        success: function() {
-            console.log("post success:");
-        },
-        complete: function(xhr) {            
-			var re = xhr.responseText;
-			console.log( re );
-				try{
-					var error = jQuery.parseJSON(re)
-				}
-				catch(e){
-				
-				}
-			if ( error && error.error != 0 ) {
-				alert( error.message );
-			}
-			else{
-				alert( re );
-				$this.remove();
-			}
-        }
-    });
-
-
-	return false;
-}
-/*eo report*/
-
-/*body*/
-$(function(){
-	$("body").click( body_clicked );
-});
-
-function body_clicked( e ){
-	$selector = $(".remove-on-body-click");
-	
-	if( !$selector.length ) return
-	
-	target_class = $( e.target ).attr("class");
-	if( target_class == 'remove-on-body-click' ) return;
-	else if( $( e.target ).parents(".remove-on-body-click").length ) return;
-	else if( $( e.target ).parent().hasClass(".remove-on-body-click" ) ) return;
-	
-	$selector.remove();
-}
-/*eo body*/
