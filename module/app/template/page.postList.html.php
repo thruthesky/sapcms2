@@ -61,7 +61,7 @@ foreach ( $posts as $post ) {
 					</td>
 					<td>
 						<div class='info'>
-							<div class='name popup-user-profile' idx='<?php echo $post['idx_user'] ?>'><?php echo $id; ?></div>
+							<div class='name popup-user-profile' idx='<?php echo $post['idx_user'] ?>' profile_target='post-<?php echo $post['idx'] ?>'><?php echo $id; ?></div>
 							<div class='date'><?php echo $date; ?> | <?php echo $time; ?></div>
 						</div>
 					</td>

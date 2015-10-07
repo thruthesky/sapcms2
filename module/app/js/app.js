@@ -1562,10 +1562,13 @@ function getPopupUserProfile( e ){
 	
 	url = url_server_app + "getPopupUserProfile";
 	idx = $this.attr("idx");
-	if( $(".popup-profile").length ){
+	profile_target = $this.attr("profile_target");
+	
+	if( $(".popup-profile[profile_target='"+profile_target+"']").length ){
 		$(".popup-profile").remove();
 		return;
 	}
+	else if( $(".popup-profile").length ) $(".popup-profile").remove();
 	
 	//if( $(".popup-profile[idx='" + idx + "']").length ) 
 	
@@ -1575,7 +1578,7 @@ function getPopupUserProfile( e ){
 	if( !idx ) return alert("Mising user IDX!");
 	$.ajax({
         'url': url,
-        'data' : { 'session_login':$session_id, 'idx':idx }
+        'data' : { 'session_login':$session_id, 'idx':idx, 'profile_target':profile_target }
     })
 	.done(function(html) {			
 		$("body").append(html);

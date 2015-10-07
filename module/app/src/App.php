@@ -649,6 +649,7 @@ class App {
 	/*PopupUserProfile*/
 	public static function getPopupUserProfile(){
 		$idx = request('idx');
+		$profile_target = request('profile_target');
 		$my_idx = login('idx');
 		$user = User()->load( $idx );
 		$reply = true;
@@ -656,7 +657,7 @@ class App {
 		
 		
 		ob_start();
-		echo "<div class='popup-profile' user_id='$idx'>";
+		echo "<div class='popup-profile' user_id='$idx' profile_target='$profile_target'>";
 		include template('page.userInformation');
 		if( !empty( $my_idx ) ){
 			include template('page.messageCreateForm');
