@@ -121,13 +121,16 @@ body{
 
 .post .comment .menu > .delete {
 	display:inline-block;
-	width:8px;
-	height:8px;
+	width:12px;
+	height:12px;
+	padding-top:0;
 }
 
 
 .post .comment .name{
-	font-weight:bold;	
+	margin-bottom:5px;
+	font-size:.9em;
+	font-weight:bold;
 }
 
 /** FILE UPLOAD */
@@ -338,19 +341,19 @@ form .file-display{
 		cursor:pointer;
 	}
 	
-	#postList .primary-photo{
+	#postList .primary-photo, .post .primary-photo{
 		width:50px;
 		height:50px;
 		margin:0 10px 0 0;
 	}
 
-	#postList .primary-photo.comment-photo{
+	#postList .primary-photo.comment-photo, .post .primary-photo.comment-photo{
 		width:45px;
 		height:45px;
 		margin:0 10px 0 0;	
 	}
 
-	#postList .primary-photo img{
+	#postList .primary-photo img, .post .primary-photo img{
 		width:100%;
 	}
 	/*EO V I E W*/
@@ -408,6 +411,7 @@ form .file-display{
 		}
 
 		.user-profile .info .name{
+			display:inline-block;
 			margin-bottom:5px;
 			font-size:1.3em;
 			font-weight:bold;	
@@ -647,3 +651,41 @@ form .file-display{
 	font-size:1.4em;
 	text-align:center;
 }
+
+/*reportForm*/
+.reportForm{
+	position:absolute;
+	right:5px;
+	top:35px;
+	width: 80%;
+    padding: 5px;
+    margin: 0 10px;
+	border: 1px solid #d5d5d5;
+    background-color: #f7f7f7;
+}
+
+.reportForm textarea{
+	display:block;
+	height:45px;
+	width:100%;
+	padding:10px;
+	border: 1px solid #70b7ff;	
+	resize:none;
+	box-sizing:border-box;
+}
+
+.reportForm input[type='submit']{
+	display: block;
+    height: 45px;
+    padding: 10px;
+    margin: 0 0 0 5px;
+    border-radius: 2px;
+    border: 0;
+    background-color: #2c8ac8;
+    font-size: .8em;
+    font-weight: bold;
+    color: #fff;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+/*eo reportForm*/

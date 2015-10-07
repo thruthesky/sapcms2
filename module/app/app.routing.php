@@ -40,3 +40,6 @@ Route::add('/app/message/delete', 'app\\App\\messageDelete');
 
 
 Route::add('/app/getPopupUserProfile', 'app\\App\\getPopupUserProfile');
+
+Route::add('/app/getReportForm', 'app\\App\\getReportForm');
+Route::add('/app/postReport', 'app\\App\\postReport');

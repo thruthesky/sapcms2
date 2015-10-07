@@ -1,5 +1,7 @@
 <?php
 if( empty( $message_number ) ) $message_number = 0;
+if( empty( $show_on_click_class ) ) $show_on_click_class = null;
+
 ?>
 <div class='message-write-wrapper'>
 	<form action='' no='reply-<?php echo $message_number ?>' class="ajax-file-upload message-form" method="post" enctype="multipart/form-data">  
@@ -19,7 +21,7 @@ if( empty( $message_number ) ) $message_number = 0;
 		<?php } ?>
 			<textarea class='message-content' name="content" placeholder="Write a post."><?php if( !empty( $post['content'] ) ) echo $post['content']; ?></textarea>
 	 
-			<div class='buttons'>
+			<div class='buttons<?php echo $show_on_click_class; ?>'>
 				<img class="post-file-upload-button" src="<?php echo sysconfig(URL_SITE)?>module/app/img/camera_white_temp.png">
 				<input class="form-comment-add-submit" type="submit" value="Send">
 			</div>

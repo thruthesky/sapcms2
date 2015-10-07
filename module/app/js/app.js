@@ -1590,36 +1590,3 @@ function getPopupUserProfile( e ){
 	});
 }
 /*eo user profile*/
-
-
-
-function showLoader() {
-    if ( typeof callback_showLoader == 'function' ) return callback_showLoader();
-    var src = url_server + '/theme/default/tmp/s.png';
-    var $body = $('body');
-    var $document = $(window);
-    $body.append("<div class='loader'><img src='"+src+"'> 로딩중입니다.</div>");
-
-    var $loader = $('.loader');
-    var body_width = $document.width();
-    var loader_width = $loader.width();
-
-    var body_height = $document.height();
-    var loader_height = $loader.height();
-
-    $loader.css({
-        'left' : (body_width / 2 - loader_width / 2) - 20,
-        'top' :  (body_height / 2 - loader_height / 2) - 20
-    });
-    console.log("show loader");
-}
-
-
-function hideLoader() {
-    if ( typeof callback_hideLoader == 'function' ) return callback_hideLoader();
-    setTimeout(function(){
-        $('.loader').remove();
-    }, 800);
-    console.log("hide loader");
-}
-
