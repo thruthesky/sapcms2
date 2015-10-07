@@ -191,6 +191,7 @@ class post {
         $options['idx_user'] = login('idx');
         $options['title'] = request('title');
         $options['content'] = request('content');
+        $options['content_type'] = request('content_type');
         $data = PostData::newPost($options);
 
         if ( empty($data) ) return self::templateError(-50510, "Could not create a new post");
@@ -484,6 +485,9 @@ class post {
             $post = PostData::preProcess($post_data);
             $config = post_config($post['idx_config']);
             $data['config'] = $config->getFields();
+
+
+
             $data['post'] = $post;
         }
         return Response::render($data);

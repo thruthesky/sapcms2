@@ -27,7 +27,7 @@
 
 
 .text-with-thumbnail > div.link {
-	margin:0 0 .4em 0;
+    margin:0 0 .4em 0;
     color:#333333;
     text-decoration:none;
 }
@@ -45,7 +45,7 @@
 }
 
 .text-with-thumbnail img{
-	display:block;
+    display:block;
 }
 
 .text-with-thumbnail .content {
@@ -75,10 +75,10 @@
 }
 
 .front-content .right .thumbnail-list img {
-	display:block;
+    display:block;
     margin-bottom:.4em;
     height:96px;
-    border-radius:2px;	
+    border-radius:2px;
 }
 
 .front-content .text-list a {

@@ -177,7 +177,6 @@ class Entity {
      *
      * @param $field
      * @param $value
-     * @return Entity|$this
      *
      *
      * @code
@@ -185,6 +184,8 @@ class Entity {
     ->set(['a'=>1, 'b'=>'2', 'c'=>3])
     ->save();
      * @endcode
+     *
+     * @return $this|Entity
      *
      */
     public function set($field, $value=null)

@@ -11,6 +11,7 @@ class MobilePost {
 			//$files = data()->loadBy('post', post_data($post['idx'])->config('idx'), $post['idx']);
 			//if( !empty( $files ) ) $post['files'] = $files;			
             $postsWithComment[] = $post;
+            post_data()->which($post['idx'])->set('no_view', $post['no_view']+1)->save();
         }
 		//di( $postsWithComment );exit;
         return $posts;
