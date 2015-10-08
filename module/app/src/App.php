@@ -61,7 +61,7 @@ class App {
 	//sample
 	<div class='link' route='view_post' idx='$idx'>
 	*/	
-    public static function viewPost() {	
+    public static function viewPost() {		
 		$view_idx = request('idx');
 		$view_item = self::pageContentPostView( $view_idx );
         $page = self::createPage([
@@ -146,6 +146,7 @@ class App {
 			if( !empty( $post_config_id ) ) $post_config_id = $post_config_id->id;
 			
 			if( !empty( $view_post ) ){
+				post_data()->which($view_post->get('idx'))->set('no_view', $view_post->get('no_view') + 1)->save();
 				$posts[] = $view_post->fields;
 				ob_start();			
 				include template('page.postList');

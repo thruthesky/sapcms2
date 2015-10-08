@@ -4,12 +4,12 @@
 }
 
 .sprite.logo{
-	width: 31px;
-    height: 26px;
-	padding-left:10px;
-    margin-bottom: 1px;
-    background-position: 0 -3px;
-    border-radius: 2px;
+	width: 28px;
+	height: 25px;
+	padding-left: 10px;
+	margin-bottom: 1px;
+	background-position: -3px -4px;
+	border-radius: 2px;
 }
 
 .sprite.ask{
