@@ -101,9 +101,6 @@ function initMenu() {
 }
 
 function initPanel() {
-    function getMenu() {
-        return $('#panel-menu');
-    }
     var $body = $('body');
 
     /**
@@ -123,6 +120,9 @@ function initPanel() {
 
     $body.on('click', ".show-panel", openPanel);
     $body.on('click', ".close-panel", closePanel);
+    $body.on('click', ".invisible_window", invisibleWindowClicked);
+		
+	
 		
 	/*added by benjamin*/
 	$("body").on("click",".page .content",function(){
@@ -131,108 +131,61 @@ function initPanel() {
 			closePanel();
 		}
 	});
-	
-	
-    /*
-    function togglePanel() {
-        if ( getMenu().css('display') == 'none' ) openPanel();
-        else closePanel();
-    }
-    */
-
-    function isPanelOpen() {
-        return getMenu().css('display') != 'none';
-    }
-    function closePanel() {
-        var $menu = getMenu();
-        if ( getMenu().css('display') == 'none' ) return;
-        $menu.animate(
-            {
-                'right': -$menu.width()
-            },
-            function() {
-                $menu.hide();
-            }
-        );
-    }
-    function openPanel() {
-        if ( isPanelOpen() ) return closePanel();		
-        var $menu = getMenu();
-		
-		$menu.css('position','fixed').css('top',$('#page-header').height());
-		
-        $menu.css({
-            'right': 0 - $menu.width()
-        });
-        $menu.show();
-        $menu.animate({
-            'right': 0
-        });;
-    }
-	/*
-	var old_scroll = $(window).scrollTop();
-	$(window).scroll(function(){
-		if ( isPanelOpen() ) check_panel_position();
-		//console.log("scroll");
-		old_scroll = $(window).scrollTop();
-	});
-	
-	function check_panel_position(){
-		var $menu = getMenu();
-		
-		menu_height = $menu.height();
-		window_height = $(window).height();
-		
-		if( $menu.css("position") == 'absolute' ){
-			//current_top = $menu.css("top");
-			//current_top = current_top.replace("px","");
-			
-			if( old_scroll < $(window).scrollTop() ){
-				console.log( "SCROLLED DOWN" );
-				//console.log( $menu.offset().top );
-				//console.log( "Window scroll top " + $(window).scrollTop() );
-				//console.log( "Window height " + $(window).height() );
-				window_total_top = $(window).height() + $(window).scrollTop();
-				menu_total_top = $menu.height() + $menu.offset().top;
-				console.log( $menu.offset().top );
-				console.log("compare here " + menu_total_top + " - " + window_total_top );
-				if( window_total_top > menu_total_top ){
-					$menu.css('position','fixed').css('top', -( menu_height - window_height ));
-				}
-			}
-			else{
-				console.log( "SCROLLED UP" );
-			}
-		}
-		else if( $menu.css("position") == 'fixed' ){
-			current_top = $menu.css("top");
-			current_top = current_top.replace("px","");
-			
-			if( old_scroll < $(window).scrollTop() ){
-				console.log( "SCROLLED DOWN" );												
-				if( current_top < 0 ) {
-					console.log("LESS");
-					return;
-				}
-			}
-			else{
-				console.log( "SCROLLED UP" );						
-				if( current_top > 0 ) {
-					console.log("MORE");
-					return;
-				}
-			}	
-		
-			if( menu_height + $('#page-header').height() > window_height ){				
-				$menu.css('position','absolute').css('top',$(window).scrollTop());
-			}
-		
-		}
-	}
-	*/
 }
 
+function getMenu() {
+	return $('#panel-menu');
+}
 
+function isPanelOpen() {
+	return getMenu().css('display') != 'none';
+}
+
+function closePanel() {
+	var $menu = getMenu();
+	if ( getMenu().css('display') == 'none' ) return;
+	$menu.animate(
+		{
+			'right': -$menu.width()
+		},
+		function() {
+			$menu.hide();
+		}
+	);
+	
+	removeInvisibleWindow()
+}
+
+function openPanel() {
+	if ( isPanelOpen() ) return closePanel();		
+	var $menu = getMenu();
+	
+	$menu.css('position','fixed').css('top',$('#page-header').height());
+	
+	$menu.css({
+		'right': 0 - $menu.width()
+	});
+	$menu.show();
+	$menu.animate({
+		'right': 0
+	});
+	
+	appendInvisibleWindow();
+}
+
+function appendInvisibleWindow(){
+	html = "<div class='invisible_window'></div>";
+	$("body").append( html );
+}
+
+function removeInvisibleWindow(){
+	$(".invisible_window").remove();
+}
+
+function invisibleWindowClicked(){
+	closePanel();
+	removeInvisibleWindow();
+}
 
 function registerSubmit(event) {
     var $form = $(this);
@@ -551,8 +504,24 @@ $(function(){
 		checkLoginUser( showCompleteForm, $this );
 	});
 	
+	//abcdefg
 	function showCompleteForm( $selector ){
+		if( $("form.is-active").length ){
+			if( $("form.is-active").find("textarea").val() != "" ){
+				/*re = confirm( "The text you are currently working on will be delete. Continue?" );
+				if( re ){
+					$("form.is-active").removeClass('is-active');
+					$("form.is-active").find("textarea").val("")
+				}*/
+			}
+			else{
+				//$("form.is-active").removeClass('is-active');
+			}			
+		}
+		$(".comment-form-content").css('height','45px');
+		$(".show-on-click").hide();
 		$selector.height('100px');
+		$selector.parents('form').addClass('is-active');
 		$selector.parents('form').find(".show-on-click").show();
 	}
 	
@@ -1042,13 +1011,10 @@ function cameraSuccess(fileURI) {
             if ( file.error ) {
                 alert(file.message);				
             }
-			else {
-				/*if( photoOptions.type != 'primary_photo' ) delete_button = "<div class='delete' title='Delete this file'>X</div>";
-				else {
-					$("form[name='profileUpdate'] img").remove();
-					delete_button = '';
-				}*/
-				html = "<div idx='" + file.idx + "' class='file image delete'><img src='"+file.urlThumbnail+"'>" + delete_button + "</div>";
+			else {				
+				if( photoOptions.type == 'primary_photo' ) $(photoOptions.selector).find("img").remove();
+				
+				html = "<div idx='" + file.idx + "' class='file image delete'><img src='"+file.urlThumbnail+"'></div>";				
 				if ( photoOptions.add ) $(photoOptions.selector).append(html);
 				else $(photoOptions.selector).html(html);
 
@@ -1334,11 +1300,13 @@ $(function(){
 function keyboardShowHandler(){
 	$selector = $("#messageList .link.sprite.new_message");
 	if( $selector.length ) $selector.hide();
+	if( $(".footer").length ) $(".footer").hide();
 }
 
 function keyboardHideHandler(){
 	$selector = $("#messageList .link.sprite.new_message");
 	if( $selector.length ) $selector.show();
+	if( $(".footer").length ) $(".footer").show();
 }
 
 function show_message( e ){	
@@ -1708,6 +1676,11 @@ $(function(){
 });
 
 function body_clicked( e ){
+	if( $(getMenu()).css("display") == 'block' ){
+		//closePanel();
+		//e.preventDegfault();
+	}
+	
 	$selector = $(".remove-on-body-click");
 	
 	if( !$selector.length ) return
@@ -1720,3 +1693,15 @@ function body_clicked( e ){
 	$selector.remove();
 }
 /*eo body*/
+
+/*keypress event*/
+$(function(){
+	document.addEventListener("backbutton", onBackKeyDown, false);
+	
+	function onBackKeyDown( e ){
+		if( $(getMenu()).css("display") == 'block' ) closePanel();
+		else if( $(".modal_window").length ) $(".modal_window").click();
+		e.preventDefault();
+	}
+});
+/*keypress event*/

@@ -21,9 +21,11 @@ foreach ( $comments as $comment ) {
     ?>
     <div id="comment<?php echo $comment['idx']?>" class="comment" idx="<?php echo $comment['idx']?>" depth='<?php echo $depth; ?>'>
 		<div class='menu'>
-			<span class='delete' idx='<?php echo $comment['idx']; ?>'>
-				<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/delete_comment.png'/>
-			</span>
+			<?php if( $idx_user == login('idx') ){ ?>
+				<span class='delete' idx='<?php echo $comment['idx']; ?>'>
+					<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/delete_comment.png'/>
+				</span>
+			<?php }?>
 		</div>
         <?php
 /*<?php widget('post_view_vote', ['post'=>$comment])?>

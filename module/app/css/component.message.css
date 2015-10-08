@@ -193,6 +193,26 @@
 	margin:8px 0 10px 0;
 }
 
+.message-write-wrapper .buttons .post-file-upload-button{
+	float: left;
+	display: inline-block;
+	width: 125px;
+	height: 45px;
+	padding: 15px 10px;
+	font-size:.9em;
+	font-weight:bold;
+	color:#fff;
+	cursor: pointer;
+	box-sizing:border-box;	
+	text-align:center;
+}
+
+.message-write-wrapper .buttons .post-file-upload-button img{
+	position: relative;
+    top: 1px;
+	margin-right:5px;	
+}
+
 .message-write-wrapper  input[type='submit']{
 	float:right;
 	height:45px;

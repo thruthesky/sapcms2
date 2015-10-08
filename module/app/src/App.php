@@ -51,7 +51,7 @@ class App {
             'header' => self::pageHeader(),
             'panel' => self::pagePanel(),
             'content' => self::pageContentFront(),
-            'footer' => self::pageFooter(),
+            //'footer' => self::pageFooter(),
         ]);
         echo $page;		
     }
@@ -69,7 +69,7 @@ class App {
             'header' => self::pageHeader(),
             'panel' => self::pagePanel(),
             'content' => $view_item,
-            'footer' => self::pageFooter(),
+            //'footer' => self::pageFooter(),
         ]);
         echo $page;	
     }
@@ -106,7 +106,7 @@ class App {
             'header' => self::pageHeader(),
             'panel' => self::pagePanel(),
             'content' => self::pageContentPostList($post_id),
-            'footer' => self::pageFooter(),
+            //'footer' => self::pageFooter(),
         ]);
         echo $page;
     }
@@ -235,6 +235,7 @@ class App {
 		$idx = request('idx');
 		$content = request('content');
 		$post = post_data($idx);
+		$fid = request('fid');
 		$user = login();		
         if ( empty($post) ) echo "ERROR -50564 Post does not exist";//$re = ['error'=>-50564, 'message'=>"Post does not exists."];
 		else if ( $post->fields['idx_user'] != $user->fields['idx'] ) echo "ERROR -50554 This is not your post. You cannot edit or delete this post";//$re = ['error'=>-50554, 'message'=>"This is not your post. You cannot edit or delete this post."];
@@ -253,7 +254,9 @@ class App {
 			->set( 'int_9', 0 )
 			->set( 'int_10', 0 )
 			->save();
-						
+			
+			if( !empty( $fid ) ) $post->updateFormSubmitFiles();
+			
 			echo $content;
 			
 			$files = data()->loadBy('post', post_data($post->fields['idx'])->config('idx'), $post->fields['idx']);	
@@ -270,6 +273,7 @@ class App {
 	public static function PostEditCommentSubmit(){
 		$idx = request('idx');
 		$content = request('content');
+		$fid = request('fid');
 		$post = post_data($idx);
 		$user = login();		
         if ( empty($post) ) echo "ERROR -50564 Post does not exist";//$re = ['error'=>-50564, 'message'=>"Post does not exists."];
@@ -289,6 +293,9 @@ class App {
 			->set( 'int_9', 0 )
 			->set( 'int_10', 0 )
 			->save();
+			
+			if( !empty( $fid ) ) $post->updateFormSubmitFiles();
+			
 			echo $content;
 			
 			$files = data()->loadBy('post', post_data($post->fields['idx'])->config('idx'), $post->fields['idx']);	
@@ -576,7 +583,7 @@ class App {
             'header' => self::pageHeader(),
             'panel' => self::pagePanel(),
             'content' => self::pageMessageList(),
-            'footer' => self::pageFooter(),
+            //'footer' => self::pageFooter(),
         ]);
         echo $page;
 	}
