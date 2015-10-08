@@ -222,7 +222,8 @@ class App {
         if ( empty($data) ) return Response::json(['error'=>'Could not create a comment']);
         else {
             $data->updateFormSubmitFiles();
-            $posts[] = post_data($data->get('idx'))->getFields();			
+            $posts[] = post_data($data->get('idx'))->getFields();	
+			$posts[0]['content'] = nl2br( $posts[0]['content'] );
             ob_start();
             include template('page.postList');
             $data = ob_get_clean();
