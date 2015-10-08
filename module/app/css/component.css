@@ -485,7 +485,7 @@
 /*user profile*/
 .popup-profile{
 	position:absolute;
-	padding:10px 10px 0 10px;
+	padding:5px 5px 0 5px;
 	background-color:#fff;
 	border: 1px solid #d5d5d5;
 }
@@ -525,6 +525,14 @@
 	margin:0;
 }
 
+.popup-profile .message-write-wrapper .buttons{
+	margin:0;
+}
+
+.popup-profile .message-write-wrapper .file-display{
+	margin-top:3px;
+}
+
 .popup-profile .message-write-wrapper textarea.message-content{
 	height:45px;
 	border:1px solid #c7c7c7;
@@ -533,7 +541,7 @@
 }
 
 .popup-profile .info .name{
-	margin-bottom:7px;
+	margin:5px 0 7px 0;
 	font-size:1.1em;
 	font-weight:bold
 }
