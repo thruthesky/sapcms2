@@ -108,9 +108,9 @@ foreach ( $posts as $post ) {
 					<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/share.png'/>
 				   Share
 				</div>
-			<?php } else {?>
+			<?php } else { ?>
 				<div class='deleted'>[ Commands are disabled ]</div>
-			<?}?>
+			<?php } ?>
 		</nav>
 		
         <div class="comment-form">

@@ -316,6 +316,11 @@ class App {
         if ( empty($post) ) echo "ERROR -50564 Post does not exist";//$re = ['error'=>-50564, 'message'=>"Post does not exists."];
 		else if ( $post->fields['idx_user'] != $user->fields['idx'] ) echo "ERROR -50554 This is not your post. You cannot edit or delete this post";//$re = ['error'=>-50554, 'message'=>"This is not your post. You cannot edit or delete this post."];
 		else{
+			//delete all files first
+			$files = data()->loadBy('post', post_data($post->idx)->config('idx'), $post->idx);
+			foreach( $files as $file ){
+				$file->delete();				
+			}			
 			$post->markAsDelete();
 			$posts = [];			
 			//$item = [];

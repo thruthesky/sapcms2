@@ -671,6 +671,7 @@ function ajaxPostDelete(){
 	console.log( url );
 	$.ajax(url)
             .done(function(re){                
+				console.log( re );
                 try {
 					$html = $(re).find(".post").html();
 					if( ! $html ) $this.parents(".post").remove();
@@ -1004,14 +1005,15 @@ function cameraSuccess(fileURI) {
         var data = r.response;
 
         clearCache();
-        retries = 0;
+        retries = 0;		
+		//alert( r.response );
         var re = JSON.parse(data);
         for ( var i in re ) {
             var file = re[i];
             if ( file.error ) {
                 alert(file.message);				
             }
-			else {				
+			else {	
 				if( photoOptions.type == 'primary_photo' ) $(photoOptions.selector).find("img").remove();
 				
 				html = "<div idx='" + file.idx + "' class='file image delete'><img src='"+file.urlThumbnail+"'></div>";				
@@ -1094,10 +1096,12 @@ function cameraPostFile() {
 	//temp added by benjamin for edit compatibility by benjamin
 	if( idx == 0  || typeof( idx ) == 'undefined' ){
 		idx = $form.find('[name="idx"]').val();
+		//if edit
 		//function setFileInfo(module, type, idx_target, finish, unique, image_thumbnail_width, image_thumbnail_height, callback) 
 		setFileInfo('post', 3, idx, 1, 0, 140, 140, callback_post_file_upload);
 	}
 	else{
+		//if new upload
 		setFileInfo('post', 'files', idx, 0, 0, 140, 140, callback_post_file_upload);
 	}
     takePhotoUpload();

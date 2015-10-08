@@ -95,7 +95,7 @@ $total_files = count( $files );
 				</div>	
 			<?php } else {?>
 				<div class='deleted'>[ Commands are disabled ]</div>
-			<?}?>
+			<?php } ?>
 		</nav>
         <div class="comment-form" style="display:none;">
             <?php include template('page.postList.comment-form') ?>
