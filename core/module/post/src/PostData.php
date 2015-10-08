@@ -489,8 +489,7 @@ class PostData extends Entity {
         $this->set('title','');
         $this->set('content','');
         $this->set('content_stripped','');
-        $this->set('delete', true)
-
+        $this->set('delete', true);
         $this->save();
         self::deleteFiles($this->get('idx'));
 
