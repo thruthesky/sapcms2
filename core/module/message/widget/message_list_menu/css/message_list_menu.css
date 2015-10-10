@@ -1,0 +1,23 @@
+.message-menu{
+	padding:10px;
+	margin:0 0 5px 0;
+	background-color:#fff;
+}
+
+.message-menu li{
+	display:inline-block;
+	padding:5px 10px;
+	list-style:none;
+}
+
+.message-menu li a{
+	text-decoration:none;
+}
+
+.message-menu li.is-active{
+	background-color:blue;	
+}
+
+.message-menu li.is-active a{
+	color:#fff;
+}

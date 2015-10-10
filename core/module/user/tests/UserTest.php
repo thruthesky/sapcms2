@@ -11,7 +11,7 @@ class UserTest extends PHPUnit_Framework_TestCase {
 
     public function test_user_entity_type() {
 
-        $entity = entity('user')->load('id', 'admin');
+        $entity = entity(USER_TABLE)->load('id', 'admin');
         $user = user()->load('id', 'admin');
 
         $this->assertTrue($entity instanceof Entity);

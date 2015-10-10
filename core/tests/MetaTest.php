@@ -27,9 +27,9 @@ class MetaTest extends PHPUnit_Framework_TestCase {
     public function test_meta_create() {
         $user_meta = new Meta('user');
         $user_meta->createTable();
-        $this->assertTrue( Database::load()->tableExists('user_meta') );
+        $this->assertTrue( Database::load()->tableExists( $user_meta->table() ) );
         $user_meta->dropTable();
-        $this->assertFalse( Database::load()->tableExists('user_meta') );
+        $this->assertFalse( Database::load()->tableExists( $user_meta->table() ) );
     }
 
 

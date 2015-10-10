@@ -1,0 +1,19 @@
+.message-error-handling{
+	padding:10px;
+	margin-bottom:10px;
+	border:1px solid green;
+	background-color:#d5d5d5;
+	color:green;	
+	text-align:center;	
+}
+
+.message-error-handling.error{	
+	border:1px solid red;
+	color:red;
+}
+
+.message-error-handling.error .code{	
+	margin-bottom:5px;
+	font-size:1.1em;
+	font-weight:bold;
+}

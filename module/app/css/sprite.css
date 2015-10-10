@@ -4,9 +4,12 @@
 }
 
 .sprite.logo{
-	width:31px;
-	height:31px;
-	margin-top:5px;
+	width: 25px;
+	height: 25px;
+	padding-left: 10px;
+	margin-bottom: 3px;
+	/* background-position: -3px -4px; */
+	border-radius: 2px;
 }
 
 .sprite.ask{
@@ -22,7 +25,7 @@
 }
 
 .sprite.news{
-	width:25px;
+	width:28px;
 	height:27px;
 	background-position: -87px 0;
 }
@@ -61,4 +64,26 @@
 	width:37px;
 	height:35px;
 	background-position: -38px -32px;
+}
+
+.sprite.new_message{
+	width:60px;
+	height:60px;
+	background-position: -0 -98px;
+}
+
+.sprite.check_box{
+	width:16px;
+	height:16px;
+	background-position: -298px 0;
+}
+
+.sprite.check_box.is-active{	
+	background-position: -315px 0;
+}
+
+.sprite.delete{	
+	width:17px;
+	height:21px;
+	background-position: -332px 0;
 }

@@ -23,3 +23,23 @@ Route::add('/app/post/edit/comment/submit', 'app\\App\\PostEditCommentSubmit');
 
 Route::add('/app/post/getPostFiles', 'app\\App\\getPostFiles');
 
+Route::add('/app/view_post/*', 'app\\App\\viewPost');
+
+Route::add('/app/loginCheck', 'app\\App\\loginCheck');
+
+Route::add('/app/modalWindow', 'app\\App\\modalWindow');
+
+
+
+Route::add('/app/message', 'app\\App\\messageList');
+Route::add('/app/messageMore', 'app\\App\\messageMore');
+Route::add('/app/messageCreate', 'app\\App\\messageCreate');
+Route::add('/app/message/submit', 'app\\App\\messageCreateSubmit');
+Route::add('/app/message/markAsRead', 'app\\App\\markAsRead');
+Route::add('/app/message/delete', 'app\\App\\messageDelete');
+
+
+Route::add('/app/getPopupUserProfile', 'app\\App\\getPopupUserProfile');
+
+Route::add('/app/getReportForm', 'app\\App\\getReportForm');
+Route::add('/app/postReport', 'app\\App\\postReport');

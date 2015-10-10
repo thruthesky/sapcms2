@@ -47,6 +47,7 @@ entity(POST_DATA)
     ->add('ip', 'varchar', 32) // for IPv4 and IPv6
     ->add('domain', 'varchar', 32)
     ->add('user_agent', 'varchar')
+    ->add('content_type', 'char', 1)
     ->add('content', 'text')
     ->add('content_stripped', 'text')
     ->add('private_title', 'varchar', 1024)

@@ -7,10 +7,12 @@ $post_id = segment(2);
         <?php echo $options['header']?>
     </div>
     <?php echo $options['panel']?>
-    <div class="content">
+    <div class="content">		
         <?php echo $options['content']?>
     </div>
-    <div class="footer" data-role="footer">
-        <?php echo $options['footer']?>
-    </div>
+	<?php if( !empty( $options['footer'] ) ) {?>
+		<div class="footer" data-role="footer">
+			 <?php echo $options['footer']; ?>
+		</div>
+	<?php }?>
 </div>

@@ -1,31 +1,31 @@
 <?php
 //limit temp
 use sap\app\App;
+
+if( !empty( $view_post ) ) $class = ' view';
+else $class = null;
 ?>
 
-<div class="post-list">
-<?php foreach ( $posts as $post ) { 
-
-	$url_edit = url_post_edit($post['idx']);//"#";
-	$url_delete = "#";
-	$url_report = "#";
+<div class="post-list<?php echo $class; ?>">
+<?php 
+foreach ( $posts as $post ) { 
+	if( !empty( $skip_idx ) ){
+		if( $skip_idx == $post['idx'] ) continue;
+	}
 	
 	$idx_user = $post['idx_user'];
 	if( $idx_user == 0 ) $idx_user = 1;
 	$user = user()->load( $idx_user )->fields;
 	$id = $user['id'];
-	
-	if( empty( $user['country'] ) ) $location = "No Location";
-	else $location = $user['country'];
-	
-	$fans = "XX fans";
 
 	$date = date( "M d, Y", $post['created'] );
 
 	$post_primary_photo = data()->loadBy('user', 'primary_photo', 0, $idx_user);
 	if( !empty( $post_primary_photo ) ) $post_primary_photo = $post_primary_photo[0]->urlThumbnail(140,140);
 	else $post_primary_photo = sysconfig(URL_SITE)."module/app/img/no_primary_photo.png";
-	$human_timing = App::humanTiming( $post['created'] )." ago";
+	//$human_timing = App::humanTiming( $post['created'] )." ago";
+	
+	$time = date('H:i a',$post['created']);
 		
 	$files = data()->loadBy('post', post_data($post['idx'])->config('idx'), $post['idx']);	
 	$total_files = count( $files );
@@ -42,26 +42,21 @@ use sap\app\App;
 				<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/delete_post.png'/>
 			</span>
 			<?php }else{ ?>
-				<a class='report' href="<?php echo $url_report ?>">
+				<span class='report' idx='<?php echo $post['idx']; ?>'>
 					<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/report.png'/>
-				</a>
+				</span>
 			<?php }?>
 		</nav>
 		<section class="user-profile">
 			<table cellpadding=0 cellspacing=0 width='100%'>
-				<tr>
-					<td width='60'>
-						<?php if( !empty( $post_primary_photo ) ){?>
-							<div class='primary-photo'><img src='<?php echo $post_primary_photo; ?>'/></div>
-						<?php } else {?>
-							<div class='primary-photo temp'></div>
-						<?php }?>
-					</td>
+				<tr>					 
 					<td>
+						<div class='primary-photo popup-user-profile' idx='<?php echo $post['idx_user']; ?>' profile_target='post-<?php echo $post['idx']; ?>'><img src='<?php echo $post_primary_photo; ?>'/></div>
+					</td>
+					<td width='99%'>
 						<div class='info'>
-							<div class='name'><?php echo $id; ?></div>
-							<div class='date'><?php echo $date; ?> | <?php echo $human_timing; ?></div>
-							<div class='location'><?php echo $location; ?> | <?php echo $fans; ?></div>
+							<div class='name popup-user-profile' idx='<?php echo $post['idx_user'] ?>' profile_target='post-<?php echo $post['idx'] ?>'><?php echo $id; ?></div>
+							<div class='date'><?php echo $date; ?> | <?php echo $time; ?></div>
 						</div>
 					</td>
 				</tr>
@@ -79,7 +74,7 @@ use sap\app\App;
 					echo "<span class='text-preview'>".substr( $post['content'], 0, 150 )."</span> <span class='see-more'>...See More</span><div class='all-text'>".$post['content']."</div>";
 				}
 				else{
-					$post['content'] ;
+					echo $post['content'];
 				}
 				
 				?>
@@ -113,9 +108,9 @@ use sap\app\App;
 					<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/share.png'/>
 				   Share
 				</div>
-			<?php } else {?>
+			<?php } else { ?>
 				<div class='deleted'>[ Commands are disabled ]</div>
-			<?}?>
+			<?php } ?>
 		</nav>
 		
         <div class="comment-form">

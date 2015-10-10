@@ -23,9 +23,10 @@ class Entity {
      *
      * @return string - If $work_table is null, then it returns a string with table name.
      *
+     * @Warning DO NOT USE $this->table !! Use $this->table()
      */
     final public function table() {
-        return $this->table;
+        return DATABASE_PREFIX . $this->table;
     }
 
 
@@ -43,7 +44,6 @@ class Entity {
         $db->add('changed', 'INT UNSIGNED DEFAULT 0');
         $db->addIndex($table, 'created');
         $db->addIndex($table, 'changed');
-
         return $db;
     }
 
@@ -177,7 +177,6 @@ class Entity {
      *
      * @param $field
      * @param $value
-     * @return Entity|$this
      *
      *
      * @code
@@ -185,6 +184,8 @@ class Entity {
     ->set(['a'=>1, 'b'=>'2', 'c'=>3])
     ->save();
      * @endcode
+     *
+     * @return $this|Entity
      *
      */
     public function set($field, $value=null)
@@ -574,7 +575,7 @@ class Entity {
      */
     public function queries($cond=null) {
         $objects = [];
-        $rows = Database::load()->rows($this->table,$cond,'idx');
+        $rows = Database::load()->rows($this->table(),$cond,'idx');
         if ( $rows ) {
             foreach($rows as $row) {
                 $objects[] = post_data($row['idx']);

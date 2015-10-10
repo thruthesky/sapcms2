@@ -6,6 +6,7 @@ $comments = &$post['comments'];
 foreach ( $comments as $comment ) {
 	$idx_user = $comment['idx_user'];
 	if( $idx_user == 0 ) $idx_user = 1;	
+	$user = user()->load( $idx_user )->fields;
 	
 	$post_primary_photo = data()->loadBy('user', 'primary_photo', 0, $idx_user);
 	
@@ -20,9 +21,11 @@ foreach ( $comments as $comment ) {
     ?>
     <div id="comment<?php echo $comment['idx']?>" class="comment" idx="<?php echo $comment['idx']?>" depth='<?php echo $depth; ?>'>
 		<div class='menu'>
-			<span class='delete' idx='<?php echo $comment['idx']; ?>'>
-				<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/delete_comment.png'/>
-			</span>
+			<?php if( $idx_user == login('idx') ){ ?>
+				<span class='delete' idx='<?php echo $comment['idx']; ?>'>
+					<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/delete_comment.png'/>
+				</span>
+			<?php }?>
 		</div>
         <?php
 /*<?php widget('post_view_vote', ['post'=>$comment])?>
@@ -33,11 +36,12 @@ $total_files = count( $files );
 <table cellpadding=0 cellspacing=0 width='100%'>
 	<tr valign='top'>
 	<td>
-		<div class="primary-photo comment-photo temp">
+		<div class="primary-photo comment-photo temp popup-user-profile" idx='<?php echo $comment['idx_user']; ?>' profile_target='comment-<?php echo $comment['idx']; ?>'>
 			<img src="<?php echo $post_primary_photo; ?>">
 		</div>
 	</td>
-	<td width='99%'>
+	<td width='99%'>		
+		<div class='name popup-user-profile' idx='<?php echo $comment['idx_user']; ?>' profile_target='comment-<?php echo $comment['idx']; ?>'><?php echo $user['name']; ?></div>
         <div class="content">
 			<?php if ( $comment['delete'] ) { ?>
 				<div class="deleted">
@@ -91,7 +95,7 @@ $total_files = count( $files );
 				</div>	
 			<?php } else {?>
 				<div class='deleted'>[ Commands are disabled ]</div>
-			<?}?>
+			<?php } ?>
 		</nav>
         <div class="comment-form" style="display:none;">
             <?php include template('page.postList.comment-form') ?>

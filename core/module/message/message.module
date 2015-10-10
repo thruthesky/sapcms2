@@ -2,7 +2,11 @@
 
 define('MESSAGE_TABLE', 'message');
 
-use sap\message\Message;
+use sap\core\message\Message;
+
+include 'message.routing.php';
+include 'message.function.php';
+include 'message.hook.php';
 
 function message() {
     return new Message();

@@ -7,6 +7,7 @@ var url_server_post_submit = url_server + '/app/post/submit';
 var url_server_post_comment_submit = url_server + '/app/post/comment/submit';
 var url_server_post_edit_submit = url_server + '/app/post/edit/submit';
 var url_server_post_edit_comment_submit = url_server + '/app/post/edit/comment/submit';
+var url_server_message_submit = url_server + '/app/message/submit';
 var currentPageID = 'local-page';
 var prevPageID = 'local-page';
 var $session_id = null;
@@ -25,6 +26,7 @@ function callback_deviceReady() {
 
 
 $(function() {
+
     appStarted = true;
     $session_id = getSessionId();
     console.log("session_id:" + $session_id);
@@ -34,8 +36,8 @@ $(function() {
 
     //setTimeout(callback_offline, 2000);
     //setTimeout(callback_online, 4000);
-    //loadPage('front_page');
-    loadPage('register');
+    loadPage('front_page');
+    //loadPage('register');
     //loadPage('postList', 'test');
     //loadPage('login');
     //loadPage('profile');
@@ -52,8 +54,8 @@ function initializeEvent() {
     var $body = $('body');
     $body.on('click', ".take-user-primary-photo", cameraUserPrimaryPhoto);
     $body.on('click', ".post-file-upload-button", cameraPostFile);
-    $body.on('submit', "form[name='register']", registerSubmit);
-    $body.on('submit', "form[name='profileUpdate']", profileUpdateSubmit);
+    $body.on('submit', "form.register", registerSubmit);
+    $body.on('submit', "form.profileUpdate", profileUpdateSubmit);
 }
 
 function initializeMenu() {
@@ -66,14 +68,23 @@ function initMenu() {
     $body.on('click', ".link", function() {
         var $this = $(this);
         var route = $this.attr('route');
+
         console.log('route:' + route);
         var url;
         if ( url = $this.attr('url') ) {			
             console.log('rel local');
             location.href=url;
         }
-        else if ( route == 'postList' ) {		
+        else if ( route == 'postList' ) {
             loadPage( route, $this.attr('post_id'));
+        }
+        else if ( route == 'view_post' ) {			
+            loadPage( route, $this.attr('idx'));
+        }
+        else if ( route == 'message' ) {
+			default_url = $this.attr("default_url")	
+			if( !default_url ) default_url = "";
+            loadPage( route, default_url);
         }
         else {			
             loadPage(route);
@@ -90,9 +101,6 @@ function initMenu() {
 }
 
 function initPanel() {
-    function getMenu() {
-        return $('#panel-menu');
-    }
     var $body = $('body');
 
     /**
@@ -112,6 +120,9 @@ function initPanel() {
 
     $body.on('click', ".show-panel", openPanel);
     $body.on('click', ".close-panel", closePanel);
+    $body.on('click', ".invisible_window", invisibleWindowClicked);
+		
+	
 		
 	/*added by benjamin*/
 	$("body").on("click",".page .content",function(){
@@ -120,44 +131,61 @@ function initPanel() {
 			closePanel();
 		}
 	});
-	
-	
-    /*
-    function togglePanel() {
-        if ( getMenu().css('display') == 'none' ) openPanel();
-        else closePanel();
-    }
-    */
-
-    function isPanelOpen() {
-        return getMenu().css('display') != 'none';
-    }
-    function closePanel() {
-        var $menu = getMenu();
-        if ( getMenu().css('display') == 'none' ) return;
-        $menu.animate(
-            {
-                'right': -$menu.width()
-            },
-            function() {
-                $menu.hide();
-            }
-        );
-    }
-    function openPanel() {
-        if ( isPanelOpen() ) return closePanel();
-        var $menu = getMenu();
-        $menu.css({
-            'right': 0 - $menu.width()
-        });
-        $menu.show();
-        $menu.animate({
-            'right': 0
-        });
-    }
 }
 
+function getMenu() {
+	return $('#panel-menu');
+}
 
+function isPanelOpen() {
+	return getMenu().css('display') != 'none';
+}
+
+function closePanel() {
+	var $menu = getMenu();
+	if ( getMenu().css('display') == 'none' ) return;
+	$menu.animate(
+		{
+			'right': -$menu.width()
+		},
+		function() {
+			$menu.hide();
+		}
+	);
+	
+	removeInvisibleWindow()
+}
+
+function openPanel() {
+	if ( isPanelOpen() ) return closePanel();		
+	var $menu = getMenu();
+	
+	$menu.css('position','fixed').css('top',$('#page-header').height());
+	
+	$menu.css({
+		'right': 0 - $menu.width()
+	});
+	$menu.show();
+	$menu.animate({
+		'right': 0
+	});
+	
+	appendInvisibleWindow();
+}
+
+function appendInvisibleWindow(){
+	html = "<div class='invisible_window'></div>";
+	$("body").append( html );
+}
+
+function removeInvisibleWindow(){
+	$(".invisible_window").remove();
+}
+
+function invisibleWindowClicked(){
+	closePanel();
+	removeInvisibleWindow();
+}
 
 function registerSubmit(event) {
     var $form = $(this);
@@ -238,10 +266,10 @@ function getCurrentPageContent() {
     return getCurrentPage().find('.ui-content');
 }
 
-function showPage(id, html) {
+function showPage(id, html) {	
     prevPageID = currentPageID;
     currentPageID = id;
-    //$('#' + prevPageID).remove();
+    //$('#' + prevPageID).remove();	
     $(".page").remove();
     $('body').append(html);
     $(window).scrollTop(0);
@@ -268,12 +296,20 @@ function loadPage(route, post_id) {
         console.log("Trying to open same page? ... It loads anyway.");
     }
     var url = url_server_app + route;
-    if ( post_id ) url += '/' + post_id;
+	if( route == 'message' ) url += post_id;
+    else if ( post_id ) url += '/' + post_id;
     console.log("open: " + url);
     showLoader();
+	
+	var data = {};
+	data.session_login = $session_id;
+	if( route == 'view_post' ) data.idx = post_id;
+	else if( route == 'message' ) data.default_url = post_id;
+	else data.post_id = post_id;
+	
     $.ajax({
         'url': url,
-        'data' : { 'session_login': $session_id, 'post_id': post_id }
+        'data' : data
     })
         .done(function(html) {			
             showPage(route, html);
@@ -318,7 +354,10 @@ function fileDelete(idx) {
 $(function(){
     var $body = $('body');
     $body.on("click",".file-display .delete", function(){
-        var idx = $(this).parent().attr('idx');
+        //var idx = $(this).parent().attr('idx');
+		re = confirm( "Are you sure you want to delete this image?" );
+		if( !re ) return;
+		var idx = $(this).attr('idx');
         //console.log("why man call ? " + idx);
         fileDelete(idx);
     });
@@ -428,7 +467,7 @@ function fileDisplay($this, re) {
                 alert(file.message);
             }
             else {
-                var markup = "<div idx='"+file.idx+"' class='file";
+                var markup = "<div idx='"+file.idx+"' class='file delete";
                 if ( file.mime.indexOf('image') != -1 ) {
                     markup += " image'>";
                     markup += "<img src='"+file.url+"'>";
@@ -437,7 +476,7 @@ function fileDisplay($this, re) {
                     markup += " attachment'>";
                     markup += file.name;
                 }
-                markup += "<div class='delete' title='Delete this file'>X</div>";
+               // markup += "<div class='delete' title='Delete this file'>X</div>";
                 markup += "</div>";
                 $display.append(markup);
             }
@@ -455,10 +494,36 @@ $(function(){
     });
 
     $("body").on("click", ".comment-reply-button", function(){
-        $(this).parents(".comment").find('.comment-form').show();
-        $(this).parents(".comment").find('.comment-form textarea').focus();
+		//$session_id
+		$selector = $(this);		
+		checkLoginUser( comment_reply_button, $selector );			
     });
 	
+	$("body").on("click", ".post-form-content, .comment-form-content", function(){			
+		$this = $(this);		
+		checkLoginUser( showCompleteForm, $this );
+	});
+	
+	//abcdefg
+	function showCompleteForm( $selector ){
+		if( $("form.is-active").length ){
+			if( $("form.is-active").find("textarea").val() != "" ){
+				/*re = confirm( "The text you are currently working on will be delete. Continue?" );
+				if( re ){
+					$("form.is-active").removeClass('is-active');
+					$("form.is-active").find("textarea").val("")
+				}*/
+			}
+			else{
+				//$("form.is-active").removeClass('is-active');
+			}			
+		}
+		$(".comment-form-content").css('height','45px');
+		$(".show-on-click").hide();
+		$selector.height('100px');
+		$selector.parents('form').addClass('is-active');
+		$selector.parents('form').find(".show-on-click").show();
+	}
 	
 	var countEnter = [];
     $("body").on("keydown",".comment-form-content, .post-form-content",function(e) {
@@ -479,6 +544,30 @@ $(function(){
         }
     });		
 });
+function comment_reply_button( $selector ){
+	$selector.parents(".comment").find('.comment-form').show();
+	$selector.parents(".comment").find('.comment-form textarea').focus();
+}
+/*Check if logged in from server side*/
+function checkLoginUser( callback_function, $selector ){
+	url = url_server_app + "loginCheck?session_login="+$session_id;
+
+	$.ajax(url)
+		.done(function(data){
+			var re = JSON.parse(data);
+			console.log(re);
+			if ( re.error != 0 ) {
+				alert( re.message );				
+			}
+			else {				
+				callback_function( $selector );
+			}
+		})
+		.fail(function(data) {
+			console.log(re);
+		});
+}
+/*------------------------------------*/
 
 /****** COMMENT UPLOAD */
 function ajaxCommentSubmit($this) {
@@ -495,6 +584,10 @@ function ajaxCommentSubmit($this) {
 	else if( $this.hasClass('post-form') ){
 		upload_type = 'post';
 		$this.prop('action', url_server_post_submit);
+	}
+    else if ( $this.hasClass('message-form') ){
+		upload_type = 'message';
+		$this.prop('action', url_server_message_submit);
 	}
     else {
 		upload_type = 'comment'
@@ -515,15 +608,17 @@ function ajaxCommentSubmit($this) {
 				catch(e){
 				
 				}
-			if ( error ) {
+			if ( error && error.code != 0 ) {
 				alert(error.message);
 			}
 			else{
 				console.log("post comment submit completed!!");
+
 				if( upload_type == 'comment_edit' ) post_edit_comment_html_ajax( re, $this );
 				else if( upload_type == 'post_edit' ) post_edit_html_ajax( re, $this );
 				else if( upload_type == 'comment' ) comment_html_ajax( re, $this );
-				else if( upload_type = 'post' ) post_html_ajax( re, $this );
+				else if( upload_type == 'post' ) post_html_ajax( re, $this );
+				else if( upload_type == 'message' ) message_send_ajax( re, $this );
 			}
         }
     });
@@ -576,6 +671,7 @@ function ajaxPostDelete(){
 	console.log( url );
 	$.ajax(url)
             .done(function(re){                
+				console.log( re );
                 try {
 					$html = $(re).find(".post").html();
 					if( ! $html ) $this.parents(".post").remove();
@@ -909,20 +1005,18 @@ function cameraSuccess(fileURI) {
         var data = r.response;
 
         clearCache();
-        retries = 0;
+        retries = 0;		
+		//alert( r.response );
         var re = JSON.parse(data);
         for ( var i in re ) {
             var file = re[i];
             if ( file.error ) {
                 alert(file.message);				
             }
-			else {
-				if( photoOptions.type != 'primary_photo' ) delete_button = "<div class='delete' title='Delete this file'>X</div>";
-				else {
-					$("form[name='profileUpdate'] img").remove();
-					delete_button = '';
-				}
-				html = "<div idx='" + file.idx + "' class='file image'><img src='"+file.urlThumbnail+"'>" + delete_button + "</div>";
+			else {	
+				if( photoOptions.type == 'primary_photo' ) $(photoOptions.selector).find("img").remove();
+				
+				html = "<div idx='" + file.idx + "' class='file image delete'><img src='"+file.urlThumbnail+"'></div>";				
 				if ( photoOptions.add ) $(photoOptions.selector).append(html);
 				else $(photoOptions.selector).html(html);
 
@@ -1002,10 +1096,12 @@ function cameraPostFile() {
 	//temp added by benjamin for edit compatibility by benjamin
 	if( idx == 0  || typeof( idx ) == 'undefined' ){
 		idx = $form.find('[name="idx"]').val();
+		//if edit
 		//function setFileInfo(module, type, idx_target, finish, unique, image_thumbnail_width, image_thumbnail_height, callback) 
 		setFileInfo('post', 3, idx, 1, 0, 140, 140, callback_post_file_upload);
 	}
 	else{
+		//if new upload
 		setFileInfo('post', 'files', idx, 0, 0, 140, 140, callback_post_file_upload);
 	}
     takePhotoUpload();
@@ -1034,6 +1130,11 @@ function beginEndLessPage() {
         scrollListenerForEndLessPage(callback_endless, 150, 250);
         showEndlessPageLoader();
     }
+	else if( $page.attr('route') == 'message' ){
+		iScrollCont++;
+		scrollListenerForEndLessPage(callback_endless_message, 150, 250);
+        showEndlessPageLoader();
+	}
 }
 function endEndLessPage() {
     clearEndlessPage();
@@ -1109,3 +1210,502 @@ function showAllContent(){
 	$this.parent().find(".text-preview").hide();
 	$this.parent().find(".all-text").show();
 }
+
+/*pop up image*/
+$(function(){
+	$("body").on("click",".display-files .image", modal_window_image)
+	$("body").on("click",".modal_window", remove_modal_window);
+});
+
+function modal_window_image(){
+	appendModalWindowToBody();
+	console.log( "add modal" );
+	data = {};
+	data.action = 'modalImage';
+	data.idx = $(this).attr('idx');
+	ajax_get_modal_window_data( data );
+}
+
+function ajax_get_modal_window_data( data ){
+	var url = url_server_app + "modalWindow";
+	$.ajax({
+        'url': url,
+        'data' : data
+    })
+	.done(function(html) {			
+		$('.modal_window').append(html);
+			adjustModalImage();
+	})
+	.fail(function() {
+	  
+	});
+}
+
+function adjustModalImage(){
+	var $selector = $('.modal_window img');
+	var window_width = $(window).width();
+	var window_height = $(window).height();	
+	$selector.load(function(){
+		$selector.css('width','100%');
+		if( $selector.height() > $selector.width() ) {
+			$selector.css('width','initial').css('height',$(window).height()-40);
+		}
+		if( $selector.width() > $(window).width() ){
+			$selector.css('width','100%').css('height',$(window).width()-20);
+		}
+		
+		var margin_top = window_height/2 - $selector.height()/2 ;	
+		$selector.parent().css('margin-top',margin_top);//compatible for $(".modal_widow > .modal_image > img")
+	});
+}
+
+function appendModalWindowToBody(){
+	$("body").append("<div class='modal_window'></div>");
+	$("body").css('overflow','hidden');
+	document.ontouchmove = function(e){ e.preventDefault(); }//disable mobile scrolling
+}
+
+function appendModalWindowLoader(){
+	html = "<div class='loader'><img src='" + url_server + "/module/app/img/loader8.gif" + "'></div>";	
+	$('.modal_window').append(html);
+}
+
+function remove_modal_window( e ){
+	console.log( "remove modal" );
+	var target_class = $(e.target).attr('class');
+	console.log( target_class );
+	if( target_class == 'modal_window' || target_class == 'modal_image' ){
+		$('.modal_window').remove();
+		$("body").css('overflow','initial');
+		document.ontouchmove = function(e){}//remove the disabled mobile scrolling
+	}
+}
+/*eo pop up image*/
+
+
+
+/*message*/
+$(function(){
+	$("body").on( "submit",".message-search", message_search );
+	$("body").on( "submit",".checkbox-form", message_checkbox_submit );
+
+	$("body").on( "click",".message-list-body .row .info-table", show_message );	
+	$("body").on( "click",".message-search .sprite.delete", message_delete );
+	$("body").on( "click",".message-search .mark-as-read", message_markAsRead );
+	
+	$("body").on( "click",".message-search .sprite.check_box", message_checkbox_multiple );
+	$("body").on( "click",".row .sprite.check_box", message_checkbox );
+
+	//requires https://github.com/driftyco/ionic-plugin-keyboard
+	window.addEventListener('native.keyboardshow', keyboardShowHandler);	
+	window.addEventListener('native.keyboardhide', keyboardHideHandler);
+});
+
+function keyboardShowHandler(){
+	$selector = $("#messageList .link.sprite.new_message");
+	if( $selector.length ) $selector.hide();
+	if( $(".footer").length ) $(".footer").hide();
+}
+
+function keyboardHideHandler(){
+	$selector = $("#messageList .link.sprite.new_message");
+	if( $selector.length ) $selector.show();
+	if( $(".footer").length ) $(".footer").show();
+}
+
+function show_message( e ){	
+	$this = $(this).parent();
+	if( $(e.target).hasClass("check_box") ) return;
+	if( $(e.target).hasClass("primary-photo") ) return;
+	if( $(e.target).hasClass("name") ) return;
+	if( $this.hasClass( 'is-active' ) ){
+		$this.find('.show-on-click').slideUp();
+		$this.removeClass('is-active');
+		return;
+	}
+	
+	if( $(".row.is-active").length ){
+		$(".row.is-active").find('.show-on-click').slideUp();
+		$(".row.is-active").removeClass('is-active');
+	}
+	
+	$this.addClass('is-active');
+	//$this.find('.title').hide();;
+	$this.find('.show-on-click').slideDown();
+	$this.addClass('is-open');
+	if( $this.hasClass('sent') ) return;
+	
+	if( $this.hasClass('unread') ){
+		$this.removeClass('unread');		
+		
+		idx = $this.attr('idx');
+		url = url_server_app + 'message/markAsRead';
+
+		$.ajax({
+			'url': url,
+			'data' : { 'idx': idx, 'session_login' : $session_id }
+		})
+			.done(function(data) {			
+				var re = JSON.parse(data);							
+				if( re.error == 0 ){
+					console.log( re );
+				}
+				else{
+					alert( re.message );
+				}
+			})
+			.fail(function() {
+				
+			});
+	}
+}
+
+function message_delete(){
+	showLoader();	
+	re = confirm( "Delete this message?" );
+	if( !re ) return;
+	url = url_server_app + "message/delete";
+	$form = $("form.checkbox-form");
+	$form.prop("action",url);
+	$form.submit();
+}
+
+function message_markAsRead (){
+	showLoader();
+	url = url_server_app + "message/markAsRead";
+	$form = $("form.checkbox-form");
+	$form.prop("action",url);
+	$form.submit();
+}
+
+function callback_endless_message(no) {
+    if ( hasNoMoreContent() ) return;
+    bEndLessInLoading = true;
+	url = url_server_app + 'messageMore?page=' + no + "&session_login=" + $session_id;
+
+	message_keyword = $("form.message-search").find("[name='keyword']").val();
+	message_show = $("form.message-search").find("[name='show']").val();
+	message_extra = $("form.message-search").find("[name='extra']").val();
+	
+	if ( message_keyword ) url = url + "&keyword="+message_keyword;
+	if ( message_show ) url = url + "&show="+message_show;
+	if ( message_extra ) url = url + "&extra="+message_extra;
+	
+	console.log( url );
+	message_is_loading = true;
+    $.ajax( url )
+        .done(function(html){
+            if ( html == '' ) {
+                setNoMoreContent();
+                hideEndlessPageLoader();
+                endEndLessPage();
+            }
+            else {
+                $(".message-list-body").append(html);
+                hideEndlessPageLoader();
+                showEndlessPageLoader();
+            }
+            bEndLessInLoading = false;
+        })
+        .fail(function(){
+            alert('error on postListMore');
+            bEndLessInLoading = false;
+            hideEndlessPageLoader();
+        });
+}
+
+function message_send_ajax( re, $this ){
+	re = jQuery.parseJSON(re)
+	$this.find('[name]').val('');
+	alert( re.message );
+}
+
+function message_search(){
+	$this = $(this);
+	//$keyword_selector = $(".message-search-wrapper input[name='keyword']");
+	if( $this.hasClass('expanded') ){
+		//$this.removeClass('expanded');
+	}
+	else{
+		$this.addClass('expanded');
+		$("input[name='keyword']").animate({width:'100%'},500);
+		$this.find("input[name='keyword']").click();
+		$this.find("input[name='keyword']").focus();		
+		return false;
+	}	
+	qs = "?"+$this.serialize()+"&session_login="+$session_id;
+	loadPage('message', qs );
+	return false;
+}
+
+function message_checkbox_submit(){	
+	$this = $(this);		
+	$this.ajaxSubmit({
+        type: 'get',
+		data : { 'session_login': $session_id },
+        success: function() {
+            console.log("post success:");
+        },
+        complete: function(xhr) {            
+			var re = xhr.responseText;
+			try{
+				var re = jQuery.parseJSON(re)
+			}
+			catch(e){
+			
+			}
+			if( re ){
+				console.log( re );
+				if ( re.code != 0  )  alert( re.message );
+				else{
+					//else alert( error.message );
+					//alert( error.message );
+					console.log( re );
+					
+					if( re.action == 'markAsRead' ) $(".sprite.check_box.is-active").parents(".row").removeClass("unread");
+					else if( re.action == 'delete' ) $(".sprite.check_box.is-active").parents(".row").remove();
+					else alert("unknown action!");
+					var qs = "?";
+					
+					message_keyword = $("form.message-search").find("[name='keyword']").val();
+					message_show = $("form.message-search").find("[name='show']").val();
+					message_extra = $("form.message-search").find("[name='extra']").val();
+					
+					if ( message_keyword ) qs = qs + "&keyword="+message_keyword;
+					if ( message_show ) qs = qs + "&show="+message_show;
+					if ( message_extra ) qs = qs + "&extra="+message_extra;
+					console.log( qs );
+					loadPage('message', qs );
+					
+					$(".sprite.check_box.is-active").removeClass('is-active');
+				}
+			}
+			else{
+				console.log( "Nothing Happened" );
+			}
+			hideLoader();
+		}
+	});
+	return false;
+}
+
+function message_checkbox_multiple(){
+	$this = $(this);
+	checkbox_behavior( $this );
+	$(".row .sprite.check_box").each(function(){
+		$this = $(this);
+		checkbox_behavior( $this );
+	});
+}
+
+function message_checkbox(){
+	$this = $(this);
+	checkbox_behavior( $this );
+}
+
+function checkbox_behavior( $this ){
+	if( $this.hasClass("is-active") ) $this.removeClass("is-active");
+	else $this.addClass("is-active");
+	
+	idx = $this.parents(".row").attr("idx");
+	
+	if( ! idx ) return;
+	
+	$selector = $("form.checkbox-form input[name='idx']");
+	current_idx = $selector.val();
+
+	if( current_idx.indexOf( idx ) != -1 ) current_idx = current_idx.replace( "," + idx, "" );
+	else current_idx = current_idx + "," + idx;	
+	
+	$selector.val( current_idx );
+}
+/*eo message*/
+
+
+
+
+/*user profile*/
+$(function(){
+	$("body").on("click",".popup-user-profile", getPopupUserProfile );
+	//only works for popup-profile
+	$("body").on("click",".popup-profile .message-write-wrapper .message-content", popupUserProfileShowButtons );
+});
+
+function popupUserProfileShowButtons(){	
+	$this = $(this);
+	$this.parents(".popup-profile").find(".show-on-click").show();	
+}
+
+
+function getPopupUserProfile( e ){	
+	$this = $(this);
+	
+	url = url_server_app + "getPopupUserProfile";
+	idx = $this.attr("idx");
+	profile_target = $this.attr("profile_target");
+	
+	if( $(".popup-profile[profile_target='"+profile_target+"']").length ){
+		$(".popup-profile").remove();
+		return;
+	}
+	else if( $(".popup-profile").length ) $(".popup-profile").remove();
+	
+	//if( $(".popup-profile[idx='" + idx + "']").length ) 
+	
+	position_x = $this.offset().left;
+	position_y = $this.offset().top + 30;
+	popup_width = $(window).width() - 120;
+	if( !idx ) return alert("Mising user IDX!");
+	$.ajax({
+        'url': url,
+        'data' : { 'session_login':$session_id, 'idx':idx, 'profile_target':profile_target }
+    })
+	.done(function(html) {
+			try{
+				var re = jQuery.parseJSON(html)
+			}
+			catch(e){
+			
+			}
+			if( re ){
+				alert( re.message );
+			}
+			else{
+				$("body").append(html);
+				$(".popup-profile").css("top",position_y).css("left",position_x).css("width",popup_width+'px');
+				//$(html).css("color","red");
+			}
+	})
+	.fail(function() {
+		
+	});
+}
+/*eo user profile*/
+
+
+/*report*/
+$(function(){
+	$("body").on("click",".post .report", postReport );
+	$("body").on("submit",".reportForm", postReportSubmit );
+});
+
+function postReport(){
+	if( $(".popup-profile").length ) $(".popup-profile").remove();
+
+	var $this = $(this);
+	idx = $this.attr('idx');
+	parentSelector = '.post';
+	if( $this.parents( parentSelector ).find(".reportForm").length ){
+		$this.parents( parentSelector ).find(".reportForm").remove();
+		return;
+	}
+	
+	$( parentSelector ).find(".reportForm").remove();
+	
+	getReportForm( $this, parentSelector, idx );
+}
+
+
+//needs the post IDX and only works for post
+function getReportForm( $this, parentSelector, idx ){
+	url = url_server_app + "getReportForm";
+
+	$.ajax({
+        'url': url,
+        'data' : { 'session_login':$session_id, 'idx':idx }
+    })
+	.done(function(re) {			
+			var re = jQuery.parseJSON(re)			
+			if( re.error == 0 ){
+				$this.parents( parentSelector ).append( re.html );
+			}
+			else{
+				alert( re.message );
+			}
+	})
+	.fail(function() {
+		
+	});
+
+	/*
+	action = url_server_app + "postReport";
+	html =	"<form class='reportForm remove-on-body-click' action='" + action + "'>" +			
+			"<input type='hidden' name='idx' value='" + idx + "'>" +
+			"<table celpadding=0 cellspacing=0 width='100%'><tr>" +
+			"<td width='99%'><textarea name='reason' placeholder='Reason for reporting'></textarea></td>" +
+			"<td><input type='submit' value='Report'></td>" +
+			"</tr></table>" +
+			"</form>";
+	*/
+	
+}
+
+function postReportSubmit(){
+	var $this = $(this);
+	action = url_server_app + "postReport";
+	$this.prop('action',action);
+	$this.ajaxSubmit({
+        type: 'post',
+		data : { 'session_login': $session_id },
+        success: function() {
+            console.log("post success:");
+        },
+        complete: function(xhr) {            
+			var re = xhr.responseText;
+			console.log( re );
+				try{
+					var error = jQuery.parseJSON(re)
+				}
+				catch(e){
+				
+				}
+			if ( error && error.error != 0 ) {
+				alert( error.message );
+			}
+			else{
+				alert( re );
+				$this.remove();
+			}
+        }
+    });
+
+
+	return false;
+}
+/*eo report*/
+
+/*body*/
+$(function(){
+	$("body").click( body_clicked );
+});
+
+function body_clicked( e ){
+	if( $(getMenu()).css("display") == 'block' ){
+		//closePanel();
+		//e.preventDegfault();
+	}
+	
+	$selector = $(".remove-on-body-click");
+	
+	if( !$selector.length ) return
+	
+	target_class = $( e.target ).attr("class");
+	if( target_class == 'remove-on-body-click' ) return;
+	else if( $( e.target ).parents(".remove-on-body-click").length ) return;
+	else if( $( e.target ).parent().hasClass(".remove-on-body-click" ) ) return;
+	
+	$selector.remove();
+}
+/*eo body*/
+
+/*keypress event*/
+$(function(){
+	document.addEventListener("backbutton", onBackKeyDown, false);
+	
+	function onBackKeyDown( e ){
+		if( $(getMenu()).css("display") == 'block' ) closePanel();
+		else if( $(".modal_window").length ) $(".modal_window").click();
+		e.preventDefault();
+	}
+});
+/*keypress event*/

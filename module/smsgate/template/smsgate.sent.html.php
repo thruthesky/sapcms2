@@ -3,7 +3,7 @@
 ?>
 
 <?php include template('smsgate.menu'); ?>
-<H1>Blocked!!</H1>
+<H1>Succesfully sent!!</H1>
 
 <?php
 	if( !empty( $variables['scheduled'] ) ){

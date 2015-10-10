@@ -8,7 +8,15 @@
     background-color:#cdcdcd;
 }
 .footer {
-    background-color:#cdcdcd;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	padding: 10px;
+	margin-top: 20px;
+	background-color: #34495e;
+	font-size: .8em;
+	color: #fff;
+	text-align: center;
 }
 
 
@@ -61,7 +69,7 @@
 
 #main-menu .logo {
     display:inline-block;
-    padding:.5em;
+    /*padding:.5em;*/
     box-sizing: border-box;
     cursor:pointer;
 }
@@ -197,8 +205,17 @@
 	color:#fff;
 }
 
-.register-wrapper .logo{
-	padding:25px 0 40px 0;
+.register-wrapper > .logo{
+	padding:25px 0 14px 0;
+}
+
+.register-wrapper > .logo.take-user-primary-photo img{
+	border-radius:100%;
+}
+
+.register-wrapper > .label{
+	font-size: 1.1em;
+	margin-bottom:25px;
 }
 
 .profile-wrapper .take-user-primary-photo{
@@ -215,45 +232,114 @@
     cursor: pointer;
 }
 
+.profile-wrapper img{
+	width:100%;
+	max-width:140px;
+	margin:0 0 10px 0;
+}
+
+.register-wrapper form[name='register'] input:focus{
+	outline:0;
+}
+
+.register-wrapper form[name='register'] .row{
+	width:62%;
+	margin:0 auto 3px auto;
+	overflow:hidden;	
+}
+
 .register-wrapper form[name='register'] .row .caption, .profile-wrapper form[name='profileUpdate'] .row .caption{
 	display:none;
 }
 
 .register-wrapper form[name='register'] .row .text > *, .profile-wrapper form[name='profileUpdate'] .row .text > *{
-	height:26px;
-	width:62%;
-	padding:6px 10px;
+	height:45px;
+	width:100%;
+	padding:14px 10px 14px 52px;
 	margin:0;
 	border:0;
 	border-bottom:1px solid #fff;
-	background-color:transparent;
-	font-size:1em;
-	color:#fff;
+	/*background-color:transparent;*/
+	font-size:.9em;
+	color:#444;
 	box-sizing:border-box;
 }
 
-.register-wrapper form[name='register'] .row, .profile-wrapper form[name='profileUpdate'] .row{
+.register-wrapper form[name='register'] .row .text{
+	position:relative;	
+}
+
+.register-wrapper form[name='register'] .row .text:before{
+	position: absolute;
+    left: 0;
+    top: 0;
+    width: 47px;
+    height: 45px;
+    padding: 5px;
+    background-color: #e2e2e2;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.register-wrapper form[name='register'] .row.id{
+	border-top-left-radius:3px;
+	border-top-right-radius:3px;
+}
+
+.register-wrapper form[name='register'] .row.id.profile .text{
+	height: 35px;
+    background-color: #fff;
+    padding: 9px 0 9px 52px;
+    box-sizing: border-box;
+	font-size:.9em;
+	color:#444;
+	text-align:left;
+}
+
+.register-wrapper form[name='register'] .row.mail{
+	margin-bottom:20px;
+	border-bottom-left-radius:3px;
+	border-bottom-right-radius:3px;	
+}
+ 
+.register-wrapper form[name='register'] .row.id .text:before{
+	content:url("/module/app/img/user.png");
+}
+.register-wrapper form[name='register'] .row.password .text:before{
+	content:url("/module/app/img/password.png");
+}
+.register-wrapper form[name='register'] .row.confirm_password .text:before{
+	padding-left:3px;
+	content:url("/module/app/img/confirm_password.png");
+}
+.register-wrapper form[name='register'] .row.name .text:before{
+	content:url("/module/app/img/name.png");
+}
+.register-wrapper form[name='register'] .row.mobile .text:before{
+	content:url("/module/app/img/mobile.png");
+}
+.register-wrapper form[name='register'] .row.mail .text:before{
+	content:url("/module/app/img/mail.png");
+}
+
+.profile-wrapper form[name='profileUpdate'] .row{
 	margin:0 0 15px 0;
 }
 
-.register-wrapper form[name='register'] .row:nth-child(4){
-	margin-bottom:30px;
-}
-
 .register-wrapper form[name='register'] .row .text ::-webkit-input-placeholder {
-   color: #fff;
+   color: #939494;
 }
 
 .register-wrapper form[name='register'] .row .text :-moz-placeholder { /* Firefox 18- */
-   color: #fff;  
+   color: #939494;  
 }
 
 .register-wrapper form[name='register'] .row .text ::-moz-placeholder {  /* Firefox 19+ */
-   color: #fff;  
+   color: #939494;  
 }
 
 .register-wrapper form[name='register'] .row .text :-ms-input-placeholder {  
-   color: #fff;  
+   color: #939494;  
 }
 
 .register-wrapper form[name='register'] input[type='submit']{
@@ -306,15 +392,20 @@
 	border-bottom-right-radius:2px;
 }
 
-.login-box .sprite{	
+.login-box .bg-wrapper{
 	position:absolute;
 	left:0;
 	top:0;
+	padding:5px;
 	background-color:#e2e2e2;
 }
 
+.login-box .sprite{	
+	
+}
+
 .login-box input{	
-	height:35px;
+	height:45px;
 	width:100%;
 	padding:10px;
 	border:0;
@@ -322,21 +413,21 @@
 }
 
 .login-box input[type='text'], .login-box input[type='password']{	
-	padding-left:40px;
+	padding-left:55px;
 }
 
 .login-box input[type='submit'], .login-box .register{
-	display:inline-block;
-	width:100%;
-	height:34px;
-	padding:9px 0;
-	border-radius:2px;
-	background-color:#297fb8;
-	font-size: 1em;
+	display: inline-block;
+    width: 100%;
+    height: 40px;
+    padding: 11px 0;
+    border-radius: 2px;
+    background-color: #297fb8;
+    font-size: 1.1em;
     font-weight: bold;
     color: #fff;
-	box-sizing:border-box;
-	text-align:center;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 .login-box input[type='submit']{
@@ -359,6 +450,41 @@
 
 /*eo login-box*/
 
+/*modal_window*/
+.modal_window{
+	position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+	padding:10px;
+    background-color: rgba(0,0,0,.5);
+    z-index: 9999;    
+	box-sizing:border-box;
+	text-align:center;
+}
+
+.modal_window img{
+	box-sizing:border-box;	
+}
+
+/*eo modal_window*/
+
+/*invisible-window*/
+.invisible_window{
+	position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+	padding:10px;
+    z-index: 900;    
+	box-sizing:border-box;
+	text-align:center;
+	opacity:0;
+}
+/*eo invisible-window*/
+
 @media screen and (min-width: 400px) {
 	#main-menu li {
 		width:12.5%;		
@@ -372,3 +498,82 @@
         display:inline-block;
     }
 }
+
+/*user profile*/
+.popup-profile{
+	position:absolute;
+	padding:5px 5px 0 5px;
+	background-color:#fff;
+	border: 1px solid #d5d5d5;
+}
+
+.popup-profile .triangle{
+	position:absolute;
+	left:10px;
+	top:-7px;
+	width: 0; 
+	height: 0; 
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-bottom: 7px solid #a4a4a4;
+}
+
+.popup-profile .triangle.inner{	
+	top:-6px;	
+	border-bottom: 7px solid #fff;
+}
+
+.popup-profile .table-user-info{
+	margin-bottom:10px;
+}
+
+.popup-profile .primary-photo{
+	width:80px;
+	padding-right:10px;
+}
+
+.popup-profile .primary-photo img{
+	display:block;
+	width:100%;
+}
+
+.popup-profile .message-write-wrapper{
+	padding:0;
+	margin:0;
+}
+
+.popup-profile .message-write-wrapper .buttons{
+	margin:0;
+}
+
+.popup-profile .message-write-wrapper .file-display{
+	margin-top:3px;
+}
+
+.popup-profile .message-write-wrapper textarea.message-content{
+	height:45px;
+	border:1px solid #c7c7c7;
+	border-radius:0;
+	background-color:#fff;
+}
+
+.popup-profile .info .name{
+	margin:5px 0 7px 0;
+	font-size:1.1em;
+	font-weight:bold
+}
+
+.popup-profile .info .id{
+	margin-bottom:15px;
+	font-size:1.1em;	
+}
+
+.popup-profile .info .table-listing{
+	font-size:.8em;
+}
+
+.popup-profile .info .table-listing .label{
+	font-weight:bold;
+	color:#ab1212;	
+}
+/*eo user profile*/
