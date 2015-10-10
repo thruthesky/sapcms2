@@ -105,11 +105,11 @@ class DataController
         }
         else {
             system_log("Creating new thumbnail: $path");
-            Image::open($path)
+            $image = Image::open($path);
+            $image->setCacheDir(PATH_CACHE)
                 ->zoomCrop($x, $y, 'transparent', 'center', 'top')
                 ->save($new_path, 'jpg', 100);
         }
-
 
         header("Content-Type: $type");
         header("Content-Length: " . filesize($new_path));
