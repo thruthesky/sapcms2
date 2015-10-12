@@ -1699,13 +1699,39 @@ function body_clicked( e ){
 /*eo body*/
 
 /*keypress event*/
+document.addEventListener("backbutton", onBackKeyDown, false);
+document.addEventListener("menubutton", onMenuButton, false)
 $(function(){
-	document.addEventListener("backbutton", onBackKeyDown, false);
 	
-	function onBackKeyDown( e ){
-		if( $(getMenu()).css("display") == 'block' ) closePanel();
-		else if( $(".modal_window").length ) $(".modal_window").click();
-		e.preventDefault();
-	}
 });
+
+var tap_count = 0;
+var backKeyTimeout;
+function onBackKeyDown( e ){	
+	clearTimeout( backKeyTimeout );
+	tap_count++;
+	
+	//custom double tap of backbutton by benjamin
+	backKeyTimeout = setTimeout(function(){
+						if( tap_count > 1 ){
+							navigator.app.exitApp();
+							return;
+						}
+						tap_count = 0;
+						
+						if ( $(getMenu()).css("display") == 'block' ) closePanel();
+						else if ( $(".modal_window").length ) $(".modal_window").click();
+						else if ( currentPageID != 'front_page' ) moveToFrontPage();
+					},300);
+	
+	e.preventDefault();
+}
+
+function onMenuButton( e ){
+	alert('Menu Button!');
+	//if ( getMenu().css('display') == 'none' ) openPanel();
+	//else closePanel();
+	//e.preventDefault();
+}
+
 /*keypress event*/
