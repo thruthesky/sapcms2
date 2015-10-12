@@ -281,7 +281,7 @@ function showPage(id, html) {
     */
 	
 	$("html, body, .page").css("height","initial");
-	alert( $("html").height() + " " + $(window).height() );
+	
 	if( $("html").height() < $(window).height() ){
 		$("html, body, .page").css("height","100%");		
 	}
