@@ -280,15 +280,18 @@ function showPage(id, html) {
 	rentPageID:" + currentPageID);
     */
 	
-	$("html, body, .page").css("height","initial");
+	$("html, body, .page").css("height","100%");
 	
-	if( $("html").height() < $(window).height() ){
-		$("html, body, .page").css("height","100%");		
-	}
-	else{
-		$(".page").css("padding-bottom", ( $(".footer").height() + 30 )+"px");
-	}
-
+	setTimeout(function(){
+		var footer_height = $(".footer").height() + 30
+		$("html, body, .page").css("height","initial");
+		if( $("html").height() + footer_height < $(window).height() ){
+			$("html, body, .page").css("height","100%");
+		}
+		else{			
+			$(".page").css("padding-bottom", ( footer_height )+"px");
+		}
+		},300);
     hideLoader();
 }
 
