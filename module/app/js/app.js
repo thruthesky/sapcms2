@@ -281,9 +281,12 @@ function showPage(id, html) {
     */
 	
 	$("html, body, .page").css("height","initial");
-	
-	if( $("html").height() < $(window).height() ){		
-		$("html, body, .page").css("height","100%");
+	alert( $("html").height() + " " + $(window).height() );
+	if( $("html").height() < $(window).height() ){
+		$("html, body, .page").css("height","100%");		
+	}
+	else{
+		$(".page").css("padding-bottom", ( $(".footer").height() + 30 )+"px");
 	}
 
     hideLoader();
