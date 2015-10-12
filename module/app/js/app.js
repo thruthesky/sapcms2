@@ -276,8 +276,16 @@ function showPage(id, html) {
     beginEndLessPage();
     /*
     console.log("prevPageID:" + prevPageID);
-    console.log("currentPageID:" + currentPageID);
+    console.log("cur
+	rentPageID:" + currentPageID);
     */
+	
+	$("html, body, .page").css("height","initial");
+	
+	if( $("html").height() < $(window).height() ){		
+		$("html, body, .page").css("height","100%");
+	}
+
     hideLoader();
 }
 
