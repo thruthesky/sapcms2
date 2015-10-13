@@ -11,6 +11,9 @@ function text_updateProfile() {
     return "회원 정보가 업데이트 되었습니다.";
 }
 function showLoader() {
+
+    if ( typeof callback_showLoader == 'function' ) return callback_showLoader();
+
     var src = 'http://sapcms2.org/theme/default/tmp/s.png';
     var $body = $('body');
     var $document = $(window);
