@@ -1643,7 +1643,7 @@ function getReportForm( $this, parentSelector, idx ){
         'url': url,
         'data' : { 'session_login':$session_id, 'idx':idx }
     })
-	.done(functicallback_showLoaderon(re) {
+	.done(function(re) {
 			var re = jQuery.parseJSON(re)			
 			if( re.error == 0 ){
 				$this.parents( parentSelector ).append( re.html );
