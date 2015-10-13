@@ -10,7 +10,8 @@ function text_noMoreContent() {
 function text_updateProfile() {
     return "회원 정보가 업데이트 되었습니다.";
 }
-function showLoader() {
+
+function callback_showLoader() {
     var src = url_server + '/theme/default/tmp/s.png';
     var $body = $('body');
     var $document = $(window);
