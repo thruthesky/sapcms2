@@ -25,7 +25,7 @@ class DataController
         foreach( $uploads as $upload ) {
             system_log("name: $upload[name], tmp_name: $upload[tmp_name]");
             if ( empty($upload['error'])  ) {
-                $name = data()->getPossibleFilenameToSave($upload['name']);
+                $name = data()->getPossibleFilenameToSave($upload);
                 system_log("name:$name");
                 $path = PATH_UPLOAD . DIRECTORY_SEPARATOR . $name;
                 system_log("path to save: $path");
@@ -71,6 +71,7 @@ class DataController
         }
         sys()->log("return to client:");
         sys()->log($re);
+		//return di( $re );
         return Response::json($re);
     }
 

@@ -915,6 +915,41 @@ function get_mime_type($file)
 }
 
 
+/*
+*Added by benjamin
+*/
+function convertMimeTypeToExtension($mime)
+{
+    $mime_types = array(
+        "application/pdf"=>"pdf",
+        "application/octet-stream"=>"exe",
+        "application/zip"=>"zip",
+        "application/msword"=>"docx",
+        "application/msword"=>"doc",
+        "application/vnd.ms-excel"=>"xls",
+        "application/vnd.ms-powerpoint"=>"ppt",
+        "image/gif"=>"gif",
+        "image/png"=>"png",
+        "image/jpeg"=>"jpg",
+        "audio/mpeg"=>"mp3",
+        "audio/x-wav"=>"wav",
+        "video/mpeg"=>"mpeg",
+        "video/quicktime"=>"mov",
+        "video/x-msvideo"=>"avi",
+        "video/3gpp"=>"3gp",
+        "text/css"=>"css",        
+        "application/javascript"=>"js",
+        "text/html"=>"php",
+        "text/html"=>"html",        
+    );
+
+	if( !empty( $mime_types[$mime] ) ) $file_extension = $mime_types[$mime];
+	else $file_extension = null;
+	return $file_extension;
+}
+
+
+
 /**
  * @return bool|mixed|null
  */
