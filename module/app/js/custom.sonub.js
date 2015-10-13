@@ -30,7 +30,7 @@ function callback_showLoader() {
     });
     console.log("show loader");
 }
-function hideLoader() {
+function callback_hideLoader() {
     setTimeout(function(){
         $('.loader').remove();
     }, 800);

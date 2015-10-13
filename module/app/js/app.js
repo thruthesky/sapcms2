@@ -301,9 +301,13 @@ function loadPage(route, post_id) {
     if ( currentPageID == route ) {
         console.log("Trying to open same page? ... It loads anyway.");
     }
+
+    console.log("url_server_app: " + url_server_app);
     var url = url_server_app + route;
 	if( route == 'message' ) url += post_id;
-    else if ( post_id ) url += '/' + post_id;
+    else if ( post_id ) {
+        url += '/' + post_id;
+    }
     console.log("open: " + url);
     showLoader();
 	
@@ -1698,7 +1702,6 @@ function postReportSubmit(){
         }
     });
 
-
 	return false;
 }
 /*eo report*/
@@ -1792,3 +1795,13 @@ function showLoader() {
 
 }
 
+
+
+
+function hideLoader() {
+    if ( typeof callback_hideLoader == 'function' ) return callback_hideLoader();
+    setTimeout(function(){
+        $('.loader').remove();
+    }, 800);
+    console.log("hide loader");
+}
