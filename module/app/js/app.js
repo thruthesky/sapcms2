@@ -1022,7 +1022,17 @@ function cameraSuccess(fileURI) {
             }
 			else {					
 				if( photoOptions.type == 'primary_photo' ) $(photoOptions.selector).find("img").remove();
-				
+				//only works for images ...
+				/*
+				var url;
+				if( indexOf( "image", file.type ) != - 1 ){
+					//div src of default attached file instead
+					url = url_server + "module/app/img/file_attachment.png";
+				}
+				else{
+					url = file.urlThumbnail;
+				}
+				*/
 				html = "<div idx='" + file.idx + "' class='file image delete'><img src='"+file.urlThumbnail+"'></div>";				
 				if ( photoOptions.add ) $(photoOptions.selector).append(html);
 				else $(photoOptions.selector).html(html);
