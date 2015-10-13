@@ -51,7 +51,7 @@ class App {
             'header' => self::pageHeader(),
             'panel' => self::pagePanel(),
             'content' => self::pageContentFront(),
-            'footer' => self::pageFooter(),
+            //'footer' => self::pageFooter(),
         ]);
         echo $page;		
     }
@@ -61,7 +61,7 @@ class App {
 	//sample
 	<div class='link' route='view_post' idx='$idx'>
 	*/	
-    public static function viewPost() {	
+    public static function viewPost() {		
 		$view_idx = request('idx');
 		$view_item = self::pageContentPostView( $view_idx );
         $page = self::createPage([
@@ -69,7 +69,7 @@ class App {
             'header' => self::pageHeader(),
             'panel' => self::pagePanel(),
             'content' => $view_item,
-            'footer' => self::pageFooter(),
+            //'footer' => self::pageFooter(),
         ]);
         echo $page;	
     }
@@ -106,7 +106,7 @@ class App {
             'header' => self::pageHeader(),
             'panel' => self::pagePanel(),
             'content' => self::pageContentPostList($post_id),
-            'footer' => self::pageFooter(),
+            //'footer' => self::pageFooter(),
         ]);
         echo $page;
     }
@@ -146,6 +146,7 @@ class App {
 			if( !empty( $post_config_id ) ) $post_config_id = $post_config_id->id;
 			
 			if( !empty( $view_post ) ){
+				post_data()->which($view_post->get('idx'))->set('no_view', $view_post->get('no_view') + 1)->save();
 				$posts[] = $view_post->fields;
 				ob_start();			
 				include template('page.postList');
@@ -221,7 +222,8 @@ class App {
         if ( empty($data) ) return Response::json(['error'=>'Could not create a comment']);
         else {
             $data->updateFormSubmitFiles();
-            $posts[] = post_data($data->get('idx'))->getFields();			
+            $posts[] = post_data($data->get('idx'))->getFields();	
+			$posts[0]['content'] = nl2br( $posts[0]['content'] );
             ob_start();
             include template('page.postList');
             $data = ob_get_clean();
@@ -233,6 +235,7 @@ class App {
 		$idx = request('idx');
 		$content = request('content');
 		$post = post_data($idx);
+		$fid = request('fid');
 		$user = login();		
         if ( empty($post) ) echo "ERROR -50564 Post does not exist";//$re = ['error'=>-50564, 'message'=>"Post does not exists."];
 		else if ( $post->fields['idx_user'] != $user->fields['idx'] ) echo "ERROR -50554 This is not your post. You cannot edit or delete this post";//$re = ['error'=>-50554, 'message'=>"This is not your post. You cannot edit or delete this post."];
@@ -251,7 +254,9 @@ class App {
 			->set( 'int_9', 0 )
 			->set( 'int_10', 0 )
 			->save();
-						
+			
+			if( !empty( $fid ) ) $post->updateFormSubmitFiles();
+			
 			echo $content;
 			
 			$files = data()->loadBy('post', post_data($post->fields['idx'])->config('idx'), $post->fields['idx']);	
@@ -268,6 +273,7 @@ class App {
 	public static function PostEditCommentSubmit(){
 		$idx = request('idx');
 		$content = request('content');
+		$fid = request('fid');
 		$post = post_data($idx);
 		$user = login();		
         if ( empty($post) ) echo "ERROR -50564 Post does not exist";//$re = ['error'=>-50564, 'message'=>"Post does not exists."];
@@ -287,6 +293,9 @@ class App {
 			->set( 'int_9', 0 )
 			->set( 'int_10', 0 )
 			->save();
+			
+			if( !empty( $fid ) ) $post->updateFormSubmitFiles();
+			
 			echo $content;
 			
 			$files = data()->loadBy('post', post_data($post->fields['idx'])->config('idx'), $post->fields['idx']);	
@@ -307,6 +316,11 @@ class App {
         if ( empty($post) ) echo "ERROR -50564 Post does not exist";//$re = ['error'=>-50564, 'message'=>"Post does not exists."];
 		else if ( $post->fields['idx_user'] != $user->fields['idx'] ) echo "ERROR -50554 This is not your post. You cannot edit or delete this post";//$re = ['error'=>-50554, 'message'=>"This is not your post. You cannot edit or delete this post."];
 		else{
+			//delete all files first
+			$files = data()->loadBy('post', post_data($post->idx)->config('idx'), $post->idx);
+			foreach( $files as $file ){
+				$file->delete();				
+			}			
 			$post->markAsDelete();
 			$posts = [];			
 			//$item = [];
@@ -476,7 +490,7 @@ class App {
 		for( $i = 0; $i < $limit; $i ++ ){
 			$file = $files[$i];		
 			$url = $file->urlThumbnail( $width, $height );
-			$name = $file->get('name');
+			$name = $file->get('name_saved');
 			if ( is_image($name) ) {
 				$tag_imgs[] = "<div class='image' idx='".$file->idx."'><img src='$url'></div>";
 			}
@@ -574,7 +588,7 @@ class App {
             'header' => self::pageHeader(),
             'panel' => self::pagePanel(),
             'content' => self::pageMessageList(),
-            'footer' => self::pageFooter(),
+            //'footer' => self::pageFooter(),
         ]);
         echo $page;
 	}

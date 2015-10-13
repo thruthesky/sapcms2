@@ -3,7 +3,11 @@ define('HTTP_VAR_ROUTE', 'route');
 define('DEFAULT_MODULE','front');
 define('DEFAULT_CONTROLLER','page');
 
+// Development option
 define('DEVELOPMENT_MODE', true);
+
+
+
 
 
 

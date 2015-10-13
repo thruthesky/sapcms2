@@ -101,9 +101,6 @@ function initMenu() {
 }
 
 function initPanel() {
-    function getMenu() {
-        return $('#panel-menu');
-    }
     var $body = $('body');
 
     /**
@@ -123,6 +120,9 @@ function initPanel() {
 
     $body.on('click', ".show-panel", openPanel);
     $body.on('click', ".close-panel", closePanel);
+    $body.on('click', ".invisible_window", invisibleWindowClicked);
+		
+	
 		
 	/*added by benjamin*/
 	$("body").on("click",".page .content",function(){
@@ -131,108 +131,61 @@ function initPanel() {
 			closePanel();
 		}
 	});
-	
-	
-    /*
-    function togglePanel() {
-        if ( getMenu().css('display') == 'none' ) openPanel();
-        else closePanel();
-    }
-    */
-
-    function isPanelOpen() {
-        return getMenu().css('display') != 'none';
-    }
-    function closePanel() {
-        var $menu = getMenu();
-        if ( getMenu().css('display') == 'none' ) return;
-        $menu.animate(
-            {
-                'right': -$menu.width()
-            },
-            function() {
-                $menu.hide();
-            }
-        );
-    }
-    function openPanel() {
-        if ( isPanelOpen() ) return closePanel();		
-        var $menu = getMenu();
-		
-		$menu.css('position','fixed').css('top',$('#page-header').height());
-		
-        $menu.css({
-            'right': 0 - $menu.width()
-        });
-        $menu.show();
-        $menu.animate({
-            'right': 0
-        });;
-    }
-	/*
-	var old_scroll = $(window).scrollTop();
-	$(window).scroll(function(){
-		if ( isPanelOpen() ) check_panel_position();
-		//console.log("scroll");
-		old_scroll = $(window).scrollTop();
-	});
-	
-	function check_panel_position(){
-		var $menu = getMenu();
-		
-		menu_height = $menu.height();
-		window_height = $(window).height();
-		
-		if( $menu.css("position") == 'absolute' ){
-			//current_top = $menu.css("top");
-			//current_top = current_top.replace("px","");
-			
-			if( old_scroll < $(window).scrollTop() ){
-				console.log( "SCROLLED DOWN" );
-				//console.log( $menu.offset().top );
-				//console.log( "Window scroll top " + $(window).scrollTop() );
-				//console.log( "Window height " + $(window).height() );
-				window_total_top = $(window).height() + $(window).scrollTop();
-				menu_total_top = $menu.height() + $menu.offset().top;
-				console.log( $menu.offset().top );
-				console.log("compare here " + menu_total_top + " - " + window_total_top );
-				if( window_total_top > menu_total_top ){
-					$menu.css('position','fixed').css('top', -( menu_height - window_height ));
-				}
-			}
-			else{
-				console.log( "SCROLLED UP" );
-			}
-		}
-		else if( $menu.css("position") == 'fixed' ){
-			current_top = $menu.css("top");
-			current_top = current_top.replace("px","");
-			
-			if( old_scroll < $(window).scrollTop() ){
-				console.log( "SCROLLED DOWN" );												
-				if( current_top < 0 ) {
-					console.log("LESS");
-					return;
-				}
-			}
-			else{
-				console.log( "SCROLLED UP" );						
-				if( current_top > 0 ) {
-					console.log("MORE");
-					return;
-				}
-			}	
-		
-			if( menu_height + $('#page-header').height() > window_height ){				
-				$menu.css('position','absolute').css('top',$(window).scrollTop());
-			}
-		
-		}
-	}
-	*/
 }
 
+function getMenu() {
+	return $('#panel-menu');
+}
 
+function isPanelOpen() {
+	return getMenu().css('display') != 'none';
+}
+
+function closePanel() {
+	var $menu = getMenu();
+	if ( getMenu().css('display') == 'none' ) return;
+	$menu.animate(
+		{
+			'right': -$menu.width()
+		},
+		function() {
+			$menu.hide();
+		}
+	);
+	
+	removeInvisibleWindow()
+}
+
+function openPanel() {
+	if ( isPanelOpen() ) return closePanel();		
+	var $menu = getMenu();
+	
+	$menu.css('position','fixed').css('top',$('#page-header').height());
+	
+	$menu.css({
+		'right': 0 - $menu.width()
+	});
+	$menu.show();
+	$menu.animate({
+		'right': 0
+	});
+	
+	appendInvisibleWindow();
+}
+
+function appendInvisibleWindow(){
+	html = "<div class='invisible_window'></div>";
+	$("body").append( html );
+}
+
+function removeInvisibleWindow(){
+	$(".invisible_window").remove();
+}
+
+function invisibleWindowClicked(){
+	closePanel();
+	removeInvisibleWindow();
+}
 
 function registerSubmit(event) {
     var $form = $(this);
@@ -323,8 +276,14 @@ function showPage(id, html) {
     beginEndLessPage();
     /*
     console.log("prevPageID:" + prevPageID);
-    console.log("currentPageID:" + currentPageID);
+    console.log("cur
+	rentPageID:" + currentPageID);
     */
+	
+	$("html, body, .page").css("height","100%");
+	
+	setUpPageHeight();
+	
     hideLoader();
 }
 
@@ -551,8 +510,24 @@ $(function(){
 		checkLoginUser( showCompleteForm, $this );
 	});
 	
+	//abcdefg
 	function showCompleteForm( $selector ){
+		if( $("form.is-active").length ){
+			if( $("form.is-active").find("textarea").val() != "" ){
+				/*re = confirm( "The text you are currently working on will be delete. Continue?" );
+				if( re ){
+					$("form.is-active").removeClass('is-active');
+					$("form.is-active").find("textarea").val("")
+				}*/
+			}
+			else{
+				//$("form.is-active").removeClass('is-active');
+			}			
+		}
+		$(".comment-form-content").css('height','45px');
+		$(".show-on-click").hide();
 		$selector.height('100px');
+		$selector.parents('form').addClass('is-active');
 		$selector.parents('form').find(".show-on-click").show();
 	}
 	
@@ -702,6 +677,7 @@ function ajaxPostDelete(){
 	console.log( url );
 	$.ajax(url)
             .done(function(re){                
+				console.log( re );
                 try {
 					$html = $(re).find(".post").html();
 					if( ! $html ) $this.parents(".post").remove();
@@ -1035,20 +1011,19 @@ function cameraSuccess(fileURI) {
         var data = r.response;
 
         clearCache();
-        retries = 0;
+        retries = 0;		
+		//alert( r.response );
+		//alert(data);return;
         var re = JSON.parse(data);
         for ( var i in re ) {
             var file = re[i];
             if ( file.error ) {
-                alert(file.message);				
+                alert(file.message);                
             }
-			else {
-				/*if( photoOptions.type != 'primary_photo' ) delete_button = "<div class='delete' title='Delete this file'>X</div>";
-				else {
-					$("form[name='profileUpdate'] img").remove();
-					delete_button = '';
-				}*/
-				html = "<div idx='" + file.idx + "' class='file image delete'><img src='"+file.urlThumbnail+"'>" + delete_button + "</div>";
+			else {					
+				if( photoOptions.type == 'primary_photo' ) $(photoOptions.selector).find("img").remove();
+				
+				html = "<div idx='" + file.idx + "' class='file image delete'><img src='"+file.urlThumbnail+"'></div>";				
 				if ( photoOptions.add ) $(photoOptions.selector).append(html);
 				else $(photoOptions.selector).html(html);
 
@@ -1128,10 +1103,12 @@ function cameraPostFile() {
 	//temp added by benjamin for edit compatibility by benjamin
 	if( idx == 0  || typeof( idx ) == 'undefined' ){
 		idx = $form.find('[name="idx"]').val();
+		//if edit
 		//function setFileInfo(module, type, idx_target, finish, unique, image_thumbnail_width, image_thumbnail_height, callback) 
 		setFileInfo('post', 3, idx, 1, 0, 140, 140, callback_post_file_upload);
 	}
 	else{
+		//if new upload
 		setFileInfo('post', 'files', idx, 0, 0, 140, 140, callback_post_file_upload);
 	}
     takePhotoUpload();
@@ -1332,13 +1309,37 @@ $(function(){
 });
 
 function keyboardShowHandler(){
+	
+	$("html, body, .page").css("height","100%");
+
+	setUpPageHeight();
+
 	$selector = $("#messageList .link.sprite.new_message");
 	if( $selector.length ) $selector.hide();
+	if( $(".footer").length ) $(".footer").hide();
 }
 
 function keyboardHideHandler(){
+	$("html, body, .page").css("height","100%");
+	
+	setUpPageHeight();
+	
 	$selector = $("#messageList .link.sprite.new_message");
 	if( $selector.length ) $selector.show();
+	if( $(".footer").length ) $(".footer").show();
+}
+
+function setUpPageHeight(){
+	setTimeout(function(){
+		var footer_height = $(".footer").height() + 30
+		$("html, body, .page").css("height","initial");
+		if( $("html").height() + footer_height < $(window).height() ){
+			$("html, body, .page").css("height","100%");
+		}
+		else{			
+			$(".page").css("padding-bottom", ( footer_height )+"px");
+		}
+	},300);
 }
 
 function show_message( e ){	
@@ -1555,7 +1556,15 @@ function checkbox_behavior( $this ){
 /*user profile*/
 $(function(){
 	$("body").on("click",".popup-user-profile", getPopupUserProfile );
+	//only works for popup-profile
+	$("body").on("click",".popup-profile .message-write-wrapper .message-content", popupUserProfileShowButtons );
 });
+
+function popupUserProfileShowButtons(){	
+	$this = $(this);
+	$this.parents(".popup-profile").find(".show-on-click").show();	
+}
+
 
 function getPopupUserProfile( e ){	
 	$this = $(this);
@@ -1601,3 +1610,157 @@ function getPopupUserProfile( e ){
 	});
 }
 /*eo user profile*/
+
+
+/*report*/
+$(function(){
+	$("body").on("click",".post .report", postReport );
+	$("body").on("submit",".reportForm", postReportSubmit );
+});
+
+function postReport(){
+	if( $(".popup-profile").length ) $(".popup-profile").remove();
+
+	var $this = $(this);
+	idx = $this.attr('idx');
+	parentSelector = '.post';
+	if( $this.parents( parentSelector ).find(".reportForm").length ){
+		$this.parents( parentSelector ).find(".reportForm").remove();
+		return;
+	}
+	
+	$( parentSelector ).find(".reportForm").remove();
+	
+	getReportForm( $this, parentSelector, idx );
+}
+
+
+//needs the post IDX and only works for post
+function getReportForm( $this, parentSelector, idx ){
+	url = url_server_app + "getReportForm";
+
+	$.ajax({
+        'url': url,
+        'data' : { 'session_login':$session_id, 'idx':idx }
+    })
+	.done(function(re) {			
+			var re = jQuery.parseJSON(re)			
+			if( re.error == 0 ){
+				$this.parents( parentSelector ).append( re.html );
+			}
+			else{
+				alert( re.message );
+			}
+	})
+	.fail(function() {
+		
+	});
+
+	/*
+	action = url_server_app + "postReport";
+	html =	"<form class='reportForm remove-on-body-click' action='" + action + "'>" +			
+			"<input type='hidden' name='idx' value='" + idx + "'>" +
+			"<table celpadding=0 cellspacing=0 width='100%'><tr>" +
+			"<td width='99%'><textarea name='reason' placeholder='Reason for reporting'></textarea></td>" +
+			"<td><input type='submit' value='Report'></td>" +
+			"</tr></table>" +
+			"</form>";
+	*/
+	
+}
+
+function postReportSubmit(){
+	var $this = $(this);
+	action = url_server_app + "postReport";
+	$this.prop('action',action);
+	$this.ajaxSubmit({
+        type: 'post',
+		data : { 'session_login': $session_id },
+        success: function() {
+            console.log("post success:");
+        },
+        complete: function(xhr) {            
+			var re = xhr.responseText;
+			console.log( re );
+				try{
+					var error = jQuery.parseJSON(re)
+				}
+				catch(e){
+				
+				}
+			if ( error && error.error != 0 ) {
+				alert( error.message );
+			}
+			else{
+				alert( re );
+				$this.remove();
+			}
+        }
+    });
+
+
+	return false;
+}
+/*eo report*/
+
+/*body*/
+$(function(){
+	$("body").click( body_clicked );
+});
+
+function body_clicked( e ){
+	if( $(getMenu()).css("display") == 'block' ){
+		//closePanel();
+		//e.preventDegfault();
+	}
+	
+	$selector = $(".remove-on-body-click");
+	
+	if( !$selector.length ) return
+	
+	target_class = $( e.target ).attr("class");
+	if( target_class == 'remove-on-body-click' ) return;
+	else if( $( e.target ).parents(".remove-on-body-click").length ) return;
+	else if( $( e.target ).parent().hasClass(".remove-on-body-click" ) ) return;
+	
+	$selector.remove();
+}
+/*eo body*/
+
+/*keypress event*/
+document.addEventListener("backbutton", onBackKeyDown, false);
+document.addEventListener("menubutton", onMenuButton, false)
+$(function(){
+	
+});
+
+var tap_count = 0;
+var backKeyTimeout;
+function onBackKeyDown( e ){	
+	clearTimeout( backKeyTimeout );
+	tap_count++;
+	
+	//custom double tap of backbutton by benjamin
+	backKeyTimeout = setTimeout(function(){
+						if( tap_count > 1 ){
+							navigator.app.exitApp();
+							return;
+						}
+						tap_count = 0;
+						
+						if ( $(getMenu()).css("display") == 'block' ) closePanel();
+						else if ( $(".modal_window").length ) $(".modal_window").click();
+						else if ( currentPageID != 'front_page' ) moveToFrontPage();
+					},300);
+	
+	e.preventDefault();
+}
+
+function onMenuButton( e ){
+	alert('Menu Button!');
+	//if ( getMenu().css('display') == 'none' ) openPanel();
+	//else closePanel();
+	//e.preventDefault();
+}
+
+/*keypress event*/

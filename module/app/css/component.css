@@ -8,12 +8,15 @@
     background-color:#cdcdcd;
 }
 .footer {
-	padding:10px;
-	margin-top:20px;
-    background-color:#34495e;
-	font-size:.8em;
-	color:#fff;
-	text-align:center;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	padding: 10px;
+	margin-top: 20px;
+	background-color: #34495e;
+	font-size: .8em;
+	color: #fff;
+	text-align: center;
 }
 
 
@@ -128,7 +131,6 @@
     background-color:white;
     color:white;
 	box-sizing:border-box;
-	z-index:1;
 }
 #panel-menu ul {
     list-style: none;
@@ -457,7 +459,7 @@
     width: 100%;
 	padding:10px;
     background-color: rgba(0,0,0,.5);
-    z-index: 9999999;    
+    z-index: 9999;    
 	box-sizing:border-box;
 	text-align:center;
 }
@@ -467,6 +469,21 @@
 }
 
 /*eo modal_window*/
+
+/*invisible-window*/
+.invisible_window{
+	position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+	padding:10px;
+    z-index: 900;    
+	box-sizing:border-box;
+	text-align:center;
+	opacity:0;
+}
+/*eo invisible-window*/
 
 @media screen and (min-width: 400px) {
 	#main-menu li {
@@ -485,7 +502,7 @@
 /*user profile*/
 .popup-profile{
 	position:absolute;
-	padding:10px 10px 0 10px;
+	padding:5px 5px 0 5px;
 	background-color:#fff;
 	border: 1px solid #d5d5d5;
 }
@@ -525,6 +542,14 @@
 	margin:0;
 }
 
+.popup-profile .message-write-wrapper .buttons{
+	margin:0;
+}
+
+.popup-profile .message-write-wrapper .file-display{
+	margin-top:3px;
+}
+
 .popup-profile .message-write-wrapper textarea.message-content{
 	height:45px;
 	border:1px solid #c7c7c7;
@@ -533,7 +558,7 @@
 }
 
 .popup-profile .info .name{
-	margin-bottom:7px;
+	margin:5px 0 7px 0;
 	font-size:1.1em;
 	font-weight:bold
 }

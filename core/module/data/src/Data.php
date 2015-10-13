@@ -101,19 +101,29 @@ class Data extends Entity
      * @param $name
      * @return string
      */
-    public function getPossibleFilenameToSave($name) {
+    public function getPossibleFilenameToSave($upload) {
+		$name = $upload['name'];
+		$mime = $upload['type'];
         $name = self::makeSafeFilename($name);
-        if ( is_file($this->path($name)) ) {
+        if ( is_file($this->path($name)) ) {			
             $pi = pathinfo($name);
             for ( $i=1; $i<10000; $i++ ) {
-                if ( $pi['extension'] ) $name = $pi['filename'] . "($i)." . $pi['extension'];
-                else $name = $pi['filename'];
+                if ( !empty( $pi['extension'] ) ) $name = $pi['filename'] . "($i)." . $pi['extension'];
+                else {
+					//added by benjamin					
+					$name = $pi['filename']. "($i)";
+					$file_extension = convertMimeTypeToExtension( $mime );//sapcms-library.php
+					if( !empty( $file_extension ) ) $name .= ".".$file_extension;
+					
+					//old code is
+					//$name = $pi['filename'];
+				}
                 if ( ! is_file($this->path($name)) ) break;
             }
         }
         return $name;
     }
-
+	
     public static function makeSafeFilename($file)
     {
         // Remove any trailing dots, as those aren't ever valid file names.

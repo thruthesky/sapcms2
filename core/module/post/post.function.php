@@ -99,9 +99,9 @@ function display_files($files) {
     $tag_files = [];
     foreach($files as $file) {
         $url = $file->url();
-        $name = $file->get('name');
+        $name = $file->get('name_saved');
         if ( is_image($name) ) {
-            $tag_imgs[] = "<div class='image'><img src='$url'></div>";
+            $tag_imgs[] = "<div class='image'  idx='".$file->idx."'><img src='$url'></div>";
         }
         else {
             $tag_files[] = "<div class='attachment'><a href='$url'>$name</a></div>";
