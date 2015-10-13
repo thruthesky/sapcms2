@@ -11,7 +11,7 @@ function text_updateProfile() {
     return "회원 정보가 업데이트 되었습니다.";
 }
 function callback_showLoader() {
-    var src = 'http://sapcms2.org/theme/default/tmp/s.png';
+    var src = url_server + '/theme/default/tmp/s.png';
     var $body = $('body');
     var $document = $(window);
     $body.append("<div class='loader'><img src='"+src+"'> 원문한의원</div>");

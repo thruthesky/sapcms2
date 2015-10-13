@@ -485,19 +485,27 @@ class App {
 		if ( empty($files) ) return null;	
 		$tag_imgs = [];
 		$tag_files = [];
-		//foreach($files as $file) {
-		if( $limit == 0 ) $limit = count( $files );	
-		for( $i = 0; $i < $limit; $i ++ ){
-			$file = $files[$i];		
+		foreach($files as $file) {
+		//$total_files = count( $files );
+		//if( $limit == 0 ) $limit = $total_files;
+		//for( $i = 0; $i < $limit; $i ++ ){
+			//$file = $files[$i];		
 			$url = $file->urlThumbnail( $width, $height );
 			$name = $file->get('name_saved');
-			if ( is_image($name) ) {
+			if ( is_image($name) ) {				
+				/*
+				$more_image = null;
+				$more_image
+				if( $i >= 3 ){					
+					if( $total_files > $limit ) $more_image = "<div class='more-images'>+".( $total_files - $limit )."</div>";										
+				}
+				*/			
 				$tag_imgs[] = "<div class='image' idx='".$file->idx."'><img src='$url'></div>";
 			}
 			else {
 				$tag_files[] = "<div class='attachment'><a href='$url'>$name</a></div>";
 			}
-		}
+		}				
 		
 		echo "<div class='attachments'>";
 		array_walk($tag_files, 'display');

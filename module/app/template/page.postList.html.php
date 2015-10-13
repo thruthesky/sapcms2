@@ -16,7 +16,7 @@ foreach ( $posts as $post ) {
 	$idx_user = $post['idx_user'];
 	if( $idx_user == 0 ) $idx_user = 1;
 	$user = user()->load( $idx_user )->fields;
-	$id = $user['id'];
+	$name = $user['name'];
 
 	$date = date( "M d, Y", $post['created'] );
 
@@ -55,7 +55,7 @@ foreach ( $posts as $post ) {
 					</td>
 					<td width='99%'>
 						<div class='info'>
-							<div class='name popup-user-profile' idx='<?php echo $post['idx_user'] ?>' profile_target='post-<?php echo $post['idx'] ?>'><?php echo $id; ?></div>
+							<div class='name popup-user-profile' idx='<?php echo $post['idx_user'] ?>' profile_target='post-<?php echo $post['idx'] ?>'><?php echo $name; ?></div>
 							<div class='date'><?php echo $date; ?> | <?php echo $time; ?></div>
 						</div>
 					</td>
