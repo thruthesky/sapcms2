@@ -282,16 +282,8 @@ function showPage(id, html) {
 	
 	$("html, body, .page").css("height","100%");
 	
-	setTimeout(function(){
-		var footer_height = $(".footer").height() + 30
-		$("html, body, .page").css("height","initial");
-		if( $("html").height() + footer_height < $(window).height() ){
-			$("html, body, .page").css("height","100%");
-		}
-		else{			
-			$(".page").css("padding-bottom", ( footer_height )+"px");
-		}
-		},300);
+	setUpPageHeight();
+	
     hideLoader();
 }
 
@@ -1021,13 +1013,14 @@ function cameraSuccess(fileURI) {
         clearCache();
         retries = 0;		
 		//alert( r.response );
+		//alert(data);return;
         var re = JSON.parse(data);
         for ( var i in re ) {
             var file = re[i];
             if ( file.error ) {
-                alert(file.message);				
+                alert(file.message);                
             }
-			else {	
+			else {					
 				if( photoOptions.type == 'primary_photo' ) $(photoOptions.selector).find("img").remove();
 				
 				html = "<div idx='" + file.idx + "' class='file image delete'><img src='"+file.urlThumbnail+"'></div>";				
@@ -1316,15 +1309,37 @@ $(function(){
 });
 
 function keyboardShowHandler(){
+	
+	$("html, body, .page").css("height","100%");
+
+	setUpPageHeight();
+
 	$selector = $("#messageList .link.sprite.new_message");
 	if( $selector.length ) $selector.hide();
 	if( $(".footer").length ) $(".footer").hide();
 }
 
 function keyboardHideHandler(){
+	$("html, body, .page").css("height","100%");
+	
+	setUpPageHeight();
+	
 	$selector = $("#messageList .link.sprite.new_message");
 	if( $selector.length ) $selector.show();
 	if( $(".footer").length ) $(".footer").show();
+}
+
+function setUpPageHeight(){
+	setTimeout(function(){
+		var footer_height = $(".footer").height() + 30
+		$("html, body, .page").css("height","initial");
+		if( $("html").height() + footer_height < $(window).height() ){
+			$("html, body, .page").css("height","100%");
+		}
+		else{			
+			$(".page").css("padding-bottom", ( footer_height )+"px");
+		}
+	},300);
 }
 
 function show_message( e ){	

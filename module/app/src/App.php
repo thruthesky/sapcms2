@@ -490,7 +490,7 @@ class App {
 		for( $i = 0; $i < $limit; $i ++ ){
 			$file = $files[$i];		
 			$url = $file->urlThumbnail( $width, $height );
-			$name = $file->get('name');
+			$name = $file->get('name_saved');
 			if ( is_image($name) ) {
 				$tag_imgs[] = "<div class='image' idx='".$file->idx."'><img src='$url'></div>";
 			}
