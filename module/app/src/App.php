@@ -165,10 +165,17 @@ class App {
 
     public static function postCommentSubmit() {
 		$user = login();
-		if( empty( $user ) ) return Response::json(['error'=>'1001','message'=>'Please Login First!']);
+		
+		$content = trim(request('content'));
+		if( empty( $content ) ){
+			$fid = request('fid');
+			if( empty( $fid ) ) return Response::json(['error'=>'-1010','message'=>'Content cannot be empty!']);
+		}
+		
+		if( empty( $user ) ) return Response::json(['error'=>'-1001','message'=>'Please Login First!']);
 		
 		$config = post_config()->getCurrent();
-        if ( empty($config) ) return Response::json(['error'=>'Wrong post configuration']);
+        if ( empty($config) ) return Response::json(['error'=>'-1002','message'=>'Wrong post configuration']);
 
         $options['idx_config'] = $config->get('idx');
 		$options['idx_user'] = login('idx');
@@ -208,7 +215,7 @@ class App {
 		if( empty( $user ) ) return Response::json(['error'=>'1001','message'=>'Please Login First!']);
 	  
 		$config = post_config()->getCurrent();
-        if ( empty($config) ) return Response::json(['error'=>'Wrong post configuration']);
+        if ( empty($config) ) return Response::json(['error'=>'-1002','message'=>'Wrong post configuration']);
 
         $options['idx_config'] = $config->get('idx');
 		$options['idx_user'] = login('idx');
