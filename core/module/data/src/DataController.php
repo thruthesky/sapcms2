@@ -26,6 +26,7 @@ class DataController
             system_log("name: $upload[name], tmp_name: $upload[tmp_name]");
             if ( empty($upload['error'])  ) {
                 $name = data()->getPossibleFilenameToSave($upload);
+
                 system_log("name:$name");
                 $path = PATH_UPLOAD . DIRECTORY_SEPARATOR . $name;
                 system_log("path to save: $path");

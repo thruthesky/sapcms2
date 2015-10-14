@@ -102,7 +102,7 @@ class Data extends Entity
      * @return string
      */
     public function getPossibleFilenameToSave($upload) {
-		if( is_array( $upload ) ){
+		if( !empty( $upload['name'] ) ){
 			$name = $upload['name'];
 			$mime = $upload['type'];
 		}
@@ -110,22 +110,35 @@ class Data extends Entity
 			$name = $upload;
 			$mime = null;
 		}
-        $name = self::makeSafeFilename($name);
+		
+		$name = self::makeSafeFilename($name);
+		
+		//became redundant		
+		
+		$pi = pathinfo($name);
+		if ( !empty( $pi['extension'] ) ) $name = $pi['filename'] .".". $pi['extension'];
+		else {			
+			$name = $pi['filename'];
+			$file_extension = convertMimeTypeToExtension( $mime );//sapcms-library.php
+			if( !empty( $file_extension ) ) $name = $name.".".$file_extension;
+		}
+		        
         if ( is_file($this->path($name)) ) {			
             $pi = pathinfo($name);
             for ( $i=1; $i<10000; $i++ ) {
-                $name = $pi['filename'] . "($i)";               
+                if ( !empty( $pi['extension'] ) ) $name = $pi['filename'] . "($i)." . $pi['extension'];
+                else {
+					//added by benjamin					
+					$name = $pi['filename']. "($i)";
+					$file_extension = convertMimeTypeToExtension( $mime );//sapcms-library.php
+					if( !empty( $file_extension ) ) $name = $name.".".$file_extension;
+					
+					//old code is
+					//$name = $pi['filename'];
+				}
                 if ( ! is_file($this->path($name)) ) break;
             }
-        }
-		
-		$pi = pathinfo($name);
-		
-		if ( !empty( $pi['extension'] ) ) $name .= ".".$pi['extension'];
-		else {				
-			$file_extension = convertMimeTypeToExtension( $mime );//sapcms-library.php
-			if( !empty( $file_extension ) ) $name .= ".".$file_extension;
-		}
+        }				
 		
         return $name;
     }
