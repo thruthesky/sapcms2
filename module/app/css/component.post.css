@@ -330,9 +330,12 @@ form .file-display{
 		border:0;
 		resize:none;
 		box-sizing:border-box;
-	}		
+	}
+	.comment-form textarea.comment-form-content{
+		border:1px solid #70b7ff;
+	}
 	
-	textarea.post-form-content:focus{
+	textarea.post-form-content:focus, .comment-form textarea.comment-form-content:focus{
 		outline:0;
 	}
 	
