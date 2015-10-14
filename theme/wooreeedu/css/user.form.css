@@ -1,0 +1,25 @@
+.user-primary-photo {
+    position:relative;
+    width:140px;
+    height:140px;
+}
+.user-primary-photo img {
+     width:100%;
+     height:auto;
+ }
+.user-form .file-upload {
+    position:absolute;
+    top:0;
+}
+.user-form .file-upload .caption {
+    display:none;
+}
+.user-form .file-upload [type='file'] {
+    background-color:blue;
+    width:140px;
+    height:140px;
+    opacity:0;
+    cursor:pointer;
+}
+
+

@@ -1,0 +1,10 @@
+#left {
+    background-color:#dfdfdf;
+    width:220px;
+    min-height:600px;
+}
+#left ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}

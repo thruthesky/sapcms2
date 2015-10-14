@@ -1,0 +1,40 @@
+body {
+    margin:0;
+    padding:0;
+	background-color: #f1f1f1;
+}
+
+#layout {
+    left:0;
+    right:0;
+    overflow:hidden;
+    min-height:40em;
+}
+
+#layout-content {
+    position:relative;	
+}
+
+#layout-left {
+    display:none;
+}
+
+@media all and (min-width: 720px ) {
+    #layout-left {
+        display:table-cell;
+        width:220px;
+    }
+}
+@media all and (min-width: 1024px ) {
+    #layout-header {
+        margin:0 auto;
+        max-width:1000px;
+    }
+    #layout-content {
+        margin:0 auto;
+        width:1000px;
+        overflow:hidden;
+    }
+}
+
+
