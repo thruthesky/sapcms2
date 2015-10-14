@@ -699,7 +699,7 @@ function ajaxPostDelete(){
 					if( ! $html ) $this.parents(".post").remove();
 					else $this.parents(".post").html( $html );			
                 }
-                catch (e) {
+                catch (e) {					
 					alert( "Error! [ code here ] [ message here ]" );
                 }
             })
