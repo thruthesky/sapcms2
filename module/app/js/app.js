@@ -1056,7 +1056,7 @@ function cameraSuccess(fileURI) {
 						url = file.urlThumbnail;
 					}
 					*/
-					html = "<div idx='" + file.idx + "' class='file image delete'><img src='"+file.urlThumbnail+"'><div class="x-mark">X</div></div>";				
+					html = "<div idx='" + file.idx + "' class='file image delete'><img src='"+file.urlThumbnail+"'><div class='x-mark'>X</div></div>";				
 					if ( photoOptions.add ) $(photoOptions.selector).append(html);
 					else $(photoOptions.selector).html(html);								
 					
