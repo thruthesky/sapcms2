@@ -183,11 +183,6 @@ body{
 .file-display .file:nth-child(even) .x-mark{ 
 	right:5px;
 }
-/*
-.file-display .file.file-loader{
-    display:none;
-}
-*/
 
 /*.file-display .file:nth-child(4n+3){ padding:0 2.5px 0 5px;}
 .file-display .file:nth-child(4n+4) { padding:0 0 0 7.5px;}*/
@@ -760,4 +755,12 @@ form .file-display{
 
 .user-command.comment-command{
 	margin-top:10px;
+}
+
+.file-display .file.file-loader{
+    text-align:center;
+}
+
+.file-display .file.file-loader > img{
+    width:50%;
 }
