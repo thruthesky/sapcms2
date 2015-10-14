@@ -1269,7 +1269,7 @@ function adjustModalImage(){
 	$selector.load(function(){
 		$selector.css('width','100%');
 		if( $selector.height() > $selector.width() ) {
-			$selector.css('width','initial').css('height',$(window).height()-40);
+			$selector.css('width','initial').css('height',$(window).height()-25);
 		}
 		if( $selector.width() > $(window).width() ){
 			$selector.css('width','100%').css('height',$(window).width()-20);
@@ -1293,13 +1293,13 @@ function appendModalWindowLoader(){
 
 function remove_modal_window( e ){
 	console.log( "remove modal" );
-	var target_class = $(e.target).attr('class');
+	//var target_class = $(e.target).attr('class');
 	console.log( target_class );
-	if( target_class == 'modal_window' || target_class == 'modal_image' ){
-		$('.modal_window').remove();
-		$("body").css('overflow','initial');
-		document.ontouchmove = function(e){}//remove the disabled mobile scrolling
-	}
+	//if( target_class == 'modal_window' || target_class == 'modal_image' ){
+	$('.modal_window').remove();
+	$("body").css('overflow','initial');
+	document.ontouchmove = function(e){}//remove the disabled mobile scrolling
+	//}
 }
 /*eo pop up image*/
 
