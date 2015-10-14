@@ -758,6 +758,7 @@ form .file-display{
 }
 
 .file-display .file.file-loader > img{
+	display:block;
     width:50%;
 	margin:auto;
 }
