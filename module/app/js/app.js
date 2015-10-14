@@ -623,7 +623,7 @@ function ajaxCommentSubmit($this) {
 			}
 			else{
 				console.log("post comment submit completed!!");
-
+				console.log( re );
 				if( upload_type == 'comment_edit' ) post_edit_comment_html_ajax( re, $this );
 				else if( upload_type == 'post_edit' ) post_edit_html_ajax( re, $this );
 				else if( upload_type == 'comment' ) comment_html_ajax( re, $this );
@@ -644,13 +644,14 @@ function post_html_ajax( re, $this ){
 
 function comment_html_ajax( re, $this ){
 	$comment_depth = $(re).attr('depth');
+	console.log("depth " + $comment_depth);
 	if( $comment_depth > 1 ){		
 		$parent = $this.parents('.comment');
 		$parent.after( $(re) );//.html(re);
 	}
 	else {
 		$parent = $this.parents('.post').find('.comments');
-		$parent.prepend( $(re) );
+		$parent.append( $(re) );
 	}
 	
 	$comment_num = $this.parents('.post').find(".do-comment .no").html();

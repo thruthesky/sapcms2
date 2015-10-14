@@ -9,6 +9,8 @@ else $class = null;
 <div class="post-list<?php echo $class; ?>">
 <?php 
 foreach ( $posts as $post ) { 
+	$this_post = $post;
+
 	if( !empty( $skip_idx ) ){
 		if( $skip_idx == $post['idx'] ) continue;
 	}
@@ -16,7 +18,8 @@ foreach ( $posts as $post ) {
 	$idx_user = $post['idx_user'];
 	if( $idx_user == 0 ) $idx_user = 1;
 	$user = user()->load( $idx_user )->fields;
-	$name = $user['name'];
+	if( !empty( $user['name'] ) ) $name = $user['name'];
+	else $name = $user['id'];
 
 	$date = date( "M d, Y", $post['created'] );
 
@@ -111,15 +114,15 @@ foreach ( $posts as $post ) {
 			<?php } else { ?>
 				<div class='deleted'>[ Commands are disabled ]</div>
 			<?php } ?>
-		</nav>
-		
-        <div class="comment-form">
-            <?php 
-			unset( $comment );
-			include template('page.postList.comment-form');?>
-        </div>
+		</nav>		       
         <div class="comments">
             <?php include template('page.postList.comments'); ?>
+        </div>
+		<div class="comment-form">
+            <?php 
+			unset( $comment );
+			$post = $this_post;
+			include template('page.postList.comment-form');?>
         </div>
     </div>
 <?php } ?>
