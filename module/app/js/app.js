@@ -531,7 +531,7 @@ $(function(){
 				//$("form.is-active").removeClass('is-active');
 			}			
 		}
-		$(".comment-form-content").css('height','45px');
+		$(".ajax-file-upload textarea[name='content']").css('height','45px');
 		$(".show-on-click").hide();
 		$selector.height('100px');
 		$selector.parents('form').addClass('is-active');

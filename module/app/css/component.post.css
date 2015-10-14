@@ -13,7 +13,7 @@ body{
 
 .post-list .post {
 	position:relative;
-    margin:1em 0;
+    margin:.7em 0;
     /*padding:.6em;*/
 	background-color:#fff;
     box-sizing: border-box;    
@@ -159,7 +159,7 @@ body{
     position:relative;
     float:left;
 	width:50%;
-	margin-bottom:10px;
+	margin-top:10px;
 	/*padding:0 5px 0 0;*/
 	box-sizing:border-box;
 }
@@ -226,7 +226,7 @@ body{
 }
 
 form .file-display{
-	margin-top:10px;
+	/*margin-top:5px;*/
 }
 /************ COMMENT */
 .comment-form textarea {
@@ -332,7 +332,7 @@ form .file-display{
 	}		
 	
 	textarea.post-form-content{
-		height:100px;
+		/*height:100px;*/
 	}
 	
 	form.post-form input[type='submit'],.comment-form input[type='submit'],.post-cancel{		
