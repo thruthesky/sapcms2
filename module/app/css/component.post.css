@@ -332,6 +332,10 @@ form .file-display{
 		box-sizing:border-box;
 	}		
 	
+	textarea.post-form-content:focus{
+		outline:0;
+	}
+	
 	textarea.post-form-content{
 		/*height:100px;*/
 	}
