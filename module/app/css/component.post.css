@@ -757,10 +757,7 @@ form .file-display{
 	margin-top:10px;
 }
 
-.file-display .file.file-loader{
-    text-align:center;
-}
-
 .file-display .file.file-loader > img{
     width:50%;
+	margin:auto;
 }
