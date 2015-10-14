@@ -52,7 +52,7 @@ if( !empty( $messages ) ){
 			<?php echo $message['content'] ?>
 			<?php
 				if( !empty( $files ) ){
-					if( $total_files > 1 ) display_files_thumbnail( $files, 200, 200 );
+					if( $total_files > 1 ) self::display_files_thumbnail( $files, 200, 200 );
 					else display_files( $files );
 				}
 			?>

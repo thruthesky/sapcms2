@@ -71,11 +71,7 @@ $total_files = count( $files );
 */?>      
 
        <nav class='user-command comment-command'>
-			<?php if ( ! $comment['delete'] ) { ?>
-				<div class="comment-reply-button">
-					Reply
-					<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/blue_dot.png'/>
-				</div>  
+			<?php if ( ! $comment['delete'] ) { ?>				
 				<nav class="vote" idx="<?php echo $comment['idx']?>">				
 					<div class="good">
 						<span class='no'><?php if( $comment['no_vote_good'] > 0 ) echo $comment['no_vote_good']; ?></span> 
@@ -83,6 +79,10 @@ $total_files = count( $files );
 					</div>
 					<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/blue_dot.png'/>
 				</nav>
+				<div class="comment-reply-button">
+					Reply
+					<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/blue_dot.png'/>
+				</div> 
 				<?php if( $idx_user == login('idx') ){ ?>
 				<div class="edit">
 					<span class='edit is-comment' idx='<?php echo $comment['idx']; ?>'>Edit</span>

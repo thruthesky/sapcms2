@@ -4,11 +4,11 @@ $url_primary_photo = login() ? login()->getPrimaryPhotoUrlThumbnail(80,80) : nul
 if( !empty( $edit_mode ) ){
 	$class=' edit';
 	$no_comment_form = $no;
-	$buttons_width = '145';
+	$buttons_width = '175';
 }
 else {
 	$class = '';
-	$buttons_width = '95';
+	$buttons_width = '115';
 }
 
 if( empty( $no_comment_form ) ) $no_comment_form = 0;
@@ -39,7 +39,7 @@ if( empty( $no_comment_form ) ) $no_comment_form = 0;
 		<table class='show-on-click' width="100%" cellpadding="0" cellspacing="0">
 			<tr valign='top'>								
 				<td width='99%'>
-					&nbsp;
+					<img class='post-loader' src='<?php echo sysconfig(URL_SITE) ?>module/app/img/loader5.gif'/>
 				</td>
 				<td width="1%">
 					<div style='width:<?php echo $buttons_width; ?>px'>
@@ -52,5 +52,6 @@ if( empty( $no_comment_form ) ) $no_comment_form = 0;
 				</td>
 			</tr>
 		</table>
-        <div class='file-display files'></div>
+        <div class='file-display files'>
+		</div>
 </form>

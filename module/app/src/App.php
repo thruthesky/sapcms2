@@ -189,8 +189,9 @@ class App {
         else {
             $fid = request('fid');
             sys()->log("fid: $fid");
-            $data->updateFormSubmitFiles();
+            $data->updateFormSubmitFiles();			
             $comment = post_data($data->get('idx'))->getFields();
+			$comment['content'] = nl2br( $comment['content'] );
             $post['comments'] = [ $comment ];
             ob_start();
             include template('page.postList.comments');
@@ -270,7 +271,7 @@ class App {
 			$total_files = count( $files );
 			if( !empty( $files ) ){
 			echo "<section role='files'><div class='display-files' file_count='$total_files'>";
-				if( $total_files > 1 ) App::display_files_thumbnail( $files, 200, 200 );
+				if( $total_files > 1 ) self::display_files_thumbnail( $files, 200, 200 );
 				else display_files($files); 					
 			echo "</div></section>";
 			}
@@ -309,7 +310,7 @@ class App {
 			$total_files = count( $files );
 			if( !empty( $files ) ){
 			echo "<section role='files'><div class='display-files' file_count='$total_files'>";
-				if( $total_files > 1 ) App::display_files_thumbnail( $files, 200, 200 );
+				if( $total_files > 1 ) self::display_files_thumbnail( $files, 200, 200 );
 				else display_files($files); 					
 			echo "</div></section>";
 			}
@@ -384,7 +385,7 @@ class App {
 				$url = $f->urlThumbnail( 100, 100 );
 				//$url = $f->url();
 				echo "<div idx='".$file['idx']."' class='file image delete'>";
-				echo "<img src='".$url."'></div>";
+				echo "<img src='".$url."'><div class='x-mark'>X</div></div>";
 				//echo "<div class='delete' title='Delete this file'>X</div>";
 			}
 		}
@@ -488,11 +489,11 @@ class App {
 	
 	
 	
-	public static function display_files_thumbnail( $files, $height, $width, $limit = 0 ) {
+	public static function display_files_thumbnail( $files, $height, $width, $limit = 0 ) {			
 		if ( empty($files) ) return null;	
 		$tag_imgs = [];
 		$tag_files = [];
-		foreach($files as $file) {
+		foreach($files as $file) {		
 		//$total_files = count( $files );
 		//if( $limit == 0 ) $limit = $total_files;
 		//for( $i = 0; $i < $limit; $i ++ ){
@@ -507,7 +508,7 @@ class App {
 					if( $total_files > $limit ) $more_image = "<div class='more-images'>+".( $total_files - $limit )."</div>";										
 				}
 				*/			
-				$tag_imgs[] = "<div class='image' idx='".$file->idx."'><img src='$url'></div>";
+				$tag_imgs[] = "<div class='image modal-image' idx='".$file->idx."'><img src='$url'></div>";
 			}
 			else {
 				$tag_files[] = "<div class='attachment'><a href='$url'>$name</a></div>";
@@ -692,6 +693,9 @@ class App {
 		include template('page.userInformation');
 		if( !empty( $my_idx ) ){
 			$show_on_click_class = " show-on-click";
+			if( !empty( $user->name ) ) $name_note = $user->name;
+			else $name_note = $user->id;
+			$placeholder = "Send a message to [ $name_note ]";
 			include template('page.messageCreateForm');
 		}
 		echo "</div>";

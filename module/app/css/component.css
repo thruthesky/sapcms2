@@ -458,7 +458,7 @@
     height: 100%;
     width: 100%;
 	padding:50px 30px;
-    background-color: rgba(0,0,0,.5);
+    background-color: rgba(0,0,0,.9);
     z-index: 9999;    
 	box-sizing:border-box;
 	text-align:center;
@@ -564,15 +564,16 @@
 }
 
 .popup-profile .info .id{
-	margin-bottom:15px;
+	margin-bottom:10px;
 	font-size:1.1em;	
 }
 
-.popup-profile .info .table-listing{
+.popup-profile .info .info-item{
 	font-size:.8em;
+	margin-bottom:3px;
 }
 
-.popup-profile .info .table-listing .label{
+.popup-profile .info .info-item .label{
 	font-weight:bold;
 	color:#ab1212;	
 }

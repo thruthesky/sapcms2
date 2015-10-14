@@ -87,7 +87,7 @@ foreach ( $posts as $post ) {
 						<?php 
 						if( $total_files > 1 ) App::display_files_thumbnail( $files, 200, 200 );
 						else display_files($files); 
-						?>
+						?>						
 					</div>
 				</section>
 			<?php } ?>

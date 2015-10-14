@@ -3,5 +3,5 @@
         This post is deleted.
     </div>
 <?php } else { ?>
-    <?php echo $comment['content'] ?>
+    <?php echo nl2br( $comment['content'] ) ?>
 <?php } ?>

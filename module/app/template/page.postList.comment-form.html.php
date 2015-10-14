@@ -14,11 +14,11 @@ $url_primary_photo = login() ? login()->getPrimaryPhotoUrlThumbnail(80,80) : nul
 if( !empty( $edit_mode ) ) {
 	$class=' comment-edit';
 	$no_comment_form = $no;
-	$buttons_width = '145';
+	$buttons_width = '175';
 }
 else{
 	$class = '';
-	$buttons_width = '95';
+	$buttons_width = '115';
 }
 ?>
 <form name="comment" no='<?php echo $no_comment_form; ?>' class="ajax-file-upload<?php echo $class; ?>" method="post" enctype="multipart/form-data">
@@ -48,7 +48,7 @@ else{
 	<table class='show-on-click' width="100%" cellpadding="0" cellspacing="0">
 					<tr>
 						<td width='99%'>
-							&nbsp;
+							<img class='post-loader' src='<?php echo sysconfig(URL_SITE) ?>module/app/img/loader5.gif'/>
 						</td>
 						<td width="1%">							
 							<div style='width:<?php echo $buttons_width; ?>px'>

@@ -1,7 +1,7 @@
 <?php
 if( empty( $message_number ) ) $message_number = 0;
 if( empty( $show_on_click_class ) ) $show_on_click_class = null;
-
+if( empty( $placeholder ) ) $placeholder = "Send a message";
 ?>
 <div class='message-write-wrapper'>
 	<form action='' no='reply-<?php echo $message_number ?>' class="ajax-file-upload message-form" method="post" enctype="multipart/form-data">  
@@ -19,7 +19,7 @@ if( empty( $show_on_click_class ) ) $show_on_click_class = null;
 				<input type='text' class='message-id' name='user_id_to' placeholder="User">
 			</div>
 		<?php } ?>
-			<textarea class='message-content' name="content" placeholder="Write a post."><?php if( !empty( $post['content'] ) ) echo $post['content']; ?></textarea>
+			<textarea class='message-content' name="content" placeholder="<?php echo $placeholder ?>"><?php if( !empty( $post['content'] ) ) echo $post['content']; ?></textarea>
 	 
 			<div class='buttons<?php echo $show_on_click_class; ?>'>
 				<div class='post-file-upload-button'>

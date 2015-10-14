@@ -376,9 +376,10 @@ $(function(){
         if ( isUploadSubmit == false ) {
             ajaxCommentSubmit($this);
             return false;
-        }
+        }				
         console.log("form: "+ $this.find("[name='idx_parent']").val());
         var $progressBar = $this.find(".ajax-file-upload-progress-bar");
+		
         var lastAction = $this.prop('action');
         $this.prop('action', url_server+'/file/upload');
         $this.ajaxSubmit({
@@ -480,7 +481,8 @@ function fileDisplay($this, re) {
                 var markup = "<div idx='"+file.idx+"' class='file delete";
                 if ( file.mime.indexOf('image') != -1 ) {
                     markup += " image'>";
-                    markup += "<img src='"+file.url+"'>";
+                    markup += "<img src='"+file.url+"'>";               
+					markup += "<div class='x-mark'>X</div>";
                 }
                 else {
                     markup += " attachment'>";
@@ -556,6 +558,7 @@ $(function(){
 });
 function comment_reply_button( $selector ){
 	$selector.parents(".comment").find('.comment-form').show();
+	$selector.parents(".comment").find('.comment-form textarea').click();
 	$selector.parents(".comment").find('.comment-form textarea').focus();
 }
 /*Check if logged in from server side*/
@@ -604,13 +607,15 @@ function ajaxCommentSubmit($this) {
 		$this.prop('action', url_server_post_comment_submit);
 	}
 	
+	$this.find(".post-loader").show();
+	
     $this.ajaxSubmit({
         type: 'post',
 		data : { 'session_login': $session_id },
         success: function() {
             console.log("post success:");
         },
-        complete: function(xhr) {            
+        complete: function(xhr) {
 			var re = xhr.responseText;
 				try{
 					var error = jQuery.parseJSON(re)
@@ -618,10 +623,12 @@ function ajaxCommentSubmit($this) {
 				catch(e){
 				
 				}
+			$this.find(".post-loader").hide();
 			if ( error && error.code != 0 ) {
 				alert(error.message);
 			}
-			else{
+			else{				
+			
 				console.log("post comment submit completed!!");
 				console.log( re );
 				if( upload_type == 'comment_edit' ) post_edit_comment_html_ajax( re, $this );
@@ -655,7 +662,7 @@ function comment_html_ajax( re, $this ){
 	}
 	
 	$comment_num = $this.parents('.post').find(".do-comment .no").html();
-	$this.parents('.post').find(".do-comment .no").html( parseInt( $comment_num ) + 1 );	
+	$this.parents('.post').find(".do-comment .no").html( parseInt( $comment_num ) + 1 );		
 	
 	//reset the comment box
 	//console.log( $this.attr("class") );
@@ -663,6 +670,9 @@ function comment_html_ajax( re, $this ){
 	$this.find(".comment-form-content").val("");
 	$this.find("input[name='fid']").val("");
 	$this.find(".file-display.files").html("");
+	
+	var autoscroll = $(".comment[idx='" + $(re).attr('idx') + "']").offset().top -  $(".comment[idx='" + $(re).attr('idx') + "']").height() - 40;
+	$("body,html").animate({scrollTop:autoscroll}, '500', 'swing', function() {});
 }
 
 /*delete*/
@@ -991,7 +1001,8 @@ function onCameraConfirm(no) {
     else if ( no == 2 ) {
         type = Camera.PictureSourceType.PHOTOLIBRARY;
     }
-    else return;
+    else return;	
+	
     setTimeout(function() {
         navigator.camera.getPicture( cameraSuccess, cameraError, {
             'quality' : 100,
@@ -1009,7 +1020,12 @@ function clearCache() {
 }
 var retries = 0;
 function cameraSuccess(fileURI) {
+	file_loader = createFileLoader();	
+	$(photoOptions.selector).append( file_loader );
+	
+	
     var win = function (r) {
+		$(photoOptions.selector).find(".file-loader").remove();
         console.log("Code = " + r.responseCode);
         console.log("Response = " + r.response);
         console.log("Sent = " + r.bytesSent);		
@@ -1019,7 +1035,7 @@ function cameraSuccess(fileURI) {
         retries = 0;		
 		//alert( r.response );
 		//alert(data);return;
-        var re = JSON.parse(data);
+        var re = JSON.parse(data);		
         for ( var i in re ) {
             var file = re[i];
             if ( file.error ) {
@@ -1040,14 +1056,16 @@ function cameraSuccess(fileURI) {
 				*/
 				html = "<div idx='" + file.idx + "' class='file image delete'><img src='"+file.urlThumbnail+"'></div>";				
 				if ( photoOptions.add ) $(photoOptions.selector).append(html);
-				else $(photoOptions.selector).html(html);
-
+				else $(photoOptions.selector).html(html);								
+				
 				if ( typeof photoOptions.callback == 'function' ) photoOptions.callback(file);
 			}
         }
     };
 
     var fail = function (error) {
+		$(photoOptions.selector).find(".file-loader").remove();
+	
         if (retries == 0) {
             retries ++;
             setTimeout(function() {
@@ -1061,8 +1079,10 @@ function cameraSuccess(fileURI) {
             console.log("upload error source " + error.source);
             console.log("upload error target " + error.target);
         }
-    };
-
+    };	
+	
+	
+	
     var options = new FileUploadOptions();
     options.fileKey = "file";
     options.fileName = fileURI.substr(fileURI.lastIndexOf('/') + 1);
@@ -1097,7 +1117,12 @@ function takePhotoUpload() {
 }
 /* EO Camera */
 
-
+function createFileLoader(){
+	html = 	"<div class='file image file-loader'>" +
+			"<img src='" + url_server + "/module/app/img/loader8.gif'>" +
+			"</div>";
+	return html;
+}
 
 /** User primary photo */
 function cameraUserPrimaryPhoto() {
@@ -1235,7 +1260,7 @@ function showAllContent(){
 
 /*pop up image*/
 $(function(){
-	$("body").on("click",".display-files .image", modal_window_image)
+	$("body").on("click",".display-files .image, .modal-image", modal_window_image)
 	$("body").on("click",".modal_window", remove_modal_window);
 });
 
@@ -1269,14 +1294,16 @@ function adjustModalImage(){
 	var window_height = $(window).height();	
 	$selector.load(function(){
 		$selector.css('width','100%');
-		if( $selector.height() > $selector.width() ) {
-			$selector.css('width','initial').css('height',$(window).height()-25);
+		if( $selector.height() > $selector.width() ) {				
+			$selector.css('width','initial').css('height',$(window).height()-60);			
+			if( $selector.width() > $(window).width() ) $selector.css('width','100%').css('height','initial');
 		}
-		if( $selector.width() > $(window).width() ){
-			$selector.css('width','100%').css('height',$(window).width()-20);
+		if( $selector.width() > $(window).height() ){
+			$selector.css('width','100%').css('width',$(window).width()-30);
+			if( $selector.height() > $(window).height() ) $selector.css('height','100%').css('width','initial');
 		}
 		
-		var margin_top = window_height/2 - $selector.height()/2 ;	
+		var margin_top = window_height/2 - $selector.height()/2 - 45;	
 		$selector.parent().css('margin-top',margin_top);//compatible for $(".modal_widow > .modal_image > img")
 	});
 }
@@ -1461,7 +1488,9 @@ function callback_endless_message(no) {
 function message_send_ajax( re, $this ){
 	re = jQuery.parseJSON(re)
 	$this.find('[name]').val('');
-	alert( re.message );
+	message( re.message );
+	if( $(".popup-profile").length ) $(".popup-profile").remove();
+	else loadPage( 'message', '?show=sent' );
 }
 
 function message_search(){
@@ -1733,6 +1762,7 @@ function body_clicked( e ){
 	if( !$selector.length ) return
 	
 	target_class = $( e.target ).attr("class");
+		
 	if( target_class == 'remove-on-body-click' ) return;
 	else if( $( e.target ).parents(".remove-on-body-click").length ) return;
 	else if( $( e.target ).parent().hasClass(".remove-on-body-click" ) ) return;

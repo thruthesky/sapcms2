@@ -35,7 +35,7 @@
 			'text' => html_input([
 				'name' => 'mobile',				
 				'type' => 'text',
-				'placeholder' => 'mobile',
+				'placeholder' => 'Mobile Number',
 			])
 		]);
 		echo html_row([

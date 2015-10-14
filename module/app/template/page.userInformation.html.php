@@ -4,7 +4,8 @@
 	else if( empty( $url ) ) $url = sysconfig(URL_SITE)."module/app/img/register_logo.png";	
 	
 	//$date = date("y-m-d",$user['created']);
-	$date =  date("y-m-d",$user->created);
+	$total_posts = post_data()->count('idx_user = '.$user->idx);
+	$date =  date("M d, Y",$user->created);
 	
 	//post_data()->count("idx_user=".$user->idx);
 ?>
@@ -19,24 +20,14 @@
 			<div class='info'>
 				<div class='name'><?php echo $user->name; ?></div>
 				<div class='id'>(<?php echo $user->id; ?>)</div>
-				<table class='table-listing' cellpadding=0 cellspacing=0 width='100%'>
-					<tr>
-						<td>
-							<span class='label'>Post: </span>
-							<span class='value'>XX</span>
-						</td>
-						<td>
-							<span class='label'>Level: </span>
-							<span class='value'>XX</span>
-						</td>
-					</tr>
-					<tr>
-						<td colspan=2>
-							<span class='label'>Join Date: </span>
-							<span class='value'>XX</span>
-						</td>
-					</tr>
-				</table>
+					<div class='info-item'>
+						<span class='label'>Posts: </span>
+						<span class='value'><?php echo $total_posts; ?></span>
+					</div>
+					<div class='info-item'>
+						<span class='label'>Join Date: </span>
+						<span class='value'><?php echo $date; ?></span>
+					</div>
 			</div>
 		</td>
 	</tr>
