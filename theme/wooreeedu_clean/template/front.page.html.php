@@ -5,7 +5,13 @@ add_css();
 	<img src='theme/wooreeedu_clean/img/top-banner.jpg'/>
 </div>
 <div class='front-content'>
-	<?php include template('front.content.text-with-thumbnail') ?>
-	<?php include template('front.content.text') ?>
-	<?php include template('front.content.text-photo') ?>
+	<section class='grid4'>
+		<div class='content'>
+			<div class='a'><?php include template('front.content.text-with-thumbnail') ?></div>
+			<div class='b'><?php include template('front.content.text') ?></div>
+			<div class='c'><?php include template('front.content.text-with-thumbnail') ?></div>
+			<div class='d'><?php include template('front.content.text') ?></div>
+		</div>
+	</section>
+	<?php //include template('front.content.text-photo') ?>
 </div>

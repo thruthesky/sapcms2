@@ -8,6 +8,7 @@
     <link type='text/css' href='/theme/wooreeedu_clean/css/base.css' rel='stylesheet' />
     <link type='text/css' href='/theme/wooreeedu_clean/css/layout.css' rel='stylesheet' />
     <link type='text/css' href='/theme/wooreeedu_clean/css/component.css' rel='stylesheet' />
+    <link type='text/css' href='/theme/wooreeedu_clean/css/component.grid.css' rel='stylesheet' />
     <link rel="icon" type="image/ico" href="/theme/wooreeedu_clean/favicon.ico"/>
 </head>
 <body>
