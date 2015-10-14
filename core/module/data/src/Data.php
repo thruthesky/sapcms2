@@ -102,25 +102,31 @@ class Data extends Entity
      * @return string
      */
     public function getPossibleFilenameToSave($upload) {
-		$name = $upload['name'];
-		$mime = $upload['type'];
+		if( is_array( $upload ) ){
+			$name = $upload['name'];
+			$mime = $upload['type'];
+		}
+		else{
+			$name = $upload;
+			$mime = null;
+		}
         $name = self::makeSafeFilename($name);
         if ( is_file($this->path($name)) ) {			
             $pi = pathinfo($name);
             for ( $i=1; $i<10000; $i++ ) {
-                if ( !empty( $pi['extension'] ) ) $name = $pi['filename'] . "($i)." . $pi['extension'];
-                else {
-					//added by benjamin					
-					$name = $pi['filename']. "($i)";
-					$file_extension = convertMimeTypeToExtension( $mime );//sapcms-library.php
-					if( !empty( $file_extension ) ) $name .= ".".$file_extension;
-					
-					//old code is
-					//$name = $pi['filename'];
-				}
+                $name = $pi['filename'] . "($i)";               
                 if ( ! is_file($this->path($name)) ) break;
             }
         }
+		
+		$pi = pathinfo($name);
+		
+		if ( !empty( $pi['extension'] ) ) $name .= ".".$pi['extension'];
+		else {				
+			$file_extension = convertMimeTypeToExtension( $mime );//sapcms-library.php
+			if( !empty( $file_extension ) ) $name .= ".".$file_extension;
+		}
+		
         return $name;
     }
 	
