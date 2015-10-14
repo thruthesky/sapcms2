@@ -1294,7 +1294,7 @@ function appendModalWindowLoader(){
 function remove_modal_window( e ){
 	console.log( "remove modal" );
 	//var target_class = $(e.target).attr('class');
-	console.log( target_class );
+	//console.log( target_class );
 	//if( target_class == 'modal_window' || target_class == 'modal_image' ){
 	$('.modal_window').remove();
 	$("body").css('overflow','initial');
