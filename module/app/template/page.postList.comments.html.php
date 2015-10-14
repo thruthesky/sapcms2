@@ -8,6 +8,9 @@ foreach ( $comments as $comment ) {
 	if( $idx_user == 0 ) $idx_user = 1;	
 	$user = user()->load( $idx_user )->fields;
 	
+	if( !empty( $user['name'] ) ) $name = $user['name'];
+	else $name = $user['id'];
+	
 	$post_primary_photo = data()->loadBy('user', 'primary_photo', 0, $idx_user);
 	
 	if( !empty( $post_primary_photo ) ) $post_primary_photo = $post_primary_photo[0]->urlThumbnail(140,140);
@@ -18,6 +21,7 @@ foreach ( $comments as $comment ) {
 	$date = date("d M Y",$comment['created']);
 	
 	$edit_url = url_post_comment_edit($comment['idx']);
+	
     ?>
     <div id="comment<?php echo $comment['idx']?>" class="comment" idx="<?php echo $comment['idx']?>" depth='<?php echo $depth; ?>'>
 		<div class='menu'>
@@ -41,7 +45,7 @@ $total_files = count( $files );
 		</div>
 	</td>
 	<td width='99%'>		
-		<div class='name popup-user-profile' idx='<?php echo $comment['idx_user']; ?>' profile_target='comment-<?php echo $comment['idx']; ?>'><?php echo $user['name']; ?></div>
+		<div class='name popup-user-profile' idx='<?php echo $comment['idx_user']; ?>' profile_target='comment-<?php echo $comment['idx']; ?>'><?php echo $name; ?></div>
         <div class="content">
 			<?php if ( $comment['delete'] ) { ?>
 				<div class="deleted">
