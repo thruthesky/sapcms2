@@ -604,12 +604,13 @@ form .file-display{
 	}
 
 	.user-command.post-command > *{
-		display:inline-block;	
-		position:relative;		
-		color:#696969;
-		padding:8px 0 8px 15px;
-		margin:0 5px;
-		cursor:pointer;
+		display: inline-block;
+		position: relative;
+		padding: 8px 0 8px 18px;
+		margin: 0 5px;
+		font-size: 1.2em;
+		color: #696969;		
+		cursor: pointer;
 	}
 	
 	.user-command.post-command > .deleted{		

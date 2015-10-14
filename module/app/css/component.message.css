@@ -162,12 +162,14 @@
 }
 
 .message-write-wrapper .message-id-wrapper .label{
+	display:block;
 	position:absolute;
 	left:5px;
 	top:9px;
 }
 
 .message-write-wrapper .message-id-wrapper input[name='user_id_to']{
+	height:35px;
 	width:100%;
 	padding:10px 20px 10px 30px;
 	margin-bottom:10px;
@@ -178,7 +180,7 @@
 }
 
 .message-write-wrapper textarea.message-content{
-	height:320px;
+	height:200px;
 	width:100%;
 	padding:10px;	
 	border:0;

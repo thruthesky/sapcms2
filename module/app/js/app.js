@@ -322,6 +322,7 @@ function loadPage(route, post_id) {
         'data' : data
     })
         .done(function(html) {			
+			if( $(".invisible_window").length ) $(".invisible_window").remove();
             showPage(route, html);
         })
         .fail(function() {
