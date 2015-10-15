@@ -8,22 +8,15 @@
     <link type='text/css' href='/theme/wooreeedu/css/base.css' rel='stylesheet' />
     <link type='text/css' href='/theme/wooreeedu/css/layout.css' rel='stylesheet' />
     <link type='text/css' href='/theme/wooreeedu/css/component.css' rel='stylesheet' />
+    <link type='text/css' href='/theme/wooreeedu/css/component.grid.css' rel='stylesheet' />
     <link rel="icon" type="image/ico" href="/theme/wooreeedu/favicon.ico"/>
 </head>
 <body>
 <div id="layout">
     <div id="layout-header"><?php include template('header'); ?></div>
     <div id="layout-content">
-        <?php include template('panel'); ?>
-        <table cellpadding="0" cellspacing="0" width="100%">
-            <tr valign="top">
-                <td id="layout-left"><?php include template('left'); ?></td>
-                <td>
-                    <?php widget('error') ?>
-                    <?php include template(); ?>
-                </td>
-            </tr>
-        </table>
+		<?php widget('error') ?>
+		<?php include template(); ?>
     </div>
     <div id="layout-footer"><?php include template('footer'); ?></div>
 </div>

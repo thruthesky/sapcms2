@@ -118,9 +118,22 @@ section.grid .b {
     clear:both;
 }
 
+.grid4 > .content > div{
+	box-sizing:border-box;
+}
+
+.grid4 .b,
+.grid4 .c,
+.grid4 .d{
+	display:none;
+}
 
 @media all and ( min-width: 480px ) { /** 480px and above */
-    .grid4 > .content > div {
+	.grid4 .b{
+		display:block;
+	}
+
+	.grid4 > .content > div {
         width:50%;
     }
     .grid4 .a,
@@ -132,7 +145,22 @@ section.grid .b {
 }
 
 
-@media all and ( min-width: 800px ) { /** 800px and above */
+@media all and ( min-width: 720px ) { /** 800px and above */
+	.grid4 .c{
+		display:block;
+	}
+	
+    .grid4 > .content > div {
+        width:33.33%;
+    }
+}
+
+
+@media all and ( min-width: 960px ) { /** 800px and above */
+	.grid4 .d{
+		display:block;
+	}
+
     .grid4 > .content > div {
         width:25%;
     }

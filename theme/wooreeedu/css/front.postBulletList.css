@@ -1,0 +1,17 @@
+.post-bullet-list{
+	margin-bottom:10px;
+}
+
+.post-bullet-list .item{
+	padding:0 10px;
+	background-color:#fff;
+}
+
+.post-bullet-list .item .title{
+	padding:8px 10px 7px 10px;	
+	border-top:1px solid #d5d5d5;
+}
+
+.post-bullet-list .item:first-child .title{
+	border-top:0;
+}
