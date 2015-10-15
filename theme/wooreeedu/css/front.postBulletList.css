@@ -8,10 +8,17 @@
 }
 
 .post-bullet-list .item .title{
-	padding:8px 10px 7px 10px;	
+	position:relative;
+	padding:8px 20px 7px 10px;	
 	border-top:1px solid #d5d5d5;
 }
 
-.post-bullet-list .item:first-child .title{
+.post-bullet-list .item .title img{
+	position:absolute;
+	top:8px;
+	right:5px;
+}
+
+.post-bullet-list .item:first-child .title{	
 	border-top:0;
 }
