@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <?php
+include "wooreeedu.functions.php";
 ?>
 <html>
 <head>
