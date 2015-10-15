@@ -3,12 +3,7 @@
 }
 
 .front-top-banner img{
-	max-width:100%;
-}
-
-.page-content{
-	max-width:960px;
-	margin:auto;
+	width:100%;
 }
 
 /*page-content TOP thumbnailWithText*/
@@ -16,7 +11,7 @@
 	margin-bottom:10px;
 }
 
-.page-content.top .post-thumbnail-with-text .item:last-child{
+.page-content.top .post-thumbnail-with-text  a:last-child .item{
 	margin-bottom:0;
 }
 /*eo page-content TOP thumbnailWithText*/
@@ -26,7 +21,7 @@
 	margin-bottom:10px;
 }
 
-.page-content.top .post-hover-title-image .item:last-child{
+.page-content.top .post-hover-title-image a:last-child .item{
 	margin-bottom:0;
 }
 /*eo page-content TOP .post-hover-title-image*/
@@ -36,7 +31,7 @@
 	
 }
 
-.page-content.top .post-bullet-list .item:last-child .title{
+.page-content.top .post-bullet-list  a:last-child .title .item{
 	padding-bottom:9px;
 }
 /*eo page-content TOP .post-bullet-list*/

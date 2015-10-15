@@ -10,6 +10,7 @@ include "wooreeedu.functions.php";
     <link type='text/css' href='/theme/wooreeedu/css/layout.css' rel='stylesheet' />
     <link type='text/css' href='/theme/wooreeedu/css/component.css' rel='stylesheet' />
     <link type='text/css' href='/theme/wooreeedu/css/component.grid.css' rel='stylesheet' />
+    <link type='text/css' href='/theme/wooreeedu/css/wooree-grid3.css' rel='stylesheet' />
     <link rel="icon" type="image/ico" href="/theme/wooreeedu/favicon.ico"/>
 </head>
 <body>

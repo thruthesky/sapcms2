@@ -1,10 +1,109 @@
 #layout-footer {
-    margin:1em 0;
+    margin:1em 0;	
 }
+
+#layout-footer .grid3{
+	/*height:550px;*/	
+    background:url("/theme/wooreeedu/img/footerbg.png");
+	background-size: 1920px 100%;
+	overflow:hidden;
+}
+
+#layout-footer .footer-menu {
+    max-width:960px;
+	margin:auto;	
+	color:#fff;
+}
+
+#layout-footer .footer-menu > div{
+    padding:55px 30px;
+	box-sizing:border-box;
+}
+
+#layout-footer .footer-menu .footer-list-title{
+	margin-bottom:17px;
+    font-size:1.8em;	
+}
+/*footer.menu*/
+#layout-footer .footer-menu .footer-list.menus ul{
+	padding:0;
+	margin:0;
+	list-style:none;
+}
+
+#layout-footer .footer-menu .footer-list.menus ul li{
+	margin-bottom:10px;
+}
+
+#layout-footer .footer-menu .footer-list.menus ul li a{	
+	font-size:1.2em;
+    color:#fff;
+	text-decoration:none;
+}
+/*eo footer.menu*/
+
+/*.footer.address*/
+#layout-footer .footer-menu .footer-list.address{
+	font-size:.9em;
+}
+
+#layout-footer .footer-menu .footer-list.address table b{
+	display: block;
+    margin-right: 5px;
+    white-space: nowrap;
+}
+/*eo .footer.address*/
+
+/*.footer.contact*/
+#layout-footer .footer-menu .footer-list.contact{
+
+}
+
+#layout-footer .footer-menu .footer-list.contact form input[type='text'], #layout-footer .footer-menu .footer-list.contact form input[type='email'], #layout-footer .footer-menu .footer-list.contact form textarea{
+	width:100%;
+	padding:12px;
+	margin-bottom:10px;	
+	border:0;	
+	background-color:rgba(255,255,255,.7);
+	box-sizing:border-box;
+}
+
+#layout-footer .footer-menu .footer-list.contact form textarea{
+	height:160px;
+	resize:none;
+}
+
+#layout-footer .footer-menu .footer-list.contact form input[type='submit']{
+	
+}
+/*eo .footer.contact*/
+
 #layout-footer .copyright {
     padding:1em;
     box-sizing: border-box;
-    background-color:#dfdfdf;
+    background-color:#7f8c8d;
     font-size:.9em;
+	color:#fff;
     text-align:center;
+}
+
+#layout-footer .grid3 .a,
+#layout-footer .grid3 .b{
+	padding-left:31%;
+}
+
+@media all and ( min-width: 600px ) {
+	#layout-footer .grid3 .a,
+	#layout-footer .grid3 .b,
+	#layout-footer .grid3 .c{
+		padding:55px 10px;
+	}
+}
+
+@media all and ( min-width: 800px ) {
+	#layout-footer .grid3 .a,
+	#layout-footer .grid3 .b,
+	#layout-footer .grid3 .c{
+		padding:55px 10px;
+	}
 }

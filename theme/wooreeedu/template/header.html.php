@@ -13,3 +13,6 @@ add_css();
 		<li><span class="show-panel"><img src="/theme/default/tmp/menu.png"></span></li>
 	</ul>
 </div>
+<div class="front-top-banner">
+	<img src='theme/wooreeedu/img/top-banner.jpg'/>
+</div>

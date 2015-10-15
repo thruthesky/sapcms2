@@ -1,0 +1,27 @@
+.post-banner-with-text{
+	margin-bottom:10px;
+}
+
+.post-banner-with-text .item{
+	padding:10px;
+	background-color:#fff;
+	color:#444;
+}
+
+.post-banner-with-text .item .photo-wrapper{
+	width:100%;		
+}
+
+.post-banner-with-text .item .photo-wrapper img{
+	display:block;
+	width:100%;
+}
+
+.post-banner-with-text .item .info{
+	padding-left:10px;
+}
+
+.post-banner-with-text .item .title{
+	font-size:1.2em;
+	margin-bottom:10px;
+}

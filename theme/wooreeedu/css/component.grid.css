@@ -42,10 +42,9 @@ section.grid .b {
 .grid3 .a,
 .grid3 .b,
 .grid3 .c {
-    overflow:hidden;
+    overflow:hidden;	
     width:100%;
 }
-
 
 .grid3 .content {
     position:relative;
@@ -59,43 +58,43 @@ section.grid .b {
     clear:both;
 }
 
+.grid3 .b,
+.grid3 .c {
+	/*display:none;*/
+	width:100%;
+}
+
 @media all and ( min-width: 320px ) { /** 320px and above */
 
 }
-@media all and ( min-width: 480px ) { /** 480px and above */
-    .grid3 .a {
-        width:100%;
-    }
-    .grid3 .b,
-    .grid3 .c {
+@media all and ( min-width: 600px ) { /** 480px and above */
+	.grid3 .b{
+		display:block;
+	}
+	
+    .grid3 .a,
+    .grid3 .b {
         width:50%;
     }
+    .grid3 .a,
     .grid3 .b {
         float:left;
     }
-    /*
-        .best .grid3 .b .content {
-            margin-right:5px;
-        }
-        .best .grid3 .c .content {
-            margin-left:5px;
-        }
-    */
 }
-@media all and ( min-width: 640px ) { /** 640px and above */
-    .grid3 .a,
-    .grid3 .b,
-    .grid3 .c {
-        width:33.33%;
-    }
-    .grid3 .a {
-        float:left;
-    }
+@media all and ( min-width: 720px ) { /** 640px and above */
+    
 }
 @media all and ( min-width: 800px ) { /** 800px and above */
-    .grid3 {
-        word-break: normal;
-    }
+	.grid3 .c{
+		display:block;
+	}
+
+	.grid3 .a,
+	.grid3 .b,
+	.grid3 .c {
+		width:33.33%;
+	}
+
 }
 
 /** ----------------------- GRID - four column, section.grid4 ------------------------ **/
@@ -118,16 +117,11 @@ section.grid .b {
     clear:both;
 }
 
-.grid4 > .content > div{
-	box-sizing:border-box;
-}
-
 .grid4 .b,
 .grid4 .c,
 .grid4 .d{
 	display:none;
 }
-
 @media all and ( min-width: 480px ) { /** 480px and above */
 	.grid4 .b{
 		display:block;
@@ -145,18 +139,18 @@ section.grid .b {
 }
 
 
-@media all and ( min-width: 720px ) { /** 800px and above */
+@media all and ( min-width: 600px ) { /** 800px and above */
 	.grid4 .c{
 		display:block;
 	}
-	
+
     .grid4 > .content > div {
         width:33.33%;
     }
 }
 
 
-@media all and ( min-width: 960px ) { /** 800px and above */
+@media all and ( min-width: 800px ) { /** 800px and above */
 	.grid4 .d{
 		display:block;
 	}

@@ -2,6 +2,7 @@ body {
     margin:0;
     padding:0;
 	background-color: #f1f1f1;
+	font-family:arial;
 }
 
 #layout {
@@ -13,20 +14,14 @@ body {
 
 #layout-content {
     position:relative;	
+	max-width:960px;
+	margin:0 10px;
 }
 
 @media all and (min-width: 1024px ) {
-    #layout-header {
-        margin:0 auto;
-        max-width:1000px;
-    }
-	/*
-    #layout-content {
-        margin:0 auto;
-        width:1000px;
-        overflow:hidden;
-    }
-	*/
+	#layout-content{
+		margin:auto;
+	}
 }
 
 
