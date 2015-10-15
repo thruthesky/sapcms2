@@ -149,3 +149,35 @@ function is_my_post($idx) {
 function url_forum() {
     return "/post";
 }
+
+/*
+*Added by benjamin
+*/
+
+//need to add query..........
+function getPostWithImage($index,$limit,$postConfig){
+	$images = post()->getLatestPostImages($index, $limit, 'test');
+	$posts = [];
+	if ( $images ) {
+		foreach ( $images as $image ) {
+			$item = post_data()->load( $image->idx_target );
+			$posts[] = $item;
+		}
+	}
+	return $posts;
+}
+
+
+function textLengthLimit( $text, $length = 30 ){	
+	if( !empty ( $text ) ){
+		if( strlen( $text ) > $length ){
+			$text = substr( $text, 0, $length )."...";
+		}
+	}
+	
+	return $text;
+}
+
+
+
+
