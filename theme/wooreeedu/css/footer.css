@@ -2,6 +2,62 @@
     margin:1em 0 0 0;	
 }
 
+/*bottom-icon-menus*/
+#layout-footer .bottom-icon-menus{
+	background-color:#1abc9c;
+}
+
+#layout-footer .bottom-icon-menus > .inner{	
+	padding:25px 0;
+	max-width:960px;
+	margin:auto;
+	box-sizing:border-box;
+}
+
+#layout-footer .bottom-icon-menus > .inner:after{
+	display:block;
+	content:'';
+	clear:both;
+}
+
+#layout-footer .bottom-icon-menus > .inner > a.item{
+	display:block;
+	float:left;
+	width:33.33%;
+	text-decoration:none;
+}
+
+#layout-footer .bottom-icon-menus > .inner > a.item  img{
+	display:block;
+	width:45.5%;
+	margin:0 auto 10px auto;
+}
+
+#layout-footer .bottom-icon-menus > .inner > a.item  img.active{
+	display:none;
+}
+
+#layout-footer .bottom-icon-menus > .inner > a.item:hover  img.default{
+	display:none;
+}
+
+#layout-footer .bottom-icon-menus > .inner > a.item:hover  img.active{
+	display:block;
+}
+
+#layout-footer .bottom-icon-menus > .inner > a.item.talk, #layout-footer .bottom-icon-menus > .inner > .item.grad, #layout-footer .bottom-icon-menus > .inner > .item.date{
+	margin-bottom:40px;
+}
+
+#layout-footer .bottom-icon-menus > .inner > a.item .label{
+	font-size:1.1em;
+	font-weight:bold;
+	color:#fff;
+	text-align:center;
+}
+/*eo bottom-icon-menus*/
+
+/*grid3*/
 #layout-footer .grid3{
 	/*height:550px;*/	
     background:url("/theme/wooreeedu/img/footerbg.png");

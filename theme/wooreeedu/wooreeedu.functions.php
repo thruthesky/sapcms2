@@ -1,5 +1,6 @@
 <?php
 function postHoverTitleImage( $posts, $width = 300, $height = 300, $title_length = 30 ){
+	if( empty( $posts ) ) return null;
 	echo "<div class='post-hover-title-image'>";
 	foreach( $posts as $post ){
 		$img = $post->getImage();
@@ -24,6 +25,7 @@ EOH;
 }
 
 function postThumbnailWithText( $posts, $width = 100, $height = 100, $title_length = 30 ){
+if( empty( $posts ) ) return null;
 echo "<div class='post-thumbnail-with-text'>";
 	foreach( $posts as $post ){
 		$img = $post->getImage();
@@ -60,6 +62,7 @@ echo "</div>";
 }
 
 function postBulletList( $posts, $title_length = 30 ){
+if( empty( $posts ) ) return null;
 echo "<div class='post-bullet-list'>";
 	$thumbnail_label = "<img src='/theme/wooreeedu/img/tempThumbnailLabel.png'/>";
 	foreach( $posts as $post ){
@@ -79,6 +82,7 @@ EOH;
 }
 
 function postBannerWithText( $post, $width = 200, $height = 200, $title_length = 30, $content_length = 100 ){
+if( empty( $post ) ) return null;
 	echo "<div class='post-banner-with-text'>";
 	$img = $post->getImage();
 	$thumbnail = $img->urlThumbnail($width,$height);	
