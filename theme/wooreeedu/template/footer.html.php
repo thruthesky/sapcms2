@@ -65,7 +65,11 @@ add_css();
 					</td>
 				</tr>
 			</table>
-
+			<div class='social-links'>
+				<img src='/theme/wooreeedu/img/fb.png'/>			
+				<img src='/theme/wooreeedu/img/twitter.png'/>
+				<img src='/theme/wooreeedu/img/naver.png'/>
+			</div>
 			</div>
 		</div>
 		<div class='c'>
@@ -77,7 +81,7 @@ add_css();
 					<input type='text' name='name' placeholder='Name'>
 					<input type='email' name='email' placeholder='Email Address'>
 					<input type='text' name='subject' placeholder='Subject'>
-					<textarea name='Message' placeholder='Mesage'></textarea>
+					<textarea name='Message' placeholder='Message'></textarea>
 					<input type='submit' value='Submit'>
 				</form>
 			</div>

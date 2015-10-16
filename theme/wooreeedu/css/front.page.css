@@ -8,7 +8,9 @@
 
 /*page-content TOP thumbnailWithText*/
 .page-content.top .post-thumbnail-with-text .item{
-	margin-bottom:10px;
+	height: 85px;
+	margin-bottom:10px;	    
+    box-sizing: border-box;
 }
 
 .page-content.top .post-thumbnail-with-text  a:last-child .item{

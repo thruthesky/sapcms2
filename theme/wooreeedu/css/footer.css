@@ -1,5 +1,5 @@
 #layout-footer {
-    margin:1em 0;	
+    margin:1em 0 0 0;	
 }
 
 #layout-footer .grid3{
@@ -47,10 +47,22 @@
 	font-size:.9em;
 }
 
+#layout-footer .footer-menu .footer-list.address table{
+	margin-bottom:5px;
+}
+
+#layout-footer .footer-menu .footer-list.address table:last-child{
+	margin-bottom:5px;
+}
+
 #layout-footer .footer-menu .footer-list.address table b{
 	display: block;
     margin-right: 5px;
     white-space: nowrap;
+}
+
+#layout-footer .footer-menu .footer-list.address .social-links > img{
+	margin:10px 5px 0 0;
 }
 /*eo .footer.address*/
 
@@ -64,18 +76,46 @@
 	padding:12px;
 	margin-bottom:10px;	
 	border:0;	
-	background-color:rgba(255,255,255,.7);
+	background-color:rgba(255,255,255,.3);
 	box-sizing:border-box;
 }
 
 #layout-footer .footer-menu .footer-list.contact form textarea{
 	height:160px;
+	font-family:arial;
 	resize:none;
 }
 
 #layout-footer .footer-menu .footer-list.contact form input[type='submit']{
-	
+	padding:6px 12px;
+	background-color:transparent;	
+	font-size:15px;
+	color:#fff;
+	border:1px solid rgba(255,255,255,.6);	
+	cursor:pointer;
 }
+
+#layout-footer .footer-menu .footer-list.contact form input[type='submit']:hover{
+	color:black;
+	background-color:#fff;
+}
+
+#layout-footer .footer-menu .footer-list.contact ::-webkit-input-placeholder {
+   color: #fff;
+}
+
+#layout-footer .footer-menu .footer-list.contact :-moz-placeholder { /* Firefox 18- */
+   color: #fff;  
+}
+
+#layout-footer .footer-menu .footer-list.contact ::-moz-placeholder {  /* Firefox 19+ */
+   color: #fff;  
+}
+
+#layout-footer .footer-menu .footer-list.contact :-ms-input-placeholder {  
+   color: #fff;  
+}
+
 /*eo .footer.contact*/
 
 #layout-footer .copyright {
@@ -89,7 +129,21 @@
 
 #layout-footer .grid3 .a,
 #layout-footer .grid3 .b{
-	padding-left:31%;
+	padding-left:20%;
+}
+
+@media all and ( min-width: 400px ) {
+	#layout-footer .grid3 .a,
+	#layout-footer .grid3 .b{
+		padding-left:23%;
+	}
+}
+
+@media all and ( min-width: 460px ) {
+	#layout-footer .grid3 .a,
+	#layout-footer .grid3 .b{
+		padding-left:31%;
+	}
 }
 
 @media all and ( min-width: 600px ) {

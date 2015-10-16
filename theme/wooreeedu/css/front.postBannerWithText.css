@@ -2,6 +2,10 @@
 	margin-bottom:10px;
 }
 
+.post-banner-with-text a{
+	text-decoration:none;
+}
+
 .post-banner-with-text .item{
 	padding:10px;
 	background-color:#fff;
@@ -9,7 +13,9 @@
 }
 
 .post-banner-with-text .item .photo-wrapper{
-	width:100%;		
+	float:left;
+	width:57%;
+	margin-right:10px;
 }
 
 .post-banner-with-text .item .photo-wrapper img{
@@ -18,10 +24,14 @@
 }
 
 .post-banner-with-text .item .info{
-	padding-left:10px;
+	
 }
 
 .post-banner-with-text .item .title{
-	font-size:1.2em;
+	font-size:1.1em;
 	margin-bottom:10px;
+}
+
+.post-banner-with-text .item .content{
+	font-size:.9em;	
 }
