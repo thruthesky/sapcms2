@@ -3,36 +3,48 @@ add_css();
 ?>
 <div class='bottom-icon-menus'>
 	<div class='inner'>
-		<a href="#" class='item talk'>
-			<img class='default' src='/theme/wooreeedu/img/talk.png'/>
-			<img class='active' src='/theme/wooreeedu/img/talk-active.png'/>
+		<div class='item talk'>
+			<a href='#' class='image'>
+				<img class='default' src='/theme/wooreeedu/img/talk.png'/>
+				<img class='active' src='/theme/wooreeedu/img/talk-active.png'/>
+			</a>
 			<div class='label'>LANGUAGE COURSES</div>
-		</a>
-		<a href="#" class='item grad'>
-			<img class='default' src='/theme/wooreeedu/img/grad.png'/>
-			<img class='active' src='/theme/wooreeedu/img/grad-active.png'/>
+		</div>
+		<div href="#" class='item grad'>
+			<a href='#' class='image'>
+				<img class='default' src='/theme/wooreeedu/img/grad.png'/>
+				<img class='active' src='/theme/wooreeedu/img/grad-active.png'/>
+			</a>
 			<div class='label'>EDUCATIONAL PROGRAMS</div>
-		</a>
-		<a href="#" class='item date'>
-			<img class='default' src='/theme/wooreeedu/img/date.png'/>
-			<img class='active' src='/theme/wooreeedu/img/date-active.png'/>
+		</div>
+		<div href="#" class='item date'>		
+			<a href='#' class='image'>
+				<img class='default' src='/theme/wooreeedu/img/date.png'/>
+				<img class='active' src='/theme/wooreeedu/img/date-active.png'/>
+			</a>
 			<div class='label'>SCHEDULE</div>
-		</a>
-		<a href="#" class='item price'>
-			<img class='default' src='/theme/wooreeedu/img/price.png'/>
-			<img class='active' src='/theme/wooreeedu/img/price-active.png'/>
+		</div>
+		<div href="#" class='item price'>
+			<a href='#' class='image'>
+				<img class='default' src='/theme/wooreeedu/img/price.png'/>
+				<img class='active' src='/theme/wooreeedu/img/price-active.png'/>
+			</a>
 			<div class='label'>TRAINING COST</div>
-		</a>
-		<a href="#" class='item blog'>
-			<img class='default' src='/theme/wooreeedu/img/blog.png'/>
-			<img class='active' src='/theme/wooreeedu/img/blog-active.png'/>
+		</div>
+		<div href="#" class='item blog'>
+			<a href='#' class='image'>
+				<img class='default' src='/theme/wooreeedu/img/blog.png'/>
+				<img class='active' src='/theme/wooreeedu/img/blog-active.png'/>
+			</a>
 			<div class='label'>BLOG</div>
-		</a>
-		<a href="#" class='item gallery'>
-			<img class='default' src='/theme/wooreeedu/img/gallery.png'/>
-			<img class='active' src='/theme/wooreeedu/img/gallery-active.png'/>
+		</div>
+		<div href="#" class='item gallery'>
+			<a href='#' class='image'>
+				<img class='default' src='/theme/wooreeedu/img/gallery.png'/>
+				<img class='active' src='/theme/wooreeedu/img/gallery-active.png'/>
+			</a>
 			<div class='label'>GALLERY</div>
-		</a>
+		</div>
 	</div>
 </div>
 <section class='grid3'>

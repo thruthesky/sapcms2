@@ -20,36 +20,42 @@
 	clear:both;
 }
 
-#layout-footer .bottom-icon-menus > .inner > a.item{
+#layout-footer .bottom-icon-menus > .inner > .item{
 	display:block;
 	float:left;
 	width:33.33%;
 	text-decoration:none;
 }
 
-#layout-footer .bottom-icon-menus > .inner > a.item  img{
+#layout-footer .bottom-icon-menus > .inner > .item a.image{
 	display:block;
 	width:45.5%;
+	margin:auto;
+}
+
+#layout-footer .bottom-icon-menus > .inner > .item a.image:hover img.default{
+	display:none;
+}
+
+#layout-footer .bottom-icon-menus > .inner > .item a.image:hover img.active{
+	display:block;
+}
+
+#layout-footer .bottom-icon-menus > .inner > .item  img{
+	display:block;
+	width:100%;
 	margin:0 auto 10px auto;
 }
 
-#layout-footer .bottom-icon-menus > .inner > a.item  img.active{
+#layout-footer .bottom-icon-menus > .inner > .item  img.active{
 	display:none;
 }
 
-#layout-footer .bottom-icon-menus > .inner > a.item:hover  img.default{
-	display:none;
-}
-
-#layout-footer .bottom-icon-menus > .inner > a.item:hover  img.active{
-	display:block;
-}
-
-#layout-footer .bottom-icon-menus > .inner > a.item.talk, #layout-footer .bottom-icon-menus > .inner > .item.grad, #layout-footer .bottom-icon-menus > .inner > .item.date{
+#layout-footer .bottom-icon-menus > .inner > .item.talk, #layout-footer .bottom-icon-menus > .inner > .item.grad, #layout-footer .bottom-icon-menus > .inner > .item.date{
 	margin-bottom:40px;
 }
 
-#layout-footer .bottom-icon-menus > .inner > a.item .label{
+#layout-footer .bottom-icon-menus > .inner > .item .label{
 	height: 38px;
 	font-size: 1.1em;
 	font-weight: bold;
