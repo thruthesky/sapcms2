@@ -14,7 +14,7 @@ add_css();
 	</ul>
 </div>
 <div class="front-top-banner">
-	<img class='arrow left' src="/theme/wooreeedu/img/top_arrow_left.png"/>
-	<img class='banner' src='theme/wooreeedu/img/top-banner.jpg'/><img class='banner' src='theme/wooreeedu/img/top-banner.jpg'/><img class='banner' src='theme/wooreeedu/img/top-banner.jpg'/><img class='banner' src='theme/wooreeedu/img/top-banner.jpg'/><img class='banner' src='theme/wooreeedu/img/top-banner.jpg'/><img class='banner' src='theme/wooreeedu/img/top-banner.jpg'/>
-	<img class='arrow right' src="/theme/wooreeedu/img/top_arrow_right.png"/>
+	<img class='arrow' direction='left' src="/theme/wooreeedu/img/top_arrow_left.png"/>
+	<img class='banner' src='/theme/wooreeedu/img/top-banner.jpg'/><img class='banner' src='/theme/wooreeedu/img/top-banner.jpg'/><img class='banner' src='/theme/wooreeedu/img/top-banner.jpg'/><img class='banner' src='/theme/wooreeedu/img/top-banner.jpg'/><img class='banner' src='/theme/wooreeedu/img/top-banner.jpg'/><img class='banner' src='/theme/wooreeedu/img/top-banner.jpg'/>
+	<img class='arrow' direction='right' src="/theme/wooreeedu/img/top_arrow_right.png"/>
 </div>

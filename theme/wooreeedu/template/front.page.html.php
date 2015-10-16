@@ -12,8 +12,9 @@ add_css('front.postBannerWithText.css');
 	<section class='wooree-grid3'>
 		<div class='a'>				
 			<?php
-				$posts = getPostWithImage(0, 1, 'test');				
-				echo postBannerWithText( $posts[0], 520, 500, 20, 200 );
+				$posts = getPostWithImage(0, 1, 'test');
+				if( !empty( $posts[0] ) ) $posts = $posts[0];				
+				echo postBannerWithText( $posts, 520, 500, 20, 200 );
 				$posts = getPostWithImage(1, 2, 'test');
 				echo postThumbnailWithText( $posts, 100, 75, 100 );
 			?>

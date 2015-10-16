@@ -5,8 +5,9 @@
 
 .front-top-banner .banner{
 	position:relative;
+	left:-100%;
 	display:inline-block;
-	width:100%;
+	width:100%;	
 }
 
 .front-top-banner .arrow{
@@ -19,12 +20,12 @@
 	z-index:10;
 }
 
-.front-top-banner .arrow.left{
+.front-top-banner .arrow[direction='left']{
 	left:10px;
 	padding-left:6px;
 }
 
-.front-top-banner .arrow.right{
+.front-top-banner .arrow[direction='right']{
 	right:10px;
 	padding-right:6px;
 }
