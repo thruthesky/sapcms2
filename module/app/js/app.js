@@ -343,6 +343,7 @@ function onFileChange(obj) {
     isUploadSubmit = false;
     $(obj).val('');
 }
+/*
 function fileDelete(idx) {
     $.ajax("/file/delete?idx="+idx)
         .done(function(data){
@@ -362,6 +363,7 @@ function fileDelete(idx) {
             console.log('failed to load');
         });
 }
+*/
 $(function(){
     var $body = $('body');
     $body.on("click",".file-display .delete", function(){
@@ -822,6 +824,12 @@ function fileDelete(idx) {
                 if ( re.error ) alert( re.message );
                 else {
                     console.log("idx: " + idx + " deleted");
+					$fid = $('.file[idx="'+re.idx+'"]').parents("form").find("input[name='fid']");
+					var val = $fid.val();	
+					if( val.indexOf( ","+idx ) != -1 ){
+						val = val.replace( ","+idx, "" );
+						$fid.val(val);
+					}
                     $('.file[idx="'+re.idx+'"]').remove();
                 }
             }
