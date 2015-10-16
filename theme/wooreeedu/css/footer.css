@@ -50,10 +50,13 @@
 }
 
 #layout-footer .bottom-icon-menus > .inner > a.item .label{
-	font-size:1.1em;
-	font-weight:bold;
-	color:#fff;
-	text-align:center;
+	height: 38px;
+	font-size: 1.1em;
+	font-weight: bold;
+	color: #fff;
+	text-align: center;
+	overflow: hidden;
+	line-height: 110%;
 }
 /*eo bottom-icon-menus*/
 

@@ -1,13 +1,16 @@
-.front-top-banner{
+.front-top-banner{	
 	margin-bottom:10px;
 	white-space:nowrap;
 }
 
-.front-top-banner .banner{
+.front-top-banner > .inner{	
 	position:relative;
 	left:-100%;
+}
+
+.front-top-banner .banner{	
 	display:inline-block;
-	width:100%;	
+	width:100%;
 }
 
 .front-top-banner .arrow{

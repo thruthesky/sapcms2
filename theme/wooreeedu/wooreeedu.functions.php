@@ -106,3 +106,22 @@ EOH;
 
 	echo "</div>";
 }
+
+function getFrontTopBannerImages( $posts, $width = 1280, $height = 400 ){
+	$total_banners = count( $posts );
+	if( $total_banners > 1 ){
+		$img = $posts[ ( $total_banners -1 )]->getImage();
+		$thumbnail = $img->urlThumbnail($width,$height);
+		echo "<img class='banner fake' src='$thumbnail'>";
+	}
+	foreach( $posts as $post ){
+		$img = $post->getImage();
+		$thumbnail = $img->urlThumbnail($width,$height);
+		echo "<img class='banner' src='$thumbnail'>";
+	}
+	if( $total_banners > 1 ){
+		$img = $posts[0]->getImage();
+		$thumbnail = $img->urlThumbnail($width,$height);
+		echo "<img class='banner fake' src='$thumbnail'>";
+	}
+}

@@ -13,8 +13,14 @@ add_css();
 		<li><span class="show-panel"><img src="/theme/default/tmp/menu.png"></span></li>
 	</ul>
 </div>
+
 <div class="front-top-banner">
 	<img class='arrow' direction='left' src="/theme/wooreeedu/img/top_arrow_left.png"/>
-	<img class='banner' src='/theme/wooreeedu/img/top-banner.jpg'/><img class='banner' src='/theme/wooreeedu/img/top-banner.jpg'/><img class='banner' src='/theme/wooreeedu/img/top-banner.jpg'/><img class='banner' src='/theme/wooreeedu/img/top-banner.jpg'/><img class='banner' src='/theme/wooreeedu/img/top-banner.jpg'/><img class='banner' src='/theme/wooreeedu/img/top-banner.jpg'/>
 	<img class='arrow' direction='right' src="/theme/wooreeedu/img/top_arrow_right.png"/>
+	<div class='inner'>
+		<?php
+			$posts = getPostWithImage(0, 5, 'test');
+			echo getFrontTopBannerImages( $posts, 1280, 400 );
+		?>
+	</div>
 </div>
