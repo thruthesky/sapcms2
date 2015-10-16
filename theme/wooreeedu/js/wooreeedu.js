@@ -11,6 +11,7 @@ $(function(){
 
 function move_top_banner(){
 	var $this = $(this);
+	if( banner_count <= 1 ) return;
 	if( is_animating == true ) return;
 	
 	is_animating = true;
