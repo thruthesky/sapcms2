@@ -13,7 +13,9 @@ add_css();
 		<li><span class="show-panel"><img src="/theme/default/tmp/menu.png"></span></li>
 	</ul>
 </div>
-
+<?php 
+//temporary solution
+if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 <div class="front-top-banner">
 	<img class='arrow' direction='left' src="/theme/wooreeedu/img/top_arrow_left.png"/>
 	<img class='arrow' direction='right' src="/theme/wooreeedu/img/top_arrow_right.png"/>
@@ -24,3 +26,4 @@ add_css();
 		?>
 	</div>
 </div>
+<?php } ?>
