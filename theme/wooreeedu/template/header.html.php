@@ -8,11 +8,11 @@ add_css();
 		<a href="/"><img class='logo' src="/theme/wooreeedu/img/full_logo.png"/></a>
 		<ul id="main-menu" class="clearfix">
 			<li><a <?php if( empty( $_GET['id'] ) ) echo "class='is-active'"; ?> href='/'>Home</a></li>
-			<li><a <?php if( $_GET['id'] == 'course' ) echo "class='is-active'"; ?> href='/post/list?id=course'>Courses</a></li>
-			<li><a <?php if( $_GET['id'] == 'program' ) echo "class='is-active'"; ?> href='/post/list?id=program'>Programs</a></li>
+			<li><a <?php if( !empty( $_GET['id'] ) && $_GET['id'] == 'course' ) echo "class='is-active'"; ?> href='/post/list?id=course'>Courses</a></li>
+			<li><a <?php if( !empty( $_GET['id'] ) && $_GET['id'] == 'program' ) echo "class='is-active'"; ?> href='/post/list?id=program'>Programs</a></li>
 			<li><a href='#'>Schedules</a></li>
-			<li><a <?php if( $_GET['id'] == 'wooreeedu_blog' ) echo "class='is-active'"; ?> href='/post/list?id=wooreeedu_blog'>Blog</a></li>
-			<li><a <?php if( $_GET['id'] == 'wooreeedu_gallery' ) echo "class='is-active'"; ?> href='/post/list?id=wooreeedu_gallery'>Gallery</a></li>
+			<li><a <?php if( !empty( $_GET['id'] ) && $_GET['id'] == 'wooreeedu_blog' ) echo "class='is-active'"; ?> href='/post/list?id=wooreeedu_blog'>Blog</a></li>
+			<li><a <?php if(!empty( $_GET['id'] ) &&  $_GET['id'] == 'wooreeedu_gallery' ) echo "class='is-active'"; ?> href='/post/list?id=wooreeedu_gallery'>Gallery</a></li>
 			<li><a href='#'>Contact Us</a></li>
 		</ul>
 	</div>
