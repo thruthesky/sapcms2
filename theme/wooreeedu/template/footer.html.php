@@ -28,7 +28,7 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			<div class='label'>SCHEDULE</div>
 		</div>
 		<div class='item price'>
-			<a href='/?theme_page=cost' class='image'>
+			<a href='/trainingCost' class='image'>
 				<img class='default' src='/theme/wooreeedu/img/price.png'/>
 				<img class='active' src='/theme/wooreeedu/img/price-active.png'/>
 			</a>
