@@ -55,7 +55,7 @@
 	border-bottom:1px solid #66bdc6;
 	color:#000;
 }
-
+/*
 @media all and ( min-width: 720px ) {
 	#header-top > .inner .logo{
 		float:left;
@@ -85,13 +85,14 @@
 		
 	}
 }
-
+*/
 @media all and ( min-width: 960px ) {
 	#header-top > .inner{
 		padding:0;
 	}
 	
-	#header-top > .inner .logo{		
+	#header-top > .inner .logo{
+		float:left;
 		margin-right:5px;
 	}
 	
