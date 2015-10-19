@@ -123,7 +123,7 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			</div>
 		</div>
 		<div class='c'>
-			<div class='footer-list contact'>
+			<div id='contactUs' class='footer-list contact'>
 				<div class='footer-list-title'>
 					<b>CONTACT</b> US
 				</div>

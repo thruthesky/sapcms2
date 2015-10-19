@@ -7,6 +7,8 @@ var is_animating = false;
 $(function(){
 	banner_count = $(".front-top-banner .banner").length - $(".front-top-banner .banner.fake").length;
 	$("body").on("click",".front-top-banner .arrow",move_top_banner);
+	
+	$("body").on("click","#header-top #main-menu .contactUs", moveToContactUs);
 });
 
 function move_top_banner(){
@@ -54,4 +56,15 @@ function do_banner_animation( animation_movement, $selector, speed, direction){
 			banner_current_page = banner_count;
 		}
 	});	
+}
+
+function moveToContactUs(){
+	var $selector = $("#contactUs");
+	var top = $selector.offset().top;
+	$("body,html").animate({
+		scrollTop:top}, '500', 'swing', 
+		function() { 
+			$selector.find("input[name='name']").focus();
+		}
+	);
 }
