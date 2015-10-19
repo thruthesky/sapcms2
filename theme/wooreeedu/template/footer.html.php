@@ -127,7 +127,7 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 				<div class='footer-list-title'>
 					<b>CONTACT</b> US
 				</div>
-				<form class='contact-use'>
+				<form class='contact-us'>
 					<input type='text' name='name' placeholder='Name'>
 					<input type='email' name='email' placeholder='Email Address'>
 					<input type='text' name='subject' placeholder='Subject'>
