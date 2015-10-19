@@ -35,14 +35,14 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			<div class='label'>TRAINING COST</div>
 		</div>
 		<div class='item blog'>
-			<a href='/post/list?id=blog' class='image'>
+			<a href='/post/list?id=wooreeedu_blog' class='image'>
 				<img class='default' src='/theme/wooreeedu/img/blog.png'/>
 				<img class='active' src='/theme/wooreeedu/img/blog-active.png'/>
 			</a>
 			<div class='label'>BLOG</div>
 		</div>
 		<div class='item gallery'>
-			<a href='/post/list?id=gallery' class='image'>
+			<a href='/post/list?id=wooreeedu_gallery' class='image'>
 				<img class='default' src='/theme/wooreeedu/img/gallery.png'/>
 				<img class='active' src='/theme/wooreeedu/img/gallery-active.png'/>
 			</a>
