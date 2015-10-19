@@ -1,0 +1,9 @@
+<?php
+use sap\src\Module;
+
+if ( ! Module::enabled('wooreeedu') ) {
+    return;
+}
+
+include 'wooreeedu.routing.php';
+
