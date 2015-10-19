@@ -43,16 +43,16 @@
 	text-decoration:none;
 }
 
+#header-top > .inner ul#main-menu li a:hover{
+	border-bottom:2px solid #66bdc6;
+	/*font-weight:bold;*/
+}
+
 #header-top > .inner ul#main-menu li a.is-active{
 	/*padding:10px 0 10px 0;*/
 	
 	border-bottom:1px solid #66bdc6;
 	color:#000;
-}
-
-#header-top > .inner ul#main-menu li a:hover{
-	border-bottom:2px solid #66bdc6;
-	/*font-weight:bold;*/
 }
 
 @media all and ( min-width: 720px ) {

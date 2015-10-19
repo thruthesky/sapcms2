@@ -20,15 +20,15 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			</a>
 			<div class='label'>EDUCATIONAL PROGRAMS</div>
 		</div>
-		<div href="#" class='item date'>		
-			<a href='#' class='image'>
+		<div class='item date'>		
+			<a href='/?theme_page=schedule' class='image'>
 				<img class='default' src='/theme/wooreeedu/img/date.png'/>
 				<img class='active' src='/theme/wooreeedu/img/date-active.png'/>
 			</a>
 			<div class='label'>SCHEDULE</div>
 		</div>
 		<div class='item price'>
-			<a href='#' class='image'>
+			<a href='/?theme_page=cost' class='image'>
 				<img class='default' src='/theme/wooreeedu/img/price.png'/>
 				<img class='active' src='/theme/wooreeedu/img/price-active.png'/>
 			</a>

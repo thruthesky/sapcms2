@@ -3,3 +3,13 @@
     content:'';
     clear:both;
 }
+
+
+/*temp-page*/
+.temp-page{
+	padding: 10px;
+    margin-top: 10px;
+    background-color: #fff;
+    min-height: 400px;
+}
+/*eo temp-page*/
