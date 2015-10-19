@@ -71,10 +71,6 @@
 /*eo floaters*/
 
 /*page-content TOP thumbnailWithText*/
-.page-content.top .post-thumbnail-with-text{
-	margin-bottom:0;
-}
-
 .page-content.top .post-thumbnail-with-text > a {
 	text-decoration:none;
 }
