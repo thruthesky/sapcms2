@@ -11,9 +11,9 @@ add_css('front.postBannerWithText.css');
 <div class='page-content top'>
 	<section class='wooree-grid3'>
 		<div class='a'>
-			<!--<div class='floater'>
+			<div class='floater-dotted'>
 				<span class='text'>Title Here</span>
-			</div>-->
+			</div>
 			<?php
 				$posts = getPostWithImage(0, 1, 'test');
 				if( !empty( $posts[0] ) ) $posts = $posts[0];				
@@ -23,9 +23,9 @@ add_css('front.postBannerWithText.css');
 			?>
 		</div>
 		<div class='b'>	
-			<!--<div class='floater'>
+			<div class='floater-bar'>
 				<span class='text'>Title Here</span>
-			</div>-->
+			</div>
 			<?php
 				$posts = getPostWithImage(1, 1, 'test');
 				echo postHoverTitleImage( $posts, 444, 330, 30 );
@@ -34,8 +34,8 @@ add_css('front.postBannerWithText.css');
 			?>
 		</div>
 		<div class='c'>
-			<!--<div class='floater'>				
-			</div>-->
+			<div class='floater-bar'>				
+			</div>
 			<?php 
 				$posts = getPostWithImage(2, 1, 'test');
 				echo postHoverTitleImage( $posts, 444, 330, 30 );
