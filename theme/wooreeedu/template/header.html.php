@@ -3,12 +3,14 @@ add_css();
 ?>
 <div id="header-top">
 	<div class='inner'>
-		<img class='logo' src="/theme/wooreeedu/img/full_logo.png"/>
+		<a href="/"><img class='logo' src="/theme/wooreeedu/img/full_logo.png"/></a>
 		<ul id="main-menu" class="clearfix">
 			<li><a class='is-active' href='/'>Home</a></li>
-			<li><a href='#'>Products</a></li>
-			<li><a href='#'>News</a></li>
-			<li><a href='#'>About Us</a></li>
+			<li><a href='/post/list?id=course'>Courses</a></li>
+			<li><a href='/post/list?id=program'>Programs</a></li>
+			<li><a href='#'>Schedules</a></li>
+			<li><a href='/post/list?id=wooreedu_blog'>Blog</a></li>
+			<li><a href='/post/list?id=wooreedu_gallery'>Gallery</a></li>
 			<li><a href='#'>Contact Us</a></li>
 		</ul>
 	</div>

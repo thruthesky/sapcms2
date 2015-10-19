@@ -36,51 +36,69 @@
 
 #header-top > .inner ul#main-menu li a{
 	display:inline-block;
-	padding:10px;	
 	font-size:1.1em;
+	margin:0 10px;	
 	color:#0091a0;
 	border:1px solid #fff;
 	text-decoration:none;
 }
 
 #header-top > .inner ul#main-menu li a.is-active{
-	padding:10px 0 10px 0;
-	margin:0 10px;
+	/*padding:10px 0 10px 0;*/
+	
 	border-bottom:1px solid #66bdc6;
+	color:#000;
 }
 
 #header-top > .inner ul#main-menu li a:hover{
-	padding:10px;
-	margin:0;	
-	border-color:#0091a0;
-	border-radius:5px;
-	color:#24b8c9;
+	border-bottom:1px solid #66bdc6;
+	/*font-weight:bold;*/
 }
 
-@media all and ( min-width: 800px ) {
+@media all and ( min-width: 720px ) {
 	#header-top > .inner .logo{
 		float:left;
 		margin-right:10px;
 	}
 	
-	#header-top > .inner ul#main-menu{
-		float:right;
-		text-align:left;
+	#header-top > .inner ul#main-menu{		
+		float:none;
+	}
+	
+	#header-top > .inner ul#main-menu li{
+		margin-top:0;
+	}
+	
+	#header-top > .inner ul#main-menu li a{
+		padding: 0 0 5px 0;
+		margin-bottom:5px;
 	}
 }
 
 @media all and ( min-width: 860px ) {
-	#header-top > .inner .logo{		
-		margin-right:70px;
+	#header-top > .inner .logo{
+			
 	}
 
 	#header-top > .inner ul#main-menu{
-		float:none;
+		
 	}
 }
 
 @media all and ( min-width: 960px ) {
 	#header-top > .inner{
 		padding:0;
+	}
+	
+	#header-top > .inner .logo{		
+		margin-right:5px;
+	}
+	
+	#header-top > .inner ul#main-menu li{
+		margin-top:10px;
+	}
+	
+	#header-top > .inner ul#main-menu li a{
+		padding:10px 0;
 	}
 }

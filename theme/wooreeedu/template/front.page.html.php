@@ -10,7 +10,10 @@ add_css('front.postBannerWithText.css');
 ?>
 <div class='page-content top'>
 	<section class='wooree-grid3'>
-		<div class='a'>				
+		<div class='a'>
+			<div class='floater'>
+				<span class='text'>Title Here</span>
+			</div>
 			<?php
 				$posts = getPostWithImage(0, 1, 'test');
 				if( !empty( $posts[0] ) ) $posts = $posts[0];				
@@ -19,7 +22,10 @@ add_css('front.postBannerWithText.css');
 				echo postThumbnailWithText( $posts, 100, 75, 100 );
 			?>
 		</div>
-		<div class='b'>				
+		<div class='b'>	
+			<div class='floater'>
+				<span class='text'>Title Here</span>
+			</div>
 			<?php
 				$posts = getPostWithImage(1, 1, 'test');
 				echo postHoverTitleImage( $posts, 444, 330, 30 );
@@ -28,6 +34,8 @@ add_css('front.postBannerWithText.css');
 			?>
 		</div>
 		<div class='c'>
+			<div class='floater'>				
+			</div>
 			<?php 
 				$posts = getPostWithImage(2, 1, 'test');
 				echo postHoverTitleImage( $posts, 444, 330, 30 );
@@ -35,6 +43,5 @@ add_css('front.postBannerWithText.css');
 				echo postThumbnailWithText( $posts, 100, 75, 30 );
 			?>
 		</div>
-	</section>
-	<?php //include template('front.content.text-photo') ?>
+	</section>	
 </div>

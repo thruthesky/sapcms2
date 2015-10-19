@@ -1,6 +1,9 @@
 <?php
 add_css();
 ?>
+<?php 
+//temporary solution
+if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 <div class='bottom-icon-menus'>
 	<div class='inner'>
 		<div class='item talk'>
@@ -47,6 +50,7 @@ add_css();
 		</div>
 	</div>
 </div>
+<?php } ?>
 <section class='grid3'>
 	<div class='content footer-menu'>
 		<div class='a'>
