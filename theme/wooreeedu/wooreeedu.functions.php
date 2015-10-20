@@ -3,6 +3,7 @@ function postHoverTitleImage( $posts, $width = 300, $height = 300, $title_length
 	if( empty( $posts ) ) return null;
 	echo "<div class='post-hover-title-image'>";
 	foreach( $posts as $post ){
+		if( empty( $post ) ) continue;
 		$img = $post->getImage();
 		$thumbnail = $img->urlThumbnail($width,$height);
 		$title = textLengthLimit( $post->title, 30 );
@@ -28,6 +29,7 @@ function postThumbnailWithText( $posts, $width = 100, $height = 100, $title_leng
 if( empty( $posts ) ) return null;
 echo "<div class='post-thumbnail-with-text'>";
 	foreach( $posts as $post ){
+		if( empty( $post ) ) continue;
 		$img = $post->getImage();
 		$thumbnail = $img->urlThumbnail($width,$height);	
 		$title = textLengthLimit( $post->title, $title_length );
@@ -66,6 +68,7 @@ if( empty( $posts ) ) return null;
 echo "<div class='post-bullet-list'>";
 	$thumbnail_label = "<img src='/theme/wooreeedu/img/tempThumbnailLabel.png'/>";
 	foreach( $posts as $post ){
+		if( empty( $post ) ) continue;
 		$url = $post->url();
 		$title = textLengthLimit( $post->title, $title_length );
 		echo <<<EOH
@@ -108,6 +111,7 @@ EOH;
 }
 
 function getFrontTopBannerImages( $posts, $width = 1280, $height = 400 ){
+	if( empty( $posts ) ) return null;
 	$total_banners = count( $posts );
 	if( $total_banners > 1 ){
 		$img = $posts[ ( $total_banners -1 )]->getImage();
