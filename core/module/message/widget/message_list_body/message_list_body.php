@@ -13,8 +13,12 @@ $messages = $widget['messages'];
 	else if( $widget['show'] == 'sent' ) $user = User()->load( $message['idx_to'] );
 	
 	$post_primary_photo = null;
-	$user_photo = data()->loadBy('user', 'primary_photo', 0, $user->idx);	
-	if( !empty( $user_photo ) ) $post_primary_photo = "<img class='header-primary-photo' src='".$user_photo[0]->urlThumbnail(40,40)."'/>";
+	if( !empty( $user ) ) {
+		$user_photo = data()->loadBy('user', 'primary_photo', 0, $user->idx);	
+		if( !empty( $user_photo ) ) $post_primary_photo = "<img class='header-primary-photo' src='".$user_photo[0]->urlThumbnail(40,40)."'/>";
+		$user_id = $user->id ;
+	}
+	else $user_id = 'Anonymous';
 	
 	$date = date('M d, Y H:i',$message['created']);
 	
@@ -26,7 +30,7 @@ $messages = $widget['messages'];
 ?>
 	<div class='row <?php echo $widget['show'] ?><?php echo $class ?>' idx='<?php echo $message['idx'] ?>'>		
 		<div class='profile-photo'><?php echo $post_primary_photo ?></div>		
-		<div class='name'><?php echo $user->id ?></div>		
+		<div class='name'><?php echo $user_id ?></div>		
 		<div class='title'><?php echo $message['title'] ?> ( <span class='date'><?php echo $date ?></span> )</div>
 		<div class='content show-on-click'>
 			<?php echo $message['content'] ?>
@@ -37,7 +41,7 @@ $messages = $widget['messages'];
 				}
 				if( $widget['show'] == 'inbox' ){
 			?>
-			<div class='reply'><a href='/message/create?send_id=<?php echo $user->id ?>'>Reply</a></div>
+			<div class='reply'><a href='/message/create?send_id=<?php echo $user_id ?>'>Reply</a></div>
 			<div class='delete'><a href='/message/delete?idx=<?php echo $message['idx'] ?>&show=<?php echo $widget['show']; ?>' onClick='return deleteMessage();'>Delete</a></div>
 				<?php } ?>
 		</div>		

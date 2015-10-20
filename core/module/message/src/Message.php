@@ -13,8 +13,14 @@ class Message extends Entity {
     }
 	
 	public static function collection( $options = [] ) {
-		$data = self::getCollection( $options );
+		$user_idx = login('idx');
 		
+		if( empty( $user_idx ) ){
+			$data = ['template'=>'message.error.page','options'=>['code'=>'-1001','message'=>'You are not Logged in']];
+		}
+		else{
+			$data = self::getCollection( $options );
+		}
 		Response::render($data);
 	}	    
 	
@@ -95,7 +101,8 @@ class Message extends Entity {
 			if( !empty( $user_to ) ){
 				$idx_to = $user_to->idx;
 				//if not error
-				$message_entity = message()->set('idx_from',login('idx'))
+				$idx_from = login('idx');
+				$message_entity = message()->set('idx_from',$idx_from)
 				->set('idx_to',$idx_to)
 				->set('title', request('title'))
 				->set('content', request('content'))
