@@ -9,6 +9,12 @@ $(function(){
 	$("body").on("click",".front-top-banner .arrow",move_top_banner);
 	
 	$("body").on("click","#header-top #main-menu .contactUs", moveToContactUs);
+	
+	$("body").on("mouseenter","#header-top #main-menu", showSubMenus);
+	$("body").on("mouseleave","#header-top #main-menu", closeSubMenus);
+	
+	$("body").on("mouseenter","#header-top .sub-menu", showSubMenus);
+	$("body").on("mouseleave","#header-top .sub-menu", closeSubMenus);
 });
 
 function move_top_banner(){
@@ -67,4 +73,20 @@ function moveToContactUs(){
 			$selector.find("input[name='name']").focus();
 		}
 	);
+}
+
+var subMenuTimeoutIn;
+var subMenuTimeoutOut;
+function showSubMenus(){
+	clearTimeout( subMenuTimeoutOut );
+	subMenuTimeoutIn = setTimeout(function(){
+		$("#header-top .sub-menu").slideDown();
+	},300);
+}
+
+function closeSubMenus(){
+	clearTimeout( subMenuTimeoutIn );
+	subMenuTimeoutOut = setTimeout(function(){
+		$("#header-top .sub-menu").slideUp();
+	},300);
 }

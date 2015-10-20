@@ -11,7 +11,7 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 				<img class='default' src='/theme/wooreeedu/img/talk.png'/>
 				<img class='active' src='/theme/wooreeedu/img/talk-active.png'/>
 			</a>
-			<div class='label'>COURSES</div>
+			<div class='label'>LANGUAGE COURSES</div>
 		</div>
 		<div class='item grad'>
 			<a href='/junior' class='image'>
@@ -28,14 +28,14 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			<div class='label'>CAMP</div>
 		</div>
 		<div class='item price'>
-			<a href='/trainingCost' class='image'>
+			<a href='/course/trainingCost' class='image'>
 				<img class='default' src='/theme/wooreeedu/img/price.png'/>
 				<img class='active' src='/theme/wooreeedu/img/price-active.png'/>
 			</a>
 			<div class='label'>TRAINING COST</div>
 		</div>
 		<div class='item blog'>
-			<a href='/post/list?id=wooreeedu_blog' class='image'>
+			<a href='http://phil_n_kor.blog.me/' class='image'>
 				<img class='default' src='/theme/wooreeedu/img/blog.png'/>
 				<img class='active' src='/theme/wooreeedu/img/blog-active.png'/>
 			</a>

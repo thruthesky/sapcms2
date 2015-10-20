@@ -125,3 +125,18 @@ function getFrontTopBannerImages( $posts, $width = 1280, $height = 400 ){
 		echo "<img class='banner fake' src='$thumbnail'>";
 	}
 }
+
+function postFeaturedItem( $posts, $width = 200, $height = 150, $subject_length = 20 ){
+	if( !empty( $posts ) ) {
+		$post = $posts[0];
+		$img = $post->getImage();
+		$thumbnail = $img->urlThumbnail($width,$height);
+		$title = textLengthLimit( $post->title, $subject_length );
+		echo <<<EOH
+		<div class='item'>
+			<img src='$thumbnail'/>
+			<div class='title text-center'>$title;</div>
+		</div>
+EOH;
+	}
+}
