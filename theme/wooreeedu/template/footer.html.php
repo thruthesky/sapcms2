@@ -7,25 +7,25 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 <div class='bottom-icon-menus'>
 	<div class='inner'>
 		<div class='item talk'>
-			<a href='/post/list?id=course' class='image'>
+			<a href='/course' class='image'>
 				<img class='default' src='/theme/wooreeedu/img/talk.png'/>
 				<img class='active' src='/theme/wooreeedu/img/talk-active.png'/>
 			</a>
-			<div class='label'>LANGUAGE COURSES</div>
+			<div class='label'>COURSES</div>
 		</div>
 		<div class='item grad'>
-			<a href='/post/list?id=program' class='image'>
+			<a href='/junior' class='image'>
 				<img class='default' src='/theme/wooreeedu/img/grad.png'/>
 				<img class='active' src='/theme/wooreeedu/img/grad-active.png'/>
 			</a>
-			<div class='label'>EDUCATIONAL PROGRAMS</div>
+			<div class='label'>JUNIOR PROGRAMS</div>
 		</div>
 		<div class='item date'>		
-			<a href='/?theme_page=schedule' class='image'>
+			<a href='/camp' class='image'>
 				<img class='default' src='/theme/wooreeedu/img/date.png'/>
 				<img class='active' src='/theme/wooreeedu/img/date-active.png'/>
 			</a>
-			<div class='label'>SCHEDULE</div>
+			<div class='label'>CAMP</div>
 		</div>
 		<div class='item price'>
 			<a href='/trainingCost' class='image'>
@@ -42,7 +42,7 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			<div class='label'>BLOG</div>
 		</div>
 		<div class='item gallery'>
-			<a href='/post/list?id=wooreeedu_gallery' class='image'>
+			<a href='/gallery' class='image'>
 				<img class='default' src='/theme/wooreeedu/img/gallery.png'/>
 				<img class='active' src='/theme/wooreeedu/img/gallery-active.png'/>
 			</a>

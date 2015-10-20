@@ -9,11 +9,11 @@ extract( $variables );
 		<a href="/"><img class='logo' src="/theme/wooreeedu/img/full_logo.png"/></a>
 		<ul id="main-menu" class="clearfix">
 			<li><a <?php if( $_SERVER['REQUEST_URI'] == '/' ) echo "class='is-active'"; ?> href='/'>Home</a></li>
-			<li><a <?php if( !empty( $_GET['id'] ) && $_GET['id'] == 'course' ) echo "class='is-active'"; ?> href='/post/list?id=course'>Courses</a></li>
-			<li><a <?php if( !empty( $_GET['id'] ) && $_GET['id'] == 'program' ) echo "class='is-active'"; ?> href='/post/list?id=program'>Programs</a></li>
-			<li><a <?php if( !empty( $page ) && $page == 'schedule' ) echo "class='is-active'"; ?> href='/schedule'>Schedules</a></li>
-			<li><a <?php if( !empty( $_GET['id'] ) && $_GET['id'] == 'wooreeedu_blog' ) echo "class='is-active'"; ?> href='/post/list?id=wooreeedu_blog'>Blog</a></li>
-			<li><a <?php if(!empty( $_GET['id'] ) &&  $_GET['id'] == 'wooreeedu_gallery' ) echo "class='is-active'"; ?> href='/post/list?id=wooreeedu_gallery'>Gallery</a></li>
+			<li><a <?php if( !empty( $page ) && $page == 'course' ) echo "class='is-active'"; ?> href='/course'>Course</a></li>
+			<li><a <?php if( !empty( $page ) && $page == 'junior' ) echo "class='is-active'"; ?> href='/junior'>Junior</a></li>
+			<li><a <?php if( !empty( $page ) && $page == 'camp' ) echo "class='is-active'"; ?> href='/camp'>Camp</a></li>
+			<li><a <?php if( !empty( $page ) && $page == 'gallery' ) echo "class='is-active'"; ?> href='/gallery'>Gallery</a></li>
+			<li><a <?php if( !empty( $page ) && $page == 'videoEnglish' ) echo "class='is-active'"; ?> href='/ve'>Video English</a></li>
 			<li><a class='contactUs' href='#'>Contact Us</a></li>
 		</ul>
 	</div>
