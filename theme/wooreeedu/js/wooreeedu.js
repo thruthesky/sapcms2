@@ -15,6 +15,8 @@ $(function(){
 	
 	$("body").on("mouseenter","#header-top .sub-menu", showSubMenus);
 	$("body").on("mouseleave","#header-top .sub-menu", closeSubMenus);
+	resizeWindow();
+	$(window).resize( resizeWindow );
 });
 
 function move_top_banner(){
@@ -89,4 +91,12 @@ function closeSubMenus(){
 	subMenuTimeoutOut = setTimeout(function(){
 		$("#header-top .sub-menu").slideUp();
 	},300);
+}
+
+function resizeWindow(){
+	difference = ( $(window).width() - 960 ) / 2 + 10;
+	if( difference < 10 ) difference = 10;
+	$(".front-top-banner .arrow[direction='left']").css("left",difference);
+	$(".front-top-banner .arrow[direction='right']").css("right",difference);
+	
 }
