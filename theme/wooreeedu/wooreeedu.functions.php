@@ -139,7 +139,7 @@ function postFeaturedItem( $posts, $width = 200, $height = 150, $subject_length 
 		echo <<<EOH
 		<div class='item'>
 			<img src='$thumbnail'/>
-			<div class='title text-center'>$title;</div>
+			<div class='title text-center'>$title</div>
 		</div>
 EOH;
 	}

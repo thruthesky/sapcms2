@@ -38,7 +38,7 @@ add_css('featured.item.css');
 				<div class='item-list text-center'>
 					<table cellpadding=0 cellspacing=0 width='65%'>
 						<tr valign='top'>
-							<td>
+							<td width='25%'>
 								<div class='item'>
 									<div class='label'>Course</div>
 									<ul>
@@ -47,7 +47,7 @@ add_css('featured.item.css');
 									</ul>
 								</div>
 							</td>
-							<td>
+							<td width='25%'>
 								<div class='item'>
 									<div class='label'>Junior</div>
 									<ul>
@@ -58,7 +58,7 @@ add_css('featured.item.css');
 									</ul>
 								</div>
 							</td>
-							<td>
+							<td width='25%'>
 								<div class='item'>
 									<div class='label'>Camp</div>
 									<ul>
@@ -70,7 +70,7 @@ add_css('featured.item.css');
 									</ul>
 								</div>
 							</td>
-							<td>
+							<td width='25%'>
 								<div class='item'>
 									<div class='label'>Gallery</div>
 									<ul>
