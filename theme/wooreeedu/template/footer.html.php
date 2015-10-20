@@ -127,11 +127,12 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 				<div class='footer-list-title'>
 					<b>CONTACT</b> US
 				</div>
-				<form class='contact-us'>
+				<form class='contact-us' action='/contactUs/messageSendSubmit'>
+					<!--<input type='hidden' name='user_id_to' value='admin'>-->
 					<input type='text' name='name' placeholder='Name'>
 					<input type='email' name='email' placeholder='Email Address'>
-					<input type='text' name='subject' placeholder='Subject'>
-					<textarea name='Message' placeholder='Message'></textarea>
+					<input type='text' name='title' placeholder='Subject'>
+					<textarea name='content' placeholder='Message'></textarea>
 					<input type='submit' value='Submit'>
 				</form>
 			</div>
