@@ -1,0 +1,19 @@
+.featuredPost{
+	
+}
+
+.featuredPost img{
+	display:block;
+	width:100%;
+	margin-bottom:10px;
+}
+
+.featuredPost .item{
+	
+}
+
+
+.featuredPost .title{
+	font-weight:bold;
+	color:#fff;
+}
