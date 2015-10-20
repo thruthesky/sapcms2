@@ -164,5 +164,23 @@ class Wooreeedu {
 	}
 	
 	
+	public static function messageSendSubmit(){
+		$name = request('name');
+		$email = request('email');
+		$title = request('title');
+		$content = request('content');
+		$new_content = 	nl2br("	Contact Us 
+								
+								Name: $name
+								Email: $email
+								$content
+								");
+		$message_entity = message()->set('idx_from',0) //anone
+				->set('idx_to', 1) //admin
+				->set('title', $title)
+				->set('content', $new_content)
+				->save();
 	
+		Response::redirect('/');
+	}
 }
