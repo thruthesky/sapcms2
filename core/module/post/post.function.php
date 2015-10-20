@@ -92,6 +92,39 @@ function url_post_delete($idx=0) {
     return post::urlPostDelete($idx);
 }
 
+function display_files_thumbnail( $files, $height, $width, $limit = 0 ) {			
+		if ( empty($files) ) return null;	
+		$tag_imgs = [];
+		$tag_files = [];
+		foreach($files as $file) {		
+		//$total_files = count( $files );
+		//if( $limit == 0 ) $limit = $total_files;
+		//for( $i = 0; $i < $limit; $i ++ ){
+			//$file = $files[$i];		
+			$url = $file->urlThumbnail( $width, $height );
+			$name = $file->get('name_saved');
+			if ( is_image($name) ) {				
+				/*
+				$more_image = null;
+				$more_image
+				if( $i >= 3 ){					
+					if( $total_files > $limit ) $more_image = "<div class='more-images'>+".( $total_files - $limit )."</div>";										
+				}
+				*/			
+				$tag_imgs[] = "<div class='image modal-image' idx='".$file->idx."'><img src='$url'></div>";
+			}
+			else {
+				$tag_files[] = "<div class='attachment'><a href='$url'>$name</a></div>";
+			}
+		}				
+		
+		echo "<div class='attachments'>";
+		array_walk($tag_files, 'display');
+		echo "</div>";
+		echo "<div class='images clearfix'>";
+		array_walk($tag_imgs, 'display');
+		echo "</div>";
+	}
 
 function display_files($files) {
     if ( empty($files) ) return null;
