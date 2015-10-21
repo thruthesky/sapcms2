@@ -185,7 +185,7 @@ function autoScrollFeaturedBanner(){
 		animation_movement = ( page_now - page_diff ) * 100;
 		do_banner_animation( "-" + animation_movement + "%", $selector, 500, 'right', featured_banner_data );
 		autoScrollFeaturedBanner();
-	}, 1000 );
+	}, 2000 );
 }
 
 function stopFeaturedBanner(){
