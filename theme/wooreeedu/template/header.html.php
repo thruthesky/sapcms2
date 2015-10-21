@@ -27,26 +27,40 @@ add_css('featured.item.css');
 	<div class='inner'>
 		<a href="/"><img class='logo' src="/theme/wooreeedu/img/full_logo.png"/></a>
 		<ul id="main-menu" class="clearfix">
-			<li><a <?php if( $_SERVER['REQUEST_URI'] == '/' ) echo "class='is-active'"; ?> href='/'>Home</a></li>
+			<li><a <?php if( !empty( $page ) && $page == 'introduction' ) echo "class='is-active'"; ?> href='/introduction'>Introduction</a></li>
 			<li><a <?php if( !empty( $page ) && $page == 'course' ) echo "class='is-active'"; ?> href='/course'>Course</a></li>
 			<li><a <?php if( !empty( $page ) && $page == 'junior' ) echo "class='is-active'"; ?> href='/junior'>Junior</a></li>
 			<li><a <?php if( !empty( $page ) && $page == 'camp' ) echo "class='is-active'"; ?> href='/camp'>Camp</a></li>
 			<li><a <?php if( !empty( $page ) && $page == 'gallery' ) echo "class='is-active'"; ?> href='/gallery'>Gallery</a></li>
-			<li><a <?php if( !empty( $page ) && $page == 'videoEnglish' ) echo "class='is-active'"; ?> href='/ve'>Video English</a></li>
-			<li><a class='contactUs' href='#'>Contact Us</a></li>
+			<li><a <?php if( !empty( $page ) && $page == 'videoEnglish' ) echo "class='is-active'"; ?> href='/ve'>VideoEnglish</a></li>
+			<!--<li><a class='contactUs' href='#'>Contact Us</a></li>-->
 		</ul>
 		<div class='sub-menu'>
 			<div class='inner clearfix'>
 				<div class='featuredPost'>
-				<?php 
-					$posts = getPostWithImage(0, 1, 'test'); 
-					if( !empty( $posts ) ) echo postFeaturedItem( $posts, 280, 180, 15 );
-				?>		
+					<div class='page-navigator'>
+				<?php
+					for( $i = 1; $i<=5; $i++ ){
+						if( $i == 1 ) $is_active = ' is-active';
+						else $is_active = null;
+						echo "<div class='page-item$is_active' page='$i'></div>";
+					}
+				?>
+				</div>				
+					<div class='inner'>
+						<div class='item fake'><div class='banner'><img src='theme/wooreeedu/img/popsong_5.jpg'/></div><div class='title text-center'>Title 5</div></div><div class='item'>
+						<div class='banner'><img src='theme/wooreeedu/img/popsong_1.jpg'/></div><div class='title text-center'>Title 1</div></div><div class='item'>
+						<div class='banner'><img src='theme/wooreeedu/img/popsong_2.jpg'/></div><div class='title text-center'>Title 2</div></div><div class='item'>
+						<div class='banner'><img src='theme/wooreeedu/img/popsong_3.jpg'/></div><div class='title text-center'>Title 3</div></div><div class='item'>
+						<div class='banner'><img src='theme/wooreeedu/img/popsong_4.jpg'/></div><div class='title text-center'>Title 4</div></div><div class='item'>
+						<div class='banner'><img src='theme/wooreeedu/img/popsong_5.jpg'/></div><div class='title text-center'>Title 5</div></div><div class='item fake'>
+						<div class='banner'><img src='theme/wooreeedu/img/popsong_1.jpg'/></div><div class='title text-center'>Title 1</div></div>				
+					</div>
 				</div>
 				<div class='item-list text-center'>
 					<table cellpadding=0 cellspacing=0>
 						<tr valign='top'>
-							<td width='20%'>
+							<td width='16.67%'>
 								<div class='item'>
 									<div class='label'>Introduction</div>
 									<ul>
@@ -56,7 +70,7 @@ add_css('featured.item.css');
 									</ul>
 								</div>
 							</td>
-							<td width='20%'>
+							<td width='16.67%'>
 								<div class='item'>
 									<div class='label'>Course</div>
 									<ul>
@@ -65,18 +79,18 @@ add_css('featured.item.css');
 									</ul>
 								</div>
 							</td>
-							<td width='20%'>
+							<td width='16.67%'>
 								<div class='item'>
 									<div class='label'>Junior</div>
 									<ul>
 										<li><a href="/junior/juniorEarlyStudy">Early Study</a></li>
-										<li><a href="/junior/advantagesInPH">Advantages in Philippines</a></li>
+										<li><a href="/junior/advantagesInPH">Advantages</a></li>
 										<li><a href="/junior/earlyCost">Early Cost</a></li>
 										<li><a href="/junior/recommended">Recommendations</a></li>
 									</ul>
 								</div>
 							</td>
-							<td width='20%'>
+							<td width='16.67%'>
 								<div class='item'>
 									<div class='label'>Camp</div>
 									<ul>
@@ -88,7 +102,7 @@ add_css('featured.item.css');
 									</ul>
 								</div>
 							</td>
-							<td width='20%'>
+							<td width='16.67%'>
 								<div class='item'>
 									<div class='label'>Gallery</div>
 									<ul>
@@ -97,6 +111,16 @@ add_css('featured.item.css');
 										<li><a href="/gallery/speech">Speech</a></li>
 										<li><a href="/gallery/xmas">Christmas</a></li>
 										<li><a href="/gallery/seminar">Seminar</a></li>
+									</ul>
+								</div>
+							</td>
+							<td width='16.67%'>
+								<div class='item'>
+									<div class='label'>VideoEnglish</div>
+									<ul>
+										<li><a href="#">Teachers</a></li>
+										<li><a href="#">Schedule</a></li>
+										<li><a href="#">Reservation</a></li>
 									</ul>
 								</div>
 							</td>
@@ -114,10 +138,7 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 	<img class='arrow' direction='left' src="/theme/wooreeedu/img/top_arrow_left.png"/>
 	<img class='arrow' direction='right' src="/theme/wooreeedu/img/top_arrow_right.png"/>
 	<div class='inner'>
-		<?php
-			$posts = getPostWithImage(0, 5, 'test');
-			echo getFrontTopBannerImages( $posts, 1280, 400 );
-		?>
+		<img class='banner fake' src='/theme/wooreeedu/img/banner_3.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_1.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_2.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_3.jpg'/><img class='banner fake' src='/theme/wooreeedu/img/banner_1.jpg'/>
 	</div>
 </div>
 <?php } ?>
