@@ -175,7 +175,7 @@ class Wooreeedu {
 								Email: $email
 								$content
 								");
-		$message_entity = message()->set('idx_from',0) //anone
+		$message_entity = message()->set('idx_from',0) //anon
 				->set('idx_to', 1) //admin
 				->set('title', $title)
 				->set('content', $new_content)
