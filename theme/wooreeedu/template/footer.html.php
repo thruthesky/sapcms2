@@ -60,7 +60,7 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 				</div>			
 				<ul>
 					<li><a href="/">Home</a></li>
-					<li><a href="#">Schools Introduction</a></li>
+					<li><a href="/introduction">Schools Introduction</a></li>
 					<li><a href="/course">College / Adult Training</a></li>
 					<li><a href="/junior">Junior Training</a></li>
 					<li><a href="/camp">Junior Camp</a></li>					
