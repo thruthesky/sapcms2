@@ -9,7 +9,11 @@ if( !empty( $messages ) ){
 	else if( $data['show'] == 'sent' ) $user = User()->load( $message['idx_to'] );
 
 	$post_primary_photo = null;
-	$user_photo = data()->loadBy('user', 'primary_photo', 0, $user->idx);
+	if( !empty( $user ) ) {
+		$user_photo = data()->loadBy('user', 'primary_photo', 0, $user->idx);
+		$user_id = $user->id ;		
+	}
+	else $user_id = 'Anonymous';
 	
 	if( !empty( $user_photo ) ) $url = $user_photo[0]->urlThumbnail(40,40);
 	else $url = sysconfig(URL_SITE)."module/app/img/no_primary_photo.png";
@@ -39,7 +43,7 @@ if( !empty( $messages ) ){
 					<div class='profile-photo'><?php echo $post_primary_photo ?></div>		
 				</td>
 				<td width='99%'>
-					<div class='name'><?php echo $user->id ?></div>
+					<div class='name'><?php echo $user_id ?></div>
 					<div class='title'><?php echo $cut_content ?></div>
 					<div class='top-date'><?php echo $date ?></div>
 				</td>
