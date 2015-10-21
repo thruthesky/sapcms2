@@ -59,13 +59,13 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 					QUICK <b>LINKS</b>
 				</div>			
 				<ul>
-					<li><a href="#">Home</a></li>
+					<li><a href="/">Home</a></li>
 					<li><a href="#">Schools Introduction</a></li>
-					<li><a href="#">College / Adult Training</a></li>
-					<li><a href="#">Junior Training</a></li>
-					<li><a href="#">Junior Camp</a></li>
-					<li><a href="#">Education Programs</a></li>
-					<li><a href="#">Communitiy</a></li>
+					<li><a href="/course">College / Adult Training</a></li>
+					<li><a href="/junior">Junior Training</a></li>
+					<li><a href="/camp">Junior Camp</a></li>					
+					<li><a href="/gallery">Gallery</a></li>
+					<li><a href="/ve">Video English</a></li>
 				</ul>
 			</div>
 		</div>
