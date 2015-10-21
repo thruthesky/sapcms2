@@ -747,4 +747,9 @@ class App {
 		echo "Successfully reported this post!";
 	}
 	/*eo postReport*/
+
+
+    public static function page() {
+        Response::render(['template'=>'my.page']);
+    }
 }
