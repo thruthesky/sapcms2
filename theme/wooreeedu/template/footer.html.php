@@ -59,13 +59,13 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 					QUICK <b>LINKS</b>
 				</div>			
 				<ul>
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Schools Introduction</a></li>
-					<li><a href="#">College / Adult Training</a></li>
-					<li><a href="#">Junior Training</a></li>
-					<li><a href="#">Junior Camp</a></li>
-					<li><a href="#">Education Programs</a></li>
-					<li><a href="#">Communitiy</a></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="/introduction">Schools Introduction</a></li>
+					<li><a href="/course">College / Adult Training</a></li>
+					<li><a href="/junior">Junior Training</a></li>
+					<li><a href="/camp">Junior Camp</a></li>					
+					<li><a href="/gallery">Gallery</a></li>
+					<li><a href="/ve">Video English</a></li>
 				</ul>
 			</div>
 		</div>
@@ -115,11 +115,13 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 					</td>
 				</tr>
 			</table>
+			<!--
 			<div class='social-links'>
 				<img src='/theme/wooreeedu/img/fb.png'/>			
 				<img src='/theme/wooreeedu/img/twitter.png'/>
 				<img src='/theme/wooreeedu/img/naver.png'/>
 			</div>
+			-->
 			</div>
 		</div>
 		<div class='c'>
@@ -127,11 +129,12 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 				<div class='footer-list-title'>
 					<b>CONTACT</b> US
 				</div>
-				<form class='contact-us'>
+				<form class='contact-us' action='/contactUs/messageSendSubmit'>
+					<!--<input type='hidden' name='user_id_to' value='admin'>-->
 					<input type='text' name='name' placeholder='Name'>
 					<input type='email' name='email' placeholder='Email Address'>
-					<input type='text' name='subject' placeholder='Subject'>
-					<textarea name='Message' placeholder='Message'></textarea>
+					<input type='text' name='title' placeholder='Subject'>
+					<textarea name='content' placeholder='Message'></textarea>
 					<input type='submit' value='Submit'>
 				</form>
 			</div>

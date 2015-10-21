@@ -5,6 +5,36 @@ use sap\src\Response;
 use sap\core\message\Message;
 
 class Wooreeedu {
+
+	public static function introduction(){
+		return Response::render([
+            'template'=>'introduction',
+            'page'=>'introduction',
+            //'config' => $config,
+        ]);
+	}
+	public static function multiLanguage(){
+		return Response::render([
+            'template'=>'multiLanguage',
+            'page'=>'introduction',
+            //'config' => $config,
+        ]);
+	}
+	public static function multiLanguage_2(){
+		return Response::render([
+            'template'=>'multiLanguage_2',
+            'page'=>'introduction',
+            //'config' => $config,
+        ]);
+	}
+	public static function schoolDormitory(){
+		return Response::render([
+            'template'=>'schoolDormitory',
+            'page'=>'introduction',
+            //'config' => $config,
+        ]);
+	}
+	
 	public static function course(){
 		return Response::render([
             'template'=>'course',
@@ -164,5 +194,23 @@ class Wooreeedu {
 	}
 	
 	
+	public static function messageSendSubmit(){
+		$name = request('name');
+		$email = request('email');
+		$title = request('title');
+		$content = request('content');
+		$new_content = 	nl2br("	Contact Us 
+								
+								Name: $name
+								Email: $email
+								$content
+								");
+		$message_entity = message()->set('idx_from',0) //anon
+				->set('idx_to', 1) //admin
+				->set('title', $title)
+				->set('content', $new_content)
+				->save();
 	
+		Response::redirect('/');
+	}
 }

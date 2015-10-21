@@ -7,11 +7,19 @@ add_css('featured.item.css');
 <div class='top-menu'>
 	<div class='inner clearfix'>
 		<div class='left'>
-			Some Text Here
+			Welcome to Wooreeedu.com !!
 		</div>
 		<div class='right'>
-			<a href='/user/register'>Register</a>
-			<a href='/user/login'>Login</a>
+			<?php 
+				$user_idx = login('idx');
+				if( empty( $user_idx ) ){
+			?>
+				<a href='/user/register'>Register</a>			
+				<a href='/user/login'>Login</a>
+			<?php } else { ?>
+				<a href='/user/register'>My Profile</a>			
+				<a href='/user/logout'>Logout</a>
+			<?php } ?>
 		</div>
 	</div>
 </div>
@@ -35,9 +43,19 @@ add_css('featured.item.css');
 				?>		
 				</div>
 				<div class='item-list text-center'>
-					<table cellpadding=0 cellspacing=0 width='65%'>
+					<table cellpadding=0 cellspacing=0>
 						<tr valign='top'>
-							<td width='25%'>
+							<td width='20%'>
+								<div class='item'>
+									<div class='label'>Introduction</div>
+									<ul>
+										<li><a href="/introduction/multiLanguage">Multi Language</a></li>
+										<li><a href="/introduction/multiLanguage_2">Preparation</a></li>
+										<li><a href="/introduction/schoolDormitory">Dormitories</a></li>
+									</ul>
+								</div>
+							</td>
+							<td width='20%'>
 								<div class='item'>
 									<div class='label'>Course</div>
 									<ul>
@@ -46,7 +64,7 @@ add_css('featured.item.css');
 									</ul>
 								</div>
 							</td>
-							<td width='25%'>
+							<td width='20%'>
 								<div class='item'>
 									<div class='label'>Junior</div>
 									<ul>
@@ -57,7 +75,7 @@ add_css('featured.item.css');
 									</ul>
 								</div>
 							</td>
-							<td width='25%'>
+							<td width='20%'>
 								<div class='item'>
 									<div class='label'>Camp</div>
 									<ul>
@@ -69,7 +87,7 @@ add_css('featured.item.css');
 									</ul>
 								</div>
 							</td>
-							<td width='25%'>
+							<td width='20%'>
 								<div class='item'>
 									<div class='label'>Gallery</div>
 									<ul>

@@ -10,13 +10,14 @@ $(function(){
 	
 	$("body").on("click","#header-top #main-menu .contactUs", moveToContactUs);
 	
-	$("body").on("mouseenter","#header-top #main-menu", showSubMenus);
-	$("body").on("mouseleave","#header-top #main-menu", closeSubMenus);
-	
+	$("body").on("mouseenter","#header-top > .inner", showSubMenus);
+	$("body").on("mouseleave","#header-top > .inner", closeSubMenus);
+	/*
 	$("body").on("mouseenter","#header-top .sub-menu", showSubMenus);
 	$("body").on("mouseleave","#header-top .sub-menu", closeSubMenus);
-	resizeWindow();
-	$(window).resize( resizeWindow );
+	*/
+	onResizeWindow();
+	$(window).resize( onResizeWindow );
 });
 
 function move_top_banner(){
@@ -83,17 +84,17 @@ function showSubMenus(){
 	clearTimeout( subMenuTimeoutOut );
 	subMenuTimeoutIn = setTimeout(function(){
 		$("#header-top .sub-menu").slideDown();
-	},300);
+	},500);
 }
 
 function closeSubMenus(){
 	clearTimeout( subMenuTimeoutIn );
 	subMenuTimeoutOut = setTimeout(function(){
 		$("#header-top .sub-menu").slideUp();
-	},300);
+	},500);
 }
 
-function resizeWindow(){
+function onResizeWindow(){
 	difference = ( $(window).width() - 960 ) / 2 + 10;
 	if( difference < 10 ) difference = 10;
 	$(".front-top-banner .arrow[direction='left']").css("left",difference);
