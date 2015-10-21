@@ -1,6 +1,11 @@
 <?php
 use sap\src\Route;
 
+Route::add('/introduction', 'wooreeedu\\Wooreeedu\\introduction');
+Route::add('/introduction/multiLanguage', 'wooreeedu\\Wooreeedu\\multiLanguage');
+Route::add('/introduction/multiLanguage_2', 'wooreeedu\\Wooreeedu\\multiLanguage_2');
+Route::add('/introduction/schoolDormitory', 'wooreeedu\\Wooreeedu\\schoolDormitory');
+
 Route::add('/course', 'wooreeedu\\Wooreeedu\\course');
 Route::add('/course/lecture', 'wooreeedu\\Wooreeedu\\lecture');
 Route::add('/course/trainingCost', 'wooreeedu\\Wooreeedu\\trainingCost');

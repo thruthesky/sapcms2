@@ -5,6 +5,36 @@ use sap\src\Response;
 use sap\core\message\Message;
 
 class Wooreeedu {
+
+	public static function introduction(){
+		return Response::render([
+            'template'=>'introduction',
+            'page'=>'introduction',
+            //'config' => $config,
+        ]);
+	}
+	public static function multiLanguage(){
+		return Response::render([
+            'template'=>'multiLanguage',
+            'page'=>'introduction',
+            //'config' => $config,
+        ]);
+	}
+	public static function multiLanguage_2(){
+		return Response::render([
+            'template'=>'multiLanguage_2',
+            'page'=>'introduction',
+            //'config' => $config,
+        ]);
+	}
+	public static function schoolDormitory(){
+		return Response::render([
+            'template'=>'schoolDormitory',
+            'page'=>'introduction',
+            //'config' => $config,
+        ]);
+	}
+	
 	public static function course(){
 		return Response::render([
             'template'=>'course',
