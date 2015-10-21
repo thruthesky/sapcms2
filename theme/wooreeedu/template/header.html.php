@@ -7,11 +7,19 @@ add_css('featured.item.css');
 <div class='top-menu'>
 	<div class='inner clearfix'>
 		<div class='left'>
-			Some Text Here
+			Welcome to Wooreeedu.com !!
 		</div>
 		<div class='right'>
-			<a href='/user/register'>Register</a>
-			<a href='/user/login'>Login</a>
+			<?php 
+				$user_idx = login('idx');
+				if( empty( $user_idx ) ){
+			?>
+				<a href='/user/register'>Register</a>			
+				<a href='/user/login'>Login</a>
+			<?php } else { ?>
+				<a href='/user/register'>My Profile</a>			
+				<a href='/user/logout'>Logout</a>
+			<?php } ?>
 		</div>
 	</div>
 </div>
@@ -36,7 +44,7 @@ add_css('featured.item.css');
 				?>		
 				</div>
 				<div class='item-list text-center'>
-					<table cellpadding=0 cellspacing=0 width='65%'>
+					<table cellpadding=0 cellspacing=0>
 						<tr valign='top'>
 							<td width='25%'>
 								<div class='item'>

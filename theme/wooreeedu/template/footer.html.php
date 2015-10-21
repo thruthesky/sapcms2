@@ -115,11 +115,13 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 					</td>
 				</tr>
 			</table>
+			<!--
 			<div class='social-links'>
 				<img src='/theme/wooreeedu/img/fb.png'/>			
 				<img src='/theme/wooreeedu/img/twitter.png'/>
 				<img src='/theme/wooreeedu/img/naver.png'/>
 			</div>
+			-->
 			</div>
 		</div>
 		<div class='c'>
