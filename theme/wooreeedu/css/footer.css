@@ -91,13 +91,13 @@
 }
 
 #layout-footer .footer-menu .footer-list .row{
-	margin-bottom:5px;
+	margin-bottom:20px;
 	
 }
 
 #layout-footer .footer-menu .footer-list .row b{
-	font-size:1.2em;
-	
+	display:block;
+	margin-bottom:20px;
 }
 /*footer.menu*/
 #layout-footer .footer-menu .footer-list{

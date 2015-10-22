@@ -75,11 +75,24 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 					KEEP <b>IN TOUCH</b>
 				</div>
 				
-				<div class='row'><b>Address</b> #577 Suntrade Bldg, Alabang-Zapote Rd, Almanza, Las Pinas city</div>
-				<div class='row'><b>Landline</b> 553-4298</div>
-				<div class='row'><b>Mobile</b> 0915-469-7300<br>0917-508-077</div>
-				<div class='row'><b>Internet Phone</b> +82 70 7893 1741</div>
-				<div class='row'><b>Email</b> multilanguageschool@gmail.com<br>mlpschool@naver.com</div>
+				<div class='row'>
+					<b>Visit Us</b>
+					#577 Suntrade Bldg,<br>
+					Alabang-Zapote Rd,<br>
+					Almanza, Las Pinas city
+				</div>
+				<div class='row'>
+					<b>Call Us</b> 
+					553-4298<br>
+					0915-469-7300<br>
+					0917-508-077<br>
+					+82 70 7893 1741<br>
+				</div>
+				<div class='row'>
+					<b>Mail Us</b>
+					multilanguageschool@gmail.com<br>
+					mlpschool@naver.com
+				</div>
 			</div>
 		</div>
 		<div class='c'>
