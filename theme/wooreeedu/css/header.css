@@ -73,7 +73,6 @@
 
 #header-top > .inner ul#main-menu li{
 	display:inline-block;
-	float:left;
 	margin-top:12px;
 	width:120px;
 	box-sizing:border-box;
@@ -212,6 +211,10 @@
 	#header-top > .inner .logo{
 		float:left;
 		margin-right:58px;
+	}
+	
+	#header-top > .inner ul#main-menu li{	
+		float:left;
 	}
 	
 	#header-top > .inner ul#main-menu li a{
