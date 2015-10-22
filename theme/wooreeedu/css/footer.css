@@ -92,6 +92,12 @@
 
 #layout-footer .footer-menu .footer-list .row{
 	margin-bottom:5px;
+	
+}
+
+#layout-footer .footer-menu .footer-list .row b{
+	font-size:1.2em;
+	
 }
 /*footer.menu*/
 #layout-footer .footer-menu .footer-list{
