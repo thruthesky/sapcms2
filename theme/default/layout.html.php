@@ -8,7 +8,7 @@
     <link type='text/css' href='/theme/default/css/base.css' rel='stylesheet' />
     <link type='text/css' href='/theme/default/css/layout.css' rel='stylesheet' />
     <link type='text/css' href='/theme/default/css/component.css' rel='stylesheet' />
-    <link rel="icon" type="image/ico" href="/theme/default/favicon.ico?v2"/>
+    <link rel="icon" type="image/ico" href="/theme/default/favicon.ico"/>
 </head>
 <body>
 <div id="layout">
