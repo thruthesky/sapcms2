@@ -109,7 +109,7 @@ EOH;
 
 	echo "</div>";
 }
-
+/*
 function getFrontTopBannerImages( $posts, $width = 1280, $height = 400 ){
 	if( empty( $posts ) ) return null;
 	$total_banners = count( $posts );
@@ -129,18 +129,32 @@ function getFrontTopBannerImages( $posts, $width = 1280, $height = 400 ){
 		echo "<img class='banner fake' src='$thumbnail'>";
 	}
 }
-
-function postFeaturedItem( $posts, $width = 200, $height = 150, $subject_length = 20 ){
+*/
+/*
+function postFeaturedSlider( $posts, $width = 200, $height = 150, $subject_length = 20 ){
+	$total_posts = count($posts);
 	if( !empty( $posts ) ) {
-		$post = $posts[0];
-		$img = $post->getImage();
-		$thumbnail = $img->urlThumbnail($width,$height);
-		$title = textLengthLimit( $post->title, $subject_length );
-		echo <<<EOH
-		<div class='item'>
-			<img src='$thumbnail'/>
-			<div class='title text-center'>$title</div>
-		</div>
-EOH;
+		echo "<div class='featuredPost'>";
+		
+		echo "<div class='page-navigator'>";
+		for( $i = 1; $i<=$total_posts; $i++ ){
+			if( $i == 1 ) $is_active = ' is-active';
+			else $is_active = null;
+			echo "<div class='page-item$is_active' page='$i'></div>";
+		}
+		echo "</div>";
+		
+		echo "<div class='inner'>";
+		
+		echo "<div class='item fake'><img src='theme/wooreeedu/img/popsong_5.jpg'/><div class='title text-center'>Title 5</div></div>";
+				
+		for( $i= 1; $i <= 5; $i++ ){
+			$url = "theme/wooreeedu/img/popsong_$i.jpg";
+			echo "<div class='item'><img src='$url'/><div class='title text-center'>Title $i</div></div>";
+		}
+			echo "<div class='item fake'><img src='theme/wooreeedu/img/popsong_1.jpg'/><div class='title text-center'>Title 1</div></div>";
+	
+		echo "</div></div>";
 	}
 }
+*/
