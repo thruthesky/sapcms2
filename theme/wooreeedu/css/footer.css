@@ -209,20 +209,21 @@
 
 #layout-footer .grid3 .a,
 #layout-footer .grid3 .b{
-	padding-left:20%;
+	/*padding-left:20%;*/
+	text-align:center;
 }
 
 @media all and ( min-width: 400px ) {
 	#layout-footer .grid3 .a,
 	#layout-footer .grid3 .b{
-		padding-left:23%;
+		/*padding-left:23%;*/
 	}
 }
 
 @media all and ( min-width: 460px ) {
 	#layout-footer .grid3 .a,
 	#layout-footer .grid3 .b{
-		padding-left:31%;
+		/*padding-left:31%;*/
 	}
 }
 
@@ -231,6 +232,7 @@
 	#layout-footer .grid3 .b,
 	#layout-footer .grid3 .c{
 		padding:55px 10px;
+		text-align:left;
 	}
 }
 

@@ -5,9 +5,9 @@
 
 
 .top-menu > .inner{
-	height:22px;
+	height:27px;
 	max-width:960px;	
-	padding:4px 10px;
+	padding:7px 10px;
 	margin:auto;
 	box-sizing:border-box;
 }
@@ -201,7 +201,7 @@
 */
 @media all and ( min-width: 960px ) {
 	.top-menu > .inner{		
-		padding:4px 0;		
+		padding:7px 0;		
 	}
 
 	#header-top > .inner{
