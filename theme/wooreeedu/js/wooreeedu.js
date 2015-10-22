@@ -67,6 +67,7 @@ function move_top_banner(){
 
 var topAutoBanner;
 function autoScrollTopBanner(){
+	stopFrontBanner();
 	topAutoBanner = setTimeout( function(){
 		var $selector = $(".front-top-banner > .inner");
 		top_banner_data.banner_current_page ++;
@@ -171,7 +172,8 @@ function featuredPostAnimation(){
 }
 
 var featuredAutoBanner;
-function autoScrollFeaturedBanner(){	
+function autoScrollFeaturedBanner(){
+	stopFeaturedBanner();
 	featuredAutoBanner = setTimeout(function(){
 		page_now = featured_banner_data.banner_current_page;		
 		clicked_page = parseInt( page_now ) + 1;

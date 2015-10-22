@@ -189,7 +189,7 @@ function url_forum() {
 
 //need to add query..........
 function getPostWithImage($index,$limit,$postConfig){
-	$images = post()->getLatestPostImages($index, $limit, 'test');
+	$images = post()->getLatestPostImages($index, $limit, $postConfig);
 	$posts = [];
 	if ( $images ) {
 		foreach ( $images as $image ) {

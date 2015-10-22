@@ -7,17 +7,19 @@ add_css('featured.item.css');
 <div class='top-menu'>
 	<div class='inner clearfix'>
 		<div class='left'>
-			홈 <span>·</span> 우리에듀 소개 · 질문하기
+			<a href='/'>홈</a> <span class='bullet'>•</span> 우리에듀 소개 <span class='bullet'>•</span> 질문하기
 		</div>
 		<div class='right'>
 			<?php 
 				$user_idx = login('idx');
 				if( empty( $user_idx ) ){
 			?>
-				<a href='/user/register'>Register</a>			
+				<a href='/user/register'>Register</a>
+				<span class='bullet'>•</span>			
 				<a href='/user/login'>Login</a>
 			<?php } else { ?>
-				<a href='/user/register'>My Profile</a>			
+				<a href='/user/register'>My Profile</a>
+				<span class='bullet'>•</span>		
 				<a href='/user/logout'>Logout</a>
 			<?php } ?>
 		</div>
@@ -62,7 +64,7 @@ add_css('featured.item.css');
 						<tr valign='top'>
 							<td width='16.67%'>
 								<div class='item'>
-									<div class='label'>Introduction</div>
+									<div class='label'>학원소개</div>
 									<ul>
 										<li><a href="/introduction/multiLanguage">Multi Language</a></li>
 										<li><a href="/introduction/multiLanguage_2">Preparation</a></li>
@@ -72,7 +74,7 @@ add_css('featured.item.css');
 							</td>
 							<td width='16.67%'>
 								<div class='item'>
-									<div class='label'>Course</div>
+									<div class='label'>어학연수</div>
 									<ul>
 										<li><a href="/course/lecture">Lecture</a></li>
 										<li><a href="/course/trainingCost">Training Cost</a></li>
@@ -81,18 +83,18 @@ add_css('featured.item.css');
 							</td>
 							<td width='16.67%'>
 								<div class='item'>
-									<div class='label'>Junior</div>
+									<div class='label'>조기유학</div>
 									<ul>
 										<li><a href="/junior/juniorEarlyStudy">Early Study</a></li>
 										<li><a href="/junior/advantagesInPH">Advantages</a></li>
 										<li><a href="/junior/earlyCost">Early Cost</a></li>
-										<li><a href="/junior/recommended">Recommendations</a></li>
+										<li><a href="/junior/recommended">Recommend</a></li>
 									</ul>
 								</div>
 							</td>
 							<td width='16.67%'>
 								<div class='item'>
-									<div class='label'>Camp</div>
+									<div class='label'>단기캠프</div>
 									<ul>
 										<li><a href="/camp/campInformation">Information</a></li>
 										<li><a href="/camp/schedule">Schedule</a></li>
@@ -104,7 +106,7 @@ add_css('featured.item.css');
 							</td>
 							<td width='16.67%'>
 								<div class='item'>
-									<div class='label'>Gallery</div>
+									<div class='label'>프로그램</div>
 									<ul>
 										<li><a href="/gallery/popsong">Pop Song</a></li>
 										<li><a href="/gallery/tripping">Tripping</a></li>
@@ -116,7 +118,7 @@ add_css('featured.item.css');
 							</td>
 							<td width='16.67%'>
 								<div class='item'>
-									<div class='label'>VideoEnglish</div>
+									<div class='label'>화상영어</div>
 									<ul>
 										<li><a href="#">Teachers</a></li>
 										<li><a href="#">Schedule</a></li>
@@ -138,7 +140,7 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 	<img class='arrow' direction='left' src="/theme/wooreeedu/img/top_arrow_left.png"/>
 	<img class='arrow' direction='right' src="/theme/wooreeedu/img/top_arrow_right.png"/>
 	<div class='inner'>
-		<img class='banner fake' src='/theme/wooreeedu/img/banner_3.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_1.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_2.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_3.jpg'/><img class='banner fake' src='/theme/wooreeedu/img/banner_1.jpg'/>
+		<img class='banner fake' src='/theme/wooreeedu/img/banner_5.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_1.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_2.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_3.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_4.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_5.jpg'/><img class='banner fake' src='/theme/wooreeedu/img/banner_1.jpg'/>
 	</div>
 </div>
 <?php } ?>
