@@ -18,9 +18,9 @@
 	display:none;
 	position:absolute;
 	top:42.8%;
-	padding:11px 19px 11px 19px;
+	padding:16px 25px 16px 25px;
 	border-radius:100%;
-	background-color:rgba(0,0,0,.6);
+	background-color:rgba(0,0,0,.4);
 	z-index:10;
 	cursor:pointer;
 }
@@ -32,12 +32,12 @@
 
 .front-top-banner .arrow[direction='left']{
 	/*left:10px;*/
-	padding-left:15px;
+	padding-left:21px;
 }
 
 .front-top-banner .arrow[direction='right']{
 	/*right:10px;*/
-	padding-right:15px;
+	padding-right:21px;
 }
 
 /*floaters*/
