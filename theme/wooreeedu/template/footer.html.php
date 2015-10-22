@@ -75,53 +75,11 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 					KEEP <b>IN TOUCH</b>
 				</div>
 				
-			<table cellpadding=0 cellspacing=0 width='100%'>
-				<tr valign='top'>
-					<td><b>Address:</b></td>
-					<td width='99%'>
-						#577 Suntrade Bldg,</br>
-						Alabang-Zapote Rd,</br>
-						Almanza, Las Pinas city</br>
-					</td>
-				</tr>
-			</table>
-			<table cellpadding=0 cellspacing=0 width='100%'>
-				<tr valign='top'>
-					<td><b>Landline No:</b></td>
-					<td width='99%'>553-4298</td>
-				</tr>
-			</table>
-			<table cellpadding=0 cellspacing=0 width='100%'>
-				<tr valign='top'>
-					<td><b>Cellphone:</b></td>
-					<td width='99%'>
-						0915-469-7300 /</br>
-						0917-508-077
-					</td>
-				</tr>
-			</table>
-			<table cellpadding=0 cellspacing=0 width='100%'>
-				<tr valign='top'>
-					<td><b>Internet Phone:</b></td>
-					<td width='99%'>+82 70 7893 1741</td>
-				</tr>
-			</table>
-			<table cellpadding=0 cellspacing=0 width='100%'>
-				<tr valign='top'>
-					<td><b>Email:</b></td>
-					<td width='99%'>
-						multilanguageschool@gmail.com</br>
-						mlpschool@naver.com
-					</td>
-				</tr>
-			</table>
-			<!--
-			<div class='social-links'>
-				<img src='/theme/wooreeedu/img/fb.png'/>			
-				<img src='/theme/wooreeedu/img/twitter.png'/>
-				<img src='/theme/wooreeedu/img/naver.png'/>
-			</div>
-			-->
+				<div class='row'><b>Address:</b> #577 Suntrade Bldg, Alabang-Zapote Rd, Almanza, Las Pinas city</div>
+				<div class='row'><b>Landline No:</b> 553-4298</div>
+				<div class='row'><b>Cellphone:</b> 0915-469-7300 / 0917-508-077</div>
+				<div class='row'><b>Internet Phone:</b> +82 70 7893 1741</div>
+				<div class='row'><b>Email:</b> multilanguageschool@gmail.com / mlpschool@naver.com</div>
 			</div>
 		</div>
 		<div class='c'>

@@ -89,7 +89,15 @@
 	margin-bottom:17px;
     font-size:1.8em;	
 }
+
+#layout-footer .footer-menu .footer-list .row{
+	margin-bottom:5px;
+}
 /*footer.menu*/
+#layout-footer .footer-menu .footer-list{
+	word-break:break-word;
+}
+
 #layout-footer .footer-menu .footer-list.menus ul{
 	padding:0;
 	margin:0;
