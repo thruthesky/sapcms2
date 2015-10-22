@@ -18,7 +18,7 @@
 	display:none;
 	position:absolute;
 	top:39.6%;
-	padding:18px 25px 15px 26px;
+	padding:18px 25px 14px 26px;
 	border-radius:100%;
 	background-color:rgba(0,0,0,.4);
 	z-index:10;
@@ -32,7 +32,7 @@
 
 .front-top-banner .arrow[direction='left']{
 	/*left:10px;*/
-	padding-left:22px;
+	padding-left:23px;
 }
 
 .front-top-banner .arrow[direction='right']{
