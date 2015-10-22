@@ -91,7 +91,7 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 				<div class='row'>
 					<b>Mail Us</b>
 					multilanguageschool@gmail.com<br>
-					mlpschool@naver.com
+					mlpschool@naver.com 
 				</div>
 			</div>
 		</div>
