@@ -12,7 +12,7 @@ add_css('front.postBannerWithText.css');
 	<section class='wooree-grid3'>
 		<div class='a'>
 			<div class='floater-dotted'>
-				<span class='text'>Title Here</span>
+				<span class='text'>Junior Camp</span>
 			</div>
 			<?php
 				$posts = getPostWithImage(0, 1, 'test');
@@ -24,7 +24,7 @@ add_css('front.postBannerWithText.css');
 		</div>
 		<div class='b'>	
 			<div class='floater-bar'>
-				<span class='text'>Title Here</span>
+				<span class='text'>Gallery</span>
 			</div>
 			<?php
 				$posts = getPostWithImage(1, 1, 'test');

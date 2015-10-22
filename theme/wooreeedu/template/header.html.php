@@ -46,15 +46,15 @@ add_css('featured.item.css');
 						echo "<div class='page-item$is_active' page='$i'></div>";
 					}
 				?>
-				</div>				
+				</div>
 					<div class='inner'>
-						<div class='item fake'><div class='banner'><img src='theme/wooreeedu/img/popsong_5.jpg'/></div><div class='title text-center'>Title 5</div></div><div class='item'>
-						<div class='banner'><img src='theme/wooreeedu/img/popsong_1.jpg'/></div><div class='title text-center'>Title 1</div></div><div class='item'>
-						<div class='banner'><img src='theme/wooreeedu/img/popsong_2.jpg'/></div><div class='title text-center'>Title 2</div></div><div class='item'>
-						<div class='banner'><img src='theme/wooreeedu/img/popsong_3.jpg'/></div><div class='title text-center'>Title 3</div></div><div class='item'>
-						<div class='banner'><img src='theme/wooreeedu/img/popsong_4.jpg'/></div><div class='title text-center'>Title 4</div></div><div class='item'>
-						<div class='banner'><img src='theme/wooreeedu/img/popsong_5.jpg'/></div><div class='title text-center'>Title 5</div></div><div class='item fake'>
-						<div class='banner'><img src='theme/wooreeedu/img/popsong_1.jpg'/></div><div class='title text-center'>Title 1</div></div>				
+						<div class='item fake'><div class='banner'><img src='/theme/wooreeedu/img/popsong_5.jpg'/></div><div class='title text-center'>Title 5</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/popsong_1.jpg'/></div><div class='title text-center'>Title 1</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/popsong_2.jpg'/></div><div class='title text-center'>Title 2</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/popsong_3.jpg'/></div><div class='title text-center'>Title 3</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/popsong_4.jpg'/></div><div class='title text-center'>Title 4</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/popsong_5.jpg'/></div><div class='title text-center'>Title 5</div></div><div class='item fake'>
+						<div class='banner'><img src='/theme/wooreeedu/img/popsong_1.jpg'/></div><div class='title text-center'>Title 1</div></div>				
 					</div>
 				</div>
 				<div class='item-list text-center'>

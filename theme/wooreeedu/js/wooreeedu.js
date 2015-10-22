@@ -131,7 +131,7 @@ function showSubMenus(){
 	subMenuTimeoutIn = setTimeout(function(){
 		$("#header-top .sub-menu").slideDown();
 		autoScrollFeaturedBanner();
-	},500);
+	},200);
 }
 
 function closeSubMenus(){
@@ -139,7 +139,7 @@ function closeSubMenus(){
 	subMenuTimeoutOut = setTimeout(function(){
 		$("#header-top .sub-menu").slideUp();
 		stopFeaturedBanner();
-	},500);
+	},200);
 }
 
 function onResizeWindow(){
