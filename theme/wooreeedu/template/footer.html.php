@@ -84,8 +84,8 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 				<div class='row'>
 					<b>Call Us</b> 
 					553-4298<br>
-					0915-469-7300<br>
-					0917-508-077<br>
+					+63 0915-469-7300<br>
+					+63 0917-508-077<br>
 					+82 70 7893 1741<br>
 				</div>
 				<div class='row'>
