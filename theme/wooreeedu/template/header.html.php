@@ -139,8 +139,12 @@ add_css('featured.item.css');
 //temporary solution
 if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 <div class="front-top-banner">
-	<img class='arrow' direction='left' src="/theme/wooreeedu/img/top_arrow_left.png"/>
-	<img class='arrow' direction='right' src="/theme/wooreeedu/img/top_arrow_right.png"/>
+	<div class='arrow' direction='left'>
+		<img src="/theme/wooreeedu/img/top_arrow_left.png"/>
+	</div>
+	<div class='arrow' direction='right'>
+		<img src="/theme/wooreeedu/img/top_arrow_right.png"/>
+	</div>
 	<div class='inner'>
 		<img class='banner fake' src='/theme/wooreeedu/img/banner_5.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_1.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_2.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_3.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_4.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_5.jpg'/><img class='banner fake' src='/theme/wooreeedu/img/banner_1.jpg'/>
 	</div>
