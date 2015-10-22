@@ -46,6 +46,7 @@
 
 #header-top > .inner{
 	position:relative;
+	height:95px;
 	max-width:960px;
 	padding:15px 10px;
 	margin:auto;
@@ -59,9 +60,10 @@
 }
 
 #header-top > .inner .logo{
-	display:block;
-	width:171px;
-	margin:auto;
+	display: block;
+    width: 210px;
+    padding-left: 10px;
+    margin: auto;
 }
 
 #header-top > .inner ul#main-menu{	
@@ -209,8 +211,8 @@
 	}
 	
 	#header-top > .inner .logo{
+		margin-right:10px;
 		float:left;
-		margin-right:58px;
 	}
 	
 	#header-top > .inner ul#main-menu li{	
