@@ -7,7 +7,9 @@ add_css('featured.item.css');
 <div class='top-menu'>
 	<div class='inner clearfix'>
 		<div class='left'>
-			<a href='/'>홈</a> <span class='bullet'>•</span> 우리에듀 소개 <span class='bullet'>•</span> 질문하기
+			<a href='/'>홈</a><span class='bullet'>•</span>
+			<a href='#'>우리에듀 소개</a><span class='bullet'>•</span>
+			<a href='#'>질문하기</a>
 		</div>
 		<div class='right'>
 			<?php 
