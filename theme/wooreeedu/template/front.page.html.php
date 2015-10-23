@@ -28,7 +28,7 @@ add_css('front.postBannerWithText.css');
 			</div>
 			<?php
 				$posts = getPostWithImage(1, 1, 'test');
-				echo postHoverTitleImage( $posts, 444, 333, 30 );
+				echo postHoverTitleImage( $posts, 444, 334, 30 );
 				$posts = getPostWithImage(5, 3, 'test');
 				echo postThumbnailWithText( $posts, 100, 75, 30 );
 			?>
@@ -38,7 +38,7 @@ add_css('front.postBannerWithText.css');
 			</div>
 			<?php 
 				$posts = getPostWithImage(2, 1, 'test');
-				echo postHoverTitleImage( $posts, 444, 333, 30 );
+				echo postHoverTitleImage( $posts, 444, 334, 30 );
 				$posts = getPostWithImage(8, 3, 'test');
 				echo postThumbnailWithText( $posts, 100, 75, 30 );
 			?>
