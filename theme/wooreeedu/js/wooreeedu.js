@@ -22,11 +22,11 @@ $(function(){
 	$(window).resize( onResizeWindow );
 	
 	//autoScrollFeaturedBanner();
-	startFrontBanner();
-	
-	$("body").on("mouseenter",".front-top-banner",stopFrontBanner);
-	$("body").on("mouseleave",".front-top-banner",startFrontBanner);
-	
+	if( $(".front-top-banner").length ){
+		startFrontBanner();
+		$("body").on("mouseenter",".front-top-banner",stopFrontBanner);
+		$("body").on("mouseleave",".front-top-banner",startFrontBanner);
+	}
 	$("body").on("mouseenter",".featuredPost",stopFeaturedBanner);
 	$("body").on("mouseleave",".featuredPost",startFeaturedBanner);
 });
