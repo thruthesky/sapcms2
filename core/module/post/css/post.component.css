@@ -39,3 +39,45 @@
 .post .buttons.right a {
     float:right;
 }
+
+/*postNotice*/
+.postNotice{
+	border:1px solid green;
+	padding:10px;
+	background-color:#f1f1f1;
+	color:green;	
+	text-align:center;
+}
+/*eo postNotice*/
+
+/*postReport*/
+.postReport{
+	padding:10px;
+	background-color:#fff;
+}
+
+.postReport .label{
+	font-size:1.1em;
+	line-height:130%;
+	margin-bottom:10px;
+}
+
+.postReport textarea{
+	height:200px;
+	width:100%;
+	padding:10px;
+	box-sizing:border-box;
+	resize:none;
+}
+
+.postReport .buttons{
+	text-align:right;
+}
+
+.postReport .buttons input[type='submit']{
+	padding:10px;
+	border:0;
+	background-color:#333;
+	color:#fff;
+}
+/*eo postReport*/

@@ -3,6 +3,7 @@
 	//di( $widget );
 	extract( $widget );	
 	$comments = post_data()->getComments();
+	$total_comments = count( $comments );	
 	/*
 	$post -> the post
 	$comments -> all comments
@@ -12,13 +13,13 @@
 	$title = $post['title'];
 	$content = $post['content'];
 	$date = date("F d, Y",$post['created']);
-	
+
 	if( $post['idx_user'] == 0 ) $user = user()->load( 1 );
 	else $user = user()->load( $post['idx_user'] );
 	$user_name = $user->fields['name'];
 	
 	$post_config = post_config()->load( $post['idx_config'] );
-	$pc_name = $post_config->fields['name'];
+	$pc_name = $post_config->fields['name'];	
 ?>
 <div class='post-view wooreeedu'>
 	<div class='inner'>
@@ -48,9 +49,23 @@
 							display_files_thumbnail( $files, 200, 200 );
 						?>
 					</div>
-				</section>
-		</div>
-		<?php widget('post_view_wooreeedu_form', ['post'=>post_data()->getCurrent()->get()])?>
+				</section>				
+		</div>		
 	</div>
+	<div class='commands post'>
+		<?php widget('post_view_wooreeedu_vote', ['post'=>post_data()->getCurrent()->get(), 'show_icons'=>true])?>
+		<div class='comments'>
+			<img src="/core/module/post/widget/post_view_wooreeedu/img/comment.png">		
+			<?php echo $total_comments; ?> Comments
+		</div>
+		<?php if( login('idx') == $post['idx_user'] ) {?>			
+			<a href="<?php echo url_post_delete($post['idx'])?>">Delete</a><!--삭제-->
+			<a href="<?php echo url_post_edit($post['idx'])?>">Edit</a><!--수정-->
+		<?php } else { ?>
+			<a href="/post/report/<?php echo $post['idx'] ?>">Report</a>
+		<?php } ?>
+	</div>
+	
+	<?php widget('post_view_wooreeedu_form', ['post'=>post_data()->getCurrent()->get()])?>
 	<?php widget('post_view_wooreeedu_comment_list')?>
 </div>

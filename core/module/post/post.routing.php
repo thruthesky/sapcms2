@@ -46,3 +46,6 @@ route('/post/search', 'post\\post\\searchPostData');
 
 route('/post/vote/good/*', 'post\\post\\voteGood');
 route('/post/vote/bad/*', 'post\\post\\voteBad');
+
+route('/post/report/*', 'post\\post\\report');
+route('/post/reportSubmit', 'post\\post\\reportSubmit');

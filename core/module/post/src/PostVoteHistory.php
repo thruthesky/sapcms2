@@ -28,7 +28,7 @@ class PostVoteHistory extends Meta
         return ['idx'=>$idx, 'no'=>$no, 'type'=>'bad'];
     }
 
-    private function voteDone($idx)
+    public function voteDone($idx)
     {
         $code = $this->getCode($idx);
         return $this->value($code);

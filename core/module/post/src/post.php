@@ -552,6 +552,21 @@ class post {
         return $url;
     }
 
+	
+	/*
+	*added by benjamin
+	*/
+	
+	 public static function urlPostReport($idx=0)
+    {
+        if ( empty($idx) ) $idx = post_data()->getCurrent()->get('idx');
+        $url = "/post/report/" . $idx;
+        $q = self::getHttpVariablesAsRequest();
+        if ( $q ) {
+            $url = $url . "?" . self::getHttpVariablesAsRequest();
+        }
+        return $url;
+    }
 
     /**
      *
@@ -939,5 +954,57 @@ class post {
         }
         else return [];
     }
+	
+	/*report*/
+	public static function report($idx){
+		$data = [];
+
+		if( empty( $idx )  ) error( -3001, "Missing IDX");	
+		$post = post_data()->load( $idx );
+		if( empty( $post )  ) error(-3002, "Post IDX [ $idx ] does not exist.");		
+		return Response::render([
+            'template'=>'post.layout',
+            'page'=>'post.report',
+            'post' => $post,
+            //'total_record' => $total_record,
+        ]);
+		//di( request() );
+	}
+	
+	public static function reportSubmit(){
+		$idx = request('idx');
+		$reason = request('reason');
+		if( empty( $idx )  ) error( -3001, "Missing IDX");	
+		$post = post_data()->load( $idx );
+		if( empty( $post )  ) error(-3002, "Post IDX [ $idx ] does not exist.");
+		
+		$extra_text = null;
+		if( !empty( $post ) ){
+			$post
+			->set( 'report', 'Y' )
+			->set( 'reason', $reason )
+			->set( 'int_1', 0 )
+			->set( 'int_2', 0 )
+			->set( 'int_3', 0 )
+			->set( 'int_4', 0 )
+			->set( 'int_5', 0 )
+			->set( 'int_6', 0 )
+			->set( 'int_7', 0 )
+			->set( 'int_8', 0 )
+			->set( 'int_9', 0 )
+			->set( 'int_10', 0 )
+			->save();
+			$extra_text = ["type"=>"success","message"=>"Report for IDX [ $idx ] was successful"];
+			
+		}
+
+		return Response::render([
+            'template'=>'post.layout',
+            'page'=>'post.report',
+			'post' => $post,
+			'extra_text' => $extra_text,
+        ]);
+	}
+	/*eo report*/
 }
 
