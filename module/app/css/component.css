@@ -471,15 +471,17 @@
 .modal_window .arrow{
 	position:absolute;
 	top:47.3%;
-	width:20px;
+	padding:10px 15px;
+	width:50px;
+	cursor:pointer;
 }
 
 .modal_window .arrow.left{
-	left:10px;
+	left:0;
 }
 
 .modal_window .arrow.right{
-	right:10px;
+	right:0;
 }
 /*eo modal_window*/
 

@@ -1294,13 +1294,16 @@ function change_modal_window_image(){
 	$this = $(this);
 	idx = $this.attr('idx');
 	
-	$(".modal_image").remove();
-	
-	data = {};
-	data.action = 'modalImage';
-	data.idx = $this.attr('idx');
-	console.log( data );
-	ajax_get_modal_window_data( data );
+	if( $(".modal_image[idx='" + idx + "']").length ){
+		$(".modal_image").hide();
+		$(".modal_image[idx='" + idx + "']").show();
+	}
+	else{
+		data = {};
+		data.action = 'modalImage';
+		data.idx = $this.attr('idx');	
+		ajax_get_modal_window_data( data );
+	}
 }
 
 function ajax_get_modal_window_data( data ){
@@ -1309,7 +1312,8 @@ function ajax_get_modal_window_data( data ){
         'url': url,
         'data' : data
     })
-	.done(function(html) {			
+	.done(function(html) {
+		$(".modal_image").hide();
 		$('.modal_window').append(html);
 		adjustModalImage();
 	})
@@ -1354,9 +1358,13 @@ function appendModalWindowLoader(){
 
 function remove_modal_window( e ){
 	console.log( "remove modal" );
-	var target_class = $(e.target).attr('class');
+	//var target_class = $(e.target).attr('class');
 	//console.log( target_class );
-	if( target_class == 'modal_window' || target_class == 'modal_image' ){
+	//if( target_class == 'modal_window' || target_class == 'modal_image' ){
+	if( $(e.target).hasClass('arrow') ){
+		
+	}
+	else{
 		$('.modal_window').remove();
 		$("body").css('overflow','initial');
 		document.ontouchmove = function(e){}//remove the disabled mobile scrolling
@@ -1534,6 +1542,7 @@ function message_search(){
 	}
 	else{
 		$this.addClass('expanded');
+		$("input[name='keyword']").show();
 		$("input[name='keyword']").animate({width:'100%'},500);
 		$this.find("input[name='keyword']").click();
 		$this.find("input[name='keyword']").focus();		
@@ -1790,6 +1799,7 @@ function body_clicked( e ){
 		//e.preventDegfault();
 	}
 	
+	/*remove on body*/
 	$selector = $(".remove-on-body-click");
 	
 	if( !$selector.length ) return
@@ -1816,7 +1826,6 @@ var backKeyTimeout;
 function onBackKeyDown( e ){	
 	clearTimeout( backKeyTimeout );
 	tap_count++;
-	
 	//custom double tap of backbutton by benjamin
 	backKeyTimeout = setTimeout(function(){
 						if( tap_count > 1 ){
@@ -1826,6 +1835,19 @@ function onBackKeyDown( e ){
 						tap_count = 0;
 						
 						if ( $(getMenu()).css("display") == 'block' ) closePanel();
+						//message search box can be removed by back button
+						else if( $('.remove-on-expand').length ){
+							if( $("input[name='keyword']").val() != '' ){
+								re = confirm("Are you sure you want to remove the search box?");
+								if( !re ) return;
+							}
+							$("input[name='keyword']").val('');
+							$(".message-search").removeClass('expanded');
+							$("input[name='keyword']").animate({width:'0'},500,function(){
+								$("input[name='keyword']").hide();
+								$(".remove-on-expand").show();								
+							});
+						}
 						else if ( $(".modal_window").length ) $(".modal_window").click();
 						else if ( currentPageID != 'front_page' ) moveToFrontPage();
 					},300);

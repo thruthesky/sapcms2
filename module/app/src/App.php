@@ -530,28 +530,35 @@ class App {
 	
 	public static function modalImage(){	
 		$idx = request('idx');
-		$file = data()->load( $idx );
-		$file = $file->fields;		
+		$file = data()->load( $idx );		
+		$file = $file->fields;
 		$post_idx = $file['idx_target'];
 
 		//the query should be the same as the file query on postList to match the record...
-		$files = data()->loadBy('post', post_data($post_idx)->config('idx'), $post_idx);	
+		$files = data()->loadBy('post', post_data($post_idx)->config('idx'), $post_idx);
+		$total_files = count( $files );
 		$all_files = [];
 		foreach( $files as $file ){
 			$file_idxs[] = $file->fields['idx'];
 		}
 		$file_key_value = array_search( $idx, $file_idxs );
 		if( !empty( $file_idxs[ ( $file_key_value - 1 ) ] ) ) $idx_prev = $file_idxs[ ( $file_key_value - 1 ) ];
+		if( empty( $idx_prev ) ) $idx_prev = $file_idxs[ ( $total_files - 1 ) ];
 		if( !empty( $file_idxs[ ( $file_key_value + 1 ) ] ) ) $idx_next = $file_idxs[ ( $file_key_value + 1 ) ];
+		if( empty( $idx_next ) ) $idx_next = $file_idxs[ 0 ];
 			
 		$file = data()->load( $idx );
 		$post_idx = $file->target_idx;
 		$url = $file->url();
 		
-		if( !empty( $idx_prev ) ) $arrow_prev = "<img class='arrow left' idx='$idx_prev' src='".url_site()."/module/app/img/arrow_left.png'/>";
-		else $arrow_prev = null;
-		if( !empty( $idx_next ) ) $arrow_next = "<img class='arrow right' idx='$idx_next' src='".url_site()."/module/app/img/arrow_right.png'/>";
-		else $arrow_next = null;
+		$arrow_prev = null;
+		$arrow_next = null;
+		
+		if( $total_files > 1 ){
+			$arrow_prev = "<img class='arrow left' idx='$idx_prev' src='".url_site()."/module/app/img/arrow_left.png'/>";		
+			$arrow_next = "<img class='arrow right' idx='$idx_next' src='".url_site()."/module/app/img/arrow_right.png'/>";		
+		}
+		
 		echo "
 			<div class='modal_image' idx='$idx'>
 				$arrow_prev
