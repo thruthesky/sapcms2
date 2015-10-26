@@ -193,6 +193,46 @@ class Wooreeedu {
         ]);
 	}
 	
+	public static function great(){
+		return Response::render([
+            'template'=>'great',
+            'page'=>'great',
+            //'config' => $config,
+        ]);
+	}
+	
+	public static function pricing(){
+		return Response::render([
+            'template'=>'pricing',
+            'page'=>'pricing',
+            //'config' => $config,
+        ]);
+	}
+	
+	public static function priceUs(){
+		return Response::render([
+            'template'=>'priceUs',
+            'page'=>'pricing',
+            //'config' => $config,
+        ]);
+	}
+	
+	public static function priceChinese(){
+		return Response::render([
+            'template'=>'priceChinese',
+            'page'=>'pricing',
+            //'config' => $config,
+        ]);
+	}
+	
+	public static function diploma(){
+		return Response::render([
+            'template'=>'diploma',
+            'page'=>'pricing',
+            //'config' => $config,
+        ]);
+	}
+	
 	
 	public static function messageSendSubmit(){
 		$name = request('name');

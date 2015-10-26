@@ -468,6 +468,19 @@
 	box-sizing:border-box;	
 }
 
+.modal_window .arrow{
+	position:absolute;
+	top:47.3%;
+	width:20px;
+}
+
+.modal_window .arrow.left{
+	left:10px;
+}
+
+.modal_window .arrow.right{
+	right:10px;
+}
 /*eo modal_window*/
 
 /*invisible-window*/
