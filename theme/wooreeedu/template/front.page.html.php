@@ -16,8 +16,10 @@ add_css('front.postBannerWithText.css');
 			</div>
 			<?php
 				$posts = getPostWithImage(0, 1, 'test');
-				if( !empty( $posts[0] ) ) $posts = $posts[0];				
-				echo postBannerWithText( $posts, 520, 500, 20, 200 );
+				if( !empty( $posts[0] ) ) {
+					$post = $posts[0];				
+					echo postBannerWithText( $post, 520, 500, 20, 200 );
+				}
 				$posts = getPostWithImage(1, 2, 'test');
 				echo postThumbnailWithText( $posts, 100, 75, 100 );
 			?>
