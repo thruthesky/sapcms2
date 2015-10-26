@@ -8,7 +8,7 @@ $post = $widget['post'];
 ?>
 <nav class="vote" idx="<?php echo $post['idx']?>">
     <div class="good">
-        GOOD (<span class="no"><?php echo $post['no_vote_good']?></span>)
+        <span class="no"><?php echo $post['no_vote_good'] > 1 ? $post['no_vote_good'] : "" ?></span> Like <?php echo $post['no_vote_good'] > 1 ? "s":"" ?>
     </div>
     <div class="bad">
         BAD (<span class="no"><?php echo $post['no_vote_bad']?></span>)

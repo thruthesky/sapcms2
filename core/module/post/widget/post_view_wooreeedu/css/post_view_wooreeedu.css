@@ -1,0 +1,61 @@
+.post-view.wooreeedu{
+	min-height:500px;	
+	margin:0 0 0 0;
+	background-color:#fff;	
+}
+
+.post-view.wooreeedu > .inner{
+	padding:10px;
+}
+
+.post-view.wooreeedu .category-title{
+	padding:20px 0;
+	margin-bottom:10px;
+	border-bottom:2px solid #ccc;
+	font-size:1.5em;
+}
+
+.post-view.wooreeedu .title{
+	padding:20px 0;
+	border-bottom:1px solid #ccc;
+	font-size:1.3em;
+}
+
+.post-view.wooreeedu .post-info{	
+	border-bottom:1px solid #ccc;
+	font-size:1.1em;
+}
+
+.post-view.wooreeedu .post-info > .name{
+	float:left;
+	margin-right:10px;
+	border-right:1px solid #ccc;
+}
+
+.post-view.wooreeedu .post-info > div{
+	padding:10px 10px;
+}
+
+.post-view.wooreeedu .post-info > div .highlight{
+	font-weight:bold;
+	color:#0091a0;
+}
+
+
+.post-view.wooreeedu .content{
+	padding:10px;
+}
+
+.post-view.wooreeedu .content .content-margin{
+	margin-bottom:10px;
+}
+
+.post-view.wooreeedu .content .display-files{
+	padding:0;
+	background-color:#fff;
+}
+
+.post-view.wooreeedu .content .display-files .image{
+	display:inline-block;
+	padding:5px;
+}

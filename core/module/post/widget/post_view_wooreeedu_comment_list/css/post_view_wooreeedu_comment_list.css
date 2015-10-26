@@ -1,0 +1,157 @@
+.post .comment-list .comment {
+
+}
+
+.post .comment-list .comment[depth='2'] {
+    margin-left:3em;
+}
+.post .comment-list .comment[depth='3'] {
+    margin-left:5.5em;
+}
+.post .comment-list .comment[depth='4'] {
+    margin-left:7.5em;
+}
+.post .comment-list .comment[depth='5'] {
+    margin-left:9em;
+}
+.post .comment-list .comment[depth='6'] {
+    margin-left:10.4em;
+}
+.post .comment-list .comment[depth='7'] {
+    margin-left:11.3em;
+}
+.post .comment-list .comment[depth='8'] {
+    margin-left:12.2em;
+}
+.post .comment-list .comment[depth='9'] {
+    margin-left:13.1em;
+}
+.post .comment-list .comment[depth='10'] {
+    margin-left:14em;
+}
+.post .comment-list .comment[depth='11'] {
+    margin-left:14.9em;
+}
+.post .comment-list .comment[depth='12'] {
+    margin-left:15.8em;
+}
+.post .comment-list .comment[depth='13'] {
+    margin-left:16.7em;
+}
+.post .comment-list .comment[depth='14'] {
+    margin-left:17.6em;
+}
+.post .comment-list .comment[depth='15'] {
+    margin-left:18.5em;
+}
+.post .comment-list .comment[depth='16'] {
+    margin-left:19.4em;
+}
+.post .comment-list .comment[depth='17'] {
+    margin-left:20.3em;
+}
+.post .comment-list .comment[depth='18'] {
+    margin-left:21.2em;
+}
+.post .comment-list .comment[depth='19'] {
+    margin-left:22.1em;
+}
+.post .comment-list .comment[depth='20'],
+.post .comment-list .comment[depth='21'],
+.post .comment-list .comment[depth='22'],
+.post .comment-list .comment[depth='23'],
+.post .comment-list .comment[depth='24'],
+.post .comment-list .comment[depth='25'],
+.post .comment-list .comment[depth='26'],
+.post .comment-list .comment[depth='27'],
+.post .comment-list .comment[depth='28'],
+.post .comment-list .comment[depth='29'],
+.post .comment-list .comment[depth='30'],
+.post .comment-list .comment[depth='31'],
+.post .comment-list .comment[depth='32'],
+.post .comment-list .comment[depth='33'],
+.post .comment-list .comment[depth='34']
+{
+    margin-left:23.0em;
+}
+
+
+
+
+
+
+
+
+.comment-list .comment{
+	padding:10px;
+}
+
+.comment-list .comment .content{
+	padding:0;
+}
+
+.comment-list .comment .primary-photo{
+	width:80px;
+	padding:0 10px 0 0;
+}
+
+.comment-list .comment .primary-photo img{
+	width:100%;
+	border-radius:100%;
+}
+
+.comment-list .comment .buttons{
+	width:120px;
+}
+/*vote*/
+.comment-list .comment .vote{
+	margin:0 0 4px 0;
+}
+
+.comment-list .comment .vote .good{	
+	height:38px;
+	padding:10px 0;
+	margin:0;
+	background-color:#95a5a6;
+	border-radius:3px;
+	font-size:1.1em;
+	color:#fff;
+	text-align:center;
+	box-sizing:border-box;
+}
+
+.comment-list .comment .vote .bad{
+	display:none;
+}
+/*eo vote*/
+
+/*reply-button*/
+.comment-list .comment .reply-button{
+	height:38px;
+	width:100%;
+	padding:10px 0;
+	border:0;
+	border-radius:3px;
+	background-color:#3498db;
+	font-size:1.1em;
+	color:#fff;	
+	box-sizing:border-box;
+	text-align:center;
+	cursor:pointer;
+}
+/*eo reply-button*/
+
+/*content*/
+.comment-list .comment .content{
+	
+}
+
+.comment-list .comment .content .name{
+	font-size:1.1em;
+	color:#2980b9;
+	margin:0 0 5px 0;
+}
+/*eo content*/
+.comment-list .comment .comment-form{
+
+}
