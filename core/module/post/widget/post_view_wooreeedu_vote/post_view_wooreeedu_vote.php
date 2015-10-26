@@ -20,6 +20,6 @@ $post = $widget['post'];
 		?>
 			<img src="/core/module/post/widget/post_view_wooreeedu_vote/img/<?php echo $url ?>">
 		<?php } ?>
-        <span class="no"><?php echo $post['no_vote_good'] >= 1 ? $post['no_vote_good'] : "" ?></span> Like <?php echo $post['no_vote_good'] > 1 ? "s":"" ?>
+        <span class="no"><?php echo $post['no_vote_good'] >= 1 ? $post['no_vote_good'] : "" ?></span> Like<?php echo $post['no_vote_good'] > 1 ? "s":"" ?>
     </div>
 </nav>

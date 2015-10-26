@@ -57,7 +57,7 @@
 		<?php widget('post_view_wooreeedu_vote', ['post'=>post_data()->getCurrent()->get(), 'show_icons'=>true])?>
 		<div class='comments'>
 			<img src="/core/module/post/widget/post_view_wooreeedu/img/comment.png">		
-			<?php echo $total_comments; ?> Comments
+			<?php echo $total_comments; ?> Comment<?php echo $total_comments > 1 ? "s":"" ?>
 		</div>
 		<?php if( login('idx') == $post['idx_user'] ) {?>			
 			<a href="<?php echo url_post_delete($post['idx'])?>">Delete</a><!--삭제-->
