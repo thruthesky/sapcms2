@@ -1029,13 +1029,13 @@ function clearCache() {
 }
 var retries = 0;
 function cameraSuccess(fileURI) {
-	file_loader = createFileLoader();	
-	$(photoOptions.selector).append( file_loader );
-	
+	if( !$(photoOptions.selector).find("file-loader").length ){
+		file_loader = createFileLoader();	
+		$(photoOptions.selector).append( file_loader );
+	}
 	
     var win = function (r) {
-		setTimeout( function(){
-			$(photoOptions.selector).find(".file-loader").remove();
+		setTimeout( function(){			
 			console.log("Code = " + r.responseCode);
 			console.log("Response = " + r.response);
 			console.log("Sent = " + r.bytesSent);		
@@ -1049,6 +1049,7 @@ function cameraSuccess(fileURI) {
 			for ( var i in re ) {
 				var file = re[i];
 				if ( file.error ) {
+					$(photoOptions.selector).find(".file-loader").remove();
 					alert(file.message);                
 				}
 				else {					
@@ -1066,8 +1067,14 @@ function cameraSuccess(fileURI) {
 					*/
 					html = "<div idx='" + file.idx + "' class='file image delete'><img src='"+file.urlThumbnail+"'><div class='x-mark'>X</div></div>";				
 					if ( photoOptions.add ) $(photoOptions.selector).append(html);
-					else $(photoOptions.selector).html(html);								
-					
+					else $(photoOptions.selector).html(html);					
+					var idx = $(html).attr('idx');			
+					$("[idx='" + idx + "']").hide();
+					$(photoOptions.selector).find("[idx='" + idx + "'] img").load(function(){
+						$(photoOptions.selector).find(".file-loader").remove();
+						$("[idx='" + idx + "']").show();
+					});
+					//$(photoOptions.selector).find(".file-loader").remove();
 					if ( typeof photoOptions.callback == 'function' ) photoOptions.callback(file);
 				}
 			}

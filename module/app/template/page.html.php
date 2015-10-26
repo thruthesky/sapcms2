@@ -15,4 +15,10 @@ $post_id = segment(2);
 			 <?php echo $options['footer']; ?>
 		</div>
 	<?php }?>
+	<?php /*
+	<div class='file image file-loader' style='display:none'>
+		<img src="/module/app/img/loader8.gif">
+	</div>
+	*/
+	?>
 </div>
