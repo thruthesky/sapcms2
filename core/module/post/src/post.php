@@ -981,6 +981,7 @@ class post {
 		$extra_text = null;
 		if( !empty( $post ) ){
 			$post
+			//temp
 			->set( 'report', 'Y' )
 			->set( 'reason', $reason )
 			->set( 'int_1', 0 )
