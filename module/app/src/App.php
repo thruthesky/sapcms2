@@ -759,6 +759,7 @@ class App {
 		$post
 			->set( 'report', 'Y' )
 			->set( 'reason', $reason )
+			//temp
 			->set( 'int_1', 0 )
 			->set( 'int_2', 0 )
 			->set( 'int_3', 0 )
