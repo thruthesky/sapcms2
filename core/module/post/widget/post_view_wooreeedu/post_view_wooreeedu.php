@@ -17,6 +17,7 @@
 	if( $post['idx_user'] == 0 ) $user = user()->load( 1 );
 	else $user = user()->load( $post['idx_user'] );
 	$user_name = $user->fields['name'];
+	if( empty( $user_name ) ) $user_name = $user->id;
 	
 	$post_config = post_config()->load( $post['idx_config'] );
 	$pc_name = $post_config->fields['name'];	
