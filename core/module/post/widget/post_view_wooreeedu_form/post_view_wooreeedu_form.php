@@ -16,7 +16,7 @@ $user_idx = login('idx');
 if( !empty( $user_idx ) ) {
 	$user = user()->load( $user_idx );
 	$user_photo = data()->loadBy('user', 'primary_photo', 0, $user->idx);
-	$user_photo = $user_photo[0]->urlThumbnail(100,100);
+	if( !empty( $user_photo ) ) $user_photo = $user_photo[0]->urlThumbnail(100,100);
 }
 if( empty( $user_photo ) ) $user_photo = "/core/module/post/widget/post_view_wooreeedu_form/img/no_primary_photo.png";
 
