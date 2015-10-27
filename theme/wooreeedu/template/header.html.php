@@ -54,13 +54,13 @@ add_css('featured.item.css');
 				?>
 				</div>
 					<div class='inner'>
-						<div class='item fake'><div class='banner'><img src='/theme/wooreeedu/img/popsong_5.jpg'/></div><div class='title text-center'>Title 5</div></div><div class='item'>
-						<div class='banner'><img src='/theme/wooreeedu/img/popsong_1.jpg'/></div><div class='title text-center'>Title 1</div></div><div class='item'>
-						<div class='banner'><img src='/theme/wooreeedu/img/popsong_2.jpg'/></div><div class='title text-center'>Title 2</div></div><div class='item'>
-						<div class='banner'><img src='/theme/wooreeedu/img/popsong_3.jpg'/></div><div class='title text-center'>Title 3</div></div><div class='item'>
-						<div class='banner'><img src='/theme/wooreeedu/img/popsong_4.jpg'/></div><div class='title text-center'>Title 4</div></div><div class='item'>
-						<div class='banner'><img src='/theme/wooreeedu/img/popsong_5.jpg'/></div><div class='title text-center'>Title 5</div></div><div class='item fake'>
-						<div class='banner'><img src='/theme/wooreeedu/img/popsong_1.jpg'/></div><div class='title text-center'>Title 1</div></div>				
+						<div class='item fake'><div class='banner'><img src='/theme/wooreeedu/img/seminar_2.jpg'/></div><div class='title text-center'>English Seminar</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/popsong_1.jpg'/></div><div class='title text-center'>PopSong Contest</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/tripping_5.jpg'/></div><div class='title text-center'>Field Trip</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/speech_10.jpg'/></div><div class='title text-center'>Speech Contest</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/xmas_13.jpg'/></div><div class='title text-center'>Christmas Celebration</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/seminar_2.jpg'/></div><div class='title text-center'>English Seminar</div></div><div class='item fake'>
+						<div class='banner'><img src='/theme/wooreeedu/img/popsong_1.jpg'/></div><div class='title text-center'>PopSong Contest</div></div>				
 					</div>
 				</div>
 				<div class='item-list text-center'>
