@@ -13,15 +13,17 @@ $(function(){
                 }
                 else {
                     $(".vote[idx='"+re.idx+"'] ." + re.type + ' .no').text(re.no);
-					$(".vote ." + re.type + " img").attr("src","/core/module/post/widget/post_view_wooreeedu_vote/img/like_active.png");					
-					if( re.no > 1 ){						
-						var html = $(".vote ." + re.type).html();
-						if( html.indexOf( "Likes" ) != -1 ){
-						
-						}
-						else{
-							html = html.replace("Like","Likes");
-							$(".vote ." + re.type).html( html );
+					if( re.type == 'good' ){
+						$(".vote ." + re.type + " img").attr("src","/core/module/post/widget/post_view_wooreeedu_vote/img/like_active.png");																
+						if( re.no > 1 ){						
+							var html = $(".vote ." + re.type).html();
+							if( html.indexOf( "Likes" ) != -1 ){
+							
+							}
+							else{
+								html = html.replace("Like","Likes");
+								$(".vote ." + re.type).html( html );
+							}
 						}
 					}
                 }
