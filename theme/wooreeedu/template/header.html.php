@@ -136,6 +136,21 @@ add_css('featured.item.css');
 	</div>
 </div>
 <?php 
+if( !empty( $variables['page'] )  ){
+	$page = $variables['page'];
+	
+	if( strpos( $page, "post." ) !== false ) $page = 'post';
+	$url = "/theme/wooreeedu/img/header_".$page .".jpg";
+	//if( file_exists( $url ) ){
+	?>
+	<div class='header-image'>	
+		<img src='<?php echo $url; ?>'/>
+	</div>
+	<?php 
+	//}
+} 
+?>
+<?php 
 //temporary solution
 if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 <div class="front-top-banner">

@@ -45,8 +45,7 @@
 }
 
 #header-top > .inner{
-	position:relative;
-	height:95px;
+	position:relative;	
 	max-width:960px;
 	padding:15px 10px;
 	margin:auto;
@@ -66,16 +65,17 @@
     margin: auto;
 }
 
-#header-top > .inner ul#main-menu{	
+#header-top > .inner ul#main-menu{		
 	padding:0;
 	margin:0;
 	list-style:none;
 	text-align:center;
 }
 
-#header-top > .inner ul#main-menu li{
+#header-top > .inner ul#main-menu li{	
 	display:inline-block;
-	margin-top:11px;
+	height: 37px;
+	margin-top:13px;
 	width:120px;
 	box-sizing:border-box;
 }
@@ -90,7 +90,8 @@
 
 #header-top > .inner ul#main-menu li a{
 	display:inline-block;
-	font-size:20px;		
+	padding:0 0 10px 0;
+	font-size:18px;		
 	color:#0091a0;
 	border:1px solid #fff;
 	text-decoration:none;
@@ -170,6 +171,19 @@
 #header-top > .inner .sub-menu .item-list .item ul li a:hover{
 	color:yellow;
 }
+
+/*header-image*/
+.header-image{
+	width:100%;
+}
+
+.header-image img{
+	display:block;
+	width:100%;
+}
+/*eo header-image*/
+
+
 /*
 @media all and ( min-width: 720px ) {
 	#header-top > .inner .logo{
@@ -201,7 +215,14 @@
 	}
 }
 */
-@media all and ( min-width: 960px ) {
+/*
+@media all and ( min-width: 785px ) {
+	#header-top > .inner ul#main-menu{
+	    height:initial
+	}
+}
+*/
+@media all and ( min-width: 980px ) {
 	.top-menu > .inner{		
 		padding:7px 0;		
 	}
