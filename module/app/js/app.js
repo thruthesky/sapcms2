@@ -1028,13 +1028,15 @@ function clearCache() {
     navigator.camera.cleanup();
 }
 var retries = 0;
-function cameraSuccess(fileURI) {
+function cameraSuccess(fileURI) {	
+	//alert( $(photoOptions.selector).text() + photoOptions.selector );
 	if( !$(photoOptions.selector).find("file-loader").length ){
-		file_loader = createFileLoader();	
-		$(photoOptions.selector).append( file_loader );
+		$file_loader = createFileLoader();	
+		$(photoOptions.selector).append( $file_loader );
+		$file_loader.show();
 	}
 	
-    var win = function (r) {
+    var win = function (r) {	
 		setTimeout( function(){			
 			console.log("Code = " + r.responseCode);
 			console.log("Response = " + r.response);
@@ -1049,7 +1051,7 @@ function cameraSuccess(fileURI) {
 			for ( var i in re ) {
 				var file = re[i];
 				if ( file.error ) {
-					$(photoOptions.selector).find(".file-loader").remove();
+					$(photoOptions.selector).find(".file-loader").hide();
 					alert(file.message);                
 				}
 				else {					
@@ -1071,7 +1073,7 @@ function cameraSuccess(fileURI) {
 					var idx = $(html).attr('idx');			
 					$("[idx='" + idx + "']").hide();
 					$(photoOptions.selector).find("[idx='" + idx + "'] img").load(function(){
-						$(photoOptions.selector).find(".file-loader").remove();
+						$(photoOptions.selector).find(".file-loader").hide();
 						$("[idx='" + idx + "']").show();
 					});
 					//$(photoOptions.selector).find(".file-loader").remove();
@@ -1082,7 +1084,8 @@ function cameraSuccess(fileURI) {
     };
 
     var fail = function (error) {
-		$(photoOptions.selector).find(".file-loader").remove();
+		//$(photoOptions.selector).find(".file-loader").remove();
+		//$(photoOptions.selector).find(".file-loader").hide();
 	
         if (retries == 0) {
             retries ++;
@@ -1136,10 +1139,12 @@ function takePhotoUpload() {
 /* EO Camera */
 
 function createFileLoader(){
-	html = 	"<div class='file image file-loader'>" +
+	//return $(".file.image.file-loader");
+	return $(".file-loader");
+	/*html = 	"<div class='file image file-loader'>" +
 			"<img src='" + url_server + "/module/app/img/loader8.gif'>" +
 			"</div>";
-	return html;
+	return html;*/
 }
 
 /** User primary photo */
@@ -1152,6 +1157,15 @@ function cameraUserPrimaryPhoto() {
 function cameraPostFile() {
     var $this = $(this);
     var $form = $this.parents('form');
+	
+	//uploading consecutively doesn't seem to work
+	if( $form.find(".file-loader").length ){
+		if( $form.find(".file-loader").css("display") == 'block' ){
+			alert("Please wait for the file upload to finish.");
+			return false;
+		}
+	}
+	
     var idx = $form.find('[name="idx_parent"]').val();
 	
     var no = $form.attr('no');
@@ -1400,7 +1414,7 @@ $(function(){
 
 function keyboardShowHandler(){
 	
-	$("html, body, .page").css("height","100%");
+	//$("html, body, .page").css("height","100%");
 
 	setUpPageHeight();
 
@@ -1410,7 +1424,7 @@ function keyboardShowHandler(){
 }
 
 function keyboardHideHandler(){
-	$("html, body, .page").css("height","100%");
+	//$("html, body, .page").css("height","100%");
 	
 	setUpPageHeight();
 	

@@ -757,8 +757,15 @@ form .file-display{
 	margin-top:10px;
 }
 
-.file-display .file.file-loader > img{
+.file-loader{	
+	float:left;
+	display:none;
+	width:50%;
+	box-sizing:border-box;
+}
+
+.file-display .file-loader > img{
 	display:block;
     width:50%;
-	margin:auto;
+	margin:10% auto 0 auto;
 }
