@@ -245,12 +245,20 @@ class Wooreeedu {
 								Email: $email
 								$content
 								");
-		$message_entity = message()->set('idx_from',0) //anon
+		$user_idx = login('idx');
+		if( empty( $user_idx ) ) $user_idx = 0;
+		
+		$message_entity = message()->set('idx_from',$user_idx) //anon
 				->set('idx_to', 1) //admin
 				->set('title', $title)
 				->set('content', $new_content)
 				->save();
 	
-		Response::redirect('/');
+		//Response::redirect('/notice');
+		return Response::render([
+            'template'=>'notice',
+            'message'=>'Successfully sent the message to the site admin.',
+            //'config' => $config,
+        ]);
 	}
 }
