@@ -1,7 +1,7 @@
 $ = jQuery;
 
 $(function(){
-	$("body").on("click",".post-view.wooreeedu", focusOnCommentBox );
+	$("body").on("click",".post-view.wooreeedu .comments", focusOnCommentBox );
 });
 
 function focusOnCommentBox(){
