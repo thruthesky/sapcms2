@@ -66,6 +66,7 @@
 .post-view.wooreeedu .commands > *{	
 	display:inline-block;
 	text-decoration:none;
+	cursor:pointer;
 }
 
 .post-view.wooreeedu .commands.post{
@@ -83,6 +84,7 @@
 
 .post-view.wooreeedu .commands.post > a{
 	float:right;
+	padding:5px 10px 5px 10px;
 	color:#b9b9b9;
 }
 

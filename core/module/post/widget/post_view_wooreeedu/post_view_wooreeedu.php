@@ -1,5 +1,6 @@
 <?php
 	add_css();
+	add_javascript();
 	//di( $widget );
 	extract( $widget );	
 	$comments = post_data()->getComments();
