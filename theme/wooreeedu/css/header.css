@@ -174,12 +174,46 @@
 
 /*header-image*/
 .header-image{
+	position:relative;
 	width:100%;
 }
 
 .header-image img{
 	display:block;
 	width:100%;
+}
+
+.header-image .label{
+	position:absolute;
+	left:0;
+	top:41%;
+	width:100%;
+	text-align:center;
+}
+
+.header-image .text{
+	display: inline-block;
+    position: relative;
+    padding: 10px 15px 20px 15px;	
+    border: 2px solid #fff;
+    border-radius: 3px;
+	background:rgba(0,0,0,.4);
+    font-size: 1.3em;
+    color: #fff;
+	letter-spacing: 3px;
+}
+
+.header-image .text a{
+	text-decoration:none;
+	color:#fff;
+}
+
+.header-image .text .bottom_bar{
+	position:absolute;
+	left:25%;
+	bottom:10px;
+	width:50%;
+	border-bottom:2px solid #fff;
 }
 /*eo header-image*/
 

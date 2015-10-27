@@ -9,7 +9,9 @@ add_css('featured.item.css');
 		<div class='left'>
 			<a href='/'>홈</a><span class='bullet'>•</span>
 			<a href='#'>우리에듀 소개</a><span class='bullet'>•</span>
-			<a href='#'>질문하기</a>
+			<a href='#'>질문하기</a><span class='bullet'>•</span>
+			<a href='/pricing'>Pricing</a><span class='bullet'>•</span>
+			<a href='/great'>Great</a>
 		</div>
 		<div class='right'>
 			<?php 
@@ -139,12 +141,25 @@ add_css('featured.item.css');
 if( !empty( $variables['page'] )  ){
 	$page = $variables['page'];
 	
-	if( strpos( $page, "post." ) !== false ) $page = 'post';
+	if( strpos( $page, "post." ) !== false ) {
+		$page = 'post';
+		$text = "<a href='/post/list?id=".post_config()->getCurrent()->id."'>".post_config()->getCurrent()->name."</a>";
+	}
+	else{
+		$text = strtoupper($page);
+		if( $text == "VIDEOENGLISH" ) $text = "VIDEO ENGLISH";
+	}
 	$url = "/theme/wooreeedu/img/header_".$page .".jpg";
 	//if( file_exists( $url ) ){
 	?>
 	<div class='header-image'>	
 		<img src='<?php echo $url; ?>'/>
+		<div class='label'>
+			<div class='text'>
+				<?php echo $text; ?>
+				<div class='bottom_bar'></div>
+			</div>
+		</div>
 	</div>
 	<?php 
 	//}
