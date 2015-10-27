@@ -12,8 +12,13 @@
 /*temp-page*/
 .temp-page{
 	padding:10px 20px;
+	margin:0 0 10px 0;
     background-color: #fff;
     min-height: 400px;
+}
+
+.temp-page:last-child{
+	margin-bottom:0;
 }
 
 .temp-page .kr-text{
