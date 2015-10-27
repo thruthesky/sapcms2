@@ -1,0 +1,56 @@
+.postEdit.wooreeedu{
+	padding:10px;
+	background-color:#fff;
+}
+
+.postEdit.wooreeedu .row{
+	padding:10px;
+}
+
+.postEdit.wooreeedu .row .caption{
+	float:left;
+	padding:5px;
+	margin-right:10px;
+}
+
+.postEdit.wooreeedu .row.title input{
+	width:50%;
+	padding:5px 10px;
+	box-sizing:border-box;
+}
+
+.postEdit.wooreeedu .row.file-upload input{
+	margin-bottom:10px;
+}
+
+.postEdit.wooreeedu .row.content .caption{
+	display:none;
+}
+
+.postEdit.wooreeedu .form-buttons{
+	text-align:right;
+}
+
+.postEdit.wooreeedu .form-buttons > *{
+	display:inline-block;
+	padding:8px 12px;
+	margin:0 10px 0 0;
+	font-size:1em;
+	box-sizing:border-box;
+	cursor:pointer;
+}
+
+.postEdit.wooreeedu .form-buttons input[type='submit']{
+	height:35px;
+	border:1px solid #d5d5d5;	
+	background-color:transparent;
+	color:#444;
+}
+
+.postEdit.wooreeedu .form-buttons a{
+	height:35px;
+	border:1px solid #d5d5d5;	
+	background-color:transparent;
+	color:red;
+	text-decoration:none;
+}
