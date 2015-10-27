@@ -23,7 +23,8 @@ if ( empty($comments) ) return;
 			$user = user()->load( $user_idx );
 			$user_name = $user->name;	
 			if( empty( $user_name ) ) $user_name = $user->id;
-			$user_photo = data()->loadBy('user', 'primary_photo', 0, $user_idx);	
+			$user_photo = data()->loadBy('user', 'primary_photo', 0, $user_idx);
+			if( !empty( $user_photo ) ) $user_photo = $user_photo[0]->urlThumbnail(100,100);
 		}
 
 		if( empty( $user_photo ) ) $user_photo = "/core/module/post/widget/post_view_wooreeedu_form/img/no_primary_photo.png";
