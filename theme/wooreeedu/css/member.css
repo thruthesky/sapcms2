@@ -1,0 +1,422 @@
+.member-form-wrapper{
+	padding:30px 0 0 0;
+	min-height:400px;
+	box-sizing:border-box;
+}
+
+.member-form-wrapper a{
+	text-decoration:none;
+}
+
+.member-form-wrapper textarea:focus, .member-form-wrapper input:focus{
+	outline:none;
+}
+
+.member-form-wrapper{
+	padding:0 20px 20px 20px;
+	background-color:#fff;
+}
+
+.member-form-wrapper .title{
+	padding: 15px 10px 10px 10px;
+    margin-bottom: 35px;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #7d7d7d;
+    border-bottom: 2px solid #cccccc;
+    line-height: 100%;
+	box-sizing:border-box;
+}
+
+.member-form-wrapper.login .title{
+	
+}
+
+.member-form{	
+	font-size:.8em;
+}
+
+.member-form .row{
+	margin-bottom:10px;
+}
+
+.member-form .row.data-set > .caption, .member-form .row > .caption{
+	display:none;
+	float:left;
+	width:95px;
+	padding:10px 0;
+	font-weight:bold;
+	color:#7a7a7a;
+	box-sizing:border-box;
+}
+
+.member-form .row.data-set.terms > .caption{
+	padding:0;	
+}
+
+.member-form .row.data-set > .text, .member-form .row > .text{	
+	position:relative;	
+	padding-left:37px;
+	overflow:hidden;
+}
+
+.member-form .row.username.update > .text{	
+	padding:10px 10px 10px 42px;	
+	background-color: #f1f1f1;
+	/*color: #a9a9a9;*/
+	box-sizing:border-box;
+}
+
+.member-form .row.data-set > .text:before, .member-form .row > .text:before{
+	position:absolute;
+	left:0;
+	top:0;	
+	background-color:#e2e2e2;
+}
+
+.member-form .row.data-set.email > .text:before{	
+	content:url("/theme/wooreeedu/img/member/email.png");
+}
+
+.member-form .row.data-set.full_name > .text:before{	
+	content:url("/theme/wooreeedu/img/member/name.png");
+}
+
+.member-form .row.data-set.mobile > .text:before{	
+	content:url("/theme/wooreeedu/img/member/mobile.png");
+}
+
+.member-form .row.username > .text:before{	
+	content:url("/theme/wooreeedu/img/member/username.png");
+}
+
+.member-form .row.data-set.password > .text:before{	
+	content:url("/theme/wooreeedu/img/member/password.png");
+}
+
+.member-form .row.data-set.confirm_password > .text:before{	
+	content:url("/theme/wooreeedu/img/member/confirm_password.png");
+}
+
+.member-form .row.data-set.location > .text:before{	
+	content:url("/theme/wooreeedu/img/member/location.png");
+}
+
+
+.member-form .row.data-set.terms > .text{
+	padding-left:0;
+}
+
+.member-form .row.data-set.birth-date > .caption{
+	display:block;	
+	height:37px;
+	width:90px;
+	padding:11px 10px;
+	background-color:#e2e2e2;
+}
+
+.member-form .row.data-set.birth-date > .text{
+	padding-left:0;
+}
+
+.member-form .row.data-set.gender, .member-form .row.data-set.terms {
+	margin-left:10px;
+}
+
+.member-form .row.data-set.gender:after{
+	display: table;
+	content: "";	
+	clear: both;
+}
+
+.member-form .row.data-set.gender > .text{	
+	float:left;
+	padding:10px 0;
+	margin-right:5px;
+}
+
+.member-form .row.data-set > .text input[type='text'],.member-form .row.data-set > .text input[type='password'],.member-form .row.data-set > .text input[type='email']{	
+	height:36px;
+	width:100%;
+	border:0;
+	padding:0 10px 0 5px;
+	background-color:#f1f1f1;
+	/*color:#a9a9a9;*/
+	box-sizing:border-box;
+}
+
+
+/*row distinct design*/
+.member-form .row.data-set.month > label, .member-form .row.data-set.day > label, .member-form .row.data-set.year > label{
+	display:none;
+}
+
+.member-form .row.data-set.month, .member-form .row.data-set.day, .member-form .row.data-set.year{
+	float:left;
+}
+
+.member-form .row.data-set.month{
+	width:40%;
+}
+.member-form .row.data-set.day{
+	width:22%;
+}
+.member-form .row.data-set.year{
+	width:38%;	
+}
+
+.member-form .row.data-set.month select, .member-form .row.data-set.day select, .member-form .row.data-set.year select{
+	height:40px;
+	width:100%;	
+	padding:0 10px;	
+	border:0;
+	border-right:1px solid #fff;
+	background-color:#f1f1f1;
+	box-sizing:border-box;
+}
+
+.member-form .row.data-set.month select, .member-form .row.data-set.day select, .member-form .row.data-set.year select{
+	line-height:33px;
+}
+
+.member-form .row.data-set.year select{
+	border-right:0;
+}
+/*eo row distinct design*/
+.member-form .buttons{
+	width:100%;
+	margin-left:0;
+	text-align:center;
+}
+
+.login .member-form .buttons{	
+	margin-top:20px;
+}
+
+.register .member-form .buttons{	
+	text-align:right;
+}
+
+.member-form .buttons input[type='submit'], .member-form .buttons a{	
+	height:40px;
+	width:40%;
+	padding:10px 0;	
+	border-radius:2px;
+	font-size:1.3em;
+	font-weight:bold;
+	color:#fff;	
+	box-sizing:border-box;
+	text-align:center;
+}
+
+.member-form .buttons input[type='submit']{
+	margin-right:5px;
+	border:0;
+	background-color:#2c3e50;
+}
+
+.member-form .buttons a{
+	display:inline-block;
+	background-color:#e84c3d;
+}
+
+
+/*user-login-form unique*/
+.form-wrapper.login{
+	min-height:320px;
+	padding-bottom:20px;
+	background-color:#ecf0f1;
+	border-radius:3px;
+	box-sizing:border-box;
+	overflow:hidden;
+}
+
+.form-wrapper.login > .title{	
+	padding:10px;
+	margin-bottom:25px;
+	background-color:#34495e;
+	font-size:1.2em;
+	font-weight:bold;
+	color:#fff;
+	text-align:center;
+}
+
+.user-login-form.member-form {
+		
+}
+
+.user-login-form.member-form .row{
+	margin-bottom:3px;
+}
+
+.user-login-form.member-form .row.data-set > .text input[type='text'], .user-login-form.member-form .row.data-set > .text input[type='password']{
+	height:46px;
+	padding:16px 10px 16px 10px;
+	background-color:#f1f1f1;
+}
+
+.user-login-form.member-form .row.data-set > .text{
+	  margin-left:46px;
+	  padding-left:0;
+	  overflow:visible;
+}
+
+.user-login-form.member-form .row.data-set > .text:before{
+	  height:46px;
+	  left:-45px;
+	  padding: 5px 4px;	  
+	  box-sizing:border-box;
+}
+
+.user-login-form.member-form .row.data-set.username > .text > input[type='text']{	
+	/*border-top-left-radius:5px;*/
+	border-top-right-radius:5px;
+}
+
+.user-login-form.member-form .row.data-set.username > .text:before{
+	border-top-left-radius:5px;
+}
+
+.user-login-form.member-form .row.data-set.password > .text > input[type='password']{
+	/*border-bottom-left-radius:5px;*/
+	border-bottom-right-radius:5px;
+}
+
+.user-login-form.member-form .row.data-set.password > .text:before{
+	border-bottom-left-radius:5px;
+}
+
+.user-login-form.member-form .forgot-password-wrapper{		
+	margin-bottom:30px;
+	text-align:right;
+}
+
+.user-login-form.member-form .forgot-password-wrapper > a{	
+	padding:5px 10px;
+	color:#e84c3d;
+}
+
+.user-login-form.member-form .buttons{
+	width:100%;
+	text-align:center;
+}
+
+.user-login-form.member-form .buttons input[type='submit'], .user-login-form.member-form.member-form .buttons a{		
+	width:100%;
+	margin-bottom:5px;
+}
+
+.user-login-form.member-form .buttons a{
+	background-color:#f1f1f1;
+	color:#2c3e50;
+}
+/*eo user-login-form unique*/
+
+
+
+@media all and ( min-width: 360px ) {
+	.member-form .row.data-set.gender, .member-form .row.data-set.terms {
+		margin-left:0;
+	}
+
+	.member-form .buttons input[type='submit'], .member-form .buttons a{			
+		width:159px;
+	}
+	
+	.user-login-form.member-form .buttons input[type='submit'], .user-login-form.member-form.member-form .buttons a{		
+		width:100%;
+		margin-bottom:5px;
+	}
+}
+
+@media all and ( min-width: 480px ) {
+	.member-form .row.data-set > .text, .member-form .row > .text{
+		padding-left:0;
+	}
+
+	.member-form .row.data-set > .text input[type='text'], .member-form .row.data-set > .text input[type='password'], .member-form .row.data-set > .text input[type='email']{
+		padding:0 10px 0 42px;
+	}
+
+	.member-form .row.data-set > .caption,.member-form .row > .caption{
+		display:block;
+	}
+	
+	.member-form .row.data-set.birth-date > .caption{				
+		width:145px;
+		padding:11px 0;
+		background-color:transparent;
+	}
+	
+	.member-form .row.data-set.month > label, .member-form .row.data-set.day > label, .member-form .row.data-set.year > label{
+		display:none;
+	}
+	
+	.member-form .row.data-set > .text:before, .member-form .row > .text:before{
+		background-color:transparent;
+	}
+	
+	.member-form .row.username.update > .text{
+		
+	}
+	
+	/*
+	.member-form .row.data-set > .text input[type='text'], .member-form .row.data-set > .text input[type='password'], .member-form .row.data-set > .text input[type='email']{
+		width:301px;
+	}
+	*/
+	.member-form .row.data-set.gender > .text{
+		width:70px;
+	}
+	
+	.member-form .row.data-set > .text{
+	
+	}
+
+	/*user-login-form*/
+	.user-login-form.member-form {
+		
+	}
+	
+	.user-login-form .row.data-set > .caption{
+		display:none;
+	}	
+	
+	.user-login-form.member-form .row.data-set > .text:before{
+		background-color:#e2e2e2;
+	}
+	
+	.user-login-form.member-form .row.data-set > .text{
+		width:auto;
+	}
+	
+	.user-login-form.member-form .row.data-set > .text input[type='text'], .user-login-form.member-form .row.data-set > .text input[type='password']{
+		width:100%;
+	}
+	/*user-login-form*/
+}
+
+@media all and ( min-width: 510px ) {
+	.member-form .buttons{
+		
+	}
+	
+	.user-login-form.member-form .buttons{
+		margin-left:0;
+	}
+}
+
+@media all and ( min-width: 640px ) {
+	.member-form-wrapper{
+		padding:20px 20% 0 20%;
+	}
+
+	.user-login-form.member-form .buttons input[type='submit'], .user-login-form.member-form.member-form .buttons a{		
+		width:45%;
+		margin-bottom:0;
+	}
+	
+	.user-login-form.member-form .forgot-password-wrapper{	
+		margin-bottom:20px;
+	}
+}

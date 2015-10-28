@@ -119,6 +119,11 @@
     color:#fff;
 	text-decoration:none;
 }
+
+#layout-footer .footer-menu .footer-list.menus ul li a:hover{
+	color:yellow
+}
+
 /*eo footer.menu*/
 
 /*.footer.address*/
