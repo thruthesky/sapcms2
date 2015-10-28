@@ -19,7 +19,7 @@
 		$idx = 0;
 		$title = request('title');
 		$content = request('content');
-		$submit_text = "CREATE";
+		$submit_text = "Post";
 	}
 
 ?>
@@ -33,10 +33,10 @@
 		<input type="hidden" name="file_display" value="1">
 		<input type="hidden" name="content_type" value="H">
 		<?php include template('element/hidden.variables'); ?>
-		<?php include template('element/title'); ?>
-		<?php widget('post_edit_upload_files', ['form_name'=>'files[]']); ?>
+		<?php include template('element/title'); ?>		
 		<?php include template('element/content'); ?>
-		<div class='form-buttons'>
+		<div class='form-buttons clearfix'>
+			<?php widget('post_edit_upload_files', ['form_name'=>'files[]']); ?>
 			<input type="submit" value="<?php echo $submit_text; ?>">
 			<a href="<?php echo url_go_back();?>">CANCEL</a>
 		</div>

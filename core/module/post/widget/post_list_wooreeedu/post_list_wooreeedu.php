@@ -8,8 +8,11 @@ $posts = post()->postListData();
 $post_config = post_config()->getCurrent();
 $pc_name = $post_config->fields['name'];
 ?>
-<div class="post-list wooreeedu">
-		<div class='category-title'><?php echo $pc_name; ?></div>
+<div class="post-list wooreeedu">		
+		<div class='category-title'>
+			<?php echo $pc_name; ?>
+			<?php widget('post_list_menu'); ?>
+		</div>		
         <?php foreach( $posts as $post ) { 
 			$title = $post['title'];
 			$content = strcut( $post['content'], 200 )."...";
@@ -45,6 +48,6 @@ $pc_name = $post_config->fields['name'];
         <?php } ?>
 		<div class='page-navigator-wrapper'>
 			<?php widget('post_list_navigator'); ?>
-		</div>
+		</div>		
 </div>
 
