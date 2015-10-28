@@ -239,6 +239,9 @@ class Wooreeedu {
 		$email = request('email');
 		$title = request('title');
 		$content = request('content');
+		
+		$error = null;
+		
 		$new_content = 	nl2br("	Contact Us 
 								
 								Name: $name
@@ -248,17 +251,24 @@ class Wooreeedu {
 		$user_idx = login('idx');
 		if( empty( $user_idx ) ) $user_idx = 0;
 		
+		if( empty( $content ) ) $error = "Contact us content cannot be empty!";
+		
 		$message_entity = message()->set('idx_from',$user_idx) //anon
 				->set('idx_to', 1) //admin
 				->set('title', $title)
 				->set('content', $new_content)
 				->save();
-	
-		//Response::redirect('/notice');
-		return Response::render([
-            'template'=>'notice',
-            'message'=>'Successfully sent the message to the site admin.',
-            //'config' => $config,
-        ]);
+		
+		
+		if( empty( $error ) ){
+			echo "<script>alert('Succesfully sent the message!');</script>";
+			Response::redirect('/');
+		}
+		else{
+			echo "<script>alert('".$error."');</script>";
+			return Response::render([
+				'template'=>'front.page',
+			]);
+		}
 	}
 }
