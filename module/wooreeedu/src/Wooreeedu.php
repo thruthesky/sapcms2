@@ -196,7 +196,7 @@ class Wooreeedu {
 	public static function great(){
 		return Response::render([
             'template'=>'great',
-            //'page'=>'great',
+            'page'=>'videoEnglish',
             //'config' => $config,
         ]);
 	}
@@ -204,7 +204,7 @@ class Wooreeedu {
 	public static function pricing(){
 		return Response::render([
             'template'=>'pricing',
-            //'page'=>'pricing',
+            'page'=>'pricing',
             //'config' => $config,
         ]);
 	}
@@ -212,7 +212,7 @@ class Wooreeedu {
 	public static function priceUs(){
 		return Response::render([
             'template'=>'priceUs',
-            //'page'=>'pricing',
+            'page'=>'pricing',
             //'config' => $config,
         ]);
 	}
@@ -220,7 +220,7 @@ class Wooreeedu {
 	public static function priceChinese(){
 		return Response::render([
             'template'=>'priceChinese',
-            //'page'=>'pricing',
+            'page'=>'pricing',
             //'config' => $config,
         ]);
 	}
@@ -228,7 +228,7 @@ class Wooreeedu {
 	public static function diploma(){
 		return Response::render([
             'template'=>'diploma',
-            //'page'=>'pricing',
+            'page'=>'pricing',
             //'config' => $config,
         ]);
 	}
