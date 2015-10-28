@@ -8,8 +8,8 @@ add_css('featured.item.css');
 	<div class='inner clearfix'>
 		<div class='left'>
 			<a href='/'>홈</a><span class='bullet'>•</span>
-			<a href='#'>우리에듀 소개</a><span class='bullet'>•</span>
-			<a href='#'>질문하기</a><span class='bullet'>•</span>
+			<!--<a href='#'>우리에듀 소개</a><span class='bullet'>•</span>-->
+			<a href='/post/list?id=qna'>질문하기</a><span class='bullet'>•</span>
 			<a href='/pricing'>교육 프로그램</a><span class='bullet'>•</span>
 			<a href='/great'>Great 화상영어</a>
 		</div>
