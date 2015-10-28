@@ -144,7 +144,7 @@ if( !empty( $variables['page'] )  ){
 	if( strpos( $page, "post." ) !== false ) {
 		$page = 'post';
 		//$text = "<a href='/post/list?id=".post_config()->getCurrent()->id."'>".post_config()->getCurrent()->name."</a>";
-		$text = 'POST';
+		$text = 'FORUM';
 	}
 	else{
 		$text = strtoupper($page);
