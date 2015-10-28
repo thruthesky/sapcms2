@@ -1,9 +1,12 @@
 <?php
 	add_css('member.css');
+	$user = login();
+	if( empty( $user ) ) $submit_text = "REGISTER";
+	else $submit_text = "UPDATE";
 ?>
 
 <div class='member-form-wrapper register wooreeedu'>
-	<div class='title'>Register</div>
+	<div class='title'><?php echo $submit_text; ?></div>
 	<form class="member-register-form member-form ajax-file-upload" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="file_module" value="user">
         <input type="hidden" name="file_type" value="primary_photo">
@@ -21,7 +24,7 @@
 		}
 	?>
 
-	<?php if ( $user = login() ) { ?>
+	<?php if ( !empty( $user ) ) { ?>
 
 		<?php
 		$file_upload_form_name = 'primary_photo';
@@ -113,11 +116,7 @@
 		'caption' => 'Email',
 		'text' => html_input(['type'=>'email', 'name'=>'mail', 'value'=>$mail, 'placeholder'=>'Input Email']),
 	]);*/
-	?>
-		<?php
-		if( empty( $user ) ) $submit_text = "REGISTER";
-		else $submit_text = "UDPATE";
-		?>
+	?>		
 		<div class='buttons'>
 			<input type="submit" value="<?php echo $submit_text ?>">
 			<a href="/" class="ui-btn ui-icon-action">CANCEL</a>

@@ -22,7 +22,7 @@ add_css('featured.item.css');
 				<span class='bullet'>•</span>			
 				<a href='/user/login'>Login</a>
 			<?php } else { ?>
-				<a href='/user/register'>My Profile</a>
+				<a href='/user/profile'>My Profile</a>
 				<span class='bullet'>•</span>		
 				<a href='/user/logout'>Logout</a>
 			<?php } ?>
