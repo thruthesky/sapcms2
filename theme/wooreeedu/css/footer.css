@@ -128,25 +128,11 @@
 
 /*.footer.address*/
 #layout-footer .footer-menu .footer-list.address{
+	
+}
+
+#layout-footer .footer-menu .footer-list.address .row{
 	font-size:.9em;
-}
-
-#layout-footer .footer-menu .footer-list.address table{
-	margin-bottom:5px;
-}
-
-#layout-footer .footer-menu .footer-list.address table:last-child{
-	margin-bottom:5px;
-}
-
-#layout-footer .footer-menu .footer-list.address table b{
-	display: block;
-    margin-right: 5px;
-    white-space: nowrap;
-}
-
-#layout-footer .footer-menu .footer-list.address .social-links > img{
-	margin:10px 5px 0 0;
 }
 /*eo .footer.address*/
 
