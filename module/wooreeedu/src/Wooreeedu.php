@@ -10,6 +10,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'introduction',
             'page'=>'introduction',
+			'header_text'=>'ABOUT US',
             //'config' => $config,
         ]);
 	}
@@ -17,6 +18,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'multiLanguage',
             'page'=>'introduction',
+			'header_text'=>'ABOUT US',
             //'config' => $config,
         ]);
 	}
@@ -24,6 +26,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'multiLanguage_2',
             'page'=>'introduction',
+			'header_text'=>'ABOUT US',
             //'config' => $config,
         ]);
 	}
@@ -31,6 +34,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'schoolDormitory',
             'page'=>'introduction',
+			'header_text'=>'ABOUT US',
             //'config' => $config,
         ]);
 	}
@@ -39,6 +43,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'course',
             'page'=>'course',
+			'header_text'=>'COURSE',
             //'config' => $config,
         ]);
 	}
@@ -47,6 +52,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'lecture',
             'page'=>'course',
+			'header_text'=>'COURSE',
             //'config' => $config,
         ]);
 	}
@@ -55,6 +61,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'trainingCost',
             'page'=>'course',
+			'header_text'=>'COURSE',
             //'config' => $config,
         ]);
 	}
@@ -63,6 +70,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'junior',
             'page'=>'junior',
+			'header_text'=>'JUNIOR',
             //'config' => $config,
         ]);
 	}
@@ -71,6 +79,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'juniorEarlyStudy',
             'page'=>'junior',
+			'header_text'=>'JUNIOR',
             //'config' => $config,
         ]);
 	}
@@ -79,6 +88,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'advantagesInPH',
             'page'=>'junior',
+			'header_text'=>'JUNIOR',
             //'config' => $config,
         ]);
 	}
@@ -87,6 +97,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'earlyCost',
             'page'=>'junior',
+			'header_text'=>'JUNIOR',
             //'config' => $config,
         ]);
 	}
@@ -95,6 +106,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'recommended',
             'page'=>'junior',
+			'header_text'=>'JUNIOR',
             //'config' => $config,
         ]);
 	}
@@ -103,6 +115,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'camp',
             'page'=>'camp',
+			'header_text'=>'CAMP',
             //'config' => $config,
         ]);
 	}
@@ -110,6 +123,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'campInformation',
             'page'=>'camp',
+			'header_text'=>'CAMP',
             //'config' => $config,
         ]);
 	}
@@ -117,6 +131,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'schedule',
             'page'=>'camp',
+			'header_text'=>'CAMP',
             //'config' => $config,
         ]);
 	}
@@ -124,6 +139,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'preparation',
             'page'=>'camp',
+			'header_text'=>'CAMP',
             //'config' => $config,
         ]);
 	}
@@ -131,6 +147,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'weekendActivities',
             'page'=>'camp',
+			'header_text'=>'CAMP',
             //'config' => $config,
         ]);
 	}
@@ -138,6 +155,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'requirement',
             'page'=>'camp',
+			'header_text'=>'CAMP',
             //'config' => $config,
         ]);
 	}
@@ -146,6 +164,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'gallery',
             'page'=>'gallery',
+			'header_text'=>'GALLERY',
             //'config' => $config,
         ]);
 	}
@@ -153,6 +172,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'popsong',
             'page'=>'gallery',
+			'header_text'=>'GALLERY',
             //'config' => $config,
         ]);
 	}
@@ -160,6 +180,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'tripping',
             'page'=>'gallery',
+			'header_text'=>'GALLERY',
             //'config' => $config,
         ]);
 	}
@@ -167,6 +188,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'speech',
             'page'=>'gallery',
+			'header_text'=>'GALLERY',
             //'config' => $config,
         ]);
 	}
@@ -174,6 +196,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'xmas',
             'page'=>'gallery',
+			'header_text'=>'GALLERY',
             //'config' => $config,
         ]);
 	}
@@ -181,6 +204,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'seminar',
             'page'=>'gallery',
+			'header_text'=>'GALLERY',
             //'config' => $config,
         ]);
 	}
@@ -189,6 +213,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'videoEnglish',
             'page'=>'videoEnglish',
+			'header_text'=>'VIDEO ENGLISH',
             //'config' => $config,
         ]);
 	}
@@ -197,6 +222,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'great',
             'page'=>'videoEnglish',
+			'header_text'=>'VIDEO ENGLISH',
             //'config' => $config,
         ]);
 	}
@@ -204,7 +230,8 @@ class Wooreeedu {
 	public static function pricing(){
 		return Response::render([
             'template'=>'pricing',
-            'page'=>'pricing',
+            'page'=>'studyAbroad',
+			'header_text'=>'STUDY ABROAD',
             //'config' => $config,
         ]);
 	}
@@ -212,7 +239,8 @@ class Wooreeedu {
 	public static function priceUs(){
 		return Response::render([
             'template'=>'priceUs',
-            'page'=>'pricing',
+            'page'=>'studyAbroad',
+			'header_text'=>'STUDY ABROAD',
             //'config' => $config,
         ]);
 	}
@@ -220,7 +248,8 @@ class Wooreeedu {
 	public static function priceChinese(){
 		return Response::render([
             'template'=>'priceChinese',
-            'page'=>'pricing',
+            'page'=>'studyAbroad',
+			'header_text'=>'STUDY ABROAD',
             //'config' => $config,
         ]);
 	}
@@ -228,7 +257,8 @@ class Wooreeedu {
 	public static function diploma(){
 		return Response::render([
             'template'=>'diploma',
-            'page'=>'pricing',
+            'page'=>'studyAbroad',
+			'header_text'=>'STUDY ABROAD',
             //'config' => $config,
         ]);
 	}

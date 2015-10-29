@@ -30,10 +30,10 @@ Route::add('/gallery/speech', 'wooreeedu\\Wooreeedu\\speech');
 Route::add('/gallery/xmas', 'wooreeedu\\Wooreeedu\\xmas');
 Route::add('/gallery/seminar', 'wooreeedu\\Wooreeedu\\seminar');
 
-Route::add('/pricing', 'wooreeedu\\Wooreeedu\\pricing');
-Route::add('/pricing/priceUs', 'wooreeedu\\Wooreeedu\\priceUs');
-Route::add('/pricing/priceChinese', 'wooreeedu\\Wooreeedu\\priceChinese');
-Route::add('/pricing/diploma', 'wooreeedu\\Wooreeedu\\diploma');
+Route::add('/studyAbroad', 'wooreeedu\\Wooreeedu\\pricing');
+Route::add('/studyAbroad/priceUs', 'wooreeedu\\Wooreeedu\\priceUs');
+Route::add('/studyAbroad/priceChinese', 'wooreeedu\\Wooreeedu\\priceChinese');
+Route::add('/studyAbroad/diploma', 'wooreeedu\\Wooreeedu\\diploma');
 
 Route::add('/great', 'wooreeedu\\Wooreeedu\\great');
 
