@@ -39,6 +39,8 @@ Route::add('/great', 'wooreeedu\\Wooreeedu\\great');
 
 Route::add('/ve', 'wooreeedu\\Wooreeedu\\videoEnglish');
 
+Route::add('/paymentInfo', 'wooreeedu\\Wooreeedu\\paymentInfo');
+
 Route::add('/contactUs/messageSendSubmit', 'wooreeedu\\Wooreeedu\\messageSendSubmit');
 //Route::add('/contactUs/success', 'wooreeedu\\Wooreeedu\\contactUsSuccess');
 

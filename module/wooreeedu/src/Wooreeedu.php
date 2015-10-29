@@ -263,6 +263,15 @@ class Wooreeedu {
         ]);
 	}
 	
+	public static function paymentInfo(){
+		return Response::render([
+            'template'=>'paymentInfo',
+            'page'=>'paymentInfo',
+			'header_text'=>'PAYMENT INFO',
+            //'config' => $config,
+        ]);
+	}
+	
 	
 	public static function messageSendSubmit(){
 		$name = request('name');
