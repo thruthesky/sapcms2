@@ -5,7 +5,11 @@ use sap\src\Response;
 
 class admin {
     public static function page() {
-        Response::renderSystemLayout(['template'=>'index']);
+		if( login('id') != 'admin' ){
+			//added by benjamin to redirect non admin users
+			Response::redirect('/');
+		}
+		else Response::renderSystemLayout(['template'=>'index']);
     }
 
     public static function database_information() {
