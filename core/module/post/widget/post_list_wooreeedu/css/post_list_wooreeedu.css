@@ -108,7 +108,7 @@
 	color:#fff;
 }
 
-.post-list.wooreeedu .buttons.right > a:last-child{	
+.post-list.wooreeedu .buttons.right > a.settings{	
 	background-color:transparent;
 	color:#1abc9c;
 }
