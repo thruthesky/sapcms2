@@ -5,9 +5,8 @@
 
 
 .top-menu > .inner{
-	height:27px;
 	max-width:960px;	
-	padding:7px 10px;
+	padding:7px 10px 0 10px;
 	margin:auto;
 	box-sizing:border-box;
 }
@@ -18,8 +17,10 @@
 }
 
 .top-menu > .inner a{
-	text-decoration:none;
+	display:inline-block;
+	margin-bottom:7px;
 	color:#000;
+	text-decoration:none;
 }
 
 .top-menu > .inner .left{
@@ -258,7 +259,7 @@
 */
 @media all and ( min-width: 980px ) {
 	.top-menu > .inner{		
-		padding:7px 0;		
+		padding:7px 0 0 0;	
 	}
 
 	#header-top > .inner{

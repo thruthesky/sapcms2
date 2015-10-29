@@ -129,7 +129,9 @@ var subMenuTimeoutIn;
 var subMenuTimeoutOut;
 function showSubMenus(){
 	clearTimeout( subMenuTimeoutOut );
+	if( $(window).width() < "980" ) return;
 	subMenuTimeoutIn = setTimeout(function(){
+		stopFrontBanner();
 		$("#header-top .sub-menu").slideDown();
 		autoScrollFeaturedBanner();
 	},200);
@@ -138,6 +140,7 @@ function showSubMenus(){
 function closeSubMenus(){
 	clearTimeout( subMenuTimeoutIn );
 	subMenuTimeoutOut = setTimeout(function(){
+		startFrontBanner();
 		$("#header-top .sub-menu").slideUp();
 		stopFeaturedBanner();
 	},200);
