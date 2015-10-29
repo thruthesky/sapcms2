@@ -11,7 +11,9 @@ if ( empty($comments) ) return;
 ?>
 <section class="comment-list">
     <?php foreach ( $comments as $comment ) { 
-		$content = $comment['content'];
+		if( $comment['delete'] != 0 ) $content = "This post is deleted";
+		else $content = $comment['content'];
+		
 		$date = date("d M Y", $comment['created']);
 		
 		$user_idx = $comment['idx_user'];

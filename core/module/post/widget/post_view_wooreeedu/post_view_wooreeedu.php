@@ -12,7 +12,9 @@
 	
 	//di(  );
 	$title = $post['title'];
-	$content = $post['content'];
+	if( $post['delete'] != 0 ) $content = "This post is deleted";
+	else $content = $post['content'];
+
 	$date = date("F d, Y",$post['created']);
 
 	if( $post['idx_user'] == 0 ) $user = user()->load( 1 );
