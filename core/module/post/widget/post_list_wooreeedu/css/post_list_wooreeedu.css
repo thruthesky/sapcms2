@@ -40,7 +40,7 @@
 	font-size:1.3em;
 }
 
-.post-list.wooreeedu .title{
+.post-list.wooreeedu .inner > .title{
 	padding:20px 10px;
 	border-bottom:1px solid #ccc;
 	font-size:1.2em;
@@ -72,8 +72,10 @@
 
 /*page navigator*/
 .post-list.wooreeedu .page-navigator-wrapper{
+	height:70px;
 	padding:10px;
 	text-align:right;
+	box-sizing:border-box;
 }
 
 .post-list.wooreeedu .page-navigator-wrapper .navigation-bar{
@@ -113,3 +115,19 @@
 	color:#1abc9c;
 }
 /*eo buttons right*/
+
+/*post-list-search-box*/
+.post-list.wooreeedu .post-list-search-box{
+	float:left;
+	margin:10px 0 0 0;
+	background-color:#fff;
+}
+
+.post-list.wooreeedu .post-list-search-box label[for='qn']:after{
+	
+}
+
+.post-list.wooreeedu .post-list-search-box .input{
+	
+}
+/*eo post-list-search-box*/

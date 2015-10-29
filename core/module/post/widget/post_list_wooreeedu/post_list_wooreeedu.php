@@ -46,8 +46,9 @@ $pc_name = $post_config->fields['name'];
 				</a>
 			</div>			
         <?php } ?>
+		<?php widget('post_list_search_box', $widget); ?>
 		<div class='page-navigator-wrapper'>
-			<?php widget('post_list_navigator'); ?>
+			<?php widget('post_list_navigator'); ?>			
 		</div>		
 </div>
 
