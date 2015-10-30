@@ -26,7 +26,6 @@ function callback_deviceReady() {
 
 
 $(function() {
-
     appStarted = true;
     $session_id = getSessionId();
     console.log("session_id:" + $session_id);
