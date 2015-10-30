@@ -58,8 +58,8 @@ add_css('featured.item.css');
 						<div class='item fake'><div class='banner'><img src='/theme/wooreeedu/img/menu_photo_5.jpg'/></div><div class='title text-center'>English Seminar</div></div><div class='item'>
 						<div class='banner'><img src='/theme/wooreeedu/img/menu_photo_1.jpg'/></div><div class='title text-center'>PopSong Contest</div></div><div class='item'>
 						<div class='banner'><img src='/theme/wooreeedu/img/menu_photo_2.jpg'/></div><div class='title text-center'>Outbound Trip</div></div><div class='item'>
-						<div class='banner'><img src='/theme/wooreeedu/img/menu_photo_3.jpg'/></div><div class='title text-center'>Speech Contest</div></div><div class='item'>
-						<div class='banner'><img src='/theme/wooreeedu/img/menu_photo_4.jpg'/></div><div class='title text-center'>Christmas Celebration</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/menu_photo_4.jpg'/></div><div class='title text-center'>Speech Contest</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/menu_photo_3.jpg'/></div><div class='title text-center'>Christmas Celebration</div></div><div class='item'>
 						<div class='banner'><img src='/theme/wooreeedu/img/menu_photo_5.jpg'/></div><div class='title text-center'>English Seminar</div></div><div class='item fake'>
 						<div class='banner'><img src='/theme/wooreeedu/img/menu_photo_1.jpg'/></div><div class='title text-center'>PopSong Contest</div></div>				
 					</div>
