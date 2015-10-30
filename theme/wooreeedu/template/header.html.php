@@ -55,13 +55,13 @@ add_css('featured.item.css');
 				?>
 				</div>
 					<div class='inner'>
-						<div class='item fake'><div class='banner'><img src='/theme/wooreeedu/img/seminar_2.jpg'/></div><div class='title text-center'>English Seminar</div></div><div class='item'>
-						<div class='banner'><img src='/theme/wooreeedu/img/popsong_1.jpg'/></div><div class='title text-center'>PopSong Contest</div></div><div class='item'>
-						<div class='banner'><img src='/theme/wooreeedu/img/tripping_5.jpg'/></div><div class='title text-center'>Outbound Trip</div></div><div class='item'>
-						<div class='banner'><img src='/theme/wooreeedu/img/speech_10.jpg'/></div><div class='title text-center'>Speech Contest</div></div><div class='item'>
-						<div class='banner'><img src='/theme/wooreeedu/img/xmas_13.jpg'/></div><div class='title text-center'>Christmas Celebration</div></div><div class='item'>
-						<div class='banner'><img src='/theme/wooreeedu/img/seminar_2.jpg'/></div><div class='title text-center'>English Seminar</div></div><div class='item fake'>
-						<div class='banner'><img src='/theme/wooreeedu/img/popsong_1.jpg'/></div><div class='title text-center'>PopSong Contest</div></div>				
+						<div class='item fake'><div class='banner'><img src='/theme/wooreeedu/img/menu_photo_5.jpg'/></div><div class='title text-center'>English Seminar</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/menu_photo_1.jpg'/></div><div class='title text-center'>PopSong Contest</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/menu_photo_2.jpg'/></div><div class='title text-center'>Outbound Trip</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/menu_photo_3.jpg'/></div><div class='title text-center'>Speech Contest</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/menu_photo_4.jpg'/></div><div class='title text-center'>Christmas Celebration</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/menu_photo_5.jpg'/></div><div class='title text-center'>English Seminar</div></div><div class='item fake'>
+						<div class='banner'><img src='/theme/wooreeedu/img/menu_photo_1.jpg'/></div><div class='title text-center'>PopSong Contest</div></div>				
 					</div>
 				</div>
 				<div class='item-list text-center'>
@@ -180,7 +180,70 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 		<img src="/theme/wooreeedu/img/top_arrow_right.png"/>
 	</div>
 	<div class='inner'>
-		<img class='banner fake' src='/theme/wooreeedu/img/banner_5.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_1.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_2.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_3.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_4.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_5.jpg'/><img class='banner fake' src='/theme/wooreeedu/img/banner_1.jpg'/>
+		<div class='banner-wrapper five'>
+			<img class='banner fake' src='/theme/wooreeedu/img/banner_5.jpg'/>
+			<div class='text-info'>
+				<div class='inner'>
+					<div class='text top'>Read and learn. Don't waste time and also try to learn by yourself.</div><br>
+					<div class='text bottom'>Freetalk is not everything</div><br>
+					<div class='text more'>LEARN MORE<div class='triangle'></div></div>
+				</div>
+			</div>
+		</div><div class='banner-wrapper one '>
+			<img class='banner' src='/theme/wooreeedu/img/banner_1.jpg'/>
+			<div class='text-info'>
+				<div class='inner'>
+					<div class='text top'>Join our junior course now!</div><br>
+					<div class='text bottom'>Learn english early...</div><br>
+					<div class='text more'>LEARN MORE<div class='triangle'></div></div>
+				</div>
+			</div>
+		</div><div class='banner-wrapper two'>
+			<img class='banner' src='/theme/wooreeedu/img/banner_2.jpg'/>
+			<div class='text-info'>
+				<div class='inner'>
+					<div class='text top'>Get regular course classes.</div><br>
+					<div class='text bottom'>We will help you succeed!</div><br>
+					<div class='text more'>LEARN MORE<div class='triangle'></div></div>
+				</div>
+			</div>
+		</div><div class='banner-wrapper three'>
+			<img class='banner' src='/theme/wooreeedu/img/banner_3.jpg'/>
+			<div class='text-info'>
+				<div class='inner'>
+					<div class='text top'>Meet your future teachers.</div><br>
+					<div class='text bottom'>Meet new people.</div><br>
+					<div class='text more'>LEARN MORE<div class='triangle'></div></div>
+				</div>
+			</div>
+		</div><div class='banner-wrapper four'>
+			<img class='banner' src='/theme/wooreeedu/img/banner_4.jpg'/>
+			<div class='text-info'>
+				<div class='inner'>
+					<div class='text top'>It's not all about memorization.</div><br>
+					<div class='text bottom'>Have fun while learning.</div><br>
+					<div class='text more'>LEARN MORE<div class='triangle'></div></div>
+				</div>
+			</div>
+		</div><div class='banner-wrapper five'>
+			<img class='banner' src='/theme/wooreeedu/img/banner_5.jpg'/>
+			<div class='text-info'>
+				<div class='inner'>
+					<div class='text top'>Read and learn. Don't waste time and also try to learn by yourself.</div><br>
+					<div class='text bottom'>Freetalk is not everything</div><br>
+					<div class='text more'>LEARN MORE<div class='triangle'></div></div>
+				</div>
+			</div>
+		</div><div class='banner-wrapper one'>
+			<img class='banner fake' src='/theme/wooreeedu/img/banner_1.jpg'/>
+			<div class='text-info'>
+				<div class='inner'>
+					<div class='text top'>Join our junior course now!</div><br>
+					<div class='text bottom'>Learn english early...</div><br>
+					<div class='text more'>LEARN MORE<div class='triangle'></div></div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <?php } ?>

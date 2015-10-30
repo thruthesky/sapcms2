@@ -9,9 +9,96 @@
 	left:-100%;
 }
 
-.front-top-banner .banner{	
+.front-top-banner .banner-wrapper{		
 	display:inline-block;
+	position:relative;
 	width:100%;
+}
+
+.front-top-banner .banner-wrapper .banner{		
+	width:100%;
+}
+
+.front-top-banner .banner-wrapper .text-info{
+	position:absolute;
+	left:0;
+	bottom:0;
+	width:100%;
+}
+
+.front-top-banner .banner-wrapper .text-info > .inner{
+	padding: 0 0 0 180px;
+}
+
+.front-top-banner .banner-wrapper .text-info > .inner .text{
+	display:inline-block;
+	padding:10px 10px;
+}
+
+.front-top-banner .banner-wrapper .text-info > .inner .text.top{
+	padding:12px 40px 12px 12px;
+	font-size:1.4em;
+	color:#fff;		
+}
+
+.front-top-banner .banner-wrapper.one .text-info > .inner .text.top{
+	background-color:#e74c3c;		
+}
+.front-top-banner .banner-wrapper.two .text-info > .inner .text.top{
+	background-color:#27ae60;		
+}
+.front-top-banner .banner-wrapper.three .text-info > .inner .text.top{
+	background-color:#f39c12;		
+}
+.front-top-banner .banner-wrapper.four .text-info > .inner .text.top{
+	background-color:#8e44ad;		
+}
+.front-top-banner .banner-wrapper.five .text-info > .inner .text.top{
+	background-color:#95a5a6;		
+}
+
+.front-top-banner .banner-wrapper .text-info > .inner .text.bottom{
+	margin-bottom:3%;
+	background-color:rgba(255,255,255,.7);	
+}
+
+.front-top-banner .banner-wrapper .text-info > .inner .text.more{
+	position:relative;
+	padding-right:25px;
+	margin-bottom:7%;	
+	border-radius:3px;
+	background-color:#fff;
+	font-size:.9em;
+	color:#3498db;
+	
+	cursor:pointer;
+}
+
+.front-top-banner .banner-wrapper .text-info > .inner .text.more:hover{
+	color:#444;
+}
+
+.front-top-banner .banner-wrapper .text-info > .inner .text.more .triangle{
+	display:block;
+	position:absolute;
+	right:10px;
+	top:13px;
+	
+	width: 0; 
+	height: 0; 
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	
+	border-left: 5px solid #3498db;
+}
+
+.front-top-banner .banner-wrapper .text-info > .inner .text.more:hover .triangle{
+	border-left: 5px solid #444;
+}
+
+.front-top-banner .banner-wrapper .text-info > .inner{
+	max-width:960px;
+	margin:auto;
 }
 
 .front-top-banner .arrow{
