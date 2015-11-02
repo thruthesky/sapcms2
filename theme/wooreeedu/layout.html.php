@@ -18,7 +18,10 @@ include "wooreeedu.functions.php";
     <div id="layout-header"><?php include template('header'); ?></div>
     <div id="layout-content">
 		<?php widget('error') ?>
-		<?php include template(); ?>
+		<?php
+			$url_site = 'http://'.domain();//temp?
+			include template(); 
+		?>
     </div>
     <div id="layout-footer"><?php include template('footer'); ?></div>
 </div>

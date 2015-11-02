@@ -26,6 +26,10 @@
 	width:100%;
 }
 
+.front-top-banner .banner-wrapper .text-info a{
+	text-decoration:none;
+}
+
 .front-top-banner .banner-wrapper .text-info > .inner{
 	
 }
@@ -110,12 +114,6 @@
 /*eo one unique design*/
 
 /*two unique design*/
-
-.front-top-banner .banner-wrapper.two .text-info > .inner .text.top{
-	padding:10px;
-	background-color:#27ae60;	
-}
-
 .front-top-banner .banner-wrapper.two .text-info{
 	top:5%;
 }
@@ -124,14 +122,18 @@
 	padding-left:180px;
 }
 
-.front-top-banner .banner-wrapper.two .text-info > .inner > .wrapper{	
-	display:inline-block;
+.front-top-banner .banner-wrapper.two .text-info > .inner > .wrapper{
+	display:inline-block;	
+	max-width:250px;
 	background-color:rgba(0,0,0,.6);
+	white-space:normal;
 }
 
+
 .front-top-banner .banner-wrapper.two .text-info > .inner .text.top{
+	padding:10px;
 	background-color:transparent;
-	color:#77c045;
+	color:#2ecc71;
 }
 
 .front-top-banner .banner-wrapper.two .text-info > .inner .text.bottom{
@@ -141,16 +143,20 @@
 }
 
 .front-top-banner .banner-wrapper.two .text-info > .inner .text.more{
-	background-color:transparent;
-	color:#77c045;
-	text-align:right;
-}
-
-.front-top-banner .banner-wrapper.two .text-info > .inner .text.more{
 	width:100%;
 	margin:0;
 	padding:10px;
+	background-color:transparent;
+	text-align:right;
 	box-sizing:border-box;	
+}
+
+.front-top-banner .banner-wrapper.two .text-info > .inner .text.more a{
+	color:#2ecc71;	
+}
+
+.front-top-banner .banner-wrapper.two .text-info > .inner .text.more a:hover{
+	color:#fff;
 }
 /*eo two unique design*/
 
@@ -159,20 +165,59 @@
 .front-top-banner .banner-wrapper.three .text-info{
 	left:0;
 	bottom:0;
+	text-align:right;
 }
 
 .front-top-banner .banner-wrapper.three .text-info > .inner{
-	padding-left:180px;
+	padding-right:180px;
 }
 /*eo three unique design*/
 
 /*four unique design*/
 .front-top-banner .banner-wrapper.four .text-info{
-	left:0;
-	bottom:0;
+	top:5%;	
 }
+
 .front-top-banner .banner-wrapper.four .text-info > .inner{
-	padding-left:180px;
+	text-align:right;
+	padding-right:180px;
+}
+
+.front-top-banner .banner-wrapper.four .text-info > .inner > .wrapper{
+	display:inline-block;	
+	max-width:250px;
+	background-color:rgba(0,0,0,.6);
+	white-space:normal;
+	text-align:left;
+}
+
+.front-top-banner .banner-wrapper.four .text-info > .inner .text.top{
+	padding:10px;
+	background-color:transparent;
+	color:#2ecc71;
+}
+
+.front-top-banner .banner-wrapper.four .text-info > .inner .text.bottom{
+	min-height:34px;
+	background-color:transparent;
+	color:#fff;
+}
+
+.front-top-banner .banner-wrapper.four .text-info > .inner .text.more{
+	width:100%;
+	margin:0;
+	padding:10px;
+	background-color:transparent;
+	text-align:right;
+	box-sizing:border-box;	
+}
+
+.front-top-banner .banner-wrapper.four .text-info > .inner .text.more a{
+	color:#2ecc71;	
+}
+
+.front-top-banner .banner-wrapper.four .text-info > .inner .text.more a:hover{
+	color:#fff;
 }
 /*eo four unique design*/
 
