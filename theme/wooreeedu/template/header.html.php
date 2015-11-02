@@ -69,7 +69,6 @@ add_css('featured.item.css');
 						<tr valign='top'>
 							<td width='16.67%'>
 								<div class='item'>
-									<div class='label'>학원소개</div>
 									<ul>
 										<li><a href="/introduction/multiLanguage">우리에듀 소개</a></li>
 										<li><a href="/introduction/multiLanguage_2">우리에듀 특징</a></li>
@@ -79,7 +78,6 @@ add_css('featured.item.css');
 							</td>
 							<td width='16.67%'>
 								<div class='item'>
-									<div class='label'>어학연수</div>
 									<ul>
 										<li><a href="/course/lecture">기업강의</a></li>
 										<li><a href="/course/trainingCost">어학연수</a></li>
@@ -88,7 +86,6 @@ add_css('featured.item.css');
 							</td>
 							<td width='16.67%'>
 								<div class='item'>
-									<div class='label'>조기유학</div>
 									<ul>
 										<li><a href="/junior/juniorEarlyStudy">조기유학</a></li>
 										<li><a href="/junior/advantagesInPH">조기유학 장점</a></li>
@@ -99,7 +96,6 @@ add_css('featured.item.css');
 							</td>
 							<td width='16.67%'>
 								<div class='item'>
-									<div class='label'>단기캠프</div>
 									<ul>
 										<li><a href="/camp/campInformation">단기캠프 정보</a></li>
 										<li><a href="/camp/schedule">단기캠프 일정</a></li>
@@ -111,7 +107,6 @@ add_css('featured.item.css');
 							</td>
 							<td width='16.67%'>
 								<div class='item'>
-									<div class='label'>프로그램</div>
 									<ul>
 										<li><a href="/gallery/popsong">영어 노래 교실</a></li>
 										<li><a href="/gallery/tripping">캠프 여행</a></li>
@@ -123,7 +118,6 @@ add_css('featured.item.css');
 							</td>
 							<td width='16.67%'>
 								<div class='item'>
-									<div class='label'>화상영어</div>
 									<ul>
 										<li><a href="#">선생님 목록</a></li>
 										<li><a href="#">수업 시간표</a></li>
