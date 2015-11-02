@@ -9,9 +9,237 @@
 	left:-100%;
 }
 
-.front-top-banner .banner{	
+.front-top-banner .banner-wrapper{		
 	display:inline-block;
+	position:relative;
 	width:100%;
+}
+
+.front-top-banner .banner-wrapper .banner{		
+	width:100%;
+}
+
+.front-top-banner .banner-wrapper .text-info{
+	position:absolute;
+	/*left:0;
+	bottom:0;*/
+	width:100%;
+}
+
+.front-top-banner .banner-wrapper .text-info a{
+	text-decoration:none;
+}
+
+.front-top-banner .banner-wrapper .text-info > .inner{
+	
+}
+
+.front-top-banner .banner-wrapper .text-info > .inner .text{
+	display:inline-block;
+	padding:10px 10px;
+}
+
+.front-top-banner .banner-wrapper .text-info > .inner .text.top{
+	padding:12px 40px 12px 12px;
+	font-size:1.4em;
+	color:#fff;		
+}
+
+
+
+.front-top-banner .banner-wrapper.three .text-info > .inner .text.top{
+	background-color:#f39c12;		
+}
+.front-top-banner .banner-wrapper.four .text-info > .inner .text.top{
+	background-color:#8e44ad;		
+}
+.front-top-banner .banner-wrapper.five .text-info > .inner .text.top{
+	background-color:#95a5a6;		
+}
+
+.front-top-banner .banner-wrapper .text-info > .inner .text.bottom{
+	margin-bottom:3%;
+	background-color:rgba(255,255,255,.7);	
+}
+
+.front-top-banner .banner-wrapper .text-info > .inner .text.more{
+	position:relative;
+	padding-right:25px;
+	margin-bottom:7%;	
+	border-radius:3px;
+	background-color:#fff;
+	font-size:.9em;
+	color:#3498db;
+	
+	cursor:pointer;
+}
+
+.front-top-banner .banner-wrapper .text-info > .inner .text.more:hover{
+	color:#444;
+}
+
+
+.front-top-banner .banner-wrapper .text-info > .inner .text.more .triangle{
+	display:block;
+	position:absolute;
+	right:10px;
+	top:13px;
+	
+	width: 0; 
+	height: 0; 
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	
+	border-left: 5px solid #3498db;
+}
+
+.front-top-banner .banner-wrapper .text-info > .inner .text.more:hover .triangle{
+	border-left: 5px solid #444;
+}
+
+
+/*one unique design*/
+.front-top-banner .banner-wrapper.one .text-info{
+	left:0;
+	bottom:0;
+}
+
+.front-top-banner .banner-wrapper.one .text-info > .inner{
+	padding-left:180px;
+}
+ 
+.front-top-banner .banner-wrapper.one .text-info > .inner .text.top{
+	background-color:#e74c3c;		
+}
+/*eo one unique design*/
+
+/*two unique design*/
+.front-top-banner .banner-wrapper.two .text-info{
+	top:5%;
+}
+
+.front-top-banner .banner-wrapper.two .text-info > .inner{
+	padding-left:180px;
+}
+
+.front-top-banner .banner-wrapper.two .text-info > .inner > .wrapper{
+	display:inline-block;	
+	max-width:250px;
+	background-color:rgba(0,0,0,.6);
+	white-space:normal;
+}
+
+
+.front-top-banner .banner-wrapper.two .text-info > .inner .text.top{
+	padding:10px;
+	background-color:transparent;
+	color:#2ecc71;
+}
+
+.front-top-banner .banner-wrapper.two .text-info > .inner .text.bottom{
+	min-height:34px;
+	background-color:transparent;
+	color:#fff;
+}
+
+.front-top-banner .banner-wrapper.two .text-info > .inner .text.more{
+	width:100%;
+	margin:0;
+	padding:10px;
+	background-color:transparent;
+	text-align:right;
+	box-sizing:border-box;	
+}
+
+.front-top-banner .banner-wrapper.two .text-info > .inner .text.more a{
+	color:#2ecc71;	
+}
+
+.front-top-banner .banner-wrapper.two .text-info > .inner .text.more a:hover{
+	color:#fff;
+}
+/*eo two unique design*/
+
+
+/*three unique design*/
+.front-top-banner .banner-wrapper.three .text-info{
+	left:0;
+	bottom:0;
+	text-align:right;
+}
+
+.front-top-banner .banner-wrapper.three .text-info > .inner{
+	padding-right:180px;
+}
+/*eo three unique design*/
+
+/*four unique design*/
+.front-top-banner .banner-wrapper.four .text-info{
+	top:5%;	
+}
+
+.front-top-banner .banner-wrapper.four .text-info > .inner{
+	text-align:right;
+	padding-right:180px;
+}
+
+.front-top-banner .banner-wrapper.four .text-info > .inner > .wrapper{
+	display:inline-block;	
+	max-width:250px;
+	background-color:rgba(0,0,0,.6);
+	white-space:normal;
+	text-align:left;
+}
+
+.front-top-banner .banner-wrapper.four .text-info > .inner .text.top{
+	padding:10px;
+	background-color:transparent;
+	color:#2ecc71;
+}
+
+.front-top-banner .banner-wrapper.four .text-info > .inner .text.bottom{
+	min-height:34px;
+	background-color:transparent;
+	color:#fff;
+}
+
+.front-top-banner .banner-wrapper.four .text-info > .inner .text.more{
+	width:100%;
+	margin:0;
+	padding:10px;
+	background-color:transparent;
+	text-align:right;
+	box-sizing:border-box;	
+}
+
+.front-top-banner .banner-wrapper.four .text-info > .inner .text.more a{
+	color:#2ecc71;	
+}
+
+.front-top-banner .banner-wrapper.four .text-info > .inner .text.more a:hover{
+	color:#fff;
+}
+/*eo four unique design*/
+
+/*five unique design*/
+.front-top-banner .banner-wrapper.five .text-info{
+	left:0;
+	bottom:0;
+}
+
+.front-top-banner .banner-wrapper.five .text-info > .inner{
+	padding-left:180px;
+}
+
+/*eo five unique design*/
+
+
+
+
+
+.front-top-banner .banner-wrapper .text-info > .inner{
+	max-width:960px;
+	margin:auto;
 }
 
 .front-top-banner .arrow{

@@ -13,7 +13,7 @@ $top = post_data($top_banner->idx_target);
 if ( empty($top) ) return;
 
 $items = null;
-$images = post()->getLatestPostImages(1, 6, 'test');
+$images = post()->getLatestPostImages(1, 6, 'wooreeedu');
 if ( $images ) {
     foreach ( $images as $image ) {
         $src = $image->urlThumbnail(120,120);

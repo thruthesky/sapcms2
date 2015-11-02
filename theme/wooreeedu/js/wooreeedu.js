@@ -44,12 +44,11 @@ function initializeVariables(){
 
 function move_top_banner(){
 	var $this = $(this);		
-	
-	
+	//console.log( top_banner_data );
 	if( top_banner_data.banner_count <= 1 ) return;
-	if( is_animating == true ) return;
+	if( top_banner_data.is_animating == true ) return;
 	
-	is_animating = true;
+	top_banner_data.is_animating = true;
 	var $selector = $(".front-top-banner > .inner");
 	var direction = $this.attr("direction");	
 	
@@ -67,7 +66,7 @@ function move_top_banner(){
 
 var topAutoBanner;
 function autoScrollTopBanner(){
-	stopFrontBanner();
+	stopFrontBanner();	
 	topAutoBanner = setTimeout( function(){
 		var $selector = $(".front-top-banner > .inner");
 		top_banner_data.banner_current_page ++;
@@ -86,12 +85,12 @@ function startFrontBanner(){
 }
 
 function do_banner_animation( animation_movement, $selector, speed, direction, data){
-	console.log( data );
+	//console.log( data );
 	//console.log( direction );
 	$selector.animate({
 		left: animation_movement
 	}, speed, function(){		
-		is_animating = false;
+		data.is_animating = false;
 		if( direction == 'left' ){
 			if( data.banner_current_page < 1 ){				
 				do_banner_animation( "-" + ( data.banner_count * 100 ) + "%", $selector, 0, 'last', data );
@@ -139,8 +138,8 @@ function showSubMenus(){
 
 function closeSubMenus(){
 	clearTimeout( subMenuTimeoutIn );
-	subMenuTimeoutOut = setTimeout(function(){
-		startFrontBanner();
+	startFrontBanner();
+	subMenuTimeoutOut = setTimeout(function(){		
 		$("#header-top .sub-menu").slideUp();
 		stopFeaturedBanner();
 	},200);
@@ -156,6 +155,10 @@ function onResizeWindow(){
 
 function featuredPostAnimation(){
 	$this = $(this);	
+	
+	if( featured_banner_data.is_animating == true ) return;
+	
+	featured_banner_data.is_animating = true;
 	
 	page_now = $this.parents(".featuredPost").find(".page-item.is-active").attr('page');
 	clicked_page = $this.attr("page");

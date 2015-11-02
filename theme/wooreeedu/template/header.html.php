@@ -181,7 +181,74 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 		<img src="/theme/wooreeedu/img/top_arrow_right.png"/>
 	</div>
 	<div class='inner'>
-		<img class='banner fake' src='/theme/wooreeedu/img/banner_5.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_1.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_2.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_3.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_4.jpg'/><img class='banner' src='/theme/wooreeedu/img/banner_5.jpg'/><img class='banner fake' src='/theme/wooreeedu/img/banner_1.jpg'/>
+		<div class='banner-wrapper five'>
+			<img class='banner fake' src='/theme/wooreeedu/img/banner_5.jpg'/>
+			<div class='text-info'>
+				<div class='inner'>
+					<div class='text top'>Read, comprehend, and learn.</div><br>
+					<div class='text bottom'>Studying always helps.</div><br>
+					<div class='text more'>LEARN MORE<div class='triangle'></div></div>
+				</div>
+			</div>
+		</div><div class='banner-wrapper one '>
+			<img class='banner' src='/theme/wooreeedu/img/banner_1.jpg'/>
+			<div class='text-info'>
+				<div class='inner'>
+					<div class='text top'>Join our junior course now!</div><br>
+					<div class='text bottom'>Learn english early...</div><br>
+					<div class='text more'>LEARN MORE<div class='triangle'></div></div>
+				</div>
+			</div>
+		</div><div class='banner-wrapper two'>
+			<img class='banner' src='/theme/wooreeedu/img/banner_2.jpg'/>
+			<div class='text-info'>
+				<div class='inner'>
+					<div class='wrapper'>
+						<div class='text top'>Take regular classes.</div><br>
+						<div class='text bottom'>Take our classes now and we will help you succeed. We will provide you with all your needs.</div><br>
+						<div class='text more'><a href='#'>LEARN MORE</a></div>
+					</div>
+				</div>
+			</div>
+		</div><div class='banner-wrapper three'>
+			<img class='banner' src='/theme/wooreeedu/img/banner_3.jpg'/>
+			<div class='text-info'>
+				<div class='inner'>
+					<div class='text top'>Your potential teachers.</div><br>
+					<div class='text bottom'>Meet new people.</div><br>
+					<div class='text more'>LEARN MORE<div class='triangle'></div></div>
+				</div>
+			</div>
+		</div><div class='banner-wrapper four'>
+			<img class='banner' src='/theme/wooreeedu/img/banner_4.jpg'/>
+			<div class='text-info'>
+				<div class='inner'>
+					<div class='wrapper'>
+						<div class='text top'>It's not all about memorization.</div><br>
+						<div class='text bottom'>Have fun while learning.</div><br>
+						<div class='text more'><a href='#'>LEARN MORE</a></div>
+					</div>
+				</div>
+			</div>
+		</div><div class='banner-wrapper five'>
+			<img class='banner' src='/theme/wooreeedu/img/banner_5.jpg'/>
+			<div class='text-info'>
+				<div class='inner'>
+					<div class='text top'>Read, comprehend, and learn.</div><br>
+					<div class='text bottom'>Studying always helps.</div><br>
+					<div class='text more'>LEARN MORE<div class='triangle'></div></div>
+				</div>
+			</div>
+		</div><div class='banner-wrapper one'>
+			<img class='banner fake' src='/theme/wooreeedu/img/banner_1.jpg'/>
+			<div class='text-info'>
+				<div class='inner'>
+					<div class='text top'>Join our junior course now!</div><br>
+					<div class='text bottom'>Learn english early...</div><br>
+					<div class='text more'>LEARN MORE<div class='triangle'></div></div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 <?php } ?>

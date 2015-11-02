@@ -26,7 +26,6 @@ function callback_deviceReady() {
 
 
 $(function() {
-
     appStarted = true;
     $session_id = getSessionId();
     console.log("session_id:" + $session_id);
@@ -85,6 +84,9 @@ function initMenu() {
 			default_url = $this.attr("default_url")	
 			if( !default_url ) default_url = "";
             loadPage( route, default_url);
+        }
+		else if ( route == 'pageView' ) {
+            loadPage( route, $this.attr('page'));
         }
         else {			
             loadPage(route);

@@ -47,3 +47,7 @@ Route::add('/app/postReport', 'app\\App\\postReport');
 
 
 Route::add('/app/page', 'app\\App\\page');
+
+
+
+Route::add('/app/pageView/*', 'app\\App\\pageView');
