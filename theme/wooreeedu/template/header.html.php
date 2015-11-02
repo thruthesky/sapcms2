@@ -202,9 +202,11 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			<img class='banner' src='/theme/wooreeedu/img/banner_2.jpg'/>
 			<div class='text-info'>
 				<div class='inner'>
-					<div class='text top'>Get regular course classes.</div><br>
-					<div class='text bottom'>We will help you succeed!</div><br>
-					<div class='text more'>LEARN MORE<div class='triangle'></div></div>
+					<div class='wrapper'>
+						<div class='text top'>Get regular course classes.</div><br>
+						<div class='text bottom'>We will help you succeed!</div><br>
+						<div class='text more'>LEARN MORE</div>
+					</div>
 				</div>
 			</div>
 		</div><div class='banner-wrapper three'>

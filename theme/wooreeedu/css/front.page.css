@@ -21,13 +21,13 @@
 
 .front-top-banner .banner-wrapper .text-info{
 	position:absolute;
-	left:0;
-	bottom:0;
+	/*left:0;
+	bottom:0;*/
 	width:100%;
 }
 
 .front-top-banner .banner-wrapper .text-info > .inner{
-	padding: 0 0 0 180px;
+	
 }
 
 .front-top-banner .banner-wrapper .text-info > .inner .text{
@@ -41,12 +41,8 @@
 	color:#fff;		
 }
 
-.front-top-banner .banner-wrapper.one .text-info > .inner .text.top{
-	background-color:#e74c3c;		
-}
-.front-top-banner .banner-wrapper.two .text-info > .inner .text.top{
-	background-color:#27ae60;		
-}
+
+
 .front-top-banner .banner-wrapper.three .text-info > .inner .text.top{
 	background-color:#f39c12;		
 }
@@ -78,6 +74,7 @@
 	color:#444;
 }
 
+
 .front-top-banner .banner-wrapper .text-info > .inner .text.more .triangle{
 	display:block;
 	position:absolute;
@@ -95,6 +92,105 @@
 .front-top-banner .banner-wrapper .text-info > .inner .text.more:hover .triangle{
 	border-left: 5px solid #444;
 }
+
+
+/*one unique design*/
+.front-top-banner .banner-wrapper.one .text-info{
+	left:0;
+	bottom:0;
+}
+
+.front-top-banner .banner-wrapper.one .text-info > .inner{
+	padding-left:180px;
+}
+ 
+.front-top-banner .banner-wrapper.one .text-info > .inner .text.top{
+	background-color:#e74c3c;		
+}
+/*eo one unique design*/
+
+/*two unique design*/
+
+.front-top-banner .banner-wrapper.two .text-info > .inner .text.top{
+	padding:10px;
+	background-color:#27ae60;	
+}
+
+.front-top-banner .banner-wrapper.two .text-info{
+	top:5%;
+}
+
+.front-top-banner .banner-wrapper.two .text-info > .inner{
+	padding-left:180px;
+}
+
+.front-top-banner .banner-wrapper.two .text-info > .inner > .wrapper{	
+	display:inline-block;
+	background-color:rgba(0,0,0,.6);
+}
+
+.front-top-banner .banner-wrapper.two .text-info > .inner .text.top{
+	background-color:transparent;
+	color:#77c045;
+}
+
+.front-top-banner .banner-wrapper.two .text-info > .inner .text.bottom{
+	min-height:34px;
+	background-color:transparent;
+	color:#fff;
+}
+
+.front-top-banner .banner-wrapper.two .text-info > .inner .text.more{
+	background-color:transparent;
+	color:#77c045;
+	text-align:right;
+}
+
+.front-top-banner .banner-wrapper.two .text-info > .inner .text.more{
+	width:100%;
+	margin:0;
+	padding:10px;
+	box-sizing:border-box;	
+}
+/*eo two unique design*/
+
+
+/*three unique design*/
+.front-top-banner .banner-wrapper.three .text-info{
+	left:0;
+	bottom:0;
+}
+
+.front-top-banner .banner-wrapper.three .text-info > .inner{
+	padding-left:180px;
+}
+/*eo three unique design*/
+
+/*four unique design*/
+.front-top-banner .banner-wrapper.four .text-info{
+	left:0;
+	bottom:0;
+}
+.front-top-banner .banner-wrapper.four .text-info > .inner{
+	padding-left:180px;
+}
+/*eo four unique design*/
+
+/*five unique design*/
+.front-top-banner .banner-wrapper.five .text-info{
+	left:0;
+	bottom:0;
+}
+
+.front-top-banner .banner-wrapper.five .text-info > .inner{
+	padding-left:180px;
+}
+
+/*eo five unique design*/
+
+
+
+
 
 .front-top-banner .banner-wrapper .text-info > .inner{
 	max-width:960px;
