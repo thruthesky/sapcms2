@@ -1,9 +1,9 @@
 <?php
-$image_fhm = post()->getLatestPostImage(7);
+$image_fhm = post()->getLatestPostImage(7,'wooreeedu');
 $src_fhm = $image_fhm->urlThumbnail(45, 45);
 $fhm = post_data($image_fhm->idx_target);
 
-$image_news = post()->getLatestPostImage(8);
+$image_news = post()->getLatestPostImage(8,'wooreeedu');
 $src_news = $image_news->urlThumbnail(45, 45);
 $news = post_data($image_news->idx_target);
 
@@ -22,7 +22,7 @@ if( empty( $fhm ) ) return;
                         <div class="comment"><?php echo $fhm->getDescription(64) ?></div>
                     </div>
                 </td>
-                <td width="2%"><img src="<?php echo url_site();?>/theme/default/tmp/fhm.png"</td>
+                <td width="2%"><img src="<?php echo url_site();?>/theme/default/tmp/news2.png"</td>
             </tr>
         </table>
     </div>

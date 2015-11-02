@@ -1,5 +1,5 @@
 <?php
-$posts = post()->getLatestPost('test', 2, 2);
+$posts = post()->getLatestPost('wooreeedu', 2, 2);
 if ( empty($posts) ) return;
 
 ?>

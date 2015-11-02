@@ -1,5 +1,5 @@
 <?php
-$posts = post()->getLatestPostImages(9, 2, 'test');
+$posts = post()->getLatestPostImages(9, 2, 'wooreeedu');
 ?>
 <div class="text-photo">
     <?php
