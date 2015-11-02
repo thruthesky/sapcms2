@@ -8,7 +8,7 @@ else $class = null;
 
 <div class="post-list<?php echo $class; ?>">
 <?php 
-foreach ( $posts as $post ) { 
+foreach ( $posts as $post ) {
 	$this_post = $post;
 
 	if( !empty( $skip_idx ) ){

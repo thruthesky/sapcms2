@@ -16,8 +16,8 @@ if( !empty( $idx_user ) ){
 <div id="page-header">
     <ul id="main-menu">
         <li class='link logo' route="front_page"><span class="sprite logo"></span><div class='label'>우리에듀</div></li>
-        <li class='link sub-menu ask' route="postList" post_id="qna"><span class="sprite ask"></span><div class='label'>Ask</div></li>
-        <li class='link sub-menu forum' route="postList" post_id="freetalk"><span class="sprite forum"></span><div class='label'>Talk</div></li>
+        <li class='link sub-menu ask' route="introduction"><span class="sprite ask"></span><div class='label'>인사말</div></li>
+        <li class='link sub-menu forum' route="postList" post_id="qna"><span class="sprite forum"></span><div class='label'>질문과답변</div></li>
         <li class='link sub-menu news' route="postList" post_id="news"><span class="sprite news"></span><div class='label'>News</div></li>
         <li class='link sub-menu market' route="postList" post_id="gallery"><span class="sprite market"></span><div class='label'>Gallery</div></li>
         <li class='link sub-menu jobs' route="postList" post_id="course"><span class="sprite jobs"></span><div class='label'>Course</div></li>

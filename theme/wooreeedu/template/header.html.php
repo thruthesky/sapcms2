@@ -55,13 +55,13 @@ add_css('featured.item.css');
 				?>
 				</div>
 					<div class='inner'>
-						<div class='item fake'><div class='banner'><img src='/theme/wooreeedu/img/seminar_2.jpg'/></div><div class='title text-center'>English Seminar</div></div><div class='item'>
-						<div class='banner'><img src='/theme/wooreeedu/img/popsong_1.jpg'/></div><div class='title text-center'>PopSong Contest</div></div><div class='item'>
-						<div class='banner'><img src='/theme/wooreeedu/img/tripping_5.jpg'/></div><div class='title text-center'>Outbound Trip</div></div><div class='item'>
-						<div class='banner'><img src='/theme/wooreeedu/img/speech_10.jpg'/></div><div class='title text-center'>Speech Contest</div></div><div class='item'>
-						<div class='banner'><img src='/theme/wooreeedu/img/xmas_13.jpg'/></div><div class='title text-center'>Christmas Celebration</div></div><div class='item'>
-						<div class='banner'><img src='/theme/wooreeedu/img/seminar_2.jpg'/></div><div class='title text-center'>English Seminar</div></div><div class='item fake'>
-						<div class='banner'><img src='/theme/wooreeedu/img/popsong_1.jpg'/></div><div class='title text-center'>PopSong Contest</div></div>				
+						<div class='item fake'><div class='banner'><img src='/theme/wooreeedu/img/seminar_2.jpg'/></div><div class='title text-center'>영어세미나</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/popsong_1.jpg'/></div><div class='title text-center'>노래자랑</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/tripping_5.jpg'/></div><div class='title text-center'>바다 여행</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/speech_10.jpg'/></div><div class='title text-center'>영어 말하기 대회 시상식</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/xmas_13.jpg'/></div><div class='title text-center'>크리스마스 파티</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/seminar_2.jpg'/></div><div class='title text-center'>영어 수업</div></div><div class='item fake'>
+						<div class='banner'><img src='/theme/wooreeedu/img/popsong_1.jpg'/></div><div class='title text-center'>팝송 노래</div></div>
 					</div>
 				</div>
 				<div class='item-list text-center'>
@@ -71,9 +71,9 @@ add_css('featured.item.css');
 								<div class='item'>
 									<div class='label'>학원소개</div>
 									<ul>
-										<li><a href="/introduction/multiLanguage">Multi Language</a></li>
-										<li><a href="/introduction/multiLanguage_2">Preparation</a></li>
-										<li><a href="/introduction/schoolDormitory">Dormitories</a></li>
+										<li><a href="/introduction/multiLanguage">우리에듀 소개</a></li>
+										<li><a href="/introduction/multiLanguage_2">우리에듀 특징</a></li>
+										<li><a href="/introduction/schoolDormitory">학원 기숙사</a></li>
 									</ul>
 								</div>
 							</td>
@@ -81,8 +81,8 @@ add_css('featured.item.css');
 								<div class='item'>
 									<div class='label'>어학연수</div>
 									<ul>
-										<li><a href="/course/lecture">Lecture</a></li>
-										<li><a href="/course/trainingCost">Training Cost</a></li>
+										<li><a href="/course/lecture">기업강의</a></li>
+										<li><a href="/course/trainingCost">어학연수</a></li>
 									</ul>
 								</div>
 							</td>
@@ -90,10 +90,10 @@ add_css('featured.item.css');
 								<div class='item'>
 									<div class='label'>조기유학</div>
 									<ul>
-										<li><a href="/junior/juniorEarlyStudy">Early Study</a></li>
-										<li><a href="/junior/advantagesInPH">Advantages</a></li>
-										<li><a href="/junior/earlyCost">Early Cost</a></li>
-										<li><a href="/junior/recommended">Recommend</a></li>
+										<li><a href="/junior/juniorEarlyStudy">조기유학</a></li>
+										<li><a href="/junior/advantagesInPH">조기유학 장점</a></li>
+										<li><a href="/junior/earlyCost">조기유학 비용</a></li>
+										<li><a href="/junior/recommended">추천 학교</a></li>
 									</ul>
 								</div>
 							</td>
@@ -101,11 +101,11 @@ add_css('featured.item.css');
 								<div class='item'>
 									<div class='label'>단기캠프</div>
 									<ul>
-										<li><a href="/camp/campInformation">Information</a></li>
-										<li><a href="/camp/schedule">Schedule</a></li>
-										<li><a href="/camp/preparation">Preparation</a></li>
-										<li><a href="/camp/weekendActivities">Weekend</a></li>
-										<li><a href="/camp/requirement">Requirements</a></li>
+										<li><a href="/camp/campInformation">단기캠프 정보</a></li>
+										<li><a href="/camp/schedule">단기캠프 일정</a></li>
+										<li><a href="/camp/preparation">단기캠프 준비</a></li>
+										<li><a href="/camp/weekendActivities">주말 여행</a></li>
+										<li><a href="/camp/requirement">여권/비자/SSP</a></li>
 									</ul>
 								</div>
 							</td>
@@ -113,11 +113,11 @@ add_css('featured.item.css');
 								<div class='item'>
 									<div class='label'>프로그램</div>
 									<ul>
-										<li><a href="/gallery/popsong">Pop Song</a></li>
-										<li><a href="/gallery/tripping">Tripping</a></li>
-										<li><a href="/gallery/speech">Speech</a></li>
-										<li><a href="/gallery/xmas">Christmas</a></li>
-										<li><a href="/gallery/seminar">Seminar</a></li>
+										<li><a href="/gallery/popsong">영어 노래 교실</a></li>
+										<li><a href="/gallery/tripping">캠프 여행</a></li>
+										<li><a href="/gallery/speech">영어 발표회</a></li>
+										<li><a href="/gallery/xmas">크리스마스파티</a></li>
+										<li><a href="/gallery/seminar">원어민 강의</a></li>
 									</ul>
 								</div>
 							</td>
@@ -125,9 +125,10 @@ add_css('featured.item.css');
 								<div class='item'>
 									<div class='label'>화상영어</div>
 									<ul>
-										<li><a href="#">Teachers</a></li>
-										<li><a href="#">Schedule</a></li>
-										<li><a href="#">Reservation</a></li>
+										<li><a href="#">선생님 목록</a></li>
+										<li><a href="#">수업 시간표</a></li>
+										<li><a href="#">수업 평가</a></li>
+										<li><a href="#">강의실 입장</a></li>
 									</ul>
 								</div>
 							</td>
@@ -169,7 +170,7 @@ if( !empty( $variables['page'] )  ){
 	//}
 } 
 ?>
-<?php 
+<?php
 //temporary solution
 if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 <div class="front-top-banner">
