@@ -82,3 +82,19 @@ $option = [
 $post = post_data()->newPost($option);
 $data = $post->attachFile("theme/wooreeedu/img/speech_11.jpg");
 
+$option = [
+	'idx_config' => $config->get('idx'),
+	'title' => "Participants of the Global Leadership Speech Contest",
+	'content' => "Meet our audiences and participants. Join us now so you can be one of them on our next program.",
+];
+$post = post_data()->newPost($option);
+$data = $post->attachFile("theme/wooreeedu/img/speech_12.jpg");
+
+$option = [
+	'idx_config' => $config->get('idx'),
+	'title' => "Learn with us.",
+	'content' => "Join wooreeedu now for a fun and learning experience like never before.",
+];
+$post = post_data()->newPost($option);
+$data = $post->attachFile("theme/wooreeedu/img/header_junior.jpg");
+
