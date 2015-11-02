@@ -170,7 +170,7 @@ if( !empty( $variables['page'] )  ){
 	//}
 } 
 ?>
-<?php
+<?php 
 //temporary solution
 if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 <div class="front-top-banner">
