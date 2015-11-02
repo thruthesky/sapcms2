@@ -184,8 +184,8 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			<img class='banner fake' src='/theme/wooreeedu/img/banner_5.jpg'/>
 			<div class='text-info'>
 				<div class='inner'>
-					<div class='text top'>Read and learn. Don't waste time and also try to learn by yourself.</div><br>
-					<div class='text bottom'>Freetalk is not everything</div><br>
+					<div class='text top'>Read, comprehend, and learn.</div><br>
+					<div class='text bottom'>Studying always helps.</div><br>
 					<div class='text more'>LEARN MORE<div class='triangle'></div></div>
 				</div>
 			</div>
