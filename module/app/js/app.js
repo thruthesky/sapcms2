@@ -85,6 +85,9 @@ function initMenu() {
 			if( !default_url ) default_url = "";
             loadPage( route, default_url);
         }
+		else if ( route == 'pageView' ) {
+            loadPage( route, $this.attr('page'));
+        }
         else {			
             loadPage(route);
         }

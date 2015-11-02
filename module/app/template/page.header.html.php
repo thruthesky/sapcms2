@@ -16,11 +16,11 @@ if( !empty( $idx_user ) ){
 <div id="page-header">
     <ul id="main-menu">
         <li class='link logo' route="front_page"><span class="sprite logo"></span><div class='label'>우리에듀</div></li>
-        <li class='link sub-menu ask' route="postList" post_id="qna"><span class="sprite ask"></span><div class='label'>Ask</div></li>
-        <li class='link sub-menu forum' route="postList" post_id="freetalk"><span class="sprite forum"></span><div class='label'>Talk</div></li>
-        <li class='link sub-menu news' route="postList" post_id="news"><span class="sprite news"></span><div class='label'>News</div></li>
-        <li class='link sub-menu market' route="postList" post_id="gallery"><span class="sprite market"></span><div class='label'>Gallery</div></li>
-        <li class='link sub-menu jobs' route="postList" post_id="course"><span class="sprite jobs"></span><div class='label'>Course</div></li>
+		<li class='link sub-menu ask' route="postList" post_id="qna"><span class="sprite ask"></span><div class='label'>Ask</div></li>
+		<li class='link sub-menu forum' route="pageView" page="introduction"><span class="sprite forum"></span><div class='label'>학원소개</div></li>
+        <li class='link sub-menu news' route="pageView" page="course"><span class="sprite news"></span><div class='label'>어학연수</div></li>
+        <li class='link sub-menu market' route="pageView" page="gallery"><span class="sprite market"></span><div class='label'>프로그램</div></li>
+        <li class='link sub-menu jobs' route="pageView" page="camp"><span class="sprite jobs"></span><div class='label'>단기캠프</div></li>
 		<li class='link sub-menu my_page' route="<?php echo $my_page_url; ?>"><span class="sprite my_page"><?php echo $post_primary_photo; ?></span><div class='label'><?php echo $my_page_text; ?></div></li>
         <li class='menu show-panel'><span class="sprite menu"></span><div class='label'>Menu</div></li>
     </ul>

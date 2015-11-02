@@ -780,4 +780,25 @@ class App {
     public static function page() {
         Response::render(['template'=>'my.page']);
     }
+	
+	public static function pageView( $page ){
+		$url_site = 'http://'.domain().'/';
+		
+		ob_start();
+		echo "<div class='viewPage $page'>";
+		include template($page);
+		echo "</div>";
+		$content = ob_get_clean();		
+		
+	
+		$page = self::createPage([
+            'id' => 'pageView',
+            'header' => self::pageHeader(),
+            'panel' => self::pagePanel(),
+            'content' => $content,
+            //'footer' => self::pageFooter(),
+        ]);
+		
+        echo $page;	
+	}
 }

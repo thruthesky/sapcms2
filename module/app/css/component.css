@@ -593,3 +593,25 @@
 	color:#ab1212;	
 }
 /*eo user profile*/
+
+
+
+/*viewPage*/
+.viewPage{
+	padding:10px 10px;
+	background-color:#fff;
+	font-size:.8em;
+}
+
+.viewPage img{
+	width:100%;
+}
+
+.viewPage .title{
+	padding: 10px;
+	margin: 0 0 10px 0;
+	border-bottom: 3px solid #d5d5d5;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+/*eo viewPage*/
