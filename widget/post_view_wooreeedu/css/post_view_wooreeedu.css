@@ -62,6 +62,10 @@
     box-sizing: border-box;
 }
 
+.post-view.wooreeedu .content .display-files .image img{
+	width:100%;
+}
+
 
 
 
