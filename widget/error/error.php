@@ -7,7 +7,11 @@ add_css();
     <h2>Error</h2>
     <div class="list">
         <?php
+
         foreach ( $error as $code => $message ) {
+            if ( is_array($message) ) {
+                $message = print_r($message, true);
+            }
             echo "
             <div class='row'>
             <div class='code'>

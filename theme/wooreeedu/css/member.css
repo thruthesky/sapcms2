@@ -34,7 +34,6 @@
 	padding: 15px 10px 10px 10px;
     margin-bottom: 35px;
     font-size: 1.4em;
-    font-weight: bold;
     color: #7d7d7d;
     border-bottom: 2px solid #cccccc;
     line-height: 100%;
@@ -216,7 +215,7 @@
 	padding:10px 0;	
 	border-radius:2px;
 	font-size:1.3em;
-	font-weight:bold;
+	font-weight:normal;
 	color:#fff;	
 	box-sizing:border-box;
 	text-align:center;

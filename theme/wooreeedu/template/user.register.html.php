@@ -1,8 +1,8 @@
 <?php
 	add_css('member.css');
 	$user = login();
-	if( empty( $user ) ) $submit_text = "REGISTER";
-	else $submit_text = "UPDATE";
+	if( empty( $user ) ) $submit_text = "회원 가입";
+	else $submit_text = "회원 정보 수정";
 ?>
 
 <div class='member-form-wrapper register wooreeedu'>
@@ -37,12 +37,12 @@
 		
 		echo html_row([
 			'class' => 'data-set username',
-			'caption' => 'User ID',
+			'caption' => '아이디',
 			'text' => html_input([
 				'id' => 'id',
 				'name' => 'id',
 				'value'=> $user->get('id'),
-				'placeholder' => 'User ID',
+				'placeholder' => '아이디',
 			]),
 		]);
 		?>
@@ -56,22 +56,22 @@
 		<?php
 			echo html_row([
 				'class' => 'data-set username',
-				'caption' => 'User ID',
+				'caption' => '아이디',
 				'text' => html_input([
 					'id' => 'id',
 					'name' => 'id',
 					'value'=>request('id'),
-					'placeholder' => 'User ID',
+					'placeholder' => '아이디',
 				]),
 			]);
 		?>
 		<?php 		
 			echo html_row([
 				'class' => 'data-set password',
-				'caption' => 'Password',
+				'caption' => '비밀번호',
 				'text' => html_password([
 					'name' => 'password',
-					'placeholder' => 'Password',
+					'placeholder' => '비밀번호',
 				]),
 			]);
 		?>
@@ -88,12 +88,12 @@
 	<?php 
 		echo html_row([
 			'class' => 'data-set full_name',
-			'caption' => 'Name',
+			'caption' => '이름',
 			'text' => html_input([
 				'id' => 'name',
 				'name' => 'name',
 				'value'=>$name,
-				'placeholder' => 'Name',
+				'placeholder' => '이름',
 			]),
 		]);
 	/*echo html_row([
@@ -104,12 +104,12 @@
 	<?php 
 		echo html_row([
 			'class' => 'data-set email',
-			'caption' => 'Email',
+			'caption' => '이메일',
 			'text' => html_input([
 				'id' => 'data-set email',
 				'name' => 'mail',
 				'value'=>$name,
-				'placeholder' => 'Email',
+				'placeholder' => '이메일',
 			]),
 		]);
 	/*echo html_row([
@@ -119,7 +119,7 @@
 	?>		
 		<div class='buttons'>
 			<input type="submit" value="<?php echo $submit_text ?>">
-			<a href="/" class="ui-btn ui-icon-action">CANCEL</a>
+			<a href="/" class="ui-btn ui-icon-action">취소</a>
 		</div>
 	</form>
 </div>
