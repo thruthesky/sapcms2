@@ -11,7 +11,7 @@ add_css('featured.item.css');
 			<!--<a href='#'>우리에듀 소개</a><span class='bullet'>•</span>-->
 			<a href='/post/list?id=qna'>질문하기</a><span class='bullet'>•</span>
 			<a href='/studyAbroad'>교육 프로그램</a><span class='bullet'>•</span>
-			<a href='/great'>화상영어</a><span class='bullet'>•</span>
+			<a href='/ve'>화상영어</a><span class='bullet'>•</span>
 			<a href='/paymentInfo'>수업료 납부 안내</a>
 		</div>
 		<div class='right'>

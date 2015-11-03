@@ -113,7 +113,6 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 	</div>
 </section>
 <div class="copyright">
-	Copyright © 2015 Multi Language Power e-Center. All Rights Reserved <br>
-	Powered by: <b>Wooreeedu Inc.</b>
+	Copyright (C) 2013 ~ <?=date('Y')?> 우리에듀. All Rights Reserved <br>
 </div>
 
