@@ -55,13 +55,13 @@ add_css('featured.item.css');
 				?>
 				</div>
 					<div class='inner'>
-						<div class='item fake'><div class='banner'><img src='/theme/wooreeedu/img/seminar_2.jpg'/></div><div class='title text-center'>영어세미나</div></div><div class='item'>
-						<div class='banner'><img src='/theme/wooreeedu/img/popsong_1.jpg'/></div><div class='title text-center'>노래자랑</div></div><div class='item'>
-						<div class='banner'><img src='/theme/wooreeedu/img/tripping_5.jpg'/></div><div class='title text-center'>바다 여행</div></div><div class='item'>
-						<div class='banner'><img src='/theme/wooreeedu/img/speech_10.jpg'/></div><div class='title text-center'>영어 말하기 대회 시상식</div></div><div class='item'>
-						<div class='banner'><img src='/theme/wooreeedu/img/xmas_13.jpg'/></div><div class='title text-center'>크리스마스 파티</div></div><div class='item'>
-						<div class='banner'><img src='/theme/wooreeedu/img/seminar_2.jpg'/></div><div class='title text-center'>영어 수업</div></div><div class='item fake'>
-						<div class='banner'><img src='/theme/wooreeedu/img/popsong_1.jpg'/></div><div class='title text-center'>팝송 노래</div></div>
+						<div class='item fake'><div class='banner'><img src='/theme/wooreeedu/img/menu_photo_5.jpg'/></div><div class='title text-center'>영어세미나</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/menu_photo_1.jpg'/></div><div class='title text-center'>노래자랑</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/menu_photo_2.jpg'/></div><div class='title text-center'>바다 여행</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/menu_photo_4.jpg'/></div><div class='title text-center'>영어 말하기 대회 시상식</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/menu_photo_3.jpg'/></div><div class='title text-center'>크리스마스 파티</div></div><div class='item'>
+						<div class='banner'><img src='/theme/wooreeedu/img/menu_photo_5.jpg'/></div><div class='title text-center'>영어 수업</div></div><div class='item fake'>
+						<div class='banner'><img src='/theme/wooreeedu/img/menu_photo_1.jpg'/></div><div class='title text-center'>팝송 노래</div></div>
 					</div>
 				</div>
 				<div class='item-list text-center'>
