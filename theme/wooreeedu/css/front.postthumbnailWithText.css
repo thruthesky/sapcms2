@@ -36,7 +36,7 @@
 	margin-bottom: 5px;
 }
 
-.post-thumbnail-with-text .item.long-version .content{
+.post-thumbnail-with-text .item .content{
 	display:none;
 	height: 16px;
 	margin-bottom: 5px;
