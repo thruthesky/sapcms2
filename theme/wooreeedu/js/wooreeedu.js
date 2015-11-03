@@ -291,7 +291,7 @@ function doImageAdjust(){
 	
 	//$selector.css('width','100%');
 	if( $selector.height() >= $selector.width() ) {				
-		$selector.css('width','initial').css('height',$(window).height()-60);			
+		$selector.css('width','initial').css('height',$(window).height()-100);			
 		if( $selector.width() > $(window).width() ) $selector.css('max-width','100%').css('height','initial');
 		console.log('1');
 	}
