@@ -53,8 +53,13 @@
 }
 
 .post-thumbnail-with-text .item .extra .separator{	
+	display:inline-block;
+	position:relative;
 	top:-4px;
+	width:2px;
+	height:1px;	
 	margin:0 5px;
+	background-color:#999;
 }
 
 .post-thumbnail-with-text .item.long-version .extra{

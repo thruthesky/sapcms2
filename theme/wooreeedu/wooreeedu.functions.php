@@ -59,7 +59,7 @@ echo "<div class='post-thumbnail-with-text'>";
 						<td width='99%'>
 							<div class='info'>
 								<div class='title'>$title</div>
-								<div class='extra'><img src='/module/app/img/comment.png'/> $no_comment <img class='separator' src='/module/app/img/blue_dot.png'/> <img src='/module/app/img/like.png'/> $no_good <img class='separator' src='/module/app/img/blue_dot.png'/> $date</div>
+								<div class='extra'><img src='/module/app/img/comment.png'/> $no_comment <span class='separator'></span> <img src='/module/app/img/like.png'/> $no_good <span class='separator'></span> $date</div>
 								<div class='label'>$thumbnail_label $post_config_id</div>
 							</div>
 						</td>
