@@ -220,3 +220,72 @@
 /*eo weekendActivities*/
 
 /*eo temp-page*/
+
+
+
+/*modal image*/
+.display-files .image, .modal-image{
+	cursor:pointer;
+}
+/*eo modal image*/
+
+
+/*modal window*/
+/*modal_window*/
+.modal_window{
+	position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;	
+    background-color: rgba(0,0,0,.9);
+    z-index: 9999;    
+	box-sizing:border-box;
+	text-align:center;
+}
+
+.modal_window img{
+	box-sizing:border-box;		
+}
+
+.modal_window > .inner{	
+	position:relative;
+	max-width:960px;
+	height:100%;
+	padding:50px 40px;
+	margin:auto;
+	box-sizing:border-box;
+}
+
+.modal_window .arrow{
+	position:absolute;
+	top:47.3%;
+	padding:10px 15px;
+	width:50px;
+	cursor:pointer;
+}
+
+.modal_window .arrow.left{
+	left:0;
+}
+
+.modal_window .arrow.right{
+	right:0;
+}
+/*eo modal_window*/
+
+/*invisible-window*/
+.invisible_window{
+	position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+	padding:10px;
+    z-index: 900;    
+	box-sizing:border-box;
+	text-align:center;
+	opacity:0;
+}
+/*eo invisible-window*/
+/*eo modal window*/
