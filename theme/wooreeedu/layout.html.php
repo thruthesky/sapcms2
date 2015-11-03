@@ -14,7 +14,7 @@ include "wooreeedu.functions.php";
     <link rel="icon" type="image/ico" href="/theme/wooreeedu/favicon.ico?v=2"/>
 </head>
 <body>
-<div id="layout">
+<div id="layout">	
     <div id="layout-header"><?php include template('header'); ?></div>
     <div id="layout-content">
 		<?php widget('error') ?>
@@ -31,6 +31,7 @@ include "wooreeedu.functions.php";
 <!--[if gte IE 9]><!-->
 <script type='text/javascript' src='/core/etc/js/jquery-2.1.4/jquery-2.1.4.min.js'></script>
 <!--<![endif]-->
+<script> var url_server_app = "http://<?php echo $_SERVER['HTTP_HOST']; ?>/app/"; </script>
 <?php add_javascript('wooreeedu.js'); ?>
 <?php widget('timezone'); ?>
 </body>
