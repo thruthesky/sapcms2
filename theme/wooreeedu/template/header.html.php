@@ -39,7 +39,7 @@ add_css('featured.item.css');
 			<li><a <?php if( !empty( $page ) && $page == 'junior' ) echo "class='is-active'"; ?> href='/junior'>조기유학</a></li>
 			<li><a <?php if( !empty( $page ) && $page == 'camp' ) echo "class='is-active'"; ?> href='/camp'>단기캠프</a></li>
 			<li><a <?php if( !empty( $page ) && $page == 'gallery' ) echo "class='is-active'"; ?> href='/gallery'>프로그램</a></li>
-			<li><a <?php if( !empty( $page ) && $page == 'videoEnglish' ) echo "class='is-active'"; ?> href='/ve'>화상영어</a></li>
+			<li><a <?php if( !empty( $page ) && $page == 'videoEnglish' ) echo "class='is-active'"; ?> href='/ve?page=teacher_list'>화상영어</a></li>
 			<!--<li><a class='contactUs' href='#'>Contact Us</a></li>-->
 		</ul>
 		<div class='sub-menu'>
@@ -119,10 +119,10 @@ add_css('featured.item.css');
 							<td width='16.67%'>
 								<div class='item'>
 									<ul>
-										<li><a href="#">선생님 목록</a></li>
-										<li><a href="#">수업 시간표</a></li>
-										<li><a href="#">수업 평가</a></li>
-										<li><a href="#">강의실 입장</a></li>
+										<li><a href="/ve?page=teacher_list">선생님 목록</a></li>
+										<li><a href="/ve?page=reservation">수업 시간표</a></li>
+										<li><a href="/ve?page=past">수업 평가</a></li>
+										<li><a href="/ve?page=solution">강의실 입장</a></li>
 									</ul>
 								</div>
 							</td>
