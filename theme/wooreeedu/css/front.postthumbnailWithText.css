@@ -31,6 +31,36 @@
 	word-break:break-word;
 }
 
+.post-thumbnail-with-text .item.long-version .title{
+	height: 16px;
+	margin-bottom: 10px;
+}
+
+.post-thumbnail-with-text .item .extra{
+	display:none;
+	height: 16px;		
+	margin-bottom: 5px;
+	font-size:.9em;
+	color:#333;	
+	line-height:110%;	
+	box-sizing:border-box;
+	word-break:break-word;
+}
+
+.post-thumbnail-with-text .item .extra > img{
+	position:relative;
+	top:1px;	
+}
+
+.post-thumbnail-with-text .item .extra .separator{	
+	top:-4px;
+	margin:0 5px;
+}
+
+.post-thumbnail-with-text .item.long-version .extra{
+	display:block;
+}
+
 .post-thumbnail-with-text .item .label{
 	height: 19px;
 	font-size: .9em;

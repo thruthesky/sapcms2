@@ -27,7 +27,7 @@ EOH;
 	echo "</div>";
 }
 
-function postThumbnailWithText( $posts, $width = 100, $height = 100, $title_length = 30 ){
+function postThumbnailWithText( $posts, $extra_class = null, $width = 100, $height = 100, $title_length = 30 ){
 if( empty( $posts ) ) return null;
 echo "<div class='post-thumbnail-with-text'>";
 	foreach( $posts as $post ){
@@ -39,10 +39,16 @@ echo "<div class='post-thumbnail-with-text'>";
 		$url = $post->url();
 		$post_config = post_config()->load( $post->idx_config );
 		$post_config_id = $post_config->id;
+
+		$no_views = $post->no_view;
+		$no_comment = $post->no_comment;
+		$no_good = $post->no_good;
+		$date = date( "M d, Y", $post->created );
+		if( empty( $no_good ) ) $no_good = 0;
 		
 		echo <<<EOH
 		<a href=$url>
-			<div class='item'>
+			<div class='item $extra_class'>
 				<table cellpadding=0 cellspacing=0 width='100%'>
 					<tr valign='top'>
 						<td>
@@ -53,6 +59,7 @@ echo "<div class='post-thumbnail-with-text'>";
 						<td width='99%'>
 							<div class='info'>
 								<div class='title'>$title</div>
+								<div class='extra'><img src='/module/app/img/comment.png'/> $no_comment <img class='separator' src='/module/app/img/blue_dot.png'/> <img src='/module/app/img/like.png'/> $no_good <img class='separator' src='/module/app/img/blue_dot.png'/> $date</div>
 								<div class='label'>$thumbnail_label $post_config_id</div>
 							</div>
 						</td>

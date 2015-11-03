@@ -21,7 +21,7 @@ add_css('front.postBannerWithText.css');
 					echo postBannerWithText( $post, 520, 500, 20, 200 );
 				}
 				$posts = getPostWithImage(1, 2, 'wooreeedu');
-				echo postThumbnailWithText( $posts, 100, 75, 100 );
+				echo postThumbnailWithText( $posts, 'long-version', 100, 75, 100 );
 			?>
 		</div>
 		<div class='b'>	
@@ -32,7 +32,7 @@ add_css('front.postBannerWithText.css');
 				$posts = getPostWithImage(3, 1, 'wooreeedu');
 				echo postHoverTitleImage( $posts, 444, 334, 30 );
 				$posts = getPostWithImage(4, 3, 'wooreeedu');
-				echo postThumbnailWithText( $posts, 100, 75, 30 );
+				echo postThumbnailWithText( $posts, null, 100, 75, 30 );
 			?>
 		</div>
 		<div class='c'>
@@ -42,7 +42,7 @@ add_css('front.postBannerWithText.css');
 				$posts = getPostWithImage(7, 1, 'wooreeedu');
 				echo postHoverTitleImage( $posts, 444, 334, 30 );
 				$posts = getPostWithImage(8, 3, 'wooreeedu');
-				echo postThumbnailWithText( $posts, 100, 75, 30 );
+				echo postThumbnailWithText( $posts, null, 100, 75, 30 );
 			?>
 		</div>
 	</section>

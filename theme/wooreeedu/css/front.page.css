@@ -19,7 +19,7 @@
 	width:100%;
 }
 
-.front-top-banner .banner-wrapper .text-info{
+.front-top-banner .banner-wrapper .text-info{	
 	position:absolute;
 	/*left:0;
 	bottom:0;*/
@@ -36,23 +36,19 @@
 
 .front-top-banner .banner-wrapper .text-info > .inner .text{
 	display:inline-block;
-	padding:10px 10px;
+	padding:5px 10px;
 }
 
 .front-top-banner .banner-wrapper .text-info > .inner .text.top{
-	padding:12px 40px 12px 12px;
+	padding:6px;
 	font-size:1.4em;
 	color:#fff;		
 }
 
-
-
 .front-top-banner .banner-wrapper.three .text-info > .inner .text.top{
 	background-color:#f39c12;		
 }
-.front-top-banner .banner-wrapper.four .text-info > .inner .text.top{
-	background-color:#8e44ad;		
-}
+
 .front-top-banner .banner-wrapper.five .text-info > .inner .text.top{
 	background-color:#95a5a6;		
 }
@@ -83,7 +79,7 @@
 	display:block;
 	position:absolute;
 	right:10px;
-	top:13px;
+	top:30%;
 	
 	width: 0; 
 	height: 0; 
@@ -105,7 +101,7 @@
 }
 
 .front-top-banner .banner-wrapper.one .text-info > .inner{
-	padding-left:180px;
+	padding-left:14%;
 }
  
 .front-top-banner .banner-wrapper.one .text-info > .inner .text.top{
@@ -119,7 +115,7 @@
 }
 
 .front-top-banner .banner-wrapper.two .text-info > .inner{
-	padding-left:180px;
+	padding-left:14%;
 }
 
 .front-top-banner .banner-wrapper.two .text-info > .inner > .wrapper{
@@ -169,7 +165,7 @@
 }
 
 .front-top-banner .banner-wrapper.three .text-info > .inner{
-	padding-right:180px;
+	padding-right:14%;
 }
 /*eo three unique design*/
 
@@ -180,7 +176,7 @@
 
 .front-top-banner .banner-wrapper.four .text-info > .inner{
 	text-align:right;
-	padding-right:180px;
+	padding-right:14%;
 }
 
 .front-top-banner .banner-wrapper.four .text-info > .inner > .wrapper{
@@ -228,7 +224,7 @@
 }
 
 .front-top-banner .banner-wrapper.five .text-info > .inner{
-	padding-left:180px;
+	padding-left:14%;
 }
 
 /*eo five unique design*/
@@ -245,8 +241,7 @@
 .front-top-banner .arrow{
 	display:none;
 	position:absolute;
-	top:39.6%;
-	padding:18px 25px 14px 26px;
+	/*top:39.6%;*/	
 	border-radius:100%;
 	background-color:rgba(0,0,0,.4);
 	z-index:10;
@@ -254,19 +249,10 @@
 }
 
 .front-top-banner:hover .arrow{
-	display:block;
-	height:43px;
+	display:block;	
 }
 
-.front-top-banner .arrow[direction='left']{
-	/*left:10px;*/
-	padding-left:23px;
-}
 
-.front-top-banner .arrow[direction='right']{
-	/*right:10px;*/
-	padding-right:22px;
-}
 
 .front-top-banner:hover .arrow img{
 	display:block;
@@ -347,8 +333,123 @@
 }
 /*eo page-content TOP .post-bullet-list*/
 
+.front-top-banner .banner-wrapper .text-info{
+	display:none;
+}
+
+.front-top-banner .arrow{
+	height:36px;
+	padding:12px 18px 7px 19px;
+	top:25%;
+}
+
+.front-top-banner .arrow[direction='left']{
+	/*left:10px;*/
+	padding-left:15px;
+}
+
+.front-top-banner .arrow[direction='right']{
+	/*right:10px;*/
+	padding-right:15px;
+}
+
+.front-top-banner .arrow img{		
+	width:20px;		
+}
+
+@media all and ( min-width: 420px ) {
+	.front-top-banner .arrow{
+		top:30%;
+	}
+}
+
+@media all and ( min-width: 480px ) {	
+	.front-top-banner .arrow{
+		top:33.6%;
+	}
+}
+
+@media all and ( min-width: 570px ) {	
+	.front-top-banner .banner-wrapper .text-info{
+		display:block;
+	}
+	
+	.front-top-banner .banner-wrapper .text-info > .inner .text.top{		
+		font-size:.9em;	
+	}
+
+	.front-top-banner .banner-wrapper .text-info > .inner .text.bottom{
+		font-size:.7em;
+	}
+
+	.front-top-banner .banner-wrapper .text-info > .inner .text.more{
+		font-size:.6em;
+	}
+}
+
+@media all and ( min-width: 700px ) {
+	.front-top-banner .arrow{
+		height:43px;
+		padding:18px 25px 14px 26px;
+	}
+	
+	.front-top-banner .banner-wrapper .text-info > .inner .text{	
+		padding:10px 10px;
+	}
+	
+	.front-top-banner .banner-wrapper .text-info > .inner .text.top{
+		padding:12px;
+	}
+	
+	.front-top-banner .banner-wrapper .text-info > .inner .text.more .triangle{
+		top:41%;
+	}
+	
+	.front-top-banner .banner-wrapper .text-info > .inner .text.top{
+		font-size:1.2em;	
+	}
+
+	.front-top-banner .banner-wrapper .text-info > .inner .text.bottom{
+		font-size:.9em;
+	}
+
+	.front-top-banner .banner-wrapper .text-info > .inner .text.more{
+		font-size:.8em;
+	}
+	
+	.front-top-banner .arrow[direction='left']{
+		/*left:10px;*/
+		padding-left:23px;
+	}
+
+	.front-top-banner .arrow[direction='right']{
+		/*right:10px;*/
+		padding-right:22px;
+	}
+	
+	.front-top-banner .arrow img{		
+		width:27px;
+		height:40px;
+	}
+}
 
 @media all and ( min-width: 960px ) {
+	.front-top-banner .arrow{		
+		top:39.6%;
+	}
+	
+	.front-top-banner .banner-wrapper .text-info > .inner .text.top{
+		font-size:1.4em;	
+	}
+
+	.front-top-banner .banner-wrapper .text-info > .inner .text.bottom{
+		font-size:1em;
+	}
+
+	.front-top-banner .banner-wrapper .text-info > .inner .text.more{
+		font-size:.9em;
+	}
+	
 	.page-content.top  .b .floater-bar{
 		height:33px;
 		padding-right:10px;

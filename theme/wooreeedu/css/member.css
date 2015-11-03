@@ -212,7 +212,7 @@
 .member-form .buttons input[type='submit'], .member-form .buttons a{	
 	height:40px;
 	width:40%;
-	padding:10px 0;	
+	padding:9px 0;	
 	border-radius:2px;
 	font-size:1.3em;
 	font-weight:normal;
@@ -229,8 +229,9 @@
 }
 
 .member-form .buttons a{
-	display:inline-block;
-	color:#e84c3d;
+	display: inline-block;
+	background-color: #e84c3d;
+	color: #f1f1f1;	
 }
 
 

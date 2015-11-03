@@ -179,10 +179,17 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			<img class='banner fake' src='/theme/wooreeedu/img/banner_5.jpg'/>
 			<div class='text-info'>
 				<div class='inner'>
+					<div class='text top'>읽고, 토론하며, 함께 배우는 우리에듀.</div><br>
+					<div class='text bottom'>배움의 지름길 우리에듀</div><br>
+					<div class='text more'>자세히 보기<div class='triangle'></div></div>
+				</div>
+				<?php /*
+				<div class='inner'>
 					<div class='text top'>우리에듀 홈페이지에 오신 것을 환영합니다.</div><br>
 					<div class='text bottom'>배움의 지름길 우리에듀!</div><br>
 					<div class='text more'>자세히 보기<div class='triangle'></div></div>
 				</div>
+				*/ ?>
 			</div>
 		</div><div class='banner-wrapper one '>
 			<img class='banner' src='/theme/wooreeedu/img/banner_1.jpg'/>
@@ -237,10 +244,17 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			<img class='banner fake' src='/theme/wooreeedu/img/banner_1.jpg'/>
 			<div class='text-info'>
 				<div class='inner'>
+					<div class='text top'>영어는 언어이며 소통! 각 나라의 친구와 함께!</div><br>
+					<div class='text bottom'>배움의 지름길 우리에듀!</div><br>
+					<div class='text more'>자세히 보기<div class='triangle'></div></div>
+				</div>
+				<?php /*
+				<div class='inner'>					
 					<div class='text top'>지금 바로 문의 해 주세요!</div><br>
 					<div class='text bottom'>우리에듀</div><br>
 					<div class='text more'>자세히 보기<div class='triangle'></div></div>
 				</div>
+				*/ ?>
 			</div>
 		</div>
 	</div>
