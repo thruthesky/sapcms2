@@ -1,0 +1,78 @@
+.comment-form.wooreeedu{
+	padding:10px;
+	margin-bottom:10px;
+	background-color:#fff;	
+}
+
+.comment-form.wooreeedu .primary-photo{
+	width:80px;
+	height:80px;
+	padding-right:10px;
+	
+}
+
+.comment-form.wooreeedu .primary-photo img{
+	width:100%;
+	border-radius:100%;
+}
+
+.comment-form.wooreeedu textarea{
+	height:80px;
+	width:100%;
+	padding:10px;
+	border:1px solid #dcdcdc;
+	resize:none;
+	box-sizing:border-box;
+}
+
+.comment-form.wooreeedu .buttons{
+	position:relative;
+	width:120px;
+	margin-left:10px;
+}
+
+.comment-form.wooreeedu .buttons .file-upload-button{
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:1;
+	height:38px;
+	width:100%;		
+	background-color:#95a5a6;
+	border-radius:3px;
+	box-sizing:border-box;
+	text-align:center;
+}
+
+.comment-form.wooreeedu .buttons .file-upload-button img{
+	display:block;
+	margin:7px auto 0 auto;
+}
+
+.comment-form.wooreeedu .buttons .row.file-upload{
+	height:38px;
+	margin:0 0 4px 0;
+}
+
+.comment-form.wooreeedu  .buttons .row.file-upload .caption{
+	display:none;
+}
+
+.comment-form.wooreeedu  .buttons .row.file-upload input[type='file']{
+	position:relative;
+	height:38px;
+	width:120px;
+	z-index:2;	
+	opacity:0;
+}
+
+.comment-form.wooreeedu  .buttons input[type='submit']{
+	height:38px;
+	width:100%;
+	border:0;
+	border-radius:3px;
+	background-color:#3498db;
+	font-size:1.1em;
+	color:#fff;	
+	box-sizing:border-box;
+}
