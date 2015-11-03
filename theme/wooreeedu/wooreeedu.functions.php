@@ -35,6 +35,7 @@ echo "<div class='post-thumbnail-with-text'>";
 		$img = $post->getImage();
 		$thumbnail = $img->urlThumbnail($width,$height);	
 		$title = textLengthLimit( $post->title, $title_length );
+		$content = textLengthLimit( strip_tags( $post->content ), $title_length );
 		$thumbnail_label = "<img src='/theme/wooreeedu/img/tempThumbnailLabel.png'/>";
 		$url = $post->url();
 		$post_config = post_config()->load( $post->idx_config );
@@ -45,7 +46,7 @@ echo "<div class='post-thumbnail-with-text'>";
 		$no_good = $post->no_good;
 		$date = date( "M d, Y", $post->created );
 		if( empty( $no_good ) ) $no_good = 0;
-		
+		//<div class='extra'><img src='/module/app/img/comment.png'/> $no_comment <span class='separator'></span> <img src='/module/app/img/like.png'/> $no_good <span class='separator'></span> $date</div>
 		echo <<<EOH
 		<a href=$url>
 			<div class='item $extra_class'>
@@ -59,7 +60,7 @@ echo "<div class='post-thumbnail-with-text'>";
 						<td width='99%'>
 							<div class='info'>
 								<div class='title'>$title</div>
-								<div class='extra'><img src='/module/app/img/comment.png'/> $no_comment <span class='separator'></span> <img src='/module/app/img/like.png'/> $no_good <span class='separator'></span> $date</div>
+								<div class='content'>$content</div>
 								<div class='label'>$thumbnail_label $post_config_id</div>
 							</div>
 						</td>
