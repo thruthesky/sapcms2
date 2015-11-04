@@ -295,14 +295,75 @@
 
 /*five unique design*/
 .front-top-banner .banner-wrapper.five .text-info{
-	left:0;
+	right:0;
 	bottom:0;
 }
 
 .front-top-banner .banner-wrapper.five .text-info > .inner{
 	padding-left:14%;
 }
+ 
+.front-top-banner .banner-wrapper.five .text-info > .inner .text.top{
+	background-color:#e74c3c;		
+}
+/*
+.front-top-banner .banner-wrapper.five .text-info{
+	left:0;
+	bottom:0;
+	height:100%;
+}
 
+.front-top-banner .banner-wrapper.five .text-info > .inner{
+	height:100%;
+	padding-left:14%;
+}
+
+.front-top-banner .banner-wrapper.five .text-info > .inner > .wrapper{
+	position:relative;
+	white-space:normal;
+}
+
+.front-top-banner .banner-wrapper.five .text-info > .inner .text{	
+	width:76%;
+	margin:0 12% 0 12%;
+	box-sizing:border-box;
+}
+
+.front-top-banner .banner-wrapper.five .text-info > .inner .text.top{
+	height:250px;
+	width:250px;
+	background-color:#22a7f0;
+	border:1px solid #fff;
+	border-radius:100%;	
+	z-index:3;
+}
+
+.front-top-banner .banner-wrapper.five .text-info > .inner .text.bottom{
+	position:absolute;
+	bottom: -42px;
+	left:20%;
+	height:150px;
+	width:150px;
+	background-color:#1abc9c;
+	border:1px solid #fff;
+	border-radius:100%;	
+	z-index:1;
+}
+
+.front-top-banner .banner-wrapper.five .text-info > .inner .text.more{
+	position:absolute;
+	background-color:transparent;
+	z-index:3;
+}
+
+.front-top-banner .banner-wrapper.five .text-info > .inner .text.more a{
+		
+}
+
+.front-top-banner .banner-wrapper.five .text-info > .inner .text.more a:hover{
+	
+}
+*/
 /*eo five unique design*/
 
 
