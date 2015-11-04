@@ -179,9 +179,11 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			<img class='banner fake' src='/theme/wooreeedu/img/banner_5.jpg'/>
 			<div class='text-info'>
 				<div class='inner'>
-					<div class='text top'>읽고, 토론하며, 함께 배우는 우리에듀.</div><br>
-					<div class='text bottom'>배움의 지름길 우리에듀</div><br>
-					<div class='text more'>자세히 보기<div class='triangle'></div></div>
+					<div class='wrapper'>
+						<div class='text top'>읽고, 토론하며, 함께 배우는 우리에듀.</div><br>
+						<div class='text bottom'>배움의 지름길 우리에듀</div><br>
+						<div class='text more'>자세히 보기<div class='triangle'></div></div>
+					</div>
 				</div>
 				<?php /*
 				<div class='inner'>
@@ -195,9 +197,11 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			<img class='banner' src='/theme/wooreeedu/img/banner_1.jpg'/>
 			<div class='text-info'>
 				<div class='inner'>
-					<div class='text top'>영어는 언어이며 소통! 각 나라의 친구와 함께!</div><br>
-					<div class='text bottom'>배움의 지름길 우리에듀!</div><br>
-					<div class='text more'>자세히 보기<div class='triangle'></div></div>
+					<div class='wrapper'>
+						<div class='text top'>영어는 언어이며 소통! 각 나라의 친구와 함께!</div><br>
+						<div class='text bottom'>배움의 지름길 우리에듀!</div><br>
+						<div class='text more'>자세히 보기<div class='triangle'></div></div>
+					</div>
 				</div>
 			</div>
 		</div><div class='banner-wrapper two'>
@@ -207,7 +211,7 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 					<div class='wrapper'>
 						<div class='text top'>어학연수, 단기 캠프, 조기유학</div><br>
 						<div class='text bottom'>우리에듀와 함께 신나는 영어 공부를 합시다.</div><br>
-						<div class='text more'><a href='#'>자세히 보기</a></div>
+						<div class='text more'><a href='#'>자세히 보기<div class='triangle'></div></a></div>
 					</div>
 				</div>
 			</div>
@@ -215,9 +219,11 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			<img class='banner' src='/theme/wooreeedu/img/banner_3.jpg'/>
 			<div class='text-info'>
 				<div class='inner'>
-					<div class='text top'>우리에듀의 자랑. 멋진 선생님과 알찬 수업 과정.</div><br>
-					<div class='text bottom'>새로운 친구들을 사귀어 보세요.</div><br>
-					<div class='text more'>자세히 보기<div class='triangle'></div></div>
+					<div class='wrapper'>
+						<div class='text top'>우리에듀의 자랑. 멋진 선생님과 알찬 수업 과정.</div><br>
+						<div class='text bottom'>새로운 친구들을 사귀어 보세요.</div><br>
+						<div class='text more'><a href='#'>자세히 보기<div class='triangle'></div></a></div>
+					</div>
 				</div>
 			</div>
 		</div><div class='banner-wrapper four'>
@@ -235,18 +241,22 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			<img class='banner' src='/theme/wooreeedu/img/banner_5.jpg'/>
 			<div class='text-info'>
 				<div class='inner'>
-					<div class='text top'>읽고, 토론하며, 함께 배우는 우리에듀.</div><br>
-					<div class='text bottom'>배움의 지름길 우리에듀</div><br>
-					<div class='text more'>자세히 보기<div class='triangle'></div></div>
+					<div class='wrapper'>
+						<div class='text top'>읽고, 토론하며, 함께 배우는 우리에듀.</div><br>
+						<div class='text bottom'>배움의 지름길 우리에듀</div><br>
+						<div class='text more'>자세히 보기<div class='triangle'></div></div>
+					</div>
 				</div>
 			</div>
 		</div><div class='banner-wrapper one'>
 			<img class='banner fake' src='/theme/wooreeedu/img/banner_1.jpg'/>
 			<div class='text-info'>
 				<div class='inner'>
-					<div class='text top'>영어는 언어이며 소통! 각 나라의 친구와 함께!</div><br>
-					<div class='text bottom'>배움의 지름길 우리에듀!</div><br>
-					<div class='text more'>자세히 보기<div class='triangle'></div></div>
+					<div class='wrapper'>
+							<div class='text top'>영어는 언어이며 소통! 각 나라의 친구와 함께!</div><br>
+							<div class='text bottom'>배움의 지름길 우리에듀!</div><br>
+							<div class='text more'>자세히 보기<div class='triangle'></div></div>
+					</div>
 				</div>
 				<?php /*
 				<div class='inner'>					

@@ -8,8 +8,8 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 	<div class='inner'>
 		<div class='item talk'>
 			<a href='/course' class='image'>
-				<img class='default' src='/theme/wooreeedu/img/talk.png'/>
-				<img class='active' src='/theme/wooreeedu/img/talk-active.png'/>
+				<img class='default' src='/theme/wooreeedu/img/book.png'/>
+				<img class='active' src='/theme/wooreeedu/img/book-active.png'/>
 			</a>
 			<div class='label'>수업 과정</div>
 		</div>
@@ -22,8 +22,8 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 		</div>
 		<div class='item date'>		
 			<a href='/camp' class='image'>
-				<img class='default' src='/theme/wooreeedu/img/date.png'/>
-				<img class='active' src='/theme/wooreeedu/img/date-active.png'/>
+				<img class='default' src='/theme/wooreeedu/img/camp.png'/>
+				<img class='active' src='/theme/wooreeedu/img/camp-active.png'/>
 			</a>
 			<div class='label'>영어 캠프</div>
 		</div>
