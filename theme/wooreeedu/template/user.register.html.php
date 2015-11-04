@@ -108,7 +108,7 @@
 			'text' => html_input([
 				'id' => 'data-set email',
 				'name' => 'mail',
-				'value'=>$name,
+				'value'=>$mail,
 				'placeholder' => '이메일',
 			]),
 		]);

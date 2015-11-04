@@ -70,6 +70,10 @@
 	cursor:pointer;
 }
 
+.front-top-banner .banner-wrapper .text-info > .inner .text.more > a{
+	color:#3498db;
+}
+
 .front-top-banner .banner-wrapper .text-info > .inner .text.more:hover{
 	color:#444;
 }
@@ -154,19 +158,91 @@
 .front-top-banner .banner-wrapper.two .text-info > .inner .text.more a:hover{
 	color:#fff;
 }
+
+.front-top-banner .banner-wrapper.two .text-info > .inner .text.more .triangle{
+	display:none;
+}
 /*eo two unique design*/
 
 
 /*three unique design*/
 .front-top-banner .banner-wrapper.three .text-info{
-	left:0;
+	right:0;
 	bottom:0;
-	text-align:right;
 }
 
 .front-top-banner .banner-wrapper.three .text-info > .inner{
-	padding-right:14%;
+	padding-left:14%;
 }
+ 
+.front-top-banner .banner-wrapper.three .text-info > .inner .text.top{
+	background-color:#e74c3c;		
+}
+
+/*
+.front-top-banner .banner-wrapper.three .text-info{
+	left:0;
+	top:0;
+	height:100%;
+}
+
+.front-top-banner .banner-wrapper.three .text-info > .inner{
+	padding-left:14%;
+	height:100%;
+}
+
+.front-top-banner .banner-wrapper.three .text-info > .inner .wrapper{
+	position:relative;
+	height:100%;
+	max-width: 50%;
+    background: url('/theme/wooreeedu/img/banner_text.png');
+	background-repeat:no-repeat;
+    background-size: 100%;
+	font-size:.8em;
+}
+
+.front-top-banner .banner-wrapper.three .text-info > .inner .text{
+	overflow:hidden;
+}
+
+.front-top-banner .banner-wrapper.three .text-info > .inner .text.top{
+	width:40%;
+	margin:0 0 0 25%;
+	border-bottom:2px solid #fff;	
+	background-color:transparent;
+}
+
+.front-top-banner .banner-wrapper.three .text-info > .inner .text.bottom{
+	min-height:37px;
+	width:40%;
+	margin:0 0 0 25%;
+	color:#fff;
+	background-color:transparent;
+	white-space:normal;
+}
+
+.front-top-banner .banner-wrapper.three .text-info > .inner .text.more{
+	width:100%;
+	padding:0;
+	margin-bottom:0;
+	background-color: transparent;
+	text-align:right;
+}
+
+.front-top-banner .banner-wrapper.three .text-info > .inner .text.more > a{
+	display:inline-block;
+	position:relative;
+	padding: 5px 22px 7px 5px;
+	margin-right:35%;
+	border: 1px solid #fff;
+	color: #fff;
+	background-color: transparent;
+}
+
+.front-top-banner .banner-wrapper.three .text-info > .inner .text.more .triangle{
+	border-left: 5px solid #fff;
+}
+*/
 /*eo three unique design*/
 
 /*four unique design*/
@@ -219,14 +295,75 @@
 
 /*five unique design*/
 .front-top-banner .banner-wrapper.five .text-info{
-	left:0;
+	right:0;
 	bottom:0;
 }
 
 .front-top-banner .banner-wrapper.five .text-info > .inner{
 	padding-left:14%;
 }
+ 
+.front-top-banner .banner-wrapper.five .text-info > .inner .text.top{
+	background-color:#e74c3c;		
+}
+/*
+.front-top-banner .banner-wrapper.five .text-info{
+	left:0;
+	bottom:0;
+	height:100%;
+}
 
+.front-top-banner .banner-wrapper.five .text-info > .inner{
+	height:100%;
+	padding-left:14%;
+}
+
+.front-top-banner .banner-wrapper.five .text-info > .inner > .wrapper{
+	position:relative;
+	white-space:normal;
+}
+
+.front-top-banner .banner-wrapper.five .text-info > .inner .text{	
+	width:76%;
+	margin:0 12% 0 12%;
+	box-sizing:border-box;
+}
+
+.front-top-banner .banner-wrapper.five .text-info > .inner .text.top{
+	height:250px;
+	width:250px;
+	background-color:#22a7f0;
+	border:1px solid #fff;
+	border-radius:100%;	
+	z-index:3;
+}
+
+.front-top-banner .banner-wrapper.five .text-info > .inner .text.bottom{
+	position:absolute;
+	bottom: -42px;
+	left:20%;
+	height:150px;
+	width:150px;
+	background-color:#1abc9c;
+	border:1px solid #fff;
+	border-radius:100%;	
+	z-index:1;
+}
+
+.front-top-banner .banner-wrapper.five .text-info > .inner .text.more{
+	position:absolute;
+	background-color:transparent;
+	z-index:3;
+}
+
+.front-top-banner .banner-wrapper.five .text-info > .inner .text.more a{
+		
+}
+
+.front-top-banner .banner-wrapper.five .text-info > .inner .text.more a:hover{
+	
+}
+*/
 /*eo five unique design*/
 
 
@@ -369,7 +506,7 @@
 	}
 }
 
-@media all and ( min-width: 570px ) {	
+@media all and ( min-width: 640px ) {	
 	.front-top-banner .banner-wrapper .text-info{
 		display:block;
 	}
@@ -406,7 +543,7 @@
 	}
 	
 	.front-top-banner .banner-wrapper .text-info > .inner .text.top{
-		font-size:1.2em;	
+		font-size:1.1em;	
 	}
 
 	.front-top-banner .banner-wrapper .text-info > .inner .text.bottom{

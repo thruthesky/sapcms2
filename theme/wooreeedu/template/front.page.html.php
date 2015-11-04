@@ -29,9 +29,9 @@ add_css('front.postBannerWithText.css');
 				<span class='text'>사진 갤러리</span>
 			</div>
 			<?php
-				$posts = getPostWithImage(3, 1, 'wooreeedu');
+				$posts = getPostWithImage(0, 1, 'wooreeedu_gallery');
 				echo postHoverTitleImage( $posts, 444, 334, 30 );
-				$posts = getPostWithImage(4, 3, 'wooreeedu');
+				$posts = getPostWithImage(1, 3, 'wooreeedu_gallery');
 				echo postThumbnailWithText( $posts, null, 100, 75, 30 );
 			?>
 		</div>
@@ -39,9 +39,9 @@ add_css('front.postBannerWithText.css');
 			<div class='floater-bar'>				
 			</div>
 			<?php 
-				$posts = getPostWithImage(7, 1, 'wooreeedu');
+				$posts = getPostWithImage(4, 1, 'wooreeedu_gallery');
 				echo postHoverTitleImage( $posts, 444, 334, 30 );
-				$posts = getPostWithImage(8, 3, 'wooreeedu');
+				$posts = getPostWithImage(5, 3, 'wooreeedu_gallery');
 				echo postThumbnailWithText( $posts, null, 100, 75, 30 );
 			?>
 		</div>
