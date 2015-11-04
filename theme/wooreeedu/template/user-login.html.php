@@ -17,7 +17,7 @@
 			'text' => html_input([
 				'id' => 'id',
 				'name' => 'id',
-				'placeholder' => 'User ID',
+				'placeholder' => '아이디 입력',
 			]),
 		]);
 		
@@ -26,7 +26,7 @@
 			'caption' => '비밀번호',
 			'text' => html_password([
 				'name' => 'password',
-				'placeholder' => 'Password',
+				'placeholder' => '비밀번호 입력',
 			]),
 		]);
 		?>
