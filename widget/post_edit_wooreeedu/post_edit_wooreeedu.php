@@ -11,7 +11,7 @@
 		$idx = $data->idx;
 		$title = $data->get('title');
 		$content = $data->get('content');
-		$submit_text = "UPDATE";
+		$submit_text = "글 수정";
 	}
 	// edit
 	else {
@@ -19,7 +19,7 @@
 		$idx = 0;
 		$title = request('title');
 		$content = request('content');
-		$submit_text = "Post";
+		$submit_text = "글 등록";
 	}
 
 ?>
@@ -36,7 +36,7 @@
 		<?php include template('element/title'); ?>		
 		<?php include template('element/content'); ?>
 		<div class='form-buttons clearfix'>
-			<a class='right' href="<?php echo url_go_back();?>">CANCEL</a>
+			<a class='right' href="<?php echo url_go_back();?>">취소</a>
 			<input class='right' type="submit" value="<?php echo $submit_text; ?>">			
 			<?php widget('post_edit_upload_files', ['form_name'=>'files[]']); ?>			
 		</div>

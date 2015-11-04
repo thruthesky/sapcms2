@@ -123,7 +123,7 @@
 	display:block;
 	height:38px;
 	width:140px;
-	padding:11px 0 11px 43px;
+	padding:9px 0 13px 43px;
 	border-radius:3px;
 	background:url('/widget/post_edit_wooreeedu/img/camera_white_temp.png');
 	background-repeat: no-repeat;
@@ -132,7 +132,7 @@
 	background-color:#bdc3c7;
 	font-weight:bold;
 	color:#fff;
-	content:'Add Photos';
+	content:'사진 추가';
 	box-sizing:border-box;
 	text-align:left;
 	z-index:1;

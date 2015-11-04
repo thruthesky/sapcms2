@@ -27,7 +27,7 @@ else $user_id = "Anonymous";
 			<div class='buttons<?php echo $show_on_click_class; ?>'>
 				<div class='post-file-upload-button'>
 					<img src="<?php echo sysconfig(URL_SITE)?>module/app/img/camera_white_temp.png">
-					Add Photos
+					사진 추가
 				</div>
 				<input class="form-comment-add-submit" type="submit" value="Send">
 			</div>
