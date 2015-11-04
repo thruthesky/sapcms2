@@ -24,13 +24,13 @@ add_css('featured.item.css');
 				<a href='/user/login'>로그인</a>
 			<?php } else { ?>
 				<a href='/user/profile'>나의 정보</a>
-				<span class='bullet'>•</span>		
+				<span class='bullet'>•</span>
 				<a href='/user/logout'>로그아웃</a>
 			<?php } ?>
 		</div>
 	</div>
 </div>
-<div id="header-top">	
+<div id="header-top">
 	<div class='inner'>
 		<a href="/"><img class='logo' src="/theme/wooreeedu/img/full_logo.png"/></a>
 		<ul id="main-menu" class="clearfix">

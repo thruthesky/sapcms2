@@ -37,10 +37,10 @@
 		</div>
 		<div class='post-info'>
 			<div class='name'>
-				BY <span class='highlight'><?php echo strtoupper( $user_name ); ?></span>
+				글쓴이 <span class='highlight'><?php echo strtoupper( $user_name ); ?></span>
 			</div>
 			<div class='date'>
-				ON <span class='highlight'><?php echo strtoupper( $date ); ?></span>
+				날짜 <span class='highlight'><?php echo strtoupper( $date ); ?></span>
 			</div>
 		</div>
 		<div class='content'>
