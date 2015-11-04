@@ -24,10 +24,14 @@
 	
 	$post_config = post_config()->load( $post['idx_config'] );
 	$pc_name = $post_config->fields['name'];	
+	$pc_url = "/post/list?id=".$post_config->id;
 ?>
 <div class='post-view wooreeedu'>
 	<div class='inner'>
-		<div class='category-title'><?php echo $pc_name; ?></div>
+		<div class='category-title'>
+			<a href='<?php echo $pc_url; ?>'><?php echo $pc_name; ?></a>
+			<a class='post-list' href='<?php echo $pc_url; ?>'>Post List</a>
+		</div>
 		<div class='title'>
 			<?php echo $title; ?>
 		</div>
