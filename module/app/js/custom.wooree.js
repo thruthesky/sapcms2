@@ -1,8 +1,8 @@
 function text_messageTitle() {
-    return '원문한의원';
+    return '우리에듀';
 }
 function text_messageButton() {
-    return '오케이';
+    return '확인';
 }
 function text_noMoreContent() {
     return '더 이상 글이 없습니다.';
@@ -14,7 +14,7 @@ function callback_showLoader() {
     var src = url_server + '/theme/default/tmp/s.png';
     var $body = $('body');
     var $document = $(window);
-    $body.append("<div class='loader'><img src='"+src+"'> 원문한의원</div>");
+    $body.append("<div class='loader'><img src='"+src+"'> 우리에듀</div>");
 
     var $loader = $('.loader');
     var body_width = $document.width();

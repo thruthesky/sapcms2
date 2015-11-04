@@ -4,7 +4,7 @@
 ?>
 
 <div class='member-form-wrapper login wooreeedu'>
-	<div class='title'>Sign in</div>
+	<div class='title'>회원 로그인</div>
 	<form class='user-login-form member-form' action="/user/login" method="post" data-ajax="false">
 		<!--
 		<input type="text" name="id" value="">
@@ -13,7 +13,7 @@
 		<?php
 		echo html_row([
 			'class' => 'data-set username',
-			'caption' => 'User ID',
+			'caption' => '아이디',
 			'text' => html_input([
 				'id' => 'id',
 				'name' => 'id',
@@ -23,7 +23,7 @@
 		
 		echo html_row([
 			'class' => 'data-set password',
-			'caption' => 'Password',
+			'caption' => '비밀번호',
 			'text' => html_password([
 				'name' => 'password',
 				'placeholder' => 'Password',
@@ -31,8 +31,8 @@
 		]);
 		?>
 		<div class='buttons'>
-			<input type="submit" value="LOGIN">
-			<a href="/user/register" class="ui-btn ui-icon-action">REGISTER</a>
+			<input type="submit" value="로그인">
+			<a href="/user/register" class="ui-btn ui-icon-action">회원가입</a>
 		</div>
 	</form>
 </div>
