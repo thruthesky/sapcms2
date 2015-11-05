@@ -1087,7 +1087,7 @@ function cameraSuccess(fileURI) {
 
     var fail = function (error) {
 		//$(photoOptions.selector).find(".file-loader").remove();
-		//$(photoOptions.selector).find(".file-loader").hide();
+		$(photoOptions.selector).find(".file-loader").hide();
 	
         if (retries == 0) {
             retries ++;
