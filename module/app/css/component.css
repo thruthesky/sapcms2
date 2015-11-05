@@ -48,7 +48,7 @@
 
 #main-menu li {
     float:left;
-    width:16.66%;
+    width:20%;
 	padding: 10px 0 10px 0;
     overflow:hidden;
 	text-align:center;
@@ -79,6 +79,10 @@
 }
 
 #main-menu li.my_page  {
+	display:none;
+}
+
+#main-menu li.forum  {
 	display:none;
 }
 
@@ -501,8 +505,18 @@
 /*eo invisible-window*/
 
 @media screen and (min-width: 400px) {
+	#main-menu li  {		
+        width:16.66%;
+    }
+	
+	#main-menu li.forum  {		
+        display:inline-block;
+    }
+}
+
+@media screen and (min-width: 640px) {
 	#main-menu li {
-		width:12.5%;		
+		width:12.5%;	
 	}
 
     #main-menu li.market  {
