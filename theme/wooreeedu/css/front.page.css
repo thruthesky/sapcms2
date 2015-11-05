@@ -279,7 +279,7 @@
 
 .front-top-banner .banner-wrapper.four .text-info > .inner .text.top{
 	padding:10px;
-	background-color:transparent;
+	background-color:transparent;	
 	color:#2ecc71;
 }
 
@@ -688,6 +688,12 @@
 		text-align:center;*/		
 	}
 	/*two specific*/
+	
+	/*four specific*/
+	.front-top-banner .banner-wrapper.four .text-info > .inner .text.top{
+		font-size:1.2em;
+	}
+	/*eo four specific*/
 	
 	.page-content.top  .b .floater-bar{
 		height:33px;
