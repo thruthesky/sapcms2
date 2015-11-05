@@ -13,7 +13,7 @@
 .post-list.wooreeedu > .inner .read-more{	
 	display:inline-block;
 	position:relative;
-	padding:12px 24px 11px 12px;
+	padding:10px 24px 11px 12px;
 	margin:10px 10px 20px 10px;
 	border-radius:3px;
 	background-color:#f39c12;
@@ -25,7 +25,7 @@
 .post-list.wooreeedu > .inner .arrow.right{	
 	position:absolute;
 	right:10px;
-	top:15px;
+	top:16px;
 	width: 0; 
 	height: 0; 
 	border-top: 6px solid transparent;
