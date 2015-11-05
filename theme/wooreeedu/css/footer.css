@@ -8,7 +8,7 @@
 }
 
 #layout-footer .bottom-icon-menus > .inner{	
-	padding:30px 0 25px 0;
+	padding:50px 0 45px 0;
 	max-width:960px;
 	margin:auto;
 	box-sizing:border-box;
@@ -196,6 +196,10 @@
     font-size:.9em;
 	color:#fff;
     text-align:center;
+}
+
+#layout-footer .grid3{
+	padding:0 0 45px 0;
 }
 
 #layout-footer .grid3 .a,
