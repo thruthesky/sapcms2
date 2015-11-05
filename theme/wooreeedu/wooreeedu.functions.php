@@ -39,7 +39,7 @@ echo "<div class='post-thumbnail-with-text'>";
 		$thumbnail_label = "<img src='/theme/wooreeedu/img/tempThumbnailLabel.png'/>";
 		$url = $post->url();
 		$post_config = post_config()->load( $post->idx_config );
-		$post_config_id = $post_config->id;
+		$post_config_name = $post_config->name;
 
 		$no_views = $post->no_view;
 		$no_comment = $post->no_comment;
@@ -61,7 +61,7 @@ echo "<div class='post-thumbnail-with-text'>";
 							<div class='info'>
 								<div class='title'>$title</div>
 								<div class='content'>$content</div>
-								<div class='label'>$thumbnail_label $post_config_id</div>
+								<div class='label'>$thumbnail_label $post_config_name</div>
 							</div>
 						</td>
 					</tr>
