@@ -78,7 +78,7 @@
 	display:none;
 }
 
-#main-menu li.jobs  {
+#main-menu li.my_page  {
 	display:none;
 }
 
@@ -509,7 +509,7 @@
         display:inline-block;
     }
 	
-    #main-menu li.jobs  {
+    #main-menu li.my_page  {
         display:inline-block;
     }
 }

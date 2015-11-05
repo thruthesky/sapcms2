@@ -1085,16 +1085,14 @@ function cameraSuccess(fileURI) {
 		},500 );
     };
 
-    var fail = function (error) {
-		//$(photoOptions.selector).find(".file-loader").remove();
-		$(photoOptions.selector).find(".file-loader").hide();
-	
+    var fail = function (error) {		
         if (retries == 0) {
             retries ++;
             setTimeout(function() {
                 cameraSuccess(fileURI);
             }, 1000);
         } else {
+			$(photoOptions.selector).find(".file-loader").hide();
             retries = 0;
             clearCache();
             message('실패! 업로드하지 못하였습니다.');
