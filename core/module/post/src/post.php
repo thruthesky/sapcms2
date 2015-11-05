@@ -226,7 +226,7 @@ class post {
 
 
         $options['idx'] = $idx;
-        $options['title'] = request('title');
+        $options['title'] = htmlspecialchars(request('title'), ENT_QUOTES) ;//old: request('title');//edited by benjamin for escape
         $options['content'] = request('content');
         $data = PostData::updatePost($options);
         if ( empty($data) ) return self::templateError(-50510, "Could not create a new post");
