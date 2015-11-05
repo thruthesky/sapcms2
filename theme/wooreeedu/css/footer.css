@@ -190,7 +190,7 @@
 /*eo .footer.contact*/
 
 #layout-footer .copyright {
-    padding:1.3em;
+    padding:1.5em;
     box-sizing: border-box;
     background-color:#7f8c8d;
     font-size:.9em;
@@ -199,7 +199,7 @@
 }
 
 #layout-footer .grid3{
-	padding:0 0 45px 0;
+	padding:10px 0 45px 0;
 }
 
 #layout-footer .grid3 .a,
