@@ -695,3 +695,24 @@
 		/*box-sizing:initial;*/
 	}
 }
+
+@media all and ( min-width: 1024px ) {
+	/*two specific*/
+	.front-top-banner .banner-wrapper.two .text-info > .inner > .wrapper{		
+		width: 260px;		
+	}
+	
+	.front-top-banner .banner-wrapper.two .text-info > .inner .text.top{			
+		font-size: 1.2em;
+	}
+
+	.front-top-banner .banner-wrapper.two .text-info > .inner .text.bottom{
+		height:63px;
+		font-size:1em;		
+	}
+
+	.front-top-banner .banner-wrapper.two .text-info > .inner .text.more{
+		font-size:.9em;
+	}
+	/*two specific*/
+}
