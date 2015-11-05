@@ -11,7 +11,7 @@ add_css('featured.item.css');
 			<!--<a href='#'>우리에듀 소개</a><span class='bullet'>•</span>-->
 			<a href='/post/list?id=qna'>질문하기</a><span class='bullet'>•</span>
 			<a href='/studyAbroad'>교육 프로그램</a><span class='bullet'>•</span>
-			<a href='/ve'>화상영어</a><span class='bullet'>•</span>
+			<a href='/ve?page=teacher_list'>화상영어</a><span class='bullet'>•</span>
 			<a href='/paymentInfo'>수업료 납부 안내</a>
 		</div>
 		<div class='right'>
@@ -197,7 +197,7 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			<img class='banner' src='/theme/wooreeedu/img/banner_1.jpg'/>
 			<div class='text-info'>
 				<div class='inner'>
-					<div class='wrapper'>
+					<div class='wrapper'>						
 						<div class='text top'>영어는 언어이며 소통! 각 나라의 친구와 함께!</div><br>
 						<div class='text bottom'>배움의 지름길 우리에듀!</div><br>
 						<div class='text more'>자세히 보기<div class='triangle'></div></div>
@@ -209,9 +209,12 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			<div class='text-info'>
 				<div class='inner'>
 					<div class='wrapper'>
-						<div class='text top'>어학연수, 단기 캠프, 조기유학</div><br>
-						<div class='text bottom'>우리에듀와 함께 신나는 영어 공부를 합시다.</div><br>
-						<div class='text more'><a href='#'>자세히 보기<div class='triangle'></div></a></div>
+						<img class='fake-image' src='/theme/wooreeedu/img/banner_fake_image_perfect_sides.png'/>
+						<div class='text-items'>
+							<div class='text top'>어학연수, 단기 캠프, 조기유학</div>
+							<div class='text bottom'>우리에듀와 함께 신나는 영어 공부를 합시다.</div>
+							<div class='text more'><a href='#'>자세히 보기<div class='triangle'></div></a></div>
+						</div>
 					</div>
 				</div>
 			</div>

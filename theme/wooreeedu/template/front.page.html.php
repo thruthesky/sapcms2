@@ -12,7 +12,7 @@ add_css('front.postBannerWithText.css');
 	<section class='wooree-grid3'>
 		<div class='a'>
 			<div class='floater-dotted'>
-				<span class='text'>조기유학 / 단기캠프</span>
+				<a class='text' href='/post/list?id=wooreeedu'>조기유학 / 단기캠프</a>
 			</div>
 			<?php
 				$posts = getPostWithImage(0, 1, 'wooreeedu');
@@ -26,7 +26,7 @@ add_css('front.postBannerWithText.css');
 		</div>
 		<div class='b'>	
 			<div class='floater-bar'>
-				<span class='text'>사진 갤러리</span>
+				<a class='text' href='/post/list?id=wooreeedu_gallery'>사진 갤러리</a>
 			</div>
 			<?php
 				$posts = getPostWithImage(0, 1, 'wooreeedu_gallery');

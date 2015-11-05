@@ -146,10 +146,17 @@ function closeSubMenus(){
 }
 
 function onResizeWindow(){
-	difference = ( $(window).width() - 960 ) / 2 + 10;
-	if( difference < 10 ) difference = 10;
-	$(".front-top-banner .arrow[direction='left']").css("left",difference);
-	$(".front-top-banner .arrow[direction='right']").css("right",difference);
+	difference_x = ( $(window).width() - 960 ) / 2 + 10;
+	difference_y = ( $(".front-top-banner").height()/2 - $(".front-top-banner .arrow").height() + 4  );
+	if( difference_x < 10 ) difference_x = 10;
+	console.log( difference_y );
+	if( difference_y <= 0 ) {
+		setTimeout( function(){onResizeWindow()},100 );
+	}
+	else{
+		$(".front-top-banner .arrow[direction='left']").css("left",difference_x).css("top",difference_y);
+		$(".front-top-banner .arrow[direction='right']").css("right",difference_x).css("top",difference_y);
+	}
 	
 }
 
@@ -230,11 +237,11 @@ function modal_window_image(){
 	//alert( $this.prev().attr('idx') );
 
 	appendModalWindowToBody();
-	console.log( "add modal" );
+	
 	data = {};
 	data.action = 'modalImage';
 	data.idx = $this.attr('idx');
-	console.log( data );
+	
 	ajax_get_modal_window_data( data );
 }
 
@@ -292,17 +299,15 @@ function doImageAdjust(){
 	//$selector.css('width','100%');
 	if( $selector.height() >= $selector.width() ) {				
 		$selector.css('width','initial').css('height',$(window).height()-100);			
-		if( $selector.width() > $(window).width() ) $selector.css('max-width','100%').css('height','initial');
-		console.log('1');
+		if( $selector.width() > $(window).width() ) $selector.css('max-width','100%').css('height','initial');		
 	}
 	if( $selector.width() >= $selector.height() ){
 		$selector.css('height','initial').css('max-width','100%');
-		if( $selector.height() > $(window).height() ) $selector.css('height', ( $(window).height() - 100 ) ).css('width','initial');
-		console.log('2');
+		if( $selector.height() > $(window).height() ) $selector.css('height', ( $(window).height() - 100 ) ).css('width','initial');		
 	}
 	
 	var margin_top = window_height/2 - $selector.height()/2 - 45;
-	console.log( "SELECTOR HEIGHT: " + $selector.height() );
+
 	if( margin_top < 0 ) margin_top = 0;
 	$selector.parent().css('margin-top',margin_top);//compatible for $(".modal_widow > .modal_image > img")
 	
@@ -321,7 +326,7 @@ function appendModalWindowLoader(){
 }
 
 function remove_modal_window( e ){
-	console.log( "remove modal" );
+	
 	//var target_class = $(e.target).attr('class');
 	//console.log( target_class );
 	//if( target_class == 'modal_window' || target_class == 'modal_image' ){

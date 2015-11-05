@@ -33,6 +33,7 @@
 		
 		$name = $user->get('name');
 		$mail = $user->get('mail');
+		$mobile = $user->get('mobile');
 		if( !empty( $variables['user'] ) ) $user = $variables['user'];
 		
 		echo html_row([
@@ -49,7 +50,8 @@
 	<?php } else {
 
 		$name = request('name');
-		$mail = request('mail');
+		$mail = request('mail');		
+		$mobile = request('mobile');
 
 		?>
 
@@ -81,7 +83,8 @@
 		if( !empty( $variables['user'] ) ){
 			$user = $variables['user'] ;
 			$name = $user->get('name');
-			$mail = $user->get('mail');		
+			$mail = $user->get('mail');	
+			$mobile = $user->get('mobile');		
 		}
 	?>
 
@@ -101,6 +104,18 @@
 		'text' => html_input(['type'=>'text', 'name'=>'name', 'value'=>$name, 'placeholder'=>'Input Name']),
 	]);*/
 	?>
+	<?php 
+		echo html_row([
+			'class' => 'data-set mobile',
+			'caption' => '이메일',
+			'text' => html_input([
+				'id' => 'data-set mobile',
+				'name' => 'mobile',
+				'value'=>$mobile,
+				'placeholder' => 'Mobile',
+			]),
+		]);
+	?>	
 	<?php 
 		echo html_row([
 			'class' => 'data-set email',

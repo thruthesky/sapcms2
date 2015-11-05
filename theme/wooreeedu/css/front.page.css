@@ -9,10 +9,12 @@
 	left:-100%;
 }
 
-.front-top-banner .banner-wrapper{		
-	display:inline-block;
-	position:relative;
-	width:100%;
+.front-top-banner .banner-wrapper{		    
+    display: inline-block;
+    position: relative;
+	max-height: 500px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .front-top-banner .banner-wrapper .banner{		
@@ -43,14 +45,6 @@
 	padding:6px;
 	font-size:1.4em;
 	color:#fff;		
-}
-
-.front-top-banner .banner-wrapper.three .text-info > .inner .text.top{
-	background-color:#f39c12;		
-}
-
-.front-top-banner .banner-wrapper.five .text-info > .inner .text.top{
-	background-color:#95a5a6;		
 }
 
 .front-top-banner .banner-wrapper .text-info > .inner .text.bottom{
@@ -115,7 +109,7 @@
 
 /*two unique design*/
 .front-top-banner .banner-wrapper.two .text-info{
-	top:5%;
+	top:0;
 }
 
 .front-top-banner .banner-wrapper.two .text-info > .inner{
@@ -123,29 +117,49 @@
 }
 
 .front-top-banner .banner-wrapper.two .text-info > .inner > .wrapper{
-	display:inline-block;	
-	max-width:250px;
-	background-color:rgba(0,0,0,.6);
-	white-space:normal;
+	display: inline-block;    
+	position:relative;
+    width: 160px;
+    background-color: rgba(0,0,0,.6);
+    white-space: normal;
+    border-radius: 100%;
+}
+
+.front-top-banner .banner-wrapper.two .text-info > .inner > .wrapper .fake-image{	
+	display:block;
+	width:100%;
+	opacity:0;
 }
 
 
-.front-top-banner .banner-wrapper.two .text-info > .inner .text.top{
-	padding:10px;
-	background-color:transparent;
+.front-top-banner .banner-wrapper.two .text-info > .inner .text-items{
+	position:absolute;
+	left:0;
+	top:0;
+	height:100%;
+}
+
+.front-top-banner .banner-wrapper.two .text-info > .inner .text.top{		
+	padding: 37px 26px 10px 26px;
+	background-color: transparent;
+	font-size: 1em;
 	color:#2ecc71;
 }
 
 .front-top-banner .banner-wrapper.two .text-info > .inner .text.bottom{
-	min-height:34px;
-	background-color:transparent;
+	display:none;
+	height:63px;
+	padding:0 20px;
 	color:#fff;
+	background-color:transparent;
+	overflow:hidden;
 }
 
 .front-top-banner .banner-wrapper.two .text-info > .inner .text.more{
+	position:absolute;
 	width:100%;
-	margin:0;
-	padding:10px;
+	margin:10px 0 0 0;
+	padding:10px 30px 10px 10px;
 	background-color:transparent;
 	text-align:right;
 	box-sizing:border-box;	
@@ -176,7 +190,7 @@
 }
  
 .front-top-banner .banner-wrapper.three .text-info > .inner .text.top{
-	background-color:#e74c3c;		
+	background-color:#27ae60;		
 }
 
 /*
@@ -294,18 +308,21 @@
 /*eo four unique design*/
 
 /*five unique design*/
+
 .front-top-banner .banner-wrapper.five .text-info{
 	right:0;
 	bottom:0;
+	text-align:right;
 }
 
 .front-top-banner .banner-wrapper.five .text-info > .inner{
-	padding-left:14%;
+	padding-right:14%;
 }
  
 .front-top-banner .banner-wrapper.five .text-info > .inner .text.top{
-	background-color:#e74c3c;		
+	background-color:#95a5a6;		
 }
+
 /*
 .front-top-banner .banner-wrapper.five .text-info{
 	left:0;
@@ -315,49 +332,66 @@
 
 .front-top-banner .banner-wrapper.five .text-info > .inner{
 	height:100%;
-	padding-left:14%;
+	padding-right:14%;
 }
 
 .front-top-banner .banner-wrapper.five .text-info > .inner > .wrapper{
 	position:relative;
 	white-space:normal;
+	text-align:right;
 }
 
 .front-top-banner .banner-wrapper.five .text-info > .inner .text{	
-	width:76%;
+	width:76%;	
 	margin:0 12% 0 12%;
 	box-sizing:border-box;
+	text-align:left;
+	overflow:hidden;
 }
 
 .front-top-banner .banner-wrapper.five .text-info > .inner .text.top{
-	height:250px;
-	width:250px;
-	background-color:#22a7f0;
-	border:1px solid #fff;
-	border-radius:100%;	
-	z-index:3;
+    position: relative;
+    height: 220px;
+    width: 220px;
+    padding: 56px 14px 0 20px;
+    background-color: #22a7f0;
+    border: 2px solid #fff;
+    border-radius: 100%;
+    z-index: 3;
 }
 
 .front-top-banner .banner-wrapper.five .text-info > .inner .text.bottom{
-	position:absolute;
-	bottom: -42px;
-	left:20%;
-	height:150px;
-	width:150px;
-	background-color:#1abc9c;
-	border:1px solid #fff;
-	border-radius:100%;	
-	z-index:1;
+	position: absolute;
+	bottom: -7%;
+	right: -8%;
+	height: 120px;
+	width: 120px;
+	padding: 28px 10px 0 25px;
+	background-color: #1abc9c;
+	border: 2px solid #fff;
+	border-radius: 100%;
+	color: #fff;
+	z-index: 1;
 }
 
 .front-top-banner .banner-wrapper.five .text-info > .inner .text.more{
-	position:absolute;
-	background-color:transparent;
-	z-index:3;
+	position: absolute;
+    right: 17%;
+    bottom: -5%;
+    height: 100px;
+    width: 100px;
+    padding: 35px 4px 0 4px;
+    background-color: #9b59b6;
+    border: 2px solid #fff;
+    border-radius: 100%;
+    color: #fff;
+    z-index: 3;
 }
 
-.front-top-banner .banner-wrapper.five .text-info > .inner .text.more a{
-		
+.front-top-banner .banner-wrapper.five .text-info > .inner .text.more .triangle{
+	border-left:5px solid #fff;
+	top:42px;
+	right:5px;
 }
 
 .front-top-banner .banner-wrapper.five .text-info > .inner .text.more a:hover{
@@ -406,10 +440,11 @@
 	
 	.page-content.top  .floater-dotted .text{
 		display:inline-block;
-		padding:10px;
+		padding:7px 10px 10px 10px;
 		font-size:1.2em;
 		font-weight:normal;
 		color:#e74c3c;
+		text-decoration:none;
 	}
 /*eo dotted*/
 /*bar*/
@@ -423,9 +458,10 @@
 
 	.page-content.top .floater-bar .text{
 		display:inline-block;
-		padding:10px 18px 5px 18px;	
+		padding:7px 18px 5px 18px;	
 		background-color:#e74c3c;
 		color:#fff;
+		text-decoration:none;
 	}
 /*eo bar*/
 /*eo floaters*/
@@ -475,9 +511,10 @@
 }
 
 .front-top-banner .arrow{
-	height:36px;
+	height:55px;
 	padding:12px 18px 7px 19px;
-	top:25%;
+	/*top:25%;*/
+	box-sizing: border-box;
 }
 
 .front-top-banner .arrow[direction='left']{
@@ -495,15 +532,15 @@
 }
 
 @media all and ( min-width: 420px ) {
-	.front-top-banner .arrow{
+	/*.front-top-banner .arrow{
 		top:30%;
-	}
+	}*/
 }
 
 @media all and ( min-width: 480px ) {	
-	.front-top-banner .arrow{
+	/*.front-top-banner .arrow{
 		top:33.6%;
-	}
+	}*/
 }
 
 @media all and ( min-width: 640px ) {	
@@ -524,10 +561,10 @@
 	}
 }
 
-@media all and ( min-width: 700px ) {
+@media all and ( min-width: 730px ) {
 	.front-top-banner .arrow{
-		height:43px;
-		padding:18px 25px 14px 26px;
+		height: 75px;
+		padding: 18px 25px 14px 26px;		
 	}
 	
 	.front-top-banner .banner-wrapper .text-info > .inner .text{	
@@ -568,12 +605,46 @@
 		width:27px;
 		height:40px;
 	}
+	
+	/*two specific*/
+	.front-top-banner .banner-wrapper.two .text-info > .inner > .wrapper{
+		display: inline-block;    
+		position:relative;
+		width: 200px;
+		background-color: rgba(0,0,0,.6);
+		white-space: normal;
+		border-radius: 100%;
+	}
+	
+	.front-top-banner .banner-wrapper.two .text-info > .inner .text.top{	
+		font-size:1em;
+	}
+
+	.front-top-banner .banner-wrapper.two .text-info > .inner .text.bottom{
+		display:block;
+		height:50px;
+		padding:0 25px;
+		font-size:.8em;		
+		margin-bottom:0;
+	}
+
+	.front-top-banner .banner-wrapper.two .text-info > .inner .text.more{
+		font-size:.7em;
+		padding-top:0;
+	}
+	/*two specific*/
+}
+
+@media all and ( min-width: 800px ) {
+	.front-top-banner .banner-wrapper.two .text-info{
+		top:5%;
+	}
 }
 
 @media all and ( min-width: 960px ) {
-	.front-top-banner .arrow{		
-		top:39.6%;
-	}
+	/*.front-top-banner .arrow{		
+		top:42.15%;
+	}*/
 	
 	.front-top-banner .banner-wrapper .text-info > .inner .text.top{
 		font-size:1.4em;	
@@ -586,6 +657,37 @@
 	.front-top-banner .banner-wrapper .text-info > .inner .text.more{
 		font-size:.9em;
 	}
+	
+	/*two specific*/
+	.front-top-banner .banner-wrapper.two .text-info > .inner > .wrapper{		
+		width: 220px;		
+	}
+	
+	.front-top-banner .banner-wrapper.two .text-info > .inner .text.top{			
+		padding: 45px 33px 10px 33px;
+		background-color: transparent;
+		font-size: 1.1em;
+		color:#2ecc71;
+	}
+
+	.front-top-banner .banner-wrapper.two .text-info > .inner .text.bottom{
+		height:55px;
+		padding:0 33px;
+		color:#fff;		
+	}
+
+	.front-top-banner .banner-wrapper.two .text-info > .inner .text.more{
+		/*right: -30px;
+		bottom: -20px;
+		height: 80px;
+		width: 80px;
+		padding: 30px 0 0 0;
+		margin: 0;
+		border-radius: 100%;
+		background-color: rgba(0,0,0,.6);	
+		text-align:center;*/		
+	}
+	/*two specific*/
 	
 	.page-content.top  .b .floater-bar{
 		height:33px;

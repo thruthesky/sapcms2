@@ -1,7 +1,7 @@
 <?php
 add_css();
-$page = $_GET['page'];
-if( empty( $page ) ) $page = 'teacher_list';
+if( empty( $_GET['page'] ) ) $page = 'teacher_list';
+else $page = $_GET['page'];
 ?>
 <div class='temp-page videoEnglish'>
 	<div class='menu'>
