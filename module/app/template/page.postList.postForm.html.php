@@ -41,7 +41,7 @@ if( empty( $no_comment_form ) ) $no_comment_form = 0;
 		<div <?php if( empty( $class ) ) echo "style='padding:0 10px;'" ?>>
 			<div class="post-file-upload-button">
 				<img src="<?php echo sysconfig(URL_SITE)?>module/app/img/camera_white_temp.png">
-				<span class='text'>UPLOAD</span>
+				<span class='text'>PHOTO</span>
 			</div>
 			<input class="form-comment-add-submit" type="submit" value="POST"><?php if( !empty( $edit_mode ) ) {?><div class='post-cancel' type='post'>Cancel</div><?php }?>
 		</div>
