@@ -15,7 +15,7 @@ add_css('front.postBannerWithText.css');
 				<a class='text' href='/post/list?id=wooreeedu'>조기유학 / 단기캠프</a>
 			</div>
 			<?php
-				$posts = getPostWithImageNoComment(0, 3, 'wooreeedu');				
+				$posts = getPostWithImageNoComment(0, 3, 'wooreeedu');			
 				if( !empty( $posts[0] ) ) echo postBannerWithText( $posts[0], 520, 500, 20, 200 );
 				
 				$post_items = array_slice( $posts, 1, 2 );
