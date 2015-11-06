@@ -409,6 +409,10 @@ form .file-display{
 	form .edit .post-file-upload-button .text{
 		display:none;
 	}
+	
+	.comment-form form .post-file-upload-button .text{
+		display:none;
+	}
 	/**/
 	
 	#postList .post-cancel{
@@ -674,7 +678,15 @@ form .file-display{
 		background:none;
 		cursor:default;
 	}
-
+	
+	.user-command.comment-command .edit img{	
+		display:none;
+	}
+	
+	.user-command.comment-command .date{
+		display:none;
+	}
+	
 	.user-command.comment-command a{
 		color:#2c8ac8;
 		text-decoration:none;
@@ -775,7 +787,7 @@ form .file-display{
     border-bottom: 1px solid #d5d5d5;
 }
 
-.user-command.comment-command{
+.user-command.comment-command{	
 	margin-top:10px;
 }
 
@@ -790,4 +802,14 @@ form .file-display{
 	display:block;
     width:50%;
 	margin:10% auto 0 auto;
+}
+
+@media all and ( min-width: 480px ) {
+	.user-command.comment-command .edit img{	
+		display:block;
+	}
+	
+	.user-command.comment-command .date{	
+		display:inline-block;
+	}
 }
