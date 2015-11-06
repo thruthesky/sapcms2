@@ -68,7 +68,7 @@
 				<tr valign='top'>
 					<td width='100'>ID</td><td><input type='text' name='user_id_to' value='<?php echo $user_id_to ?>'/></td>
 				</tr>
-				<? } ?>
+				<?php } ?>
 				<tr valign='top'>
 					<td>TITLE</td><td><input type='text' name='title' value='<?php echo $title ?>'></td>
 				</tr>
