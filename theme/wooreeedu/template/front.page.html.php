@@ -15,13 +15,11 @@ add_css('front.postBannerWithText.css');
 				<a class='text' href='/post/list?id=wooreeedu'>조기유학 / 단기캠프</a>
 			</div>
 			<?php
-				$posts = getPostWithImage(0, 1, 'wooreeedu');
-				if( !empty( $posts[0] ) ) {
-					$post = $posts[0];				
-					echo postBannerWithText( $post, 520, 500, 20, 200 );
-				}
-				$posts = getPostWithImage(1, 2, 'wooreeedu');
-				echo postThumbnailWithText( $posts, 'long-version', 100, 75, 100 );
+				$posts = getPostWithImageNoComment(0, 3, 'wooreeedu');				
+				if( !empty( $posts[0] ) ) echo postBannerWithText( $posts[0], 520, 500, 20, 200 );
+				
+				$post_items = array_slice( $posts, 1, 2 );
+				if( !empty( $posts ) ) echo postThumbnailWithText( $post_items, 'long-version', 100, 75, 100 );
 			?>
 		</div>
 		<div class='b'>	
@@ -29,20 +27,23 @@ add_css('front.postBannerWithText.css');
 				<a class='text' href='/post/list?id=wooreeedu_gallery'>사진 갤러리</a>
 			</div>
 			<?php
-				$posts = getPostWithImage(0, 1, 'wooreeedu_gallery');
-				echo postHoverTitleImage( $posts, 444, 334, 30 );
-				$posts = getPostWithImage(1, 3, 'wooreeedu_gallery');
-				echo postThumbnailWithText( $posts, null, 100, 75, 30 );
+				$posts = getPostWithImageNoComment(0, 8, 'wooreeedu_gallery');
+				$post_items = array_slice( $posts, 0, 1 );				
+				if( !empty( $posts[0] ) ) echo postHoverTitleImage( $post_items, 444, 334, 30 );
+				
+				$post_items = array_slice( $posts, 1, 3 );
+				if( !empty( $post_items ) ) echo postThumbnailWithText( $post_items, null, 100, 75, 30 );
 			?>
 		</div>
 		<div class='c'>
 			<div class='floater-bar'>				
 			</div>
 			<?php 
-				$posts = getPostWithImage(4, 1, 'wooreeedu_gallery');
-				echo postHoverTitleImage( $posts, 444, 334, 30 );
-				$posts = getPostWithImage(5, 3, 'wooreeedu_gallery');
-				echo postThumbnailWithText( $posts, null, 100, 75, 30 );
+				$post_items = array_slice( $posts, 4, 1 );
+				echo postHoverTitleImage( $post_items, 444, 334, 30 );
+				
+				$post_items = array_slice( $posts, 5, 3 );
+				echo postThumbnailWithText( $post_items, null, 100, 75, 30 );
 			?>
 		</div>
 	</section>
