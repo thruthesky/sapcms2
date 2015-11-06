@@ -68,9 +68,13 @@
 	margin-bottom:10px;
 }
 
-.post-view.wooreeedu .content .display-files{
+.post-view.wooreeedu .display-files{
 	padding:0;
 	background-color:#fff;
+}
+
+.post-view.wooreeedu .display-files img{
+	max-height:initial;
 }
 
 .post-view.wooreeedu .content .display-files .image{
