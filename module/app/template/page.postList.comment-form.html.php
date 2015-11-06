@@ -50,7 +50,7 @@ else{
 		<div>
 			<div class="post-file-upload-button">
 				<img src="<?php echo sysconfig(URL_SITE)?>module/app/img/camera_white_temp.png">
-				UPLOAD
+				<span class='text'>UPLOAD</span>
 			</div>
 			<input type="hidden" name="fid" value="">
 			<input class="form-comment-add-submit" type="submit" value="POST">

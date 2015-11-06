@@ -405,6 +405,10 @@ form .file-display{
 		padding:20px 0 22px 0;
 		width:32%;
 	}
+	
+	form .edit .post-file-upload-button .text{
+		display:none;
+	}
 	/**/
 	
 	#postList .post-cancel{
