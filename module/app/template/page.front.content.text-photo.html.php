@@ -1,10 +1,11 @@
 <?php
-$posts = post()->getLatestPostImages(9, 2, 'wooreeedu');
+//$posts = post()->getLatestPostImages(9, 2, 'wooreeedu');
+$post_items = array_slice( $posts_gallery, 1, 2 );
 ?>
 <div class="text-photo">
     <?php
-    foreach ( $posts as $post ) {
-		$post = post_data()->load($post->idx_target);
+    foreach ( $post_items as $post ) {	
+		//$post = post_data()->load($post->idx_target);
 		$post_image = $post->getImage();
 		if( !empty( $post_image ) ) $src = $post->getImage()->urlThumbnail(400,140);
 		else $src = null;

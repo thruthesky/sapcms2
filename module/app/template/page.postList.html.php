@@ -107,10 +107,12 @@ foreach ( $posts as $post ) {
 					   <span class='no'><?php if( $post['no_comment'] > 0 ) echo $post['no_comment']; ?></span>
 					   Comment<?php echo $post['no_comment'] <= 1 ? "" : "s"?>
 				</div>
+				<?php /*
 				<div class="do-share">
-					<img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/share.png'/>
+					<img src='sysconfig(URL_SITE)module/app/img/share.png'/>
 				   Share
 				</div>
+				*/ ?>
 			<?php } else { ?>
 				<div class='deleted'>[ Commands are disabled ]</div>
 			<?php } ?>

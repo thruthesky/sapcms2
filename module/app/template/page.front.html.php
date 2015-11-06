@@ -1,29 +1,21 @@
 <?php
 add_css();
-$top_banner = post()->getLatestPostImage();
+$posts_gallery = getPostWithImageNoComment(0, 11, 'wooreeedu_gallery');
+if( empty( $posts_gallery ) ) return;
 
-if ( empty($top_banner) ) return;
-$top_post = post_data()->load( $top_banner->idx_target );
+//top_post
+$top_post = $posts_gallery[0];
 $top_idx = null;
 if( !empty( $top_post ) ) $top_idx = $top_post->idx;
+$src_top_banner = $top_post->getImage()->urlThumbnail(400, 200);
 
-$src_top_banner = $top_banner->urlThumbnail(400, 200);
-$top = post_data($top_banner->idx_target);
-
-if ( empty($top) ) return;
-
+//thumbnail items
 $items = null;
-$images = post()->getLatestPostImages(1, 6, 'wooreeedu');
-if ( $images ) {
-    foreach ( $images as $image ) {
-        $src = $image->urlThumbnail(120,120);
-		
-		$post = post_data()->load( $image->idx_target );
-		$idx = null;
-		if( !empty( $post ) ) $idx = $post->idx;		
-		
-        $items .= "<img class='link' route='view_post' idx='$idx' src='$src'>";
-    }
+$post_items = array_slice( $posts_gallery, 5, 6 );
+foreach( $post_items as $pi ){
+	$src = $pi->getImage()->urlThumbnail(120,120);
+	$idx = $pi->idx;
+	$items .= "<img class='link' route='view_post' idx='$idx' src='$src'>";
 }
 ?>
 <div class="front-top-banner">
