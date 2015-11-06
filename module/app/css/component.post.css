@@ -340,15 +340,14 @@ form .file-display{
 	
 	form.post-form input[type='submit'],.comment-form input[type='submit'],.post-cancel{		
 		display:inline-block;
-		width:55px!important;
+		width:49%;
 		height:55px;
 		margin:0 0 0 0;
 		padding:10px 1px;
 		border-radius:2px;
 		border:0;
 		background-color:#2c8ac8;
-		font-size:.8em;
-		font-weight:bold;
+		font-size:1em;		
 		color:#fff;	
 		box-sizing:border-box;
 		cursor:pointer;
@@ -359,13 +358,60 @@ form .file-display{
 		margin: 0 0 0 0;
 	}
 
+	form .post-file-upload-button {
+		float:left;
+		display:inline-block;
+		width: 49%;
+		height: 55px;
+		padding: 20px 19px 22px 19px;
+		margin-right:2%;
+		color:#fff;
+		cursor:pointer;
+		box-sizing:border-box;
+		text-align:center;
+	}
+	
+	form .post-file-upload-button img{
+		
+	}
+	
+	form.post-form .row.file-upload{		
+		height:24px;
+		width:36px;
+	}
+
+	form .file-upload .caption {
+		display:none;
+	}
+
+	form .file-upload input[type='file'] {
+		display:block;
+		opacity:0;
+		width:40px;
+		height:35px;
+		overflow: hidden;
+	}
+	
+	/**/
+	form.post-form  .edit input[type='submit'],.comment-form .edit input[type='submit'], .edit .post-cancel{
+		width:32%;
+	}
+	
+	form.post-form  .edit input[type='submit']{
+		margin-right:2%;
+	}
+	
+	form .edit .post-file-upload-button {
+		padding:20px 0 22px 0;
+		width:32%;
+	}
+	/**/
 	
 	#postList .post-cancel{
-		padding: 20px 0;
-		margin: 0;
-		font-size: .8em;
+		padding: 19px 0;
+		margin: 0;		
 		cursor: pointer;
-		text-align: center;
+		text-align: center
 	}
 	
 	#postList .primary-photo, .post .primary-photo{
@@ -532,34 +578,6 @@ form .file-display{
 	.comment-form .comment-edit .td-primary-photo{
 		display:none;
 	}
-	
-	form .post-file-upload-button {
-		float:left;
-		display:inline-block;
-		width: 17px;
-		height: 12px;
-		padding: 22px 19px 21px 19px;
-		margin-right:5px;
-		cursor:pointer;
-	}
-	
-	form.post-form .row.file-upload{		
-		height:24px;
-		width:36px;
-	}
-
-	.file-upload .caption {
-		display:none;
-	}
-
-	.file-upload input[type='file'] {
-		display:block;
-		opacity:0;
-		width:40px;
-		height:35px;
-		overflow: hidden;
-	}
-
 	/* EO COMMENT FORM */
 	
 	/* V O T E */
@@ -737,13 +755,13 @@ form .file-display{
 }
 /*eo reportForm*/
 
-.post-loader{	
-	display:none;
-	width:55px;
+.post-loader {
+    margin-top: 8px;
+    display: none;
+    width: 45px;
 }
 
-.table-post-buttons{
-	padding:0 10px;
+.table-post-buttons{	
 	margin-top:10px;
 }
 
