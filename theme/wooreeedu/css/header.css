@@ -187,10 +187,15 @@
 
 .header-image .label{
 	position:absolute;
-	left:0;
 	top:37%;
+	left:0;	
 	width:100%;
 	text-align:center;
+}
+
+.header-image .label > .inner{
+	max-width:960px;
+	margin:auto;
 }
 
 .header-image .text{
