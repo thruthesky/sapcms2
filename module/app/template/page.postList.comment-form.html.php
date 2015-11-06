@@ -13,11 +13,13 @@ $url_primary_photo = login() ? login()->getPrimaryPhotoUrlThumbnail(80,80) : nul
 
 if( !empty( $edit_mode ) ) {
 	$class=' comment-edit';
+	$class_edit=' edit';
 	$no_comment_form = $no;
 	//$buttons_width = '175';
 }
 else{
 	$class = '';
+	$class_edit = '';
 	//$buttons_width = '115';
 }
 ?>
@@ -46,7 +48,7 @@ else{
 			</td>
 		</tr>					
 	</table>
-	<div class='show-on-click table-post-buttons<?php echo $class; ?>'>					
+	<div class='show-on-click table-post-buttons<?php echo $class_edit; ?>'>					
 		<div>
 			<div class="post-file-upload-button">
 				<img src="<?php echo sysconfig(URL_SITE)?>module/app/img/camera_white_temp.png">
