@@ -25,7 +25,7 @@
 	<h1>Reply to <?php echo $send_id ?></h1>
 <?php }else { ?>
 	<h1>Send a message</h1>
-<? } ?>
+<?php } ?>
 	<form action="<?php echo $action ?>" class="ajax-file-upload" method="post" enctype="multipart/form-data">
 		<div class='file-display'></div>
 		<?php include template('element/file', 'data'); ?>
