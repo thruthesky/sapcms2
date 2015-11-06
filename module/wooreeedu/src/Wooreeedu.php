@@ -297,16 +297,16 @@ class Wooreeedu {
 		$message_entity = message()->set('idx_from',$user_idx) //anon
 				->set('idx_to', 1) //admin
 				->set('title', $title)
-				->set('content', $new_content)
-				->save();
+				->set('content', $new_content);				
 		
 		
 		if( empty( $error ) ){
+			$message_entity->save();
 			echo "<script>alert('Succesfully sent the message!');</script>";
 			Response::redirect('/');
 		}
 		else{
-			echo "<script>alert('".$error."');</script>";
+			echo "<script>alert('".$error."');</script>";				
 			return Response::render([
 				'template'=>'front.page',
 			]);
