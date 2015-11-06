@@ -1,9 +1,6 @@
 <div class="login-box">
 	<div class='logo'>	
-		로그인
-		<?php /*
-		<img src='sysconfig(URL_SITE)/module/app/img/white_logo_sonub.png?'/>
-		*/?>
+		<img src='<?php echo sysconfig(URL_SITE); ?>/module/app/img/white_logo_wooreeedu.png?'/>
 	</div>
     <form class="login">
         <div class='input-wrapper user'>
