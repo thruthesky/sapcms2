@@ -12,7 +12,7 @@ $(function(){
 	
 	$("body").on("click",".front-top-banner .arrow",move_top_banner);
 	
-	$("body").on("click","#header-top #main-menu .contactUs", moveToContactUs);
+	$("body").on("click","#header-top #main-menu .contactUs", moveToContactUs);	
 	
 	$("body").on("mouseenter","#header-top > .inner", showSubMenus);
 	$("body").on("mouseleave","#header-top > .inner", closeSubMenus);
@@ -29,7 +29,16 @@ $(function(){
 	}
 	$("body").on("mouseenter",".featuredPost",stopFeaturedBanner);
 	$("body").on("mouseleave",".featuredPost",startFeaturedBanner);
+	
+	$("body").on("click",".post .post-delete", deletePost);
 });
+
+function deletePost( e ){	
+	re = confirm( "Are you sure you want to delete this post?" );
+	if( ! re  ){
+		e.preventDefault();
+	}
+}
 
 function initializeVariables(){
 	if( $(".front-top-banner").length ){		
