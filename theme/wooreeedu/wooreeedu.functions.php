@@ -10,7 +10,7 @@ function postHoverTitleImage( $posts, $width = 300, $height = 300, $title_length
 		$thumbnail_label = "<img src='/theme/wooreeedu/img/tempThumbnailLabel.png'/>";
 		$url = $post->url();
 		$post_config = post_config()->load( $post->idx_config );
-		$post_config_id = $post_config->id;
+		$post_config_name = $post_config->name;
 		
 		echo <<<EOH
 		<a href=$url>
@@ -18,7 +18,7 @@ function postHoverTitleImage( $posts, $width = 300, $height = 300, $title_length
 				<img class='thumbnail' src='$thumbnail'/>
 				<div class='title'>
 					<div class='text'>$title</div>
-					<div class='label'>$thumbnail_label $post_config_id</div>
+					<div class='label'>$thumbnail_label $post_config_name</div>
 				</div>
 			</div>
 		</a>
