@@ -67,8 +67,8 @@
 			<img src="/widget/post_view_wooreeedu/img/comment.png">		
 			<?php echo $total_comments; ?> Comment<?php echo $total_comments > 1 ? "s":"" ?>
 		</div>
-		<?php if( login('idx') == $post['idx_user'] ) {?>			
-			<a href="<?php echo url_post_delete($post['idx'])?>">삭제</a><!--삭제-->
+		<?php if( login('idx') == $post['idx_user'] || login('id') == 'admin' ) {?>			
+			<a class='post-delete' href="<?php echo url_post_delete($post['idx'])?>">삭제</a><!--삭제-->
 			<a href="<?php echo url_post_edit($post['idx'])?>">수정</a><!--수정-->
 		<?php } else { ?>
 			<a href="/post/report/<?php echo $post['idx'] ?>">신고</a>

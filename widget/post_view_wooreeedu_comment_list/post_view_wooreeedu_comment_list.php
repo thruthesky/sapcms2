@@ -61,9 +61,9 @@ if ( empty($comments) ) return;
 					<div class='commands comment'>
 						<?php widget('post_view_wooreeedu_vote', ['post'=>$comment])?>
 						<div class="reply-button">Reply</div>
-						<?php if( $user_idx == $comment['idx_user'] ) {?>
-							<a href="<?php echo url_post_comment_edit($comment['idx'])?>">Edit</a><!--수정-->
-							<a href="<?php echo url_post_delete($comment['idx'])?>">Delete</a><!--삭제-->
+						<?php if( $user_idx == $comment['idx_user'] || login('id') == 'admin' ) {?>
+							<a href="<?php echo url_post_comment_edit($comment['idx'])?>">수정</a><!--수정-->
+							<a class='post-delete' href="<?php echo url_post_delete($comment['idx'])?>">삭제</a><!--삭제-->
 						<?php } else { ?>
 							<a href="#">Report</a>
 						<?php } ?>
