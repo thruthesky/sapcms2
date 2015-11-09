@@ -25,7 +25,7 @@
 	<h1>Reply to <?php echo $send_id ?></h1>
 <?php }else { ?>
 	<h1>Send a message</h1>
-<? } ?>
+<?php } ?>
 	<form action="<?php echo $action ?>" class="ajax-file-upload" method="post" enctype="multipart/form-data">
 		<div class='file-display'></div>
 		<?php include template('element/file', 'data'); ?>
@@ -68,7 +68,7 @@
 				<tr valign='top'>
 					<td width='100'>ID</td><td><input type='text' name='user_id_to' value='<?php echo $user_id_to ?>'/></td>
 				</tr>
-				<? } ?>
+				<?php } ?>
 				<tr valign='top'>
 					<td>TITLE</td><td><input type='text' name='title' value='<?php echo $title ?>'></td>
 				</tr>

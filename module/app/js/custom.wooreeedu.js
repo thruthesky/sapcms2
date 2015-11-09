@@ -11,7 +11,7 @@ function text_updateProfile() {
     return "회원 정보가 업데이트 되었습니다.";
 }
 function callback_showLoader() {
-    var src = url_server + '/theme/default/tmp/s.png';
+    var src = url_server + '/module/app/img/w.png';
     var $body = $('body');
     var $document = $(window);
     $body.append("<div class='loader'><img src='"+src+"'> 우리에듀</div>");

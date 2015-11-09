@@ -10,7 +10,7 @@
 			'class' => 'id',
 			'text' => html_input([
 				'name' => 'id',				
-				'placeholder' => 'User ID',				
+				'placeholder' => '아이디',				
 			])
 		]);
 		echo html_row([
@@ -18,7 +18,7 @@
 			'class' => 'password',
 			'text' => html_password([
 				'name' => 'password',				
-				'placeholder' => 'Password',				
+				'placeholder' => '비밀번호',				
 			])
 		]);
 		echo html_row([
@@ -26,7 +26,7 @@
 			'class' => 'name',
 			'text' => html_input([
 				'name' => 'name',				
-				'placeholder' => 'Name',
+				'placeholder' => '이름',
 			])
 		]);
 		echo html_row([
@@ -35,7 +35,7 @@
 			'text' => html_input([
 				'name' => 'mobile',				
 				'type' => 'text',
-				'placeholder' => 'Mobile Number',
+				'placeholder' => 'Mobile',
 			])
 		]);
 		echo html_row([
@@ -44,10 +44,10 @@
 			'text' => html_input([
 				'name' => 'mail',				
 				'type' => 'email',
-				'placeholder' => 'Email',
+				'placeholder' => '이메일',
 			])
 		]);
 		?>
-		<input type="submit" value="Register">
+		<input type="submit" value="회원 가입">
 	</form>
 </div>

@@ -200,6 +200,38 @@ function getPostWithImage($index,$limit,$postConfig){
 	return $posts;
 }
 
+/*
+*added by benjamin without using joins for table
+*/
+function getPostWithImageNoComment($index,$limit,$postConfig){
+	$images = post()->getLatestPostImages($index, $limit, $postConfig);
+	$posts = [];
+	if ( $images ) {
+		foreach ( $images as $image ) {
+			$item = post_data()->load( $image->idx_target );			
+			if( $item->idx_parent == 0 ) $posts[] = $item;
+		}
+	}
+	
+	$stop_at = $limit;	
+	if( count( $posts ) < $limit ){
+		$continue_loop = true;
+		while( $continue_loop ){
+			$images = post()->getLatestPostImages($stop_at, ( $stop_at + 1 ), $postConfig);
+			$stop_at = $stop_at + 1;
+			if( !empty( $images ) ){
+				$image = $images[0];
+				$item = post_data()->load( $image->idx_target );
+				if( $item->idx_parent == 0 ) $posts[] = $item;
+				
+				if( count( $posts ) >= $limit ) $continue_loop = false;
+			}
+			else $continue_loop = false;
+		}
+	}
+	return $posts;
+}
+
 
 function textLengthLimit( $text, $length = 30 ){	
 	if( !empty ( $text ) ){

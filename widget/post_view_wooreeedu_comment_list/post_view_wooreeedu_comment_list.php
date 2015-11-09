@@ -29,7 +29,7 @@ if ( empty($comments) ) return;
 			if( !empty( $user_photo ) ) $user_photo = $user_photo[0]->urlThumbnail(100,100);
 		}
 
-		if( empty( $user_photo ) ) $user_photo = "/core/module/post/widget/post_view_wooreeedu_form/img/no_primary_photo.png";
+		if( empty( $user_photo ) ) $user_photo = "/widget/post_view_wooreeedu_form/img/no_primary_photo.png";
 	?>
         <div id="comment<?php echo $comment['idx']?>" class="comment" depth="<?php echo $comment['depth']?>">
             <table cellpadding=0 cellspacing=0 width='100%'>
@@ -43,8 +43,21 @@ if ( empty($comments) ) return;
 					<div class="content">
 						<div class='name'><?php echo $user_name; ?></div>
 						<?php echo $content; ?>
+						<?php
+							$files = data()->loadBy('post', post_data($comment['idx'])->config('idx'), $comment['idx']);
+							$total_files = count( $files );
+						?>
+						<div class='content-margin'></div>
+						<section role="files">
+							<div class="display-files">
+								<?php 
+									display_files_thumbnail( $files, 200, 200 );
+								?>
+							</div>
+						</section>
 					</div>
-					<?php widget('post_display_files', ['idx'=>$comment['idx']])?>
+					<?php //widget('post_display_files', ['idx'=>$comment['idx']])?>
+						
 					<div class='commands comment'>
 						<?php widget('post_view_wooreeedu_vote', ['post'=>$comment])?>
 						<div class="reply-button">Reply</div>

@@ -1296,18 +1296,24 @@ $(function(){
 	//this function will not be compatible if the shown images are limited...
 	$("body").on("click",".modal_image .arrow", change_modal_window_image);
 	$("body").on("click",".modal_window", remove_modal_window);
+	
+	$(window).resize( callbackWindowResize );
 });
+
+function callbackWindowResize(){
+	adjustModalImage( true );
+}
 
 function modal_window_image(){
 	$this = $(this);
 	//alert( $this.prev().attr('idx') );
 
 	appendModalWindowToBody();
-	console.log( "add modal" );
+	
 	data = {};
 	data.action = 'modalImage';
 	data.idx = $this.attr('idx');
-	console.log( data );
+	
 	ajax_get_modal_window_data( data );
 }
 
@@ -1334,8 +1340,8 @@ function ajax_get_modal_window_data( data ){
         'data' : data
     })
 	.done(function(html) {
-		$(".modal_image").hide();
-		$('.modal_window').append(html);
+		$(".modal_image").hide().removeClass('latest');
+		$('.modal_window > .inner').append( $(html).addClass('latest') );
 		adjustModalImage();
 	})
 	.fail(function() {
@@ -1343,31 +1349,45 @@ function ajax_get_modal_window_data( data ){
 	});
 }
 
-function adjustModalImage(){
-	var $selector = $('.modal_window .image');	
+function adjustModalImage( adjustMode ){
+	var $selector = $('.modal_window .modal_image.latest .image');	
+	
+	if( ! adjustMode ){
+		$selector.hide();
+		$selector.load(function(){
+			doImageAdjust();
+		});
+	}
+	else{
+		doImageAdjust();
+	}
+}
+
+function doImageAdjust(){
+	var $selector = $('.modal_window .modal_image.latest .image');
 	var window_width = $(window).width();
 	var window_height = $(window).height();
-	$selector.hide();
-	$selector.load(function(){
-		$selector.css('width','100%');
-		if( $selector.height() > $selector.width() ) {				
-			$selector.css('width','initial').css('height',$(window).height()-60);			
-			if( $selector.width() > $(window).width() ) $selector.css('width','100%').css('height','initial');
-		}
-		if( $selector.width() > $(window).height() ){
-			$selector.css('width','100%').css('width',$(window).width()-30);
-			if( $selector.height() > $(window).height() ) $selector.css('height','100%').css('width','initial');
-		}
-		
-		var margin_top = window_height/2 - $selector.height()/2 - 45;	
-		$selector.parent().css('margin-top',margin_top);//compatible for $(".modal_widow > .modal_image > img")
-		
-		$selector.show();
-	});
+	
+	//$selector.css('width','100%');
+	if( $selector.height() >= $selector.width() ) {				
+		$selector.css('width','initial').css('height',$(window).height()-100);			
+		if( $selector.width() > $(window).width() ) $selector.css('max-width','100%').css('height','initial');		
+	}
+	if( $selector.width() >= $selector.height() ){
+		$selector.css('height','initial').css('max-width','100%');
+		if( $selector.height() > $(window).height() ) $selector.css('height', ( $(window).height() - 100 ) ).css('width','initial');		
+	}
+	
+	var margin_top = window_height/2 - $selector.height()/2 - 45;
+
+	if( margin_top < 0 ) margin_top = 0;
+	$selector.parent().css('margin-top',margin_top);//compatible for $(".modal_widow > .modal_image > img")
+	
+	$selector.show();
 }
 
 function appendModalWindowToBody(){
-	$("body").append("<div class='modal_window'></div>");
+	$("body").append("<div class='modal_window'><div class='inner'></div></div>");
 	$("body").css('overflow','hidden');
 	document.ontouchmove = function(e){ e.preventDefault(); }//disable mobile scrolling
 }
@@ -1378,7 +1398,7 @@ function appendModalWindowLoader(){
 }
 
 function remove_modal_window( e ){
-	console.log( "remove modal" );
+	
 	//var target_class = $(e.target).attr('class');
 	//console.log( target_class );
 	//if( target_class == 'modal_window' || target_class == 'modal_image' ){

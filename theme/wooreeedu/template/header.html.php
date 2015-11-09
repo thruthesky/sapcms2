@@ -149,15 +149,17 @@ if( !empty( $variables['page'] )  ){
 	$url = "/theme/wooreeedu/img/header_".$page .".jpg";
 	//if( file_exists( $url ) ){
 	?>
-	<div class='header-image'>	
+	<div class='header-image<?php if( !empty( $page ) ) echo ' '.$page; ?>'>	
 		<img src='<?php echo $url; ?>'/>
 		<div class='label'>
-			<?php if( !empty( $text ) ) { ?>
-			<div class='text'>
-				<?php echo $text; ?>
-				<div class='bottom_bar'></div>
+			<div class='inner'>
+				<?php if( !empty( $text ) ) { ?>
+				<div class='text'>
+					<?php echo $text; ?>
+					<div class='bottom_bar'></div>
+				</div>
+				<?php } ?>
 			</div>
-			<?php } ?>
 		</div>
 	</div>
 	<?php 

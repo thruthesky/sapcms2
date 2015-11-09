@@ -57,7 +57,8 @@
 							display_files_thumbnail( $files, 200, 200 );
 						?>
 					</div>
-				</section>				
+				</section>
+				
 		</div>		
 	</div>
 	<div class='commands post'>

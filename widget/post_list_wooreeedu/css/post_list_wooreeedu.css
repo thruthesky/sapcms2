@@ -71,15 +71,14 @@
 }
 
 /*page navigator*/
-.post-list.wooreeedu .page-navigator-wrapper{
-	height:80px;
+.post-list.wooreeedu .page-navigator-wrapper{	
 	padding:10px;
-	text-align:right;
+	text-align:center;
 	box-sizing:border-box;
 }
 
 .post-list.wooreeedu .page-navigator-wrapper .navigation-bar{
-	text-align:right;
+	text-align:center;
 }
 
 .post-list.wooreeedu .page-navigator-wrapper .navigation-bar{
@@ -88,12 +87,12 @@
 
 .post-list.wooreeedu .page-navigator-wrapper .navigation-bar > a{
 	padding:3px 7px 4px 7px;
-	border:1px solid #f39c12;
+	border:1px solid #95a5a6;
 	background-color:transparent;
 }
 
 .post-list.wooreeedu .page-navigator-wrapper .navigation-bar .page.selected{
-	background-color:#f39c12;
+	background-color:#95a5a6;
 }
 /*eo page navigator*/
 
@@ -118,22 +117,12 @@
 }
 /*eo buttons right*/
 
-/*post-list-search-box*/
-.post-list.wooreeedu .post-list-search-box{
-	float:left;
-	margin:19px 0 0 0;
-	background-color:#fff;
-}
+@media all and (min-width: 700px) {
+	.post-list.wooreeedu .page-navigator-wrapper{			
+		text-align:right;		
+	}
 
-.post-list.wooreeedu .post-list-search-box label[for='qn']:after{
-	
+	.post-list.wooreeedu .page-navigator-wrapper .navigation-bar{
+		text-align:right;
+	}
 }
-
-.post-list.wooreeedu .post-list-search-box input[type='text']{
-	padding:6px 5px 4px 5px;
-}
-
-.post-list.wooreeedu .post-list-search-box input[type='submit']{
-	padding:2px 5px;
-}
-/*eo post-list-search-box*/

@@ -1,13 +1,13 @@
 .sprite{
-	background:url('/module/app/img/sprite.png');
+	background:url('/module/app/img/sprite.png?v=2');
 	overflow:hidden;
 }
 
 .sprite.logo{
-	width: 25px;
-	height: 25px;
+	width: 27px;
+	height: 27px;
 	padding-left: 10px;
-	margin-bottom: 3px;
+	margin-bottom: 1px;
 	/* background-position: -3px -4px; */
 	border-radius: 2px;
 }

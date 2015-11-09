@@ -4,11 +4,11 @@ $url_primary_photo = login() ? login()->getPrimaryPhotoUrlThumbnail(80,80) : nul
 if( !empty( $edit_mode ) ){
 	$class=' edit';
 	$no_comment_form = $no;
-	$buttons_width = '175';
+	//$buttons_width = '175';
 }
 else {
 	$class = '';
-	$buttons_width = '115';
+	//$buttons_width = '115';
 }
 
 if( empty( $no_comment_form ) ) $no_comment_form = 0;
@@ -30,28 +30,22 @@ if( empty( $no_comment_form ) ) $no_comment_form = 0;
 				<?php } else {?>
 					<div class='primary-photo comment-photo temp'><img src='<?php echo sysconfig(URL_SITE) ?>module/app/img/no_primary_photo.png'/></div>
 				<?php }?>
+				<img class='post-loader' src='<?php echo sysconfig(URL_SITE) ?>module/app/img/loader5.gif'/>
 			</td>
 			<td width="99%">
 				<textarea class='post-form-content' name="content" placeholder="Write a post."><?php if( !empty( $post['content'] ) ) echo $post['content']; ?></textarea>
 			</td>                
 		</tr>
 	</table>
-	<table class='show-on-click table-post-buttons' width="100%" cellpadding="0" cellspacing="0">
-		<tr valign='top'>								
-			<td width='99%'>
-				<img class='post-loader' src='<?php echo sysconfig(URL_SITE) ?>module/app/img/loader5.gif'/>
-			</td>
-			<td width="1%">
-				<div style='width:<?php echo $buttons_width; ?>px'>
-					<img class="post-file-upload-button" src="<?php echo sysconfig(URL_SITE)?>module/app/img/camera_white_temp.png">
-					<input class="form-comment-add-submit" type="submit" value="POST">
-					<?php if( !empty( $edit_mode ) ) {?>
-						<div class='post-cancel' type='post'>Cancel</div>
-					<?php }?>
-				</div>
-			</td>
-		</tr>
-	</table>
+	<div class='show-on-click table-post-buttons<?php echo $class; ?>'>
+		<div <?php if( empty( $class ) ) echo "style='padding:0 10px;'" ?>>
+			<div class="post-file-upload-button">
+				<img src="<?php echo sysconfig(URL_SITE)?>module/app/img/camera_white_temp.png">
+				<span class='text'>PHOTO</span>
+			</div>
+			<input class="form-comment-add-submit" type="submit" value="POST"><?php if( !empty( $edit_mode ) ) {?><div class='post-cancel' type='post'>Cancel</div><?php }?>
+		</div>
+	</div>
 	<div class='file-display files'>
 	</div>
 </form>
