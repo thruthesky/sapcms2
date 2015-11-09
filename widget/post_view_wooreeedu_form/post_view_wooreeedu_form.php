@@ -43,7 +43,7 @@ if( empty( $user_photo ) ) $user_photo = "/widget/post_view_wooreeedu_form/img/n
 							<img src="/widget/post_view_wooreeedu_form/img/camera_white_temp.png">
 						</div>
 						<?php include template('element/file', 'data'); ?>
-						<input class="form-comment-add-submit" type="submit" value="Reply">
+						<input class="form-comment-add-submit" type="submit" value="코멘트등록">
 					</div>
                 </td>
             </tr>

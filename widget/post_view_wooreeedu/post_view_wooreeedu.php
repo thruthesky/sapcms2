@@ -30,7 +30,7 @@
 	<div class='inner'>
 		<div class='category-title'>
 			<a href='<?php echo $pc_url; ?>'><?php echo $pc_name; ?></a>
-			<a class='post-list' href='<?php echo $pc_url; ?>'>Post List</a>
+			<a class='post-list' href='<?php echo $pc_url; ?>'>글 쓰기</a>
 		</div>
 		<div class='title'>
 			<?php echo $title; ?>
@@ -67,10 +67,10 @@
 			<?php echo $total_comments; ?> Comment<?php echo $total_comments > 1 ? "s":"" ?>
 		</div>
 		<?php if( login('idx') == $post['idx_user'] ) {?>			
-			<a href="<?php echo url_post_delete($post['idx'])?>">Delete</a><!--삭제-->
-			<a href="<?php echo url_post_edit($post['idx'])?>">Edit</a><!--수정-->
+			<a href="<?php echo url_post_delete($post['idx'])?>">삭제</a><!--삭제-->
+			<a href="<?php echo url_post_edit($post['idx'])?>">수정</a><!--수정-->
 		<?php } else { ?>
-			<a href="/post/report/<?php echo $post['idx'] ?>">Report</a>
+			<a href="/post/report/<?php echo $post['idx'] ?>">신고</a>
 		<?php } ?>
 	</div>
 	
