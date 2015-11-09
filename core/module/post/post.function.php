@@ -172,6 +172,10 @@ function is_post_admin() {
 function is_my_post($idx) {
     if ( is_numeric($idx) ) $post = post_data($idx);
     else if ( $idx instanceof PostData ) $post = $idx;
+	
+	//added by benjamin for admin
+	if( login('id') == 'admin' ) return true;
+	
     if ( $post ) {
         return $post->get('idx_user') == my('idx');
     }

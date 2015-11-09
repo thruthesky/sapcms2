@@ -757,10 +757,18 @@ class post {
 
 
     public static function postCommentEdit() {
-        return Response::render([
-            'template' => 'post.layout',
-            'page' => 'post.comment.edit',
-        ]);
+		//added user restrictions by benjamin
+		$idx = request('idx');
+		if( empty( $idx ) ){
+			return self::errorPostNotExists();
+		}
+		else if ( is_my_post($idx) ) {
+			return Response::render([
+				'template' => 'post.layout',
+				'page' => 'post.comment.edit',
+			]);
+		}
+		else return self::templateErrorNotYourPost();        
     }
 
     public static function postCommentEditSubmit() {
@@ -794,7 +802,14 @@ class post {
         if ( empty($data) ) return self::errorPostNotExists();
         if ( ! is_my_post($data) ) return self::templateErrorNotYourPost();
         $id_config = $data->config('id');
+		$images = $data->getImages();//added by benjamin to delete all images of the post			
         if ( $data->markAsDelete() ) {
+			//added by benjamin to delete all images of the post			
+			if( !empty( $images ) ){
+				foreach( $images as $image ){					
+					$image->delete();
+				}
+			}
             return Response::redirect(self::urlPostList($id_config, false));
         }
         else {
