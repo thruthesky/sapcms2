@@ -21,6 +21,10 @@
 	box-sizing:border-box;	
 }
 
+.message-menu li:nth-child(2){
+	width:33.34%;
+}
+
 .message-menu li:first-child{
 	border-top-left-radius:5px;
 	border-bottom-left-radius:5px;
