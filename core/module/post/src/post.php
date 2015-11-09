@@ -801,18 +801,19 @@ class post {
         $data = post_data($idx);
         if ( empty($data) ) return self::errorPostNotExists();
         if ( ! is_my_post($data) ) return self::templateErrorNotYourPost();
-        $id_config = $data->config('id');
-		$images = $data->getImages();//added by benjamin to delete all images of the post			
-        if ( $data->markAsDelete() ) {
+        $id_config = $data->config('id');		
+        if ( $data->markAsDelete() ) {								
+            return Response::redirect(self::urlPostList($id_config, false));
+        }
+        else {
+			$images = $data->getImages();//added by benjamin to delete all images of the post
+		
 			//added by benjamin to delete all images of the post			
 			if( !empty( $images ) ){
 				foreach( $images as $image ){					
 					$image->delete();
 				}
 			}
-            return Response::redirect(self::urlPostList($id_config, false));
-        }
-        else {
             return Response::redirect(self::urlPostView($data));
         }
     }
