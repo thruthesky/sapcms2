@@ -4,7 +4,7 @@ echo html_row([
     'caption' => '제목',
     'text' => html_input([
         'name' => 'title',
-        'placeholder' => 'Input title',
+        'placeholder' => '제목을 입력하십시오.',
         'value' => $title,
     ]),
 ]);
