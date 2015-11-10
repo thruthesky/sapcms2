@@ -3,7 +3,7 @@
 	widget('error');
 ?>
 
-<div class='member-form-wrapper login wooreeedu'>
+<div class='member-form-wrapper login englishworld'>
 	<div class='title'>회원 로그인</div>
 	<form class='user-login-form member-form' action="/user/login" method="post" data-ajax="false">
 		<!--

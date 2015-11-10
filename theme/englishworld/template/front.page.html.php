@@ -12,10 +12,10 @@ add_css('front.postBannerWithText.css');
 	<section class='wooree-grid3'>
 		<div class='a'>
 			<div class='floater-dotted'>
-				<a class='text' href='/post/list?id=wooreeedu'>조기유학 / 단기캠프</a>
+				<a class='text' href='/post/list?id=englishworld'>조기유학 / 단기캠프</a>
 			</div>
 			<?php
-				$posts = getPostWithImageNoComment(0, 3, 'wooreeedu');			
+				$posts = getPostWithImageNoComment(0, 3, 'englishworld');			
 				if( !empty( $posts[0] ) ) echo postBannerWithText( $posts[0], 520, 500, 20, 200 );
 				
 				$post_items = array_slice( $posts, 1, 2 );
@@ -24,10 +24,10 @@ add_css('front.postBannerWithText.css');
 		</div>
 		<div class='b'>	
 			<div class='floater-bar'>
-				<a class='text' href='/post/list?id=wooreeedu_gallery'>사진 갤러리</a>
+				<a class='text' href='/post/list?id=englishworld_gallery'>사진 갤러리</a>
 			</div>
 			<?php
-				$posts = getPostWithImageNoComment(0, 8, 'wooreeedu_gallery');
+				$posts = getPostWithImageNoComment(0, 8, 'englishworld_gallery');
 				$post_items = array_slice( $posts, 0, 1 );				
 				if( !empty( $posts[0] ) ) echo postHoverTitleImage( $post_items, 444, 334, 30 );
 				

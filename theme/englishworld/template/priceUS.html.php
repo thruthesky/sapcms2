@@ -2,7 +2,7 @@
 	<div class='title'>Study Abroad in Universities of USA, Australia And Philippines</div>
 	<span style="margin: 0px; padding: 0px; font-size: 18pt; font-family: 'times new roman', times; color: #008080; font-weight: bold; margin-bottom: 10px; display: block;">USA</span>
 	<div class='group'>		
-		<img src='<?php echo $url_site ?>/theme/wooreeedu/img/priceUS.jpg'>
+		<img src='<?php echo $url_site ?>/theme/englishworld/img/priceUS.jpg'>
 		<span style="font-family: 'times new roman',times; color: #008080; font-size: 18pt;"><span style="margin: 0px; padding: 0px; font-weight: bold;">Australia</span></span></p>
 		<p style="margin: 0pt 0px; padding: 0px; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"><span style="font-family: arial,helvetica,sans-serif; font-size: 14pt;"><span style="margin: 0px; padding: 0px; color: red; font-weight: bold;"><br></span></span></p>
 		<div style="margin: 0pt 0px; padding: 0px; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"><span style="font-family: 'times new roman',times; font-size: 14pt;"><span style="margin: 0px; padding: 0px;">•</span><span style="margin: 0px; padding: 0px;">&nbsp; Central Queensland University</span></span></div>

@@ -8,43 +8,43 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 	<div class='inner'>
 		<div class='item talk'>
 			<a href='/course' class='image'>
-				<img class='default' src='/theme/wooreeedu/img/book.png'/>
-				<img class='active' src='/theme/wooreeedu/img/book-active.png'/>
+				<img class='default' src='/theme/englishworld/img/book.png'/>
+				<img class='active' src='/theme/englishworld/img/book-active.png'/>
 			</a>
 			<div class='label'>수업 과정</div>
 		</div>
 		<div class='item grad'>
 			<a href='/junior' class='image'>
-				<img class='default' src='/theme/wooreeedu/img/grad.png'/>
-				<img class='active' src='/theme/wooreeedu/img/grad-active.png'/>
+				<img class='default' src='/theme/englishworld/img/grad.png'/>
+				<img class='active' src='/theme/englishworld/img/grad-active.png'/>
 			</a>
 			<div class='label'>쥬니어 과정</div>
 		</div>
 		<div class='item date'>		
 			<a href='/camp' class='image'>
-				<img class='default' src='/theme/wooreeedu/img/camp.png'/>
-				<img class='active' src='/theme/wooreeedu/img/camp-active.png'/>
+				<img class='default' src='/theme/englishworld/img/camp.png'/>
+				<img class='active' src='/theme/englishworld/img/camp-active.png'/>
 			</a>
 			<div class='label'>영어 캠프</div>
 		</div>
 		<div class='item price'>
 			<a href='/course/trainingCost' class='image'>
-				<img class='default' src='/theme/wooreeedu/img/price.png'/>
-				<img class='active' src='/theme/wooreeedu/img/price-active.png'/>
+				<img class='default' src='/theme/englishworld/img/price.png'/>
+				<img class='active' src='/theme/englishworld/img/price-active.png'/>
 			</a>
 			<div class='label'>연수 비용 안내</div>
 		</div>
 		<div class='item blog'>
 			<a href='http://phil_n_kor.blog.me/' class='image'>
-				<img class='default' src='/theme/wooreeedu/img/blog.png'/>
-				<img class='active' src='/theme/wooreeedu/img/blog-active.png'/>
+				<img class='default' src='/theme/englishworld/img/blog.png'/>
+				<img class='active' src='/theme/englishworld/img/blog-active.png'/>
 			</a>
 			<div class='label'>블로그</div>
 		</div>
 		<div class='item gallery'>
 			<a href='/gallery' class='image'>
-				<img class='default' src='/theme/wooreeedu/img/gallery.png'/>
-				<img class='active' src='/theme/wooreeedu/img/gallery-active.png'/>
+				<img class='default' src='/theme/englishworld/img/gallery.png'/>
+				<img class='active' src='/theme/englishworld/img/gallery-active.png'/>
 			</a>
 			<div class='label'>사진 갤러리</div>
 		</div>

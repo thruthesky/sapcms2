@@ -3,7 +3,7 @@
 	<div class='group kr-text'>				
 		<div class='content'>
 			<div class='star-label'>★ Brent International School Manila (외국인학교) – 브렌트국제학교</div>
-			<img src='<?php echo $url_site ?>/theme/wooreeedu/img/recommended_1.png'>
+			<img src='<?php echo $url_site ?>/theme/englishworld/img/recommended_1.png'>
 			<div class='text'>
 				<span class='label copper'>100년 역사의 필리핀 최고 명문국제학교</span>
 			</div>
@@ -43,7 +43,7 @@
 		</div>
 		<div class='content'>
 			<div class='star-label'>★ International School Manila (미국계 외국인학교) - 마닐라국제학교 (ISM)</div>
-			<img src='<?php echo $url_site ?>/theme/wooreeedu/img/recommended_2.png'>
+			<img src='<?php echo $url_site ?>/theme/englishworld/img/recommended_2.png'>
 			<div class='text'>
 				<span class='label copper'>International School Manila</span>는 그 규모와 시설, 커리큘럼 등 모든 면에서 자타가 인정하는 필리핀의 고급 국제 학교입니다. 필리핀에 거주하는 미국인과 영국인을 위해 1920년에 세워졌으며 대부분 대사관 및 주재원의 자녀들이 학생으로 구성되어 있고 입학이 까다로운 편입니다.
 			</div>
@@ -71,7 +71,7 @@
 		</div>
 		<div class='content'>
 			<div class='star-label'>★ Southville International School</div>
-			<img src='<?php echo $url_site ?>/theme/wooreeedu/img/recommended_3.png'>
+			<img src='<?php echo $url_site ?>/theme/englishworld/img/recommended_3.png'>
 			<div class='text'>
 				국제학교로 ESL과정이 있어서 한국인 학생들이 쉽게 다닐 수 있는 학교입니다. 초등학생에게는 적극 추천할 수 있는 학교입니다.<br>
 				정규반으로 입학할 경우 영어로 수업이 이루어지며, 필리핀 명문 사립의 단점인 따갈로그 수업이 없고 다국적 아이들과의 교류가 가능합니다. 또한 다니는 아이들의 수준도 상당히 높은 편이고 고학년의 경우 ESL반의 부작용이 있지만 저학년은 아직 좋은 환경을 유지하고 있습니다.<br>
@@ -85,7 +85,7 @@
 		</div>
 		<div class='content'>
 			<div class='star-label'>★ San Beda</div>
-			<img src='<?php echo $url_site ?>/theme/wooreeedu/img/recommended_4.png'>
+			<img src='<?php echo $url_site ?>/theme/englishworld/img/recommended_4.png'>
 			<div class='text'>		
 				산베다 대학교는 1901년에 설립된 필리핀의 명문 사립학교입니다. 1953년에 법학과가 출범하였고 1958년까지 사법시험 합격률 100%를 달성 할 정도로 마닐라 산베다의 법대는 유명합니다. 2001년 개교 100주년을 맞은 산베다 대학교는 새로운 도약의 뉴 밀레니엄 시대를 맞아 2002년 약대와 MBA 과정 개설, 2003년 간호대, 2004년 법대 대학원이 출범하였으며 최근 실시된 간호사 국가고시에서는 높은 합격률을 기록 했습니다. 마닐라 캠퍼스에는 10명 내외의 한국학생들이 재학중인 반면 알라방 캠퍼스 (알라방힐스 빌리지 내)에는 최근 학생 수가 증가하여 50~60명의 학생들이 재학 중 입니다.
 			</div>
@@ -101,7 +101,7 @@
 		</div>
 		<div class='content'>
 			<div class='star-label'>★ De La Salle Zobel</div>
-			<img src='<?php echo $url_site ?>/theme/wooreeedu/img/recommended_5.png'>
+			<img src='<?php echo $url_site ?>/theme/englishworld/img/recommended_5.png'>
 			<div class='text'>		
 				라살조벨은 De La Salle Santiago Zobel이라고 하는 라살대학교의 부속 고등학교입니다.
 			</div>
@@ -111,7 +111,7 @@
 		</div>
 		<div class='content'>
 			<div class='star-label'>★ Woodrose</div>
-			<img src='<?php echo $url_site ?>/theme/wooreeedu/img/recommended_6.png'>
+			<img src='<?php echo $url_site ?>/theme/englishworld/img/recommended_6.png'>
 			<div class='text'>		
 				설립자 Saint Josemar에 의해 1977년 6월 설립된 우드로즈는 남학교로 유명한 사우스리지와 같은 재단을 가진 카톨릭 전통 재단의 여학교입니다. 알라방 아얄라 빌리지내에 있는 필리핀 전통의 카톨릭재단의 명문 여고로 유명합니다.
 			</div>

@@ -2,7 +2,7 @@
 	<div class='title'>English Online</div>
 	<div class='group'>
 		<?php for( $i = 1; $i <= 2; $i ++ ){?>
-			<img src='<?php echo $url_site ?>/theme/wooreeedu/img/great_<?php echo $i; ?>.jpg'>
+			<img src='<?php echo $url_site ?>/theme/englishworld/img/great_<?php echo $i; ?>.jpg'>
 		<?php } ?>
 	</div>
 </div>

@@ -232,7 +232,7 @@ function startFeaturedBanner(){
 
 
 
-//var url_server_app = 'http://wooreeedu.com/app/';//
+//var url_server_app = 'http://englishworld.com/app/';//
 
 /*pop up image*/
 $(function(){

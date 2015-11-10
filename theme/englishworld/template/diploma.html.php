@@ -10,7 +10,7 @@
 		<p style="margin-top: 0pt; margin-bottom: 10px; direction: ltr; unicode-bidi: embed; vertical-align: baseline; text-align: center;"><strong><span style="background-color: #ffffff; color: #008000;"><span style="font-family: 'times new roman', times;"><span style="font-size: 15.555556297302246px;">US HIGH SCHOOL DIPLOMA PROGRAM</span></span></span></strong></p>
 		<div class='images'>
 			<?php for( $i = 1; $i <= 4; $i ++ ){?>
-				<img src='<?php echo $url_site ?>/theme/wooreeedu/img/diploma_<?php echo $i; ?>.jpg'>
+				<img src='<?php echo $url_site ?>/theme/englishworld/img/diploma_<?php echo $i; ?>.jpg'>
 			<?php } ?>
 		</div>		
 		<p style="margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline; text-align: center;"><strong><span style="background-color: #ffffff; color: #008000;"><span style="font-family: 'times new roman', times;"><span style="font-size: 15.555556297302246px;"><br></span></span></span></strong></p>
