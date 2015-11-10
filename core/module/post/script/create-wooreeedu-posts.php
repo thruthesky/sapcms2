@@ -133,7 +133,7 @@ $data = $post->attachFile("theme/wooreeedu/img/tripping_13.jpg");
 
 $option = [
 	'idx_config' => $config_gallery->get('idx'),
-	'title' => "A eventful weekend.",
+	'title' => "An eventful weekend.",
 	'content' => "Right now we are in a pool. Nothing much to do but just have fun. Overworking yourself is bad so we do this kind of stuff from time to time...",
 	'idx_user'=> 1
 ];
