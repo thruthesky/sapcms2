@@ -1,5 +1,6 @@
 <div class='temp-page multiLanguage'>
 	<div class='title kr-text'>Multi-Language Power 어학원 소개</div>
+	<div class='sub-title'>WOOREEEDU <?php echo strToUpper( $variables['header_text'] ); ?></div>
 	<div class='group kr-text'>
 		<p style="line-height: 150%; margin-top: 0pt; margin-bottom: 0pt; text-indent: 0.01in; direction: ltr; unicode-bidi: embed; text-align: center;"><span style="font-size: 14pt; font-family: 'times new roman', times;"><span style="color: #a54200; font-weight: bold;"><br></span></span></p>
 		<p style="line-height: 150%; margin-top: 0pt; margin-bottom: 0pt; text-indent: 0.01in; direction: ltr; unicode-bidi: embed; text-align: center;"><span style="font-size: 18pt; font-family: 'times new roman', times;"><span style="color: #a54200; font-weight: bold;">MLP </span><span style="color: #a54200; font-weight: bold;">소개</span></span></p>

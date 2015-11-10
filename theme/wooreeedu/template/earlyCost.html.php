@@ -1,5 +1,6 @@
 <div class='temp-page earlyCost clearfix'>
 	<div class='title'>Early Cost</div>
+	<div class='sub-title'>WOOREEEDU <?php echo strToUpper( $variables['header_text'] ); ?></div>
 	<div class='label'>Long Term Stay - Junior</div>
 	<div class='group'>		
 		<?php for( $i = 1; $i <= 3; $i ++ ){?>

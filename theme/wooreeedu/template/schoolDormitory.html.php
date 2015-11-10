@@ -1,5 +1,6 @@
 <div class='temp-page schoolDormitory'>
 	<div class='title'>School Dormitory</div>
+	<div class='sub-title'>WOOREEEDU <?php echo strToUpper( $variables['header_text'] ); ?></div>
 	<div class='group kr-text'>
 		<p style="margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; text-align: center;"><span style="font-size: 14pt; font-family: '맑은 고딕'; color: #a54200; font-weight: bold;"><br></span></p>
 		<p style="margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; text-align: center;"><span style="font-size: 14pt; font-family: '맑은 고딕'; color: #a54200; font-weight: bold;">학원</span><span style="font-size: 14pt; font-family: '맑은 고딕'; color: #a54200; font-weight: bold;">&nbsp;</span><span style="font-size: 14pt; font-family: '맑은 고딕'; color: #a54200; font-weight: bold;">기숙사 소개</span></p>

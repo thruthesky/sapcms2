@@ -1,5 +1,6 @@
 <div class='temp-page recommended'>
 	<div class='title'>Recommended Schools</div>
+	<div class='sub-title'>WOOREEEDU <?php echo strToUpper( $variables['header_text'] ); ?></div>
 	<div class='group kr-text'>				
 		<div class='content'>
 			<div class='star-label'>★ Brent International School Manila (외국인학교) – 브렌트국제학교</div>

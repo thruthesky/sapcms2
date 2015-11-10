@@ -1,5 +1,6 @@
 <div class='temp-page juniorEarlyStudy'>
 	<div class='title'>The importance of studying early</div>
+	<div class='sub-title'>WOOREEEDU <?php echo strToUpper( $variables['header_text'] ); ?></div>
 	<div class='group kr-text'>
 		<div class='group-title'>주니어조기유학</div>
 		<div class='bullet-label'>조기유학의 중요성</div>
