@@ -16,6 +16,7 @@ if ( is_post_edit_page() && $post = post_data()->getCurrent() ) {
             $uploaded[] = $f;
         }
         ?>
+		<div style='display:none'>
         <script>
             function setUploadedFiles() {
                 var $form = $("[name='<?php echo $form_name ?>']").parents('form');
@@ -24,6 +25,7 @@ if ( is_post_edit_page() && $post = post_data()->getCurrent() ) {
             }
             setTimeout(setUploadedFiles, 200);
         </script>
+		</div>
     <?php }
 }
 ?>
