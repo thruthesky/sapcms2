@@ -138,3 +138,9 @@
 	left:0;
 	top:0;
 }
+
+
+/**/
+.comment-form.wooreeedu .ajax-file-upload-progress-bar{
+	display:none!important;
+}
