@@ -31,8 +31,15 @@ $(function(){
 	$("body").on("mouseleave",".featuredPost",startFeaturedBanner);
 	
 	$("body").on("click",".post .post-delete", deletePost);
+	
+	//$body.on("click",".file-display .delete", fileDelete);
 });
-
+/*
+function fileDelete(){	
+	re = confirm( "Are you sure you want to delete this image?" );
+	if( !re ) return;	
+}
+*/
 function deletePost( e ){	
 	re = confirm( "Are you sure you want to delete this post?" );
 	if( ! re  ){
