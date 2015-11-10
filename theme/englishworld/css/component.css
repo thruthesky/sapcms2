@@ -1,0 +1,292 @@
+.clearfix:after {
+    display:block;
+    content:'';
+    clear:both;
+}
+
+.text-center{
+	text-align:center;
+}
+
+
+/*temp-page*/
+.temp-page{
+	padding:10px 20px;
+	margin:0 0 10px 0;
+    background-color: #fff;
+    min-height: 400px;
+}
+
+.temp-page:last-child{
+	margin-bottom:0;
+}
+
+.temp-page .kr-text{
+	font-family: '맑은 고딕';
+}
+
+.temp-page .title{
+	padding:10px;
+	margin:0 0 10px 0;
+	border-top:2px solid #d5d5d5;
+	border-bottom:2px solid #d5d5d5;
+	font-size:1.5em;
+	font-weight:bold;
+}
+
+.temp-page img{
+	display:block;
+	width:100%;
+	/*max-width:720px;*/
+	margin:0 auto 10px auto;
+}
+
+.temp-page img.type-2{
+	float:left;
+	width:50%;		
+	box-sizing:border-box;		
+}
+
+.temp-page .group img.type-2:nth-child(odd){
+	padding-right:5px;
+}
+
+.temp-page .group img.type-2:nth-child(even){
+	padding-left:5px;
+}
+
+.temp-page img.type-3{	
+	float:left;
+	width:33.33%;		
+	box-sizing:border-box;		
+}
+
+.temp-page img.type-3:nth-child(3n+1){	
+	padding:0 6.66px 0 0;	
+}
+
+.temp-page img.type-3:nth-child(3n+2){	
+	padding:0 3.33px 0 3.33px;	
+}
+
+.temp-page img.type-3:nth-child(3n+3){	
+	padding:0 0 0 6.66px;
+}
+
+.temp-page .group .content{
+	padding:10px 0;
+	margin-bottom:10px;
+}
+
+
+/*schedule*/
+	.temp-page.schedule{
+		
+	}
+/*eo schedule*/
+
+/*juniorEarlyStudy*/
+	.temp-page.juniorEarlyStudy .group-title{
+		font-size:1.5em;
+		font-weight:bold;
+		color:#a54200;
+		text-align:center;
+	}
+
+	.temp-page.juniorEarlyStudy .bullet-label{
+		padding:10px 0;
+		font-size:1.2em;
+		font-weight:bold;	
+		color:#0070c0;
+	}
+/*juniorEarlyStudy*/
+	.temp-page.advantagesInPH .group-title{
+		margin-bottom:10px;
+		font-size:1.1em;
+		font-weight:bold;
+		color:#0070c0;
+		text-align:center;
+	}
+	
+	.temp-page.advantagesInPH .star-label{
+		margin-bottom:0;
+		font-size:1.1em;
+		font-weight:bold;
+		color:#7030a0;
+	}
+/*advantagesInPH*/
+	
+/*eo advantagesInPH*/
+	
+/*earlyCost*/
+	.temp-page.earlyCost  .label{
+		margin-bottom:10px;
+		font-size:2em;
+		text-align:center;		
+	}
+/*eo earlyCost*/
+
+/*recommended*/
+	.temp-page.recommended{
+		
+	}
+	
+	.temp-page.recommended img{
+		display:block;
+		width:initial;
+		margin:0 0 10px 0;
+	}
+	
+	.temp-page.recommended .star-label{
+		font-weight:bold;
+		color:#7030a0;
+		text-align:center;
+		margin-bottom:10px;
+	}
+	
+	.temp-page.recommended .text{
+		margin-bottom:10px;
+		font-size:.9em;
+	}
+	
+	.temp-page.recommended .text .label{
+		font-weight:bold;
+	}
+	
+	.temp-page.recommended .text .label.copper{
+		color:#4f6228;
+	}
+	
+	.temp-page.recommended .text .label.red{
+		color:red;
+	}
+/*eo recommended*/
+
+
+/*requirement*/
+	.temp-page.requirement{
+	
+	}
+	
+	.temp-page.requirement ul, .temp-page.requirement ol{
+		padding:0;
+		margin:0;		
+	}
+	
+	.temp-page.requirement ul li, .temp-page.requirement ol li{
+		list-style:none;
+	}
+	
+	.temp-page.requirement a{
+		text-decoration:none;		
+	}
+	/*
+	.temp-page.requirement .label{
+		font-weight:bold;
+	}
+	
+	.temp-page.requirement .label.red{
+		color:red;
+	}
+	
+	.temp-page.requirement .text{
+		margin-bottom:10px;
+	}
+	
+	.temp-page.requirement .text.no-margin{		
+		margin-bottom:0;
+	}
+	
+	.temp-page.requirement .black{
+		color:#444444;
+	}
+	
+	.temp-page.requirement .grey{		
+		color:#777;
+	}
+	
+	.temp-page.requirement .blue{		
+		color:#3e5f79;
+	}
+	
+	.temp-page.requirement .text.passport{
+		margin-top:50px;
+	}
+	*/
+	
+/*eo requirement*/
+
+/*weekendActivities*/
+	
+/*eo weekendActivities*/
+
+/*eo temp-page*/
+
+
+
+/*modal image*/
+.display-files .image, .modal-image{
+	cursor:pointer;
+}
+/*eo modal image*/
+
+
+/*modal window*/
+/*modal_window*/
+.modal_window{
+	position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;	
+    background-color: rgba(0,0,0,.5);
+    z-index: 9999;    
+	box-sizing:border-box;
+	text-align:center;
+}
+
+.modal_window img{
+	box-sizing:border-box;		
+}
+
+.modal_window > .inner{	
+	position:relative;
+	max-width:960px;
+	height:100%;
+	padding:50px 40px;
+	margin:auto;
+	box-sizing:border-box;
+}
+
+.modal_window .arrow{
+	position:absolute;
+	top:47.3%;
+	padding:10px 15px;
+	width:50px;
+	cursor:pointer;
+}
+
+.modal_window .arrow.left{
+	left:0;
+}
+
+.modal_window .arrow.right{
+	right:0;
+}
+/*eo modal_window*/
+
+/*invisible-window*/
+.invisible_window{
+	position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+	padding:10px;
+    z-index: 900;    
+	box-sizing:border-box;
+	text-align:center;
+	opacity:0;
+}
+/*eo invisible-window*/
+/*eo modal window*/
