@@ -15,7 +15,7 @@ $pc_name = $post_config->fields['name'];
 		</div>		
         <?php foreach( $posts as $post ) { 
 			$title = $post['title'];
-			$content = strcut( $post['content'], 200 )."...";
+			$content = mb_substr( $post['content'],0, 100, 'UTF-8' )."...";			
 			$date = date("F d, Y",$post['created']);
 
 			if( $post['idx_user'] == 0 ) $user = user()->load( 1 );
