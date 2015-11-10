@@ -9,6 +9,10 @@ function onFileChange(obj) {
     $(obj).val('');
 }
 function fileDelete(idx) {
+	//added by benjamin
+	re = confirm( "Are you sure you want to delete this image?" );
+	if( !re ) return;
+	
     $.ajax("/file/delete?idx="+idx)
         .done(function(re){
             try {
