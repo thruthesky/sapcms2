@@ -107,6 +107,7 @@
 
 .postEdit.wooreeedu .row.file-upload{			
 	float:left;
+	width:100%;
 	padding:0;
 	margin:0 0 0 10px;
 	font-size:.9em;
