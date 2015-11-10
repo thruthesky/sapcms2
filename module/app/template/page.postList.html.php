@@ -73,8 +73,10 @@ foreach ( $posts as $post ) {
 				</div>
 			<?php } else { ?>
 				<?php
-				if( strlen( $post['content'] ) >= 150 ){
-					echo "<span class='text-preview'>".substr( $post['content'], 0, 150 )."</span> <span class='see-more'>...See More</span><div class='all-text'>".$post['content']."</div>";
+				$content = strip_tags( $post['content'] );
+				if( mb_strlen( $content ) >= 150 ){
+					$content = mb_substr( $content,0, 150, 'UTF-8' );
+					echo "<span class='text-preview'>".$content."..."."</span> <span class='see-more'>See More</span><div class='all-text'>".$post['content']."</div>";
 				}
 				else{
 					echo $post['content'];
