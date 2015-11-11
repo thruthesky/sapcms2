@@ -53,3 +53,4 @@ Route::add('/course/*', 'wooreeedu\\Wooreeedu\\subPageCourse');
 Route::add('/junior/*', 'wooreeedu\\Wooreeedu\\subPageJunior');
 Route::add('/camp/*', 'wooreeedu\\Wooreeedu\\subPageCamp');
 Route::add('/gallery/*', 'wooreeedu\\Wooreeedu\\subPageGallery');
+Route::add('/forum/*', 'wooreeedu\\Wooreeedu\\subPageForum');

@@ -330,7 +330,8 @@ class Wooreeedu {
 		$page = "subpage.".$function_name.$num;
 		return Response::render([
             'template'=>$page,
-            'page'=>$function_name,			
+            'page'=>$function_name,
+			'header_text'=>'INTRODUCTION',			
         ]);
 	}
 
@@ -339,7 +340,8 @@ class Wooreeedu {
 		$page = "subpage.".$function_name.$num;
 		return Response::render([
             'template'=>$page,
-            'page'=>$function_name,			
+            'page'=>$function_name,
+			'header_text'=>'COURSE',
         ]);
 	}
 
@@ -348,7 +350,8 @@ class Wooreeedu {
 		$page = "subpage.".$function_name.$num;
 		return Response::render([
             'template'=>$page,
-            'page'=>$function_name,			
+            'page'=>$function_name,	
+			'header_text'=>'JUNIOR',
         ]);
 	}
 
@@ -357,7 +360,8 @@ class Wooreeedu {
 		$page = "subpage.".$function_name.$num;
 		return Response::render([
             'template'=>$page,
-            'page'=>$function_name,			
+            'page'=>$function_name,
+			'header_text'=>'FORUM',
         ]);
 	}
 	
@@ -367,6 +371,17 @@ class Wooreeedu {
 		return Response::render([
             'template'=>$page,
             'page'=>$function_name,
+			'header_text'=>'GALLERY',
+        ]);
+	}
+	
+	public static function subPageForum( $num ){
+		$function_name = "forum";
+		$page = "subpage.".$function_name.$num;
+		return Response::render([
+            'template'=>$page,
+            'page'=>'post',
+            'header_text'=>'FORUM',
         ]);
 	}
 }

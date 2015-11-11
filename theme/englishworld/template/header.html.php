@@ -35,11 +35,11 @@ add_css('featured.item.css');
 		<a href="/"><img class='logo' src="/theme/englishworld/img/full_logo.png"/></a>
 		<ul id="main-menu" class="clearfix">
 			<li><a <?php if( !empty( $page ) && $page == 'introduction' ) echo "class='is-active'"; ?> href='/introduction/1'>학원소개</a></li>
-			<li><a <?php if( !empty( $page ) && $page == 'course' ) echo "class='is-active'"; ?> href='/course/1'>강사목록</a></li>
+			<li><a <?php if( !empty( $page ) && $page == 'course' ) echo "class='is-active'"; ?> href='/ve?page=teacher_list'>강사목록</a></li>
 			<li><a <?php if( !empty( $page ) && $page == 'junior' ) echo "class='is-active'"; ?> href='/junior/1'>무료체험</a></li>
 			<li><a <?php if( !empty( $page ) && $page == 'camp' ) echo "class='is-active'"; ?> href='/camp/1'>수업신청</a></li>
 			<li><a <?php if( !empty( $page ) && $page == 'gallery' ) echo "class='is-active'"; ?> href='/gallery/1'>교재안내</a></li>
-			<li><a <?php if( !empty( $page ) && $page == 'videoEnglish' ) echo "class='is-active'"; ?> href='/ve?page=teacher_list'>고객센터</a></li>
+			<li><a <?php if( !empty( $page ) && $page == 'videoEnglish' ) echo "class='is-active'"; ?> href='/post/list?id=qna'>고객센터</a></li>
 			<!--<li><a class='contactUs' href='#'>Contact Us</a></li>-->
 		</ul>
 		<div class='sub-menu'>
@@ -80,7 +80,7 @@ add_css('featured.item.css');
 								<div class='item'>
 									<ul>
 										<li><a href="/ve?page=teacher_list">선생님 목록</a></li>
-										<li><a href="/course/2">전체 시간표</a></li>
+										<li><a href="/course/1">전체 시간표</a></li>
 										<li><a href="/ve?page=reservation">수업 시간표</a></li>
 										<li><a href="/ve?page=past">수업 평가</a></li>
 										<li><a href="/ve?page=solution">강의실 입장</a></li>
@@ -118,10 +118,10 @@ add_css('featured.item.css');
 							<td width='16.67%'>
 								<div class='item'>
 									<ul>
-										<li><a href="/ve?page=teacher_list">질문과답변</a></li>
-										<li><a href="/ve?page=reservation">수업후기</a></li>
-										<li><a href="/ve?page=past">공지사항</a></li>
-										<li><a href="/ve?page=solution">전화 상담 안내</a></li>
+										<li><a href="/post/list?id=qna">질문과답변</a></li>
+										<li><a href="/post/list?id=story">수업후기</a></li>
+										<li><a href="/post/list?id=reminder">공지사항</a></li>
+										<li><a href="/forum/1">전화 상담 안내</a></li>
 									</ul>
 								</div>
 							</td>
