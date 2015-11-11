@@ -30,7 +30,7 @@
 	<div class='inner'>
 		<div class='category-title'>
 			<a href='<?php echo $pc_url; ?>'><?php echo $pc_name; ?></a>
-			<a class='post-list' href='<?php echo $pc_url; ?>'>글 쓰기</a>
+			<a class='post-list' href='<?php echo $pc_url; ?>'>목록</a>
 		</div>
 		<div class='title'>
 			<?php echo $title; ?>
