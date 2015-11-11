@@ -8,7 +8,7 @@ class Englishworld {
 
 	public static function introduction( $num ){
 		$function_name = ( __FUNCTION__ );
-		$page = $function_name.$num;
+		$page = "subpage.".$function_name.$num;
 		return Response::render([
             'template'=>$page,
             'page'=>$function_name,			
@@ -17,7 +17,7 @@ class Englishworld {
 
 	public static function course( $num ){
 		$function_name = ( __FUNCTION__ );
-		$page = $function_name.$num;
+		$page = "subpage.".$function_name.$num;
 		return Response::render([
             'template'=>$page,
             'page'=>$function_name,			
@@ -26,7 +26,7 @@ class Englishworld {
 
 	public static function junior( $num ){
 		$function_name = ( __FUNCTION__ );
-		$page = $function_name.$num;
+		$page = "subpage.".$function_name.$num;
 		return Response::render([
             'template'=>$page,
             'page'=>$function_name,			
@@ -35,7 +35,7 @@ class Englishworld {
 
 	public static function camp( $num ){
 		$function_name = ( __FUNCTION__ );
-		$page = $function_name.$num;
+		$page = "subpage.".$function_name.$num;
 		return Response::render([
             'template'=>$page,
             'page'=>$function_name,			
@@ -44,7 +44,7 @@ class Englishworld {
 	
 	public static function gallery( $num ){
 		$function_name = ( __FUNCTION__ );
-		$page = $function_name.$num;
+		$page = "subpage.".$function_name.$num;
 		return Response::render([
             'template'=>$page,
             'page'=>$function_name,			
