@@ -12,8 +12,7 @@ $pc_name = $post_config->fields['name'];
 		<div class='category-title'>
 			<?php echo $pc_name; ?>
 			<?php widget('post_list_menu'); ?>
-		</div>
-		<div class='outer-wrapper'>
+		</div>		
         <?php foreach( $posts as $post ) { 
 			$title = $post['title'];
 			$content = mb_substr( $post['content'],0, 100, 'UTF-8' )."...";			
@@ -46,11 +45,13 @@ $pc_name = $post_config->fields['name'];
 					<div class='arrow right'></div>
 				</a>
 			</div>			
-        <?php } ?>
-		</div>
+        <?php } 
+		if( !empty( $posts ) ){
+		?>		
 		<div class='page-navigator-wrapper clearfix'>
 			<?php widget('post_list_search_box_wooreeedu', $widget); ?>
 			<?php widget('post_list_navigator'); ?>			
 		</div>		
+		<?php } ?>
 </div>
 
