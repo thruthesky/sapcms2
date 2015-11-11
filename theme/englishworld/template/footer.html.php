@@ -7,28 +7,28 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 <div class='bottom-icon-menus'>
 	<div class='inner'>
 		<div class='item talk'>
-			<a href='/course' class='image'>
+			<a href='/course/1' class='image'>
 				<img class='default' src='/theme/englishworld/img/book.png'/>
 				<img class='active' src='/theme/englishworld/img/book-active.png'/>
 			</a>
 			<div class='label'>수업 과정</div>
 		</div>
 		<div class='item grad'>
-			<a href='/junior' class='image'>
+			<a href='/junior/1' class='image'>
 				<img class='default' src='/theme/englishworld/img/grad.png'/>
 				<img class='active' src='/theme/englishworld/img/grad-active.png'/>
 			</a>
 			<div class='label'>쥬니어 과정</div>
 		</div>
 		<div class='item date'>		
-			<a href='/camp' class='image'>
+			<a href='/camp/1' class='image'>
 				<img class='default' src='/theme/englishworld/img/camp.png'/>
 				<img class='active' src='/theme/englishworld/img/camp-active.png'/>
 			</a>
 			<div class='label'>영어 캠프</div>
 		</div>
 		<div class='item price'>
-			<a href='/course/trainingCost' class='image'>
+			<a href='/course/2' class='image'>
 				<img class='default' src='/theme/englishworld/img/price.png'/>
 				<img class='active' src='/theme/englishworld/img/price-active.png'/>
 			</a>
@@ -42,7 +42,7 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			<div class='label'>블로그</div>
 		</div>
 		<div class='item gallery'>
-			<a href='/gallery' class='image'>
+			<a href='/gallery/1' class='image'>
 				<img class='default' src='/theme/englishworld/img/gallery.png'/>
 				<img class='active' src='/theme/englishworld/img/gallery-active.png'/>
 			</a>
