@@ -366,7 +366,7 @@ class Wooreeedu {
 		$page = "subpage.".$function_name.$num;
 		return Response::render([
             'template'=>$page,
-            'page'=>$function_name,			
+            'page'=>$function_name,
         ]);
 	}
 }
