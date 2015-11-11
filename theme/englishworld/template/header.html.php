@@ -9,8 +9,10 @@ add_css('featured.item.css');
 		<div class='left'>
 			<a href='/'>홈</a><span class='bullet'>•</span>
 			<!--<a href='#'>우리에듀 소개</a><span class='bullet'>•</span>-->
-			<a href='/post/list?id=qna'>질문하기</a><span class='bullet'>•</span>			
-			<a href='/ve?page=teacher_list'>화상영어</a>			
+			<a href='/post/list?id=qna'>질문하기</a><span class='bullet'>•</span>
+			<a href='/course/1'>수업과정</a><span class='bullet'>•</span>
+			<a href='/ve?page=teacher_list'>레벨테스트</a><span class='bullet'>•</span>
+			<a href='/ve?page=teacher_list'>선생님목록</a>
 		</div>
 		<div class='right'>
 			<?php 
@@ -33,11 +35,11 @@ add_css('featured.item.css');
 		<a href="/"><img class='logo' src="/theme/englishworld/img/full_logo.png"/></a>
 		<ul id="main-menu" class="clearfix">
 			<li><a <?php if( !empty( $page ) && $page == 'introduction' ) echo "class='is-active'"; ?> href='/introduction/1'>학원소개</a></li>
-			<li><a <?php if( !empty( $page ) && $page == 'course' ) echo "class='is-active'"; ?> href='/course/1'>어학연수</a></li>
-			<li><a <?php if( !empty( $page ) && $page == 'junior' ) echo "class='is-active'"; ?> href='/junior/1'>조기유학</a></li>
-			<li><a <?php if( !empty( $page ) && $page == 'camp' ) echo "class='is-active'"; ?> href='/camp/1'>단기캠프</a></li>
-			<li><a <?php if( !empty( $page ) && $page == 'gallery' ) echo "class='is-active'"; ?> href='/gallery/1'>프로그램</a></li>
-			<li><a <?php if( !empty( $page ) && $page == 'videoEnglish' ) echo "class='is-active'"; ?> href='/ve?page=teacher_list'>화상영어</a></li>
+			<li><a <?php if( !empty( $page ) && $page == 'course' ) echo "class='is-active'"; ?> href='/course/1'>강사목록</a></li>
+			<li><a <?php if( !empty( $page ) && $page == 'junior' ) echo "class='is-active'"; ?> href='/junior/1'>무료체험</a></li>
+			<li><a <?php if( !empty( $page ) && $page == 'camp' ) echo "class='is-active'"; ?> href='/camp/1'>수업신청</a></li>
+			<li><a <?php if( !empty( $page ) && $page == 'gallery' ) echo "class='is-active'"; ?> href='/gallery/1'>교재안내</a></li>
+			<li><a <?php if( !empty( $page ) && $page == 'videoEnglish' ) echo "class='is-active'"; ?> href='/ve?page=teacher_list'>고객센터</a></li>
 			<!--<li><a class='contactUs' href='#'>Contact Us</a></li>-->
 		</ul>
 		<div class='sub-menu'>
@@ -53,13 +55,13 @@ add_css('featured.item.css');
 				?>
 				</div>
 					<div class='inner'>
-						<div class='item fake'><div class='banner'><img src='/theme/englishworld/img/menu_photo_5.jpg'/></div><div class='title text-center'>영어세미나</div></div><div class='item'>
-						<div class='banner'><img src='/theme/englishworld/img/menu_photo_1.jpg'/></div><div class='title text-center'>노래자랑</div></div><div class='item'>
-						<div class='banner'><img src='/theme/englishworld/img/menu_photo_2.jpg'/></div><div class='title text-center'>바다 여행</div></div><div class='item'>
-						<div class='banner'><img src='/theme/englishworld/img/menu_photo_4.jpg'/></div><div class='title text-center'>영어 말하기 대회 시상식</div></div><div class='item'>
-						<div class='banner'><img src='/theme/englishworld/img/menu_photo_3.jpg'/></div><div class='title text-center'>크리스마스 파티</div></div><div class='item'>
-						<div class='banner'><img src='/theme/englishworld/img/menu_photo_5.jpg'/></div><div class='title text-center'>영어 수업</div></div><div class='item fake'>
-						<div class='banner'><img src='/theme/englishworld/img/menu_photo_1.jpg'/></div><div class='title text-center'>팝송 노래</div></div>
+						<div class='item fake'><div class='banner'><img src='/theme/englishworld/img/menu_photo_5.jpg'/></div><div class='title text-center'>화상 콜센터 단합대회</div></div><div class='item'>
+						<div class='banner'><img src='/theme/englishworld/img/menu_photo_1.jpg'/></div><div class='title text-center'>선생님 노래자랑</div></div><div class='item'>
+						<div class='banner'><img src='/theme/englishworld/img/menu_photo_2.jpg'/></div><div class='title text-center'>화상 콜센터 바다 여행</div></div><div class='item'>
+						<div class='banner'><img src='/theme/englishworld/img/menu_photo_4.jpg'/></div><div class='title text-center'>화상 콜센터 시상식</div></div><div class='item'>
+						<div class='banner'><img src='/theme/englishworld/img/menu_photo_3.jpg'/></div><div class='title text-center'>화상 콜센터 파티</div></div><div class='item'>
+						<div class='banner'><img src='/theme/englishworld/img/menu_photo_5.jpg'/></div><div class='title text-center'>화상 콜센터 영어 수업</div></div><div class='item fake'>
+						<div class='banner'><img src='/theme/englishworld/img/menu_photo_1.jpg'/></div><div class='title text-center'>화상 콜센터 팝송 노래</div></div>
 					</div>
 				</div>
 				<div class='item-list text-center'>
@@ -68,49 +70,9 @@ add_css('featured.item.css');
 							<td width='16.67%'>
 								<div class='item'>
 									<ul>
-										<li><a href="/introduction/2">우리에듀 소개</a></li>
-										<li><a href="/introduction/3">우리에듀 특징</a></li>
-										<li><a href="/introduction/4">학원 기숙사</a></li>
-									</ul>
-								</div>
-							</td>
-							<td width='16.67%'>
-								<div class='item'>
-									<ul>
-										<li><a href="/course/2">기업강의</a></li>
-										<li><a href="/course/3">어학연수</a></li>
-									</ul>
-								</div>
-							</td>
-							<td width='16.67%'>
-								<div class='item'>
-									<ul>
-										<li><a href="/junior/2">조기유학</a></li>
-										<li><a href="/junior/3">조기유학 장점</a></li>
-										<li><a href="/junior/4">조기유학 비용</a></li>
-										<li><a href="/junior/5">추천 학교</a></li>
-									</ul>
-								</div>
-							</td>
-							<td width='16.67%'>
-								<div class='item'>
-									<ul>
-										<li><a href="/camp/2">단기캠프 정보</a></li>
-										<li><a href="/camp/3">단기캠프 일정</a></li>
-										<li><a href="/camp/4">단기캠프 준비</a></li>
-										<li><a href="/camp/5">주말 여행</a></li>
-										<li><a href="/camp/6">여권/비자/SSP</a></li>
-									</ul>
-								</div>
-							</td>
-							<td width='16.67%'>
-								<div class='item'>
-									<ul>
-										<li><a href="/gallery/2">영어 노래 교실</a></li>
-										<li><a href="/gallery/3">캠프 여행</a></li>
-										<li><a href="/gallery/4">영어 발표회</a></li>
-										<li><a href="/gallery/5">크리스마스파티</a></li>
-										<li><a href="/gallery/6">원어민 강의</a></li>
+										<li><a href="/introduction/2">인사말</a></li>
+										<li><a href="/introduction/3">처음 오신분</a></li>
+										<li><a href="/introduction/4">화상 콜센터</a></li>
 									</ul>
 								</div>
 							</td>
@@ -118,9 +80,48 @@ add_css('featured.item.css');
 								<div class='item'>
 									<ul>
 										<li><a href="/ve?page=teacher_list">선생님 목록</a></li>
+										<li><a href="/course/2">전체 시간표</a></li>
 										<li><a href="/ve?page=reservation">수업 시간표</a></li>
 										<li><a href="/ve?page=past">수업 평가</a></li>
 										<li><a href="/ve?page=solution">강의실 입장</a></li>
+									</ul>
+								</div>
+							</td>
+							<td width='16.67%'>
+								<div class='item'>
+									<ul>
+										<li><a href="/junior/2">무료체험 신청</a></li>
+										<li><a href="/junior/3">무료체험 진행</a></li>
+										<li><a href="/junior/4">무료체험 결과</a></li>
+									</ul>
+								</div>
+							</td>
+							<td width='16.67%'>
+								<div class='item'>
+									<ul>
+										<li><a href="/camp/2">수업 신청 안내</a></li>
+										<li><a href="/camp/3">수업료 안내</a></li>
+									</ul>
+								</div>
+							</td>
+							<td width='16.67%'>
+								<div class='item'>
+									<ul>
+										<li><a href="/gallery/2">기초 영어 회화</a></li>
+										<li><a href="/gallery/3">비지니스 영어</a></li>
+										<li><a href="/gallery/4">인터뷰 영어</a></li>
+										<li><a href="/gallery/5">어린이 영어</a></li>
+										<li><a href="/gallery/6">시험 영어</a></li>
+									</ul>
+								</div>
+							</td>
+							<td width='16.67%'>
+								<div class='item'>
+									<ul>
+										<li><a href="/ve?page=teacher_list">질문과답변</a></li>
+										<li><a href="/ve?page=reservation">수업후기</a></li>
+										<li><a href="/ve?page=past">공지사항</a></li>
+										<li><a href="/ve?page=solution">전화 상담 안내</a></li>
 									</ul>
 								</div>
 							</td>
