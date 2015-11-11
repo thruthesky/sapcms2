@@ -4,6 +4,16 @@
 <div class='temp-page <?php echo $page; ?>'>
 	<div class='title'><?php echo strtoupper( $page ); ?></div>
 	<div class='group'>
+
+
+		잉글리쉬월드 화상영어를 소개합니다.<br>
+
+		잉글리쉬월드는 화상영어학습을 전문적으로 제공하는 교육 회사입니다.<br>
+
+		저희는 2006년 필리핀에 화상영어 콜센터를 설립하여 <?php echo date('Y')?>년 현재 까지 수 많은 학생과 함께 화상영어 교육을 진행하고 있습니다.<br>
+
+
+
 		<table>
 			<tr>
 				<td><img style="width:180px;" src="/theme/englishworld/img/class/banner1.png"</td>

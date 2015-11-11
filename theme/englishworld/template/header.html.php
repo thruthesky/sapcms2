@@ -70,7 +70,7 @@ add_css('featured.item.css');
 							<td width='16.67%'>
 								<div class='item'>
 									<ul>
-										<li><a href="/introduction/2">인사말</a></li>
+										<li><a href="/introduction/1">인사말</a></li>
 										<li><a href="/introduction/3">처음 오신분</a></li>
 										<li><a href="/introduction/4">화상 콜센터</a></li>
 									</ul>
@@ -90,7 +90,7 @@ add_css('featured.item.css');
 							<td width='16.67%'>
 								<div class='item'>
 									<ul>
-										<li><a href="/junior/2">무료체험 신청</a></li>
+										<li><a href="/junior/1">무료체험 신청</a></li>
 										<li><a href="/junior/3">무료체험 진행</a></li>
 										<li><a href="/junior/4">무료체험 결과</a></li>
 									</ul>
