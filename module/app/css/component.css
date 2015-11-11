@@ -615,20 +615,53 @@
 
 /*viewPage*/
 .viewPage{
-	padding:10px 10px;
+	padding:10px 0;
 	background-color:#fff;
 	font-size:.8em;
+}
+
+.viewPage > .temp-page > *{
+	padding:0 10px;	
 }
 
 .viewPage img{
 	width:100%;
 }
-
+/*
 .viewPage .title{
 	padding: 10px;
 	margin: 0 0 10px 0;
 	border-bottom: 3px solid #d5d5d5;
 	font-size: 1.2em;
 	font-weight: bold;
+}*/
+
+.viewPage .title{
+	padding:0 10px 10px 10px;	
+	margin:0 0 10px 0;	
+	border:0;
+	border-bottom:2px solid #56A09E;
+	font-size:1.5em;
+	font-weight:normal;
+	color:#166B72;
+	line-height:initial;
+}
+
+.viewPage:first-child .title{
+	padding-bottom:5px;
+	margin-bottom:5px;
+}
+
+.viewPage .sub-title{
+	display:none;
+	padding:0 20px;	
+	margin:0 0 10px 0;
+	font-size:.9em;
+	font-weight:bold;
+	color:#D87C2B;
+}
+
+.viewPage:first-child .sub-title{
+	display:block;	
 }
 /*eo viewPage*/
