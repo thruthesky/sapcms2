@@ -4,7 +4,7 @@ if ( ! $config = post_config($id) ) {
     $config = post_config()->set('id', $id)->set('name', 'Han')->save();
 }
 
-$id_gallery = "han";
+$id_gallery = "han_gallery";
 if ( ! $config_gallery = post_config($id_gallery) ) {
     $config_gallery = post_config()->set('id', $id_gallery)->set('name', 'Han Gallery')->save();
 }
