@@ -55,13 +55,13 @@ add_css('featured.item.css');
 				?>
 				</div>
 					<div class='inner'>
-						<div class='item fake'><div class='banner'><img src='/theme/englishworld/img/menu_photo_5.jpg'/></div><div class='title text-center'>화상 콜센터 단합대회</div></div><div class='item'>
+						<div class='item fake'><div class='banner'><img src='/theme/englishworld/img/menu_photo_5.jpg'/></div><div class='title text-center'>화상 콜센터 영어 수업</div></div><div class='item'><!--this is a fake banner 화상 콜센터 단합대회-->
 						<div class='banner'><img src='/theme/englishworld/img/menu_photo_1.jpg'/></div><div class='title text-center'>선생님 노래자랑</div></div><div class='item'>
 						<div class='banner'><img src='/theme/englishworld/img/menu_photo_2.jpg'/></div><div class='title text-center'>화상 콜센터 바다 여행</div></div><div class='item'>
 						<div class='banner'><img src='/theme/englishworld/img/menu_photo_4.jpg'/></div><div class='title text-center'>화상 콜센터 시상식</div></div><div class='item'>
 						<div class='banner'><img src='/theme/englishworld/img/menu_photo_3.jpg'/></div><div class='title text-center'>화상 콜센터 파티</div></div><div class='item'>
 						<div class='banner'><img src='/theme/englishworld/img/menu_photo_5.jpg'/></div><div class='title text-center'>화상 콜센터 영어 수업</div></div><div class='item fake'>
-						<div class='banner'><img src='/theme/englishworld/img/menu_photo_1.jpg'/></div><div class='title text-center'>화상 콜센터 팝송 노래</div></div>
+						<div class='banner'><img src='/theme/englishworld/img/menu_photo_1.jpg'/></div><div class='title text-center'>선생님 노래자랑</div></div><!--this is a fake banner  화상 콜센터 팝송 노래-->
 					</div>
 				</div>
 				<div class='item-list text-center'>
