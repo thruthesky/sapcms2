@@ -1,0 +1,42 @@
+.temp-page.videoEnglish{
+
+}
+
+.temp-page.videoEnglish > .menu{
+	margin:0 0 10px 0;	
+}
+
+.temp-page.videoEnglish > .menu > a{
+	display:inline-block;
+	width:25%;
+	padding:8px 10px 10px 10px;
+	border:1px solid #95a5a6;
+	border-right:0;	
+	font-size:1.1em;
+	color:#95a5a6;
+	text-decoration:none;
+	text-align:center;
+	box-sizing:border-box;
+}
+
+.temp-page.videoEnglish > .menu > a:first-child{
+	border-top-left-radius:3px;
+	border-bottom-left-radius:3px;
+}
+
+.temp-page.videoEnglish > .menu > a:last-child{
+	border-right:1px solid #95a5a6;
+	border-top-right-radius:3px;
+	border-bottom-right-radius:3px;
+}
+
+
+.temp-page.videoEnglish > .menu > a:hover{
+	background-color:#bdc3c7;	
+	color:#fff;
+}
+
+.temp-page.videoEnglish > .menu > a.is-active{
+	background-color:#95a5a6;
+	color:#fff;
+}

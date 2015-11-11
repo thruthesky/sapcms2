@@ -44,3 +44,12 @@ Route::add('/paymentInfo', 'wooreeedu\\Wooreeedu\\paymentInfo');
 Route::add('/contactUs/messageSendSubmit', 'wooreeedu\\Wooreeedu\\messageSendSubmit');
 //Route::add('/contactUs/success', 'wooreeedu\\Wooreeedu\\contactUsSuccess');
 
+
+
+
+
+Route::add('/introduction/*', 'wooreeedu\\Wooreeedu\\subPageIntroduction');
+Route::add('/course/*', 'wooreeedu\\Wooreeedu\\subPageCourse');
+Route::add('/junior/*', 'wooreeedu\\Wooreeedu\\subPageJunior');
+Route::add('/camp/*', 'wooreeedu\\Wooreeedu\\subPageCamp');
+Route::add('/gallery/*', 'wooreeedu\\Wooreeedu\\subPageGallery');

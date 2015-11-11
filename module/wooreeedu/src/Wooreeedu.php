@@ -310,4 +310,63 @@ class Wooreeedu {
 			]);
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**/
+	public static function subPageIntroduction( $num ){
+		$function_name = "introduction";
+		$page = "subpage.".$function_name.$num;
+		return Response::render([
+            'template'=>$page,
+            'page'=>$function_name,			
+        ]);
+	}
+
+	public static function subPageCourse( $num ){
+		$function_name = "course";
+		$page = "subpage.".$function_name.$num;
+		return Response::render([
+            'template'=>$page,
+            'page'=>$function_name,			
+        ]);
+	}
+
+	public static function subPageJunior( $num ){
+		$function_name = "junior";
+		$page = "subpage.".$function_name.$num;
+		return Response::render([
+            'template'=>$page,
+            'page'=>$function_name,			
+        ]);
+	}
+
+	public static function subPageCamp( $num ){
+		$function_name = "camp";
+		$page = "subpage.".$function_name.$num;
+		return Response::render([
+            'template'=>$page,
+            'page'=>$function_name,			
+        ]);
+	}
+	
+	public static function subPageGallery( $num ){
+		$function_name = "gallery";
+		$page = "subpage.".$function_name.$num;
+		return Response::render([
+            'template'=>$page,
+            'page'=>$function_name,			
+        ]);
+	}
 }

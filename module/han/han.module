@@ -1,0 +1,9 @@
+<?php
+use sap\src\Module;
+
+if ( ! Module::enabled('han') ) {
+    return;
+}
+
+include 'han.routing.php';
+
