@@ -4,13 +4,17 @@
 	background-color:#fff;
 }
 
-.post-list.wooreeedu > .inner{
+.post-list.wooreeedu .outer-wrapper{
+	min-height:400px;	
+}
+
+.post-list.wooreeedu .outer-wrapper > .inner{
 	padding:10px 0;
 	margin:0 10px;
 	border-bottom:2px solid #ccc;
 }
 
-.post-list.wooreeedu > .inner .read-more{	
+.post-list.wooreeedu .outer-wrapper > .inner .read-more{	
 	display:inline-block;
 	position:relative;
 	padding:10px 24px 11px 12px;
@@ -22,7 +26,7 @@
 	text-decoration:none;
 }
 
-.post-list.wooreeedu > .inner .arrow.right{	
+.post-list.wooreeedu .outer-wrapper > .inner .arrow.right{	
 	position:absolute;
 	right:10px;
 	top:16px;
