@@ -9,10 +9,8 @@ add_css('featured.item.css');
 		<div class='left'>
 			<a href='/'>홈</a><span class='bullet'>•</span>
 			<!--<a href='#'>우리에듀 소개</a><span class='bullet'>•</span>-->
-			<a href='/post/list?id=qna'>질문하기</a><span class='bullet'>•</span>
-			<a href='/studyAbroad'>교육 프로그램</a><span class='bullet'>•</span>
-			<a href='/ve?page=teacher_list'>화상영어</a><span class='bullet'>•</span>
-			<a href='/paymentInfo'>수업료 납부 안내</a>
+			<a href='/post/list?id=qna'>질문하기</a><span class='bullet'>•</span>			
+			<a href='/ve?page=teacher_list'>화상영어</a>			
 		</div>
 		<div class='right'>
 			<?php 
@@ -34,11 +32,11 @@ add_css('featured.item.css');
 	<div class='inner'>
 		<a href="/"><img class='logo' src="/theme/englishworld/img/full_logo.png"/></a>
 		<ul id="main-menu" class="clearfix">
-			<li><a <?php if( !empty( $page ) && $page == 'introduction' ) echo "class='is-active'"; ?> href='/introduction'>학원소개</a></li>
-			<li><a <?php if( !empty( $page ) && $page == 'course' ) echo "class='is-active'"; ?> href='/course'>어학연수</a></li>
-			<li><a <?php if( !empty( $page ) && $page == 'junior' ) echo "class='is-active'"; ?> href='/junior'>조기유학</a></li>
-			<li><a <?php if( !empty( $page ) && $page == 'camp' ) echo "class='is-active'"; ?> href='/camp'>단기캠프</a></li>
-			<li><a <?php if( !empty( $page ) && $page == 'gallery' ) echo "class='is-active'"; ?> href='/gallery'>프로그램</a></li>
+			<li><a <?php if( !empty( $page ) && $page == 'introduction' ) echo "class='is-active'"; ?> href='/introduction/1'>학원소개</a></li>
+			<li><a <?php if( !empty( $page ) && $page == 'course' ) echo "class='is-active'"; ?> href='/course/1'>어학연수</a></li>
+			<li><a <?php if( !empty( $page ) && $page == 'junior' ) echo "class='is-active'"; ?> href='/junior/1'>조기유학</a></li>
+			<li><a <?php if( !empty( $page ) && $page == 'camp' ) echo "class='is-active'"; ?> href='/camp/1'>단기캠프</a></li>
+			<li><a <?php if( !empty( $page ) && $page == 'gallery' ) echo "class='is-active'"; ?> href='/gallery/1'>프로그램</a></li>
 			<li><a <?php if( !empty( $page ) && $page == 'videoEnglish' ) echo "class='is-active'"; ?> href='/ve?page=teacher_list'>화상영어</a></li>
 			<!--<li><a class='contactUs' href='#'>Contact Us</a></li>-->
 		</ul>
@@ -70,49 +68,49 @@ add_css('featured.item.css');
 							<td width='16.67%'>
 								<div class='item'>
 									<ul>
-										<li><a href="/introduction/multiLanguage">우리에듀 소개</a></li>
-										<li><a href="/introduction/multiLanguage_2">우리에듀 특징</a></li>
-										<li><a href="/introduction/schoolDormitory">학원 기숙사</a></li>
+										<li><a href="/introduction/2">우리에듀 소개</a></li>
+										<li><a href="/introduction/3">우리에듀 특징</a></li>
+										<li><a href="/introduction/4">학원 기숙사</a></li>
 									</ul>
 								</div>
 							</td>
 							<td width='16.67%'>
 								<div class='item'>
 									<ul>
-										<li><a href="/course/lecture">기업강의</a></li>
-										<li><a href="/course/trainingCost">어학연수</a></li>
+										<li><a href="/course/2">기업강의</a></li>
+										<li><a href="/course/3">어학연수</a></li>
 									</ul>
 								</div>
 							</td>
 							<td width='16.67%'>
 								<div class='item'>
 									<ul>
-										<li><a href="/junior/juniorEarlyStudy">조기유학</a></li>
-										<li><a href="/junior/advantagesInPH">조기유학 장점</a></li>
-										<li><a href="/junior/earlyCost">조기유학 비용</a></li>
-										<li><a href="/junior/recommended">추천 학교</a></li>
+										<li><a href="/junior/2">조기유학</a></li>
+										<li><a href="/junior/3">조기유학 장점</a></li>
+										<li><a href="/junior/4">조기유학 비용</a></li>
+										<li><a href="/junior/5">추천 학교</a></li>
 									</ul>
 								</div>
 							</td>
 							<td width='16.67%'>
 								<div class='item'>
 									<ul>
-										<li><a href="/camp/campInformation">단기캠프 정보</a></li>
-										<li><a href="/camp/schedule">단기캠프 일정</a></li>
-										<li><a href="/camp/preparation">단기캠프 준비</a></li>
-										<li><a href="/camp/weekendActivities">주말 여행</a></li>
-										<li><a href="/camp/requirement">여권/비자/SSP</a></li>
+										<li><a href="/camp/2">단기캠프 정보</a></li>
+										<li><a href="/camp/3">단기캠프 일정</a></li>
+										<li><a href="/camp/4">단기캠프 준비</a></li>
+										<li><a href="/camp/5">주말 여행</a></li>
+										<li><a href="/camp/6">여권/비자/SSP</a></li>
 									</ul>
 								</div>
 							</td>
 							<td width='16.67%'>
 								<div class='item'>
 									<ul>
-										<li><a href="/gallery/popsong">영어 노래 교실</a></li>
-										<li><a href="/gallery/tripping">캠프 여행</a></li>
-										<li><a href="/gallery/speech">영어 발표회</a></li>
-										<li><a href="/gallery/xmas">크리스마스파티</a></li>
-										<li><a href="/gallery/seminar">원어민 강의</a></li>
+										<li><a href="/gallery/2">영어 노래 교실</a></li>
+										<li><a href="/gallery/3">캠프 여행</a></li>
+										<li><a href="/gallery/4">영어 발표회</a></li>
+										<li><a href="/gallery/5">크리스마스파티</a></li>
+										<li><a href="/gallery/6">원어민 강의</a></li>
 									</ul>
 								</div>
 							</td>

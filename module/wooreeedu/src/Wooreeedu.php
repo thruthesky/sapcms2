@@ -5,9 +5,7 @@ use sap\src\Response;
 use sap\core\message\Message;
 
 class Wooreeedu {
-	
-	
-	
+		
 	public static function introduction(){
 		return Response::render([
             'template'=>'introduction',

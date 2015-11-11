@@ -11,11 +11,17 @@
 
 /*temp-page*/
 .temp-page{
-	padding:10px 20px;
+	padding:10px 0 0 0;
 	margin:0 0 10px 0;
     background-color: #fff;
     min-height: 400px;
 }
+
+/*...*/
+.temp-page > *{
+	padding:0 20px;
+}
+/*...*/
 
 .temp-page:last-child{
 	margin-bottom:0;
@@ -26,14 +32,33 @@
 }
 
 .temp-page .title{
-	padding:10px;
-	margin:0 0 10px 0;
-	border-top:2px solid #d5d5d5;
-	border-bottom:2px solid #d5d5d5;
+	padding:0 10px 10px 10px;	
+	margin:0 0 10px 0;	
+	border:0;
+	border-bottom:2px solid #56A09E;
 	font-size:1.5em;
-	font-weight:bold;
+	font-weight:normal;
+	color:#166B72;
+}
+/*
+.temp-page:first-child .title{
+	padding-bottom:5px;
+	margin-bottom:5px;
 }
 
+.temp-page .sub-title{
+	display:none;
+	padding:0 20px;	
+	margin:0 0 10px 0;
+	font-size:.9em;
+	font-weight:bold;
+	color:#D87C2B;
+}
+
+.temp-page:first-child .sub-title{
+	display:block;	
+}
+*/
 .temp-page img{
 	display:block;
 	width:100%;
