@@ -1,6 +1,6 @@
 <?php
 	add_css('member.css');
-	widget('error');
+	//widget('error');
 ?>
 
 <div class='member-form-wrapper login wooreeedu'>
