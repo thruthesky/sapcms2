@@ -2,7 +2,7 @@
 	extract( $variables );	
 ?>
 <div class='temp-page <?php echo $page; ?>'>
-	<div class='title'><?php echo strtoupper( $page ); ?></div>
+	<div class='title'><span><?php echo strtoupper( $title_text ); ?></span></div>
 	<div class='group'>
 		<table>
 			<tr>

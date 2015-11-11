@@ -331,7 +331,8 @@ class Wooreeedu {
 		return Response::render([
             'template'=>$page,
             'page'=>$function_name,
-			'header_text'=>'INTRODUCTION',			
+			'header_text'=>'INTRODUCTION',
+			'title_text'=>'About Us',
         ]);
 	}
 
@@ -342,6 +343,7 @@ class Wooreeedu {
             'template'=>$page,
             'page'=>$function_name,
 			'header_text'=>'COURSE',
+			'title_text'=>'Learn WIth Us',
         ]);
 	}
 
@@ -352,6 +354,7 @@ class Wooreeedu {
             'template'=>$page,
             'page'=>$function_name,	
 			'header_text'=>'JUNIOR',
+			'title_text'=>'Learn Early',
         ]);
 	}
 
@@ -361,7 +364,8 @@ class Wooreeedu {
 		return Response::render([
             'template'=>$page,
             'page'=>$function_name,
-			'header_text'=>'FORUM',
+			'header_text'=>'CAMP',
+			'title_text'=>'Travel With Us',
         ]);
 	}
 	
@@ -372,6 +376,7 @@ class Wooreeedu {
             'template'=>$page,
             'page'=>$function_name,
 			'header_text'=>'GALLERY',
+			'title_text'=>'View Our Activities',
         ]);
 	}
 	
@@ -382,6 +387,7 @@ class Wooreeedu {
             'template'=>$page,
             'page'=>'post',
             'header_text'=>'FORUM',
+			'title_text'=>'Some Title Here',
         ]);
 	}
 }
