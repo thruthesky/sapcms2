@@ -50,7 +50,7 @@ $pc_name = $post_config->fields['name'];
 		?>
 			<div class='inner empty'>This post forum is empty.</div>
 		<?php
-			{
+			}
 		
 		else{
 		?>
