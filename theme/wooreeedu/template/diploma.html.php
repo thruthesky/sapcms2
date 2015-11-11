@@ -1,5 +1,6 @@
 <div class='temp-page earlyCost clearfix'>
 	<div class='title'>SAT / TOEFL / TOIEC / IELTS / US High School Diploma Program</div>
+	<div class='sub-title'>WOOREEEDU <?php echo strToUpper( $variables['header_text'] ); ?></div>
 	<div class='group'>
 		<p style="margin-top: 0pt; margin-bottom: 0pt; text-align: center; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"><span style="font-family: 'times new roman', times; color: #a54200; font-weight: bold; font-size: 14pt;"><br></span></p>
 		<p style="margin-top: 0pt; margin-bottom: 0pt; text-align: center; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"><span style="font-size: 18pt;"><span style="font-family: 'times new roman', times; color: #a54200; font-weight: bold;">교육프로그램</span>&nbsp;</span></p>

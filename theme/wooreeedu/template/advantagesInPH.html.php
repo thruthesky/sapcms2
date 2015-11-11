@@ -1,5 +1,6 @@
 <div class='temp-page advantagesInPH'>
 	<div class='title'>The advantages of studying in the Philippines early</div>
+	<div class='sub-title'>WOOREEEDU <?php echo strToUpper( $variables['header_text'] ); ?></div>
 	<div class='group kr-text'>
 		<div class='group-title'>필리핀 조기유학의 장점</div>		
 		<div class='content'>

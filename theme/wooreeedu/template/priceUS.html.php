@@ -1,6 +1,7 @@
 <div class='temp-page earlyCost clearfix'>
 	<div class='title'>Study Abroad in Universities of USA, Australia And Philippines</div>
-	<span style="margin: 0px; padding: 0px; font-size: 18pt; font-family: 'times new roman', times; color: #008080; font-weight: bold; margin-bottom: 10px; display: block;">USA</span>
+	<div class='sub-title'>WOOREEEDU <?php echo strToUpper( $variables['header_text'] ); ?></div>
+	<span style="margin: 0px 20px; padding: 0px; font-size: 18pt; font-family: 'times new roman', times; color: #008080; font-weight: bold; margin-bottom: 10px; display: block;">USA</span>
 	<div class='group'>		
 		<img src='<?php echo $url_site ?>/theme/wooreeedu/img/priceUS.jpg'>
 		<span style="font-family: 'times new roman',times; color: #008080; font-size: 18pt;"><span style="margin: 0px; padding: 0px; font-weight: bold;">Australia</span></span></p>

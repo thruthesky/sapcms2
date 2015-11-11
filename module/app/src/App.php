@@ -784,6 +784,10 @@ class App {
 	public static function pageView( $page ){
 		$url_site = 'http://'.domain().'/';
 		
+		//temp
+		$variables = [];
+		$variables['header_text'] = $page;
+		
 		ob_start();
 		echo "<div class='viewPage $page'>";
 		include template($page);

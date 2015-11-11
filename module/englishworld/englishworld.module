@@ -1,0 +1,9 @@
+<?php
+use sap\src\Module;
+
+if ( ! Module::enabled('englishworld') ) {
+    return;
+}
+
+include 'englishworld.routing.php';
+
