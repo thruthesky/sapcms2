@@ -46,8 +46,14 @@ $pc_name = $post_config->fields['name'];
 				</a>
 			</div>			
         <?php } 
-		if( !empty( $posts ) ){
-		?>		
+		if( empty( $posts ) ){
+		?>
+			<div class='inner empty'>This post forum is empty.</div>
+		<?php
+			{
+		
+		else{
+		?>
 		<div class='page-navigator-wrapper clearfix'>
 			<?php widget('post_list_search_box_wooreeedu', $widget); ?>
 			<?php widget('post_list_navigator'); ?>			

@@ -10,6 +10,11 @@
 	border-bottom:2px solid #ccc;
 }
 
+.post-list.wooreeedu > .inner.empty{
+	padding:10px 10px;
+	border:0;
+}
+
 .post-list.wooreeedu > .inner .read-more{	
 	display:inline-block;
 	position:relative;
