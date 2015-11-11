@@ -7,7 +7,8 @@ function postHoverTitleImage( $posts, $width = 300, $height = 300, $title_length
 		$img = $post->getImage();
 		$thumbnail = $img->urlThumbnail($width,$height);
 		$title = textLengthLimit( $post->title, 30 );
-		$thumbnail_label = "<img src='/theme/englishworld/img/tempThumbnailLabel.png'/>";
+		//$thumbnail_label = "<img src='/theme/englishworld/img/tempThumbnailLabel.png'/>";
+		$thumbnail_label = "<img src='/theme/englishworld/favicon.ico'/>";
 		$url = $post->url();
 		$post_config = post_config()->load( $post->idx_config );
 		$post_config_name = $post_config->name;
@@ -36,7 +37,7 @@ echo "<div class='post-thumbnail-with-text'>";
 		$thumbnail = $img->urlThumbnail($width,$height);	
 		$title = textLengthLimit( $post->title, $title_length );
 		$content = textLengthLimit( strip_tags( $post->content ), $title_length );
-		$thumbnail_label = "<img src='/theme/englishworld/img/tempThumbnailLabel.png'/>";
+		$thumbnail_label = "<img src='/theme/englishworld/favicon.ico'/>";
 		$url = $post->url();
 		$post_config = post_config()->load( $post->idx_config );
 		$post_config_name = $post_config->name;
@@ -76,7 +77,7 @@ echo "</div>";
 function postBulletList( $posts, $title_length = 30 ){
 if( empty( $posts ) ) return null;
 echo "<div class='post-bullet-list'>";
-	$thumbnail_label = "<img src='/theme/englishworld/img/tempThumbnailLabel.png'/>";
+	$thumbnail_label = "<img src='/theme/englishworld/favicon.ico'/>";
 	foreach( $posts as $post ){
 		if( empty( $post ) ) continue;
 		$url = $post->url();

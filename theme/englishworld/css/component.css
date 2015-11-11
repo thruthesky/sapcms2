@@ -32,14 +32,47 @@
 }
 
 .temp-page .title{
+	position:relative;
 	padding:0 10px 10px 10px;	
-	margin:0 0 10px 0;	
+	margin:0 10px 10px 10px;	
 	border:0;
-	border-bottom:2px solid #56A09E;
+	/*border-bottom:2px solid #56A09E;*/
+	/*border-top:4px solid #3484b8;*/
 	font-size:1.5em;
 	font-weight:normal;
-	color:#166B72;
+	color:#3484b8;
+	text-align:center;
 }
+
+.temp-page .title > span{
+	display:inline-block;
+	position:relative;
+	padding:0 10px;	
+	background-color:#fff;
+	z-index:2;
+}
+/*
+.temp-page .title:before{
+	display:inline-block;
+	height:16px;
+	width:16px;	
+	margin-right:10px;
+	content:"";
+	background:url("/theme/englishworld/favicon.ico");	
+}
+*/
+
+.temp-page .title:before{	
+	display:block;
+	position:absolute;
+	top:40%;
+	left:0;
+	width:100%;
+	border-top:4px solid #3484b8;
+	content:'';
+	z-index:1;
+}
+
 /*
 .temp-page:first-child .title{
 	padding-bottom:5px;

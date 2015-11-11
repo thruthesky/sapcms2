@@ -45,10 +45,13 @@ $pc_name = $post_config->fields['name'];
 					<div class='arrow right'></div>
 				</a>
 			</div>			
-        <?php } ?>		
+        <?php } 
+		if( !empty( $posts ) ){
+		?>		
 		<div class='page-navigator-wrapper clearfix'>
 			<?php widget('post_list_search_box_wooreeedu', $widget); ?>
 			<?php widget('post_list_navigator'); ?>			
 		</div>		
+		<?php } ?>
 </div>
 
