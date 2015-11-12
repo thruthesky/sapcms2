@@ -34,7 +34,7 @@
 .temp-page .title{
 	position:relative;
 	height:164px;
-	margin-bottom: 20px;
+	margin-bottom: 30px;
 	background:url("/theme/englishworld/img/header_text.png?v=2");	
 }
 
@@ -43,10 +43,11 @@
     display: inline-block;
     padding: 9px 10px 13px 10px;
     margin: 40px 0 0 18px;
-    border-radius: 3px;
+	/*border-bottom:2px solid #0b81ed;
+    border-radius: 3px;*/
     font-size: 1.7em;
-    color: #fff;
-    background: #0b81ed;
+    /*color: #fff;
+    background: #0b81ed;*/	
     z-index: 2;
     box-sizing: border-box;
 }
