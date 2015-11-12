@@ -353,7 +353,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>$page,
             'page'=>$function_name,	
-			'header_text'=>'JUNIOR',
+			'header_text'=>'LEVEL TEST',
 			'title_text'=>'Learn Early',
         ]);
 	}
@@ -386,7 +386,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>$page,
             'page'=>'post',
-            'header_text'=>'FORUM',
+            'header_text'=>'CONTACT US',
 			'title_text'=>'Some Title Here',
         ]);
 	}

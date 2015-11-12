@@ -60,11 +60,11 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 				</div>			
 				<ul>
 					<li><a href="/">홈</a></li>
-					<li><a href="/introduction">인사말</a></li>
-					<li><a href="/junior">어린이영어</a></li>
-					<li><a href="/course">기초 영어 회화</a></li>
-					<li><a href="/camp">비지니스 영어</a></li>
-					<li><a href="/gallery">사진갤러리</a></li>
+					<li><a href="/introduction/1">인사말</a></li>
+					<li><a href="/junior/1">어린이영어</a></li>
+					<li><a href="/course/1">기초 영어 회화</a></li>
+					<li><a href="/camp/1">비지니스 영어</a></li>
+					<li><a href="/gallery/1">사진갤러리</a></li>
 					<li><a href="/ve">선생님 목록</a></li>
 				</ul>
 			</div>

@@ -11,7 +11,7 @@
 
 /*temp-page*/
 .temp-page{
-	/*padding:10px 0 0 0;*/
+	padding:0 0 20px 0;
 	margin:0 0 10px 0;
     background-color: #fff;
     min-height: 400px;
@@ -41,15 +41,12 @@
 .temp-page .title > span{
 	position: relative;
     display: inline-block;
-    padding: 9px 10px 13px 10px;
-    margin: 40px 0 0 18px;
-	/*border-bottom:2px solid #0b81ed;
-    border-radius: 3px;*/
+    padding: 9px 10px 6px 10px;
+    margin: 48px 0 0 18px;
     font-size: 1.7em;
-    /*color: #fff;
-    background: #0b81ed;*/	
     z-index: 2;
     box-sizing: border-box;
+    border-bottom: 2px solid #000;
 }
 /*
 .temp-page .title > span:after{
@@ -127,8 +124,8 @@
 */
 .temp-page img{
 	display:block;
-	width:100%;
-	/*max-width:720px;*/
+	/*width:100%;*/
+	max-width:100%;
 	margin:0 auto 10px auto;
 }
 
