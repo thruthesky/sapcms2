@@ -39,7 +39,7 @@ add_css('featured.item.css');
 			<li><a <?php if( !empty( $page ) && $page == 'junior' ) echo "class='is-active'"; ?> href='/junior/1'>무료체험</a></li>
 			<li><a <?php if( !empty( $page ) && $page == 'camp' ) echo "class='is-active'"; ?> href='/camp/1'>수업신청</a></li>
 			<li><a <?php if( !empty( $page ) && $page == 'gallery' ) echo "class='is-active'"; ?> href='/gallery/1'>교재안내</a></li>
-			<li><a <?php if( strpos( $page, "post." ) !== false || !empty( $page ) && $page == 'post' ) echo "class='is-active'"; ?> href='/post/list?id=qna'>고객센터</a></li>
+			<li><a <?php if( !empty( $page ) && strpos( $page, "post." ) !== false || !empty( $page ) && $page == 'post' ) echo "class='is-active'"; ?> href='/post/list?id=qna'>고객센터</a></li>
 			<!--<li><a class='contactUs' href='#'>Contact Us</a></li>-->
 		</ul>
 		<div class='sub-menu'>
