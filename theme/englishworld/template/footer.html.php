@@ -18,28 +18,28 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 				<img class='default' src='/theme/englishworld/img/grad.png'/>
 				<img class='active' src='/theme/englishworld/img/grad-active.png'/>
 			</a>
-			<div class='label'>쥬니어 과정</div>
+			<div class='label'>비지니스 영어</div>
 		</div>
 		<div class='item date'>		
 			<a href='/camp/1' class='image'>
 				<img class='default' src='/theme/englishworld/img/camp.png'/>
 				<img class='active' src='/theme/englishworld/img/camp-active.png'/>
 			</a>
-			<div class='label'>영어 캠프</div>
+			<div class='label'>어린이 영어</div>
 		</div>
 		<div class='item price'>
 			<a href='/course/2' class='image'>
 				<img class='default' src='/theme/englishworld/img/price.png'/>
 				<img class='active' src='/theme/englishworld/img/price-active.png'/>
 			</a>
-			<div class='label'>연수 비용 안내</div>
+			<div class='label'>수업 비용 안내</div>
 		</div>
 		<div class='item blog'>
 			<a href='http://phil_n_kor.blog.me/' class='image'>
 				<img class='default' src='/theme/englishworld/img/blog.png'/>
 				<img class='active' src='/theme/englishworld/img/blog-active.png'/>
 			</a>
-			<div class='label'>블로그</div>
+			<div class='label'>질문답변</div>
 		</div>
 		<div class='item gallery'>
 			<a href='/gallery/1' class='image'>
@@ -61,11 +61,11 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 				<ul>
 					<li><a href="/">홈</a></li>
 					<li><a href="/introduction">인사말</a></li>
-					<li><a href="/course">연수 / 성인과정</a></li>
-					<li><a href="/junior">주니어 과정</a></li>
-					<li><a href="/camp">주니어 캠프</a></li>
+					<li><a href="/junior">어린이영어</a></li>
+					<li><a href="/course">기초 영어 회화</a></li>
+					<li><a href="/camp">비지니스 영어</a></li>
 					<li><a href="/gallery">사진갤러리</a></li>
-					<li><a href="/ve">화상영어</a></li>
+					<li><a href="/ve">선생님 목록</a></li>
 				</ul>
 			</div>
 		</div>
@@ -76,22 +76,18 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 				</div>
 				
 				<div class='row'>
-					<b>오시는 길</b>
-					#577 Suntrade Bldg,<br>
-					Alabang-Zapote Rd,<br>
-					Almanza, Las Pinas city
+					<b>화상 센터</b>
+					2nd Floor Galang Wong Building,<br>
+					Salome Rd, Balibago<br>
+					Pampanga.
 				</div>
 				<div class='row'>
 					<b>전화번호</b>
-					070-4007-3570<br>
-					0915-469-7300<br>
-					02-799-7305<br>
-					카톡: 720720chivin<br>
+					<?php echo $phone_number?><br>
 				</div>
 				<div class='row'>
 					<b>메일주소</b>
-					multilanguageschool@gmail.com<br>
-					mlpschool@naver.com 
+					hanmun777@naver.com<br>
 				</div>
 			</div>
 		</div>
@@ -113,6 +109,6 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 	</div>
 </section>
 <div class="copyright">
-	Copyright (C) 2013 ~ <?=date('Y')?> 우리에듀. All Rights Reserved <br>
+	Copyright (C) 2013 ~ <?=date('Y')?> 잉글리쉬월드. All Rights Reserved <br>
 </div>
 
