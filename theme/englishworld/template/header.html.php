@@ -10,8 +10,8 @@ add_css('featured.item.css');
 			<a href='/'>홈</a><span class='bullet'>•</span>
 			<!--<a href='#'>우리에듀 소개</a><span class='bullet'>•</span>-->
 			<a href='/post/list?id=qna'>질문하기</a><span class='bullet'>•</span>
-			<a href='/course/1'>수업과정</a><span class='bullet'>•</span>
-			<a href='/ve?page=teacher_list'>레벨테스트</a><span class='bullet'>•</span>
+			<a href='/gallery/1'>수업과정</a><span class='bullet'>•</span>
+			<a href='/junior/1'>레벨테스트</a><span class='bullet'>•</span>
 			<a href='/ve?page=teacher_list'>선생님목록</a>
 		</div>
 		<div class='right'>
@@ -91,7 +91,7 @@ add_css('featured.item.css');
 									<ul>
 										<li><a href="/junior/1">무료체험 신청</a></li>
 										<li><a href="/junior/3">무료체험 진행</a></li>
-										<li><a href="/junior/4">무료체험 결과</a></li>
+										<li><a href="/ve?page=past">무료체험 결과</a></li>
 									</ul>
 								</div>
 							</td>
