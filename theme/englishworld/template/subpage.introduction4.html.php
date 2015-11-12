@@ -2,7 +2,7 @@
 	extract( $variables );	
 ?>
 <div class='temp-page <?php echo $page; ?>'>
-	<div class='title'>화상영어 교육 콜센터 안내</div>
+	<div class='title'><span>화상영어 교육 콜센터 안내</span></div>
 	<div class='group'>
 
 		저희는 화상영어 학습을 위해서 필리핀 현지에서 2006년 부터 <?php echo date('Y')?>년 현재까지 직접 화상 영어 콜센터를 운영하고 있습니다.<br>
