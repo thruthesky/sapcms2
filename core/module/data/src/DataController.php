@@ -15,7 +15,10 @@ class DataController
      */
     public static function upload() {
         sys()->log(__METHOD__);
-
+		
+		$user_idx = login('idx');
+		if( empty( $user_idx ) ) return Response::json(['error'=>'-10001','message'=>'You are not logged in!']);
+		
         $uploads = Data::multipleFileUploadInfo();
 
         sys()->log("uploaded files:");

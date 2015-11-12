@@ -1,4 +1,13 @@
 <?php
+$user_idx = login('idx');
+
+if( empty( $user_idx ) ){
+?>
+	<h2>You are not logged in</h2>
+
+<?php
+}
+else{
 	add_css();
 	add_javascript();
 
@@ -45,4 +54,6 @@
 <script>
     
 </script>
-
+<?php
+}
+?>

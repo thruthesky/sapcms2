@@ -68,11 +68,12 @@ $(function(){
                 var re;
                 try {
                     re = JSON.parse(xhr.responseText);
+					if( re.error ) return alert( re.message );
                 }
                 catch ( e ) {
                     return alert( xhr.responseText );
                 }
-
+				
                 console.log(re);
 
                 fileDisplay($this, re);
