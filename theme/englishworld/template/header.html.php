@@ -146,6 +146,7 @@ if( !empty( $variables['page'] )  ){
 		//$text = strtoupper($varia);
 	}
 	$url = "/theme/englishworld/img/header_".$page .".jpg";
+	//$url = "/theme/englishworld/img/header_text.png";
 	//if( file_exists( $url ) ){
 	?>
 	<div class='header-image<?php if( !empty( $page ) ) echo ' '.$page; ?>'>	

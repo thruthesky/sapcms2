@@ -2,7 +2,7 @@
 	extract( $variables );	
 ?>
 <div class='temp-page <?php echo $page; ?>'>
-	<div class='title'>무료 체험 수업</div>
+	<div class='title'><span>무료 체험 수업</span></div>
 	<div class='group'>
 
         <img style="max-width:735px;" src="/theme/englishworld/img/class/free-1.jpg"><br>

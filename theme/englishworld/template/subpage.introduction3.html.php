@@ -2,7 +2,7 @@
 	extract( $variables );	
 ?>
 <div class='temp-page <?php echo $page; ?>'>
-	<div class='title'>처음 오신 분</div>
+	<div class='title'><span>처음 오신 분</span></div>
 	<div class='group'>
 		<div>잉글리쉬월드에 오신 것을 환영합니다.</div>
 

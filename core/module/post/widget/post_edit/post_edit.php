@@ -1,4 +1,13 @@
 <?php
+$user_idx = login('idx');
+
+if( empty( $user_idx ) ){
+?>
+	<h2>You are not logged in</h2>
+<?php
+}
+else {
+
 $config = post_config()->getCurrent();
 $data = post_data()->getCurrent();
 
@@ -37,4 +46,6 @@ else {
         uiColor: '#f0f0f0'
     } );
 </script>
-
+<?php
+}
+?>
