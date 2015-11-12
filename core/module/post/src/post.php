@@ -180,7 +180,8 @@ class post {
     }
 
     public static function postCreateSubmit() {
-
+		$user_idx = login('idx');
+		if( empty( $user_idx ) ) return self::templateError(-10001, "You are not logged in!");
         if ( self::validateTitle() ) return self::templateEdit();
         if ( self::validateConfig() ) return self::templateEdit();
         if ( self::validateContent() ) return self::templateEdit();
@@ -246,7 +247,8 @@ class post {
      * @return int
      */
     public static function postCommentSubmit() {
-
+		$user_idx = login('idx');
+		if( empty( $user_idx ) ) return self::templateError(-10001, "You are not logged in!");
 
         if ( self::validateContent() ) {
             return jsBack(getErrorString());

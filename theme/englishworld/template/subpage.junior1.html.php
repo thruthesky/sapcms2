@@ -2,7 +2,7 @@
 	extract( $variables );	
 ?>
 <div class='temp-page <?php echo $page; ?>'>
-	<div class='title'>무료 체험 수업</div>
+	<div class='title'><span>무료 체험 수업</span></div>
 	<div class='group'>
 
         무료 체험 수업은 레벨테스트라고 보시면됩니다.<br>
