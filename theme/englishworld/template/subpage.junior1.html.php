@@ -5,9 +5,12 @@
 	<div class='title'>무료 체험 수업</div>
 	<div class='group'>
 
+        <img style="max-width:735px;" src="/theme/englishworld/img/class/free-1.jpg"><br>
+
+        무료 체험 & 레벨테스트 상담전화 : <?php echo $phone_number?><br>
+
         무료 체험 수업은 레벨테스트라고 보시면됩니다.<br>
 
-        신청은 <?php echo $phone_number?>로 전화주시면 됩니다.<br>
 
 		무료 체험 수업은 모든 학생들이 처음 화상 영어 수업을 할 때 한번 또는 두번 하는 것으로
 

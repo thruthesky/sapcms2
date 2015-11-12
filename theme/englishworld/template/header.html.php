@@ -80,7 +80,6 @@ add_css('featured.item.css');
 								<div class='item'>
 									<ul>
 										<li><a href="/ve?page=teacher_list">선생님 목록</a></li>
-										<li><a href="/course/1">전체 시간표</a></li>
 										<li><a href="/ve?page=reservation">수업 시간표</a></li>
 										<li><a href="/ve?page=past">수업 평가</a></li>
 										<li><a href="/ve?page=solution">강의실 입장</a></li>

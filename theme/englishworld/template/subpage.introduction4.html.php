@@ -44,6 +44,23 @@
 
 
 
+        <img style="max-width:560px;" src="/theme/englishworld/img/class/class3.jpg"><br>
+
+        위 사진은 학생들이 실제로 수업하는 장면입니다.<br>
+
+        영어는 공부를 해야하는 학문이기도 하지만 의사 전달을 위한 소통을 해야하는 언어이기도 합니다.<br>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
