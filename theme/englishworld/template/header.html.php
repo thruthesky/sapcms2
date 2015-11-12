@@ -108,10 +108,10 @@ add_css('featured.item.css');
 									<ul>
 										<li><a href="/gallery/1">교재안내</a></li>
 										<li><a href="/gallery/2">파닉스 영어</a></li>
-										<li><a href="/gallery/3">어린이 영어</a></li>
+										<!--<li><a href="/gallery/3">어린이 영어</a></li>-->
 										<li><a href="/gallery/4">기초 영어 회화</a></li>
 										<li><a href="/gallery/5">비지니스 영어</a></li>
-										<li><a href="/gallery/6">시험 영어</a></li>
+										<li><a href="/gallery/6">읽기/독해</a></li>
 									</ul>
 								</div>
 							</td>
