@@ -15,7 +15,7 @@ class DataController
      */
     public static function upload() {
         sys()->log(__METHOD__);
-		
+		//check if user is logged in
 		$user_idx = login('idx');
 		if( empty( $user_idx ) ) return Response::json(['error'=>'-10001','message'=>'You are not logged in!']);
 		

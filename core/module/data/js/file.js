@@ -68,6 +68,7 @@ $(function(){
                 var re;
                 try {
                     re = JSON.parse(xhr.responseText);
+					//alert errors...
 					if( re.error ) return alert( re.message );
                 }
                 catch ( e ) {
