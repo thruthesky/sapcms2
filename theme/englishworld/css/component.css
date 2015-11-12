@@ -35,25 +35,22 @@
 	position:relative;
 	height:164px;
 	margin-bottom: 20px;
-	background:url("/theme/englishworld/img/header_text.png");	
+	background:url("/theme/englishworld/img/header_text.png?v=2");	
 }
 
 .temp-page .title > span{
-	position:relative;
-	display: inline-block;
-	padding: 11px 6px 14px 6px;
-	margin: 40px 0 0 18px;
-	/* border-radius: 3px; 
-	border-top-right-radius: 3px;
-	border-bottom-right-radius: 3px;	
-	font-weight: bold; */
-	font-size: 1.7em;
-	color: #fff;
-	background: #0b81ed;
-	z-index:2;
-	box-sizing:border-box;
+	position: relative;
+    display: inline-block;
+    padding: 9px 10px 13px 10px;
+    margin: 40px 0 0 18px;
+    border-radius: 3px;
+    font-size: 1.7em;
+    color: #fff;
+    background: #0b81ed;
+    z-index: 2;
+    box-sizing: border-box;
 }
-
+/*
 .temp-page .title > span:after{
 	display:block;
 	content:"";
@@ -65,7 +62,7 @@
 	background:url("/theme/englishworld/img/triangle.png");
 	z-index:1;
 }
-
+*/
 /*
 .temp-page .title{
 	position:relative;
