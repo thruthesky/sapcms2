@@ -11,7 +11,7 @@
 
 /*temp-page*/
 .temp-page{
-	padding:10px 0 0 0;
+	/*padding:10px 0 0 0;*/
 	margin:0 0 10px 0;
     background-color: #fff;
     min-height: 400px;
@@ -33,11 +33,45 @@
 
 .temp-page .title{
 	position:relative;
+	height:164px;
+	margin-bottom: 20px;
+	background:url("/theme/englishworld/img/header_text.png");	
+}
+
+.temp-page .title > span{
+	position:relative;
+	display: inline-block;
+	padding: 11px 6px 14px 6px;
+	margin: 40px 0 0 18px;
+	/* border-radius: 3px; 
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;	
+	font-weight: bold; */
+	font-size: 1.7em;
+	color: #fff;
+	background: #0b81ed;
+	z-index:2;
+	box-sizing:border-box;
+}
+
+.temp-page .title > span:after{
+	display:block;
+	content:"";
+	position: absolute;
+    right: -36px;
+    top: 0;
+	height:62px;
+	width:36px;
+	background:url("/theme/englishworld/img/triangle.png");
+	z-index:1;
+}
+
+/*
+.temp-page .title{
+	position:relative;
 	padding:0 10px 10px 10px;	
 	margin:0 10px 10px 10px;	
 	border:0;
-	/*border-bottom:2px solid #56A09E;*/
-	/*border-top:4px solid #3484b8;*/
 	font-size:1.5em;
 	font-weight:normal;
 	color:#3484b8;
@@ -51,6 +85,7 @@
 	background-color:#fff;
 	z-index:2;
 }
+*/
 /*
 .temp-page .title:before{
 	display:inline-block;
@@ -61,7 +96,7 @@
 	background:url("/theme/englishworld/favicon.ico");	
 }
 */
-
+/*
 .temp-page .title:before{	
 	display:block;
 	position:absolute;
@@ -72,7 +107,7 @@
 	content:'';
 	z-index:1;
 }
-
+*/
 /*
 .temp-page:first-child .title{
 	padding-bottom:5px;
