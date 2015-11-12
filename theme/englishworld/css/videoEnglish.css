@@ -3,7 +3,8 @@
 }
 
 .temp-page.videoEnglish > .menu{
-	margin:10px 0 10px 0;	
+	padding-top:10px;
+	margin:0 0 10px 0;	
 }
 
 .temp-page.videoEnglish > .menu > a{
