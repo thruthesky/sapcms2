@@ -11,6 +11,7 @@ add_css('front.postBannerWithText.css');
 <div class='page-content top'>
 	<section class='wooree-grid3'>
 		<div class='a'>
+			<img src="/theme/englishworld/img/class/main-banner-left.jpg">
 			<div class='floater-dotted'>
 				<a class='text' href='/post/list?id=englishworld'>조기유학 / 단기캠프</a>
 			</div>
@@ -22,7 +23,8 @@ add_css('front.postBannerWithText.css');
 				if( !empty( $posts ) ) echo postThumbnailWithText( $post_items, 'long-version', 100, 75, 100 );
 			?>
 		</div>
-		<div class='b'>	
+		<div class='b'>
+			<img src="/theme/englishworld/img/class/main-banner-right.jpg">
 			<div class='floater-bar'>
 				<a class='text' href='/post/list?id=englishworld_gallery'>사진 갤러리</a>
 			</div>
