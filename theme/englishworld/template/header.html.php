@@ -196,7 +196,7 @@ if( $_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/?' ){ ?>
 				<div class='inner'>
 					<div class='wrapper'>
                         <div class='text top'>방문과외전문 + 화상영어</div><br>
-						<div class='text bottom'>화상영어와 방문과외로 두 마리 토끼(내신과 회화)를 다 잡는 국내 유일의  교육 전문 업체!</div><br>
+						<div class='text bottom'>화상영어와 방문과외로 두 마리 토끼(내신과 회화)를 다 잡는 국내 유일의 교육 전문 업체!</div><br>
 						<div class='text more'>자세히 보기<div class='triangle'></div></div>
 					</div>
 				</div>
