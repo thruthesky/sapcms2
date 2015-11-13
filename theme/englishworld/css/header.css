@@ -25,14 +25,15 @@
 }
 
 .top-menu > .inner .left{
-	float:left;
-	width:50%;
+	width:100%;
+	margin:0 0 10px 0;
+	text-align:center;
 }
 
 .top-menu > .inner .right{
-	float:right;
-	width:50%;
-	text-align:right;
+
+	width:100%;
+	text-align:center;
 }
 
 .top-menu > .inner .right a{
@@ -224,6 +225,19 @@
 }
 /*eo header-image*/
 
+@media all and ( min-width: 750px ) {
+	.top-menu > .inner .left{
+		float:left;
+		margin:0;
+		width:50%;
+	}
+
+	.top-menu > .inner .right{
+		float:right;
+		width:50%;
+		text-align:right;
+	}
+}
 
 /*
 @media all and ( min-width: 720px ) {
