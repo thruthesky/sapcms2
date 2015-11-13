@@ -115,7 +115,7 @@ function display_files_thumbnail( $files, $height, $width, $limit = 0 ) {
 			}
 			else {
 				$url = $file->url();
-				$tag_files[] = "<div class='attachment'><a href='$url'>$name</a></div>";
+				$tag_files[] = "<div class='attachment'><a href='$url' download>$name</a></div>";
 			}
 		}				
 		
