@@ -23,8 +23,10 @@ add_css('featured.item.css');
 				<span class='bullet'>•</span>			
 				<a href='/user/login'>로그인</a>
 			<?php } else { ?>
-				<a href='/user/profile'>나의 정보</a>
-				<span class='bullet'>•</span>
+                    <a href="/ve?page=solution">강의실입장</a>
+                    <span class='bullet'>•</span>
+                    <a href='/user/profile'>나의 정보</a>
+                    <span class='bullet'>•</span>
 				<a href='/user/logout'>로그아웃</a>
 			<?php } ?>
 		</div>
@@ -98,7 +100,7 @@ add_css('featured.item.css');
 							<td width='16.67%'>
 								<div class='item'>
 									<ul>
-										<li><a href="/camp/2">수업 신청 안내</a></li>
+										<li><a href="/camp/1">수업 신청 안내</a></li>
 										<li><a href="/camp/3">수업료 안내</a></li>
 									</ul>
 								</div>
@@ -168,7 +170,7 @@ if( !empty( $variables['page'] )  ){
 ?>
 <?php 
 //temporary solution
-if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
+if( $_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/?' ){ ?>
 <div class="front-top-banner">
 	<div class='arrow' direction='left'>
 		<img src="/theme/englishworld/img/top_arrow_left.png"/>
@@ -182,26 +184,19 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			<div class='text-info'>
 				<div class='inner'>
 					<div class='wrapper'>
-						<div class='text top'>읽고, 토론하며, 함께 배우는 우리에듀.</div><br>
+						<div class='text top'>방문과외전문 + 화상영어</div><br>
 						<div class='text bottom'>배움의 지름길 우리에듀</div><br>
 						<div class='text more'>자세히 보기<div class='triangle'></div></div>
 					</div>
 				</div>
-				<?php /*
-				<div class='inner'>
-					<div class='text top'>우리에듀 홈페이지에 오신 것을 환영합니다.</div><br>
-					<div class='text bottom'>배움의 지름길 우리에듀!</div><br>
-					<div class='text more'>자세히 보기<div class='triangle'></div></div>
-				</div>
-				*/ ?>
 			</div>
 		</div><div class='banner-wrapper one '>
 			<img class='banner' src='/theme/englishworld/img/banner_1.jpg'/>
 			<div class='text-info'>
 				<div class='inner'>
-					<div class='wrapper'>						
-						<div class='text top'>영어는 언어이며 소통! 각 나라의 친구와 함께!</div><br>
-						<div class='text bottom'>배움의 지름길 우리에듀!</div><br>
+					<div class='wrapper'>
+                        <div class='text top'>방문과외전문 + 화상영어</div><br>
+						<div class='text bottom'>화상영어와 방문과외로 두 마리 토끼(내신과 회화)를 다 잡는 국내 유일의  교육 전문 업체!</div><br>
 						<div class='text more'>자세히 보기<div class='triangle'></div></div>
 					</div>
 				</div>
@@ -258,18 +253,11 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			<div class='text-info'>
 				<div class='inner'>
 					<div class='wrapper'>
-							<div class='text top'>영어는 언어이며 소통! 각 나라의 친구와 함께!</div><br>
+                        <div class='text top'>방문과외전문 + 화상영어</div><br>
 							<div class='text bottom'>배움의 지름길 우리에듀!</div><br>
 							<div class='text more'>자세히 보기<div class='triangle'></div></div>
 					</div>
 				</div>
-				<?php /*
-				<div class='inner'>					
-					<div class='text top'>지금 바로 문의 해 주세요!</div><br>
-					<div class='text bottom'>우리에듀</div><br>
-					<div class='text more'>자세히 보기<div class='triangle'></div></div>
-				</div>
-				*/ ?>
 			</div>
 		</div>
 	</div>
