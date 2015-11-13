@@ -539,9 +539,11 @@ section.grid > div{
 	box-sizing:border-box;
 }
 
-section.grid > .front-banner{
+section.grid .front-banner{
 	display:block;
-	margin:0 0 10px 0;
+	width:100%;
+	margin:0 0 10px 0;	
+	border:0;
 }
 
 section.grid .a{
