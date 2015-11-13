@@ -28,8 +28,10 @@ add_css('featured.item.css');
 				<span class='bullet'>•</span>			
 				<a href='/user/login'>로그인</a>
 			<?php } else { ?>
-				<a href='/user/profile'>나의 정보</a>
-				<span class='bullet'>•</span>
+                    <a href="/ve?page=solution">강의실입장</a>
+                    <span class='bullet'>•</span>
+                    <a href='/user/profile'>나의 정보</a>
+                    <span class='bullet'>•</span>
 				<a href='/user/logout'>로그아웃</a>
 			<?php } ?>
 		</div>
@@ -43,7 +45,7 @@ add_css('featured.item.css');
 			<li><a <?php if( !empty( $page ) && $page == 'videoEnglish' ) echo "class='is-active'"; ?> href='/ve?page=teacher_list'>강사목록</a></li>
 			<li><a <?php if( !empty( $page ) && $page == 'junior' ) echo "class='is-active'"; ?> href='/junior/1'>무료체험</a></li>
 			<li><a <?php if( !empty( $page ) && $page == 'camp' ) echo "class='is-active'"; ?> href='/camp/1'>수업신청</a></li>
-			<li><a <?php if( !empty( $page ) && $page == 'gallery' ) echo "class='is-active'"; ?> href='/gallery/1'>교재안내</a></li>
+			<li><a <?php if( !empty( $page ) && $page == 'gallery' ) echo "class='is-active'"; ?> href='/gallery/1'>교육과정</a></li>
 			<li><a <?php if( !empty( $page ) && strpos( $page, "post." ) !== false || !empty( $page ) && $page == 'post' ) echo "class='is-active'"; ?> href='/post/list?id=qna'>고객센터</a></li>
 			<!--<li><a class='contactUs' href='#'>Contact Us</a></li>-->
 		</ul>
@@ -103,7 +105,7 @@ add_css('featured.item.css');
 							<td width='16.67%'>
 								<div class='item'>
 									<ul>
-										<li><a href="/camp/2">수업 신청 안내</a></li>
+										<li><a href="/camp/1">수업 신청 안내</a></li>
 										<li><a href="/camp/3">수업료 안내</a></li>
 									</ul>
 								</div>
@@ -111,7 +113,7 @@ add_css('featured.item.css');
 							<td width='16.67%'>
 								<div class='item'>
 									<ul>
-										<li><a href="/gallery/1">교재안내</a></li>
+										<li><a href="/gallery/1">교육과정</a></li>
 										<li><a href="/gallery/2">파닉스 영어</a></li>
 										<!--<li><a href="/gallery/3">어린이 영어</a></li>-->
 										<li><a href="/gallery/4">기초 영어 회화</a></li>
@@ -173,7 +175,7 @@ if( !empty( $variables['page'] )  ){
 ?>
 <?php 
 //temporary solution
-if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
+if( $_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/?' ){ ?>
 <div class="front-top-banner">
 	<div class='arrow' direction='left'>
 		<img src="/theme/englishworld/img/top_arrow_left.png"/>
@@ -187,27 +189,20 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			<div class='text-info'>
 				<div class='inner'>
 					<div class='wrapper'>
-						<div class='text top'>읽고, 토론하며, 함께 배우는 우리에듀.</div><br>
-						<div class='text bottom'>배움의 지름길 우리에듀</div><br>
-						<div class='text more'>자세히 보기<div class='triangle'></div></div>
+						<div class='text top'>방문과외전문 + 화상영어</div><br>
+                        <div class='text bottom'>화상영어와 방문과외로 두 마리 토끼(내신과 회화)를 다 잡는 국내 유일의 교육 전문 업체!</div><br>
+                        <div class='text more'><a href="/introduction/1">자세히 보기<div class='triangle'></div></a></div>
 					</div>
 				</div>
-				<?php /*
-				<div class='inner'>
-					<div class='text top'>우리에듀 홈페이지에 오신 것을 환영합니다.</div><br>
-					<div class='text bottom'>배움의 지름길 우리에듀!</div><br>
-					<div class='text more'>자세히 보기<div class='triangle'></div></div>
-				</div>
-				*/ ?>
 			</div>
 		</div><div class='banner-wrapper one '>
 			<img class='banner' src='/theme/englishworld/img/banner_1.jpg'/>
 			<div class='text-info'>
 				<div class='inner'>
-					<div class='wrapper'>						
-						<div class='text top'>영어는 언어이며 소통! 각 나라의 친구와 함께!</div><br>
-						<div class='text bottom'>배움의 지름길 우리에듀!</div><br>
-						<div class='text more'>자세히 보기<div class='triangle'></div></div>
+					<div class='wrapper'>
+                        <div class='text top'>방문과외전문 + 화상영어</div><br>
+						<div class='text bottom'>화상영어와 방문과외로 두 마리 토끼(내신과 회화)를 다 잡는 국내 유일의 교육 전문 업체!</div><br>
+						<div class='text more'><a href="/introduction/1">자세히 보기<div class='triangle'></div></a></div>
 					</div>
 				</div>
 			</div>
@@ -218,9 +213,9 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 					<div class='wrapper'>
 						<img class='fake-image' src='/theme/englishworld/img/banner_fake_image_perfect_sides.png'/>
 						<div class='text-items'>
-							<div class='text top'>어학연수, 단기 캠프, 조기유학</div>
-							<div class='text bottom'>우리에듀와 함께 신나는 영어 공부를 합시다.</div>
-							<div class='text more'><a href='#'>자세히 보기<div class='triangle'></div></a></div>
+							<div class='text top'>대한민국 영어 121등 ??</div>
+							<div class='text bottom'>매일 원어민과 화상영어를 통해서 12등에서 1등 영어를 하십시오.</div>
+                            <div class='text more'><a href="/introduction/3">자세히 보기<div class='triangle'></div></a></div>
 						</div>
 					</div>
 				</div>
@@ -230,9 +225,9 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			<div class='text-info'>
 				<div class='inner'>
 					<div class='wrapper'>
-						<div class='text top'>우리에듀의 자랑. 멋진 선생님과 알찬 수업 과정.</div><br>
-						<div class='text bottom'>새로운 친구들을 사귀어 보세요.</div><br>
-						<div class='text more'><a href='#'>자세히 보기<div class='triangle'></div></a></div>
+						<div class='text top'>잉글리쉬월드의 자랑. 최고의 화상영어 선생님과 알찬 수업 과정.</div><br>
+						<div class='text bottom'>품격, 자질, 교육 !! 모든 면에서 뛰어난 잉글리쉬월드 화상 콜센터 선생님을 만나보세요.</div><br>
+						<div class='text more'><a href='/ve?page=teacher_list'>자세히 보기<div class='triangle'></div></a></div>
 					</div>
 				</div>
 			</div>
@@ -241,9 +236,9 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			<div class='text-info'>
 				<div class='inner'>
 					<div class='wrapper'>
-						<div class='text top'>영어공부는 암기가 아닌 생활 습관! 지겨운 공부는 시간 낭비!</div><br>
-						<div class='text bottom'>우리에듀에서 진정한 배움의 시간을 가지세요.</div><br>
-						<div class='text more'><a href='#'>자세히 보기</a></div>
+						<div class='text top'>영어는 암기가 아닌 생활 습관! 지겨운 공부는 시간 낭비!</div><br>
+						<div class='text bottom'>잉글리쉬월드 화상영어로 진정한 배움의 시간을 가지세요.</div><br>
+						<div class='text more'><a href='/junior/1'>무료 체험 설명</a></div>
 					</div>
 				</div>
 			</div>
@@ -252,9 +247,9 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			<div class='text-info'>
 				<div class='inner'>
 					<div class='wrapper'>
-						<div class='text top'>읽고, 토론하며, 함께 배우는 우리에듀.</div><br>
-						<div class='text bottom'>배움의 지름길 우리에듀</div><br>
-						<div class='text more'>자세히 보기<div class='triangle'></div></div>
+						<div class='text top'>2015년 주니어 겨울 영어 캠프</div><br>
+						<div class='text bottom'>즐거운 방학, 파인스 영어와 함께 영어 정복을 할 주니어 학생을 모집합니다.</div><br>
+						<div class='text more'><a href="http://pineseg.com/pinesjr/event_camp.html" target="_blank">자세히 보기<div class='triangle'></div></a></div>
 					</div>
 				</div>
 			</div>
@@ -263,18 +258,11 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			<div class='text-info'>
 				<div class='inner'>
 					<div class='wrapper'>
-							<div class='text top'>영어는 언어이며 소통! 각 나라의 친구와 함께!</div><br>
+                        <div class='text top'>방문과외전문 + 화상영어</div><br>
 							<div class='text bottom'>배움의 지름길 우리에듀!</div><br>
 							<div class='text more'>자세히 보기<div class='triangle'></div></div>
 					</div>
 				</div>
-				<?php /*
-				<div class='inner'>					
-					<div class='text top'>지금 바로 문의 해 주세요!</div><br>
-					<div class='text bottom'>우리에듀</div><br>
-					<div class='text more'>자세히 보기<div class='triangle'></div></div>
-				</div>
-				*/ ?>
 			</div>
 		</div>
 	</div>
