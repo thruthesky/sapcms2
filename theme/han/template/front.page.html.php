@@ -16,7 +16,7 @@ add_css('front.postBannerWithText.css');
 				<a class='text' href='/post/list?id=englishworld'>조기유학 / 단기캠프</a>
 			</div>
 			<?php
-				$posts = getPostWithImageNoComment(0, 3, 'englishworld');			
+				$posts = getPostWithImageNoComment(0, 3, 'han');
 				if( !empty( $posts[0] ) ) echo postBannerWithText( $posts[0], 520, 500, 20, 200 );
 				
 				$post_items = array_slice( $posts, 1, 2 );
@@ -31,7 +31,7 @@ add_css('front.postBannerWithText.css');
 				</div>
 				<div class='a'>							
 					<?php
-						$posts = getPostWithImageNoComment(0, 8, 'englishworld_gallery');
+						$posts = getPostWithImageNoComment(0, 8, 'han_gallery');
 						$post_items = array_slice( $posts, 0, 1 );				
 						if( !empty( $posts[0] ) ) echo postHoverTitleImage( $post_items, 444, 334, 30 );
 						
