@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <?php
+$phone_number = "010-8215-4050";
 include "han.functions.php";
 ?>
 <html>

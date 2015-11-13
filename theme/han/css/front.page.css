@@ -17,7 +17,8 @@
     overflow: hidden;
 }
 
-.front-top-banner .banner-wrapper .banner{		
+.front-top-banner .banner-wrapper .banner{
+	display:block;
 	width:100%;
 }
 
@@ -450,7 +451,7 @@
 /*eo dotted*/
 /*bar*/
 	.page-content.top  .floater-bar{
-		height:33px;
+		height:38px;
 		width:100%;
 		border-bottom:5px solid #e74c3c;
 		margin-bottom:10px;
@@ -531,6 +532,41 @@
 .front-top-banner .arrow img{		
 	width:20px;		
 }
+
+
+/*front grid*/
+section.grid > div{
+	box-sizing:border-box;
+}
+
+section.grid .front-banner{
+	display:block;
+	width:100%;
+	margin:0 0 10px 0;	
+	border:0;
+}
+
+section.grid .a{
+	padding:0 5px 0 0;
+}
+
+section.grid .b{
+	padding:0 0 0 5px;
+}
+
+section.grid.first .a .post-banner-with-text .item .photo-wrapper{
+	width: 57.1%;
+}
+
+section.grid.second > .a{
+	width:100%;
+}	
+
+section.grid.second > .b{
+	display:none;
+}	
+/*eo front grid*/
+
 
 @media all and ( min-width: 420px ) {
 	/*.front-top-banner .arrow{
@@ -639,7 +675,17 @@
 @media all and ( min-width: 800px ) {
 	.front-top-banner .banner-wrapper.two .text-info{
 		top:5%;
+	}	
+	
+	/*grid second*/
+	section.grid.second > .a{
+		width:50%;
 	}
+	
+	section.grid.second > .b{
+		display:block;
+	}
+	/*eo grid second*/
 }
 
 @media all and ( min-width: 960px ) {
@@ -697,7 +743,7 @@
 	/*eo four specific*/
 	
 	.page-content.top  .b .floater-bar{
-		height:33px;
+		height:38px;
 		padding-right:10px;
 		/*box-sizing:initial;*/
 	}

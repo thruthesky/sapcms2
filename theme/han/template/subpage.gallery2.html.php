@@ -1,9 +1,9 @@
 <?php
-	extract( $variables );	
+extract( $variables );
 ?>
 <div class='temp-page <?php echo $page; ?>'>
-	<div class='title'><?php echo strtoupper( $page ); ?></div>
+	<div class='title'><span>파닉스 영어</span></div>
 	<div class='group'>
-		CONTENT HERE
+		<img src="/theme/englishworld/img/class/book1.png">
 	</div>
 </div>

@@ -2,8 +2,8 @@
 	extract( $variables );	
 ?>
 <div class='temp-page <?php echo $page; ?>'>
-	<div class='title'><?php echo strtoupper( $page ); ?></div>
+	<div class='title'><span>수업료 안내</span></div>
 	<div class='group'>
-		CONTENT HERE
+		<img src="/theme/englishworld/img/class/price1.png">
 	</div>
 </div>

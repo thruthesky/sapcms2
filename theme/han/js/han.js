@@ -149,6 +149,19 @@ function showSubMenus(){
 		stopFrontBanner();
 		$("#header-top .sub-menu").slideDown();
 		autoScrollFeaturedBanner();
+		/*suggested to start randommly each time the sub menu shows*/
+		featured_banner_data.banner_current_page = Math.floor(Math.random() * featured_banner_data.banner_count) + 1  ;
+		page_now = featured_banner_data.banner_current_page;		
+		clicked_page = parseInt( page_now ) + 1;		
+		featured_banner_data.banner_current_page = clicked_page;
+		page_diff = page_now - clicked_page;
+		if( clicked_page > featured_banner_data.banner_count ) clicked_page = 1;
+		$(".featuredPost .page-navigator .page-item.is-active").removeClass("is-active");
+		$(".featuredPost .page-navigator .page-item[page='" + clicked_page + "']").addClass("is-active");
+		
+		$selector = $(".featuredPost > .inner");
+		animation_movement = ( page_now - page_diff ) * 100;
+		do_banner_animation( "-" + animation_movement + "%", $selector, 0, 'right', featured_banner_data );
 	},200);
 }
 
@@ -232,7 +245,7 @@ function startFeaturedBanner(){
 
 
 
-//var url_server_app = 'http://han.com/app/';//
+//var url_server_app = 'http://englishworld.com/app/';//
 
 /*pop up image*/
 $(function(){

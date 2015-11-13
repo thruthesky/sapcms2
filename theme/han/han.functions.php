@@ -7,7 +7,8 @@ function postHoverTitleImage( $posts, $width = 300, $height = 300, $title_length
 		$img = $post->getImage();
 		$thumbnail = $img->urlThumbnail($width,$height);
 		$title = textLengthLimit( $post->title, 30 );
-		$thumbnail_label = "<img src='/theme/han/img/tempThumbnailLabel.png'/>";
+		//$thumbnail_label = "<img src='/theme/englishworld/img/tempThumbnailLabel.png'/>";
+		$thumbnail_label = "<img src='/theme/englishworld/favicon.ico'/>";
 		$url = $post->url();
 		$post_config = post_config()->load( $post->idx_config );
 		$post_config_name = $post_config->name;
@@ -36,7 +37,7 @@ echo "<div class='post-thumbnail-with-text'>";
 		$thumbnail = $img->urlThumbnail($width,$height);	
 		$title = textLengthLimit( $post->title, $title_length );
 		$content = textLengthLimit( strip_tags( $post->content ), $title_length );
-		$thumbnail_label = "<img src='/theme/han/img/tempThumbnailLabel.png'/>";
+		$thumbnail_label = "<img src='/theme/englishworld/favicon.ico'/>";
 		$url = $post->url();
 		$post_config = post_config()->load( $post->idx_config );
 		$post_config_name = $post_config->name;
@@ -76,7 +77,7 @@ echo "</div>";
 function postBulletList( $posts, $title_length = 30 ){
 if( empty( $posts ) ) return null;
 echo "<div class='post-bullet-list'>";
-	$thumbnail_label = "<img src='/theme/han/img/tempThumbnailLabel.png'/>";
+	$thumbnail_label = "<img src='/theme/englishworld/favicon.ico'/>";
 	foreach( $posts as $post ){
 		if( empty( $post ) ) continue;
 		$url = $post->url();
@@ -156,13 +157,13 @@ function postFeaturedSlider( $posts, $width = 200, $height = 150, $subject_lengt
 		
 		echo "<div class='inner'>";
 		
-		echo "<div class='item fake'><img src='theme/han/img/popsong_5.jpg'/><div class='title text-center'>Title 5</div></div>";
+		echo "<div class='item fake'><img src='theme/englishworld/img/popsong_5.jpg'/><div class='title text-center'>Title 5</div></div>";
 				
 		for( $i= 1; $i <= 5; $i++ ){
-			$url = "theme/han/img/popsong_$i.jpg";
+			$url = "theme/englishworld/img/popsong_$i.jpg";
 			echo "<div class='item'><img src='$url'/><div class='title text-center'>Title $i</div></div>";
 		}
-			echo "<div class='item fake'><img src='theme/han/img/popsong_1.jpg'/><div class='title text-center'>Title 1</div></div>";
+			echo "<div class='item fake'><img src='theme/englishworld/img/popsong_1.jpg'/><div class='title text-center'>Title 1</div></div>";
 	
 		echo "</div></div>";
 	}
