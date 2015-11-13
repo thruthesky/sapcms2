@@ -189,8 +189,12 @@ if( $_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/?' ){ ?>
 			<div class='text-info'>
 				<div class='inner'>
 					<div class='wrapper'>
+						<div class='text top'>2015년 주니어 겨울 영어 캠프</div><br>
+						<div class='text bottom'>즐거운 방학, 파인스 영어와 함께 영어 정복을 할 주니어 학생을 모집합니다.</div><br>
+						<!--
 						<div class='text top'>방문과외전문 + 화상영어</div><br>
                         <div class='text bottom'>화상영어와 방문과외로 두 마리 토끼(내신과 회화)를 다 잡는 국내 유일의 교육 전문 업체!</div><br>
+						-->
                         <div class='text more'><a href="/introduction/1">자세히 보기<div class='triangle'></div></a></div>
 					</div>
 				</div>
@@ -258,9 +262,13 @@ if( $_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/?' ){ ?>
 			<div class='text-info'>
 				<div class='inner'>
 					<div class='wrapper'>
+						<div class='text top'>방문과외전문 + 화상영어</div><br>
+						<div class='text bottom'>화상영어와 방문과외로 두 마리 토끼(내신과 회화)를 다 잡는 국내 유일의 교육 전문 업체!</div><br>
+						<!--
                         <div class='text top'>방문과외전문 + 화상영어</div><br>
-							<div class='text bottom'>배움의 지름길 우리에듀!</div><br>
-							<div class='text more'>자세히 보기<div class='triangle'></div></div>
+						<div class='text bottom'>배움의 지름길 우리에듀!</div><br>
+						-->
+						<div class='text more'>자세히 보기<div class='triangle'></div></div>
 					</div>
 				</div>
 			</div>

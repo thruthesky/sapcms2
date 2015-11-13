@@ -10,6 +10,7 @@
 	padding:10px;
 	background-color:#fff;
 	color:#444;
+	overflow:hidden;
 }
 
 .post-banner-with-text .item .photo-wrapper{
@@ -33,5 +34,6 @@
 }
 
 .post-banner-with-text .item .content{
-	font-size:.9em;	
+	max-height: 214px;
+    font-size: .9em;    
 }
