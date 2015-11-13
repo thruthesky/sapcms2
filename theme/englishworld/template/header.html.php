@@ -40,7 +40,7 @@ add_css('featured.item.css');
 			<li><a <?php if( !empty( $page ) && $page == 'videoEnglish' ) echo "class='is-active'"; ?> href='/ve?page=teacher_list'>강사목록</a></li>
 			<li><a <?php if( !empty( $page ) && $page == 'junior' ) echo "class='is-active'"; ?> href='/junior/1'>무료체험</a></li>
 			<li><a <?php if( !empty( $page ) && $page == 'camp' ) echo "class='is-active'"; ?> href='/camp/1'>수업신청</a></li>
-			<li><a <?php if( !empty( $page ) && $page == 'gallery' ) echo "class='is-active'"; ?> href='/gallery/1'>교재안내</a></li>
+			<li><a <?php if( !empty( $page ) && $page == 'gallery' ) echo "class='is-active'"; ?> href='/gallery/1'>교육과정</a></li>
 			<li><a <?php if( !empty( $page ) && strpos( $page, "post." ) !== false || !empty( $page ) && $page == 'post' ) echo "class='is-active'"; ?> href='/post/list?id=qna'>고객센터</a></li>
 			<!--<li><a class='contactUs' href='#'>Contact Us</a></li>-->
 		</ul>
@@ -108,7 +108,7 @@ add_css('featured.item.css');
 							<td width='16.67%'>
 								<div class='item'>
 									<ul>
-										<li><a href="/gallery/1">교재안내</a></li>
+										<li><a href="/gallery/1">교육과정</a></li>
 										<li><a href="/gallery/2">파닉스 영어</a></li>
 										<!--<li><a href="/gallery/3">어린이 영어</a></li>-->
 										<li><a href="/gallery/4">기초 영어 회화</a></li>
