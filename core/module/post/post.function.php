@@ -100,8 +100,7 @@ function display_files_thumbnail( $files, $height, $width, $limit = 0 ) {
 		//$total_files = count( $files );
 		//if( $limit == 0 ) $limit = $total_files;
 		//for( $i = 0; $i < $limit; $i ++ ){
-			//$file = $files[$i];		
-			$url = $file->urlThumbnail( $width, $height );
+			//$file = $files[$i];				
 			$name = $file->get('name_saved');
 			if ( is_image($name) ) {				
 				/*
@@ -110,10 +109,12 @@ function display_files_thumbnail( $files, $height, $width, $limit = 0 ) {
 				if( $i >= 3 ){					
 					if( $total_files > $limit ) $more_image = "<div class='more-images'>+".( $total_files - $limit )."</div>";										
 				}
-				*/			
+				*/	
+				$url = $file->urlThumbnail( $width, $height );				
 				$tag_imgs[] = "<div class='image modal-image' idx='".$file->idx."'><img src='$url'></div>";
 			}
 			else {
+				$url = $file->url();
 				$tag_files[] = "<div class='attachment'><a href='$url'>$name</a></div>";
 			}
 		}				

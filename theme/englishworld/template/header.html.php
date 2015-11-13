@@ -15,8 +15,13 @@ add_css('featured.item.css');
 			<a href='/ve?page=teacher_list'>선생님목록</a>
 		</div>
 		<div class='right'>
-			<?php 
+			<?php
 				$user_idx = login('idx');
+				if( $user_idx == 1 ){ ?>
+				<a href='/user/register'>Messages</a>
+				<span class='bullet'>•</span>
+			<?php 				
+			}
 				if( empty( $user_idx ) ){
 			?>
 				<a href='/user/register'>회원가입</a>
