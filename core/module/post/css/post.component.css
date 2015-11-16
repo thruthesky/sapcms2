@@ -81,3 +81,13 @@
 	color:#fff;
 }
 /*eo postReport*/
+
+
+/*post-error*/
+.post-error{	
+	min-height:400px;
+	padding:10px 20px;
+	background-color:#fff;
+	box-sizing:border-box;
+}
+/*eo post-error*/
