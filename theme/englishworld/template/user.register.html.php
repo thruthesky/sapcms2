@@ -23,8 +23,8 @@
 			echo html_hidden(['name'=>'idx', 'value'=>$variables['user']->get('idx')]);		
 		}
 	?>
-        잉글리쉬월드 이용 약관
-		<textarea style="margin-bottom:1.2em; width:100%; height:156px; box-sizing: border-box;">제1조(목적 등)
+        <div style='margin:0 0 10px 0;font-size:1.2em;'>잉글리쉬월드 이용 약관</div>
+		<textarea style="margin-bottom:1.2em; width:100%; height:156px; box-sizing: border-box;resize:none">제1조(목적 등)
 ① 잉글리쉬 월드 원격영어교육 센터 서비스 약관(이하 "본 약관"이라 합니다)은 회원이 잉글리쉬 월드 원격영어교육 센터 (이하 "서비스제공자"라고 합니다)이 제공하는 잉글리쉬 월드 원격영어교육 센터 서비스(이하 "본 서비스"이라 합니다)를 이용함에 있어 "회원"과 "서비스제공자"의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.
 
 제2조(회원의 정의)
