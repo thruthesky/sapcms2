@@ -18,6 +18,8 @@ add_css('featured.item.css');
 			<?php
 				$user_idx = login('idx');
 				if( $user_idx == 1 ){ ?>
+				<a href='/post/reportList'>Reports</a>
+				<span class='bullet'>•</span>
 				<a href='/message'>Messages</a>
 				<span class='bullet'>•</span>
 			<?php 				
