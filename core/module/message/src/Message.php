@@ -102,11 +102,17 @@ class Message extends Entity {
 				$idx_to = $user_to->idx;
 				//if not error
 				$idx_from = login('idx');
+				
+				$title = request('title');
+				if( empty( $title ) ) $title = "No Title";
+				$content = request('content');
+				if( empty( $content ) ) $content = "No Content";
+				
 				if( empty( $idx_from ) ) $idx_from = 0;
 				$message_entity = message()->set('idx_from',$idx_from)
 				->set('idx_to',$idx_to)
-				->set('title', request('title'))
-				->set('content', request('content'))
+				->set('title', $title)
+				->set('content', $content)
 				->save();
 				
 				$code = 0;
