@@ -213,7 +213,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>'videoEnglish',
             'page'=>'videoEnglish',
-			'header_text'=>'VIDEO ENGLISH',
+			'header_text'=>'',
             //'config' => $config,
         ]);
 	}
@@ -331,7 +331,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>$page,
             'page'=>$function_name,
-			'header_text'=>'INTRODUCTION',
+			'header_text'=>'',
 			'title_text'=>'About Us',
         ]);
 	}
@@ -353,7 +353,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>$page,
             'page'=>$function_name,	
-			'header_text'=>'LEVEL TEST',
+			'header_text'=>'',
 			'title_text'=>'Learn Early',
         ]);
 	}
@@ -375,7 +375,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>$page,
             'page'=>$function_name,
-			'header_text'=>'GALLERY',
+			'header_text'=>'',
 			'title_text'=>'View Our Activities',
         ]);
 	}
@@ -386,7 +386,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>$page,
             'page'=>'post',
-            'header_text'=>'CONTACT US',
+            'header_text'=>'',
 			'title_text'=>'Some Title Here',
         ]);
 	}
