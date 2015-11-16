@@ -991,7 +991,6 @@ class post {
             'post' => $post,
             //'total_record' => $total_record,
         ]);
-		//di( request() );
 	}
 	
 	public static function reportSubmit(){

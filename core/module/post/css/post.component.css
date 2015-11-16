@@ -48,6 +48,11 @@
 	color:green;	
 	text-align:center;
 }
+
+.postNotice.error{
+	border:1px solid red;	
+	color:red;		
+}
 /*eo postNotice*/
 
 /*postReport*/

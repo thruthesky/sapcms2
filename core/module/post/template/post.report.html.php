@@ -2,6 +2,7 @@
 	//css in post.component.css
 	extract( $variables );
 	$user_idx = login('idx');
+	if( !empty( $post ) ){
 ?>
 <div class='postReport'>
 	<?php if( !empty( $extra_text ) ) { ?>		
@@ -18,3 +19,4 @@
 		</div>
 	</form>
 </div>
+<?php } ?>
