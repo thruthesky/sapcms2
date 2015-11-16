@@ -364,7 +364,7 @@ class Wooreeedu {
 		return Response::render([
             'template'=>$page,
             'page'=>$function_name,
-			'header_text'=>'CAMP',
+			'header_text'=>'RATES',
 			'title_text'=>'Travel With Us',
         ]);
 	}
