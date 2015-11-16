@@ -49,3 +49,4 @@ route('/post/vote/bad/*', 'post\\post\\voteBad');
 
 route('/post/report/*', 'post\\post\\report');
 route('/post/reportSubmit', 'post\\post\\reportSubmit');
+route('/post/reportList', 'post\\post\\reportList');

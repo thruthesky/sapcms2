@@ -240,8 +240,8 @@ function getPostWithImageNoComment($index,$limit,$postConfig){
 
 function textLengthLimit( $text, $length = 30 ){	
 	if( !empty ( $text ) ){
-		if( strlen( $text ) > $length ){
-			$text = substr( $text, 0, $length )."...";
+		if( mb_strlen( $text ) > $length ){
+			$text = mb_strcut( $text, 0, $length )."...";
 		}
 	}
 	

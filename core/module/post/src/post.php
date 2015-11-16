@@ -1028,6 +1028,13 @@ class post {
 			'extra_text' => $extra_text,
         ]);
 	}
+	
+	public static function reportList(){
+		return Response::render([
+            'template'=>'post.report.list',
+            'page'=>'post.reportList',			
+        ]);
+	}
 	/*eo report*/
 }
 
