@@ -44,10 +44,10 @@
 .file-display .file.attachment {
 	min-width: 80px;
 	max-width:5em;
-    min-height: 80px;
+    min-height: 100px;
     padding:3px 30px 3px 3px;
     background-color: #4677CE;
+	font-size:.8em;
     color:white;
-	box-sizing: border-box;
-	word-break:break-word;
+	box-sizing: border-box;	
 }
