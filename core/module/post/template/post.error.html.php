@@ -1,8 +1,8 @@
 <?php	
 	extract( $variables );
-	if( !empty( $message ) ){
+	if( !empty( $error ) ){
 ?>
 <div class='post-error'>
-<h2><?php echo $message ?></h2>
+<h3><?php echo $error['code'] ?> [ <?php echo $error['message'] ?> ]</h3>
 </div>
 <?php } ?>

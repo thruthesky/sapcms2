@@ -8,7 +8,8 @@ if( !empty( $current ) ){
 	widget($name, $variables);
 }
 else{
-	$variables['message'] = "Incorrect Post ID.";
+	$variables['error']['code'] = "-50001";
+	$variables['error']['message'] = "Incorrect Post ID.";
 	include template('post.error');
 }
 ?>
