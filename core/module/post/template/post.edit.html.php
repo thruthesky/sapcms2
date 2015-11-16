@@ -4,7 +4,7 @@
 
 $current = post_config()->getCurrent();
 if( !empty( $current ) ){
-	$name = $current->getWidget('list');
+	$name = $current->getWidget('edit');
 	widget($name, $variables);
 }
 else{

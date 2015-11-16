@@ -172,7 +172,7 @@ class post {
 
 
 
-    public static function postCreate($id) {
+    public static function postCreate($id) {		
         return Response::render([
             'template'=>'post.layout',
             'page'=>'post.edit',
@@ -597,7 +597,7 @@ class post {
 
 
     public static function urlPostCreate() {
-        $config = post_config()->getCurrent();
+        $config = post_config()->getCurrent();		
         if ( $config ) {
             return "/post/create/" . $config->get('id');
         }
