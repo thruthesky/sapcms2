@@ -12,7 +12,7 @@ include "han.functions.php";
     <link type='text/css' href='/theme/han/css/component.css' rel='stylesheet' />
     <link type='text/css' href='/theme/han/css/component.grid.css' rel='stylesheet' />
     <link type='text/css' href='/theme/han/css/wooree-grid3.css' rel='stylesheet' />
-    <link rel="icon" type="image/ico" href="/theme/han/favicon.ico?v=2"/>
+    <link rel="icon" type="image/ico" href="/theme/han/favicon.ico?v=3"/>
 </head>
 <body>
 <div id="layout">	

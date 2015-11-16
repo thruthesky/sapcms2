@@ -11,12 +11,12 @@ add_css('front.postBannerWithText.css');
 <div class='page-content top'>
 	<section class='grid first'>
 		<div class='a'>
-			<img class='front-banner' src="/theme/englishworld/img/class/main-banner-left.jpg">
+			<a href="http://pineseg.com/pinesjr/event_camp.html" target="_blank"><img class='front-banner' src="/theme/englishworld/img/class/main-banner-left.jpg"></a>
 			<div class='floater-dotted'>
-				<a class='text' href='/post/list?id=englishworld'>조기유학 / 단기캠프</a>
+				<a class='text' href='/post/list?id=story'>수업후기</a>
 			</div>
 			<?php
-				$posts = getPostWithImageNoComment(0, 3, 'han');
+				$posts = getPostWithImageNoComment(0, 3, 'han');			
 				if( !empty( $posts[0] ) ) echo postBannerWithText( $posts[0], 520, 500, 20, 200 );
 				
 				$post_items = array_slice( $posts, 1, 2 );
@@ -27,7 +27,7 @@ add_css('front.postBannerWithText.css');
 			<section class='grid second'>
 				<img class='front-banner'  src="/theme/englishworld/img/class/main-banner-right.jpg">
 				<div class='floater-bar'>
-					<a class='text' href='/post/list?id=englishworld_gallery'>사진 갤러리</a>
+					<a class='text' href='/post/list?id=qna'>질문과 답변</a>
 				</div>
 				<div class='a'>							
 					<?php

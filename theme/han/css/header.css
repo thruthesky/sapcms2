@@ -186,12 +186,18 @@
 	width:100%;
 }
 
-.header-image .label{
+.header-image .label{	
+	display:none;
 	position:absolute;
-	top:37%;
+	top:30%;
 	left:0;	
 	width:100%;
 	text-align:center;
+	z-index:10;
+}
+
+.header-image.camp .label{
+	display:none;
 }
 
 .header-image .label > .inner{
@@ -225,17 +231,23 @@
 }
 /*eo header-image*/
 
-@media all and ( min-width: 750px ) {
+@media all and ( min-width: 785px ) {
 	.top-menu > .inner .left{
 		float:left;
 		margin:0;
 		width:50%;
+		text-align:left;
 	}
 
 	.top-menu > .inner .right{
 		float:right;
 		width:50%;
 		text-align:right;
+	}
+	
+	.header-image .label{
+		display:block;
+		top:25%;
 	}
 }
 
@@ -297,5 +309,15 @@
 	
 	#header-top > .inner ul#main-menu li a{
 		padding:10px 0;
+	}
+	
+	.header-image .label{		
+		top:28%;
+	}
+}
+
+@media all and ( min-width: 1080px ) {
+	.header-image .label{
+		top:35%;
 	}
 }

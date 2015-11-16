@@ -7,46 +7,46 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 <div class='bottom-icon-menus'>
 	<div class='inner'>
 		<div class='item talk'>
-			<a href='/course/1' class='image'>
+			<a href='/ve?page=solution' class='image'>
 				<img class='default' src='/theme/englishworld/img/book.png'/>
 				<img class='active' src='/theme/englishworld/img/book-active.png'/>
 			</a>
-			<div class='label'>수업 과정</div>
+			<div class='label'>강의실입장</div>
 		</div>
 		<div class='item grad'>
-			<a href='/junior/1' class='image'>
+			<a href='/ve?page=reservation' class='image'>
 				<img class='default' src='/theme/englishworld/img/grad.png'/>
 				<img class='active' src='/theme/englishworld/img/grad-active.png'/>
 			</a>
-			<div class='label'>비지니스 영어</div>
+			<div class='label'>예약된 수업</div>
 		</div>
 		<div class='item date'>		
-			<a href='/camp/1' class='image'>
+			<a href='/ve?page=past' class='image'>
 				<img class='default' src='/theme/englishworld/img/camp.png'/>
 				<img class='active' src='/theme/englishworld/img/camp-active.png'/>
 			</a>
-			<div class='label'>어린이 영어</div>
+			<div class='label'>지난 수업</div>
 		</div>
 		<div class='item price'>
-			<a href='/course/2' class='image'>
+			<a href='/camp/3' class='image'>
 				<img class='default' src='/theme/englishworld/img/price.png'/>
 				<img class='active' src='/theme/englishworld/img/price-active.png'/>
 			</a>
 			<div class='label'>수업 비용 안내</div>
 		</div>
 		<div class='item blog'>
-			<a href='http://phil_n_kor.blog.me/' class='image'>
+			<a href='/post/list?id=qna' class='image'>
 				<img class='default' src='/theme/englishworld/img/blog.png'/>
 				<img class='active' src='/theme/englishworld/img/blog-active.png'/>
 			</a>
 			<div class='label'>질문답변</div>
 		</div>
 		<div class='item gallery'>
-			<a href='/gallery/1' class='image'>
+			<a href='/post/list?id=story' class='image'>
 				<img class='default' src='/theme/englishworld/img/gallery.png'/>
 				<img class='active' src='/theme/englishworld/img/gallery-active.png'/>
 			</a>
-			<div class='label'>사진 갤러리</div>
+			<div class='label'>수강 후기</div>
 		</div>
 	</div>
 </div>
@@ -61,10 +61,10 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 				<ul>
 					<li><a href="/">홈</a></li>
 					<li><a href="/introduction/1">인사말</a></li>
-					<li><a href="/junior/1">어린이영어</a></li>
-					<li><a href="/course/1">기초 영어 회화</a></li>
-					<li><a href="/camp/1">비지니스 영어</a></li>
-					<li><a href="/gallery/1">사진갤러리</a></li>
+					<li><a href="/gallery/2">어린이영어</a></li>
+					<li><a href="/gallery/4">기초 영어 회화</a></li>
+					<li><a href="/gallery/5">비지니스 영어</a></li>
+					<li><a href="/post/list?id=qna">질문과 답변</a></li>
 					<li><a href="/ve">선생님 목록</a></li>
 				</ul>
 			</div>

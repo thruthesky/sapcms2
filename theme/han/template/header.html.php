@@ -18,6 +18,8 @@ add_css('featured.item.css');
 			<?php
 				$user_idx = login('idx');
 				if( $user_idx == 1 ){ ?>
+				<a href='/post/reportList'>Reports</a>
+				<span class='bullet'>•</span>
 				<a href='/message'>Messages</a>
 				<span class='bullet'>•</span>
 			<?php 				
@@ -146,7 +148,7 @@ if( !empty( $variables['page'] )  ){
 	if( strpos( $page, "post." ) !== false ) {
 		$page = 'post';
 		//$text = "<a href='/post/list?id=".post_config()->getCurrent()->id."'>".post_config()->getCurrent()->name."</a>";
-		$text = 'FORUM';
+		$text = '';
 	}
 	else{
 		if( !empty( $variables['header_text'] ) ) $text = $variables['header_text'];
@@ -156,7 +158,7 @@ if( !empty( $variables['page'] )  ){
 	//$url = "/theme/englishworld/img/header_text.png";
 	//if( file_exists( $url ) ){
 	?>
-	<div class='header-image<?php if( !empty( $page ) ) echo ' '.$page; ?>'>	
+	<div class='header-image<?php if( !empty( $page ) ) echo ' '.$page; ?>'>
 		<img src='<?php echo $url; ?>'/>
 		<div class='label'>
 			<div class='inner'>
