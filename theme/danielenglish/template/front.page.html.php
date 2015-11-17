@@ -34,20 +34,20 @@ add_css('front.postBannerWithText.css');
 				<div class='a'>							
 					<?php
 						$posts = getPostWithImageNoComment(0, 8, 'qna');
-						$post_items = array_slice( $posts, 0, 1 );				
-						if( !empty( $posts[0] ) ) echo postHoverTitleImage( $post_items, 444, 334, 30 );
+						$post_items_1 = array_slice( $posts, 0, 1 );				
+						if( !empty( $posts[0] ) ) echo postHoverTitleImage( $post_items_1, 444, 334, 30 );
 						
-						$post_items = array_slice( $posts, 1, 3 );
-						if( !empty( $post_items ) ) echo postThumbnailWithText( $post_items, null, 100, 75, 30 );
+						$post_items_2 = array_slice( $posts, 1, 3 );
+						if( !empty( $post_items ) ) echo postThumbnailWithText( $post_items_2, null, 100, 75, 30 );
 					?>
 				</div>
 				<div class='b'>
 					<?php 
-						$post_items = array_slice( $posts, 4, 1 );
-						echo postHoverTitleImage( $post_items, 444, 334, 30 );
+						$post_items_3 = array_slice( $posts, 4, 1 );
+						echo postHoverTitleImage( $post_items_3, 444, 334, 30 );
 						
-						$post_items = array_slice( $posts, 5, 3 );
-						echo postThumbnailWithText( $post_items, null, 100, 75, 30 );
+						$post_items_4 = array_slice( $posts, 5, 3 );
+						echo postThumbnailWithText( $post_items_4, null, 100, 75, 30 );
 					?>
 				</div>
 			<section>

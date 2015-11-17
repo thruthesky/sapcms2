@@ -17,8 +17,8 @@ $option = [
 	'idx_user'=> 1
 ];
 $post = post_data()->newPost($option);
-$data = $post->attachFile("theme/han/img/story_sample/1.jpg");
-$data = $post->attachFile("theme/han/img/story_sample/2.jpg");
+$data = $post->attachFile("theme/han/img/story_sample/10.jpg");
+$data = $post->attachFile("theme/han/img/story_sample/11.jpg");
 
 $option = [
 	'idx_config' => $config_story->get('idx'),
@@ -27,8 +27,8 @@ $option = [
 	'idx_user'=> 1
 ];
 $post = post_data()->newPost($option);
-$data = $post->attachFile("theme/han/img/story_sample/3.jpg");
-$data = $post->attachFile("theme/han/img/story_sample/4.jpg");
+$data = $post->attachFile("theme/han/img/story_sample/12.jpg");
+$data = $post->attachFile("theme/han/img/story_sample/13.jpg");
 
 $option = [
 	'idx_config' => $config_story->get('idx'),
@@ -37,8 +37,8 @@ $option = [
 	'idx_user'=> 1
 ];
 $post = post_data()->newPost($option);
-$data = $post->attachFile("theme/han/img/story_sample/5.jpg");
-$data = $post->attachFile("theme/han/img/story_sample/6.jpg");
+$data = $post->attachFile("theme/han/img/story_sample/14.jpg");
+$data = $post->attachFile("theme/han/img/story_sample/15.jpg");
 
 #####################################################
 
