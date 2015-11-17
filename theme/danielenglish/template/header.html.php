@@ -41,7 +41,7 @@ add_css('featured.item.css');
 </div>
 <div id="header-top">
 	<div class='inner'>
-		<a href="/"><img class='logo' src="/theme/englishworld/img/full_logo.png"/></a>
+		<a href="/"><img class='logo' src="/theme/danielenglish/img/full_logo.png"/></a>
 		<ul id="main-menu" class="clearfix">
 			<li><a <?php if( !empty( $page ) && $page == 'introduction' ) echo "class='is-active'"; ?> href='/introduction/1'>학원소개</a></li>
 			<li><a <?php if( !empty( $page ) && $page == 'videoEnglish' ) echo "class='is-active'"; ?> href='/ve?page=teacher_list'>강사목록</a></li>
@@ -64,13 +64,13 @@ add_css('featured.item.css');
 				?>
 				</div>
 					<div class='inner'>
-						<div class='item fake'><div class='banner'><img src='/theme/englishworld/img/menu_photo_5.jpg'/></div><div class='title text-center'>화상 콜센터 영어 수업</div></div><div class='item'><!--this is a fake banner 화상 콜센터 단합대회-->
-						<div class='banner'><img src='/theme/englishworld/img/menu_photo_1.jpg'/></div><div class='title text-center'>선생님 노래자랑</div></div><div class='item'>
-						<div class='banner'><img src='/theme/englishworld/img/menu_photo_2.jpg'/></div><div class='title text-center'>화상 콜센터 바다 여행</div></div><div class='item'>
-						<div class='banner'><img src='/theme/englishworld/img/menu_photo_4.jpg'/></div><div class='title text-center'>화상 콜센터 시상식</div></div><div class='item'>
-						<div class='banner'><img src='/theme/englishworld/img/menu_photo_3.jpg'/></div><div class='title text-center'>화상 콜센터 파티</div></div><div class='item'>
-						<div class='banner'><img src='/theme/englishworld/img/menu_photo_5.jpg'/></div><div class='title text-center'>화상 콜센터 영어 수업</div></div><div class='item fake'>
-						<div class='banner'><img src='/theme/englishworld/img/menu_photo_1.jpg'/></div><div class='title text-center'>선생님 노래자랑</div></div><!--this is a fake banner  화상 콜센터 팝송 노래-->
+						<div class='item fake'><div class='banner'><img src='/theme/danielenglish/img/menu_photo_5.jpg'/></div><div class='title text-center'>화상 콜센터 영어 수업</div></div><div class='item'><!--this is a fake banner 화상 콜센터 단합대회-->
+						<div class='banner'><img src='/theme/danielenglish/img/menu_photo_1.jpg'/></div><div class='title text-center'>선생님 노래자랑</div></div><div class='item'>
+						<div class='banner'><img src='/theme/danielenglish/img/menu_photo_2.jpg'/></div><div class='title text-center'>화상 콜센터 바다 여행</div></div><div class='item'>
+						<div class='banner'><img src='/theme/danielenglish/img/menu_photo_4.jpg'/></div><div class='title text-center'>화상 콜센터 시상식</div></div><div class='item'>
+						<div class='banner'><img src='/theme/danielenglish/img/menu_photo_3.jpg'/></div><div class='title text-center'>화상 콜센터 파티</div></div><div class='item'>
+						<div class='banner'><img src='/theme/danielenglish/img/menu_photo_5.jpg'/></div><div class='title text-center'>화상 콜센터 영어 수업</div></div><div class='item fake'>
+						<div class='banner'><img src='/theme/danielenglish/img/menu_photo_1.jpg'/></div><div class='title text-center'>선생님 노래자랑</div></div><!--this is a fake banner  화상 콜센터 팝송 노래-->
 					</div>
 				</div>
 				<div class='item-list text-center'>
@@ -154,8 +154,8 @@ if( !empty( $variables['page'] )  ){
 		if( !empty( $variables['header_text'] ) ) $text = $variables['header_text'];
 		//$text = strtoupper($varia);
 	}
-	$url = "/theme/englishworld/img/header_".$page .".jpg";
-	//$url = "/theme/englishworld/img/header_text.png";
+	$url = "/theme/danielenglish/img/header_".$page .".jpg";
+	//$url = "/theme/danielenglish/img/header_text.png";
 	//if( file_exists( $url ) ){
 	?>
 	<div class='header-image<?php if( !empty( $page ) ) echo ' '.$page; ?>'>
@@ -180,14 +180,14 @@ if( !empty( $variables['page'] )  ){
 if( $_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/?' ){ ?>
 <div class="front-top-banner">
 	<div class='arrow' direction='left'>
-		<img src="/theme/englishworld/img/top_arrow_left.png"/>
+		<img src="/theme/danielenglish/img/top_arrow_left.png"/>
 	</div>
 	<div class='arrow' direction='right'>
-		<img src="/theme/englishworld/img/top_arrow_right.png"/>
+		<img src="/theme/danielenglish/img/top_arrow_right.png"/>
 	</div>
 	<div class='inner'>
 		<div class='banner-wrapper five'>
-			<img class='banner fake' src='/theme/englishworld/img/banner_5.jpg'/>
+			<img class='banner fake' src='/theme/danielenglish/img/banner_5.jpg'/>
 			<div class='text-info'>
 				<div class='inner'>
 					<div class='wrapper'>
@@ -202,7 +202,7 @@ if( $_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/?' ){ ?>
 				</div>
 			</div>
 		</div><div class='banner-wrapper one '>
-			<img class='banner' src='/theme/englishworld/img/banner_1.jpg'/>
+			<img class='banner' src='/theme/danielenglish/img/banner_1.jpg'/>
 			<div class='text-info'>
 				<div class='inner'>
 					<div class='wrapper'>
@@ -213,11 +213,11 @@ if( $_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/?' ){ ?>
 				</div>
 			</div>
 		</div><div class='banner-wrapper two'>
-			<img class='banner' src='/theme/englishworld/img/banner_2.jpg'/>
+			<img class='banner' src='/theme/danielenglish/img/banner_2.jpg'/>
 			<div class='text-info'>
 				<div class='inner'>
 					<div class='wrapper'>
-						<img class='fake-image' src='/theme/englishworld/img/banner_fake_image_perfect_sides.png'/>
+						<img class='fake-image' src='/theme/danielenglish/img/banner_fake_image_perfect_sides.png'/>
 						<div class='text-items'>
 							<div class='text top'>대한민국 영어 121등 ??</div>
 							<div class='text bottom'>매일 원어민과 화상영어를 통해서 12등에서 1등 영어를 하십시오.</div>
@@ -227,7 +227,7 @@ if( $_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/?' ){ ?>
 				</div>
 			</div>
 		</div><div class='banner-wrapper three'>
-			<img class='banner' src='/theme/englishworld/img/banner_3.jpg'/>
+			<img class='banner' src='/theme/danielenglish/img/banner_3.jpg'/>
 			<div class='text-info'>
 				<div class='inner'>
 					<div class='wrapper'>
@@ -238,7 +238,7 @@ if( $_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/?' ){ ?>
 				</div>
 			</div>
 		</div><div class='banner-wrapper four'>
-			<img class='banner' src='/theme/englishworld/img/banner_4.jpg'/>
+			<img class='banner' src='/theme/danielenglish/img/banner_4.jpg'/>
 			<div class='text-info'>
 				<div class='inner'>
 					<div class='wrapper'>
@@ -249,7 +249,7 @@ if( $_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/?' ){ ?>
 				</div>
 			</div>
 		</div><div class='banner-wrapper five'>
-			<img class='banner' src='/theme/englishworld/img/banner_5.jpg'/>
+			<img class='banner' src='/theme/danielenglish/img/banner_5.jpg'/>
 			<div class='text-info'>
 				<div class='inner'>
 					<div class='wrapper'>
@@ -260,7 +260,7 @@ if( $_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/?' ){ ?>
 				</div>
 			</div>
 		</div><div class='banner-wrapper one'>
-			<img class='banner fake' src='/theme/englishworld/img/banner_1.jpg'/>
+			<img class='banner fake' src='/theme/danielenglish/img/banner_1.jpg'/>
 			<div class='text-info'>
 				<div class='inner'>
 					<div class='wrapper'>
