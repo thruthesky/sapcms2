@@ -11,7 +11,7 @@
         <br>
 
         <img style="float:right;" src="/theme/englishworld/img/class/building.gif">
-
+		<div class='text-content'>
         안녕하세요. <b style="color:blue;">잉글리쉬 월드 원격영어교육</b>입니다.<br>
         <br>
 
@@ -40,7 +40,7 @@
         이곳에서 매일매일 시간을 정하여 연습하고 노력하면 영어말하기는 누구나 잘 할 수 있습니다.<br>
         <br>
         감사합니다.
-
+		</div>
 
 
     </div>
