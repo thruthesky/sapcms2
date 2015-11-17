@@ -196,7 +196,7 @@
 				'id' => 'data-set mobile',
 				'name' => 'mobile',
 				'value'=>$mobile,
-				'placeholder' => 'Mobile',
+				'placeholder' => '아이디',
 			]),
 		]);
 	?>	
