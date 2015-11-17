@@ -4,7 +4,7 @@
 <div class='temp-page <?php echo $page; ?>'>
 	<div class='title'><span>처음 오신 분</span></div>
 	<div class='group'>
-		<div>잉글리쉬월드에 오신 것을 환영합니다.</div>
+		<div class='label'>잉글리쉬월드에 오신 것을 환영합니다.</div>
 
         <div>잉글리쉬월드에 처음 오신 분들은 다음의 과정을 잘 따라서 하시면 됩니다.</div>
 

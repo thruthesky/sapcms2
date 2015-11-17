@@ -11,12 +11,12 @@ add_css('front.postBannerWithText.css');
 <div class='page-content top'>
 	<section class='grid first'>
 		<div class='a'>
-			<a href="http://pineseg.com/pinesjr/event_camp.html" target="_blank"><img class='front-banner' src="/theme/englishworld/img/class/main-banner-left.jpg"></a>
+			<a href="http://pineseg.com/pinesjr/event_camp.html" target="_blank"><img class='front-banner' src="/theme/danielenglish/img/class/main-banner-left.jpg"></a>
 			<div class='floater-dotted'>
 				<a class='text' href='/post/list?id=story'>수업후기</a>
 			</div>
 			<?php
-				$posts = getPostWithImageNoComment(0, 3, 'han');			
+				$posts = getPostWithImageNoComment(0, 3, 'story');			
 				if( !empty( $posts[0] ) ) echo postBannerWithText( $posts[0], 520, 500, 20, 200 );
 				
 				$post_items = array_slice( $posts, 1, 2 );
@@ -25,27 +25,29 @@ add_css('front.postBannerWithText.css');
 		</div>
 		<div class='b'>
 			<section class='grid second'>
-				<img class='front-banner'  src="/theme/englishworld/img/class/main-banner-right.jpg">
+				<a class='front-banner' href='http://www.kindertimes.co.kr/'><img src="/theme/danielenglish/img/class/smallBanner1.png"></a><a class='front-banner'  href='http://www.kidstimes.net/'>
+				<img src="/theme/danielenglish/img/class/smallBanner2.png"></a><a class='front-banner'  href='http://www.teentimes.org/'>
+				<img src="/theme/danielenglish/img/class/smallBanner3.png"></a>
 				<div class='floater-bar'>
 					<a class='text' href='/post/list?id=qna'>질문과 답변</a>
 				</div>
 				<div class='a'>							
 					<?php
-						$posts = getPostWithImageNoComment(0, 8, 'han_gallery');
-						$post_items = array_slice( $posts, 0, 1 );				
-						if( !empty( $posts[0] ) ) echo postHoverTitleImage( $post_items, 444, 334, 30 );
+						$posts = getPostWithImageNoComment(0, 8, 'qna');
+						$post_items_1 = array_slice( $posts, 0, 1 );				
+						if( !empty( $posts[0] ) ) echo postHoverTitleImage( $post_items_1, 444, 334, 30 );
 						
-						$post_items = array_slice( $posts, 1, 3 );
-						if( !empty( $post_items ) ) echo postThumbnailWithText( $post_items, null, 100, 75, 30 );
+						$post_items_2 = array_slice( $posts, 1, 3 );
+						if( !empty( $post_items ) ) echo postThumbnailWithText( $post_items_2, null, 100, 75, 30 );
 					?>
 				</div>
 				<div class='b'>
 					<?php 
-						$post_items = array_slice( $posts, 4, 1 );
-						echo postHoverTitleImage( $post_items, 444, 334, 30 );
+						$post_items_3 = array_slice( $posts, 4, 1 );
+						echo postHoverTitleImage( $post_items_3, 444, 334, 30 );
 						
-						$post_items = array_slice( $posts, 5, 3 );
-						echo postThumbnailWithText( $post_items, null, 100, 75, 30 );
+						$post_items_4 = array_slice( $posts, 5, 3 );
+						echo postThumbnailWithText( $post_items_4, null, 100, 75, 30 );
 					?>
 				</div>
 			<section>

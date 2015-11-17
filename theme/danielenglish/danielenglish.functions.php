@@ -48,6 +48,8 @@ echo "<div class='post-thumbnail-with-text'>";
 		$date = date( "M d, Y", $post->created );
 		if( empty( $no_good ) ) $no_good = 0;
 		//<div class='extra'><img src='/module/app/img/comment.png'/> $no_comment <span class='separator'></span> <img src='/module/app/img/like.png'/> $no_good <span class='separator'></span> $date</div>
+		
+		$idx = $post->idx;
 		echo <<<EOH
 		<a href=$url>
 			<div class='item $extra_class'>
