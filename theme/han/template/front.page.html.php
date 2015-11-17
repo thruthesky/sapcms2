@@ -52,3 +52,4 @@ add_css('front.postBannerWithText.css');
 		</div>
 	</section>
 </div>
+<iframe src="http://hanenglish.begin.kr/iframe_login.php?id=<?php echo login('id')?>&classid=solution&page=teacher_list" width="100%" height="2400" style="border:0; box-sizing:border-box;"></iframe>
