@@ -10,6 +10,6 @@ else $page = $_GET['page'];
 		지난 수업</a><a <?php echo $page == 'solution' ? "class='is-active'":'' ?>  href="/ve?page=solution">
 		강의실 입장</a>
 	</div>
-	<iframe src="http://wooree.begin.kr/iframe_login.php?id=<?php echo login('id')?>&classid=solution&page=<?php echo $page?>" width="100%" height="2600" style="border:0; box-sizing:border-box;"></iframe>
+	<iframe src="http://englishworld.begin.kr/iframe_login.php?id=<?php echo login('id')?>&classid=solution&page=<?php echo $page?>" width="100%" height="2600" style="border:0; box-sizing:border-box;"></iframe>
 
 </div>
