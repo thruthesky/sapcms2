@@ -565,6 +565,28 @@ section.grid.second > .a{
 section.grid.second > .b{
 	display:none;
 }	
+
+section.grid.second .front-banner{	
+	display:inline-block;
+	width:33.33%;
+	margin:0 0 6px 0;
+}	
+
+section.grid.second .front-banner > img{	
+	display:block;
+	width:100%;
+	box-sizing:border-box;
+}
+
+section.grid.second .front-banner:nth-child(1) > img{	
+	padding-right:3.33px;
+}	
+section.grid.second .front-banner:nth-child(2) > img{	
+	padding:0 1.665px;
+}	
+section.grid.second .front-banner:nth-child(3) > img{	
+	padding-left:3.33px;
+}	
 /*eo front grid*/
 
 

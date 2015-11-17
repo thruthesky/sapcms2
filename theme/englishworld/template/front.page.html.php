@@ -25,7 +25,9 @@ add_css('front.postBannerWithText.css');
 		</div>
 		<div class='b'>
 			<section class='grid second'>
-				<img class='front-banner'  src="/theme/englishworld/img/class/main-banner-right.jpg">
+				<a class='front-banner' href='http://www.kindertimes.co.kr/'><img src="/theme/englishworld/img/class/smallBanner1.png"></a><a class='front-banner'  href='http://www.kidstimes.net/'>
+				<img src="/theme/englishworld/img/class/smallBanner2.png"></a><a class='front-banner'  href='http://www.teentimes.org/'>
+				<img src="/theme/englishworld/img/class/smallBanner3.png"></a>
 				<div class='floater-bar'>
 					<a class='text' href='/post/list?id=qna'>질문과 답변</a>
 				</div>

@@ -1,142 +1,116 @@
 <?php
-$id = "han";
-if ( ! $config = post_config($id) ) {
-    $config = post_config()->set('id', $id)->set('name', 'Han')->save();
+$story = "story";
+if ( ! $config_story = post_config($story) ) {
+    $config_story = post_config()->set('id', $story)->set('name', 'Story')->save();
 }
 
-$id_gallery = "han_gallery";
-if ( ! $config_gallery = post_config($id_gallery) ) {
-    $config_gallery = post_config()->set('id', $id_gallery)->set('name', 'Han Gallery')->save();
+$qna = "qna";
+if ( ! $config_qna = post_config($qna) ) {
+    $config_qna = post_config()->set('id', $qna)->set('name', 'Question and Answer')->save();
 }
 
 
 $option = [
-	'idx_config' => $config->get('idx'),
-	'title' => "Welcome to wooreeedu christmas event!",
-	'content' => "We provide fun events for children so they can also find joy through learning.",
+	'idx_config' => $config_story->get('idx'),
+	'title' => "Alphabets Activity",
+	'content' => "Click on the images and find out which image contains that first letter. If you find this entertaining, join us to learn more.",
 	'idx_user'=> 1
 ];
 $post = post_data()->newPost($option);
-$data = $post->attachFile("theme/wooreeedu/img/xmas_16.jpg");
-
+$data = $post->attachFile("theme/han/img/story_sample/1.jpg");
+$data = $post->attachFile("theme/han/img/story_sample/2.jpg");
 
 $option = [
-	'idx_config' => $config->get('idx'),
-	'title' => "Presents for everyone! Ho Ho Ho! Santa is here! Just kidding!",
-	'content' => "What else is there other than fun and games is of course PRESENTS! Presents for everyone who participated",
+	'idx_config' => $config_story->get('idx'),
+	'title' => "Chat room for teens",
+	'content' => "It's about teens who converse through phones, computers, or other devices. Take classes to read more.",
 	'idx_user'=> 1
 ];
 $post = post_data()->newPost($option);
-$data = $post->attachFile("theme/wooreeedu/img/xmas_8.jpg");
-
-
+$data = $post->attachFile("theme/han/img/story_sample/3.jpg");
+$data = $post->attachFile("theme/han/img/story_sample/4.jpg");
 
 $option = [
-	'idx_config' => $config->get('idx'),
-	'title' => "Outbound trips to different parts of the country. Learn new places and new words along the way...",
-	'content' => "We give outbound trips to relieve some stress, not only for students but also theirs teachers. Another purpose of this event to deepen their relationships and further improve each others understanding.",
+	'idx_config' => $config_story->get('idx'),
+	'title' => "English Ice Break",
+	'content' => "A book with simple images to make children comprehend what each word stand for.",
 	'idx_user'=> 1
 ];
 $post = post_data()->newPost($option);
-$data = $post->attachFile("theme/wooreeedu/img/tripping_5.jpg");
-//wooreeedu_gallery
-$option = [
-	'idx_config' => $config_gallery->get('idx'),
-	'title' => "About our weekends...? Fun and relaxation!",
-	'content' => "Going out just to have fun is another way to decrease the student's frustration. We let students, along with their guardians, have fun for half a day so they can always feel energized and not lose interest in studying.",
-	'idx_user'=> 1
-];
-$post = post_data()->newPost($option);
-$data = $post->attachFile("theme/wooreeedu/img/weekend_1.jpg");
+$data = $post->attachFile("theme/han/img/story_sample/5.jpg");
+$data = $post->attachFile("theme/han/img/story_sample/6.jpg");
+
+#####################################################
 
 $option = [
-	'idx_config' => $config_gallery->get('idx'),
-	'title' => "We don't only speak english, we also sing them!",
-	'content' => "This here is our ENGLISH ONLY POP SONG event. We provide selected songs and randomly distribute them to our students. They sing, or may as well, dance and will compete for the golden medal.",
+	'idx_config' => $config_qna->get('idx'),
+	'title' => "How to send messages to the admin.",
+	'content' => "To send messages to the website admin, scroll down to the lowest part of the website and type in you details. Click on send and you should receive an alert message saying that your message was sent successfully.",
 	'idx_user'=> 1
 ];
 $post = post_data()->newPost($option);
-$data = $post->attachFile("theme/wooreeedu/img/popsong_2.jpg");
+$data = $post->attachFile("theme/han/img/qna_sample/1.png");
 
 $option = [
-	'idx_config' => $config_gallery->get('idx'),
-	'title' => "Meet our champion for the English Only Pop Song event",
-	'content' => "Will you look at that, aren't those some pretty flower? Well, he earned it! Right here is our champion. A round of applause everyone!",
+	'idx_config' => $config_qna->get('idx'),
+	'title' => "Logging in.",
+	'content' => "To log in, simply click on the login button at the top right corner of the screen. A new page will appear and then click on submit button ( the blue one )",
 	'idx_user'=> 1
 ];
 $post = post_data()->newPost($option);
-$data = $post->attachFile("theme/wooreeedu/img/popsong_7.jpg");
+$data = $post->attachFile("theme/han/img/qna_sample/2.png");
 
 $option = [
-	'idx_config' => $config_gallery->get('idx'),
-	'title' => "English seminar held last week in one of our facilities.",
-	'content' => "This seminar is for those who have advanced knowledge in english. We give out tips on common grammar mistakes and give them techniques on how to always avoid them.",
+	'idx_config' => $config_qna->get('idx'),
+	'title' => "To register.",
+	'content' => "Click on the register button at the top right corner of the screen. Fill in the required details. Please do not forget to read the agreement.",
 	'idx_user'=> 1
 ];
 $post = post_data()->newPost($option);
-$data = $post->attachFile("theme/wooreeedu/img/seminar_1.jpg");
-
+$data = $post->attachFile("theme/han/img/qna_sample/3.png");
 
 $option = [
-	'idx_config' => $config_gallery->get('idx'),
-	'title' => "The Global Leadership Speech Contest",
-	'content' => "Right here is a speech contest. Anyone available is able to participate. We conduct such programs to enchance the student's ability to create their own sentences.",
+	'idx_config' => $config_qna->get('idx'),
+	'title' => "Register to Video English",
+	'content' => "Simply register on this website and click on the second menu '강사목록' or any of it's sub menus.",
 	'idx_user'=> 1
 ];
 $post = post_data()->newPost($option);
-$data = $post->attachFile("theme/wooreeedu/img/speech_1.jpg");
+$data = $post->attachFile("theme/han/img/qna_sample/4.png");
 
 $option = [
-	'idx_config' => $config_gallery->get('idx'),
-	'title' => "More about the Global Leadership Speech Contest",
-	'content' => "Of course, we also give out prizes to further motivate our participants.",
+	'idx_config' => $config_qna->get('idx'),
+	'title' => "Creating you own post",
+	'content' => "Click on menu '고객센터' or some of it's sub menus ( except the last one ) and you can post there as long as you are registered.",
 	'idx_user'=> 1
 ];
 $post = post_data()->newPost($option);
-$data = $post->attachFile("theme/wooreeedu/img/speech_11.jpg");
+$data = $post->attachFile("theme/han/img/qna_sample/5.png");
 
 $option = [
-	'idx_config' => $config_gallery->get('idx'),
-	'title' => "Participants of the Global Leadership Speech Contest",
-	'content' => "Meet our audiences and participants. Join us now so you can be one of them on our next program.",
+	'idx_config' => $config_qna->get('idx'),
+	'title' => "How can I add comments?",
+	'content' => "Click on any post to view it. Below the view page you will see a textarea. You can add comments and files along with the comment.",
 	'idx_user'=> 1
 ];
 $post = post_data()->newPost($option);
-$data = $post->attachFile("theme/wooreeedu/img/speech_12.jpg");
+$data = $post->attachFile("theme/han/img/qna_sample/6.png");
 
 $option = [
-	'idx_config' => $config_gallery->get('idx'),
-	'title' => "Learn with us.",
-	'content' => "Join wooreeedu now for a fun and learning experience like never before.",
+	'idx_config' => $config_qna->get('idx'),
+	'title' => "Where can I view the teachers?",
+	'content' => "Click on the second menu '강사목록' and you will be redirected to the teacher list page. If you are logged in, you will automatically get logged in on solution as well.",
 	'idx_user'=> 1
 ];
 $post = post_data()->newPost($option);
-$data = $post->attachFile("theme/wooreeedu/img/header_junior.jpg");
+$data = $post->attachFile("theme/han/img/qna_sample/7.png");
+$data = $post->attachFile("theme/han/img/qna_sample/8.png");
 
 $option = [
-	'idx_config' => $config_gallery->get('idx'),
-	'title' => "More about us.",
-	'content' => "This post will be about us who worked hard to get this far. We always do our best to meet our client's needs that is why we were able to be this successful...",
+	'idx_config' => $config_qna->get('idx'),
+	'title' => "Getting inside the class.",
+	'content' => "Click on the last sub menu of the second menu '강사목록' or if you are in the solution page, click on the last menu '강의실 입장'. Note* that you can only enter the class 3 minutes early.",
 	'idx_user'=> 1
 ];
 $post = post_data()->newPost($option);
-$data = $post->attachFile("theme/wooreeedu/img/header_introduction.jpg");
-
-$option = [
-	'idx_config' => $config_gallery->get('idx'),
-	'title' => "A simple trip in a lake.",
-	'content' => "We decided to take a trip to a certain lake. Everyone seems to be enjoying things well. Enroll now so you can join us next time",
-	'idx_user'=> 1
-];
-$post = post_data()->newPost($option);
-$data = $post->attachFile("theme/wooreeedu/img/tripping_13.jpg");
-
-$option = [
-	'idx_config' => $config_gallery->get('idx'),
-	'title' => "An eventful weekend.",
-	'content' => "Right now we are in a pool. Nothing much to do but just have fun. Overworking yourself is bad so we do this kind of stuff from time to time...",
-	'idx_user'=> 1
-];
-$post = post_data()->newPost($option);
-$data = $post->attachFile("theme/wooreeedu/img/weekend_7.jpg");
-
+$data = $post->attachFile("theme/han/img/qna_sample/9.png");
