@@ -11,7 +11,7 @@
 		</div>
 
 
-        <img src="/theme/englishworld/img/class/center4.jpg"><br>
+        <img class='image-border' src="/theme/englishworld/img/class/center4.jpg"><br>
 		<div class='text-content'>
         위 사진은 화상영어 콜센터에 2015년 11월 크리스마스 장식을 한 사진입니다.<br>
 
@@ -22,7 +22,7 @@
 
 
 
-        <img src="/theme/englishworld/img/class/center0.jpg"><br>
+        <img class='image-border' src="/theme/englishworld/img/class/center0.jpg"><br>
 		<div class='text-content'>
         위 사진은 영어 선생님들의 스테이션(station)입니다.<br>
 
@@ -34,7 +34,7 @@
 		</div>
 
 
-        <img src="/theme/englishworld/img/class/center2.jpg"><br>
+        <img class='image-border' src="/theme/englishworld/img/class/center2.jpg"><br>
 		<div class='text-content'>
         위 사진은 선생님이 직접 수업을 하는 장면입니다.<br>
 
@@ -44,7 +44,7 @@
 		</div>
 
 
-        <img src="/theme/englishworld/img/class/class3.jpg"><br>
+        <img class='image-border' src="/theme/englishworld/img/class/class3.jpg"><br>
 		<div class='text-content'>
         위 사진은 학생들이 실제로 수업하는 장면입니다.<br>
 
