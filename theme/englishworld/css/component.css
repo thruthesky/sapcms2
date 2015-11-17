@@ -161,19 +161,32 @@
 	padding:0 0 0 6.66px;
 }
 
+.temp-page .group{
+	
+}
+
 .temp-page .group .label{
 	padding:10px;
-	margin:0 0 10px 0;
-	border-radius:3px;
+	margin:20px 0 20px 0;
+	border-radius:3px;	
 	background-color:#e0f0fd;
+	font-size:1.1em;
+	font-weight:bold;
+}
+
+.temp-page .group .text-content{
+	padding:0 10px;
+	margin-bottom:10px;
+	font-size:.9em;	
 }
 
 .temp-page .group .content{
 	padding:10px 0;
-	margin-bottom:10px;
+	margin-bottom:10px;	
 }
 
 .temp-page .group img{
+	display:block;
 	padding:5px;
 	border:1px solid #e1e1e1;
 	box-sizing:border-box;
