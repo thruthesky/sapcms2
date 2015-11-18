@@ -112,7 +112,7 @@
 				'id' => 'data-set mobile',
 				'name' => 'mobile',
 				'value'=>$mobile,
-				'placeholder' => '아이디',
+				'placeholder' => '모바일',
 			]),
 		]);
 	?>	
