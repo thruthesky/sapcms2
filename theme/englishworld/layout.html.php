@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <?php
-$phone_number = "010-8215-4050";
+$phone_number = "062-576-5010";
 include "englishworld.functions.php";
 ?>
 <html>

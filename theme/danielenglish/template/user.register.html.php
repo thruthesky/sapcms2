@@ -191,7 +191,7 @@
 	<?php 
 		echo html_row([
 			'class' => 'data-set mobile',
-			'caption' => '모바일',
+			'caption' => '핸드폰',
 			'text' => html_input([
 				'id' => 'data-set mobile',
 				'name' => 'mobile',
