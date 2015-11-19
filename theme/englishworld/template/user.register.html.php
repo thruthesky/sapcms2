@@ -122,12 +122,12 @@
 		
 		echo html_row([
 			'class' => 'data-set username',
-			'caption' => '아이디',
+			'caption' => '모바일',
 			'text' => html_input([
 				'id' => 'id',
 				'name' => 'id',
 				'value'=> $user->get('id'),
-				'placeholder' => '아이디',
+				'placeholder' => '모바일',
 			]),
 		]);
 		?>
