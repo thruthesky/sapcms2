@@ -9,9 +9,11 @@ add_css('front.postBulletList.css');
 add_css('front.postBannerWithText.css');
 ?>
 <div class='page-content top'>
+	<a class='left-wing ve' href='/ve?page=solution'><img src="/theme/han/img/left_wing_ve.png"></a>
+	<a class='left-wing team-viewer' href='/theme/teamviewer.exe' download><img src="/theme/han/img/left_wing_team_viewer.png"></a>
 	<section class='grid first'>
 		<div class='a'>
-			<a href="http://pineseg.com/pinesjr/event_camp.html" target="_blank"><img class='front-banner' src="/theme/englishworld/img/class/main-banner-left.jpg"></a>
+			<a href="http://pineseg.com/pinesjr/event_camp.html" target="_blank"><img class='front-banner' src="/theme/han/img/class/main-banner-left.jpg"></a>
 			<div class='floater-dotted'>
 				<a class='text' href='/post/list?id=story'>수업후기</a>
 			</div>
@@ -25,7 +27,9 @@ add_css('front.postBannerWithText.css');
 		</div>
 		<div class='b'>
 			<section class='grid second'>
-				<img class='front-banner'  src="/theme/englishworld/img/class/main-banner-right.jpg">
+				<a class='front-banner' href='http://www.kindertimes.co.kr/'><img src="/theme/han/img/class/smallBanner1.png"></a><a class='front-banner'  href='http://www.kidstimes.net/'>
+				<img src="/theme/han/img/class/smallBanner2.png"></a><a class='front-banner'  href='http://www.teentimes.org/'>
+				<img src="/theme/han/img/class/smallBanner3.png"></a>
 				<div class='floater-bar'>
 					<a class='text' href='/post/list?id=qna'>질문과 답변</a>
 				</div>

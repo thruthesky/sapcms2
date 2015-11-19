@@ -590,6 +590,32 @@ section.grid.second .front-banner:nth-child(3) > img{
 /*eo front grid*/
 
 
+/*left wing*/
+.page-content.top{
+	position:relative;
+}
+
+.page-content.top .left-wing{	
+	display:none;
+	position:absolute;
+	left:-160px;
+	width:150px;
+}
+
+.page-content.top .left-wing.ve{
+	top:0;
+}
+
+.page-content.top .left-wing.team-viewer{
+	top:160px;
+}
+
+.page-content.top .left-wing > img{
+	display:block;	
+}
+/*eo left wing*/
+
+
 @media all and ( min-width: 420px ) {
 	/*.front-top-banner .arrow{
 		top:30%;
@@ -793,4 +819,10 @@ section.grid.second .front-banner:nth-child(3) > img{
 		font-size:.9em;
 	}
 	/*two specific*/
+}
+
+@media all and ( min-width: 1300px ) {
+	.page-content.top .left-wing{	
+		display:block;
+	}
 }
