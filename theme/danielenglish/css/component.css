@@ -35,7 +35,7 @@
 	position:relative;
 	height:164px;
 	margin-bottom: 30px;
-	background:url("/theme/englishworld/img/header_text.png?v=2");	
+	background:url("/theme/danielenglish/img/header_text.png?v=2");	
 }
 
 .temp-page .title > span{
@@ -57,7 +57,7 @@
     top: 0;
 	height:62px;
 	width:36px;
-	background:url("/theme/englishworld/img/triangle.png");
+	background:url("/theme/danielenglish/img/triangle.png");
 	z-index:1;
 }
 */
@@ -88,7 +88,7 @@
 	width:16px;	
 	margin-right:10px;
 	content:"";
-	background:url("/theme/englishworld/favicon.ico");	
+	background:url("/theme/danielenglish/favicon.ico");	
 }
 */
 /*

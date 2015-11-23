@@ -5,7 +5,7 @@
 	else $submit_text = "회원 정보 수정";
 ?>
 
-<div class='member-form-wrapper register englishworld'>
+<div class='member-form-wrapper register danielenglish'>
 	<div class='title'><?php echo $submit_text; ?></div>
 	<form class="member-register-form member-form ajax-file-upload" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="file_module" value="user">
