@@ -47,7 +47,7 @@
             <li>끊김없는 세계최고의 영상품질을 제공합니다.</li>
         </ul>
 
-        <img src="/theme/englishworld/img/class/intro_01.gif"><br>
+        <img src="/theme/han/img/class/intro_01.gif"><br>
 		<div class='text-content'>
         500만화소, 30프레임, 풀스크린 지원!!<br>
         <br>
@@ -91,7 +91,7 @@
             </li>
         </ol>
 
-        <img src="/theme/englishworld/img/class/sub_tt.gif"><br>
+        <img src="/theme/han/img/class/sub_tt.gif"><br>
 
 
 
@@ -101,6 +101,6 @@
             <li>개인의 학습 능력에 맞게 수업을 진행 할 수 있다.</li>
         </ol>
 
-        <img src="/theme/englishworld/img/class/sub_ttt.gif">
+        <img src="/theme/han/img/class/sub_ttt.gif">
 	</div>
 </div>
