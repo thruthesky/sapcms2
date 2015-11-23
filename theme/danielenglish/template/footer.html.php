@@ -87,6 +87,8 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 				</div>
 				<div class='row'>
 					<b>계좌번호</b>
+					농협<br>
+					예금주:안준홍<br>
 					302 1023 8271 21<br>
 				</div>
 			</div>
