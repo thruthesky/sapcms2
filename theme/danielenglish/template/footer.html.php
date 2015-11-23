@@ -86,7 +86,7 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 					<?php echo $phone_number?><br>
 				</div>
 				<div class='row'>
-					<b>농협 안준홍 </b>
+					<b>계좌번호</b>
 					302 1023 8271 21<br>
 				</div>
 			</div>
