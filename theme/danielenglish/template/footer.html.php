@@ -86,8 +86,8 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 					<?php echo $phone_number?><br>
 				</div>
 				<div class='row'>
-					<b>메일주소</b>
-					hanmun777@naver.com<br>
+					<b>농협 안준홍 </b>
+					302 1023 8271 21<br>
 				</div>
 			</div>
 		</div>
