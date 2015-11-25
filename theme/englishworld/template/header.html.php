@@ -30,7 +30,7 @@ add_css('featured.item.css');
 				<span class='bullet'>•</span>			
 				<a href='/user/login'>로그인</a>
 			<?php } else { ?>
-                    <a href="/ve?page=solution"><b style="color:#dd3438;">강의실입장</b></a>
+                    <a href="<?php echo $url_ve?>" target=_blank>강의실입장</b></a>
                     <span class='bullet'>•</span>
                     <a href='/user/profile'>나의 정보</a>
                     <span class='bullet'>•</span>
@@ -91,7 +91,7 @@ add_css('featured.item.css');
 										<li><a href="/ve?page=teacher_list">선생님 목록</a></li>
 										<li><a href="/ve?page=reservation">수업 시간표</a></li>
 										<li><a href="/ve?page=past">수업 평가</a></li>
-										<li><a href="/ve?page=solution">강의실 입장</a></li>
+										<li><a href="<?php echo $url_ve?>" target=_blank>강의실 입장</a></li>
 									</ul>
 								</div>
 							</td>

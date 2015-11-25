@@ -2,6 +2,7 @@
 <?php
 $phone_number = "062-576-5010";
 include "englishworld.functions.php";
+$url_ve = "http://englishworld.begin.kr/iframe_login.php?id=".login('id')."&classid=solution&page=solution";
 ?>
 <html>
 <head>
