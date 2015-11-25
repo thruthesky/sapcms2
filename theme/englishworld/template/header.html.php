@@ -217,6 +217,7 @@ if( $_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/?' ){ ?>
 							</div>
 						</div><br>
 
+
 						<div class='text more'><a href="/introduction/1">자세히 보기<div class='triangle'></div></a></div>
 					</div>
 				</div>
