@@ -87,31 +87,31 @@
 }
 
 .member-form .row.data-set.email > .text:before{	
-	content:url("/theme/wooreeedu/img/member/email.png");
+	content:url("/theme/englishworld/img/member/email.png");
 }
 
 .member-form .row.data-set.full_name > .text:before{	
-	content:url("/theme/wooreeedu/img/member/name.png");
+	content:url("/theme/englishworld/img/member/name.png");
 }
 
 .member-form .row.data-set.mobile > .text:before{	
-	content:url("/theme/wooreeedu/img/member/mobile.png");
+	content:url("/theme/englishworld/img/member/mobile.png");
 }
 
 .member-form .row.username > .text:before{	
-	content:url("/theme/wooreeedu/img/member/username.png");
+	content:url("/theme/englishworld/img/member/username.png");
 }
 
 .member-form .row.data-set.password > .text:before{	
-	content:url("/theme/wooreeedu/img/member/password.png");
+	content:url("/theme/englishworld/img/member/password.png");
 }
 
 .member-form .row.data-set.confirm_password > .text:before{	
-	content:url("/theme/wooreeedu/img/member/confirm_password.png");
+	content:url("/theme/englishworld/img/member/confirm_password.png");
 }
 
 .member-form .row.data-set.location > .text:before{	
-	content:url("/theme/wooreeedu/img/member/location.png");
+	content:url("/theme/englishworld/img/member/location.png");
 }
 
 

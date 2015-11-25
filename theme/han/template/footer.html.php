@@ -8,43 +8,43 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 	<div class='inner'>
 		<div class='item talk'>
 			<a href='/ve?page=solution' class='image'>
-				<img class='default' src='/theme/englishworld/img/book.png'/>
-				<img class='active' src='/theme/englishworld/img/book-active.png'/>
+				<img class='default' src='/theme/han/img/book.png'/>
+				<img class='active' src='/theme/han/img/book-active.png'/>
 			</a>
 			<div class='label'>강의실입장</div>
 		</div>
 		<div class='item grad'>
 			<a href='/ve?page=reservation' class='image'>
-				<img class='default' src='/theme/englishworld/img/grad.png'/>
-				<img class='active' src='/theme/englishworld/img/grad-active.png'/>
+				<img class='default' src='/theme/han/img/grad.png'/>
+				<img class='active' src='/theme/han/img/grad-active.png'/>
 			</a>
 			<div class='label'>예약된 수업</div>
 		</div>
 		<div class='item date'>		
 			<a href='/ve?page=past' class='image'>
-				<img class='default' src='/theme/englishworld/img/camp.png'/>
-				<img class='active' src='/theme/englishworld/img/camp-active.png'/>
+				<img class='default' src='/theme/han/img/camp.png'/>
+				<img class='active' src='/theme/han/img/camp-active.png'/>
 			</a>
 			<div class='label'>지난 수업</div>
 		</div>
 		<div class='item price'>
 			<a href='/camp/3' class='image'>
-				<img class='default' src='/theme/englishworld/img/price.png'/>
-				<img class='active' src='/theme/englishworld/img/price-active.png'/>
+				<img class='default' src='/theme/han/img/price.png'/>
+				<img class='active' src='/theme/han/img/price-active.png'/>
 			</a>
 			<div class='label'>수업 비용 안내</div>
 		</div>
 		<div class='item blog'>
 			<a href='/post/list?id=qna' class='image'>
-				<img class='default' src='/theme/englishworld/img/blog.png'/>
-				<img class='active' src='/theme/englishworld/img/blog-active.png'/>
+				<img class='default' src='/theme/han/img/blog.png'/>
+				<img class='active' src='/theme/han/img/blog-active.png'/>
 			</a>
 			<div class='label'>질문답변</div>
 		</div>
 		<div class='item gallery'>
 			<a href='/post/list?id=story' class='image'>
-				<img class='default' src='/theme/englishworld/img/gallery.png'/>
-				<img class='active' src='/theme/englishworld/img/gallery-active.png'/>
+				<img class='default' src='/theme/han/img/gallery.png'/>
+				<img class='active' src='/theme/han/img/gallery-active.png'/>
 			</a>
 			<div class='label'>수강 후기</div>
 		</div>

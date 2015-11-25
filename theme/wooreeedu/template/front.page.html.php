@@ -9,6 +9,8 @@ add_css('front.postBulletList.css');
 add_css('front.postBannerWithText.css');
 ?>
 <div class='page-content top'>
+	<a class='left-wing ve' href='/ve?page=solution'><img src="/theme/wooreeedu/img/left_wing_ve.png"></a>
+	<a class='left-wing team-viewer' href='/theme/teamviewer.exe' download><img src="/theme/wooreeedu/img/left_wing_team_viewer.png"></a>
 	<section class='wooree-grid3'>
 		<div class='a'>
 			<div class='floater-dotted'>

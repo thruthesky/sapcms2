@@ -9,6 +9,8 @@ add_css('front.postBulletList.css');
 add_css('front.postBannerWithText.css');
 ?>
 <div class='page-content top'>
+	<a class='left-wing ve' href='/ve?page=solution'><img src="/theme/danielenglish/img/left_wing_ve.png"></a>
+	<a class='left-wing team-viewer' href='/theme/teamviewer.exe' download><img src="/theme/danielenglish/img/left_wing_team_viewer.png"></a>
 	<section class='grid first'>
 		<div class='a'>
 			<a href="http://pineseg.com/pinesjr/event_camp.html" target="_blank"><img class='front-banner' src="/theme/danielenglish/img/class/main-banner-left.jpg"></a>

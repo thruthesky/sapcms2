@@ -5,7 +5,7 @@
 	<div class='title'><span>무료 체험 수업</span></div>
 	<div class='group'>
 
-        <img src="/theme/englishworld/img/class/free-1.jpg"><br>
+        <img src="/theme/danielenglish/img/class/free-1.jpg"><br>
 		<div class='text-content'>
         무료 체험 & 레벨테스트 상담전화 : <?php echo $phone_number?><br>
 

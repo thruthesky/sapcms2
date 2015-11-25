@@ -245,7 +245,7 @@ function startFeaturedBanner(){
 
 
 
-//var url_server_app = 'http://englishworld.com/app/';//
+//var url_server_app = 'http://han.com/app/';//
 
 /*pop up image*/
 $(function(){
