@@ -217,6 +217,7 @@ if( $_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/?' ){ ?>
 							</div>
 						</div><br>
 
+
 						<div class='text more'><a href="/introduction/1">자세히 보기<div class='triangle'></div></a></div>
 					</div>
 				</div>
@@ -229,7 +230,7 @@ if( $_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/?' ){ ?>
 						<img class='fake-image' src='/theme/englishworld/img/banner_fake_image_perfect_sides.png'/>
 						<div class='text-items'>
 							<div class='text top'>대한민국 영어 121등 ??</div>
-							<div class='text bottom'>매일 원어민과 화상영어를 통해서 12등에서 1등 영어를 하십시오.</div>
+							<div class='text bottom'>매일 원어민과 화상영어를 통해서 121등에서 1등 영어를 하십시오.</div>
                             <div class='text more'><a href="/introduction/3">자세히 보기<div class='triangle'></div></a></div>
 						</div>
 					</div>
