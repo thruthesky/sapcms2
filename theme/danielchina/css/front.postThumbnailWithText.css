@@ -1,0 +1,91 @@
+.post-thumbnail-with-text{
+	margin-bottom:10px;
+}
+
+.post-thumbnail-with-text .item{
+	padding:10px;
+	background-color:#fff;
+	/**/
+	/**/
+}
+
+.post-thumbnail-with-text .item .photo-wrapper{
+	width:90px;
+	padding:0 10px 0 0;
+	box-sizing:border-box;
+}
+
+.post-thumbnail-with-text .item .photo-wrapper img{
+	display:block;
+	width:100%;
+}
+
+.post-thumbnail-with-text .item .title{
+	height: 32px;
+	margin-bottom: 12px;
+	font-size:.9em;
+	color:#333;
+	overflow:hidden;	
+	line-height:110%;	
+	box-sizing:border-box;
+	word-break:break-word;
+}
+
+.post-thumbnail-with-text .item.long-version .title{
+	height: 16px;
+	margin-bottom: 5px;
+}
+
+.post-thumbnail-with-text .item .content{
+	display:none;
+	height: 17px;
+	margin-bottom: 5px;
+	font-size:.8em;
+	color:#555;
+	overflow:hidden;
+	box-sizing:border-box;
+	word-break:break-word;
+}
+/*
+.post-thumbnail-with-text .item .extra{
+	display:none;
+	height: 16px;		
+	margin-bottom: 5px;
+	font-size:.9em;
+	color:#333;	
+	line-height:110%;	
+	box-sizing:border-box;
+	word-break:break-word;
+}
+
+.post-thumbnail-with-text .item .extra > img{
+	position:relative;
+	top:1px;	
+}
+
+.post-thumbnail-with-text .item .extra .separator{	
+	display:inline-block;
+	position:relative;
+	top:-4px;
+	width:2px;
+	height:1px;	
+	margin:0 5px;
+	background-color:#999;
+}
+*/
+.post-thumbnail-with-text .item.long-version .content{
+	display:block;
+}
+
+.post-thumbnail-with-text .item .label{
+	height: 19px;
+	font-size: .9em;
+	color:#777;
+	overflow:hidden;
+}
+
+.post-thumbnail-with-text .item .label img{
+	position:relative;
+	top:2px;
+	width:16px;
+}
