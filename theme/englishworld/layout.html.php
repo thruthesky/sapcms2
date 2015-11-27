@@ -6,6 +6,7 @@ $url_ve = "http://englishworld.begin.kr/iframe_login.php?id=".login('id')."&clas
 ?>
 <html>
 <head>
+<title>명품 화상영어 잉글리쉬월드</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
     <link type='text/css' href='/theme/englishworld/css/base.css' rel='stylesheet' />
