@@ -51,7 +51,7 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 	</div>
 </div>
 <?php } ?>
-<section class='grid3'>
+<div class='grid3'>
 	<div class='content footer-menu'>
 		<div class='a'>
 			<div class='footer-list menus'>
@@ -86,10 +86,8 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 					<?php echo $phone_number?><br>
 				</div>
 				<div class='row'>
-					<b>계좌번호</b>
-					농협<br>
-					예금주:안준홍<br>
-					302 1023 8271 21<br>
+					<b>메일주소</b>
+					hanmun777@naver.com<br>
 				</div>
 			</div>
 		</div>
@@ -109,7 +107,7 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			</div>
 		</div>
 	</div>
-</section>
+</div>
 <div class="copyright">
 	Copyright (C) 2013 ~ <?=date('Y')?> 잉글리쉬월드. All Rights Reserved <br>
 </div>

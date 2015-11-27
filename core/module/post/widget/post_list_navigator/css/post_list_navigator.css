@@ -1,7 +1,7 @@
-nav.navigation-bar {
+.navigation-bar {
     text-align:center;
 }
-nav.navigation-bar a {
+.navigation-bar a {
     display:inline-block;
     margin:.4em .1em 0;
     padding:4px 6px;
@@ -10,7 +10,7 @@ nav.navigation-bar a {
     text-decoration: none;
     color:#393939;
 }
-nav.navigation-bar .selected {
+.navigation-bar .selected {
     background-color:grey;
     color:white;
     cursor:default;

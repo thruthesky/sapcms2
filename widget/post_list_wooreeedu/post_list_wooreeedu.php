@@ -68,10 +68,6 @@ $pc_name = $post_config->fields['name'];
 		position:relative;
 		top:-5px;
 	}
-
-	.post-list.wooreeedu .page-navigator-wrapper .navigation-bar{
-		margin-top:10px;
-	}
 	
 	.post-list.wooreeedu .page-navigator-wrapper .navigation-bar a{
 		color:#393939;
