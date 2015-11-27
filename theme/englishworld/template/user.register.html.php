@@ -222,3 +222,39 @@
 		</div>
 	</form>
 </div>
+
+<!--[if lte IE 8]>
+<style>
+	.member-form-wrapper{
+		padding:20px 20% 20px 20%;
+	}
+	
+	.member-form .row.data-set > .text input[type='text'], .member-form .row.data-set > .text input[type='password'], .member-form .row.data-set > .text input[type='email']{
+		padding:10px
+	}
+</style>
+<![endif]-->
+<!--[if lte IE 7]>
+<style>
+	.member-form .row.data-set > .text input[type='text'], .member-form .row.data-set > .text input[type='password'], .member-form .row.data-set > .text input[type='email']{
+		height:13px;
+	}
+	
+	.member-form .buttons input[type='submit']{
+		height:40px;		
+	}
+	
+	.member-form .buttons a{
+		height:22px;
+	}
+
+	.user-login-form.member-form .buttons input[type='submit'], .user-login-form.member-form.member-form .buttons a{		
+		width:45%;
+		margin-bottom:0;
+	}
+	
+	.user-login-form.member-form .forgot-password-wrapper{	
+		margin-bottom:20px;
+	}
+</style>
+<![endif]-->

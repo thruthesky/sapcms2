@@ -9,7 +9,7 @@ if ( empty($comments) ) return;
 
 
 ?>
-<section class="comment-list">
+<div class="comment-list">
     <?php foreach ( $comments as $comment ) { 
 		if( $comment['delete'] != 0 ) $content = "This post is deleted";
 		else $content = $comment['content'];
@@ -48,13 +48,13 @@ if ( empty($comments) ) return;
 							$total_files = count( $files );
 						?>
 						<div class='content-margin'></div>
-						<section role="files">
+						<div role="files">
 							<div class="display-files">
 								<?php 
 									display_files_thumbnail( $files, 200, 200 );
 								?>
 							</div>
-						</section>
+						</div>
 					</div>
 					<?php //widget('post_display_files', ['idx'=>$comment['idx']])?>
 						
@@ -76,4 +76,4 @@ if ( empty($comments) ) return;
             <?php //widget('post_view_comment_form', ['post'=>$comment]); ?>
         </div>
     <?php } ?>
-</section>
+</div>

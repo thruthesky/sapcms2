@@ -61,3 +61,28 @@ $pc_name = $post_config->fields['name'];
 		<?php } ?>
 </div>
 
+
+<!--[if lte IE 8]>
+<style>
+	.wooreeedu.post-list-search-box .text .checkbox-wrapper{
+		position:relative;
+		top:-5px;
+	}
+
+	.post-list.wooreeedu .page-navigator-wrapper .navigation-bar{
+		margin-top:10px;
+	}
+	
+	.post-list.wooreeedu .page-navigator-wrapper .navigation-bar a{
+		color:#393939;
+	}
+
+	.post-list.wooreeedu .page-navigator-wrapper{			
+		text-align:right;		
+	}
+
+	.post-list.wooreeedu .page-navigator-wrapper .navigation-bar{
+		text-align:right;
+	}
+</style>
+<![endif]-->

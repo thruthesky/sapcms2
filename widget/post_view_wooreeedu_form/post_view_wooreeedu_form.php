@@ -22,7 +22,7 @@ if( empty( $user_photo ) ) $user_photo = "/widget/post_view_wooreeedu_form/img/n
 
 ?>
 
-<section class="comment-form wooreeedu" style="display:<?php echo $display?>;">
+<div class="comment-form wooreeedu" style="display:<?php echo $display?>;">
     <form no='<?php echo $no_comment_form; ?>' class="ajax-file-upload" action="/post/comment/submit" method="post" enctype="multipart/form-data">
         <input type="hidden" name="idx_parent" value="<?php echo $post['idx'] ?>">
         <input type="hidden" name="file_display" value="1">
@@ -50,4 +50,10 @@ if( empty( $user_photo ) ) $user_photo = "/widget/post_view_wooreeedu_form/img/n
         </table>
         <div class='file-display files'></div>
     </form>
-</section>
+</div>
+
+<style>
+	.comment-form.wooreeedu .buttons .row.file-upload input[type='file']{
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	}
+</style>

@@ -1,39 +1,39 @@
-/** ----------------------- GRID - two column, section.grid ------------------------ **/
-section.grid:after,
-section.grid3:after,
-section.grid4:after {
+/** ----------------------- GRID - two column, .grid ------------------------ **/
+.grid:after,
+.grid3:after,
+.grid4:after {
     display:block;
     clear:both;
     content:'';
 }
 
-section.grid {
+.grid {
     width:100%;
     word-break: break-all;
 }
-section.grid .a {
+.grid .a {
     overflow:hidden;
     width:100%;
 }
-section.grid .b {
+.grid .b {
     overflow:hidden;
     width:100%;
 }
 
 @media all and ( min-width: 480px ) { /** 480px and above */
-    section.grid {
+    .grid {
         word-break: normal;
     }
-    section.grid .a,
-    section.grid .b
+    .grid .a,
+    .grid .b
     {
         width:50%;
     }
-    section.grid .a {
+    .grid .a {
         float:left;
     }
 }
-/** ----------------------- GRID - three column, section.grid3 ------------------------ **/
+/** ----------------------- GRID - three column, .grid3 ------------------------ **/
 .grid3 {
     display:block;
     width:100%;
@@ -97,7 +97,7 @@ section.grid .b {
 
 }
 
-/** ----------------------- GRID - four column, section.grid4 ------------------------ **/
+/** ----------------------- GRID - four column, .grid4 ------------------------ **/
 
 .grid4 {
     display:block;

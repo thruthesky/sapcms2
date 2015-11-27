@@ -51,13 +51,13 @@
 				$total_files = count( $files );
 				?>
 				<div class='content-margin'></div>
-				<section role="files">
+				<div role="files">
 					<div class="display-files">
 						<?php 
 							display_files_thumbnail( $files, 200, 200 );
 						?>
 					</div>
-				</section>
+				</div>
 				
 		</div>		
 	</div>

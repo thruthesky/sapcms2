@@ -193,7 +193,7 @@ class HTML {
         }
 
 
-        $rt = "<nav class='navigation-bar'>";
+        $rt = "<div class='navigation-bar'>";
 
         /** @short first page button.
          *
@@ -285,7 +285,7 @@ class HTML {
         else {
         }
 
-        $rt .= "</nav>";
+        $rt .= "</div>";
 
         return $rt;
     }
