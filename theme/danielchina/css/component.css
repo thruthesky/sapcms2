@@ -34,20 +34,92 @@
 .temp-page .title{
 	position:relative;
 	height:164px;
-	margin-bottom: 30px;
-	background:url("/theme/danielchina/img/header_text.png?v=2");	
+	margin-bottom: 30px;	
+	/*background:url("/theme/danielchina/img/header_text.png?v=2");*/
+}
+
+.temp-page.introduction .title, .temp-page.post .title{
+	background:url('/theme/danielchina/img/headerbg/header_design4.png');
+	background-size:100%;
+	background-repeat:no-repeat;
+}
+
+.temp-page.junior .title{
+	background:url('/theme/danielchina/img/headerbg/header_design1.png');
+	background-size:100%;
+	background-repeat:no-repeat;
+}
+
+.temp-page.camp .title{
+	background:url('/theme/danielchina/img/headerbg/header_design2.png');
+	background-size:100%;
+	background-repeat:no-repeat;
+}
+
+.temp-page.gallery .title{
+	background:url('/theme/danielchina/img/headerbg/header_design3.png');
+	background-size:100%;
+	background-repeat:no-repeat;
 }
 
 .temp-page .title > span{
 	position: relative;
     display: inline-block;
-    padding: 9px 10px 6px 10px;
-    margin: 48px 0 0 18px;
+	width:225px;
+	height:63px;
+    padding: 9px 10px 9px 10px;
+    margin: 48px 0 0 18px;	
     font-size: 1.7em;
+	color:#fff;
     z-index: 2;
-    box-sizing: border-box;
-    border-bottom: 2px solid #000;
+    box-sizing: border-box;    
+	text-align:center;
 }
+
+.temp-page .title > span:before{
+	position:absolute;
+	display:block;
+	left:0;
+	top:0;
+	width:4px;
+	height:63px;
+	content:"";
+}
+
+.temp-page .title > span:after{
+	position:absolute;
+	display:block;
+	right:0;
+	top:0;
+	width:4px;
+	height:63px;	
+	content:"";
+}
+
+.temp-page.introduction .title > span, .temp-page.camp .title > span, .temp-page.post .title > span{
+	background:url('/theme/danielchina/img/headerbg/blue.png');
+}
+
+.temp-page.introduction .title > span:before, .temp-page.camp .title > span:before, .temp-page.post .title > span:before{
+	background:url('/theme/danielchina/img/headerbg/left_blue.png');
+}
+
+.temp-page.introduction .title > span:after, .temp-page.camp .title > span:after, .temp-page.camp .post > span:after{
+	background:url('/theme/danielchina/img/headerbg/left_blue.png');
+}
+
+.temp-page.junior .title > span,.temp-page.gallery .title > span{
+	background:url('/theme/danielchina/img/headerbg/green.png');
+}
+
+.temp-page.junior .title > span:before, .temp-page.gallery .title > span:before{
+	background:url('/theme/danielchina/img/headerbg/left_green.png');
+}
+
+.temp-page.junior .title > span:after, .temp-page.gallery .title > span:after{
+	background:url('/theme/danielchina/img/headerbg/left_green.png');
+}
+
 /*
 .temp-page .title > span:after{
 	display:block;
