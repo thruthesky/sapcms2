@@ -1,0 +1,22 @@
+
+#layout {
+    left:0;
+    right:0;
+    overflow:hidden;
+    min-height:40em;
+}
+
+#layout-content {
+    position:relative;	
+	min-height:400px;
+	max-width:960px;
+	margin:0 10px;
+}
+
+@media all and (min-width: 1024px ) {
+	#layout-content{
+		margin:auto;
+	}
+}
+
+

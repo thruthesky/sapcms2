@@ -1,0 +1,19 @@
+body {
+    margin:0;
+    padding:0;
+    background-color: #f1f1f1;
+    font-size:1em;
+    font-family: "Malgun Gothic", "Gulim", serif;
+}
+
+img{
+	border:0;
+}
+
+input[type=submit] {
+     margin:0;
+     padding:0;
+     background-color: #f1f1f1;
+     font-size:1em;
+     font-family: "Malgun Gothic", "Gulim", serif;
+ }

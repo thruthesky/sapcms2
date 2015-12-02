@@ -1,0 +1,39 @@
+.post-banner-with-text{
+	margin-bottom:10px;
+}
+
+.post-banner-with-text a{
+	text-decoration:none;
+}
+
+.post-banner-with-text .item{
+	padding:10px;
+	background-color:#fff;
+	color:#444;
+	overflow:hidden;
+}
+
+.post-banner-with-text .item .photo-wrapper{
+	float:left;
+	width:57%;
+	margin-right:10px;
+}
+
+.post-banner-with-text .item .photo-wrapper img{
+	display:block;
+	width:100%;
+}
+
+.post-banner-with-text .item .info{
+	
+}
+
+.post-banner-with-text .item .title{
+	font-size:1.1em;
+	margin-bottom:10px;
+}
+
+.post-banner-with-text .item .content{
+	max-height: 214px;
+    font-size: .9em;    
+}
