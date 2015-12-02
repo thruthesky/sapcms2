@@ -195,10 +195,6 @@ if( $_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/?' ){ ?>
 					<div class='wrapper'>
 						<div class='text top'>2015년 주니어 겨울 영어 캠프</div><br>
 						<div class='text bottom'>즐거운 방학, 파인스 영어와 함께 영어 정복을 할 주니어 학생을 모집합니다.</div><br>
-						<!--
-						<div class='text top'>방문과외전문 + 화상영어</div><br>
-                        <div class='text bottom'>화상영어와 방문과외로 두 마리 토끼(내신과 회화)를 다 잡는 국내 유일의 교육 전문 업체!</div><br>
-						-->
                         <div class='text more'><a href="/introduction/1">자세히 보기<div class='triangle'></div></a></div>
 					</div>
 				</div>
@@ -210,10 +206,10 @@ if( $_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/?' ){ ?>
 					<div class='wrapper'>
                         <div class='text top'>방문과외전문 + 화상영어</div><br>
 						<div class='text bottom'>
-							화상영어와 방문과외로 두 마리 토끼(내신과 회화)를 다 잡는 국내 유일의 교육 전문 업체!<br>
+							화상영어와 방문과외로 두 마리 토끼 를 다 잡는 국내 유일의 교육 전문 업체!<br>
 							<div style="font-size:84%; padding-top:0.6em;">
 							영어에 가장 많은 시간을 들이고 있는데도 121등인 우리나라와 세계3위인 핀란드, 생각해 보셨나요?<br>
-							생각(일본식)을 바꾸면 방법이 보이고, 방법을 바꾸면 우리도 달라질 수 있습니다.<br>
+							생각 을 바꾸면 방법이 보이고, 방법을 바꾸면 우리도 달라질 수 있습니다.<br>
 							영어가 언어가 되려면 원어민과 매일 문법적인 대화를 하는 것이 <b style="color:red;">유일한 해결책과 방법입니다.</b><br>
 							화상만으로는 놓치거나 부족한 부분이 많이 있는데, 방문교사가 부족한 부분을 해결해주는 잉글리쉬월드
 							</div>
