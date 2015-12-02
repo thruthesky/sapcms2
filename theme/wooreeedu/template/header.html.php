@@ -171,10 +171,12 @@ if( !empty( $variables['page'] )  ){
 if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 <div class="front-top-banner">
 	<div class='arrow' direction='left'>
-		<img src="/theme/wooreeedu/img/top_arrow_left.png"/>
+		<img class='original' src="/theme/englishworld/img/top_arrow_left.png"/>
+		<img class='ie8' src="/theme/englishworld/img/ie8/top_arrow_left.png"/>
 	</div>
 	<div class='arrow' direction='right'>
-		<img src="/theme/wooreeedu/img/top_arrow_right.png"/>
+		<img class='original' src="/theme/englishworld/img/top_arrow_right.png"/>
+		<img class='ie8' src="/theme/englishworld/img/ie8/top_arrow_right.png"/>
 	</div>
 	<div class='inner'>
 		<div class='banner-wrapper five'>

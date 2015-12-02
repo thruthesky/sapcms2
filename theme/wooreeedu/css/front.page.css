@@ -610,6 +610,10 @@ section.grid.second .front-banner:nth-child(3) > img{
 	top:160px;
 }
 
+.page-content.top .left-wing.test{
+	top:320px;
+}
+
 .page-content.top .left-wing > img{
 	display:block;	
 }

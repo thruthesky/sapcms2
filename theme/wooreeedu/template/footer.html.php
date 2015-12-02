@@ -51,7 +51,7 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 	</div>
 </div>
 <?php } ?>
-<section class='grid3'>
+<div class='grid3'>
 	<div class='content footer-menu'>
 		<div class='a'>
 			<div class='footer-list menus'>
@@ -111,7 +111,7 @@ if( $_SERVER['REQUEST_URI'] == '/' ){ ?>
 			</div>
 		</div>
 	</div>
-</section>
+</div>
 <div class="copyright">
 	Copyright (C) 2013 ~ <?=date('Y')?> 우리에듀. All Rights Reserved <br>
 </div>
