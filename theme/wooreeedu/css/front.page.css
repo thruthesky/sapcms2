@@ -535,56 +535,56 @@
 
 
 /*front grid*/
-section.grid > div{
+.grid > div{
 	box-sizing:border-box;
 }
 
-section.grid .front-banner{
+.grid .front-banner{
 	display:block;
 	width:100%;
 	margin:0 0 10px 0;	
 	border:0;
 }
 
-section.grid .a{
+.grid .a{
 	padding:0 5px 0 0;
 }
 
-section.grid .b{
+.grid .b{
 	padding:0 0 0 5px;
 }
 
-section.grid.first .a .post-banner-with-text .item .photo-wrapper{
+.grid.first .a .post-banner-with-text .item .photo-wrapper{
 	width: 57.1%;
 }
 
-section.grid.second > .a{
+.grid.second > .a{
 	width:100%;
 }	
 
-section.grid.second > .b{
+.grid.second > .b{
 	display:none;
 }	
 
-section.grid.second .front-banner{	
+.grid.second .front-banner{	
 	display:inline-block;
 	width:33.33%;
 	margin:0 0 6px 0;
 }	
 
-section.grid.second .front-banner > img{	
+.grid.second .front-banner > img{	
 	display:block;
 	width:100%;
 	box-sizing:border-box;
 }
 
-section.grid.second .front-banner:nth-child(1) > img{	
+.grid.second .front-banner:nth-child(1) > img{	
 	padding-right:3.33px;
 }	
-section.grid.second .front-banner:nth-child(2) > img{	
+.grid.second .front-banner:nth-child(2) > img{	
 	padding:0 1.665px;
 }	
-section.grid.second .front-banner:nth-child(3) > img{	
+.grid.second .front-banner:nth-child(3) > img{	
 	padding-left:3.33px;
 }	
 /*eo front grid*/
@@ -730,11 +730,11 @@ section.grid.second .front-banner:nth-child(3) > img{
 	}	
 	
 	/*grid second*/
-	section.grid.second > .a{
+	.grid.second > .a{
 		width:50%;
 	}
 	
-	section.grid.second > .b{
+	.grid.second > .b{
 		display:block;
 	}
 	/*eo grid second*/
@@ -795,7 +795,7 @@ section.grid.second .front-banner:nth-child(3) > img{
 	/*eo four specific*/
 	
 	.page-content.top  .b .floater-bar{
-		height:33px;
+		height:38px;
 		padding-right:10px;
 		/*box-sizing:initial;*/
 	}
