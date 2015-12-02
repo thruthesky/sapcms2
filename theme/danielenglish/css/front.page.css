@@ -618,6 +618,10 @@
 	top:320px;
 }
 
+.page-content.top .left-wing.bank{
+	top:375px;
+}
+
 .page-content.top .left-wing > img{
 	display:block;	
 }

@@ -12,6 +12,7 @@ add_css('front.postBannerWithText.css');
 	<a class='left-wing ve' href='/ve?page=solution'><img src="/theme/danielenglish/img/left_wing_ve.png"></a>
 	<a class='left-wing team-viewer' href='/theme/teamviewer.exe' download><img src="/theme/danielenglish/img/left_wing_team_viewer.png"></a>
 	<a class='left-wing test' href='http://danielenglish.begin.kr/solution' target="_blank"><img src="/theme/danielenglish/img/class/ve_test.jpg"></a>
+	<span class='left-wing bank'><img src="/theme/danielenglish/img/class/bank.png"></span>
 	<div class='grid first'>
 		<div class='a'>
 			<a href="http://pineseg.com/pinesjr/event_camp.html" target="_blank"><img class='front-banner' src="/theme/danielenglish/img/class/main-banner-left.jpg"></a>
