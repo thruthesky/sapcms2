@@ -184,6 +184,10 @@ add_css('front.postBannerWithText.css');
 		filter: alpha(opacity=0);
 	}
 	/*eo sub menu banner*/
+	
+	.post-banner-with-text .item{
+		height:270px;
+	}
 /*eo front page*/
 </style>
 <![endif]-->
