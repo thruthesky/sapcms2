@@ -64,6 +64,7 @@ add_css('featured.item.css');
 				?>
 				</div>
 					<div class='inner'>
+						<img class='front-fake-featured' style='width:100%;opacity:0;' src='/theme/englishworld/img/top_banner_featured_fake.png'>
 						<div class='item fake'><div class='banner'><img src='/theme/englishworld/img/menu_photo_5.jpg'/></div><div class='title text-center'>화상 콜센터 영어 수업</div></div><div class='item'><!--this is a fake banner 화상 콜센터 단합대회-->
 						<div class='banner'><img src='/theme/englishworld/img/menu_photo_1.jpg'/></div><div class='title text-center'>선생님 노래자랑</div></div><div class='item'>
 						<div class='banner'><img src='/theme/englishworld/img/menu_photo_2.jpg'/></div><div class='title text-center'>화상 콜센터 바다 여행</div></div><div class='item'>
@@ -188,6 +189,7 @@ if( $_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/?' ){ ?>
 		<img class='ie8' src="/theme/englishworld/img/ie8/top_arrow_right.png"/>
 	</div>
 	<div class='inner'>
+		<img class='front-fake' style='width:100%;opacity:0;' src='/theme/englishworld/img/top_banner_fake.png'>
 		<div class='banner-wrapper five'>
 			<img class='banner fake' src='/theme/englishworld/img/banner_5.jpg'/>
 			<div class='text-info'>

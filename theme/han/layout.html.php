@@ -2,7 +2,7 @@
 <?php
 $phone_number = "010-8215-4050";
 include "han.functions.php";
-$url_ve = "http://englishworld.begin.kr/iframe_login.php?id=".login('id')."&classid=solution&page=solution";
+$url_ve = "http://han.begin.kr/iframe_login.php?id=".login('id')."&classid=solution&page=solution";
 ?>
 <html>
 <head>
@@ -153,5 +153,39 @@ $url_ve = "http://englishworld.begin.kr/iframe_login.php?id=".login('id')."&clas
 		position:relative;
 		top:-6px;
 	}
+	/*outer grid*/
+	.grid > *{
+		float:left;
+		width:475px!important;		
+		overflow:hidden;
+	}
+	
+	.grid.second .front-banner{
+		width:155px!important;
+		margin-bottom:10px!important;
+	}
+	
+	.grid.second .front-banner.kinder, .grid.second .front-banner.kids{
+		margin-right:5px;
+	}
+	
+	.page-content.top .b .floater-bar .text{
+		height:38px;
+	}
+	/**/
+	
+	/*right inner grid*/
+	.grid.second > .a, .grid.second > .b{
+		width:232px!important;		
+	}
+	
+	.post-hover-title-image .item .title{
+		width:212px!important;
+	}
+	
+	.post-hover-title-image .item .title a{
+		text-decoration:none;
+	}
+	/*eo right inner grid*/
 </style>
 <![endif]-->

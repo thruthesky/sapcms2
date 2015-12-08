@@ -63,8 +63,8 @@
 
 #header-top > .inner .logo{
 	display: block;
-    width: 260px;
-   /* padding-left: 10px;*/
+    width: 210px;
+    padding-left: 10px;
     margin: auto;
 }
 
@@ -79,7 +79,7 @@
 	display:inline-block;
 	height: 37px;
 	margin-top:13px;
-	width:116px;
+	width:120px;
 	box-sizing:border-box;
 }
 
@@ -299,7 +299,7 @@
 	}
 	
 	#header-top > .inner .logo{
-		/*margin-right:10px;*/
+		margin-right:10px;
 		float:left;
 	}
 	

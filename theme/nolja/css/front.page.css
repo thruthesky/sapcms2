@@ -6,7 +6,8 @@
 
 .front-top-banner > .inner{	
 	position:relative;
-	left:-100%;
+	/*left:-100%;*/
+	overflow:hidden;
 }
 
 .front-top-banner .banner-wrapper{		    

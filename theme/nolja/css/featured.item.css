@@ -23,7 +23,7 @@
 
 .featuredPost > .inner{
 	position:relative;	
-	left:-100%;
+	/*left:-100%;*/
 	padding-top:12px;
 	white-space:nowrap;	
 }

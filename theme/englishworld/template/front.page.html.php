@@ -9,7 +9,7 @@ add_css('front.postBulletList.css');
 add_css('front.postBannerWithText.css');
 ?>
 <div class='page-content top'>
-	<a class='left-wing ve' href='/ve?page=solution'><img src="/theme/englishworld/img/left_wing_ve.png"></a>
+	<a class='left-wing ve' href='<?php echo $url_ve; ?>' target='_blank'><img src="/theme/englishworld/img/left_wing_ve.png"></a>
 	<a class='left-wing team-viewer' href='/theme/teamviewer.exe' download><img src="/theme/englishworld/img/left_wing_team_viewer.png"></a>
 	<a class='left-wing test' href='http://englishworld.begin.kr/solution' target="_blank"><img src="/theme/englishworld/img/class/ve_test.jpg"></a>
 	<div class='grid first'>
@@ -28,8 +28,8 @@ add_css('front.postBannerWithText.css');
 		</div>
 		<div class='b'>
 			<div class='grid second'>
-				<a class='front-banner' href='http://www.kindertimes.co.kr/'><img src="/theme/englishworld/img/class/smallBanner1.png"></a><a class='front-banner'  href='http://www.kidstimes.net/'>
-				<img src="/theme/englishworld/img/class/smallBanner2.png"></a><a class='front-banner'  href='http://www.teentimes.org/'>
+				<a class='front-banner kinder' href='http://www.kindertimes.co.kr/'><img src="/theme/englishworld/img/class/smallBanner1.png"></a><a class='front-banner kids'  href='http://www.kidstimes.net/'>
+				<img src="/theme/englishworld/img/class/smallBanner2.png"></a><a class='front-banner teen'  href='http://www.teentimes.org/'>
 				<img src="/theme/englishworld/img/class/smallBanner3.png"></a>
 				<div class='floater-bar'>
 					<a class='text' href='/post/list?id=qna'>질문과 답변</a>
@@ -84,6 +84,14 @@ add_css('front.postBannerWithText.css');
 	}
 	
 	/*front banner text*/
+	.front-top-banner .banner-wrapper{
+		/*z-index:-2;*/
+	}
+	
+	.front-top-banner .banner-wrapper img.front-fake{
+		/*z-index:-1;*/
+	}
+	
 	.front-top-banner .banner-wrapper .text-info{
 		display:block;
 	}
@@ -124,6 +132,12 @@ add_css('front.postBannerWithText.css');
 		background-color:#000;
 	}
 	
+	.front-top-banner .banner-wrapper.four .text-info > .inner .text.more{
+		width:90%!important;
+		padding-left:5%;
+		padding-right:5%;
+	}
+	
 	.front-top-banner .two.banner-wrapper .text-info > .inner > .wrapper .fake-image{
 		display:none;
 	}
@@ -146,6 +160,30 @@ add_css('front.postBannerWithText.css');
 		display:block;
 	}	
 	/*eo middle items*/
+	
+	/*top banner*/
+	.front-top-banner .banner-wrapper .text-info > .inner .text{
+		display:inline;
+	}
+	/*eo top banner*/
+	
+	/*sub menu banner*/
+	#header-top > .inner .sub-menu{
+		z-index:100000!important;
+	}
+	
+	.featuredPost .item{
+		position:absolute;
+		left:0;
+		top:0;
+	}
+	
+
+	.front-fake-featured{
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";	
+		filter: alpha(opacity=0);
+	}
+	/*eo sub menu banner*/
 /*eo front page*/
 </style>
 <![endif]-->

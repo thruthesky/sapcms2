@@ -6,7 +6,8 @@
 
 .front-top-banner > .inner{	
 	position:relative;
-	left:-100%;
+	/*left:-100%;*/
+	overflow:hidden;
 }
 
 .front-top-banner .banner-wrapper{		    
@@ -431,6 +432,10 @@
 	display:block;
 }
 
+.front-top-banner:hover .arrow .ie8{
+	display:none;
+}
+
 /*floaters*/
 /*dotted*/
 	.page-content.top  .floater-dotted{
@@ -610,9 +615,11 @@
 	top:160px;
 }
 
+
 .page-content.top .left-wing.test{
 	top:320px;
 }
+
 
 .page-content.top .left-wing > img{
 	display:block;	

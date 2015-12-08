@@ -9,14 +9,14 @@ add_css('front.postBulletList.css');
 add_css('front.postBannerWithText.css');
 ?>
 <div class='page-content top'>
-	<a class='left-wing ve' href='/ve?page=solution'><img src="/theme/englishworld/img/left_wing_ve.png"></a>
+	<a class='left-wing ve' href='<?php echo $url_ve ?>'><img src="/theme/englishworld/img/left_wing_ve.png"></a>
 	<a class='left-wing team-viewer' href='/theme/teamviewer.exe' download><img src="/theme/englishworld/img/left_wing_team_viewer.png"></a>
 	<a class='left-wing test' href='http://englishworld.begin.kr/solution' target="_blank"><img src="/theme/englishworld/img/class/ve_test.jpg"></a>
 	<div class='grid first'>
 		<div class='a'>
 			<a href="http://pineseg.com/pinesjr/event_camp.html" target="_blank"><img class='front-banner' src="/theme/englishworld/img/class/main-banner-left.jpg"></a>
 			<div class='floater-dotted'>
-				<a class='text' href='/post/list?id=story'>수업후기</a>
+				<a class='text' href='/post/list?id=wooreeedu'>수업후기</a>
 			</div>
 			<?php
 				$posts = getPostWithImageNoComment(0, 3, 'wooreeedu');			
@@ -32,7 +32,7 @@ add_css('front.postBannerWithText.css');
 				<img src="/theme/englishworld/img/class/smallBanner2.png"></a><a class='front-banner'  href='http://www.teentimes.org/'>
 				<img src="/theme/englishworld/img/class/smallBanner3.png"></a>
 				<div class='floater-bar'>
-					<a class='text' href='/post/list?id=qna'>질문과 답변</a>
+					<a class='text' href='/post/list?id=wooreeedu_gallery'>질문과 답변</a>
 				</div>
 				<div class='a'>							
 					<?php
@@ -84,6 +84,14 @@ add_css('front.postBannerWithText.css');
 	}
 	
 	/*front banner text*/
+	.front-top-banner .banner-wrapper{
+		/*z-index:-2;*/
+	}
+	
+	.front-top-banner .banner-wrapper img.front-fake{
+		/*z-index:-1;*/
+	}
+	
 	.front-top-banner .banner-wrapper .text-info{
 		display:block;
 	}
@@ -124,6 +132,12 @@ add_css('front.postBannerWithText.css');
 		background-color:#000;
 	}
 	
+	.front-top-banner .banner-wrapper.four .text-info > .inner .text.more{
+		width:90%!important;
+		padding-left:5%;
+		padding-right:5%;
+	}
+	
 	.front-top-banner .two.banner-wrapper .text-info > .inner > .wrapper .fake-image{
 		display:none;
 	}
@@ -131,7 +145,7 @@ add_css('front.postBannerWithText.css');
 	
 	/*middle items*/
 	.top.page-content .floater-bar{
-		height:35px;		
+		height:34px;		
 	}
 	
 	.top.page-content .floater-bar .text{
@@ -146,6 +160,34 @@ add_css('front.postBannerWithText.css');
 		display:block;
 	}	
 	/*eo middle items*/
+	
+	/*top banner*/
+	.front-top-banner .banner-wrapper .text-info > .inner .text{
+		display:inline;
+	}
+	/*eo top banner*/
+	
+	/*sub menu banner*/
+	#header-top > .inner .sub-menu{
+		z-index:100000!important;
+	}
+	
+	.featuredPost .item{
+		position:absolute;
+		left:0;
+		top:0;
+	}
+	
+
+	.front-fake-featured{
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";	
+		filter: alpha(opacity=0);
+	}
+	/*eo sub menu banner*/
+	
+	.post-banner-with-text .item{
+		height:270px;
+	}
 /*eo front page*/
 </style>
 <![endif]-->

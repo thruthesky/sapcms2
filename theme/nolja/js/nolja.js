@@ -7,7 +7,7 @@ var featured_banner_data = {};
 //var banner_current_page = 1;
 var is_animating = false;
 
-$(function(){
+$(function(){	
 	initializeVariables();
 	
 	$("body").on("click",".front-top-banner .arrow",move_top_banner);
@@ -18,8 +18,12 @@ $(function(){
 	$("body").on("mouseleave","#header-top > .inner", closeSubMenus);
 
 	$("body").on("click",".featuredPost .page-navigator .page-item",featuredPostAnimation);
-	onResizeWindow();
-	$(window).resize( onResizeWindow );
+	
+	setTimeout(function(){
+		onResizeWindow();
+	},500);
+	
+	$(window).resize( onResizeWindow );	
 	
 	//autoScrollFeaturedBanner();
 	if( $(".front-top-banner").length ){
@@ -33,7 +37,27 @@ $(function(){
 	$("body").on("click",".post .post-delete", deletePost);
 	
 	//$body.on("click",".file-display .delete", fileDelete);
+	if( $(".front-top-banner").length ) initBanner();
+	if( $(".featuredPost").length ) initFeaturedBanner();
 });
+
+function initBanner(){
+	var $selector = $(".front-top-banner .banner-wrapper");
+	var multiplier = 100;
+	for( var i = 0; i < $selector.length; i++ ){
+		var left = ( i - 1 ) * multiplier ;
+		$(".front-top-banner .banner-wrapper:eq(" + i + ")").css("position","absolute").css( "left", left + "%" ).css("top","0");		
+	}
+}
+
+function initFeaturedBanner(){
+	var $selector = $(".featuredPost .item");
+	var multiplier = 100;
+	for( var i = 0; i < $selector.length; i++ ){
+		var left = ( i - 1 ) * multiplier ;
+		$(".featuredPost .item:eq(" + i + ")").css("position","absolute").css( "left", left + "%" ).css("top","0");		
+	}
+}
 /*
 function fileDelete(){	
 	re = confirm( "Are you sure you want to delete this image?" );
@@ -65,18 +89,20 @@ function move_top_banner(){
 	if( top_banner_data.is_animating == true ) return;
 	
 	top_banner_data.is_animating = true;
-	var $selector = $(".front-top-banner > .inner");
+	var $selector = $(".front-top-banner > .inner > .banner-wrapper");
 	var direction = $this.attr("direction");	
 	
 	if( direction == 'left' ){
 		top_banner_data.banner_current_page --;
 		animation_movement = top_banner_data.banner_current_page * 100;
-		do_banner_animation( "-" + animation_movement + "%", $selector, 500, direction, top_banner_data );
+		//do_banner_animation( "-" + animation_movement + "%", $selector, 500, direction, top_banner_data );
+		do_banner_animation( "+=100%", $selector, 500, direction, top_banner_data );
 	}
 	else if( direction == 'right' ){
 		top_banner_data.banner_current_page ++;
 		animation_movement = top_banner_data.banner_current_page * 100;
-		do_banner_animation( "-" + animation_movement+"%", $selector, 500, direction, top_banner_data );
+		//do_banner_animation( "-" + animation_movement+"%", $selector, 500, direction, top_banner_data );
+		do_banner_animation( "-=100%", $selector, 500, direction, top_banner_data );
 	}
 }
 
@@ -84,10 +110,11 @@ var topAutoBanner;
 function autoScrollTopBanner(){
 	stopFrontBanner();	
 	topAutoBanner = setTimeout( function(){
-		var $selector = $(".front-top-banner > .inner");
+		var $selector = $(".front-top-banner > .inner > .banner-wrapper");
 		top_banner_data.banner_current_page ++;
-		animation_movement = top_banner_data.banner_current_page * 100;
-		do_banner_animation( "-" + animation_movement+"%", $selector, 500, 'right', top_banner_data );
+		//animation_movement = top_banner_data.banner_current_page * 100;	
+		//do_banner_animation( "-" + animation_movement+"%", $selector, 500, 'right', top_banner_data );
+		do_banner_animation( "-=100%", $selector, 500, 'right', top_banner_data );
 		autoScrollTopBanner()
 	},5000);
 }
@@ -109,12 +136,14 @@ function do_banner_animation( animation_movement, $selector, speed, direction, d
 		data.is_animating = false;
 		if( direction == 'left' ){
 			if( data.banner_current_page < 1 ){				
-				do_banner_animation( "-" + ( data.banner_count * 100 ) + "%", $selector, 0, 'last', data );
+				//do_banner_animation( "-" + ( data.banner_count * 100 ) + "%", $selector, 0, 'last', data );
+				do_banner_animation( "-=" + ( ( $selector.length - 2 ) * 100 )  + "%", $selector, 0, 'last', data );
 			}
 		}
 		else if( direction == 'right' ){			
 			if( data.banner_current_page > data.banner_count ){				
-				do_banner_animation( "-100%", $selector, 0, 'first', data );
+				//do_banner_animation( "-100%", $selector, 0, 'first', data );				
+				do_banner_animation( "+=" + ( ( $selector.length - 2 ) * 100 )  + "%", $selector, 0, 'first', data );
 			}
 		}
 		else if( direction == 'page' ){ //page jump
@@ -150,18 +179,20 @@ function showSubMenus(){
 		$("#header-top .sub-menu").slideDown();
 		autoScrollFeaturedBanner();
 		/*suggested to start randommly each time the sub menu shows*/
-		featured_banner_data.banner_current_page = Math.floor(Math.random() * featured_banner_data.banner_count) + 1  ;
-		page_now = featured_banner_data.banner_current_page;		
+		page_now = featured_banner_data.banner_current_page;
+		/*featured_banner_data.banner_current_page = Math.floor(Math.random() * featured_banner_data.banner_count) + 1  ;			
 		clicked_page = parseInt( page_now ) + 1;		
 		featured_banner_data.banner_current_page = clicked_page;
 		page_diff = page_now - clicked_page;
 		if( clicked_page > featured_banner_data.banner_count ) clicked_page = 1;
 		$(".featuredPost .page-navigator .page-item.is-active").removeClass("is-active");
 		$(".featuredPost .page-navigator .page-item[page='" + clicked_page + "']").addClass("is-active");
-		
-		$selector = $(".featuredPost > .inner");
-		animation_movement = ( page_now - page_diff ) * 100;
-		do_banner_animation( "-" + animation_movement + "%", $selector, 0, 'right', featured_banner_data );
+		*/
+		//$selector = $(".featuredPost > .inner");
+		//$selector = $(".featuredPost .item");
+		//animation_movement = ( page_now - page_diff ) * 100;
+		//do_banner_animation( "-" + animation_movement + "%", $selector, 0, 'right', featured_banner_data );
+		//do_banner_animation( "-=100%", $selector, 0, 'right', featured_banner_data );
 	},200);
 }
 
@@ -178,15 +209,14 @@ function onResizeWindow(){
 	difference_x = ( $(window).width() - 960 ) / 2 + 10;
 	difference_y = ( $(".front-top-banner").height()/2 - $(".front-top-banner .arrow").height() + 4  );
 	if( difference_x < 10 ) difference_x = 10;
-	console.log( difference_y );
+	//console.log( difference_y );
 	if( difference_y <= 0 ) {
 		setTimeout( function(){onResizeWindow()},100 );
 	}
 	else{
 		$(".front-top-banner .arrow[direction='left']").css("left",difference_x).css("top",difference_y);
 		$(".front-top-banner .arrow[direction='right']").css("right",difference_x).css("top",difference_y);
-	}
-	
+	}		
 }
 
 function featuredPostAnimation(){
@@ -209,8 +239,13 @@ function featuredPostAnimation(){
 	$this.addClass('is-active');
 	$selector = $(".featuredPost > .inner");
 
-	animation_movement = ( page_now - page_diff ) * 100;
-	do_banner_animation( "-" + animation_movement + "%", $selector, 500, 'page', featured_banner_data );
+	animation_movement = Math.abs( page_diff * 100 );
+
+	//do_banner_animation( "-" + animation_movement + "%", $selector, 500, 'page', featured_banner_data );	
+	if( page_diff > 0 ) start = "+=";
+	else if( page_diff < 0 ) start = "-=";
+	movement = start + animation_movement + "%";
+	do_banner_animation( movement, $selector, 500, 'page', featured_banner_data );
 }
 
 var featuredAutoBanner;
@@ -225,9 +260,11 @@ function autoScrollFeaturedBanner(){
 		$(".featuredPost .page-navigator .page-item.is-active").removeClass("is-active");
 		$(".featuredPost .page-navigator .page-item[page='" + clicked_page + "']").addClass("is-active");
 		
-		$selector = $(".featuredPost > .inner");
+		//$selector = $(".featuredPost > .inner");
+		$selector = $(".featuredPost .item");
 		animation_movement = ( page_now - page_diff ) * 100;
-		do_banner_animation( "-" + animation_movement + "%", $selector, 500, 'right', featured_banner_data );
+		//do_banner_animation( "-" + animation_movement + "%", $selector, 500, 'right', featured_banner_data );
+		do_banner_animation( "-=100%", $selector, 500, 'right', featured_banner_data );
 		autoScrollFeaturedBanner();
 	}, 2000 );
 }
@@ -245,7 +282,7 @@ function startFeaturedBanner(){
 
 
 
-//var url_server_app = 'http://nolja.com/app/';//
+//var url_server_app = 'http://englishworld.com/app/';//
 
 /*pop up image*/
 $(function(){
