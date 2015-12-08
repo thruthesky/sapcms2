@@ -66,5 +66,15 @@
 	.user-login-form.member-form .forgot-password-wrapper{	
 		margin-bottom:20px;
 	}
+	
+	.member-form .data-set.row > .caption{
+		display:block!important;
+		float:left;		
+	}
+	
+	.member-form.user-login-form .data-set.row > .text{
+		margin-left:0;
+		width:83%;
+	}
 </style>
 <![endif]-->

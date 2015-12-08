@@ -3,7 +3,7 @@
 	//widget('error');
 ?>
 
-<div class='member-form-wrapper login wooreeedu'>
+<div class='member-form-wrapper login englishworld'>
 	<div class='title'>회원 로그인</div>
 	<form class='user-login-form member-form' action="/user/login" method="post" data-ajax="false">
 		<!--
@@ -37,7 +37,6 @@
 	</form>
 </div>
 
-
 <!--[if lte IE 8]>
 <style>
 	.member-form-wrapper{
@@ -66,6 +65,16 @@
 	
 	.user-login-form.member-form .forgot-password-wrapper{	
 		margin-bottom:20px;
+	}
+	
+	.member-form .data-set.row > .caption{
+		display:block!important;
+		float:left;		
+	}
+	
+	.member-form.user-login-form .data-set.row > .text{
+		margin-left:0;
+		width:83%;
 	}
 </style>
 <![endif]-->

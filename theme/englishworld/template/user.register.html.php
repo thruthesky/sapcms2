@@ -222,7 +222,6 @@
 		</div>
 	</form>
 </div>
-
 <!--[if lte IE 8]>
 <style>
 	.member-form-wrapper{
@@ -255,6 +254,17 @@
 	
 	.user-login-form.member-form .forgot-password-wrapper{	
 		margin-bottom:20px;
+	}
+	
+	member-form-wrapper{
+		position:relative;
+	}
+	.member-form .data-set.row > .caption{
+		display:block!important;		
+	}
+	
+	.member-form .data-set.row > .text{
+		padding-left:0!important;
 	}
 </style>
 <![endif]-->

@@ -5,7 +5,7 @@
 	else $submit_text = "회원 정보 수정";
 ?>
 
-<div class='member-form-wrapper register nolja'>
+<div class='member-form-wrapper register englishworld'>
 	<div class='title'><?php echo $submit_text; ?></div>
 	<form class="member-register-form member-form ajax-file-upload" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="file_module" value="user">
@@ -222,7 +222,6 @@
 		</div>
 	</form>
 </div>
-
 <!--[if lte IE 8]>
 <style>
 	.member-form-wrapper{
@@ -255,6 +254,17 @@
 	
 	.user-login-form.member-form .forgot-password-wrapper{	
 		margin-bottom:20px;
+	}
+	
+	member-form-wrapper{
+		position:relative;
+	}
+	.member-form .data-set.row > .caption{
+		display:block!important;		
+	}
+	
+	.member-form .data-set.row > .text{
+		padding-left:0!important;
 	}
 </style>
 <![endif]-->
