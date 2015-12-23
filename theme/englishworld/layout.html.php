@@ -17,7 +17,14 @@ $url_ve = "http://englishworld.begin.kr/iframe_login.php?id=".login('id')."&clas
     <link rel="icon" type="image/ico" href="/theme/englishworld/favicon.ico?v=3"/>
 </head>
 <body>
-<div id="layout">	
+<div id="layout">
+		
+	<div style="position:absolute;left:0;top:30%;width:100%;text-align:center;z-index:999999999;">
+		<div style="width:400px;padding:40px;margin:auto;color:#fff;background-color:rgba(0,0,0,.9);font-size:1.5em">
+			휴강일 안내<br><br>
+			12월 24일,31일은 휴강일입니다.
+		</div>
+	</div>
     <div id="layout-header"><?php include template('header'); ?></div>
     <div id="layout-content">
 		<?php widget('error') ?>
